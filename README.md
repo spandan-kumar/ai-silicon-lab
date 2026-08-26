@@ -16,6 +16,11 @@ Start with:
 ./lab/status
 ```
 
+Fresh autonomous coding sessions should read [`AGENTS.md`](AGENTS.md) first.
+It grants broad freedom to install tools and research the internet while
+requiring every technical claim to be grounded in executed, reproducible
+evidence rather than assumptions.
+
 The agent-owned area is [`workspace/`](workspace/). The evaluator and its
 reference data live in [`lab/`](lab/) and [`ground_truth/`](ground_truth/),
 which are protected after setup. Evaluations are recorded under
@@ -24,4 +29,3 @@ which are protected after setup. Evaluations are recorded under
 See [`LAB.md`](LAB.md), [`EVALUATION.md`](EVALUATION.md),
 [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md), [`SECURITY.md`](SECURITY.md), and
 [`EXPERIMENTS.md`](EXPERIMENTS.md) for the operating contract.
-

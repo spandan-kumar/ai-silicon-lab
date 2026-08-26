@@ -45,6 +45,12 @@ candidate exit checks, and ground-truth integrity checks pass. Missing tools,
 missing frames, crashes, timeouts, malformed reports, or comparison failures
 are failures, never silent skips.
 
+This is an evidence-based contract. The evaluator does not accept assumptions,
+visual inspection, screenshots, or candidate assertions as proof. It runs the
+candidate, records exit status and logs, inspects the emitted files, and
+compares captured frames with explicit trusted data. Measurements that are not
+available are represented as `null` or `unavailable`; they are never guessed.
+
 ## Self-tests
 
 `--self-test known-good` runs the trusted reference engine through the same
@@ -63,4 +69,3 @@ the security document therefore requires a container, VM, or separate machine
 when the future agent is untrusted. A candidate that deliberately embeds a
 host-side game can still imitate an allowed output protocol, so such behavior
 must be excluded by experiment policy and stronger isolation when required.
-

@@ -69,3 +69,24 @@ become trusted merely by being present.
 No interface element names a processor or ISA. A candidate can be a software
 model, RTL simulator, FPGA runner, emulator, or another computer design.
 
+## Agent freedom, research, and evidence
+
+The installed capability list is a starting point, not a boundary. The future
+agent may install any simulator, compiler, synthesis or place-and-route flow,
+debugger, profiler, emulator, library, or other tool needed for an experiment.
+It may use local packages, containers, virtual machines, or other practical
+installation methods, while recording important versions and setup choices.
+
+Internet research is explicitly encouraged whenever the work needs it. Search
+for primary documentation, source code, standards, papers, DOOM internals, and
+architecture or implementation techniques instead of treating uncertain memory
+as fact. Record useful URLs, citations, and repository revisions with the
+experiment so another session can follow the same evidence trail.
+
+The lab's testing standard is empirical: no test or conclusion is accepted on
+the basis of an assumption, a screenshot, a self-reported metric, or a claim
+that something "should" work. Execute the relevant build and test, inspect its
+real artifacts and exit status, compare outputs against explicit vectors or
+trusted ground truth, and repeat measurements when determinism matters. Label
+inferences and hypotheses as such. If a result cannot be measured, report it as
+unknown or unavailable; never silently skip a check or invent a metric.
