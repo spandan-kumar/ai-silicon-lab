@@ -21,9 +21,11 @@ It grants broad freedom to install tools and research the internet while
 requiring every technical claim to be grounded in executed, reproducible
 evidence rather than assumptions.
 
-The agent-owned area is [`workspace/`](workspace/). The evaluator and its
-reference data live in [`lab/`](lab/) and [`ground_truth/`](ground_truth/),
-which are protected after setup. Evaluations are recorded under
+The primary design area is [`workspace/`](workspace/), but the agent is
+authorized to maintain the repository as a whole, including adding, editing,
+moving, or deleting files as needed. The evaluator and its reference data live
+in [`lab/`](lab/) and [`ground_truth/`](ground_truth/), which are protected
+during normal experiments. Evaluations are recorded under
 [`runs/`](runs/); those files are intentionally mutable and ignored by Git.
 
 See [`LAB.md`](LAB.md), [`EVALUATION.md`](EVALUATION.md),

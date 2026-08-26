@@ -44,12 +44,21 @@ they remain useful evidence.
 
 ## Repository and trust boundary
 
-Work primarily in `workspace/`. Use `./lab/status` to discover capabilities and
-`./lab/evaluate` for the machine-verifiable benchmark. Keep `lab/` and
-`ground_truth/` read-only; they contain the protected evaluator, reference,
-oracle, and correctness rules. Record source changes with Git commits and
-associate results with their run IDs. Do not expose credentials, private keys,
-or unrelated personal data to tools, logs, or experiment artifacts. Use Docker,
-a VM, or a separate disposable environment when running code that should not
-be trusted with the host.
+You are authorized to maintain the repository as a whole: add, edit, move, or
+delete files when that helps the design, tooling, documentation, experiments,
+or laboratory itself. Work primarily in `workspace/` by default, but do not
+treat the initial layout as permanent. Use Git deliberately so changes,
+including removals, remain reviewable and reproducible.
 
+During normal experiments keep `lab/` and `ground_truth/` read-only; they contain
+the protected evaluator, reference, oracle, and correctness rules. If the lab
+itself needs maintenance, you may change those roots as a trusted maintenance
+operation, but then regenerate the trusted manifest, run the full validation,
+reapply filesystem protection, and commit the new trusted state. Never change
+the judge or ground truth merely to make a candidate pass.
+
+Use `./lab/status` to discover capabilities and `./lab/evaluate` for the
+machine-verifiable benchmark. Do not expose credentials, private keys, or
+unrelated personal data to tools, logs, or experiment artifacts. Use Docker, a
+VM, or a separate disposable environment when running code that should not be
+trusted with the host.
