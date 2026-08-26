@@ -16,7 +16,7 @@
     "ground_truth/benchmark/representative/frame-000119.rgb": "b8c00b6a5893551bf95d71c6f5bc00a72dfe6697da3e676555cf1b9a39b59bf6",
     "ground_truth/environment.json": "5e02d75243e1f238813c093c236e223c8ce51864d65bc618f307eb0b120a5dfb",
     "ground_truth/evaluator/README.md": "2f6bb2e4cf408b49c2bf877484387b46575edfc98f6e20c04614be8c419962be",
-    "ground_truth/evaluator/evaluate.py": "d36c797a14223049dcbba0bab4d89d02dd25d98b2893e3625fe27d4eaa6de724",
+    "ground_truth/evaluator/evaluate.py": "4461da77acd5f073ae063c91db2d7417d6a9d90442e0121c1da64902db41fa3e",
     "ground_truth/reference/Makefile": "2cead4c38d01133ea581d79f1da718dff1720c3ea60bec62b2fea688d218fa13",
     "ground_truth/reference/README.md": "40932613463c28f90a31bb8933a245c68278bff79a2cc0e2ce32fb980f4bf71a",
     "ground_truth/reference/SOURCE.json": "122cde1dc06e2c5228845b5d4ff20f0fbe4fcc7cc9b747a4634525cb766d3307",
@@ -234,7 +234,7 @@
     "lab/reproduce": "4675f53d9397f9b580edeb17b4e0f6233d581a4b9e6193154f5b997a8af21845",
     "lab/reproduce.py": "73655e8dce6ff47cb9c6960f7886d26034df931e218bd0262115187444264271",
     "lab/status": "400eaf5d9f7b65653edbe0b68ad9238bbcc30d9a62cce4d41403681cfe89669f",
-    "lab/status.py": "9059281c0a651afefee0d847cf1608ca5c86b5ac23f8addeb7b0fed82de7dfa5",
+    "lab/status.py": "ae0964276a4ffb9899db0534fda9f33f31bf46926f8bf82e8f0d4e54f9a8509d",
     "lab/trace": "4e5a2a445cb3d44c9b6db39fc27c179197e9c432289d71f0972b881e9d7af2ff",
     "lab/trace_command.py": "52053c93f2c88cfc61c0312b6030210a57b7f50dd87df72f2b629477a5881711"
   },

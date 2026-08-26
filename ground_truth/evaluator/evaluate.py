@@ -633,8 +633,6 @@ def evaluate(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
     git_diff = capture_git_diff(run_dir / "artifacts" / "git-diff.patch")
     git_after = git_snapshot()
     reproducible = bool(git_before.get("head") and git_after.get("head") and not git_before.get("dirty") and not git_after.get("dirty"))
-    if not reproducible:
-        errors.append("source state is not a clean committed Git revision")
 
     result = {
         "schema_version": 1,

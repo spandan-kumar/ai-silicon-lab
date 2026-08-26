@@ -167,6 +167,8 @@ def core_report() -> list[dict[str, Any]]:
     add("Python runtime", python_version >= (3, 8), sys.version.split()[0])
     rtl_ok, rtl_detail = rtl_smoke()
     add("RTL simulation", rtl_ok, rtl_detail)
+    synth_ok, synth_detail = yosys_smoke()
+    add("RTL synthesis", synth_ok, synth_detail)
     add("deterministic test infrastructure", (ROOT / "ground_truth/benchmark/input.events").is_file(), "input schedule present")
 
     benchmark_ok = False
