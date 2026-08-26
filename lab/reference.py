@@ -7,8 +7,10 @@ import argparse
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,16 +19,31 @@ PREBUILT = ROOT / "ground_truth" / "reference" / "bin" / "doomgeneric-headless"
 
 
 def build_reference() -> Path:
-    output = ROOT / ".aisl" / "reference-build" / "doomgeneric-headless"
-    output.parent.mkdir(parents=True, exist_ok=True)
-    completed = subprocess.run(
-        ["make", "-C", str(ROOT / "ground_truth" / "reference"), f"OUTPUT={output}"],
-        cwd=ROOT,
-        check=False,
-    )
-    if completed.returncode != 0 or not output.is_file():
-        raise SystemExit("reference build failed")
-    return output
+    cache_output = ROOT / ".aisl" / "reference-build" / "doomgeneric-headless"
+    cache_output.parent.mkdir(parents=True, exist_ok=True)
+    # Keep Make's source and object paths free of spaces. The repository itself
+    # may live under a path such as "AI Silicon Lab", which GNU Make otherwise
+    # tokenizes when absolute paths are passed as variable assignments.
+    with tempfile.TemporaryDirectory(prefix="aisl-reference-build-") as directory:
+        temp_root = Path(directory)
+        temp_output = temp_root / "doomgeneric-headless"
+        temp_objects = temp_root / "obj"
+        completed = subprocess.run(
+            [
+                "make",
+                "-C",
+                str(ROOT / "ground_truth" / "reference"),
+                f"BUILD_DIR={temp_objects}",
+                f"OUTPUT={temp_output}",
+            ],
+            cwd=ROOT,
+            check=False,
+        )
+        if completed.returncode != 0 or not temp_output.is_file():
+            raise SystemExit("reference build failed")
+        shutil.copyfile(temp_output, cache_output)
+        shutil.copymode(temp_output, cache_output)
+    return cache_output
 
 
 def main() -> int:

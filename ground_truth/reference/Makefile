@@ -1,7 +1,6 @@
-ROOT := $(abspath $(CURDIR)/../..)
-VENDOR := $(CURDIR)/vendor/doomgeneric
-BUILD_DIR ?= $(ROOT)/.aisl/reference-build/obj
-OUTPUT ?= $(ROOT)/.aisl/reference-build/doomgeneric-headless
+VENDOR := vendor/doomgeneric
+BUILD_DIR ?= /tmp/aisl-reference-build/obj
+OUTPUT ?= /tmp/aisl-reference-build/doomgeneric-headless
 
 CC ?= cc
 CPPFLAGS += -I$(VENDOR) -DDOOMGENERIC_RESX=320 -DDOOMGENERIC_RESY=200
