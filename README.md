@@ -6,6 +6,8 @@ hardware/software co-design experiments.
 
 The lab supplies capabilities and trusted measurements. It does not prescribe
 a CPU, ISA, renderer, memory system, simulator, or implementation sequence.
+Examples throughout the repository are illustrative rather than a solution or
+required workflow.
 The first eventual objective is to build a computer capable of running DOOM;
 this repository establishes the laboratory for that experiment and does not
 contain that computer.

@@ -69,6 +69,12 @@ become trusted merely by being present.
 No interface element names a processor or ISA. A candidate can be a software
 model, RTL simulator, FPGA runner, emulator, or another computer design.
 
+Examples in this guide are illustrative context, not a required architecture or
+workflow. The agent owns its process and may replace the initial layout,
+commands, tools, and experiment strategy whenever evidence supports doing so;
+the explicit evaluation, security, licensing, and integrity requirements remain
+the binding contract.
+
 ## Agent freedom, research, and evidence
 
 The installed capability list is a starting point, not a boundary. The future
@@ -82,6 +88,11 @@ for primary documentation, source code, standards, papers, DOOM internals, and
 architecture or implementation techniques instead of treating uncertain memory
 as fact. Record useful URLs, citations, and repository revisions with the
 experiment so another session can follow the same evidence trail.
+
+The agent may design its own process and, when supported by its runtime, create
+reusable subagents, skills, prompts, harnesses, or other delegation tools. Such
+delegation is optional. Every delegated result still requires independent
+verification against the experiment's success criteria.
 
 The lab's testing standard is empirical: no test or conclusion is accepted on
 the basis of an assumption, a screenshot, a self-reported metric, or a claim
