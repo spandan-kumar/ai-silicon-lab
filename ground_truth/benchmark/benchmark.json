@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "freedoom-phase1-headless-v1",
+  "description": "Deterministic Freedoom Phase 1 execution through a 320x200 RGB framebuffer",
+  "engine": {
+    "name": "doomgeneric",
+    "source_metadata": "ground_truth/reference/SOURCE.json"
+  },
+  "asset": "ground_truth/assets/freedoom1.wad",
+  "input_file": "ground_truth/benchmark/input.events",
+  "video": {
+    "width": 320,
+    "height": 200,
+    "format": "rgb888",
+    "frame_bytes": 192000
+  },
+  "execution": {
+    "warmup_frames": 64,
+    "capture_frames": 120,
+    "timeout_seconds": 300
+  },
+  "reference_args": [
+    "-skill",
+    "1",
+    "-warp",
+    "1",
+    "1"
+  ],
+  "oracle_file": "ground_truth/benchmark/reference_frames.bin",
+  "comparison": {
+    "mode": "exact",
+    "max_mean_abs_error": 0.0,
+    "max_bad_pixel_fraction": 0.0
+  }
+}

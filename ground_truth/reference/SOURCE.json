@@ -1,0 +1,32 @@
+{
+  "reference_engine": {
+    "name": "doomgeneric",
+    "repository": "https://github.com/ozkl/doomgeneric",
+    "revision": "dcb7a8dbc7a16ce3dda29382ac9aae9d77d21284",
+    "license_file": "ground_truth/reference/vendor/doomgeneric/LICENSE",
+    "local_adapter": "ground_truth/reference/vendor/doomgeneric/doomgeneric_headless.c"
+  },
+  "game_data": {
+    "name": "Freedoom Phase 1",
+    "repository": "https://github.com/freedoom/freedoom",
+    "source_tag": "v0.13.0",
+    "source_revision": "cfb8644b1a8dc7d7d2177e6a892ccaa2922bdaae",
+    "release_page": "https://github.com/freedoom/freedoom/releases/tag/v0.13.0",
+    "asset": "ground_truth/assets/freedoom1.wad",
+    "asset_sha256": "7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f",
+    "license_file": "ground_truth/assets/FREEDOOM-LICENSE.txt",
+    "credits_file": "ground_truth/assets/CREDITS"
+  },
+  "oracle": {
+    "file": "ground_truth/benchmark/reference_frames.bin",
+    "sha256": "07f7eecc32a52cfd424c3523184332c49bc9627168a45b67f4a57d3c18f8f833",
+    "frames": 120,
+    "frame_bytes": 192000,
+    "warmup_frames": 64
+  },
+  "prebuilt_reference": {
+    "file": "ground_truth/reference/bin/doomgeneric-headless",
+    "sha256": "9be615002fb670d2b5fb60be08eb2172daa772fe70b591a3ff209306047fe26b",
+    "platform": "macOS arm64"
+  }
+}

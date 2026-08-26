@@ -1,0 +1,46 @@
+{
+  "captured_at": "2026-08-26T17:52:00+05:30",
+  "host": {
+    "os": "macOS 26.5.2",
+    "kernel": "Darwin 25.5.0",
+    "architecture": "arm64",
+    "model": "Mac16,12",
+    "cpu": "Apple M4",
+    "cpu_cores": 10,
+    "memory_bytes": 17179869184,
+    "storage_free_at_capture": "approximately 21 GiB",
+    "hypervisor_support": true,
+    "docker_context": "orbstack",
+    "fpga_detected": false
+  },
+  "tools": {
+    "git": "available",
+    "clang": "Apple Clang 17.0.0",
+    "gcc": "available at /usr/bin/gcc",
+    "make": "GNU Make 3.81",
+    "python": "3.14.6",
+    "node": "v26.4.0",
+    "npm": "11.17.0",
+    "verilator": "5.050",
+    "yosys": "0.68+post",
+    "docker": "29.4.0",
+    "homebrew": "6.0.19"
+  },
+  "unavailable_at_capture": [
+    "iverilog",
+    "gtkwave",
+    "nextpnr",
+    "openlane",
+    "openroad",
+    "qemu-system-x86_64",
+    "qemu-system-riscv64",
+    "riscv64-unknown-elf-gcc",
+    "arm-none-eabi-gcc",
+    "rustc",
+    "physical FPGA"
+  ],
+  "network": {
+    "https_and_git": true,
+    "note": "GitHub release-asset downloads were reset; Freedoom was built locally from its pinned official source tag."
+  }
+}

@@ -1,0 +1,13 @@
+# AI Silicon Lab deterministic input schedule.
+# Format: <tic> <key> <pressed>, where pressed is 1 for down and 0 for up.
+# One transition is scheduled per tic so simple ports can consume the stream.
+80 w 1
+98 w 0
+104 d 1
+128 d 0
+140 fire 1
+141 fire 0
+152 use 1
+153 use 0
+170 left 1
+182 left 0

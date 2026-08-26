@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "name": "replace-me",
+  "build": null,
+  "run": "./workspace/your-candidate/run"
+}

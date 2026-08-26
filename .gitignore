@@ -1,0 +1,21 @@
+.DS_Store
+.default.cfg
+.savegame/
+*.o
+*.d
+*.map
+
+# Mutable laboratory state and generated experiment output.
+.aisl/
+runs/*
+!runs/.gitkeep
+results/*
+!results/.gitkeep
+
+# Candidate/build output belongs to the agent workspace and is never trusted.
+workspace/**/build/
+workspace/**/dist/
+workspace/**/out/
+workspace/**/target/
+workspace/**/.cache/
+
