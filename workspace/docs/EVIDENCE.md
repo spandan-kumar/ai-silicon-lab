@@ -118,7 +118,12 @@ synthesis boundary. Generated artifact SHA-256 values are:
 | converted SystemVerilog aggregate | `b706b2bb46c3720fab5b8124840fa2efcfdf82512d39b95d9432d92baa58e16c` |
 | JSON netlist | `1a24b00957d4705c1d232b7d705e56dc88f548bbf7cfd5ada0dcb1a271d4150e` |
 | Verilog netlist | `16b99053f70d74147f8da8d79a09d707d6ed9d7f9568b7ec11b34938963cb542` |
-| synthesis log | `18a32a0509dee235a53cb04ad882f190f0e3fb61721fb7633ea7950c5da50767` |
+| post-fix local synthesis log | `1c40deb58a0a9e522fe45e6e2d368342b059bfbb362eccee615e131630f9fb3a` |
+
+The netlists and converted source reproduce byte-for-byte. The synthesis log
+hash identifies this retained run but is not expected to match another host
+run because Yosys writes elapsed time and peak-memory measurements into its
+footer; the evaluator and reproducer retain and hash their own logs.
 
 ## Reproduction commands
 
@@ -131,11 +136,13 @@ python3 -m unittest workspace/verification/test_oracle.py
 python3 workspace/verification/oracle.py generate
 python3 workspace/verification/run_rtl_suite.py \
   .aisl/verification/rtl-suite-reproduced --jobs 4
-./lab/evaluate --run-id simulation-complete-final
-./lab/reproduce simulation-complete-final
+./lab/evaluate --run-id simulation-complete-final-2
+./lab/reproduce simulation-complete-final-2
 ```
 
 `lab/evaluate` performs the authoritative canonical build, execution, exact
 oracle comparison, timeout enforcement, and protected-integrity checks.
 `lab/reproduce` requires a clean committed revision and evaluates it from an
-independent linked worktree.
+independent linked worktree. The synthesis recipe forces Yosys's temporary
+directory to `/tmp`: Yosys 0.68's bundled ABC cannot parse an evaluator
+temporary path containing the repository's spaces.

@@ -28,7 +28,7 @@ $(CONVERTED): Makefile $(SYNTH_SOURCES)
 
 $(SYNTH_LOG): $(CONVERTED) synth.ys
 	@mkdir -p $(BUILD_DIR)
-	@$(YOSYS) -Q -s synth.ys > $@ 2>&1 || { cat $@; exit 1; }
+	@TMPDIR=/tmp $(YOSYS) -Q -s synth.ys > $@ 2>&1 || { cat $@; exit 1; }
 	@cat $@
 
 clean:

@@ -207,3 +207,22 @@ unused generic register-file branch; the selected 32-register parameterized
 implementation synthesizes normally. Verilator 5.050 lint returned zero, two
 repeated architectural/MMIO/frame-capture tests returned identical hashes,
 and all five oracle-comparator unit tests passed.
+
+## 2026-08-27: official clean-build path failure
+
+The first committed evaluator attempt, run ID `simulation-complete-final`,
+stopped during synthesis and correctly recorded a failure without starting
+the candidate. Firmware and simulator compilation had succeeded. Yosys invoked
+its bundled ABC beneath the evaluator-provided temporary directory
+`runs/simulation-complete-final/tmp/`; ABC split the absolute repository path
+at the space in `AI Silicon Lab` and could not open its script/output files.
+Protected integrity remained true before and after, and Git remained clean at
+revision `353c5b3d54ee99415b6ee5639c62a4b1b1a2e2a0`.
+
+This was a reproducible tool-path defect, not an RTL failure. The synthesis
+recipe now sets `TMPDIR=/tmp` only for Yosys. Yosys continues to create its own
+unique temporary subdirectory, while ABC receives a path without spaces. The
+failed run and its complete logs remain under `runs/simulation-complete-final/`.
+A clean post-fix synthesis returned zero, reproduced the JSON/Verilog netlist
+hashes above exactly, and produced local log SHA-256
+`1c40deb58a0a9e522fe45e6e2d368342b059bfbb362eccee615e131630f9fb3a`.
