@@ -1,0 +1,34 @@
+#!/bin/sh
+set -eu
+
+: "${AISL_INPUT_FILE:?AISL_INPUT_FILE is required}"
+: "${AISL_FRAME_DIR:?AISL_FRAME_DIR is required}"
+: "${AISL_RESULT_FILE:?AISL_RESULT_FILE is required}"
+: "${AISL_FRAME_WIDTH:?AISL_FRAME_WIDTH is required}"
+: "${AISL_FRAME_HEIGHT:?AISL_FRAME_HEIGHT is required}"
+: "${AISL_FRAME_FORMAT:?AISL_FRAME_FORMAT is required}"
+: "${AISL_FRAME_COUNT:?AISL_FRAME_COUNT is required}"
+: "${AISL_FRAME_WARMUP:?AISL_FRAME_WARMUP is required}"
+
+if [ "$AISL_FRAME_FORMAT" != "rgb888" ]; then
+	echo "unsupported framebuffer format: $AISL_FRAME_FORMAT" >&2
+	exit 2
+fi
+
+exec ./workspace/sim_cv/build/aisl_sim_cv \
+	--firmware ./workspace/firmware/doom/build-candidate/doom.bin \
+	--wad ./workspace/assets/freedoom1.wad \
+	--inputs "$AISL_INPUT_FILE" \
+	--frames-dir "$AISL_FRAME_DIR" \
+	--result "$AISL_RESULT_FILE" \
+	--width "$AISL_FRAME_WIDTH" \
+	--height "$AISL_FRAME_HEIGHT" \
+	--frame-count "$AISL_FRAME_COUNT" \
+	--warmup "$AISL_FRAME_WARMUP" \
+	--skill 1 \
+	--episode 1 \
+	--map 1 \
+	--max-cycles 2000000000 \
+	--trace-samples 128 \
+	--cycle-trace-stride 1024 \
+	--execution-trace-stride 4096

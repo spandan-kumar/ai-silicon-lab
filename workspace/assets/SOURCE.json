@@ -1,0 +1,12 @@
+{
+  "name": "Freedoom Phase 1",
+  "repository": "https://github.com/freedoom/freedoom",
+  "source_tag": "v0.13.0",
+  "source_revision": "cfb8644b1a8dc7d7d2177e6a892ccaa2922bdaae",
+  "release_page": "https://github.com/freedoom/freedoom/releases/tag/v0.13.0",
+  "asset": "workspace/assets/freedoom1.wad",
+  "asset_sha256": "7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f",
+  "license_file": "workspace/assets/FREEDOOM-LICENSE.txt",
+  "credits_file": "workspace/assets/CREDITS",
+  "purpose": "Legally redistributable candidate-side game data; the candidate does not access protected ground-truth assets."
+}

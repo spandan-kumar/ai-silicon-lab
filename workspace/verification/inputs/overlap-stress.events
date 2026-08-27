@@ -1,0 +1,21 @@
+# E1M3/skill 4 overlapping key holds with deterministic one-transition tics.
+66 shift 1
+67 up 1
+88 right 1
+100 fire 1
+106 fire 0
+125 right 0
+140 use 1
+141 use 0
+150 left 1
+166 fire 1
+172 fire 0
+188 left 0
+205 up 0
+206 shift 0
+220 down 1
+235 right 1
+248 fire 1
+252 fire 0
+265 right 0
+280 down 0

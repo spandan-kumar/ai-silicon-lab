@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "description": "Supplemental deterministic Doom workloads for exact native-reference versus RTL comparison.",
+  "workloads": [
+    {
+      "id": "idle-e1m1",
+      "input": "workspace/verification/inputs/idle.events",
+      "warmup_frames": 64,
+      "capture_frames": 96,
+      "skill": 1,
+      "episode": 1,
+      "map": 1
+    },
+    {
+      "id": "movement-combat-e1m1",
+      "input": "workspace/verification/inputs/movement-combat.events",
+      "warmup_frames": 64,
+      "capture_frames": 256,
+      "skill": 1,
+      "episode": 1,
+      "map": 1
+    },
+    {
+      "id": "alternate-e1m2-skill3",
+      "input": "workspace/verification/inputs/alternate-map.events",
+      "warmup_frames": 64,
+      "capture_frames": 192,
+      "skill": 3,
+      "episode": 1,
+      "map": 2
+    },
+    {
+      "id": "overlap-e1m3-skill4",
+      "input": "workspace/verification/inputs/overlap-stress.events",
+      "warmup_frames": 64,
+      "capture_frames": 192,
+      "skill": 4,
+      "episode": 1,
+      "map": 3
+    }
+  ]
+}

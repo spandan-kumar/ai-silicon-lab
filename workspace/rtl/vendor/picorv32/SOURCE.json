@@ -1,0 +1,10 @@
+{
+  "name": "PicoRV32",
+  "repository": "https://github.com/YosysHQ/picorv32",
+  "revision": "a473fc8fca393771d83b0ffcf0b14db3393339d8",
+  "files": {
+    "picorv32.v": "sha256:0836050971b3c6cdd28ac3b1e5719a67fb645161912bef1e472e63995ceb0622",
+    "COPYING": "sha256:041ebc727233e5bf096dd41260cbb81014d3d29ca007a15f3b1807d4e9ff288e"
+  },
+  "license": "ISC"
+}

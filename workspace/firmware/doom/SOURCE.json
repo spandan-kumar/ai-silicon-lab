@@ -1,0 +1,29 @@
+{
+  "name": "doomgeneric",
+  "repository": "https://github.com/ozkl/doomgeneric",
+  "revision": "dcb7a8dbc7a16ce3dda29382ac9aae9d77d21284",
+  "git_tree": "413539bdaa1521af167d9b34e9db0cd193367624",
+  "retrieved": "2026-08-27",
+  "archive_url": "https://github.com/ozkl/doomgeneric/archive/dcb7a8dbc7a16ce3dda29382ac9aae9d77d21284.tar.gz",
+  "source_directory": "workspace/software/doomgeneric",
+  "license": "GPL-2.0-or-later",
+  "license_file": "workspace/software/doomgeneric/LICENSE",
+  "license_sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+  "verification": "The extracted 211-file archive was force-added to a temporary Git index; git write-tree returned the upstream git_tree value. The temporary nested Git metadata was then removed.",
+  "local_modifications": [
+    {
+      "files": [
+        "workspace/software/doomgeneric/.gitignore"
+      ],
+      "reason": "Narrow the upstream executable ignore rule so the vendored source directory remains trackable in this repository."
+    },
+    {
+      "files": [
+        "workspace/software/doomgeneric/doomgeneric/r_draw.c",
+        "workspace/software/doomgeneric/doomgeneric/r_draw.h",
+        "workspace/software/doomgeneric/doomgeneric/r_things.c"
+      ],
+      "reason": "Bound sprite-column wrapping to the cached patch lump and use palette index zero only when a wrapped sample would leave that allocation. This eliminates allocator- and architecture-dependent out-of-bounds reads while preserving vanilla reads elsewhere inside the lump and ordinary wall-column wrapping."
+    }
+  ]
+}

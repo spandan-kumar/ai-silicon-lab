@@ -4,6 +4,8 @@
 *.o
 *.d
 *.map
+*.pyc
+__pycache__/
 
 # Mutable laboratory state and generated experiment output.
 .aisl/
@@ -14,8 +16,8 @@ results/*
 
 # Candidate/build output belongs to the agent workspace and is never trusted.
 workspace/**/build/
+workspace/**/build-*/
 workspace/**/dist/
 workspace/**/out/
 workspace/**/target/
 workspace/**/.cache/
-

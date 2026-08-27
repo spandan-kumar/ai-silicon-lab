@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "reference_binary_sha256": "9be615002fb670d2b5fb60be08eb2172daa772fe70b591a3ff209306047fe26b",
+  "reference_revision": "dcb7a8dbc7a16ce3dda29382ac9aae9d77d21284",
+  "wad_sha256": "7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f",
+  "oracles": {
+    "alternate-e1m2-skill3": {
+      "archive_bytes": 36864000,
+      "archive_sha256": "70654cdef1f3b00229dd0c9975ce5675b67704103dc078e8991b333a047609a4",
+      "input_sha256": "be21b7102c50df24057834fcb1c4902e9f00a8d19cdc88d529f79251ce934d6a",
+      "simulation_frames": 256,
+      "tics": 217
+    },
+    "idle-e1m1": {
+      "archive_bytes": 18432000,
+      "archive_sha256": "876e370a300f3ddb75399b81159eebcd358c3ae669bee153c9b484680058ed8a",
+      "input_sha256": "bda79510484d7afb0561ba44bdd78fdbd96a71fb7b1cd1c28a66dd592c6b20e3",
+      "simulation_frames": 160,
+      "tics": 121
+    },
+    "movement-combat-e1m1": {
+      "archive_bytes": 49152000,
+      "archive_sha256": "15d79a47a0696201c9de005fa701068ea082f04fbb7ecfb491e3329b917e15ea",
+      "input_sha256": "52691f19233e375df41cf71225e8ad77496511f3a8037e00fc1d83ce520f9933",
+      "simulation_frames": 320,
+      "tics": 281
+    },
+    "overlap-e1m3-skill4": {
+      "archive_bytes": 36864000,
+      "archive_sha256": "0ab52c29db0d78cf9af8a65c0968e7e8b1e04b57ec04ddb45758fed600536dc3",
+      "input_sha256": "5c01b1f8782ba4c1b6a5be51f6051383b8cf5311291b165fac14c61be82d5808",
+      "simulation_frames": 256,
+      "tics": 217
+    }
+  }
+}

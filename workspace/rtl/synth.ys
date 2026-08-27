@@ -1,0 +1,5 @@
+read_verilog -I. aisl_soc.v
+hierarchy -check -top aisl_soc
+synth -top aisl_soc
+stat -top aisl_soc
+write_json build/aisl_soc-synth.json

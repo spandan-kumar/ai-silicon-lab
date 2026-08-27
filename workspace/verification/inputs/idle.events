@@ -1,0 +1,2 @@
+# Deliberately empty deterministic input stream.
+# This captures cold-start and idle rendering independently of input handling.

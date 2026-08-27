@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "name": "aisl-cv32e40p-dual-obi-doom",
+  "build": ["make", "-C", "workspace", "candidate"],
+  "run": ["./workspace/run-candidate"]
+}

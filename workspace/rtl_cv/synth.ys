@@ -1,0 +1,9 @@
+read_verilog build/aisl_soc.v
+hierarchy -check -top aisl_soc_cv
+proc
+check
+synth -top aisl_soc_cv
+check
+stat
+write_json build/aisl_soc-netlist.json
+write_verilog -noattr build/aisl_soc-netlist.v

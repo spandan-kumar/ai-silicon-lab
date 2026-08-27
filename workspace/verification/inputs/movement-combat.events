@@ -1,0 +1,19 @@
+# Sustained motion, run, turning, firing, use, and reverse movement.
+70 up 1
+85 shift 1
+100 fire 1
+104 fire 0
+110 right 1
+135 right 0
+150 use 1
+151 use 0
+175 fire 1
+176 fire 0
+195 shift 0
+220 up 0
+230 left 1
+250 fire 1
+251 fire 0
+270 left 0
+290 down 1
+310 down 0

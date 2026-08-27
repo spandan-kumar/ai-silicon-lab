@@ -1,0 +1,9 @@
+{
+  "name": "OpenHW Group CORE-V CV32E40P",
+  "repository": "https://github.com/openhwgroup/cv32e40p",
+  "tag": "cv32e40p_v1.8.3",
+  "revision": "360d272898d81806be3377193870dbf83a3ea79f",
+  "license": "Solderpad Hardware License 0.51, with the repository license permitting treatment as Apache-2.0",
+  "license_sha256": "6527a46225891b976fa94f634f6ee0cd22e1c7129d6f11c5c98c997627625fc7",
+  "notes": "All 29 vendored source/license files are byte-for-byte copies from the pinned tag. aisl_soc_cv.sv and clock_gate_generic.sv are local integration files outside this vendor directory."
+}
