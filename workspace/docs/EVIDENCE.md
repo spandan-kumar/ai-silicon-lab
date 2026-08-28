@@ -13,7 +13,7 @@ clean-worktree reproduction add their immutable records below `runs/`.
 | --- | --- |
 | OpenHW CV32E40P RTL | tag `cv32e40p_v1.8.3`, revision `360d272898d81806be3377193870dbf83a3ea79f` |
 | DoomGeneric source | revision `dcb7a8dbc7a16ce3dda29382ac9aae9d77d21284`, upstream tree `413539bdaa1521af167d9b34e9db0cd193367624` plus declared local changes |
-| firmware ELF | `ae97f0ed15bf50ba7447a494218be702edf1d029f9fefa2cd882e207f7ab16fb` |
+| firmware ELF | `22e430bcdd826929155c2617a965940b94a0d68ff54d1b8b0ebcbd7483b84214` |
 | firmware flat image | `f92ddb3cfe23206b4b5c1a78e8e64730ff932061f6607db3b278f6da5a1239df` |
 | cycle-accurate simulator | `b876dda114914251fc7f850d9447450004829bdbc1c859c9524e77b966ed5945` |
 | simulator RTL aggregate | `fc04549e092234587ef821706847eda1b2e3022989091d7a12f0ad1823160665` |
@@ -22,8 +22,11 @@ clean-worktree reproduction add their immutable records below `runs/`.
 
 The 489,040-byte RV32IMC image was built by GCC 14.2.0/binutils 2.43.1 with
 `-O3` and link-time optimization. Its ELF contains 429,600 text bytes, 59,436
-data bytes, and 240,624 BSS bytes. Verilator 5.050 executes the synthesizable
-RTL at both clock phases; no host ISA emulator or Doom renderer participates.
+data bytes, and 240,624 BSS bytes. The build maps the worktree-dependent DWARF
+compilation directory to `workspace/firmware/doom`; both the ELF and flat image
+therefore reproduce byte-for-byte in linked worktrees. Verilator 5.050 executes
+the synthesizable RTL at both clock phases; no host ISA emulator or Doom
+renderer participates.
 
 ## Protected canonical workload
 
@@ -136,8 +139,8 @@ python3 -m unittest workspace/verification/test_oracle.py
 python3 workspace/verification/oracle.py generate
 python3 workspace/verification/run_rtl_suite.py \
   .aisl/verification/rtl-suite-reproduced --jobs 4
-./lab/evaluate --run-id simulation-complete-final-2
-./lab/reproduce simulation-complete-final-2
+./lab/evaluate --run-id simulation-complete-final-3
+./lab/reproduce simulation-complete-final-3
 ```
 
 `lab/evaluate` performs the authoritative canonical build, execution, exact

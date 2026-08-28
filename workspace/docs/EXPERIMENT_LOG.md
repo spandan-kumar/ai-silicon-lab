@@ -226,3 +226,31 @@ failed run and its complete logs remain under `runs/simulation-complete-final/`.
 A clean post-fix synthesis returned zero, reproduced the JSON/Verilog netlist
 hashes above exactly, and produced local log SHA-256
 `1c40deb58a0a9e522fe45e6e2d368342b059bfbb362eccee615e131630f9fb3a`.
+
+## 2026-08-28: official pass, reproduction, and ELF path audit
+
+Committed revision `5abe7354b076a48c11c3702ccefb621153e01427`
+passed official run `simulation-complete-final-2`. The clean build took 48.50
+seconds and the protected run took 258.11 seconds. It received all 120 frames
+with zero mean error and zero bad pixels; integrity checked all 236 protected
+files before and after, and Git stayed clean at the same revision.
+
+`lab/reproduce simulation-complete-final-2` created a detached linked worktree
+and independently produced passing run `20260827T141858Z-6ca595bc`. Its clean
+build took 47.52 seconds and run took 249.91 seconds. The reports agreed on
+744,664,922 cycles, 581,003,386 retired instructions, every milestone, every
+firmware counter, all 120 frame files, and all cycle/native/retirement trace
+digests. Direct concatenation in both runs gave protected-oracle hash
+`07f7eecc32a52cfd424c3523184332c49bc9627168a45b67f4a57d3c18f8f833`;
+both byte comparisons returned zero. The simulator, flat firmware, converted
+RTL, and JSON/Verilog synthesis netlists were also byte-identical.
+
+The audit nevertheless found that `doom.elf` differed while its loadable flat
+image remained identical. Section inspection localized the only size shift to
+DWARF string tables: GCC recorded the absolute compilation directory, which is
+longer inside `.aisl/reproduce/`. The firmware flags now use
+`-fdebug-prefix-map` to canonicalize that debug-only directory without changing
+`__FILE__`, code, data, or the flat image. The resulting ELF SHA-256 is
+`22e430bcdd826929155c2617a965940b94a0d68ff54d1b8b0ebcbd7483b84214`;
+the flat image remains
+`f92ddb3cfe23206b4b5c1a78e8e64730ff932061f6607db3b278f6da5a1239df`.

@@ -33,7 +33,9 @@ Set `CROSS_PREFIX=/path/to/riscv-none-elf-` when the toolchain is not on
 The generated evidence is under the selected build directory: `doom.elf`,
 `doom.bin`, `doom.map`, `doom.dis`, `doom.sections`, and `SHA256SUMS`. The link
 fails if the image and heap overlap the reserved stack or if the stack reaches
-the read-only WAD at `0x02000000`.
+the read-only WAD at `0x02000000`. DWARF compilation-directory paths are mapped
+to the repository-relative `workspace/firmware/doom`, so debug-bearing ELF and
+derived evidence hashes are stable across linked reproduction worktrees.
 
 ## Runtime contract
 

@@ -16,8 +16,10 @@ ARCH ?= rv32im
 ARCH_FLAGS := -march=$(ARCH) -mabi=ilp32 -mcmodel=medany -mstrict-align
 OPTIMIZATION ?= -O3
 LTO_FLAGS ?=
+DEBUG_PREFIX_FLAGS := '-fdebug-prefix-map=$(CURDIR)=workspace/firmware/doom'
 CPPFLAGS := -I. -I$(DOOM_SRC) -DDOOMGENERIC_RESX=320 -DDOOMGENERIC_RESY=200
 CFLAGS := $(ARCH_FLAGS) -std=gnu11 $(OPTIMIZATION) $(LTO_FLAGS) -g3 -ffreestanding \
+	$(DEBUG_PREFIX_FLAGS) \
 	-ffunction-sections -fdata-sections -fno-strict-aliasing -fwrapv \
 	-fno-unwind-tables -fno-asynchronous-unwind-tables \
 	-MMD -MP
@@ -28,8 +30,8 @@ DOOM_WARNINGS := -Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-Wno-unused-const-variable -Wno-unused-but-set-variable \
 	-Wno-unused-but-set-parameter -Wno-enum-conversion \
 	-Wno-type-limits -Wno-format -Wno-dangling-pointer
-ASFLAGS := $(ARCH_FLAGS) -g3 -MMD -MP
-LDFLAGS := $(ARCH_FLAGS) $(LTO_FLAGS) -nostartfiles -static \
+ASFLAGS := $(ARCH_FLAGS) -g3 $(DEBUG_PREFIX_FLAGS) -MMD -MP
+LDFLAGS := $(ARCH_FLAGS) $(LTO_FLAGS) $(DEBUG_PREFIX_FLAGS) -nostartfiles -static \
 	-Wl,--gc-sections -Wl,--build-id=none -Wl,-Map,$(BUILD)/doom.map \
 	-T linker.ld
 LDLIBS := -lm -lc -lgcc
