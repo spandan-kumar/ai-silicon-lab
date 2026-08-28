@@ -14,6 +14,13 @@ make -C workspace/sim_cv lint
 make -C workspace/sim_cv test
 ```
 
+Generated Verilator objects and an exact copy of the hashed RTL inputs are
+kept together under a space-free `/tmp/aisl-cv-verilator-*` directory. This is
+required because Verilator's reused dependency file is evaluated from its
+object directory, not from this source directory. The `test` target forces a
+second build so stale or incorrectly rooted generated dependencies cannot be
+masked by a successful first build.
+
 For a Doom run, supply the firmware and WAD explicitly; the remaining paths
 and video counts can also arrive through the evaluator's `AISL_*` environment
 variables:

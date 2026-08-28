@@ -268,3 +268,56 @@ stable temporary label. The expression now treats the complete slash-delimited
 prefix as opaque, including spaces; normalizing the retained official,
 detached, and an additional spaced-`TMPDIR` map then produced the same
 `e72f...f35a` digest. No executable artifact or RTL result changed.
+
+## 2026-08-28: independent review and Verilator dependency-path correction
+
+An independent evaluation of revision `4da0987eb8658ea5ebc755861099b69d2fe8adf6`
+invalidated the claimed reproducibility milestone. Run
+`review-codex-simulation-complete` returned build exit 2 before simulation:
+Verilator's generated `Vaisl_soc__ver.d` named source prerequisites such as
+`../rtl_cv/aisl_soc_cv.sv`, but GNU Make later evaluated that file from the
+space-free `/tmp/aisl-cv-verilator-*` object directory. The protected judge and
+oracle were not changed.
+
+The defect is state-dependent. A newly empty object directory succeeds because
+the dependency file does not exist when the first generated Make process is
+parsed. Immediately forcing the same build a second time reproduced the exact
+`No rule to make target '../rtl_cv/aisl_soc_cv.sv'` failure and exit 2. This
+explains why the earlier local and official first builds passed while a later
+review using the cached object directory failed.
+
+The simulator recipe now copies every RTL input covered by `SOURCE_ID` into an
+identically structured directory beneath the object directory and passes those
+space-free absolute paths to Verilator. Its `test` target forces a second build
+before the architectural bring-up checks. A clean first build, an immediate
+forced rebuild, Verilator lint, and the repeated RV32IM/MMIO/RGB test all
+returned zero. The new simulator SHA-256 is
+`1e0ae162d59670a25aa5bb90cc942a94a5bd1470d2b57777ba744495d60a028c`;
+the RTL aggregate remains
+`fc04549e092234587ef821706847eda1b2e3022989091d7a12f0ad1823160665`.
+
+The three Yosys warnings were also traced to the unused abstract
+`cv32e40p_register_file` parsed at its default `ADDR_WIDTH=5`, where the source
+names read-address bit 5. The instantiated core explicitly derives the module
+at `ADDR_WIDTH=6`, hierarchy removes the abstract form, and both Yosys `check`
+passes report zero problems. Deferred elaboration removed all three warnings in
+a diagnostic run; it was not adopted because it needlessly changed netlist
+module identities and hashes. The existing flow again produced 40,209 cells
+and the exact prior JSON/Verilog netlist hashes.
+
+All five oracle unit tests passed. The four path-corrected RTL workloads then
+returned zero and independently compared all 736 320x200 RGB888 frames with no
+missing, extra, wrong-sized, or mismatched files. Their cycle, retirement,
+frame, cycle-trace, native-trace, and retirement-trace values exactly reproduced
+the preceding suite. The retained summary is
+`.aisl/verification/rtl-suite-pathfix-20260828/suite-result.json`, SHA-256
+`152d13a1771552bc3e397ad1afcd60a5c5a65709e4e160c3ee3adb20ef5b7724`.
+
+Finally, dirty-tree diagnostic run `simulation-complete-pathfix-precommit`
+passed the authoritative evaluator. Its build and run returned zero in 20.30
+and 251.06 seconds; the RTL reported 744,664,922 cycles and 581,003,386 retired
+instructions, and all 120 frames matched with zero error and zero bad pixels.
+Integrity verified all 236 protected files before and after. The evaluator
+correctly marked Git reproducibility false because this correction was not yet
+committed; only a subsequent clean committed run and detached reproduction can
+close that gate.

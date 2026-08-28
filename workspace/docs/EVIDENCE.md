@@ -19,7 +19,7 @@ clean-worktree reproduction add their immutable records below `runs/`.
 | firmware source disassembly | `dca56f1caf54f4a2a58292900ded84629799db9168e908548c2279ed757b0ccd` |
 | firmware ELF section/symbol report | `2f62efde70c73acc6d04bd70957f3a06611f8b8686a3c4010f6f58e3cb907001` |
 | firmware checksum manifest | `f883355ecb3b4418f5c5e031e0c8c2a6d8d008ddf6c4dae7bc62516b9bdafcda` |
-| cycle-accurate simulator | `b876dda114914251fc7f850d9447450004829bdbc1c859c9524e77b966ed5945` |
+| cycle-accurate simulator | `1e0ae162d59670a25aa5bb90cc942a94a5bd1470d2b57777ba744495d60a028c` |
 | simulator RTL aggregate | `fc04549e092234587ef821706847eda1b2e3022989091d7a12f0ad1823160665` |
 | Freedoom 0.13.0 Phase 1 WAD | `7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f` |
 | protected canonical input | `5bf11852ccc26b0b3795e63ab8f568e1fa9c22ec9484e59baca63291e2087975` |
@@ -66,6 +66,14 @@ The cycle, native-execution, and sampled-retirement trace digests are:
 The result JSON itself hashes to
 `72cd4962350674870716e3bda0d56acd04913f0f46119754f3f021a23c8cfc9a`.
 
+After the Verilator dependency-path correction, diagnostic evaluator run
+`simulation-complete-pathfix-precommit` reproduced the same cycle, retirement,
+milestone, frame, and trace values with the simulator identity above. It built
+in 20.30 seconds, ran in 251.06 seconds, received all 120 frames with zero
+error and zero bad pixels, and preserved all 236 protected files. The run is
+deliberately not the final reproducibility record because it captured the
+uncommitted Makefile correction; a clean committed run is required below.
+
 ## Strengthened exact-oracle workloads
 
 The reference executable has SHA-256
@@ -98,9 +106,9 @@ The corresponding sampled native-execution digests are
 `1ceadf9993f78f121661247e9c0171fd7092003ad9a635a33929eff67addbba8`
 (overlap).
 
-The suite summary is
-`.aisl/verification/rtl-suite-simulation-complete/suite-result.json`, SHA-256
-`9f6d7e7e276fd00341bb653e5669a33045501f625c7fa7c10051c123f9718006`.
+The path-corrected suite summary is
+`.aisl/verification/rtl-suite-pathfix-20260828/suite-result.json`, SHA-256
+`152d13a1771552bc3e397ad1afcd60a5c5a65709e4e160c3ee3adb20ef5b7724`.
 Its process exit was zero and `correct` is true.
 
 ## Synthesis evidence
@@ -134,6 +142,17 @@ hash identifies this retained run but is not expected to match another host
 run because Yosys writes elapsed time and peak-memory measurements into its
 footer; the evaluator and reproducer retain and hash their own logs.
 
+The three Yosys-counted warnings were investigated at the converted-source
+lines named by the log. They are reads of `raddr_a_i[5]`, `raddr_b_i[5]`, and
+`raddr_c_i[5]` while Yosys initially parses the unused abstract register-file
+module at its default `ADDR_WIDTH=5`. The live CV32E40P instance explicitly
+passes `ADDR_WIDTH=6`, yielding the selected 32-word integer register file;
+hierarchy removes the abstract module and both pre- and post-synthesis `check`
+passes report zero problems. A diagnostic `read_verilog -defer` run derived
+only the width-6 form and emitted none of the three warnings. The validated
+flow was retained because deferred elaboration changes generated module names
+and netlist hashes without changing this hardware.
+
 ## Reproduction commands
 
 From the repository root:
@@ -145,8 +164,8 @@ python3 -m unittest workspace/verification/test_oracle.py
 python3 workspace/verification/oracle.py generate
 python3 workspace/verification/run_rtl_suite.py \
   .aisl/verification/rtl-suite-reproduced --jobs 4
-./lab/evaluate --run-id simulation-complete-final-4
-./lab/reproduce simulation-complete-final-4
+./lab/evaluate --run-id simulation-complete-pathfix-final
+./lab/reproduce simulation-complete-pathfix-final
 ```
 
 `lab/evaluate` performs the authoritative canonical build, execution, exact
@@ -154,4 +173,6 @@ oracle comparison, timeout enforcement, and protected-integrity checks.
 `lab/reproduce` requires a clean committed revision and evaluates it from an
 independent linked worktree. The synthesis recipe forces Yosys's temporary
 directory to `/tmp`: Yosys 0.68's bundled ABC cannot parse an evaluator
-temporary path containing the repository's spaces.
+temporary path containing the repository's spaces. The simulator similarly
+stages its exact hashed RTL inputs beside its generated objects under `/tmp`;
+its normal test target forces reuse of Verilator's generated dependency file.
