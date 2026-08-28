@@ -145,8 +145,8 @@ python3 -m unittest workspace/verification/test_oracle.py
 python3 workspace/verification/oracle.py generate
 python3 workspace/verification/run_rtl_suite.py \
   .aisl/verification/rtl-suite-reproduced --jobs 4
-./lab/evaluate --run-id simulation-complete-final-3
-./lab/reproduce simulation-complete-final-3
+./lab/evaluate --run-id simulation-complete-final-4
+./lab/reproduce simulation-complete-final-4
 ```
 
 `lab/evaluate` performs the authoritative canonical build, execution, exact

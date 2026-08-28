@@ -261,3 +261,10 @@ while retaining every address, size, section, symbol, and stable object name.
 The normalized map and five-entry checksum manifest hash to
 `e72f9f055814b198953b780127fd4841fec8a02604b4c671bd62446b37ddf35a` and
 `f883355ecb3b4418f5c5e031e0c8c2a6d8d008ddf6c4dae7bc62516b9bdafcda`.
+Official run `simulation-complete-final-3` passed the protected workload at
+revision `f1fc9c907e1934ea5bf07a134c0bb7209fd03512`, but its evaluator `TMPDIR`
+contained spaces. The first map expression left the absolute prefix before its
+stable temporary label. The expression now treats the complete slash-delimited
+prefix as opaque, including spaces; normalizing the retained official,
+detached, and an additional spaced-`TMPDIR` map then produced the same
+`e72f...f35a` digest. No executable artifact or RTL result changed.
