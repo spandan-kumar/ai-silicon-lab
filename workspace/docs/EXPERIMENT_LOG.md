@@ -254,3 +254,10 @@ longer inside `.aisl/reproduce/`. The firmware flags now use
 `22e430bcdd826929155c2617a965940b94a0d68ff54d1b8b0ebcbd7483b84214`;
 the flat image remains
 `f92ddb3cfe23206b4b5c1a78e8e64730ff932061f6607db3b278f6da5a1239df`.
+An additional two-worktree check found random GCC LTO/debug temporary basenames
+in the otherwise identical linker maps. The build now replaces only those
+basenames with stable labels after link; the normalized maps are byte-identical
+while retaining every address, size, section, symbol, and stable object name.
+The normalized map and five-entry checksum manifest hash to
+`e72f9f055814b198953b780127fd4841fec8a02604b4c671bd62446b37ddf35a` and
+`f883355ecb3b4418f5c5e031e0c8c2a6d8d008ddf6c4dae7bc62516b9bdafcda`.

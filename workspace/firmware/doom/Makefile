@@ -72,6 +72,11 @@ toolchain:
 
 $(BUILD)/doom.elf: toolchain $(OBJECTS) linker.ld
 	"$(CC)" $(LDFLAGS) $(OBJECTS) $(LDLIBS) -o $@
+	LC_ALL=C sed -E \
+		-e 's#/[^[:space:]]*/cc[[:alnum:]]+(\.ltrans[0-9]+\.ltrans\.o)#<gcc-lto-temp>\1#g' \
+		-e 's#/[^[:space:]]*/cc[[:alnum:]]+\.debug\.temp\.o#<gcc-debug-temp.o>#g' \
+		$(BUILD)/doom.map > $(BUILD)/doom.map.normalized
+	mv $(BUILD)/doom.map.normalized $(BUILD)/doom.map
 
 $(BUILD)/doom.bin: $(BUILD)/doom.elf
 	"$(OBJCOPY)" -O binary $< $@

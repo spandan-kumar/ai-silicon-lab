@@ -15,6 +15,10 @@ clean-worktree reproduction add their immutable records below `runs/`.
 | DoomGeneric source | revision `dcb7a8dbc7a16ce3dda29382ac9aae9d77d21284`, upstream tree `413539bdaa1521af167d9b34e9db0cd193367624` plus declared local changes |
 | firmware ELF | `22e430bcdd826929155c2617a965940b94a0d68ff54d1b8b0ebcbd7483b84214` |
 | firmware flat image | `f92ddb3cfe23206b4b5c1a78e8e64730ff932061f6607db3b278f6da5a1239df` |
+| normalized firmware link map | `e72f9f055814b198953b780127fd4841fec8a02604b4c671bd62446b37ddf35a` |
+| firmware source disassembly | `dca56f1caf54f4a2a58292900ded84629799db9168e908548c2279ed757b0ccd` |
+| firmware ELF section/symbol report | `2f62efde70c73acc6d04bd70957f3a06611f8b8686a3c4010f6f58e3cb907001` |
+| firmware checksum manifest | `f883355ecb3b4418f5c5e031e0c8c2a6d8d008ddf6c4dae7bc62516b9bdafcda` |
 | cycle-accurate simulator | `b876dda114914251fc7f850d9447450004829bdbc1c859c9524e77b966ed5945` |
 | simulator RTL aggregate | `fc04549e092234587ef821706847eda1b2e3022989091d7a12f0ad1823160665` |
 | Freedoom 0.13.0 Phase 1 WAD | `7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f` |
@@ -24,9 +28,11 @@ The 489,040-byte RV32IMC image was built by GCC 14.2.0/binutils 2.43.1 with
 `-O3` and link-time optimization. Its ELF contains 429,600 text bytes, 59,436
 data bytes, and 240,624 BSS bytes. The build maps the worktree-dependent DWARF
 compilation directory to `workspace/firmware/doom`; both the ELF and flat image
-therefore reproduce byte-for-byte in linked worktrees. Verilator 5.050 executes
-the synthesizable RTL at both clock phases; no host ISA emulator or Doom
-renderer participates.
+therefore reproduce byte-for-byte in linked worktrees. GCC's random LTO/debug
+temporary basenames are normalized only in the textual link map, making all
+six firmware evidence artifacts above byte-reproducible. Verilator 5.050
+executes the synthesizable RTL at both clock phases; no host ISA emulator or
+Doom renderer participates.
 
 ## Protected canonical workload
 

@@ -35,7 +35,9 @@ The generated evidence is under the selected build directory: `doom.elf`,
 fails if the image and heap overlap the reserved stack or if the stack reaches
 the read-only WAD at `0x02000000`. DWARF compilation-directory paths are mapped
 to the repository-relative `workspace/firmware/doom`, so debug-bearing ELF and
-derived evidence hashes are stable across linked reproduction worktrees.
+derived evidence hashes are stable across linked reproduction worktrees. The
+link map mechanically replaces GCC's random LTO/debug temporary basenames with
+stable labels; addresses, sections, symbols, and object identities are retained.
 
 ## Runtime contract
 
