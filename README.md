@@ -1,16 +1,16 @@
 # AI Silicon Lab
 
-AI Silicon Lab is an open-ended hardware/software research workspace for
-computer architecture, RTL, simulation, verification, synthesis, and
-hardware/software co-design experiments.
+AI Silicon Lab is an open-ended hardware/software research workspace for a
+versioned program of computer-architecture, RTL, simulation, verification,
+synthesis, and hardware/software co-design experiments.
 
 The lab supplies capabilities and trusted measurements. It does not prescribe
 a CPU, ISA, renderer, memory system, simulator, or implementation sequence.
 Examples throughout the repository are illustrative rather than a solution or
 required workflow.
-The first eventual objective is to build a computer capable of running DOOM;
-this repository establishes the laboratory for that experiment and does not
-contain that computer.
+The first experiment is a verified Doom-capable computer. The lab also now
+contains the specification and research plan for an AES-256-GCM accelerator;
+future experiments can use the same registry, evidence, and provenance model.
 
 Start with:
 
@@ -33,3 +33,11 @@ during normal experiments. Evaluations are recorded under
 See [`LAB.md`](LAB.md), [`EVALUATION.md`](EVALUATION.md),
 [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md), [`SECURITY.md`](SECURITY.md), and
 [`EXPERIMENTS.md`](EXPERIMENTS.md) for the operating contract.
+
+The experiment program is described in [`experiments/README.md`](experiments/README.md).
+List and validate its manifests with:
+
+```sh
+./tools/experiment list
+./tools/experiment check
+```

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "doom-baseline-simulation-complete-pathfix-final",
+  "experiment_id": "doom-rv32imc",
+  "experiment_revision": 1,
+  "status": "pass",
+  "measurement_status": "mixed",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "Sol",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex",
+      "version": null,
+      "environment": "desktop"
+    },
+    "reasoning": {
+      "effort": "max",
+      "mode": null,
+      "context": null
+    },
+    "goal_sha256": null,
+    "instruction_hashes": [],
+    "subagents": [],
+    "attribution_source": "experiment-owner-report"
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": 2600000,
+    "source": "reported",
+    "precision": "approximate",
+    "notes": "Approximate total reported by the experiment owner; not provider billing telemetry."
+  },
+  "time": {
+    "started_at": "2026-08-28T09:47:35.873385Z",
+    "finished_at": "2026-08-28T09:52:38.466960Z",
+    "agent_wall_seconds": null,
+    "reported_agent_wall_hours": 5.5,
+    "human_seconds": null,
+    "build_seconds": 20.057514,
+    "simulation_seconds": 257.503612,
+    "synthesis_seconds": null,
+    "hardware_seconds": null,
+    "source": "mixed",
+    "notes": "Evaluator build/simulation durations are measured in the lab run; agent wall time is an approximate owner report."
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "source": "unavailable",
+    "rate_date": null,
+    "notes": "No pinned billing telemetry or rate source was supplied."
+  },
+  "execution": {
+    "candidate_commit": "ae2d12b0daefaa84400ab12e4055d1af9eef4293",
+    "candidate_manifest": "workspace/candidate.json",
+    "harness_run_ids": ["simulation-complete-pathfix-final"],
+    "lab_run_ids": ["simulation-complete-pathfix-final"],
+    "benchmark_id": "freedoom-phase1-headless-v1",
+    "input_sha256": "5bf11852ccc26b0b3795e63ab8f568e1fa9c22ec9484e59baca63291e2087975",
+    "tool_versions": {
+      "verilator": "5.050",
+      "yosys": "0.68+post",
+      "python": "3.14.6",
+      "clang": "Apple Clang 17.0.0",
+      "source": "docs/ENVIRONMENT.md"
+    },
+    "artifact_paths": [
+      "runs/simulation-complete-pathfix-final/metadata.json",
+      "runs/simulation-complete-pathfix-final/metrics.json",
+      "runs/simulation-complete-pathfix-final/artifacts/frame-comparison.json",
+      "runs/simulation-complete-pathfix-final/artifacts/git-info.json"
+    ],
+    "commands": [
+      "./lab/evaluate --run-id simulation-complete-pathfix-final",
+      "./lab/reproduce simulation-complete-pathfix-final"
+    ]
+  },
+  "result": {
+    "status": "simulation-complete-at-current-workload-scope",
+    "claim_level": "measured-evaluator-pass-with-reported-agent-provenance",
+    "benchmark_frames": 120,
+    "frames_received": 120,
+    "frame_error": 0.0,
+    "bad_pixel_fraction": 0.0,
+    "protected_files_checked": 236,
+    "protected_files_intact": true,
+    "reproducible": true,
+    "reported_cycles": 744664922,
+    "reported_cycles_source": "candidate-reported-untrusted",
+    "notes": "Functional and reproducibility claims are grounded in the linked evaluator artifacts. Agent model identity, token total, and agent wall time remain reported metadata."
+  },
+  "evidence": [
+    {
+      "kind": "lab-evaluator",
+      "path": "runs/simulation-complete-pathfix-final/metrics.json",
+      "description": "Canonical evaluator result with exact frame comparison, command audit, timing, and integrity checks."
+    },
+    {
+      "kind": "lab-reproduction",
+      "path": "runs/simulation-complete-pathfix-final/artifacts/git-info.json",
+      "description": "Recorded clean-commit and detached-reproduction identity for the baseline run."
+    },
+    {
+      "kind": "owner-report",
+      "path": null,
+      "description": "Approximate Sol/Codex/max-reasoning attribution, token total, and agent wall time."
+    }
+  ]
+}

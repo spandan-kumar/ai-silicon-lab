@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "registry_id": "ai-silicon-lab",
+  "description": "Versioned hardware-research experiment specifications for AI Silicon Lab.",
+  "experiments": [
+    {
+      "experiment_id": "doom-rv32imc",
+      "title": "Doom-capable computer",
+      "path": "doom-rv32imc/experiment.json",
+      "status": "baseline-verified",
+      "kind": "end-to-end-computer"
+    },
+    {
+      "experiment_id": "aes-256-gcm",
+      "title": "AES-256-GCM hardware accelerator",
+      "path": "aes-256-gcm/experiment.json",
+      "status": "specified",
+      "kind": "cryptographic-accelerator"
+    }
+  ]
+}

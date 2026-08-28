@@ -10,6 +10,9 @@
 ./lab/evaluate --self-test broken
 ./lab/reproduce <run-id>             # reproduce a clean, committed run
 ./lab/reference --output DIR -- ...  # run the trusted software reference
+./tools/experiment list               # list versioned experiment specifications
+./tools/experiment check               # validate specifications and run examples
+./tools/experiment show <experiment>  # print one experiment manifest
 ```
 
 `./lab/evaluate` fails clearly when `workspace/candidate.json` is absent. That
@@ -101,3 +104,27 @@ real artifacts and exit status, compare outputs against explicit vectors or
 trusted ground truth, and repeat measurements when determinism matters. Label
 inferences and hypotheses as such. If a result cannot be measured, report it as
 unknown or unavailable; never silently skip a check or invent a metric.
+
+## Experiment program
+
+The top-level [`experiments/`](experiments/) directory is the versioned
+catalogue for independent hardware experiments. Each experiment freezes its
+objective, design freedom, oracle/vector policy, workloads, metrics, phase
+gates, research references, and provenance requirements. The current entries
+are:
+
+- `doom-rv32imc`: a verified end-to-end Doom computer baseline and future
+  architecture exploration;
+- `aes-256-gcm`: a not-yet-implemented accelerator study with a standards-based
+  correctness profile, edge-case matrix, security-claim boundaries, and
+  target-dependent optimization plan.
+
+The protected `./lab/evaluate` command remains the canonical Doom evaluator.
+It is intentionally not a universal evaluator for unrelated algorithms. A new
+experiment must provide its own candidate adapter, oracle or vectors, and
+metrics while reusing the common run-record and evidence conventions.
+
+For model/agent comparisons, keep agent provenance separate from hardware
+execution provenance. A display alias such as `Sol`, a reported token estimate,
+and a wall-time estimate are useful only when their identity and measurement
+source are explicit. See [`experiments/schema/README.md`](experiments/schema/README.md).

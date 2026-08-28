@@ -1,8 +1,15 @@
 # AI Silicon Lab agent instructions
 
-AI Silicon Lab is an open-ended hardware/software research laboratory. The
-eventual objective is to attempt a computer capable of running DOOM; this
-repository does not prescribe the computer's architecture or implementation.
+AI Silicon Lab is an open-ended hardware/software research laboratory for a
+program of independent computer-architecture and accelerator experiments.
+Doom is the first verified end-to-end computer experiment. AES-256-GCM is the
+first planned cryptographic-accelerator experiment. The repository does not
+prescribe an architecture or implementation for either experiment.
+
+Before starting work, inspect `experiments/registry.json` and the selected
+experiment's `experiment.json` and `PLAN.md`. The experiment specification is
+the current question and acceptance contract; the rest of this file is the
+standing freedom, evidence, security, and repository-integrity contract.
 
 This file is a freedom-and-evidence contract, not a prescribed playbook. Any
 examples in this file, the user brief, or the repository are illustrative
@@ -15,7 +22,7 @@ examples and choose what the evidence supports.
 
 - Choose any architecture, ISA, language, simulator, compiler, hardware/software
   split, verification method, or implementation strategy that serves the
-  objective.
+  selected experiment's objective.
 - You have full liberty to install and use whatever simulators, synthesis and
   place-and-route tools, compilers, debuggers, profilers, emulators, libraries,
   or other utilities are useful. The tools listed by `./lab/status` are the
@@ -26,7 +33,8 @@ examples and choose what the evidence supports.
   up architecture details, DOOM internals, tool documentation, standards,
   papers, and implementation techniques rather than relying on uncertain
   memory. Record important URLs, paper identifiers, repository revisions, and
-  the fact being verified in `workspace/docs/` or the relevant run artifact.
+  the fact being verified in the selected experiment's `RESEARCH.md`,
+  `workspace/docs/`, or the relevant run artifact.
 - The lab does not impose artificial limits on reasoning, iterations, number of
   experiments, or research. Physical host limits and the eventual artifact's
   constraints are separate from the agent's freedom to explore.
@@ -44,6 +52,11 @@ examples and choose what the evidence supports.
   AGENTS.md practices, evaluation methods, and tool-specific documentation when
   that could improve your process, then adapt the useful parts to this lab
   rather than cargo-culting a generic recipe.
+
+- Do not assume a Doom-specific interface, workload, or metric applies to a
+  different experiment. Reuse the common provenance and evidence contract,
+  then follow the selected experiment's own oracle, vectors, interfaces, and
+  gates.
 
 Optimize for the best result supported by evidence, not for the shortest
 workflow or the smallest patch. Within the actual runtime permissions and
@@ -73,6 +86,15 @@ and explain why. Never fabricate a value, silently skip a failed check, or call
 an unbuilt or unexecuted design correct. Preserve failed experiments so that
 they remain useful evidence.
 
+Every agent attempt must also be attributable. Record the experiment ID and
+revision, candidate commit, model canonical ID and readable alias when
+available, harness/version, reasoning effort/mode, public goal and instruction
+hashes when available, subagent relationships, token fields exposed by the
+harness, separate agent/build/simulation/hardware times, and cost/source
+metadata. Use `null` with an explicit source note when telemetry is unavailable;
+never turn an approximate report into a measured fact. Follow
+`experiments/schema/README.md` and validate records with `./tools/experiment`.
+
 ## Optional starting references
 
 These are living references for improving prompts, agent workflows, and
@@ -88,7 +110,8 @@ should search for newer or more relevant primary sources when needed:
 
 You are authorized to maintain the repository as a whole: add, edit, move, or
 delete files when that helps the design, tooling, documentation, experiments,
-or laboratory itself. Work primarily in `workspace/` by default, but do not
+or laboratory itself. Work primarily in the selected experiment's workspace
+and `experiments/` by default, but do not
 treat the initial layout as permanent. Use Git deliberately so changes,
 including removals, remain reviewable and reproducible.
 

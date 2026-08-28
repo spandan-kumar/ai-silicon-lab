@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "doom-initial-agent-run-reported",
+  "experiment_id": "doom-rv32imc",
+  "experiment_revision": 1,
+  "status": "reported",
+  "measurement_status": "reported",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "Sol",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex",
+      "version": null,
+      "environment": "desktop"
+    },
+    "reasoning": {
+      "effort": "max",
+      "mode": null,
+      "context": null
+    },
+    "goal_sha256": null,
+    "instruction_hashes": [],
+    "subagents": []
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": 2600000,
+    "source": "reported",
+    "precision": "approximate",
+    "notes": "User-reported approximate total; not billing or harness telemetry."
+  },
+  "time": {
+    "started_at": null,
+    "finished_at": null,
+    "agent_wall_seconds": null,
+    "reported_wall_hours": 5.5,
+    "build_seconds": null,
+    "simulation_seconds": null,
+    "hardware_seconds": null,
+    "human_seconds": null,
+    "source": "reported",
+    "notes": "User-reported approximate wall time; replace with session telemetry when available."
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "source": "unavailable",
+    "rate_date": null,
+    "notes": "Do not infer cost from token count without a pinned rate source."
+  },
+  "execution": {
+    "candidate_commit": null,
+    "harness_run_ids": [],
+    "lab_run_ids": [],
+    "tool_versions": {},
+    "artifact_paths": []
+  },
+  "result": {
+    "status": "simulation-complete",
+    "claim_level": "reported-provenance-backfill",
+    "notes": "This example demonstrates how to backfill the agent provenance for the verified Doom experiment; evaluator evidence remains in its own run records."
+  },
+  "evidence": [
+    {
+      "kind": "user-report",
+      "path": null,
+      "description": "Approximate model alias, reasoning setting, token total, and wall time supplied by the experiment owner."
+    }
+  ]
+}

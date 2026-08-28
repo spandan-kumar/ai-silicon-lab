@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-silicon-lab.invalid/schema/run-record.schema.json",
+  "title": "AI Silicon Lab experiment run record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "run_id",
+    "experiment_id",
+    "experiment_revision",
+    "status",
+    "measurement_status",
+    "agent",
+    "usage",
+    "time",
+    "cost",
+    "execution",
+    "result",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "record_type": { "const": "experiment-run" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "experiment_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "experiment_revision": { "type": ["integer", "string"] },
+    "status": { "type": "string" },
+    "measurement_status": { "type": "string" },
+    "agent": { "type": "object" },
+    "usage": { "type": "object" },
+    "time": { "type": "object" },
+    "cost": { "type": "object" },
+    "execution": { "type": "object" },
+    "result": { "type": "object" },
+    "evidence": { "type": "array" }
+  },
+  "additionalProperties": true
+}

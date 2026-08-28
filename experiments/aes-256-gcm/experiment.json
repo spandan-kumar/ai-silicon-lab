@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "title": "AES-256-GCM hardware accelerator",
+  "status": "specified",
+  "domain": "cryptographic-hardware-and-rtl",
+  "objective": "Explore hardware implementations of AES-256-GCM and identify Pareto-efficient designs under explicit technology, throughput, latency, area, power, and security constraints.",
+  "scope": {
+    "primary_claim": "A candidate hardware implementation correctly performs the selected AES-256-GCM profile and its measured cost/performance/security properties are reproducible for a stated target.",
+    "included": [
+      "AES-256 block cipher and key expansion",
+      "GCM counter mode and GHASH authentication",
+      "authenticated encryption and decryption behavior",
+      "cycle-accurate RTL simulation and differential testing",
+      "synthesis and target-specific implementation when available",
+      "software, RTL, and optional ISA-extension baselines",
+      "constant-latency and key-lifecycle analysis where claimed"
+    ],
+    "excluded": [
+      "a global claim of the world's most optimized design without a target and objective function",
+      "FIPS 140 validation or certification claims",
+      "physical side-channel resistance claims from functional simulation alone",
+      "nonce generation or protocol-level nonce management unless explicitly included as a separate block",
+      "substituting AES-GCM test vectors for security certification"
+    ],
+    "completion_boundary": "Simulation-complete means the specified algorithm profile passes independent known-answer, edge-case, randomized, and interface tests on synthesizable RTL with reproducible measurements. Physical completion requires target implementation and, for security claims, separately appropriate leakage or fault evidence."
+  },
+  "design_space": {
+    "open": true,
+    "allowed_strategies": [
+      "portable software baseline",
+      "memory-mapped streaming RTL accelerator",
+      "CPU instruction or coprocessor extension",
+      "iterative, partially unrolled, or fully unrolled AES round datapaths",
+      "serial, folded, pipelined, or parallel GHASH multiplier structures",
+      "shared AES/GHASH datapaths or dedicated parallel units",
+      "precomputed or on-the-fly AES-256 key expansion",
+      "scalar or vector RISC-V cryptography-extension comparisons",
+      "different interface widths, buffering, DMA, and backpressure policies"
+    ],
+    "non_requirements": [
+      "a particular CPU, bus, interface, clock, FPGA, or ASIC library before the target profile is frozen",
+      "maximum throughput at any area or power cost",
+      "side-channel resistance beyond the explicitly measured claim",
+      "support for algorithms or AES key sizes outside the selected profile"
+    ],
+    "invariants": [
+      "AES-256 means a 256-bit key and the FIPS 197 AES-256 variant",
+      "GCM semantics follow the pinned SP 800-38D profile",
+      "byte ordering, bit ordering, tag ordering, IV handling, and interface framing are explicit",
+      "invalid authentication tags are never reported as successful decryption",
+      "unknown or unmeasured metrics remain null or unavailable",
+      "a security property is not inferred from functional correctness"
+    ]
+  },
+  "reference": {
+    "algorithm": "AES-256-GCM",
+    "normative_specifications": [
+      "NIST FIPS 197 (updated 2023; AES algorithm unchanged)",
+      "NIST SP 800-38D (GCM and GMAC; revision notice must be checked before freezing a conformance profile)"
+    ],
+    "oracle": "independent constant-reviewed software reference plus pinned NIST/ACVP-compatible vectors",
+    "profile_freeze_requirements": [
+      "supported IV lengths, including the 96-bit fast path and non-96-bit handling",
+      "supported tag lengths and truncation policy",
+      "maximum message, AAD, and invocation lengths",
+      "encryption and decryption API behavior",
+      "tag-failure output policy and key/temporary-state clearing policy",
+      "endianness and streaming framing"
+    ]
+  },
+  "workloads": [
+    {
+      "id": "aes-256-block-kat",
+      "role": "primitive-correctness",
+      "source": "FIPS 197 examples and a pinned AES validation corpus",
+      "description": "AES-256 encryption, decryption, and key-expansion known-answer tests, including round and intermediate checks where available.",
+      "comparison": "exact block and round-state comparison"
+    },
+    {
+      "id": "gcm-known-answer",
+      "role": "algorithm-correctness",
+      "source": "NIST SP 800-38D examples and NIST ACVP AES-GCM corpus",
+      "description": "Complete AES-256-GCM encrypt/decrypt vectors covering plaintext, AAD, IV, tag, and failure behavior.",
+      "comparison": "exact ciphertext and authentication-tag comparison"
+    },
+    {
+      "id": "gcm-edge-cases",
+      "role": "boundary-correctness",
+      "source": "derived fixed vectors with a recorded generation seed and profile",
+      "description": "Empty and partial plaintext/AAD, one-byte and block-boundary lengths, non-96-bit IVs, tag lengths, backpressure, reset, and tag rejection.",
+      "comparison": "exact outputs plus explicit protocol-state assertions"
+    },
+    {
+      "id": "gcm-random-differential",
+      "role": "differential-correctness",
+      "source": "pinned deterministic generator seed and independent software reference",
+      "description": "Randomized keys, IVs, AAD, plaintext, lengths, and valid/invalid tags, with reproducible vector archives.",
+      "comparison": "all vectors and negative cases must agree"
+    },
+    {
+      "id": "gcm-throughput-sweep",
+      "role": "performance",
+      "source": "fixed workload matrix generated from the frozen profile",
+      "description": "Cold and warm key paths, message sizes from sub-block to large streaming buffers, AAD ratios, and sustained streams.",
+      "comparison": "cycles, latency, throughput, and resource-normalized metrics"
+    },
+    {
+      "id": "gcm-interface-stress",
+      "role": "microarchitectural-correctness",
+      "source": "generated ready/valid and reset scenarios",
+      "description": "Arbitrary input/output stalls, packet boundaries, simultaneous channels, reset at legal and illegal phases, and FIFO pressure.",
+      "comparison": "scoreboard plus protocol assertions; no dropped, duplicated, or reordered bytes"
+    },
+    {
+      "id": "security-behavior-review",
+      "role": "security-evidence",
+      "source": "RTL inspection, assertions, trace analysis, and later physical tests",
+      "description": "Data-independent control/latency review, key zeroization, tag-failure behavior, fault response, and side-channel plan.",
+      "comparison": "claim-specific evidence; simulation alone cannot certify leakage resistance"
+    }
+  ],
+  "correctness": {
+    "requirements": [
+      "AES-256 block encryption/decryption and key schedule agree with the independent oracle",
+      "GCM ciphertext and tag agree for all positive vectors",
+      "invalid or modified tags are rejected for all negative vectors",
+      "empty, partial, and block-aligned messages behave according to the selected profile",
+      "96-bit and supported non-96-bit IV processing are distinguished and tested",
+      "AAD affects authentication but is not included in ciphertext",
+      "stream stalls do not alter outputs or internal message boundaries",
+      "reset and key changes do not leak prior message state into a later operation"
+    ],
+    "forbidden_shortcuts": [
+      "using a host crypto library in place of candidate RTL during the measured run",
+      "reading expected ciphertext, tags, or result verdicts from the oracle inside the candidate",
+      "accepting a tag mismatch as a successful decrypt or releasing unauthenticated plaintext contrary to the frozen policy",
+      "reporting area, timing, power, or security values that were not measured",
+      "calling a functionally correct implementation constant-time without latency/control evidence",
+      "comparing designs with different workload, target, compiler, clock, or amortization assumptions without labeling the difference"
+    ],
+    "unknown_policy": "If a target tool, power model, side-channel instrument, or physical board is unavailable, record the metric as null/unavailable and keep the claim limited to what was measured."
+  },
+  "metrics": [
+    {
+      "id": "algorithm_correctness",
+      "unit": "boolean",
+      "required": true,
+      "meaning": "All selected positive and negative vectors pass exact comparison."
+    },
+    {
+      "id": "setup_latency",
+      "unit": "cycles",
+      "required": true,
+      "meaning": "Cycles from accepted key/IV/message start to first valid result, with cold/warm key paths separated."
+    },
+    {
+      "id": "steady_state_throughput",
+      "unit": "bytes-per-cycle and target-Gbps",
+      "required": true,
+      "meaning": "Sustained authenticated-data throughput under a stated clock and interface width."
+    },
+    {
+      "id": "cycles_per_byte",
+      "unit": "cycles-per-byte",
+      "required": true,
+      "meaning": "Amortized and non-amortized values for each message-size class."
+    },
+    {
+      "id": "synthesized_area",
+      "unit": "target-specific",
+      "required": true,
+      "meaning": "LUT/FF/BRAM/DSP or ASIC cell/area result for a named tool, library, and constraint set."
+    },
+    {
+      "id": "timing",
+      "unit": "MHz and slack",
+      "required": false,
+      "meaning": "Post-synthesis or post-route timing for a named target."
+    },
+    {
+      "id": "energy",
+      "unit": "joules-per-byte or watts",
+      "required": false,
+      "meaning": "Measured or tool-estimated only, with method and confidence recorded."
+    },
+    {
+      "id": "security_claims",
+      "unit": "claim-specific",
+      "required": false,
+      "meaning": "Constant-latency, zeroization, fault, or leakage evidence is reported separately rather than collapsed into correctness."
+    }
+  ],
+  "gates": [
+    {
+      "id": "profile-frozen",
+      "criteria": [
+        "normative AES and GCM revisions are pinned",
+        "byte/bit order, IV, tag, length, reset, and tag-failure semantics are documented",
+        "target profile and objective function are explicit"
+      ]
+    },
+    {
+      "id": "simulation-complete",
+      "criteria": [
+        "primitive, full-GCM, edge, random, and interface workloads pass",
+        "synthesizable RTL lint and synthesis pass",
+        "candidate never calls host crypto or reads oracle verdicts",
+        "cycle and throughput measurements are reproducible for frozen vectors",
+        "all unknown metrics and security limitations are labeled"
+      ]
+    },
+    {
+      "id": "target-implemented",
+      "criteria": [
+        "named FPGA or ASIC target accepts the exact RTL configuration",
+        "timing constraints and resource reports are retained",
+        "physical output matches RTL for the same vectors"
+      ]
+    },
+    {
+      "id": "security-claim-reviewed",
+      "criteria": [
+        "each security claim has a stated threat model",
+        "data-dependent control and latency paths are inspected or asserted",
+        "physical leakage/fault claims use appropriate measurements rather than simulation-only inference"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "id": "specification-and-reference",
+      "order": 1,
+      "exit_criteria": [
+        "profile is frozen and normative sources are recorded",
+        "independent reference and vector generator agree on pinned fixtures"
+      ]
+    },
+    {
+      "id": "software-and-rtl-baselines",
+      "order": 2,
+      "exit_criteria": [
+        "portable software and first synthesizable RTL baselines pass all primitive and GCM correctness tests",
+        "interface and vector formats are stable"
+      ]
+    },
+    {
+      "id": "architecture-exploration",
+      "order": 3,
+      "exit_criteria": [
+        "at least two materially different hardware organizations are measured under the same profile",
+        "results are compared as a Pareto set or against an explicitly justified weighted objective"
+      ]
+    },
+    {
+      "id": "simulation-complete",
+      "order": 4,
+      "exit_criteria": [
+        "all simulation-complete gate criteria pass from a clean committed revision"
+      ]
+    },
+    {
+      "id": "target-implementation",
+      "order": 5,
+      "exit_criteria": [
+        "target-implemented gate passes for an available FPGA or ASIC flow"
+      ]
+    },
+    {
+      "id": "security-review",
+      "order": 6,
+      "exit_criteria": [
+        "security claims are either supported by claim-appropriate evidence or explicitly withdrawn"
+      ]
+    }
+  ],
+  "artifact_layout": {
+    "specification": "experiments/aes-256-gcm/",
+    "candidate": "workspace/ or a future experiment-specific candidate directory",
+    "vectors": "experiment run artifacts; committed only when licensing and size are appropriate",
+    "evaluation_runs": "runs/<run-id>/",
+    "research": "experiments/aes-256-gcm/PLAN.md and cited research records"
+  },
+  "provenance_requirements": [
+    "experiment profile revision and normative source URLs/revisions",
+    "candidate RTL/firmware commit and exact interface configuration",
+    "vector corpus seed, generator version, corpus hash, and reference implementation identity",
+    "model canonical ID/alias, harness version, reasoning effort/mode, prompt/instruction hashes",
+    "input/output/cached/reasoning/total token counts when exposed",
+    "agent, human, build, simulation, synthesis, and physical time separately",
+    "target, clock, constraints, compiler flags, synthesis/P&R tool versions, and rate/cost sources",
+    "all correctness, performance, area, timing, power, and security artifacts"
+  ],
+  "research": [
+    {
+      "title": "NIST FIPS 197, Advanced Encryption Standard",
+      "url": "https://csrc.nist.gov/pubs/fips/197/final",
+      "fact": "Defines AES-128, AES-192, and AES-256 over 128-bit blocks; the 2023 update made editorial changes without changing the algorithm."
+    },
+    {
+      "title": "NIST SP 800-38D, GCM and GMAC",
+      "url": "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+      "fact": "Defines GCM authenticated encryption and GMAC; NIST has announced that the publication is being revised, so the chosen revision must be recorded."
+    },
+    {
+      "title": "NIST Automated Cryptographic Validation Protocol",
+      "url": "https://pages.nist.gov/ACVP/",
+      "fact": "Provides a machine-oriented validation protocol and AES-GCM materials suitable for a pinned vector and response contract."
+    },
+    {
+      "title": "RISC-V scalar cryptography specification",
+      "url": "https://docs.riscv.org/reference/isa/unpriv/scalar-crypto.html",
+      "fact": "Provides a standards-based optional comparison point for scalar AES-related hardware instructions and data-independent timing requirements."
+    },
+    {
+      "title": "RISC-V vector cryptography specification",
+      "url": "https://docs.riscv.org/reference/isa/unpriv/vector-crypto",
+      "fact": "Defines vector AES and GHASH-related extensions that can inform an optional vector-accelerated comparison, not a mandatory architecture."
+    }
+  ],
+  "current_baseline": {
+    "status": "not-started",
+    "available_host_support": "Verilator and Yosys are present; no FPGA/ASIC implementation flow or physical board is currently detected.",
+    "next_decision": "Freeze the algorithm/interface/target profile before implementing a hardware candidate."
+  }
+}

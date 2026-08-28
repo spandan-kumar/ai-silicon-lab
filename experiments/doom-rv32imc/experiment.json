@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "experiment_id": "doom-rv32imc",
+  "title": "Doom-capable computer",
+  "status": "baseline-verified",
+  "domain": "computer-architecture-and-rtl",
+  "objective": "Build and measure a genuinely hardware-defined computer that boots and executes Doom, first in cycle-accurate RTL simulation and later on a physical target when one is available.",
+  "scope": {
+    "primary_claim": "The candidate hardware design, rather than a host-side Doom engine or renderer, executes the Doom firmware and produces the observed framebuffer.",
+    "included": [
+      "synthesizable RTL CPU/SoC and memory-mapped peripherals",
+      "bare-metal Doom firmware compiled for the candidate machine",
+      "cycle-accurate RTL simulation with deterministic inputs",
+      "exact comparison against the protected Freedoom oracle",
+      "generic RTL synthesis and measured architectural counters",
+      "future FPGA or other physical-target verification"
+    ],
+    "excluded": [
+      "claiming a physical implementation without a real target",
+      "claiming full commercial Doom compatibility from the current short workload",
+      "treating a software emulator or host renderer as hardware evidence",
+      "using candidate-reported metrics without labeling them as untrusted"
+    ],
+    "completion_boundary": "Simulation-complete means the canonical and strengthened workloads pass from a clean committed RTL candidate, with synthesizability and reproducible evidence. Overall completion additionally requires physical verification when suitable hardware access exists."
+  },
+  "design_space": {
+    "open": true,
+    "allowed_strategies": [
+      "general-purpose CPU plus peripherals",
+      "custom CPU or ISA",
+      "hardware/software co-design",
+      "rendering, memory, or arithmetic accelerators",
+      "streaming or dataflow machines",
+      "single-cycle, iterative, pipelined, superscalar, or heterogeneous designs",
+      "simulation-only prototypes followed by a separately documented physical integration"
+    ],
+    "non_requirements": [
+      "a particular CPU vendor or ISA",
+      "real-time frame rate during RTL simulation",
+      "sound, networking, save games, or every Doom engine feature before the workload requires them",
+      "a particular FPGA or ASIC process before the physical phase"
+    ],
+    "invariants": [
+      "the final simulation candidate is synthesizable RTL",
+      "the candidate executes the workload rather than reading oracle frames",
+      "the host harness only supplies declared inputs, memory, and capture services",
+      "ground truth and evaluator integrity are preserved"
+    ]
+  },
+  "reference": {
+    "engine": "pinned ozkl/doomgeneric headless reference",
+    "asset": "Freedoom Phase 1 IWAD built from official v0.13.0 source tag",
+    "oracle": "ground_truth/benchmark/reference_frames.bin",
+    "protocol": "320x200 tightly packed RGB888 frames after a 64-frame warmup",
+    "license_paths": [
+      "ground_truth/assets/FREEDOOM-LICENSE.txt",
+      "ground_truth/assets/CREDITS",
+      "ground_truth/reference/vendor/doomgeneric/LICENSE"
+    ]
+  },
+  "workloads": [
+    {
+      "id": "canonical-freedoom-phase1",
+      "role": "protected-gate",
+      "source": "ground_truth/benchmark/benchmark.json",
+      "description": "Freedoom Phase 1 E1M1 at skill 1 with the protected deterministic input schedule.",
+      "warmup_frames": 64,
+      "capture_frames": 120,
+      "comparison": "exact byte equality for every RGB888 frame"
+    },
+    {
+      "id": "supplemental-deterministic-suite",
+      "role": "strengthened-gate",
+      "source": "workspace/verification/workloads.json",
+      "description": "Idle, movement/combat, alternate-map, and overlap-stress trajectories across E1M1-E1M3.",
+      "warmup_frames": 64,
+      "capture_frames": 736,
+      "comparison": "independent native-reference archives and per-frame exact comparison"
+    },
+    {
+      "id": "timedemo-or-extended-campaign",
+      "role": "future-coverage",
+      "source": "to be pinned before use",
+      "description": "A longer classic Doom demo or campaign trajectory used for performance and coverage, never substituted for the protected gate.",
+      "comparison": "must have a separately generated and independently checked oracle"
+    }
+  ],
+  "correctness": {
+    "requirements": [
+      "candidate builds and exits successfully",
+      "candidate emits boot and Doom-start markers",
+      "candidate reports completion without trap or failure",
+      "all required frames exist with exact dimensions and byte counts",
+      "all required frames match the trusted oracle or pinned supplemental oracle",
+      "repeated clean runs reproduce the same frame, cycle, and trace identities where deterministic"
+    ],
+    "forbidden_shortcuts": [
+      "invoking the protected evaluator or reference from the candidate",
+      "reading oracle frames or comparison results from the candidate",
+      "rendering frames with a host Doom engine or host-side replacement",
+      "hard-coding frame files or checksums as the candidate output",
+      "changing the judge, oracle, input schedule, or integrity manifest to obtain a pass"
+    ],
+    "unknown_policy": "Unmeasured physical, power, timing, or performance values remain null or unavailable. A passing visual comparison does not by itself prove physical hardware behavior."
+  },
+  "metrics": [
+    {
+      "id": "functional_correctness",
+      "unit": "boolean",
+      "required": true,
+      "meaning": "All required frames and process-level checks pass."
+    },
+    {
+      "id": "rtl_cycles",
+      "unit": "clock-cycles",
+      "required": true,
+      "meaning": "Candidate-reported or harness-observed cycles for a fixed workload; source must be labeled."
+    },
+    {
+      "id": "retired_instructions",
+      "unit": "instructions",
+      "required": false,
+      "meaning": "Retirement count when the selected CPU exposes a trustworthy counter."
+    },
+    {
+      "id": "simulator_wall_seconds",
+      "unit": "seconds",
+      "required": true,
+      "meaning": "Host time to run the stated RTL workload, separate from simulated cycles."
+    },
+    {
+      "id": "synthesized_logic",
+      "unit": "generic-cells-or-target-resources",
+      "required": true,
+      "meaning": "Synthesis result for the exact RTL configuration and tool version."
+    },
+    {
+      "id": "physical_timing_and_power",
+      "unit": "target-specific",
+      "required": false,
+      "meaning": "Only measured after a target implementation exists."
+    }
+  ],
+  "gates": [
+    {
+      "id": "baseline-reproducibility",
+      "criteria": [
+        "clean committed candidate builds",
+        "protected evaluator passes",
+        "detached worktree reproduction passes",
+        "protected files are unchanged"
+      ]
+    },
+    {
+      "id": "simulation-complete",
+      "criteria": [
+        "canonical 120-frame workload passes exactly",
+        "supplemental 736-frame workload suite passes exactly",
+        "RTL lint and synthesis pass with warnings investigated",
+        "candidate is synthesizable and contains no host-side Doom implementation",
+        "tool, asset, binary, input, trace, and result hashes are retained"
+      ]
+    },
+    {
+      "id": "physical-verification",
+      "criteria": [
+        "target implementation succeeds and timing constraints are explicit",
+        "same candidate binary and declared workload run on physical hardware",
+        "captured hardware output or checksums agree with RTL simulation",
+        "resource, frequency, and power evidence is retained where available"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "id": "verified-baseline",
+      "order": 1,
+      "exit_criteria": [
+        "current RV32IMC/CV32E40P candidate and exact Doom oracle pass",
+        "known failure and path-reproducibility checks have been exercised"
+      ]
+    },
+    {
+      "id": "architecture-exploration",
+      "order": 2,
+      "exit_criteria": [
+        "each variant has a distinct candidate manifest and immutable result record",
+        "functional correctness is preserved before performance or area claims are compared",
+        "changes are evaluated on fixed workloads and target conditions"
+      ]
+    },
+    {
+      "id": "simulation-complete",
+      "order": 3,
+      "exit_criteria": [
+        "all simulation-complete gate criteria pass from a clean revision"
+      ]
+    },
+    {
+      "id": "physical-verification",
+      "order": 4,
+      "exit_criteria": [
+        "a physical target is available and the physical-verification gate passes"
+      ]
+    }
+  ],
+  "artifact_layout": {
+    "candidate": "workspace/",
+    "protected_oracle": "ground_truth/",
+    "evaluation_runs": "runs/<run-id>/",
+    "experiment_notes": "experiments/doom-rv32imc/",
+    "agent_provenance": "experiments/examples/ and run-specific provenance records"
+  },
+  "provenance_requirements": [
+    "experiment_id and experiment revision",
+    "candidate Git commit and working-tree state",
+    "model canonical ID and human-readable alias when available",
+    "agent harness name/version and reasoning effort/mode",
+    "public goal and repository-instruction hashes when available",
+    "input, WAD, firmware, RTL, simulator, compiler, and synthesis identities",
+    "input/output/cached/reasoning/total token fields when exposed",
+    "agent, human, build, simulation, and physical wall times separately",
+    "cost, currency, rate source/date, and measurement status when available",
+    "all commands, exit statuses, logs, traces, reports, and comparison artifacts"
+  ],
+  "research": [
+    {
+      "title": "Original id Software DOOM source",
+      "url": "https://github.com/id-Software/DOOM",
+      "fact": "The historical source includes built-in demo playback and timedemo command handling useful for future performance workloads."
+    },
+    {
+      "title": "Verilator documentation",
+      "url": "https://verilator.org/guide/latest/overview.html",
+      "fact": "Verilator compiles synthesizable Verilog/SystemVerilog into an executable model suitable for fast cycle-accurate simulation."
+    },
+    {
+      "title": "Current repository baseline evidence",
+      "url": "workspace/docs/EVIDENCE.md",
+      "fact": "The selected CV32E40P candidate has a clean canonical evaluator pass and strengthened exact-oracle evidence; later runs must remain reproducible."
+    }
+  ],
+  "current_baseline": {
+    "revision": "ae2d12b0daefaa84400ab12e4055d1af9eef4293",
+    "candidate_manifest": "workspace/candidate.json",
+    "candidate_name": "aisl-cv32e40p-dual-obi-doom",
+    "status": "simulation-complete-at-current-workload-scope",
+    "note": "This is a baseline for future architectural variants, not proof of physical hardware or full campaign coverage."
+  }
+}
