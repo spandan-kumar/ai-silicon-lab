@@ -78,9 +78,23 @@ def run_workload(
     oracle_dir = _oracle_cache(plugin.experiment_id, workload)
     reference_meta: dict[str, Any] = {}
     reference_commands: list[dict[str, Any]] = []
-    cached = oracle_dir.is_dir() and any(oracle_dir.iterdir()) and not refresh_oracle
+
+    # A cached oracle is only usable while the stimulus behind it is unchanged.
+    # Without this the runner compares new candidate output against an old
+    # reference: it manufactured four failures the first time the RV32I stimulus
+    # grew, and the same mechanism could just as easily hide a real divergence.
+    fingerprint = plugin.stimulus_identity(workload)
+    marker = oracle_dir / ".stimulus-identity"
+    stale = False
+    if fingerprint is not None and oracle_dir.is_dir():
+        previous = marker.read_text(encoding="utf-8").strip() if marker.is_file() else None
+        stale = previous != fingerprint
+
+    cached = (oracle_dir.is_dir() and any(oracle_dir.iterdir())
+              and not refresh_oracle and not stale)
     if cached:
-        reference_meta = {"cached": True, "directory": relative(oracle_dir)}
+        reference_meta = {"cached": True, "directory": relative(oracle_dir),
+                          "staleness_detectable": fingerprint is not None}
     else:
         _prepare(oracle_dir)
         context = Context(
@@ -93,8 +107,14 @@ def run_workload(
         )
         context.work_dir.mkdir(parents=True, exist_ok=True)
         reference = plugin.reference(context)
-        reference_meta = {"cached": False, **reference.metadata}
+        reference_meta = {"cached": False, "regenerated_because":
+                          "stimulus changed" if stale else
+                          ("requested" if refresh_oracle else "no cached oracle"),
+                          "staleness_detectable": fingerprint is not None,
+                          **reference.metadata}
         reference_commands = reference.commands
+        if fingerprint is not None:
+            marker.write_text(fingerprint + "\n", encoding="utf-8")
     reference_digest = sha256_tree(oracle_dir)
     reference_meta["digest"] = reference_digest
     reference_meta["directory"] = relative(oracle_dir)

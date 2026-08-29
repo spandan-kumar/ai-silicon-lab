@@ -157,3 +157,16 @@ class ExperimentPlugin:
     def policy_checks(self, context: Context) -> list[dict[str, Any]]:
         """Experiment-specific forbidden-shortcut checks."""
         return []
+
+    def stimulus_identity(self, workload: Workload) -> str | None:
+        """A digest that changes whenever this workload's stimulus changes.
+
+        Generated oracles are cached, because regenerating a reference on every
+        run is often the slowest part of a pass. A cache is only safe while the
+        harness can tell that the stimulus behind it is still the same one.
+
+        Returning None means "cannot tell". The harness then keeps using the
+        cache but records that staleness is undetectable for this workload,
+        rather than implying a freshness it cannot verify.
+        """
+        return None

@@ -279,6 +279,29 @@ class WiringTest(unittest.TestCase):
         self.assertEqual([w.id for w in selected], ["known"])
 
 
+class StimulusIdentityTest(unittest.TestCase):
+    """A cached oracle must not survive a change to the stimulus behind it."""
+
+    def test_default_identity_is_none_not_a_fake_digest(self):
+        # None means "cannot tell", which the runner records honestly. A plugin
+        # that invented a constant digest would claim a freshness it cannot
+        # verify, which is worse than admitting the gap.
+        self.assertIsNone(StubPlugin().stimulus_identity(Workload("known", "r", "vectors")))
+
+    def test_identity_tracks_the_stimulus(self):
+        class Fingerprinted(StubPlugin):
+            payload = "a"
+
+            def stimulus_identity(self, workload):
+                return self.payload
+
+        plugin = Fingerprinted()
+        first = plugin.stimulus_identity(Workload("known", "r", "vectors"))
+        plugin.payload = "b"
+        second = plugin.stimulus_identity(Workload("known", "r", "vectors"))
+        self.assertNotEqual(first, second)
+
+
 class ProtectedRootTest(unittest.TestCase):
     def test_harness_refuses_to_write_into_protected_roots(self):
         from aisl_harness.core import ROOT, assert_not_protected

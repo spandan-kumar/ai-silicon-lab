@@ -485,28 +485,33 @@ def directed_far_branch(op: str, taken: bool, distance_bytes: int = 2052) -> lis
         ("bgeu", True): (9, 3), ("bgeu", False): (3, 9),
     }
     left, right = operands[(op, taken)]
-    program = [
+    # Layout from the branch: branch, not-taken marker, jump to the common end,
+    # padding, landing, end. Both paths converge on one ebreak, because a
+    # mid-program ebreak is a trap on a core that has a trap handler, not a halt.
+    program = _standard_prologue()
+    program += [
         i_type("addi", 1, 0, left),
         i_type("addi", 2, 0, right),
         i_type("addi", 3, 0, 0),
         branch(op, 1, 2, distance_bytes),
         i_type("addi", 3, 0, 222),
-        ebreak(),
+        jal(0, distance_bytes - 4),
     ]
-    program += [nop()] * (distance_bytes // 4 - 2)
+    program += [nop()] * (distance_bytes // 4 - 3)
     program += [i_type("addi", 3, 0, 111), ebreak()]
     return program
 
 
 def directed_far_jal(distance_bytes: int = 2052) -> list[int]:
     """JAL over `distance_bytes`, setting J-immediate bit 11, checking the link."""
-    program = [
+    program = _standard_prologue()
+    program += [
         i_type("addi", 3, 0, 0),
         jal(5, distance_bytes),
         i_type("addi", 3, 0, 222),
-        ebreak(),
+        jal(0, distance_bytes - 4),
     ]
-    program += [nop()] * (distance_bytes // 4 - 2)
+    program += [nop()] * (distance_bytes // 4 - 3)
     program += [i_type("addi", 3, 0, 111), ebreak()]
     return program
 
@@ -518,7 +523,8 @@ def directed_far_backward_branch(distance_bytes: int = 2048) -> list[int]:
     clear, which is the case that distinguishes the two bits.
     """
     iterations = 2
-    program = [i_type("addi", LOOP_COUNTER, 0, iterations), i_type("addi", 3, 0, 0)]
+    program = _standard_prologue()
+    program += [i_type("addi", LOOP_COUNTER, 0, iterations), i_type("addi", 3, 0, 0)]
     jal_index = len(program)
     program.append(jal(0, distance_bytes))
     program += [nop()] * (distance_bytes // 4 - 1)
@@ -532,7 +538,7 @@ def directed_far_backward_branch(distance_bytes: int = 2048) -> list[int]:
 
 def directed_immediate_extremes() -> list[int]:
     """Boundary immediates for every format that carries one."""
-    program = [lui(DATA_POINTER, 0x2), i_type("addi", DATA_POINTER, DATA_POINTER, 0)]
+    program = _standard_prologue()
     for value in (2047, -2048, -1, 0, 1):
         program += [
             i_type("addi", 4, 0, value),
@@ -589,8 +595,18 @@ def directed_programs() -> list[tuple[str, list[int]]]:
 # the reference model executes them like any other program, so they cost the
 # non-pipelined design nothing.
 
-def _hazard_prologue() -> list[int]:
+def _standard_prologue() -> list[int]:
+    """Establish the data pointer every directed program and epilogue relies on.
+
+    Without it the signature epilogue would store through x31 = 0 and overwrite
+    the program image. Random programs already set it; directed ones did not,
+    which only became a problem once the signature epilogue existed.
+    """
     return [lui(DATA_POINTER, 0x1), i_type("addi", DATA_POINTER, DATA_POINTER, 0x200)]
+
+
+def _hazard_prologue() -> list[int]:
+    return _standard_prologue()
 
 
 def hazard_squashed_writer() -> list[int]:
@@ -700,7 +716,7 @@ def directed_arithmetic_edges() -> list[int]:
     operand distribution changed. A directed test does not depend on the
     distribution.
     """
-    program: list[int] = []
+    program: list[int] = _standard_prologue()
     # Build the boundary constants: 0x7fffffff, 0x80000000, 0xffffffff, 1, -1.
     program += [lui(1, 0x80000), i_type("addi", 1, 1, -1)]     # x1 = 0x7fffffff
     program += [lui(2, 0x80000)]                               # x2 = 0x80000000
@@ -733,3 +749,46 @@ def directed_arithmetic_edges() -> list[int]:
                 i_type("slti", 25, 1, 2047), i_type("sltiu", 26, 3, -2048)]
     program.append(ebreak())
     return program
+
+
+# --- architectural signature epilogue --------------------------------------
+#
+# CV32E40P exposes no register-file read port, so architectural state cannot be
+# observed the way the local cores expose it. The portable answer, and the one
+# riscv-arch-test uses, is to make the program itself write its final state to
+# memory and compare the memory image. That works on any core, including one
+# this repository did not write and must not modify.
+#
+# The signature area sits immediately above the random data region so that every
+# store offset still fits in a 12-bit signed immediate from the data pointer.
+# The data pointer is centred at data_base + data_size/2, and random accesses
+# span +/- data_size/2 around it, so data_size/2 is the first free offset.
+
+SIGNATURE_OFFSET = 0x200        # first free offset above the random data region
+HALT_OFFSET = 0x300             # a store here tells the testbench to stop
+
+
+def signature_epilogue() -> list[int]:
+    """Store x1..x31 to the signature area, then signal completion.
+
+    x31 is the data pointer and is stored last, through itself, so its value is
+    captured without needing a second base register that would itself need
+    capturing.
+    """
+    program = [store("sw", DATA_POINTER, reg, SIGNATURE_OFFSET + 4 * (reg - 1))
+               for reg in range(1, 32)]
+    program.append(store("sw", DATA_POINTER, 0, HALT_OFFSET))
+    program.append(ebreak())            # how the local cores stop
+    program.append(jal(0, 0))           # safety net for a core that ignores ebreak
+    return program
+
+
+def with_signature(program: list[int]) -> list[int]:
+    """Replace a program's terminating ebreak with a signature epilogue."""
+    body = program[:-1] if program and program[-1] == ebreak() else list(program)
+    return body + signature_epilogue()
+
+
+def signature_addresses(data_base: int = 0x1000, data_size: int = 0x400) -> tuple[int, int]:
+    """(base address, byte length) of the signature area."""
+    return data_base + data_size // 2 + SIGNATURE_OFFSET, 31 * 4

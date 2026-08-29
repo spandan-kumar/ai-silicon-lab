@@ -23,6 +23,7 @@ ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE / "reference"))
 sys.path.insert(0, str(ROOT / "harness"))
 
+import cross_check  # noqa: E402
 import differential  # noqa: E402
 import opcode_conformance  # noqa: E402
 import rv32i_asm as asm  # noqa: E402
@@ -124,10 +125,36 @@ class Rv32iPlugin(ExperimentPlugin):
                 artifacts[relative(binary)] = sha256_file(binary)
             else:
                 ok = False
+        # The independent cross-check core. It is vendored, never modified, and
+        # built with its own warning policy because this repository does not
+        # own its source.
+        vendor = ROOT / "workspace" / "rtl_cv" / "vendor" / "cv32e40p"
+        if vendor.is_dir():
+            sources = sorted((vendor / "rtl").glob("*.sv"))
+            packages = [vendor / "rtl" / "include" / name for name in (
+                "cv32e40p_apu_core_pkg.sv", "cv32e40p_fpu_pkg.sv", "cv32e40p_pkg.sv")]
+            command = run(
+                ["verilator", "--cc", "--exe", "--build", "-j", "0", "-Wno-fatal",
+                 "--top-module", "cv32e40p_top",
+                 "--Mdir", str(SIM_DIR / "build-cv32"),
+                 "-CFLAGS", "-std=c++17 -O2",
+                 "-I" + str(vendor / "rtl" / "include"),
+                 *[str(x) for x in packages], *[str(x) for x in sources],
+                 str(ROOT / "workspace" / "rtl_cv" / "clock_gate_generic.sv"),
+                 str(SIM_DIR / "tb_cv32e40p.cpp"), "-o", "cv32e40p_sim"],
+                timeout=1800)
+            commands.append(command)
+            binary = SIM_DIR / "build-cv32" / "cv32e40p_sim"
+            if command.get("exit_code") == 0 and binary.is_file():
+                artifacts[relative(binary)] = sha256_file(binary)
+            else:
+                ok = False
+
         artifacts["rtl-aggregate"] = sha256_tree(RTL_DIR)
         return BuildResult(ok=ok, commands=commands, artifacts=artifacts,
                            tools=[tool_version("verilator"), tool_version("cc")],
-                           notes="Both cores built with assertions enabled.")
+                           notes="Both local cores built with assertions enabled; "
+                                 "CV32E40P built unmodified for the independent cross-check.")
 
     def reference(self, context: Context) -> ReferenceOutput:
         workload = context.workload
@@ -196,6 +223,15 @@ class Rv32iPlugin(ExperimentPlugin):
             reported={"programs": len(vectors)},
             measured={"total_cycles": cycles, "total_retired": retired,
                       "cycles_per_instruction": round(cycles / retired, 4) if retired else None})
+
+    def stimulus_identity(self, workload: Workload) -> str | None:
+        """Digest of the actual program images this workload will run."""
+        p = workload.parameters
+        digest = hashlib.sha256()
+        for name, program in programs_for(p["workflow"], p["random_programs"], p["length"]):
+            digest.update(name.encode())
+            digest.update(asm.assemble(program))
+        return digest.hexdigest()
 
     def lint(self, context: Context) -> dict[str, Any] | None:
         warnings, ok = [], True
@@ -290,6 +326,27 @@ class Rv32iPlugin(ExperimentPlugin):
             "covered": f"{report['corners_covered']}/{report['corners_total']}",
             "missing": report["corners_missing"],
         })
+
+        # The only comparison in this experiment that does not share an author
+        # with the design under test.
+        if not cross_check.CV32_SIM.is_file():
+            checks.append({
+                "id": "cross-check-cv32e40p", "ok": None,
+                "reason": "CV32E40P simulator not built; unavailable is not a pass",
+            })
+        else:
+            result = cross_check.cross_check("w4-hazards", 100, 120,
+                                             ROOT / ".aisl" / "rv32i" / "cross-harness")
+            checks.append({
+                "id": "cross-check-cv32e40p",
+                "ok": result["disagreements"] == 0,
+                "programs": result["programs"],
+                "disagreements": result["disagreements"],
+                "detail": result["detail"][:2],
+                "note": "Architectural state compared with OpenHW CV32E40P through a "
+                        "memory signature. This is the only check here whose ground "
+                        "truth this repository did not write.",
+            })
         return checks
 
 

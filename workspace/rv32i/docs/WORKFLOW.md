@@ -27,16 +27,33 @@ every pass.
 | --- | --- | --- |
 | `riscv-opcodes` encoding tables | yes | used; 38 instructions conform |
 | Instruction set simulator in `reference/` | **no** — same author as the RTL | used for all execution comparison |
-| CV32E40P, vendored in this repository | yes | not yet used; the obvious next step |
+| CV32E40P, vendored in this repository | yes | **used**; 621 programs agree |
 | `riscv-arch-test` | yes | unavailable: needs a RISC-V toolchain and a reference model to generate signatures |
 | `sail-riscv` formal model | yes | unavailable: needs a Sail/OCaml toolchain |
 
-**The most important limitation.** The reference model and the RTL were written
-from the same specification by the same author. A misreading of the
-specification would appear in both, they would agree, and the loop would report
-success. The encoding layer is protected against this because `riscv-opcodes` is
-independent; the execution layer is not. Every "agrees exactly" result below
-should be read with that caveat attached.
+**The limitation that used to matter most, and how it was closed.** The
+reference model and both cores were written from the same specification by the
+same author. A misreading would appear in all three, they would agree, and the
+loop would report success. The encoding layer was protected because
+`riscv-opcodes` is independent; the execution layer was not.
+
+CV32E40P closes it. The same corpus runs on an OpenHW Group core that is
+silicon-proven, developed elsewhere, and vendored here unmodified: **621 of 621
+programs agree**. Architectural state is compared through a memory signature,
+the technique `riscv-arch-test` uses, because CV32E40P exposes no register-file
+read port and must not be changed to add one — the program writes its own final
+register values to memory and the comparison happens afterwards on the image.
+
+The check was verified to be capable of failing before its passing result was
+believed. Injecting a single defect into the reference model — SRAI performing
+a logical shift — produced disagreement in 7 of 51 programs, showing exactly
+the sign-extension difference (`321` against `0xFFFFFF41`). A cross-check that
+has never been seen to fail is not evidence that anything agrees.
+
+What remains open: agreement was established for the instruction subset and
+stimulus distribution used here. It is not a proof of RV32I compliance, which
+is what `riscv-arch-test` and `sail-riscv` would provide, and both remain
+unavailable on this host.
 
 ## Workflow configurations
 
@@ -76,6 +93,8 @@ Two mutants are unkillable, so w3 detects **24 of 24 killable defects**.
 | Named corner bins covered | 17/17 |
 | Encoding conformance | 38 instructions, 0 findings |
 | Differential agreement, both cores | 620 programs, 0 failures |
+| Independent agreement with CV32E40P | 621 programs, 0 disagreements |
+| Cross-check negative control | 7/51 disagree when the reference is broken |
 | Verilator branch coverage (pipeline) | 97.6% (41/42) |
 | Verilator expression coverage (pipeline) | 98.8% (83/84) |
 | Verilator toggle coverage (pipeline) | 80.7% (2239/2776) |
@@ -172,6 +191,18 @@ real one does, and three of the four came from tooling rather than from RTL.
 - The `add-overflow` bin was covered by the flat generator and silently lost
   when block-structured generation changed the operand distribution. Coverage
   regressions are as real as functional ones and need the same watching.
+- Directed tests used `ebreak` mid-program as a "stop here" marker. That halts
+  the local cores and traps to `mtvec` on a core with a trap handler, so the
+  tests were unusable for cross-checking until every program was given exactly
+  one terminator.
+- **The harness cached oracles without noticing when the stimulus changed.**
+  Growing the RV32I corpus made four suites fail against a reference generated
+  for the previous corpus. The failure was loud, but the same mechanism could
+  have hidden a real divergence just as easily. Fixed in the framework: a
+  plugin now declares a `stimulus_identity()` fingerprint, the runner
+  invalidates a cached oracle whose fingerprint changed, and a plugin that
+  cannot fingerprint its stimulus reports `staleness_detectable: false` rather
+  than implying a freshness it cannot verify.
 
 Six of the ten defects in this section and the one above are in the tooling
 rather than the RTL. That ratio is itself a finding: on this loop, the
@@ -184,12 +215,11 @@ single test.
 
 Ordered by what removes the largest blind spot per unit of effort.
 
-**1. Cross-check against CV32E40P.** *Highest value, already local.* The
-repository vendors a silicon-proven RV32IMC core. Running the same programs on
-it and comparing architectural state would close the one gap nothing else
-closes: that the reference model and the RTL share an author. It needs an OBI
-memory model and a way to observe its register file, both of which
-`workspace/sim_cv/` already demonstrates. No downloads.
+**1. Cross-check against CV32E40P.** *Done.* Wired into the harness as
+`policy:cross-check-cv32e40p` and mapped to the `independently-cross-checked`
+gate, so every verification pass now includes a comparison against ground truth
+this repository did not write. The OBI memory model queues responses because
+CV32E40P's prefetcher keeps several transactions outstanding.
 
 **2. `riscv-formal`.** *Highest value overall.* A SymbiYosys-based framework
 that proves per-instruction ISA compliance rather than sampling it. It replaces
