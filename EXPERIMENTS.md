@@ -12,8 +12,10 @@ experiments/
     registry.json
     schema/
     <experiment-id>/
-        experiment.json
+        experiment.json          # the frozen question and acceptance contract
+        harness.json             # how this repository currently executes it
         PLAN.md
+        PROFILE.md               # when a conformance profile has been frozen
         RESEARCH.md              # when the experiment has dated research notes
 experiments/examples/            # validated provenance examples/templates
 runs/<run-id>/                    # evaluator output; ignored by Git
@@ -58,7 +60,14 @@ records to the simulation-complete and future physical-verification gates.
 ## New experiments
 
 The AES-256-GCM experiment has its own correctness vectors, interface contract,
-performance metrics, target profile, and security-claim boundary. Its future
-candidate and evaluator must not be forced through the Doom frame evaluator.
-It should reuse the common provenance model and preserve all failed and
-rejected designs as evidence.
+performance metrics, target profile, and security-claim boundary. Its candidate
+and evaluator are not forced through the Doom frame evaluator. It reuses the
+common provenance model and preserves failed and rejected designs as evidence.
+
+An experiment joins the autonomous harness by adding `harness.json` next to its
+`experiment.json`, plus a plugin implementing the reference and candidate
+sides. The two files are kept separate on purpose: `experiment.json` is what
+the experiment promised, and `harness.json` is how the repository runs it
+today. `harness.json` also maps each prose gate criterion to the check IDs that
+would demonstrate it, so a criterion nobody wired up reports as unevaluated
+rather than quietly disappearing from the gate.

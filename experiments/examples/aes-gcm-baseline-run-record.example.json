@@ -1,0 +1,170 @@
+{
+  "agent": {
+    "goal_sha256": null,
+    "harness": {
+      "environment": "ai-silicon-lab harness",
+      "name": "Claude Code",
+      "version": null
+    },
+    "instruction_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "55a0c86976b675178801e1169510eec0df6e9a2c8efcaaeebe05825833e33a20"
+      },
+      {
+        "path": "LAB.md",
+        "sha256": "fcd603a72aa95af898026936aab57398c11c86e677dcdf319eafa480456cdb0c"
+      },
+      {
+        "path": "EVALUATION.md",
+        "sha256": "9049e654471f6e5ceec01cc4dfdebef46f16a440f807e58c9ba81b9d5f1eaad5"
+      }
+    ],
+    "model": {
+      "canonical_id": "claude-opus-5",
+      "display_name": "Claude Opus 5",
+      "identity_status": "exact",
+      "provider": "Anthropic"
+    },
+    "reasoning": {
+      "context": null,
+      "effort": "default",
+      "mode": null
+    },
+    "subagents": []
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "notes": "No pinned rate source; cost is not inferred from token counts.",
+    "rate_date": null,
+    "source": "unavailable"
+  },
+  "evidence": [
+    {
+      "description": "Harness verification report with 25 passing, 0 failing, and 0 unevaluated checks.",
+      "kind": "verification-report",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/verification-report.json"
+    },
+    {
+      "description": "aes-256-block-kat: vectors comparison over 128 items, result pass.",
+      "kind": "workload-comparison",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/workloads/aes-256-block-kat"
+    },
+    {
+      "description": "gcm-known-answer: vectors comparison over 16 items, result pass.",
+      "kind": "workload-comparison",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/workloads/gcm-known-answer"
+    },
+    {
+      "description": "gcm-edge-cases: vectors comparison over 47 items, result pass.",
+      "kind": "workload-comparison",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/workloads/gcm-edge-cases"
+    },
+    {
+      "description": "gcm-random-differential: vectors comparison over 320 items, result pass.",
+      "kind": "workload-comparison",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/workloads/gcm-random-differential"
+    },
+    {
+      "description": "gcm-interface-stress: vectors comparison over 42 items, result pass.",
+      "kind": "workload-comparison",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/workloads/gcm-interface-stress"
+    },
+    {
+      "description": "gcm-throughput-sweep: vectors comparison over 13 items, result pass.",
+      "kind": "workload-comparison",
+      "path": ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/workloads/gcm-throughput-sweep"
+    },
+    {
+      "description": "Gate status: profile-frozen=unevaluated, simulation-complete=unevaluated, target-implemented=unevaluated, security-claim-reviewed=unevaluated. Unevaluated gates are not passes.",
+      "kind": "gate-evaluation",
+      "path": null
+    }
+  ],
+  "execution": {
+    "artifact_paths": [
+      ".aisl/harness/aes-256-gcm/runs/verify-20260829T130439+0000/verification-report.json"
+    ],
+    "candidate": {
+      "design": "aes_gcm baseline: iterative AES-256 round datapath, bit-serial GHASH, byte-streaming valid/ready interface",
+      "max_text_bytes": 512,
+      "normative_sources": [
+        "NIST FIPS 197 (AES)",
+        "NIST SP 800-38D (GCM/GMAC)"
+      ],
+      "profile": "encrypt and decrypt, 1..16 byte tags, 96-bit and other IV lengths, plaintext released only after tag verification",
+      "reference_model": {
+        "workspace/aes256gcm/reference/aes_gcm_ref.py": "967498d12e46cc8d40c561e259abebe7ccdb0b346d1f8b75174111bd5299db95"
+      },
+      "rtl_sources": {
+        "workspace/aes256gcm/rtl/aes256_enc.sv": "e4f23ff75c2ca81e834db8f288105e23a4b97c1f363798206d67c03e533490aa",
+        "workspace/aes256gcm/rtl/aes_gcm.sv": "c1f8fb38d968948afc88e75dd74833fd5e64f7ee3fa5d1aebe5156483b23a24a",
+        "workspace/aes256gcm/rtl/aes_sbox.sv": "8131fcd9de84ab3230b8ccaf2b694833fc5317dbd84537994d27ee04341e3733",
+        "workspace/aes256gcm/rtl/ghash_mul.sv": "b02dba18bfbb0dbbb05d20630135a0155a647caf66b5a9d1ffe55387bb8480bf"
+      },
+      "testbenches": {
+        "workspace/aes256gcm/sim/tb_aes_core.cpp": "df612ec9f7cc42fafee51d02481b190c34a3abe065a2d81bee8577ed8469f21e",
+        "workspace/aes256gcm/sim/tb_aes_gcm.cpp": "b0a1e61e6cf7db7e839cef68043ecfba095715f3bb406f376c7f34cbc91e0b40"
+      }
+    },
+    "candidate_commit": "b9beb9f5a97c6706ccb04c33f017134c3d283c0b",
+    "harness_run_ids": [
+      "verify-20260829T130439+0000"
+    ],
+    "lab_run_ids": [],
+    "tool_versions": {
+      "cc": "Apple clang version 21.0.0 (clang-2100.0.123.102)",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "python3": "Python 3.14.6",
+      "verilator": "Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701"
+    },
+    "worktree_clean": false
+  },
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "measurement_status": "mixed",
+  "record_type": "experiment-run",
+  "result": {
+    "claim_level": "harness-measured",
+    "gates": {
+      "profile-frozen": "unevaluated",
+      "security-claim-reviewed": "unevaluated",
+      "simulation-complete": "unevaluated",
+      "target-implemented": "unevaluated"
+    },
+    "notes": "Baseline AES-256-GCM RTL measured by the autonomous harness: 566 vectors exact across six workloads, Verilator lint clean, Yosys synthesis complete. Every gate remains unevaluated because each has at least one criterion that no automated check can establish; unevaluated is not a pass. Token, cost, agent wall time, and hardware time are null because this harness does not receive that telemetry.",
+    "status": "verification-pass",
+    "unevaluated_gates": [
+      "profile-frozen",
+      "simulation-complete",
+      "target-implemented",
+      "security-claim-reviewed"
+    ]
+  },
+  "run_id": "aes-gcm-baseline-harness-run",
+  "schema_version": 1,
+  "status": "pass",
+  "time": {
+    "agent_wall_seconds": null,
+    "build_seconds": 0.169099,
+    "finished_at": "2026-08-29T13:04:50+00:00",
+    "hardware_seconds": null,
+    "human_seconds": null,
+    "notes": "build_seconds and simulation_seconds are measured by the harness. agent_wall_seconds, hardware_seconds, and human_seconds are unavailable from this runtime and are null rather than zero.",
+    "simulation_seconds": 0.410477,
+    "source": "measured",
+    "started_at": "2026-08-29T13:04:39+00:00"
+  },
+  "usage": {
+    "cache_write_tokens": null,
+    "cached_input_tokens": null,
+    "input_tokens": null,
+    "notes": "This harness does not receive model token telemetry. Supply it from the agent runtime rather than inferring it from wall time.",
+    "output_tokens": null,
+    "precision": null,
+    "reasoning_tokens": null,
+    "source": "unavailable",
+    "total_tokens": null
+  }
+}

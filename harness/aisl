@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+exec python3 -c "import sys; sys.path.insert(0, '$root/harness'); from aisl_harness.cli import main; raise SystemExit(main())" "$@"

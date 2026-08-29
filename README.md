@@ -41,3 +41,19 @@ List and validate its manifests with:
 ./tools/experiment list
 ./tools/experiment check
 ```
+
+Experiments that are wired into the autonomous harness can be built, executed,
+compared against their own reference, gated, and recorded with a single entry
+point in [`harness/`](harness/):
+
+```sh
+./harness/aisl experiments
+./harness/aisl loop step aes-256-gcm
+```
+
+The harness generalises the evaluation pattern without touching the protected
+Doom judge. Its rules are the laboratory's rules made mechanical: the candidate
+is structurally unable to reach the oracle, a comparison that checked nothing
+fails rather than passing, and a gate criterion that no check can establish
+stays unevaluated instead of being counted as met. See
+[`harness/README.md`](harness/README.md).

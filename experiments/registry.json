@@ -14,7 +14,7 @@
       "experiment_id": "aes-256-gcm",
       "title": "AES-256-GCM hardware accelerator",
       "path": "aes-256-gcm/experiment.json",
-      "status": "specified",
+      "status": "in-progress",
       "kind": "cryptographic-accelerator"
     }
   ]
