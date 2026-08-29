@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_id": "rv32i-core",
+  "plugin": "workspace/rv32i/harness_plugin.py",
+  "entry": "create_plugin",
+  "description": "Two RV32I cores designed from the specification, verified against an independent reference, with the workflow's own detection power measured by mutation testing.",
+  "requirements": {
+    "required": ["verilator", "cc", "python3"],
+    "optional": ["yosys", "gtkwave"]
+  },
+  "suites": [
+    { "workload": "multicycle-directed" },
+    { "workload": "multicycle-random" },
+    { "workload": "pipeline-directed" },
+    { "workload": "pipeline-random" }
+  ],
+  "gates": {
+    "encoding-verified": {
+      "criteria": [
+        { "criterion": "every encoder output matches the official machine-readable tables",
+          "checks": ["policy:encoding-conformance"] },
+        { "criterion": "no base RV32I instruction is missing from the encoder",
+          "checks": ["policy:encoding-conformance"] }
+      ]
+    },
+    "differential-complete": {
+      "criteria": [
+        { "criterion": "every RV32I instruction is executed by the corpus",
+          "checks": ["policy:instruction-coverage"] },
+        { "criterion": "every declared corner bin is reached by the corpus",
+          "checks": ["policy:corner-coverage"] },
+        { "criterion": "the whole corpus agrees exactly with the independent reference",
+          "checks": ["suite:multicycle-directed", "suite:multicycle-random",
+                     "suite:pipeline-directed", "suite:pipeline-random",
+                     "tool:lint", "tool:synthesize"] }
+      ]
+    },
+    "workflow-measured": {
+      "criteria": [
+        { "criterion": "a mutation campaign has been run and its score reported",
+          "checks": [], "evidence": "manual",
+          "note": "Run with workspace/rv32i/reference/mutation.py. It rebuilds the RTL per mutant and is too slow for every verification pass; results are recorded in workspace/rv32i/docs/WORKFLOW.md." },
+        { "criterion": "every surviving mutant is classified as a stimulus gap or an equivalent mutant",
+          "checks": [], "evidence": "manual" },
+        { "criterion": "each equivalence claim is supported by measurement, not by argument alone",
+          "checks": [], "evidence": "manual",
+          "note": "The pipeline equivalence claim is additionally encoded as a runtime assertion, so it is re-checked on every run." }
+      ]
+    },
+    "independently-cross-checked": {
+      "criteria": [
+        { "criterion": "results are confirmed against an implementation this repository did not write",
+          "checks": [], "evidence": "partial",
+          "note": "The encoding layer is checked against riscv-opcodes, which this repository did not write. The execution layer is not: both the ISS and the RTL share an author, so a shared misreading of the specification would go undetected. CV32E40P is vendored in this repository and is the obvious next cross-check." },
+        { "criterion": "any ground truth that could not be run is recorded as unavailable with its reason",
+          "checks": [], "evidence": "manual",
+          "note": "riscv-arch-test needs a toolchain and a reference model; sail-riscv needs Sail. Both recorded as unavailable in the plugin's describe()." }
+      ]
+    }
+  },
+  "phase_gates": {
+    "specification-and-encoding": ["encoding-verified"],
+    "first-design-and-loop": ["differential-complete"],
+    "coverage-closure": ["differential-complete"],
+    "workflow-measurement": ["workflow-measured"],
+    "second-design": ["differential-complete"],
+    "independent-cross-check": ["independently-cross-checked"]
+  }
+}

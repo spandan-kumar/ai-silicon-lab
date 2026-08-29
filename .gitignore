@@ -21,3 +21,6 @@ workspace/**/dist/
 workspace/**/out/
 workspace/**/target/
 workspace/**/.cache/
+
+# Scratch clones of upstream reference material; never part of the lab.
+temp/

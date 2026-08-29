@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "experiment_id": "rv32i-core",
+  "title": "RV32I core designed from specification",
+  "status": "in-progress",
+  "domain": "processor-microarchitecture-and-rtl",
+  "objective": "Design RV32I cores from the specification alone, verify them against independent ground truth, and measure the verification workflow itself so that changes to the workflow can be shown to help rather than asserted to.",
+  "scope": {
+    "primary_claim": "A candidate core implements the RV32I base integer instruction set as specified, demonstrated by exact architectural-state agreement with an independent reference over a stimulus corpus whose detection power has been measured.",
+    "secondary_claim": "The verification workflow's ability to detect defects is quantified by mutation score, so a workflow change is accepted on evidence.",
+    "included": [
+      "RV32I base integer instruction set, machine mode only",
+      "instruction encoding conformance against official machine-readable tables",
+      "instruction-accurate differential comparison of architectural state",
+      "functional coverage of instructions and named corner cases",
+      "mutation testing of the verification workflow",
+      "multi-cycle and pipelined microarchitectures"
+    ],
+    "excluded": [
+      "privileged architecture, CSRs, interrupts, and exceptions beyond ECALL/EBREAK",
+      "the M, A, F, D, and C extensions",
+      "misaligned memory access, which this profile traps rather than emulates",
+      "any timing, power, or area claim for a named technology",
+      "any claim that a passing corpus proves correctness rather than the absence of observed disagreement"
+    ],
+    "completion_boundary": "Simulation-complete means every instruction and corner bin is covered, the differential corpus agrees exactly, and the workflow's mutation score is reported with every survivor either killed or shown to be an equivalent mutant."
+  },
+  "design_space": {
+    "open": true,
+    "allowed_strategies": [
+      "multi-cycle, pipelined, or superscalar organisation",
+      "unified or Harvard memory interfaces",
+      "any hazard resolution strategy: stalling, forwarding, or speculation",
+      "any register file implementation"
+    ],
+    "non_requirements": [
+      "a particular pipeline depth or memory protocol",
+      "performance targets before a target technology is frozen"
+    ],
+    "invariants": [
+      "x0 reads as zero and discards writes",
+      "architectural state after each retired instruction matches the reference exactly",
+      "an instruction the specification does not define must not be executed silently",
+      "unmeasured metrics remain null rather than estimated"
+    ]
+  },
+  "workloads": [
+    {
+      "id": "encoding-conformance",
+      "role": "encoding-correctness",
+      "source": "riscv/riscv-opcodes extensions/rv_i, rv32_i, and arg_lut.csv",
+      "description": "Every encoder output is checked against the official machine-readable field positions and constant values, without executing anything.",
+      "comparison": "exact constant-field and field-position agreement"
+    },
+    {
+      "id": "directed-encoding-boundaries",
+      "role": "boundary-correctness",
+      "source": "hand-written programs targeting specific immediate bit positions",
+      "description": "Far branches and jumps that set immediate bits random stimulus cannot reach, and extreme immediates for every format.",
+      "comparison": "exact architectural state after each retired instruction"
+    },
+    {
+      "id": "directed-hazards",
+      "role": "microarchitectural-correctness",
+      "source": "hand-written producer/consumer programs at every pipeline distance",
+      "description": "Forwarding distances, load-use interlocks, squashed writers, and control dependencies.",
+      "comparison": "exact architectural state after each retired instruction"
+    },
+    {
+      "id": "random-differential",
+      "role": "differential-correctness",
+      "source": "block-structured constrained-random generation from a pinned seed",
+      "description": "Terminating random programs whose control-flow targets are block boundaries, with signed memory offsets around a centred data pointer.",
+      "comparison": "first divergence in control flow, fetched instruction, or register state"
+    },
+    {
+      "id": "mutation-campaign",
+      "role": "workflow-measurement",
+      "source": "a catalogue of realistic single-point defects injected into the RTL",
+      "description": "Measures what fraction of injected defects the workflow detects, and how many programs each detection takes.",
+      "comparison": "mutation score, with every survivor classified as a stimulus gap or an equivalent mutant"
+    }
+  ],
+  "correctness": {
+    "requirements": [
+      "every encoder output conforms to the official encoding tables",
+      "architectural state agrees exactly after every retired instruction",
+      "control flow agrees exactly, including branch direction and jump targets",
+      "every RV32I instruction and every declared corner bin is covered by the corpus",
+      "every surviving mutant is classified, and an equivalence claim is supported by measurement rather than by argument alone"
+    ],
+    "forbidden_shortcuts": [
+      "comparing against a reference that shares an implementation with the design under test",
+      "letting the testbench model instruction semantics or perform the comparison",
+      "reporting a passing corpus without reporting what it covered",
+      "accepting a workflow change on plausibility rather than on a measured change in detection",
+      "recording an unkillable mutant as killed, or a stimulus gap as an equivalent mutant"
+    ],
+    "unknown_policy": "Ground truth beyond reach of this host, including the official architectural compliance suite and the Sail formal model, is recorded as unavailable with the reason, never treated as passed."
+  },
+  "metrics": [
+    {
+      "id": "differential_agreement",
+      "unit": "boolean",
+      "required": true,
+      "meaning": "Every program in the corpus agrees exactly with the reference."
+    },
+    {
+      "id": "instruction_coverage",
+      "unit": "instructions covered / 37",
+      "required": true,
+      "meaning": "RV32I instructions the corpus actually executed."
+    },
+    {
+      "id": "corner_coverage",
+      "unit": "bins covered / total",
+      "required": true,
+      "meaning": "Named corner situations the corpus actually reached."
+    },
+    {
+      "id": "mutation_score",
+      "unit": "fraction",
+      "required": true,
+      "meaning": "Injected defects detected, reported separately for killable and equivalent mutants."
+    },
+    {
+      "id": "programs_to_detect",
+      "unit": "programs",
+      "required": false,
+      "meaning": "Detection latency per defect; the cost of finding a bug once it exists."
+    },
+    {
+      "id": "cycles_per_instruction",
+      "unit": "cycles",
+      "required": false,
+      "meaning": "Measured on the RTL for the executed corpus; not a performance claim for any target."
+    },
+    {
+      "id": "synthesized_area",
+      "unit": "target-specific",
+      "required": false,
+      "meaning": "Generic cell counts only until a target library is frozen."
+    }
+  ],
+  "gates": [
+    {
+      "id": "encoding-verified",
+      "criteria": [
+        "every encoder output matches the official machine-readable tables",
+        "no base RV32I instruction is missing from the encoder"
+      ]
+    },
+    {
+      "id": "differential-complete",
+      "criteria": [
+        "every RV32I instruction is executed by the corpus",
+        "every declared corner bin is reached by the corpus",
+        "the whole corpus agrees exactly with the independent reference"
+      ]
+    },
+    {
+      "id": "workflow-measured",
+      "criteria": [
+        "a mutation campaign has been run and its score reported",
+        "every surviving mutant is classified as a stimulus gap or an equivalent mutant",
+        "each equivalence claim is supported by measurement, not by argument alone"
+      ]
+    },
+    {
+      "id": "independently-cross-checked",
+      "criteria": [
+        "results are confirmed against an implementation this repository did not write",
+        "any ground truth that could not be run is recorded as unavailable with its reason"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "id": "specification-and-encoding",
+      "order": 1,
+      "exit_criteria": [
+        "the encoder conforms to the official tables",
+        "the reference model executes the specification's examples"
+      ]
+    },
+    {
+      "id": "first-design-and-loop",
+      "order": 2,
+      "exit_criteria": [
+        "a candidate core exists",
+        "the differential loop runs end to end"
+      ]
+    },
+    {
+      "id": "coverage-closure",
+      "order": 3,
+      "exit_criteria": [
+        "every instruction and corner bin is covered"
+      ]
+    },
+    {
+      "id": "workflow-measurement",
+      "order": 4,
+      "exit_criteria": [
+        "mutation score is reported and every survivor classified"
+      ]
+    },
+    {
+      "id": "second-design",
+      "order": 5,
+      "exit_criteria": [
+        "the measured workflow is applied to a materially harder microarchitecture"
+      ]
+    },
+    {
+      "id": "independent-cross-check",
+      "order": 6,
+      "exit_criteria": [
+        "agreement confirmed against an implementation written elsewhere"
+      ]
+    }
+  ],
+  "provenance_requirements": [
+    "record the specification revision and the ground-truth sources used",
+    "record the stimulus generator version and seed range for every campaign",
+    "record mutation score together with the catalogue it was measured against",
+    "keep coverage and agreement as separate numbers; a passing corpus that covers little is not evidence",
+    "record which ground truths were unavailable and why"
+  ],
+  "research": [
+    {
+      "url": "https://docs.riscv.org/reference/isa/v20260120/unpriv/rv32.html",
+      "fact": "instruction formats, immediate assembly, and per-instruction semantics",
+      "title": "RISC-V Unprivileged ISA specification, RV32I Base Integer Instruction Set v2.1"
+    },
+    {
+      "url": "https://github.com/riscv/riscv-opcodes",
+      "fact": "machine-readable field positions and constant encodings for RV32I",
+      "title": "riscv/riscv-opcodes"
+    },
+    {
+      "url": "https://github.com/riscv/riscv-arch-test",
+      "fact": "official architectural tests; requires a toolchain and a reference model to generate signatures, neither available on this host",
+      "title": "riscv/riscv-arch-test"
+    },
+    {
+      "url": "https://github.com/riscv/sail-riscv",
+      "fact": "the official formal model; the strongest available ground truth, not yet run here",
+      "title": "riscv/sail-riscv"
+    }
+  ]
+}
