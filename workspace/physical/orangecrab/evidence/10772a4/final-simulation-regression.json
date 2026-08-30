@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "evidence_type": "post-hardware-integration-simulation-regression",
+  "recorded_at": "2026-08-30T08:29:08Z",
+  "candidate": {
+    "branch": "codex/simulation-complete",
+    "commit": "10772a4eebe168956967a850a39503c7993280f1",
+    "tree": "385f811509dd3a4a0c3339a86cb680f40c39d7ba",
+    "main_base": "b9beb9f5a97c6706ccb04c33f017134c3d283c0b",
+    "worktree_clean_before_and_after": true
+  },
+  "authoritative_evaluator": {
+    "command": "./lab/evaluate --run-id simulation-complete-orangecrab-final",
+    "run_id": "simulation-complete-orangecrab-final",
+    "status": "pass",
+    "metrics_path": "runs/simulation-complete-orangecrab-final/metrics.json",
+    "metrics_sha256": "2504611af36ad01803a9493f731c4afdc788f24310aa1430fc5a5784072c15cf",
+    "candidate_report_sha256": "0c1af422e7c6ea5d7bd75aa6cde8db3d0e2d861750655a4fd48d199aefc1d66d",
+    "frame_comparison_sha256": "c3ecffecbddca72a54ba7e18faf2e8d3729f2a779d0a11346ea479d45810a529",
+    "build_seconds": 18.392963,
+    "simulation_seconds": 251.158438,
+    "cycles": 744664922,
+    "retired_instructions": 581003386,
+    "milestone_cycles": {
+      "boot": 429298,
+      "doom_started": 31117064,
+      "first_capture": 228353358,
+      "finish": 744664922
+    },
+    "frames_expected": 120,
+    "frames_received": 120,
+    "missing_frames": 0,
+    "extra_frames": 0,
+    "mismatched_frames": 0,
+    "frame_error": 0.0,
+    "bad_pixel_fraction": 0.0,
+    "raw_frame_archive_sha256": "07f7eecc32a52cfd424c3523184332c49bc9627168a45b67f4a57d3c18f8f833",
+    "framed_stream_sha256": "e0c05401bb9dea1c6673a56e7c8560e6a9b3ee4fb8823f3c238119ae7b2899cc",
+    "cycle_trace_sha256": "903c475602d3cff471e9569464ba94f738ee1733e6d2207c36ce09b3d239f759",
+    "native_trace_sha256": "fda8dc56dc6fa18118205123a005addbbd196ac8abb8da8557db3ee956349a40",
+    "retire_trace_sha256": "77737111ad70b1a30e3f8afadc24d5954777ae839d3a6843381ffa87042025bc",
+    "protected_files_checked": 236,
+    "protected_integrity": true
+  },
+  "detached_reproduction": {
+    "command": "./lab/reproduce simulation-complete-orangecrab-final",
+    "run_id": "20260830T081352Z-83a68ebe",
+    "status": "pass",
+    "detached_commit": "10772a4eebe168956967a850a39503c7993280f1",
+    "metrics_path": ".aisl/reproduce/simulation-complete-orangecrab-final/runs/20260830T081352Z-83a68ebe/metrics.json",
+    "metrics_sha256": "2fdfb6f83cc711738796d16dc157ee95f216f8df54b54a359bbeb2e972260a49",
+    "build_seconds": 53.53693,
+    "simulation_seconds": 249.829781,
+    "cycles": 744664922,
+    "frames_expected": 120,
+    "frames_received": 120,
+    "mismatched_frames": 0,
+    "raw_frame_archive_sha256": "07f7eecc32a52cfd424c3523184332c49bc9627168a45b67f4a57d3c18f8f833",
+    "protected_files_checked": 236,
+    "protected_integrity": true,
+    "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "strengthened_exact_oracle_suite": {
+    "command": "python3 workspace/verification/run_rtl_suite.py .aisl/verification/rtl-suite-orangecrab-final --jobs 4",
+    "status": "pass",
+    "suite_result_path": ".aisl/verification/rtl-suite-orangecrab-final/suite-result.json",
+    "suite_result_sha256": "32c1cceaecb1a857c0ea6bc9b6434fb0e617acba79e352ac28435487284806b8",
+    "parallel_jobs": 4,
+    "workloads": 4,
+    "frames_expected": 736,
+    "frames_received": 736,
+    "missing_frames": 0,
+    "extra_frames": 0,
+    "mismatched_frames": 0,
+    "cycles": 3736255182,
+    "retired_instructions": 2938061640,
+    "summed_simulation_seconds": 1836.6978959180415,
+    "simulator_sha256": "1e0ae162d59670a25aa5bb90cc942a94a5bd1470d2b57777ba744495d60a028c",
+    "firmware_sha256": "f92ddb3cfe23206b4b5c1a78e8e64730ff932061f6607db3b278f6da5a1239df",
+    "wad_sha256": "7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f",
+    "results": {
+      "idle-e1m1": {
+        "frames": 96,
+        "cycles": 640655706,
+        "retired_instructions": 500135333,
+        "frame_stream_sha256": "46864642902fc1986f38180a56cda8a71758bfbb60a981b8d0542dd4a4db952d",
+        "cycle_trace_sha256": "98b6389aedce88c8f88210c7b7a18f9965f3f4e2f8a6a02825585854e1bbc81e",
+        "native_trace_sha256": "faeab0c1cd637a444acd9e312fd3efcc2ce9ceebed2c4a0b9bf909af438afd3d",
+        "retire_trace_sha256": "903abc2f3274c1478f1c5128dd4bffe10c3db120ac120e8439238dfc250580c1",
+        "result_sha256": "c2bfcf98a91183ce18330e6dad9d173ce7a528f5a95bd761c41c8c9d91cc25b2"
+      },
+      "movement-combat-e1m1": {
+        "frames": 256,
+        "cycles": 1236203544,
+        "retired_instructions": 969749015,
+        "frame_stream_sha256": "7d347b47f968be6865f70c37d0b914dc6cf5ca31b19bda6645e2d7491914e311",
+        "cycle_trace_sha256": "66e5cb2b960b865059e051cea88d208b059a2e05c70ef5c34bb9097a0967e4e4",
+        "native_trace_sha256": "2cc12918813f9a0344c778ec8ca53cd22d3a0dea456e9d7042f4901cbf22864c",
+        "retire_trace_sha256": "7956001a5ac06784a65da1d0018aa3b959c58dcc97638f6c8ced9f8984efe4b1",
+        "result_sha256": "0b4c79199cee3b719ca7e3e0ba5ced4e9a7fb17cea4b1e4820169e961ed5aed8"
+      },
+      "alternate-e1m2-skill3": {
+        "frames": 192,
+        "cycles": 983382917,
+        "retired_instructions": 770238900,
+        "frame_stream_sha256": "c5dc4c3eac59b70b8356d3fc71246f17b7a491ca829f9d8c632448cf1f7b15c8",
+        "cycle_trace_sha256": "8aeaa9ae90105ba9668a87fe483da3007c1aecf09bdf180af003984a825aa5bb",
+        "native_trace_sha256": "b49234ae94684790143c86cac8aaf5e81c4b086c735d1d90e2731b8dc46cae6d",
+        "retire_trace_sha256": "995f100ba3258321c5c302232be38392a6aa3d35b4e41edd17e8ef365aabacd8",
+        "result_sha256": "c3c367570b62901762e0e3047a2b941e5881d0be3e585320647cb4652f4839d5"
+      },
+      "overlap-e1m3-skill4": {
+        "frames": 192,
+        "cycles": 876013015,
+        "retired_instructions": 697938392,
+        "frame_stream_sha256": "6ecd45950ec68ab5545ef6f676e9516e5b61ddea472ac3c0a53deeea7747e7b0",
+        "cycle_trace_sha256": "c20c26e666f54b3b74daa2686259e658e6e2a57718ec4cc5c2be5e296fe7c774",
+        "native_trace_sha256": "1ceadf9993f78f121661247e9c0171fd7092003ad9a635a33929eff67addbba8",
+        "retire_trace_sha256": "87c192bc66d9a0b2637ee6efbbe40393430038efd115e69b4891c8c12ae13c68",
+        "result_sha256": "81bc3de477de8c1b8e6f9609ab2844d49bbf58d4efba2493b1a20a73dc4b2b30"
+      }
+    }
+  },
+  "conclusion": {
+    "simulation_complete": true,
+    "simulation_reproducible_after_hardware_integration": true,
+    "strict_place_and_route_complete": true,
+    "physical_execution_complete": false,
+    "overall_experiment_complete": false,
+    "external_blocker": "No OrangeCrab-compatible DFU/serial target and no authenticated remote FPGA endpoint were available; physical execution and on-board frame comparison therefore remain unmeasured."
+  }
+}

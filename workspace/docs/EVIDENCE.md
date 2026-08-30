@@ -23,6 +23,7 @@ clean-worktree reproduction add their immutable records below `runs/`.
 | simulator RTL aggregate | `fc04549e092234587ef821706847eda1b2e3022989091d7a12f0ad1823160665` |
 | Freedoom 0.13.0 Phase 1 WAD | `7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f` |
 | protected canonical input | `5bf11852ccc26b0b3795e63ab8f568e1fa9c22ec9484e59baca63291e2087975` |
+| post-hardware-integration candidate | commit `10772a4eebe168956967a850a39503c7993280f1`, tree `385f811509dd3a4a0c3339a86cb680f40c39d7ba` |
 
 The 489,040-byte RV32IMC image was built by GCC 14.2.0/binutils 2.43.1 with
 `-O3` and link-time optimization. Its ELF contains 429,600 text bytes, 59,436
@@ -74,6 +75,17 @@ error and zero bad pixels, and preserved all 236 protected files. The run is
 deliberately not the final reproducibility record because it captured the
 uncommitted Makefile correction; a clean committed run is required below.
 
+Final authoritative run `simulation-complete-orangecrab-final` evaluated the
+clean hardware-integrated commit `10772a4eebe168956967a850a39503c7993280f1`.
+It built in 18.39 seconds, executed in 251.16 seconds, and passed 120/120 exact
+frame comparisons after 744,664,922 cycles and 581,003,386 retired
+instructions. The metrics JSON hashes to
+`2504611af36ad01803a9493f731c4afdc788f24310aa1430fc5a5784072c15cf`.
+`./lab/reproduce` then rebuilt the same commit in a detached linked worktree
+and independently returned the same cycles and raw frame-archive SHA-256,
+`07f7eecc32a52cfd424c3523184332c49bc9627168a45b67f4a57d3c18f8f833`.
+Both runs preserved all 236 protected files and had an empty Git diff.
+
 ## Strengthened exact-oracle workloads
 
 The reference executable has SHA-256
@@ -106,10 +118,14 @@ The corresponding sampled native-execution digests are
 `1ceadf9993f78f121661247e9c0171fd7092003ad9a635a33929eff67addbba8`
 (overlap).
 
-The path-corrected suite summary is
-`.aisl/verification/rtl-suite-pathfix-20260828/suite-result.json`, SHA-256
-`152d13a1771552bc3e397ad1afcd60a5c5a65709e4e160c3ee3adb20ef5b7724`.
-Its process exit was zero and `correct` is true.
+The final post-hardware-integration suite summary is
+`.aisl/verification/rtl-suite-orangecrab-final/suite-result.json`, SHA-256
+`32c1cceaecb1a857c0ea6bc9b6434fb0e617acba79e352ac28435487284806b8`.
+Its process exit was zero, `correct` is true, all 736/736 comparisons passed,
+and every frame, cycle, native-execution, and retirement digest above exactly
+matches the earlier simulation-complete run. The committed content-addressed
+summary is
+`workspace/physical/orangecrab/evidence/10772a4/final-simulation-regression.json`.
 
 ## Synthesis evidence
 
@@ -208,8 +224,8 @@ python3 -m unittest workspace/verification/test_oracle.py
 python3 workspace/verification/oracle.py generate
 python3 workspace/verification/run_rtl_suite.py \
   .aisl/verification/rtl-suite-reproduced --jobs 4
-./lab/evaluate --run-id simulation-complete-pathfix-final
-./lab/reproduce simulation-complete-pathfix-final
+./lab/evaluate --run-id simulation-complete-orangecrab-final
+./lab/reproduce simulation-complete-orangecrab-final
 ```
 
 `lab/evaluate` performs the authoritative canonical build, execution, exact
