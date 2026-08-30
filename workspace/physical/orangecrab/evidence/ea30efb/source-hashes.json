@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "candidate_commit": "ea30efbccaf866e292ee4b2edefebe4125b95bac",
+  "sha256": {
+    "AGENTS.md": "55a0c86976b675178801e1169510eec0df6e9a2c8efcaaeebe05825833e33a20",
+    "LAB.md": "fcd603a72aa95af898026936aab57398c11c86e677dcdf319eafa480456cdb0c",
+    "EVALUATION.md": "9049e654471f6e5ceec01cc4dfdebef46f16a440f807e58c9ba81b9d5f1eaad5",
+    "experiments/registry.json": "add6b58fccd0d9ad2b1b61768b5be54c75b5ea8150fd3770a3daff169b09a343",
+    "experiments/doom-rv32imc/experiment.json": "b4ce52ae5fd1bf7635f98f452dd697e5a39892f0a66c9f1c5acebc756bf05523",
+    "experiments/doom-rv32imc/PLAN.md": "8639a862137e68e30c1aba1397a0b5e1a1fae3fa58319812f78eb082bad9cf39",
+    "experiments/doom-rv32imc/PROVENANCE.md": "7055e412040de6599029e19ddd48e77814e7cd403a677c9751d974e01e9758b4",
+    "workspace/physical/orangecrab/toolchain.lock.json": "ddc75b4a2ad5718ea224a29bc78b9457a41712ea930af6c7dda4a9d4d7af389c",
+    "workspace/physical/orangecrab/target.py": "cc89ec63da149497fdf31a8542d74a4a5881cbcf1c7195f73f010165c51e9906",
+    "workspace/physical/orangecrab/host.py": "c2f23ebe238438b9bb4e3fc280549502a4acc94d4b2d29e5f09be1366a4bc834",
+    "workspace/physical/orangecrab/rtl/aisl_obi_wishbone_bridge.sv": "d649002df6f8f009e1c3d6f7e2b370890e7beb4d0e1e839f71fddff85f6bcafe",
+    "workspace/rtl_cv/build/aisl_soc.v": "b706b2bb46c3720fab5b8124840fa2efcfdf82512d39b95d9432d92baa58e16c",
+    "workspace/firmware/doom/build-candidate/doom.bin": "f92ddb3cfe23206b4b5c1a78e8e64730ff932061f6607db3b278f6da5a1239df",
+    "workspace/assets/freedoom1.wad": "7e3d5dbc1b11ed55c2c8aa44d4843ba1bb64780b4066f96898158d99b93fdf0f"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "success": true,
+  "lock_sha256": "ddc75b4a2ad5718ea224a29bc78b9457a41712ea930af6c7dda4a9d4d7af389c",
+  "tools": {
+    "yosys": "0.68+post c12172fbae8af5e20f6fb52e3d4e92d56ed587b6",
+    "verilator": "5.050",
+    "nextpnr-ecp5": "dec04b3",
+    "prjtrellis": "Homebrew 1.4_9",
+    "cmake": "4.4.3",
+    "meson": "1.12.0",
+    "riscv-none-elf-gcc": "xPack 14.2.0",
+    "python": "3.14.7",
+    "dfu-util": "0.11"
+  },
+  "repositories": {
+    "migen": "e19524c963a8342952840983047557707fbe0b6a",
+    "litex": "6c793c27f94a5df3836cd5cc5a69db6160354bc9",
+    "litedram": "3cf585a60a37113f18a9f6c6f3ee774be521623e",
+    "litex-boards": "b8424ee7487281c29750c75ffee4532d56db5015",
+    "pythondata-cpu-vexriscv": "642ecfed1c84460555d6d803d660cc60cfc1ecb6",
+    "pythondata-software-picolibc": "6a13ccce7c575b32c102dd9dc52178505b81fe39",
+    "pythondata-software-compiler_rt": "6eb76609c9627bf26635e57c63fb22cda7115887",
+    "nextpnr": "dec04b3b6494c8b14e8a91701dd9186c6e0ff7d9"
+  },
+  "submodules": {
+    "pythondata-software-picolibc/pythondata_software_picolibc/data": "16ff442da4b92e28d0753fabed18ad4a15254498"
+  },
+  "python_imports": true,
+  "missing_commands": []
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "candidate_commit": "ea30efbccaf866e292ee4b2edefebe4125b95bac",
+  "base_commit": "b9beb9f5a97c6706ccb04c33f017134c3d283c0b",
+  "working_tree_clean_for_repeats": true,
+  "target": {
+    "board": "OrangeCrab r0.2",
+    "device": "LFE5U-85F-8MG285C",
+    "system_clock_hz": 48000000,
+    "external_ddr_bytes": 134217728
+  },
+  "builds": [
+    {
+      "repeat": 1,
+      "exit_code": 0,
+      "wall_seconds": 197.45,
+      "wall_seconds_source": "measured by /usr/bin/time -p around make gateware"
+    },
+    {
+      "repeat": 2,
+      "exit_code": 0,
+      "wall_seconds": 198.87,
+      "wall_seconds_source": "measured by /usr/bin/time -p around make gateware"
+    }
+  ],
+  "determinism": {
+    "repeats": 2,
+    "all_hashed_artifacts_identical": true,
+    "normalized_verification_reports_identical": true
+  },
+  "strict_timing": {
+    "enabled": true,
+    "nextpnr_seed": 1,
+    "timing_allow_fail_present": false,
+    "pre_route_system_estimate_mhz": 40.23,
+    "pre_route_system_estimate_status": "fail",
+    "routed_system_maximum_mhz": 51.48,
+    "system_constraint_mhz": 48.0,
+    "routed_system_status": "pass",
+    "input_clock_maximum_mhz": 259.94,
+    "input_clock_constraint_mhz": 48.0,
+    "ddr_init_clock_maximum_mhz": 355.11,
+    "ddr_init_clock_constraint_mhz": 24.0,
+    "nextpnr_exit": "Program finished normally"
+  },
+  "resources": {
+    "DP16KD": {"used": 40, "available": 208, "reported_percent": 19},
+    "MULT18X18D": {"used": 4, "available": 156, "reported_percent": 2},
+    "TRELLIS_FF": {"used": 5785, "available": 83640, "reported_percent": 6},
+    "TRELLIS_COMB": {"used": 18114, "available": 83640, "reported_percent": 21}
+  },
+  "synthesis": {
+    "post_synthesis_check_problems": 0,
+    "yosys_unique_warnings": 3,
+    "warnings_investigated": true,
+    "warning_report": "warnings.md"
+  },
+  "bios_ddr_initialization": {
+    "sdram_init_present": true,
+    "destructive_memtest_present": true,
+    "init_done_csr_address": "0xf0001000",
+    "init_error_csr_address": "0xf0001004",
+    "host_requires_done_without_error_before_loading": true
+  },
+  "artifacts": {
+    "bitstream": {
+      "path": "build/gateware/gsd_orangecrab.bit",
+      "bytes": 2020446,
+      "sha256": "c2d2baf32cc7aca7d1f8c099823691e9343bc40e7bb7ba8ebdebfd558252e116"
+    },
+    "trellis_config": {
+      "path": "build/gateware/gsd_orangecrab.config",
+      "bytes": 8371347,
+      "sha256": "c18f975b13542fcc6fe614cbc4b5d893a8b26ba88596386a4ae7b4e9614423a0"
+    },
+    "routed_netlist": {
+      "path": "build/gateware/gsd_orangecrab.json",
+      "bytes": 30865950,
+      "sha256": "06f119e9488e6ff079293114b77ca531336d36ba3b93c3e6607afc6b38c5ceb0"
+    },
+    "csr_csv": {
+      "path": "build/csr.csv",
+      "bytes": 4314,
+      "sha256": "681c00150c7dffa1de15230d83789ad233b2984b2cf0cbb5eb032994a0aa2fac"
+    },
+    "csr_json": {
+      "path": "build/csr.json",
+      "bytes": 8789,
+      "sha256": "3c8787cd173516dedc304cf4705a5eba9b5b45002d127bea06df9bed198eb8b9"
+    },
+    "bios": {
+      "path": "build/software/bios/bios.bin",
+      "bytes": 10684,
+      "sha256": "2348649ad1e486c866d58fc33736335b936ca52320139f234bc98294ca903468"
+    }
+  },
+  "physical_execution": {
+    "performed": false,
+    "board_available": false,
+    "hardware_seconds": null,
+    "power_watts": null,
+    "frame_comparison": null,
+    "status": "blocked by absence of a locally attached or authenticated remote FPGA target"
+  }
+}

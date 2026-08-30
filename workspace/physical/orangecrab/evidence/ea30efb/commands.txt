@@ -1,0 +1,13 @@
+git fetch --prune origin main codex/simulation-complete
+make -C workspace/physical/orangecrab toolchain-check host-test test verify-gateware
+/usr/bin/time -p -o /tmp/aisl-orangecrab-clean1.time make gateware
+../../../.aisl/toolchains/orangecrab/venv/bin/python verify_build.py --build-seconds 197.45
+/usr/bin/time -p -o /tmp/aisl-orangecrab-clean2.time make gateware
+../../../.aisl/toolchains/orangecrab/venv/bin/python verify_build.py --build-seconds 198.87
+diff -u /tmp/aisl-orangecrab-clean1.sha256 /tmp/aisl-orangecrab-clean2.sha256
+./lab/status --json
+dfu-util -l
+
+All listed commands returned exit 0. The two strict builds were run from clean
+commit ea30efbccaf866e292ee4b2edefebe4125b95bac. `dfu-util -l` returned no
+device entries; its exit 0 reports a successful scan, not a hardware run.

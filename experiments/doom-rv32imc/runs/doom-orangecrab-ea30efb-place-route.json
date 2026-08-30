@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "doom-orangecrab-ea30efb-place-route",
+  "experiment_id": "doom-rv32imc",
+  "experiment_revision": 1,
+  "status": "blocked",
+  "measurement_status": "mixed",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "Codex (GPT-5)",
+      "canonical_id": null,
+      "identity_status": "unknown"
+    },
+    "harness": {
+      "name": "Codex",
+      "version": null,
+      "environment": "desktop"
+    },
+    "reasoning": {
+      "effort": null,
+      "mode": null,
+      "context": "active persistent goal"
+    },
+    "goal_sha256": "bd8d246d689e25908acc486c71758230e895862a4a81b21a07ff07bd049fab55",
+    "instruction_hashes": [
+      {"path": "AGENTS.md", "sha256": "55a0c86976b675178801e1169510eec0df6e9a2c8efcaaeebe05825833e33a20"},
+      {"path": "LAB.md", "sha256": "fcd603a72aa95af898026936aab57398c11c86e677dcdf319eafa480456cdb0c"},
+      {"path": "EVALUATION.md", "sha256": "9049e654471f6e5ceec01cc4dfdebef46f16a440f807e58c9ba81b9d5f1eaad5"},
+      {"path": "experiments/doom-rv32imc/experiment.json", "sha256": "b4ce52ae5fd1bf7635f98f452dd697e5a39892f0a66c9f1c5acebc756bf05523"},
+      {"path": "experiments/doom-rv32imc/PLAN.md", "sha256": "8639a862137e68e30c1aba1397a0b5e1a1fae3fa58319812f78eb082bad9cf39"}
+    ],
+    "subagents": [],
+    "attribution_source": "direct Codex goal telemetry and repository state"
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": 1062604,
+    "source": "measured",
+    "precision": "exact telemetry snapshot",
+    "notes": "Active-goal total at 2026-08-30T08:03:28Z; category fields were not exposed."
+  },
+  "time": {
+    "started_at": "2026-08-30T03:40:10Z",
+    "finished_at": "2026-08-30T08:03:28Z",
+    "agent_wall_seconds": 4848,
+    "human_seconds": null,
+    "build_seconds": 396.32,
+    "simulation_seconds": null,
+    "hardware_seconds": null,
+    "source": "mixed",
+    "notes": "Agent active time comes from goal telemetry. Build time is the sum of two measured clean strict builds. No physical execution occurred."
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "source": "unavailable",
+    "rate_date": null,
+    "notes": "No billing telemetry or pinned rate source was exposed."
+  },
+  "execution": {
+    "candidate_commit": "ea30efbccaf866e292ee4b2edefebe4125b95bac",
+    "candidate_manifest": "workspace/candidate.json",
+    "harness_run_ids": [],
+    "lab_run_ids": [],
+    "benchmark_id": "orangecrab-r02-85f-strict-place-route",
+    "tool_versions": {
+      "yosys": "0.68+post c12172fbae8af5e20f6fb52e3d4e92d56ed587b6",
+      "nextpnr-ecp5": "dec04b3",
+      "prjtrellis": "1.4_9",
+      "riscv-none-elf-gcc": "xPack 14.2.0",
+      "verilator": "5.050",
+      "dfu-util": "0.11"
+    },
+    "artifact_paths": [
+      "workspace/physical/orangecrab/evidence/ea30efb/build-verification.json",
+      "workspace/physical/orangecrab/evidence/ea30efb/toolchain-audit.json",
+      "workspace/physical/orangecrab/evidence/ea30efb/physical-access.json",
+      "workspace/physical/orangecrab/evidence/ea30efb/SHA256SUMS",
+      "workspace/physical/orangecrab/evidence/ea30efb/warnings.md"
+    ],
+    "commands": [
+      "make -C workspace/physical/orangecrab toolchain-check host-test test verify-gateware",
+      "/usr/bin/time -p make gateware (repeat 1)",
+      "/usr/bin/time -p make gateware (repeat 2)",
+      "diff clean build artifact hashes"
+    ]
+  },
+  "result": {
+    "status": "target-implementation-complete-physical-execution-blocked",
+    "claim_level": "measured-strict-place-and-route-without-physical-execution",
+    "target_implementation_success": true,
+    "strict_timing_pass": true,
+    "system_clock_hz": 48000000,
+    "routed_system_maximum_mhz": 51.48,
+    "bitstream_sha256": "c2d2baf32cc7aca7d1f8c099823691e9343bc40e7bb7ba8ebdebfd558252e116",
+    "deterministic_build_repeats": 2,
+    "same_candidate_binary_run_on_hardware": null,
+    "hardware_frames_match_rtl": null,
+    "physical_power_watts": null,
+    "notes": "The implementation, capture host, and programming path are ready. No OrangeCrab or authenticated remote FPGA was available, so hardware execution, frame agreement, physical frequency, and power remain unavailable and overall experiment completion is not claimed."
+  },
+  "evidence": [
+    {
+      "kind": "strict-place-route",
+      "path": "workspace/physical/orangecrab/evidence/ea30efb/build-verification.json",
+      "description": "Two clean strict builds with identical bitstream, routed-netlist, configuration, BIOS, and CSR hashes."
+    },
+    {
+      "kind": "toolchain-audit",
+      "path": "workspace/physical/orangecrab/evidence/ea30efb/toolchain-audit.json",
+      "description": "Pinned source revisions and observed tool versions."
+    },
+    {
+      "kind": "warning-investigation",
+      "path": "workspace/physical/orangecrab/evidence/ea30efb/warnings.md",
+      "description": "Investigation of all three Yosys-counted management-core warnings."
+    },
+    {
+      "kind": "external-blocker-audit",
+      "path": "workspace/physical/orangecrab/evidence/ea30efb/physical-access.json",
+      "description": "Read-only audit showing that no physical or authenticated remote FPGA target was available."
+    }
+  ]
+}

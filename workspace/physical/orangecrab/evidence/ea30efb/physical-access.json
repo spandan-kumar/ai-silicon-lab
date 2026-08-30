@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "audit_date_utc": "2026-08-30",
+  "local_dfu_devices": [],
+  "orangecrab_usb_matches": [],
+  "serial_adapter_matches": [],
+  "aws_environment_variable_names": [],
+  "aws_credentials_file_present_and_nonempty": false,
+  "lab_status_physical_fpga_available": false,
+  "physical_execution_attempted": false,
+  "hardware_seconds": null,
+  "power_watts": null,
+  "blocker": "No locally attached OrangeCrab/compatible FPGA, serial adapter, or configured authenticated remote FPGA route was available. Programming or claiming a hardware run without a real target would violate the experiment contract."
+}

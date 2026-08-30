@@ -153,6 +153,50 @@ only the width-6 form and emitted none of the three warnings. The validated
 flow was retained because deferred elaboration changes generated module names
 and netlist hashes without changing this hardware.
 
+## OrangeCrab target implementation
+
+Commit `ea30efbccaf866e292ee4b2edefebe4125b95bac` adds a genuine physical
+target profile for an OrangeCrab r0.2 with an ECP5-85F and 128 MiB DDR3L. The
+verified `aisl_soc_cv` CV32E40P remains the Doom computer. A separate minimal
+VexRiscv runs only the unmodified LiteDRAM initialization and destructive
+memory test from integrated ROM; the board host will not load the workload
+until the BIOS-written `init_done=1` and `init_error=0` CSRs are observed.
+
+Two builds from that clean commit used the pinned open Yosys/nextpnr/Trellis
+flow, nextpnr seed 1, a 48 MHz constraint, and strict timing. Both returned
+zero in 197.45 and 198.87 seconds. Their bitstream, Trellis configuration,
+routed JSON netlist, BIOS, and both CSR exports were byte-identical. The final
+routed system-clock limit was 51.48 MHz, passing the 48 MHz constraint; the
+earlier 40.23 MHz placement estimate was a pre-route failure and is retained
+rather than hidden.
+
+| Target resource | Used | Available |
+| --- | ---: | ---: |
+| ECP5 logic cells (`TRELLIS_COMB`) | 18,114 | 83,640 |
+| flip-flops (`TRELLIS_FF`) | 5,785 | 83,640 |
+| block RAMs (`DP16KD`) | 40 | 208 |
+| 18x18 multipliers | 4 | 156 |
+
+The deployable bitstream SHA-256 is
+`c2d2baf32cc7aca7d1f8c099823691e9343bc40e7bb7ba8ebdebfd558252e116`.
+The routed-netlist SHA-256 is
+`06f119e9488e6ff079293114b77ca531336d36ba3b93c3e6607afc6b38c5ceb0`,
+and the normalized CSR map SHA-256 is
+`681c00150c7dffa1de15230d83789ad233b2984b2cf0cbb5eb032994a0aa2fac`.
+The three Yosys-counted warnings are all unused metadata in the pinned
+management VexRiscv; the final flattened netlist contains none of the named
+signals and Yosys `check` reports zero problems. The exact warning analysis,
+tool revisions, commands, hashes, CSR map, and repeated-build measurements are
+under `workspace/physical/orangecrab/evidence/ea30efb/`.
+
+This is implementation and place-and-route evidence, not a physical-run
+claim. A read-only access audit found no attached OrangeCrab/compatible DFU
+device or serial adapter and no configured authenticated remote FPGA route.
+Consequently hardware execution time, physical frame agreement, achieved
+on-board frequency, and power remain `null`. The overall physical-verification
+gate stays open until a real board executes the same binary and declared
+workloads and the captured frames compare exactly.
+
 ## Reproduction commands
 
 From the repository root:
