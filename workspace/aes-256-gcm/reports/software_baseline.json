@@ -1,0 +1,193 @@
+{
+  "baselines": {
+    "dependency_free_python_reference": [
+      {
+        "aad_bytes": 64,
+        "iterations_per_repeat": 100,
+        "max_ns_per_transaction": 7805851.66,
+        "median_ns_per_payload_byte": null,
+        "median_ns_per_transaction": 7444598.75,
+        "min_ns_per_transaction": 6979930.42,
+        "payload_bytes": 0,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 32,
+        "iterations_per_repeat": 100,
+        "max_ns_per_transaction": 11221390.41,
+        "median_ns_per_payload_byte": 9732566.25,
+        "median_ns_per_transaction": 9732566.25,
+        "min_ns_per_transaction": 9585396.25,
+        "payload_bytes": 1,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 31,
+        "iterations_per_repeat": 100,
+        "max_ns_per_transaction": 10098593.75,
+        "median_ns_per_payload_byte": 664695.1106666666,
+        "median_ns_per_transaction": 9970426.66,
+        "min_ns_per_transaction": 9312760.83,
+        "payload_bytes": 15,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 17,
+        "iterations_per_repeat": 100,
+        "max_ns_per_transaction": 14774545.83,
+        "median_ns_per_payload_byte": 676667.838125,
+        "median_ns_per_transaction": 10826685.41,
+        "min_ns_per_transaction": 9719827.08,
+        "payload_bytes": 16,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 16,
+        "iterations_per_repeat": 100,
+        "max_ns_per_transaction": 12804909.58,
+        "median_ns_per_payload_byte": 720957.5976470588,
+        "median_ns_per_transaction": 12256279.16,
+        "min_ns_per_transaction": 12051323.75,
+        "payload_bytes": 17,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 15,
+        "iterations_per_repeat": 100,
+        "max_ns_per_transaction": 13739011.25,
+        "median_ns_per_payload_byte": 401676.73387096776,
+        "median_ns_per_transaction": 12451978.75,
+        "min_ns_per_transaction": 11944129.58,
+        "payload_bytes": 31,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 1,
+        "iterations_per_repeat": 50,
+        "max_ns_per_transaction": 12960737.5,
+        "median_ns_per_payload_byte": 383151.4325,
+        "median_ns_per_transaction": 12260845.84,
+        "min_ns_per_transaction": 11439994.16,
+        "payload_bytes": 32,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 0,
+        "iterations_per_repeat": 50,
+        "max_ns_per_transaction": 18430900.84,
+        "median_ns_per_payload_byte": 269509.7915625,
+        "median_ns_per_transaction": 17248626.66,
+        "min_ns_per_transaction": 16368631.66,
+        "payload_bytes": 64,
+        "repeats": 5
+      }
+    ],
+    "openssl_evp_aes_256_gcm": [
+      {
+        "aad_bytes": 64,
+        "iterations_per_repeat": 200000,
+        "max_ns_per_transaction": 737.58,
+        "median_ns_per_payload_byte": null,
+        "median_ns_per_transaction": 621.465,
+        "min_ns_per_transaction": 611.315,
+        "payload_bytes": 0,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 32,
+        "iterations_per_repeat": 200000,
+        "max_ns_per_transaction": 658.335,
+        "median_ns_per_payload_byte": 617.74,
+        "median_ns_per_transaction": 617.74,
+        "min_ns_per_transaction": 613.505,
+        "payload_bytes": 1,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 31,
+        "iterations_per_repeat": 200000,
+        "max_ns_per_transaction": 683.53,
+        "median_ns_per_payload_byte": 43.07166666666667,
+        "median_ns_per_transaction": 646.075,
+        "min_ns_per_transaction": 631.745,
+        "payload_bytes": 15,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 17,
+        "iterations_per_repeat": 100000,
+        "max_ns_per_transaction": 741.8,
+        "median_ns_per_payload_byte": 42.2225,
+        "median_ns_per_transaction": 675.56,
+        "min_ns_per_transaction": 640.5,
+        "payload_bytes": 16,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 16,
+        "iterations_per_repeat": 100000,
+        "max_ns_per_transaction": 728.33,
+        "median_ns_per_payload_byte": 41.504705882352944,
+        "median_ns_per_transaction": 705.58,
+        "min_ns_per_transaction": 624.79,
+        "payload_bytes": 17,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 15,
+        "iterations_per_repeat": 100000,
+        "max_ns_per_transaction": 920.23,
+        "median_ns_per_payload_byte": 22.993225806451612,
+        "median_ns_per_transaction": 712.79,
+        "min_ns_per_transaction": 635.88,
+        "payload_bytes": 31,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 1,
+        "iterations_per_repeat": 100000,
+        "max_ns_per_transaction": 913.61,
+        "median_ns_per_payload_byte": 23.9909375,
+        "median_ns_per_transaction": 767.71,
+        "min_ns_per_transaction": 620.89,
+        "payload_bytes": 32,
+        "repeats": 5
+      },
+      {
+        "aad_bytes": 0,
+        "iterations_per_repeat": 100000,
+        "max_ns_per_transaction": 861.81,
+        "median_ns_per_payload_byte": 12.325,
+        "median_ns_per_transaction": 788.8,
+        "min_ns_per_transaction": 593.07,
+        "payload_bytes": 64,
+        "repeats": 5
+      }
+    ]
+  },
+  "build": {
+    "binary_sha256": "f72d0afcf3ab3ffe58a2ed0d07d31991426fcaf1956c48352408a5baaafa5772",
+    "candidate_commit": "35b46f34892e96e7ac4a4a0f5b9fa1e7665bf525",
+    "openssl_flags": "-std=c11 -O3 -Wall -Wextra -Werror $(pkg-config --cflags --libs openssl)"
+  },
+  "experiment_id": "aes-256-gcm",
+  "host": {
+    "cpu": "Apple M4",
+    "machine": "arm64",
+    "platform": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "limitations": [
+    "Wall-time measurements are host-specific and are not CPU cycle counts.",
+    "The OpenSSL implementation may use platform acceleration; the dependency-free Python model prioritizes auditability, not speed.",
+    "Each transaction includes key/context setup, so these are cold-key end-to-end measurements."
+  ],
+  "measured_at": "2026-08-30T16:41:49.283282+00:00",
+  "measurement": "CLOCK_MONOTONIC/perf_counter wall time; median of repeated fixed-iteration runs",
+  "profile_id": "aes-256-gcm-64-v1",
+  "schema_version": 1,
+  "tools": {
+    "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+    "linked_openssl": "OpenSSL 3.6.3 9 Jun 2026",
+    "python": "3.9.6"
+  }
+}

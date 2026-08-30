@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 
 #include <errno.h>
+#include <openssl/crypto.h>
 #include <openssl/evp.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -152,9 +153,13 @@ static int benchmark(void) {
 }
 
 int main(int argc, char **argv) {
+    if (argc == 2 && strcmp(argv[1], "--version") == 0) {
+        puts(OpenSSL_version(OPENSSL_VERSION));
+        return 0;
+    }
     if (argc == 2 && strcmp(argv[1], "--benchmark") == 0) return benchmark();
     if (argc != 1) {
-        fprintf(stderr, "usage: %s [--benchmark]\n", argv[0]);
+        fprintf(stderr, "usage: %s [--benchmark|--version]\n", argv[0]);
         return 2;
     }
     return process_vectors();
