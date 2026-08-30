@@ -38,6 +38,15 @@ DATA_SIZE = 0x400
 
 
 def reference_registers(program: list[int], limit: int = 200000) -> tuple[list[int], str]:
+    """Run the reference and read its signature back out of memory.
+
+    The signature is read from memory rather than from the register file so
+    that both sides of every comparison observe the same thing. The epilogue
+    clobbers x1 when it writes the termination word, after the signature has
+    been stored, so a model reporting final register values and a model
+    reporting the memory image disagree on x1 for a reason that has nothing to
+    do with either being wrong.
+    """
     memory = Memory()
     memory.load_image(0, asm.assemble(program))
     hart = Hart(memory, 0)
@@ -48,7 +57,12 @@ def reference_registers(program: list[int], limit: int = 200000) -> tuple[list[i
         except Trap as trap:
             stop = trap.kind
             break
-    return hart.x[1:32], stop
+    base, length = asm.signature_addresses(DATA_BASE, DATA_SIZE)
+    signature = [
+        int.from_bytes(bytes(memory.data.get(base + 4 * i + b, 0) for b in range(4)), "little")
+        for i in range(length // 4)
+    ]
+    return signature, stop
 
 
 def run_cv32(program: list[int], work: Path, max_cycles: int = 4000000) -> dict[str, Any]:

@@ -99,15 +99,16 @@
         {
           "criterion": "results are confirmed against an implementation this repository did not write",
           "checks": [
-            "policy:cross-check-cv32e40p"
+            "policy:cross-check-cv32e40p",
+            "policy:cross-check-sail"
           ],
-          "note": "CV32E40P, vendored and unmodified. Compared through a memory signature because it exposes no register-file port and must not be changed to add one."
+          "note": "Two independent oracles. CV32E40P is an unmodified silicon-proven core, authoritative for every rule its ISA shares with this one. The Sail model is the executable specification itself, configured to the exact ISA under test, and is authoritative where they differ."
         },
         {
           "criterion": "any ground truth that could not be run is recorded as unavailable with its reason",
           "checks": [],
           "evidence": "manual",
-          "note": "riscv-arch-test needs a toolchain and a reference model; sail-riscv needs Sail. Both recorded as unavailable in the plugin's describe()."
+          "note": "riscv-arch-test remains unavailable: its test setup requires Zicsr and M-mode CSRs that this core does not implement. Recorded as unavailable, never as passed."
         }
       ]
     },

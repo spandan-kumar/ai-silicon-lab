@@ -22,10 +22,12 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE / "reference"))
 sys.path.insert(0, str(HERE / "formal"))
+sys.path.insert(0, str(HERE / "sail"))
 sys.path.insert(0, str(ROOT / "harness"))
 
 import cross_check  # noqa: E402
 import formal_collect  # noqa: E402
+import sail_check  # noqa: E402
 import differential  # noqa: E402
 import opcode_conformance  # noqa: E402
 import rv32i_asm as asm  # noqa: E402
@@ -346,9 +348,34 @@ class Rv32iPlugin(ExperimentPlugin):
                 "disagreements": result["disagreements"],
                 "detail": result["detail"][:2],
                 "note": "Architectural state compared with OpenHW CV32E40P through a "
-                        "memory signature. This is the only check here whose ground "
-                        "truth this repository did not write.",
+                        "memory signature. Independent of this repository, and "
+                        "authoritative for every rule its RV32IMC ISA shares with the "
+                        "RV32I under test; see the Sail check for rules where they "
+                        "differ.",
             })
+        # The Sail model: the authoritative executable specification, configured
+        # to the exact ISA under test. This is the oracle CV32E40P could not be
+        # for rules where the two ISAs differ.
+        if not sail_check.SAIL.is_file():
+            checks.append({
+                "id": "cross-check-sail", "ok": None,
+                "reason": f"{relative(sail_check.SAIL)} not present; "
+                          f"download the sail-riscv release into temp/",
+            })
+        else:
+            result = sail_check.cross_check(
+                "w4-hazards", 40, 120, ROOT / ".aisl" / "rv32i" / "sail-harness")
+            checks.append({
+                "id": "cross-check-sail",
+                "ok": result["disagreements"] == 0,
+                "programs": result["programs"],
+                "disagreements": result["disagreements"],
+                "detail": result["detail"][:2],
+                "note": "Compared with the Sail RISC-V model, the authoritative "
+                        "executable specification, configured to RV32I with the C "
+                        "extension disabled so IALIGN is 32 as this core requires.",
+            })
+
         # Formal results are read, never produced here: a campaign rebuilds and
         # re-solves every obligation and takes minutes, which does not belong in
         # a pass that is meant to run constantly. Absent results are reported as

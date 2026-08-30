@@ -1,0 +1,265 @@
+{
+  "base": {
+    "xlen": 32,
+    "E": false,
+    "writable_misa": false,
+    "mstatus": {
+      "fs_legal_states": "ExtContext_Off",
+      "vs_legal_states": "ExtContext_Off"
+    }
+  },
+  "extensions": {
+    "M": {
+      "supported": false
+    },
+    "A": {
+      "supported": false
+    },
+    "B": {
+      "supported": false
+    },
+    "F": {
+      "supported": false
+    },
+    "D": {
+      "supported": false
+    },
+    "S": {
+      "supported": false
+    },
+    "U": {
+      "supported": false
+    },
+    "Zca": {
+      "supported": false
+    },
+    "Zcb": {
+      "supported": false
+    },
+    "Zcd": {
+      "supported": false
+    },
+    "Zcf": {
+      "supported": false
+    },
+    "Zcmop": {
+      "supported": false
+    },
+    "Zba": {
+      "supported": false
+    },
+    "Zbb": {
+      "supported": false
+    },
+    "Zbc": {
+      "supported": false
+    },
+    "Zbs": {
+      "supported": false
+    },
+    "Zbkb": {
+      "supported": false
+    },
+    "Zbkc": {
+      "supported": false
+    },
+    "Zbkx": {
+      "supported": false
+    },
+    "Zknd": {
+      "supported": false
+    },
+    "Zkne": {
+      "supported": false
+    },
+    "Zknh": {
+      "supported": false
+    },
+    "Zksed": {
+      "supported": false
+    },
+    "Zksh": {
+      "supported": false
+    },
+    "Zkr": {
+      "supported": false
+    },
+    "Zabha": {
+      "supported": false
+    },
+    "Zacas": {
+      "supported": false
+    },
+    "Zfa": {
+      "supported": false
+    },
+    "Zfh": {
+      "supported": false
+    },
+    "Zfhmin": {
+      "supported": false
+    },
+    "Zfbfmin": {
+      "supported": false
+    },
+    "Zicond": {
+      "supported": false
+    },
+    "Zimop": {
+      "supported": false
+    },
+    "Zicfilp": {
+      "supported": false
+    },
+    "Zicfiss": {
+      "supported": false
+    },
+    "Zvbb": {
+      "supported": false
+    },
+    "Zvbc": {
+      "supported": false
+    },
+    "Zvkg": {
+      "supported": false
+    },
+    "Zvkned": {
+      "supported": false
+    },
+    "Zvknha": {
+      "supported": false
+    },
+    "Zvknhb": {
+      "supported": false
+    },
+    "Zvksed": {
+      "supported": false
+    },
+    "Zvksh": {
+      "supported": false
+    },
+    "Zvkt": {
+      "supported": false
+    },
+    "Zvfh": {
+      "supported": false
+    },
+    "Zvfhmin": {
+      "supported": false
+    },
+    "Zvfbfmin": {
+      "supported": false
+    },
+    "Zvfbfwma": {
+      "supported": false
+    },
+    "Zvabd": {
+      "supported": false
+    },
+    "V": {
+      "support_level": "Disabled"
+    },
+    "Sv32": {
+      "supported": false
+    },
+    "Sv39": {
+      "supported": false
+    },
+    "Sv48": {
+      "supported": false
+    },
+    "Sv57": {
+      "supported": false
+    },
+    "Ssccptr": {
+      "supported": false
+    },
+    "Sscofpmf": {
+      "supported": false
+    },
+    "Sscounterenw": {
+      "supported": false
+    },
+    "Ssqosid": {
+      "supported": false
+    },
+    "Sstc": {
+      "supported": false
+    },
+    "Sstvala": {
+      "supported": false
+    },
+    "Svade": {
+      "supported": false
+    },
+    "Svadu": {
+      "supported": false
+    },
+    "Svbare": {
+      "supported": false
+    },
+    "Svinval": {
+      "supported": false
+    },
+    "Svvptc": {
+      "supported": false
+    },
+    "Smcntrpmf": {
+      "supported": false
+    }
+  },
+  "memory": {
+    "physaddr_bits": 32,
+    "regions": [
+      {
+        "base": {
+          "len": 64,
+          "value": "0x0"
+        },
+        "size": {
+          "len": 64,
+          "value": "0x10000000"
+        },
+        "attributes": {
+          "mem_type": "MainMemory",
+          "cacheable": true,
+          "coherent": true,
+          "executable": true,
+          "readable": true,
+          "writable": true,
+          "read_idempotent": true,
+          "write_idempotent": true,
+          "misaligned_exceptions": {
+            "load_store": {
+              "None": null
+            },
+            "vector": {
+              "None": null
+            },
+            "amo": "AccessFault"
+          },
+          "atomic_support": "AMOCASQ",
+          "misaligned_atomicity_granule_size_exp": 4,
+          "vector_misaligned_atomicity_granule_size_exp": 4,
+          "reservability": "RsrvEventual",
+          "supports_cbo_zero": true,
+          "supports_pte_read": true,
+          "supports_pte_write": true
+        },
+        "include_in_device_tree": false
+      }
+    ],
+    "dtb_address": {
+      "len": 64,
+      "value": "0x0FFF0000"
+    }
+  },
+  "platform": {
+    "clint": {
+      "supported": false
+    },
+    "simple_interrupt_generator": {
+      "supported": false
+    }
+  }
+}

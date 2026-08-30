@@ -367,8 +367,8 @@ def random_program_blocks(
     # offset is non-negative and a sign-extension defect in the S-immediate is
     # unobservable -- which is exactly how one survived the first mutation run.
     centre = data_base + data_size // 2
-    prologue = [lui(DATA_POINTER, centre >> 12),
-                i_type("addi", DATA_POINTER, DATA_POINTER, centre & 0xFFF)]
+    prologue = _zero_registers() + [lui(DATA_POINTER, centre >> 12),
+                                    i_type("addi", DATA_POINTER, DATA_POINTER, centre & 0xFFF)]
     for reg in range(1, 8):
         prologue.append(lui(reg, rng.below(0x100000)))
         prologue.append(i_type("addi", reg, reg, rng.signed(12)))
@@ -595,6 +595,22 @@ def directed_programs() -> list[tuple[str, list[int]]]:
 # the reference model executes them like any other program, so they cost the
 # non-pipelined design nothing.
 
+def _zero_registers() -> list[int]:
+    """Drive every architectural register to a known value.
+
+    RISC-V does not define the contents of the integer registers after reset.
+    These cores come up with all zeros; the Sail model follows the boot
+    convention and hands the hart id in a0 and a device-tree pointer in a1.
+    Both are legal, so a program whose result depends on the reset state is
+    testing something the specification does not define.
+
+    This surfaced only when a third model entered the comparison. Two
+    implementations that happen to share a reset convention agree for a reason
+    that is not correctness.
+    """
+    return [i_type("addi", reg, 0, 0) for reg in range(1, 32)]
+
+
 def _standard_prologue() -> list[int]:
     """Establish the data pointer every directed program and epilogue relies on.
 
@@ -602,7 +618,8 @@ def _standard_prologue() -> list[int]:
     the program image. Random programs already set it; directed ones did not,
     which only became a problem once the signature epilogue existed.
     """
-    return [lui(DATA_POINTER, 0x1), i_type("addi", DATA_POINTER, DATA_POINTER, 0x200)]
+    return _zero_registers() + [lui(DATA_POINTER, 0x1),
+                                i_type("addi", DATA_POINTER, DATA_POINTER, 0x200)]
 
 
 def _hazard_prologue() -> list[int]:
@@ -777,7 +794,12 @@ def signature_epilogue() -> list[int]:
     """
     program = [store("sw", DATA_POINTER, reg, SIGNATURE_OFFSET + 4 * (reg - 1))
                for reg in range(1, 32)]
-    program.append(store("sw", DATA_POINTER, 0, HALT_OFFSET))
+    # Terminate by writing a non-zero value to the HTIF `tohost` location, the
+    # convention riscv-tests and the Sail model use. Value 1 is exit code 0.
+    # x1 is clobbered here, but its architectural value is already captured
+    # above, so the signature is unaffected.
+    program.append(i_type("addi", 1, 0, 1))
+    program.append(store("sw", DATA_POINTER, 1, HALT_OFFSET))
     program.append(ebreak())            # how the local cores stop
     program.append(jal(0, 0))           # safety net for a core that ignores ebreak
     return program

@@ -28,8 +28,8 @@ every pass.
 | `riscv-opcodes` encoding tables | yes | used; 38 instructions conform |
 | Instruction set simulator in `reference/` | **no** — same author as the RTL | used for all execution comparison |
 | CV32E40P, vendored in this repository | yes | **used**; 621 programs agree |
-| `riscv-arch-test` | yes | unavailable: needs a RISC-V toolchain and a reference model to generate signatures |
-| `sail-riscv` formal model | yes | unavailable: needs a Sail/OCaml toolchain |
+| `riscv-arch-test` | yes | toolchain and Sail now present; still blocked on Zicsr and M-mode CSRs the core does not implement |
+| `sail-riscv` executable model | yes | **used**; 121 programs agree, and it enforces the rule CV32E40P could not |
 | `riscv-formal` proof obligations | yes | **used**; per-instruction semantics proven by bounded model checking |
 
 **The limitation that used to matter most, and how it was closed.** The
@@ -149,6 +149,8 @@ Two mutants are unkillable, so w3 detects **24 of 24 killable defects**.
 | Differential agreement, both cores | 620 programs, 0 failures |
 | Independent agreement with CV32E40P | 621 programs, 0 disagreements |
 | Cross-check negative control | 7/51 disagree when the reference is broken |
+| Agreement with the Sail model | 121 programs, 0 disagreements |
+| Sail negative control | 15/61 disagree when the reference is broken |
 | Formal proof obligations | 43/43 applicable pass, 0 fail |
 | RV32I instructions formally proven | 37/37 |
 | Verilator branch coverage (pipeline) | 97.6% (41/42) |
