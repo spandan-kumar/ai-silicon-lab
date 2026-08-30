@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "profile_id": "aes-256-gcm-64-v1",
+  "frozen_at": "2026-08-30",
+  "algorithm": {
+    "name": "AES-256-GCM",
+    "aes": "NIST FIPS 197-upd1 (2023-05-09)",
+    "gcm": "NIST SP 800-38D (2007-11)",
+    "key_bits": 256,
+    "block_bits": 128,
+    "directions": ["encrypt", "decrypt"],
+    "tag_bits": [128],
+    "iv_bits": [8, 96],
+    "max_aad_bytes": 64,
+    "max_payload_bytes": 64,
+    "empty_aad": true,
+    "empty_payload": true,
+    "release_unauthenticated_plaintext": false,
+    "nonce_uniqueness_owner": "caller"
+  },
+  "interface": {
+    "input_width_bits": 8,
+    "output_width_bits": 8,
+    "handshake": "ready-valid",
+    "phase_order": ["iv", "aad", "payload", "decrypt_tag"],
+    "interleaving": false,
+    "byte_order": "network-big-endian"
+  },
+  "errors": {
+    "unsupported_iv_length": "reject-before-body",
+    "aad_length_overflow": "reject-before-body",
+    "payload_length_overflow": "reject-before-body",
+    "authentication_failure": "no-output-clear-temporaries"
+  },
+  "target": {
+    "simulation": "Verilator cycle simulation",
+    "synthesis": "Yosys generic synth/stat",
+    "physical_target": null,
+    "clock_hz": null,
+    "power_method": null,
+    "objective": "Pareto-minimize generic cell area, latency, and cycles/byte; maximize bytes/cycle"
+  }
+}

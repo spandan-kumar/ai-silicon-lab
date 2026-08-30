@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-08-30",
+  "sources": [
+    {
+      "id": "nist-cavp-aes-kat",
+      "url": "https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/aes/KAT_AES.zip",
+      "sha256": "a203b16c9246b2ebae31dee5de21a606be80cf78ceabaca37150236fa098eb60",
+      "member": "ECBGFSbox256.rsp",
+      "role": "AES-256 primitive known-answer vectors"
+    },
+    {
+      "id": "nist-cavp-gcm",
+      "url": "https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/mac/gcmtestvectors.zip",
+      "sha256": "f9fc479e134cde2980b3bb7cddbcb567b2cd96fd753835243ed067699f26a023",
+      "members": ["gcmEncryptExtIV256.rsp", "gcmDecrypt256.rsp"],
+      "role": "AES-256-GCM positive and negative known-answer vectors"
+    }
+  ],
+  "notice": "NIST test vectors are public validation material. Their use is informal correctness evidence and does not confer validation or certification."
+}

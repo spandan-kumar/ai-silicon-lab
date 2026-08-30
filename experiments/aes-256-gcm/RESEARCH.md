@@ -8,6 +8,27 @@ profile.
 
 Research date: 2026-08-29
 
+## Profile-freeze verification — 2026-08-30
+
+- The live [FIPS 197 CSRC page](https://csrc.nist.gov/pubs/fips/197/final)
+  still identifies FIPS 197-upd1, updated 2023-05-09, as final and states that
+  the update made no technical change to AES.
+- The live [SP 800-38D CSRC page](https://csrc.nist.gov/pubs/sp/800/38/d/final)
+  still identifies the November 2007 publication as final and carries the
+  2024-03-06 planning note that NIST decided to revise it. No final successor
+  was present on the canonical page, so profile `aes-256-gcm-64-v1` pins the
+  2007 text and must be re-reviewed if NIST publishes a replacement.
+- The [CAVP block-mode page](https://csrc.nist.gov/Projects/Cryptographic-Algorithm-Validation-Program/CAVP-TESTING-BLOCK-CIPHER-MODES)
+  was retrieved 2026-08-30. It describes its GCM vectors as informal
+  correctness checks that do not replace validation.
+- `KAT_AES.zip`, retrieved from NIST on 2026-08-30, has SHA-256
+  `a203b16c9246b2ebae31dee5de21a606be80cf78ceabaca37150236fa098eb60`.
+- `gcmtestvectors.zip`, retrieved from NIST on 2026-08-30, has SHA-256
+  `f9fc479e134cde2980b3bb7cddbcb567b2cd96fd753835243ed067699f26a023`.
+- The normalized committed subset is reproduced only after both archive hashes
+  match. It includes AES-256 primitive cases plus GCM encryption, successful
+  decryption, and failed-authentication cases within the frozen profile.
+
 ## Normative sources
 
 ### AES

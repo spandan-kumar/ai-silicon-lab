@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "aes-256-gcm",
   "title": "AES-256-GCM hardware accelerator",
-  "status": "specified",
+  "status": "in-progress",
   "domain": "cryptographic-hardware-and-rtl",
   "objective": "Explore hardware implementations of AES-256-GCM and identify Pareto-efficient designs under explicit technology, throughput, latency, area, power, and security constraints.",
   "scope": {
