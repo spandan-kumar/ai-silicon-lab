@@ -7,6 +7,8 @@ references, not permission to weaken that boundary.
 
 Research date: 2026-08-29
 
+Physical-target research update: 2026-08-30
+
 ## Primary sources
 
 - [id Software DOOM source repository](https://github.com/id-Software/DOOM)
@@ -18,6 +20,18 @@ Research date: 2026-08-29
   documents the cycle-based Verilog/SystemVerilog simulation model used by the
   current host flow. Tool version and invocation are recorded with each run;
   simulation speed is not treated as hardware performance.
+- [OrangeCrab r0.2 hardware documentation](https://github.com/orangecrab-fpga/orangecrab-hardware/blob/main/documentation/hugo-files/content/docs/r0.2.md)
+  identifies the ECP5 device options, 128 MiB DDR3L, 48 MHz oscillator, and
+  USB DFU interface used by the physical target profile.
+- [nextpnr](https://github.com/YosysHQ/nextpnr) and
+  [Project Trellis](https://github.com/YosysHQ/prjtrellis) document the open
+  ECP5 place-and-route and bitstream flow selected for strict target timing.
+- [LiteDRAM](https://github.com/enjoy-digital/litedram) supplies the ECP5 DDR3
+  PHY/controller and BIOS training/memory-test path. The target exposes its
+  BIOS-written initialization result to the host rather than assuming DDR is
+  usable after configuration.
+- [LiteX boards](https://github.com/litex-hub/litex-boards) supplies the pinned
+  OrangeCrab r0.2 pin, clock, DDR, and DFU definitions used by the target.
 
 ## Local evidence boundary
 
