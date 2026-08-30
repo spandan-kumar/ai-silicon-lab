@@ -90,7 +90,24 @@ rule the two ISAs share, and it was silently useless for a rule where they
 differ. Formal verification has no such dependency: it checks against the
 specification the checker encodes, and it constructs the input itself.
 
-Both cores now raise the exception, and the reference model does too.
+Both cores now raise the exception, and the reference model does too. The
+campaign then completed clean: **43 of 43 applicable obligations pass, and all
+37 RV32I instructions are proven**, along with the register, forward and
+backward program-counter, uniqueness, causality, and cover consistency checks.
+
+`liveness` is the forty-fourth obligation and is reported as inapplicable rather
+than removed. It asserts that another instruction always eventually retires;
+this core has no trap handler and no `mtvec`, so it halts permanently on a trap
+and a solver supplying an illegal instruction reaches a state with no successor.
+That is the specified behaviour of a bare RV32I core with no privileged
+architecture, not a defect. The reason sits next to the exclusion in
+`formal_collect.py`, because deleting a failing obligation and excusing one look
+identical in a summary and only the written reason separates them.
+
+What the proofs claim: no counterexample exists **within each check's configured
+depth**, for any memory behaviour the interface permits, since the memory
+response signals are left free. That is far stronger than a passing corpus and
+is still not an unbounded proof.
 
 ## Workflow configurations
 
@@ -132,6 +149,8 @@ Two mutants are unkillable, so w3 detects **24 of 24 killable defects**.
 | Differential agreement, both cores | 620 programs, 0 failures |
 | Independent agreement with CV32E40P | 621 programs, 0 disagreements |
 | Cross-check negative control | 7/51 disagree when the reference is broken |
+| Formal proof obligations | 43/43 applicable pass, 0 fail |
+| RV32I instructions formally proven | 37/37 |
 | Verilator branch coverage (pipeline) | 97.6% (41/42) |
 | Verilator expression coverage (pipeline) | 98.8% (83/84) |
 | Verilator toggle coverage (pipeline) | 80.7% (2239/2776) |
