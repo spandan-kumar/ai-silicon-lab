@@ -8,6 +8,21 @@ profile.
 
 Research date: 2026-08-29
 
+## Simulation-complete outcome — 2026-08-30
+
+- Candidate commit `b7906db29bcf43c4a4689d87d8ec7569ed50b4ce` implements and measures two
+  synthesizable organizations under the frozen profile. The evidence-backed
+  comparison is recorded in `RESULTS.md` and the machine-readable workspace
+  reports.
+- Verilator 5.050 is the cycle/lint engine. Yosys 0.68+post
+  (`c12172fbae8af5e20f6fb52e3d4e92d56ed587b6`) is the generic synthesis
+  engine. The generic-cell comparison is meaningful only inside this identical
+  flow and is not an FPGA LUT or ASIC-area claim.
+- The host has no configured FPGA/ASIC target, physical board, timing library,
+  power model, or leakage/fault instrumentation. The experiment therefore ends
+  at the specified simulation-complete boundary; physical metrics remain
+  unavailable rather than estimated.
+
 ## Profile-freeze verification — 2026-08-30
 
 - The live [FIPS 197 CSRC page](https://csrc.nist.gov/pubs/fips/197/final)

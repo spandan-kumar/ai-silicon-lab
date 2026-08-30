@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "aes-256-gcm",
   "title": "AES-256-GCM hardware accelerator",
-  "status": "in-progress",
+  "status": "complete",
   "domain": "cryptographic-hardware-and-rtl",
   "objective": "Explore hardware implementations of AES-256-GCM and identify Pareto-efficient designs under explicit technology, throughput, latency, area, power, and security constraints.",
   "scope": {
@@ -319,8 +319,15 @@
     }
   ],
   "current_baseline": {
-    "status": "not-started",
-    "available_host_support": "Verilator and Yosys are present; no FPGA/ASIC implementation flow or physical board is currently detected.",
-    "next_decision": "Freeze the algorithm/interface/target profile before implementing a hardware candidate."
+    "status": "simulation-complete",
+    "profile_id": "aes-256-gcm-64-v1",
+    "candidate_commit": "b7906db29bcf43c4a4689d87d8ec7569ed50b4ce",
+    "evaluator_run_id": "aes-gcm-b7906db-simulation-complete",
+    "correctness": "Both RTL organizations pass direct AES-256 key-schedule checks, primitive encrypt/decrypt KATs, 1,038 GCM operations each, negative authentication, boundary, interface-stall, reset, key-lifecycle, lint, synthesis, and deterministic repeat gates.",
+    "pareto_result": "The 36,843-cell iterative-1r1b design minimizes generic area; the 73,782-cell unrolled-2r8b design minimizes measured cycle latency and maximizes bytes/cycle. Both are nondominated without scalar objective weights.",
+    "results": "experiments/aes-256-gcm/RESULTS.md",
+    "available_host_support": "Verilator 5.050 and Yosys 0.68+post generic synthesis; no FPGA/ASIC implementation flow or physical board is detected.",
+    "physical_status": "unavailable",
+    "next_decision": "Choose a named FPGA or ASIC target and clock/power objective before attempting target implementation; do not compare targetless generic cells as physical area."
   }
 }

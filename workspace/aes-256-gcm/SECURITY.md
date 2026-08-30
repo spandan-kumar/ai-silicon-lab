@@ -39,9 +39,11 @@ target on which to measure those effects.
   stalled replays per architecture. Stall cycles are reported separately and
   do not change the scored output.
 - The harness tests no-key and invalid-length rejection, key replacement,
-  warm-key reuse, reset during input, a failed authentication followed by a
-  valid same-key transaction, and explicit zeroization after a successful
-  transaction.
+  warm-key reuse, reset during key setup, IV/AAD/data/tag input, output, result,
+  and error phases, zeroization during payload input, a failed authentication
+  followed by a valid same-key transaction, and explicit zeroization after a
+  successful transaction. Assertions also forbid a second command or key load
+  while a transaction is active and reject overlapping serialized channels.
 - RTL inspection confirms that result acknowledgement clears IV, AAD, data,
   output, tag, counter, GHASH, and transient AES state. Reset and `zeroize`
   additionally clear cached round keys and key-loaded state. Ordinary success

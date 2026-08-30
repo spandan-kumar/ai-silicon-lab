@@ -9,6 +9,7 @@ import hashlib
 import json
 import re
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -33,6 +34,11 @@ def git(*arguments: str) -> str:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def version(command: list[str]) -> str:
+    completed = subprocess.run(command, check=True, capture_output=True, text=True)
+    return (completed.stdout or completed.stderr).splitlines()[0].strip()
 
 
 def main() -> int:
@@ -95,6 +101,22 @@ def main() -> int:
         json.dumps(commands, indent=2, sort_keys=True) + "\n"
     )
     candidate_commit = git("rev-parse", "HEAD")
+    tool_versions = {
+        "verilator": version(["verilator", "--version"]),
+        "yosys": version(["yosys", "-V"]),
+        "python": version([sys.executable, "--version"]),
+        "compiler": version(["clang", "--version"]),
+        "openssl": version([str(ROOT / "build" / "openssl_baseline"), "--version"]),
+    }
+    source_hashes = {
+        "experiments/aes-256-gcm/experiment.json": sha256(REPOSITORY / "experiments" / "aes-256-gcm" / "experiment.json"),
+        "experiments/aes-256-gcm/profile.json": sha256(REPOSITORY / "experiments" / "aes-256-gcm" / "profile.json"),
+        "workspace/aes-256-gcm/Makefile": sha256(ROOT / "Makefile"),
+        "workspace/aes-256-gcm/tools/evaluate.py": sha256(Path(__file__)),
+        "workspace/aes-256-gcm/reference/aes_gcm.py": sha256(ROOT / "reference" / "aes_gcm.py"),
+        "workspace/aes-256-gcm/vectors/nist_subset.json": sha256(ROOT / "vectors" / "nist_subset.json"),
+        "workspace/aes-256-gcm/vectors/generated.json": sha256(ROOT / "vectors" / "generated.json"),
+    }
     instructions = REPOSITORY / "AGENTS.md"
     instruction_hashes = []
     if instructions.exists():
@@ -116,7 +138,7 @@ def main() -> int:
                 "provider": "OpenAI",
                 "display_name": "Codex",
                 "canonical_id": None,
-                "identity_status": "unavailable",
+                "identity_status": "unknown",
             },
             "harness": {"name": "Codex desktop", "version": None, "environment": "local"},
             "reasoning": {"effort": None, "mode": None, "context": None},
@@ -144,7 +166,8 @@ def main() -> int:
             "synthesis_seconds": times["synthesis_seconds"],
             "hardware_seconds": None,
             "precheck_seconds": times["precheck_seconds"],
-            "source": "measured for evaluator phases; unavailable for agent/human/physical time",
+            "source": "mixed",
+            "notes": "Evaluator phase durations use a monotonic clock; agent, human, and physical time are unavailable.",
         },
         "cost": {
             "amount": None,
@@ -158,7 +181,8 @@ def main() -> int:
             "harness_run_ids": [args.run_id],
             "lab_run_ids": [],
             "benchmark_id": "aes-256-gcm-64-v1",
-            "tool_versions": {},
+            "tool_versions": tool_versions,
+            "source_sha256": source_hashes,
             "artifact_paths": artifacts,
             "commands": commands,
             "clean_before": not dirty_before,

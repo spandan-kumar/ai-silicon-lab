@@ -100,7 +100,8 @@ def main() -> int:
                 "stalled_replays": 32,
                 "lifecycle_and_error_scenarios": [
                     "no-key rejection", "unsupported lengths", "warm-key repeat",
-                    "key replacement", "reset during input", "authentication failure then reuse",
+                    "key replacement", "reset during key setup/AAD/tag/output/result/error",
+                    "zeroize during payload input", "authentication failure then reuse",
                     "explicit zeroize after success",
                 ],
             },

@@ -21,6 +21,7 @@ static constexpr const char *kArchitecture = "unrolled-2r8b";
 
 static uint64_t global_cycles = 0;
 static uint32_t stall_prng = 0x6a09e667u;
+static bool transaction_active = false;
 
 struct Result {
     std::vector<uint8_t> output;
@@ -76,9 +77,15 @@ static void tick(Dut &dut) {
     dut.clk = 1;
     dut.eval();
     ++global_cycles;
+    if (!dut.rst && transaction_active && (dut.cmd_ready || dut.key_ready)) {
+        std::fprintf(stderr, "%s accepted interleaving while a transaction was active\n",
+                     kArchitecture);
+        std::exit(1);
+    }
 }
 
 static void reset(Dut &dut) {
+    transaction_active = false;
     dut.rst = 1;
     dut.zeroize = 0;
     dut.key_valid = 0;
@@ -125,6 +132,7 @@ static void send_command(Dut &dut, bool encrypting, size_t iv, size_t aad, size_
     dut.cmd_valid = 1;
     tick(dut);
     dut.cmd_valid = 0;
+    transaction_active = true;
 }
 
 static void send_bytes(Dut &dut, const std::vector<uint8_t> &bytes, bool stress) {
@@ -136,6 +144,11 @@ static void send_bytes(Dut &dut, const std::vector<uint8_t> &bytes, bool stress)
         uint64_t deadline = global_cycles + 1000;
         while (!dut.in_ready && global_cycles < deadline) tick(dut);
         if (!dut.in_ready) std::abort();
+        if (dut.tag_in_ready || dut.out_valid || dut.result_valid) {
+            std::fprintf(stderr, "%s exposed a second channel during serialized input\n",
+                         kArchitecture);
+            std::exit(1);
+        }
         dut.in_data = byte;
         dut.in_valid = 1;
         tick(dut);
@@ -151,6 +164,10 @@ static void send_tag(Dut &dut, const char *tag, bool stress) {
     uint64_t deadline = global_cycles + 1000;
     while (!dut.tag_in_ready && global_cycles < deadline) tick(dut);
     if (!dut.tag_in_ready) std::abort();
+    if (dut.in_ready || dut.out_valid || dut.result_valid) {
+        std::fprintf(stderr, "%s exposed a second channel during tag input\n", kArchitecture);
+        std::exit(1);
+    }
     set_hex(dut.tag_in, tag);
     dut.tag_in_valid = 1;
     tick(dut);
@@ -177,6 +194,7 @@ static Result wait_result(Dut &dut, bool stress) {
     result.auth = dut.result_auth_ok;
     result.cycles = dut.result_cycles;
     result.stalls = dut.result_stall_cycles;
+    transaction_active = false;
     dut.result_ready = 1;
     tick(dut);
     dut.result_ready = 0;
@@ -224,7 +242,89 @@ static void expect_command_error(Dut &dut, bool encrypting, size_t iv, size_t aa
     }
 }
 
+static void expect_cleared(Dut &dut, const char *phase) {
+    if (dut.key_loaded || dut.result_valid || dut.out_valid || dut.in_ready
+        || dut.tag_in_ready) {
+        std::fprintf(stderr, "%s reset/zeroize failed during %s\n", kArchitecture, phase);
+        std::exit(1);
+    }
+}
+
+static void reset_phase_tests(Dut &dut) {
+    const GcmVector &encrypt = kPerformanceVectors[2];
+    const GcmVector &decrypt = kPerformanceVectors[3];
+    std::vector<uint8_t> iv = decode_hex(encrypt.iv);
+
+    reset(dut);
+    set_hex(dut.key_in, encrypt.key);
+    dut.key_valid = 1;
+    tick(dut);
+    dut.key_valid = 0;
+    dut.rst = 1;
+    tick(dut);
+    dut.rst = 0;
+    tick(dut);
+    expect_cleared(dut, "key setup");
+
+    load_key(dut, encrypt.key);
+    send_command(dut, true, iv.size(), 16, 0);
+    send_bytes(dut, iv, false);
+    dut.in_data = 0x5a;
+    dut.in_valid = 1;
+    tick(dut);
+    dut.in_valid = 0;
+    reset(dut);
+    expect_cleared(dut, "AAD input");
+
+    load_key(dut, encrypt.key);
+    send_command(dut, true, iv.size(), 0, 16);
+    send_bytes(dut, iv, false);
+    dut.in_data = 0xa5;
+    dut.in_valid = 1;
+    tick(dut);
+    dut.in_valid = 0;
+    transaction_active = false;
+    dut.zeroize = 1;
+    tick(dut);
+    dut.zeroize = 0;
+    tick(dut);
+    expect_cleared(dut, "payload input zeroize");
+
+    load_key(dut, decrypt.key);
+    send_command(dut, false, iv.size(), 0, 1);
+    send_bytes(dut, iv, false);
+    send_bytes(dut, decode_hex(decrypt.input), false);
+    if (!dut.tag_in_ready) {
+        std::fprintf(stderr, "%s did not reach tag phase\n", kArchitecture);
+        std::exit(1);
+    }
+    reset(dut);
+    expect_cleared(dut, "tag input");
+
+    load_key(dut, encrypt.key);
+    send_command(dut, true, iv.size(), 0, 1);
+    send_bytes(dut, iv, false);
+    send_bytes(dut, decode_hex(encrypt.input), false);
+    while (!dut.out_valid) tick(dut);
+    reset(dut);
+    expect_cleared(dut, "output");
+
+    load_key(dut, kPerformanceVectors[0].key);
+    send_command(dut, true, iv.size(), 0, 0);
+    send_bytes(dut, iv, false);
+    while (!dut.result_valid) tick(dut);
+    reset(dut);
+    expect_cleared(dut, "result");
+
+    load_key(dut, encrypt.key);
+    send_command(dut, true, 0, 0, 0);
+    if (!dut.result_valid) tick(dut);
+    reset(dut);
+    expect_cleared(dut, "error result");
+}
+
 static void lifecycle_tests(Dut &dut) {
+    reset_phase_tests(dut);
     reset(dut);
     expect_command_error(dut, true, 12, 0, 0, 3);
     load_key(dut, kGcmVectors[0].key);
@@ -257,6 +357,7 @@ static void lifecycle_tests(Dut &dut) {
     dut.in_valid = 1;
     tick(dut);
     dut.in_valid = 0;
+    transaction_active = false;
     dut.rst = 1;
     tick(dut);
     dut.rst = 0;
