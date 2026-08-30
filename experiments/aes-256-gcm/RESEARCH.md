@@ -10,7 +10,7 @@ Research date: 2026-08-29
 
 ## Simulation-complete outcome — 2026-08-30
 
-- Candidate commit `b7906db29bcf43c4a4689d87d8ec7569ed50b4ce` implements and measures two
+- Candidate commit `9afd0b63e4d85b35a48013ef1bc97414e3e9852a` implements and measures two
   synthesizable organizations under the frozen profile. The evidence-backed
   comparison is recorded in `RESULTS.md` and the machine-readable workspace
   reports.

@@ -10,14 +10,15 @@
           "mean_cycles": 941.276,
           "min_cycles": 175,
           "stalled_replays": 32,
-          "total_sim_cycles": 1095638
+          "total_sim_cycles": 1096249
         },
         "lifecycle_and_error_scenarios": [
           "no-key rejection",
           "unsupported lengths",
           "warm-key repeat",
           "key replacement",
-          "reset during input",
+          "reset during key setup/AAD/tag/output/result/error",
+          "zeroize during payload input",
           "authentication failure then reuse",
           "explicit zeroize after success"
         ],
@@ -34,7 +35,7 @@
         "status": "pass"
       },
       "evidence": {
-        "gcm_log_sha256": "9af88b32348910160c0e378f1e40083083056cda98fb04ffbc3ca7602510672e",
+        "gcm_log_sha256": "2f3ae5425ab6766b6c168c5e22b872fcc1dca440248a8c311019ee38bf685cf0",
         "primitive_log_sha256": "fdf7aef8aa141eb3bb6c30d24cff76bbc4eb5936aaca8aa22c8d3c18f5d7f446"
       },
       "organization": "folded AES: one round/cycle; serial GHASH: one bit/cycle",
@@ -1402,7 +1403,7 @@
       },
       "repeatability": {
         "identical": true,
-        "output_sha256": "9af88b32348910160c0e378f1e40083083056cda98fb04ffbc3ca7602510672e"
+        "output_sha256": "2f3ae5425ab6766b6c168c5e22b872fcc1dca440248a8c311019ee38bf685cf0"
       },
       "synthesis": {
         "energy_per_byte": null,
@@ -1443,14 +1444,15 @@
           "mean_cycles": 229.596,
           "min_cycles": 49,
           "stalled_replays": 32,
-          "total_sim_cycles": 272095
+          "total_sim_cycles": 272317
         },
         "lifecycle_and_error_scenarios": [
           "no-key rejection",
           "unsupported lengths",
           "warm-key repeat",
           "key replacement",
-          "reset during input",
+          "reset during key setup/AAD/tag/output/result/error",
+          "zeroize during payload input",
           "authentication failure then reuse",
           "explicit zeroize after success"
         ],
@@ -1467,7 +1469,7 @@
         "status": "pass"
       },
       "evidence": {
-        "gcm_log_sha256": "4ef645a83fedbe28b651ce8b6dedfa9b7f134499b3514064332abc2920fac8b2",
+        "gcm_log_sha256": "f2b26452e5a3c659eab2d3da7a7559389ffec2ba063f810f58cb71758ac9ca32",
         "primitive_log_sha256": "4cc96aa24b93f35f3b3c3d4111233348e139f85d491d1e535bca7bb7bb3a724d"
       },
       "organization": "partially unrolled AES: two rounds/cycle; GHASH: eight bits/cycle",
@@ -2835,7 +2837,7 @@
       },
       "repeatability": {
         "identical": true,
-        "output_sha256": "4ef645a83fedbe28b651ce8b6dedfa9b7f134499b3514064332abc2920fac8b2"
+        "output_sha256": "f2b26452e5a3c659eab2d3da7a7559389ffec2ba063f810f58cb71758ac9ca32"
       },
       "synthesis": {
         "energy_per_byte": null,
@@ -2867,7 +2869,7 @@
       }
     }
   },
-  "candidate_commit": "b7906db29bcf43c4a4689d87d8ec7569ed50b4ce",
+  "candidate_commit": "9afd0b63e4d85b35a48013ef1bc97414e3e9852a",
   "corpus": {
     "gcm_operations_per_architecture": 1038,
     "generated_negative_vectors": 150,
@@ -2905,7 +2907,7 @@
   "software_baseline": {
     "linked_openssl": "OpenSSL 3.6.3 9 Jun 2026",
     "measurement_scope": "host-specific cold-key wall time; not directly comparable to targetless RTL cycles",
-    "openssl_64byte_0aad_cold_median_ns": 589.84,
+    "openssl_64byte_0aad_cold_median_ns": 589.04,
     "report": "reports/software_baseline.json"
   },
   "unavailable": {

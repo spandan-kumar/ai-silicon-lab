@@ -321,8 +321,8 @@
   "current_baseline": {
     "status": "simulation-complete",
     "profile_id": "aes-256-gcm-64-v1",
-    "candidate_commit": "b7906db29bcf43c4a4689d87d8ec7569ed50b4ce",
-    "evaluator_run_id": "aes-gcm-b7906db-simulation-complete",
+    "candidate_commit": "9afd0b63e4d85b35a48013ef1bc97414e3e9852a",
+    "evaluator_run_id": "aes-gcm-9afd0b6-simulation-complete",
     "correctness": "Both RTL organizations pass direct AES-256 key-schedule checks, primitive encrypt/decrypt KATs, 1,038 GCM operations each, negative authentication, boundary, interface-stall, reset, key-lifecycle, lint, synthesis, and deterministic repeat gates.",
     "pareto_result": "The 36,843-cell iterative-1r1b design minimizes generic area; the 73,782-cell unrolled-2r8b design minimizes measured cycle latency and maximizes bytes/cycle. Both are nondominated without scalar objective weights.",
     "results": "experiments/aes-256-gcm/RESULTS.md",

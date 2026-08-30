@@ -1,8 +1,8 @@
 # Experiment 002 result: simulation-complete AES-256-GCM
 
 Profile `aes-256-gcm-64-v1` reached the simulation-complete gate on clean
-candidate commit `b7906db29bcf43c4a4689d87d8ec7569ed50b4ce`. The retained local
-evaluator run is `runs/aes-gcm-b7906db-simulation-complete/run.json`; its run
+candidate commit `9afd0b63e4d85b35a48013ef1bc97414e3e9852a`. The retained local
+evaluator run is `runs/aes-gcm-9afd0b6-simulation-complete/run.json`; its run
 record passes `./tools/experiment validate-run`.
 
 ## Correctness and reproducibility
@@ -47,7 +47,7 @@ folded design minimizes this experiment's area proxy, while the unrolled design
 minimizes latency and cycles/byte and maximizes throughput.
 
 The software baseline measures OpenSSL EVP cold-key wall time on the Apple M4
-host. Its 64-byte/no-AAD median is 589.84 ns across five 100,000-operation
+host. Its 64-byte/no-AAD median is 589.04 ns across five 100,000-operation
 repeats. That host-specific number is retained as a software reference, not
 converted into or directly ranked against targetless RTL cycles.
 
