@@ -1,0 +1,44 @@
+#!/bin/sh
+# Run the riscv-formal proofs for the RV32I core.
+#
+# riscv-formal expects its cores to live inside its own tree, so this stages
+# the repository's authoritative files into a scratch clone under temp/ rather
+# than keeping a second copy of the design there.
+#
+#   ./workspace/rv32i/formal/run            # generate and run every check
+#   ./workspace/rv32i/formal/run insn_addi  # run one check by name
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
+formal="$root/workspace/rv32i/formal"
+rf="$root/temp/riscv-formal"
+venv="$root/temp/sbyenv"
+core=aisl_rv32i
+
+[ -d "$rf" ] || { echo "temp/riscv-formal is absent; clone YosysHQ/riscv-formal into temp/" >&2; exit 2; }
+[ -x "$venv/bin/python" ] || { echo "temp/sbyenv is absent; python3 -m venv temp/sbyenv && temp/sbyenv/bin/pip install click" >&2; exit 2; }
+
+dir="$rf/cores/$core"
+mkdir -p "$dir"
+cp "$formal/wrapper.sv" "$formal/checks.cfg" "$dir/"
+cp "$root/workspace/rv32i/rtl/rv32i_core.sv" "$dir/"
+
+# sby must be on PATH for genchecks' generated Makefile.
+PATH="$venv/bin:$PATH"
+export PATH
+cat > "$venv/bin/sby" <<EOF
+#!/bin/sh
+exec "$venv/bin/python" "$root/temp/sby/sbysrc/sby.py" "\$@"
+EOF
+chmod +x "$venv/bin/sby"
+
+cd "$dir"
+rm -rf checks
+"$venv/bin/python" "$rf/checks/genchecks.py"
+
+if [ $# -gt 0 ]; then
+    exec make -C checks "$@"
+fi
+# -k so one failing obligation does not leave the rest unrun; a check that
+# never executed must not be mistaken for one that passed.
+exec make -k -C checks -j "$(sysctl -n hw.ncpu 2>/dev/null || echo 4)"

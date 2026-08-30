@@ -39,6 +39,35 @@ module rv32i_core #(
 
     input  logic [4:0]  dbg_addr,
     output logic [31:0] dbg_data
+
+`ifdef RISCV_FORMAL
+    ,
+    // RISC-V Formal Interface. Present only under `RISCV_FORMAL`, so the
+    // synthesizable core is byte-identical without it. Every signal is a
+    // report about an instruction that has just retired; none of them feed
+    // back into the design.
+    output logic        rvfi_valid,
+    output logic [63:0] rvfi_order,
+    output logic [31:0] rvfi_insn,
+    output logic        rvfi_trap,
+    output logic        rvfi_halt,
+    output logic        rvfi_intr,
+    output logic [1:0]  rvfi_mode,
+    output logic [1:0]  rvfi_ixl,
+    output logic [4:0]  rvfi_rs1_addr,
+    output logic [4:0]  rvfi_rs2_addr,
+    output logic [31:0] rvfi_rs1_rdata,
+    output logic [31:0] rvfi_rs2_rdata,
+    output logic [4:0]  rvfi_rd_addr,
+    output logic [31:0] rvfi_rd_wdata,
+    output logic [31:0] rvfi_pc_rdata,
+    output logic [31:0] rvfi_pc_wdata,
+    output logic [31:0] rvfi_mem_addr,
+    output logic [3:0]  rvfi_mem_rmask,
+    output logic [3:0]  rvfi_mem_wmask,
+    output logic [31:0] rvfi_mem_rdata,
+    output logic [31:0] rvfi_mem_wdata
+`endif
 );
   typedef enum logic [2:0] {
     S_FETCH_REQ, S_FETCH_WAIT, S_EXEC, S_MEM_REQ, S_MEM_WAIT, S_HALT
@@ -171,6 +200,26 @@ module rv32i_core #(
     endcase
   end
 
+  // Branch and jump targets. B- and J-immediates encode multiples of two, so a
+  // target can be 2 mod 4. RV32I without the C extension has IALIGN=32, and
+  // such a target is an instruction-address-misaligned exception rather than a
+  // legal jump. Formal verification found this missing; no amount of random
+  // testing did, because the generator only ever produced aligned targets.
+  logic [31:0] jal_target, jalr_target, branch_target;
+  assign jal_target    = pc_q + imm_j;
+  assign jalr_target   = (a + imm_i) & ~32'd1;
+  assign branch_target = pc_q + imm_b;
+
+  logic fetch_misaligned;
+  always_comb begin
+    unique case (opcode)
+      7'b1101111: fetch_misaligned = (jal_target[1:0] != 2'b00);
+      7'b1100111: fetch_misaligned = (jalr_target[1:0] != 2'b00);
+      7'b1100011: fetch_misaligned = branch_taken && (branch_target[1:0] != 2'b00);
+      default:    fetch_misaligned = 1'b0;
+    endcase
+  end
+
   logic misaligned;
   always_comb begin
     unique case (funct3)
@@ -276,21 +325,42 @@ module rv32i_core #(
               state_q <= S_FETCH_REQ;
             end
             7'b1101111: begin                       // JAL
-              write_register(rd, pc_q + 32'd4);
-              pc_q <= pc_q + imm_j;
-              retire_q <= 1'b1;
-              state_q <= S_FETCH_REQ;
+              if (fetch_misaligned) begin
+                trap_q <= 1'b1;
+                trap_cause_q <= 32'd0;              // instruction address misaligned
+                halted_q <= 1'b1;
+                state_q <= S_HALT;
+              end else begin
+                write_register(rd, pc_q + 32'd4);
+                pc_q <= jal_target;
+                retire_q <= 1'b1;
+                state_q <= S_FETCH_REQ;
+              end
             end
             7'b1100111: begin                       // JALR
-              write_register(rd, pc_q + 32'd4);
-              pc_q <= (a + imm_i) & ~32'd1;
-              retire_q <= 1'b1;
-              state_q <= S_FETCH_REQ;
+              if (fetch_misaligned) begin
+                trap_q <= 1'b1;
+                trap_cause_q <= 32'd0;
+                halted_q <= 1'b1;
+                state_q <= S_HALT;
+              end else begin
+                write_register(rd, pc_q + 32'd4);
+                pc_q <= jalr_target;
+                retire_q <= 1'b1;
+                state_q <= S_FETCH_REQ;
+              end
             end
             7'b1100011: begin                       // branches
-              pc_q <= branch_taken ? (pc_q + imm_b) : (pc_q + 32'd4);
-              retire_q <= 1'b1;
-              state_q <= S_FETCH_REQ;
+              if (fetch_misaligned) begin
+                trap_q <= 1'b1;
+                trap_cause_q <= 32'd0;
+                halted_q <= 1'b1;
+                state_q <= S_HALT;
+              end else begin
+                pc_q <= branch_taken ? branch_target : (pc_q + 32'd4);
+                retire_q <= 1'b1;
+                state_q <= S_FETCH_REQ;
+              end
             end
             7'b0010011: begin                       // register-immediate
               write_register(rd, alu_ri);
@@ -358,4 +428,164 @@ module rv32i_core #(
       endcase
     end
   end
+`ifdef RISCV_FORMAL
+  // --- RISC-V Formal Interface -------------------------------------------
+  //
+  // The core retires an instruction in S_EXEC, or in S_MEM_WAIT once a load or
+  // store response arrives. A trapping instruction does not set retire_q,
+  // because the differential testbench counts retire_q as work completed, but
+  // the formal interface must still report it with rvfi_trap set. So the two
+  // notions of "retired" are kept separate rather than merged.
+
+  logic will_retire, will_trap;
+  always_comb begin
+    will_retire = 1'b0;
+    will_trap   = 1'b0;
+    if (state_q == S_EXEC) begin
+      unique case (opcode)
+        7'b0110111, 7'b0010111, 7'b0010011, 7'b0110011, 7'b0001111:
+          will_retire = 1'b1;
+        7'b1101111, 7'b1100111, 7'b1100011: begin
+          will_retire = 1'b1;
+          will_trap   = fetch_misaligned;
+        end
+        7'b0000011, 7'b0100011: begin
+          will_retire = misaligned;      // an aligned access retires in S_MEM_WAIT
+          will_trap   = misaligned;
+        end
+        7'b1110011: begin
+          will_retire = 1'b1;            // ECALL and EBREAK
+          will_trap   = 1'b1;
+        end
+        default: begin
+          will_retire = 1'b1;            // illegal instruction
+          will_trap   = 1'b1;
+        end
+      endcase
+    end else if (state_q == S_MEM_WAIT) begin
+      will_retire = mem_rvalid;
+    end
+  end
+
+  // Destination register and the value it receives.
+  logic [4:0]  next_rd_addr;
+  logic [31:0] next_rd_wdata;
+  always_comb begin
+    next_rd_addr  = 5'd0;
+    next_rd_wdata = 32'd0;
+    if (state_q == S_MEM_WAIT) begin
+      if (opcode == 7'b0000011) begin
+        next_rd_addr  = load_rd_q;
+        next_rd_wdata = load_result;
+      end
+    end else if (!will_trap) begin
+      unique case (opcode)
+        7'b0110111: begin next_rd_addr = rd; next_rd_wdata = imm_u; end
+        7'b0010111: begin next_rd_addr = rd; next_rd_wdata = pc_q + imm_u; end
+        7'b1101111,
+        7'b1100111: begin next_rd_addr = rd; next_rd_wdata = pc_q + 32'd4; end
+        7'b0010011: begin next_rd_addr = rd; next_rd_wdata = alu_ri; end
+        7'b0110011: begin next_rd_addr = rd; next_rd_wdata = alu_rr; end
+        default: ;
+      endcase
+    end
+    // x0 absorbs its write, so the interface must report zero for both.
+    if (next_rd_addr == 5'd0) next_rd_wdata = 32'd0;
+  end
+
+  // Where the program counter goes next.
+  logic [31:0] next_pc_value;
+  always_comb begin
+    next_pc_value = pc_q + 32'd4;
+    if (state_q == S_MEM_WAIT) begin
+      next_pc_value = next_pc_q;
+    end else begin
+      unique case (opcode)
+        7'b1101111: next_pc_value = jal_target;
+        7'b1100111: next_pc_value = jalr_target;
+        7'b1100011: next_pc_value = branch_taken ? branch_target : (pc_q + 32'd4);
+        default: ;
+      endcase
+    end
+  end
+
+  // Which source registers the instruction actually reads.
+  logic [4:0] next_rs1_addr, next_rs2_addr;
+  always_comb begin
+    next_rs1_addr = rs1;
+    next_rs2_addr = rs2;
+    unique case (opcode)
+      7'b0110111, 7'b0010111, 7'b1101111: begin
+        next_rs1_addr = 5'd0;
+        next_rs2_addr = 5'd0;
+      end
+      7'b1100111, 7'b0010011, 7'b0000011: next_rs2_addr = 5'd0;
+      default: ;
+    endcase
+  end
+
+  // Byte lanes a load actually reads, mirroring the store byte enables.
+  logic [3:0] load_mask;
+  always_comb begin
+    unique case (load_funct3_q)
+      3'b000, 3'b100: load_mask = 4'b0001 << load_offset_q;
+      3'b001, 3'b101: load_mask = load_offset_q[1] ? 4'b1100 : 4'b0011;
+      default:        load_mask = 4'b1111;
+    endcase
+  end
+
+  logic [63:0] order_q;
+
+  always_ff @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+      rvfi_valid <= 1'b0;
+      order_q <= 64'd0;
+      rvfi_order <= 64'd0;
+      rvfi_insn <= 32'd0;
+      rvfi_trap <= 1'b0;
+      rvfi_rs1_addr <= 5'd0; rvfi_rs2_addr <= 5'd0;
+      rvfi_rs1_rdata <= 32'd0; rvfi_rs2_rdata <= 32'd0;
+      rvfi_rd_addr <= 5'd0; rvfi_rd_wdata <= 32'd0;
+      rvfi_pc_rdata <= 32'd0; rvfi_pc_wdata <= 32'd0;
+      rvfi_mem_addr <= 32'd0;
+      rvfi_mem_rmask <= 4'd0; rvfi_mem_wmask <= 4'd0;
+      rvfi_mem_rdata <= 32'd0; rvfi_mem_wdata <= 32'd0;
+    end else begin
+      rvfi_valid <= will_retire && !halted_q;
+      if (will_retire && !halted_q) begin
+        rvfi_order <= order_q;
+        order_q <= order_q + 64'd1;
+        rvfi_insn <= instruction_q;
+        rvfi_trap <= will_trap;
+        rvfi_rs1_addr <= next_rs1_addr;
+        rvfi_rs2_addr <= next_rs2_addr;
+        rvfi_rs1_rdata <= (next_rs1_addr == 5'd0) ? 32'd0 : regs_q[next_rs1_addr];
+        rvfi_rs2_rdata <= (next_rs2_addr == 5'd0) ? 32'd0 : regs_q[next_rs2_addr];
+        rvfi_rd_addr <= next_rd_addr;
+        rvfi_rd_wdata <= next_rd_wdata;
+        rvfi_pc_rdata <= pc_q;
+        rvfi_pc_wdata <= next_pc_value;
+        if (state_q == S_MEM_WAIT) begin
+          rvfi_mem_addr <= {mem_address[31:2], 2'b00};
+          rvfi_mem_rmask <= (opcode == 7'b0000011) ? load_mask : 4'd0;
+          rvfi_mem_wmask <= (opcode == 7'b0100011) ? store_be : 4'd0;
+          rvfi_mem_rdata <= mem_rdata;
+          rvfi_mem_wdata <= store_data;
+        end else begin
+          rvfi_mem_addr <= 32'd0;
+          rvfi_mem_rmask <= 4'd0;
+          rvfi_mem_wmask <= 4'd0;
+          rvfi_mem_rdata <= 32'd0;
+          rvfi_mem_wdata <= 32'd0;
+        end
+      end
+    end
+  end
+
+  assign rvfi_halt = halted_q;
+  assign rvfi_intr = 1'b0;          // no interrupt support
+  assign rvfi_mode = 2'b11;         // machine mode only
+  assign rvfi_ixl  = 2'b01;         // XLEN = 32
+`endif
+
 endmodule

@@ -79,6 +79,13 @@
       "source": "a catalogue of realistic single-point defects injected into the RTL",
       "description": "Measures what fraction of injected defects the workflow detects, and how many programs each detection takes.",
       "comparison": "mutation score, with every survivor classified as a stimulus gap or an equivalent mutant"
+    },
+    {
+      "id": "formal-proofs",
+      "role": "formal-correctness",
+      "source": "YosysHQ/riscv-formal with SymbiYosys and z3",
+      "description": "Per-instruction proof obligations plus register, pc, uniqueness, and causality consistency checks, with memory responses left unconstrained.",
+      "comparison": "bounded model checking; no counterexample within each check's configured depth"
     }
   ],
   "correctness": {
@@ -172,6 +179,12 @@
         "results are confirmed against an implementation this repository did not write",
         "any ground truth that could not be run is recorded as unavailable with its reason"
       ]
+    },
+    {
+      "id": "formally-verified",
+      "criteria": [
+        "per-instruction semantics are proven, not sampled"
+      ]
     }
   ],
   "phases": [
@@ -217,6 +230,13 @@
       "order": 6,
       "exit_criteria": [
         "agreement confirmed against an implementation written elsewhere"
+      ]
+    },
+    {
+      "id": "formal-verification",
+      "order": 7,
+      "exit_criteria": [
+        "every generated proof obligation passes, or is recorded as inapplicable with its reason"
       ]
     }
   ],

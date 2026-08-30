@@ -269,6 +269,14 @@ module rv32i_pipe #(
   logic ex_is_system;
   assign ex_is_system = ex_valid_q && (f_opcode(ex_instruction_q) == 7'b1110011);
 
+  // RV32I without the C extension has IALIGN=32. B- and J-immediates encode
+  // multiples of two, so a control-flow target can be 2 mod 4, which is an
+  // instruction-address-misaligned exception rather than a legal jump. The
+  // multi-cycle core had the same omission; formal verification found it there
+  // and the same rule applies here.
+  logic ex_fetch_misaligned;
+  assign ex_fetch_misaligned = ex_redirect && (ex_target[1:0] != 2'b00);
+
   // --- memory stage -------------------------------------------------------
   logic [1:0] mem_offset;
   logic [2:0] mem_funct3;
@@ -370,11 +378,11 @@ module rv32i_pipe #(
         end
 
         // IF -> ID
-        if (flush) begin
+        if (flush && !ex_fetch_misaligned) begin
           id_valid_q <= 1'b0;
           id_instruction_q <= 32'd0;
           pc_q <= ex_target;
-        end else if (!stall) begin
+        end else if (!stall && !ex_fetch_misaligned) begin
           id_valid_q <= 1'b1;
           id_pc_q <= pc_q;
           id_instruction_q <= imem_rdata;
@@ -386,6 +394,10 @@ module rv32i_pipe #(
         if (ex_is_system) begin
           trap_q <= 1'b1;
           trap_cause_q <= ex_instruction_q[20] ? 32'd3 : 32'd11;
+          halted_q <= 1'b1;
+        end else if (ex_fetch_misaligned) begin
+          trap_q <= 1'b1;
+          trap_cause_q <= 32'd0;          // instruction address misaligned
           halted_q <= 1'b1;
         end
       end else begin
@@ -415,8 +427,17 @@ module rv32i_pipe #(
   // assertion turns the judgement into a property that is re-checked on every
   // run, so it fails loudly if a later microarchitectural change makes the
   // conjunction reachable and the forwarding guard load-bearing again.
+  // Armed one cycle after reset releases. Reading rst_n directly here would
+  // make it both a synchronous and an asynchronous input, which is a real lint
+  // warning about mixed reset styles rather than a false positive.
+  logic assertions_armed_q;
+  always_ff @(posedge clk or negedge rst_n) begin
+    if (!rst_n) assertions_armed_q <= 1'b0;
+    else assertions_armed_q <= 1'b1;
+  end
+
   always_ff @(posedge clk) begin
-    if (rst_n) begin
+    if (assertions_armed_q) begin
       assert (!(!mem_valid_q && f_writes_reg(mem_instruction_q)
                 && (f_rd(mem_instruction_q) != 5'd0) && ex_valid_q
                 && ((f_rd(mem_instruction_q) == ex_rs1)

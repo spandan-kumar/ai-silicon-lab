@@ -255,6 +255,18 @@ class Hart:
         else:
             raise Trap("illegal-opcode", pc, instruction)
 
+        # RV32I without the C extension has IALIGN=32, so a control-flow target
+        # that is not four-byte aligned raises instruction-address-misaligned.
+        # B- and J-immediates encode multiples of two, so this is reachable.
+        # The model omitted it, exactly as the RTL did: both were written by the
+        # same author from the same reading, and the random corpus never built a
+        # misaligned target. Formal verification found it.
+        #
+        # A trapping instruction commits nothing, so the link register of a
+        # trapping JAL or JALR is not written.
+        if next_pc & 0b11 and opcode in (0b1101111, 0b1100111, 0b1100011):
+            raise Trap("misaligned-fetch", pc, instruction)
+
         if written_register is not None:
             self.write(written_register, written_value)
         self.pc = next_pc

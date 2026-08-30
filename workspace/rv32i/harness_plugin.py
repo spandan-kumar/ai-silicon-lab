@@ -21,9 +21,11 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE / "reference"))
+sys.path.insert(0, str(HERE / "formal"))
 sys.path.insert(0, str(ROOT / "harness"))
 
 import cross_check  # noqa: E402
+import formal_collect  # noqa: E402
 import differential  # noqa: E402
 import opcode_conformance  # noqa: E402
 import rv32i_asm as asm  # noqa: E402
@@ -346,6 +348,28 @@ class Rv32iPlugin(ExperimentPlugin):
                 "note": "Architectural state compared with OpenHW CV32E40P through a "
                         "memory signature. This is the only check here whose ground "
                         "truth this repository did not write.",
+            })
+        # Formal results are read, never produced here: a campaign rebuilds and
+        # re-solves every obligation and takes minutes, which does not belong in
+        # a pass that is meant to run constantly. Absent results are reported as
+        # unavailable, because a proof that was not run is not a proof.
+        formal = formal_collect.collect()
+        if formal["status"] == "unavailable":
+            checks.append({
+                "id": "formal-verification", "ok": None,
+                "reason": formal["reason"],
+                "note": "Run ./workspace/rv32i/formal/run to produce results.",
+            })
+        else:
+            checks.append({
+                "id": "formal-verification",
+                "ok": formal["status"] == "pass",
+                "checks": formal["checks"],
+                "passed": formal["passed"],
+                "failed": formal["failed"],
+                "not_run": formal["not_run"],
+                "failed_checks": formal["failed_checks"][:5],
+                "note": formal["claim"],
             })
         return checks
 

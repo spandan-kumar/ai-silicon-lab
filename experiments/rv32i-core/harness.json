@@ -110,6 +110,17 @@
           "note": "riscv-arch-test needs a toolchain and a reference model; sail-riscv needs Sail. Both recorded as unavailable in the plugin's describe()."
         }
       ]
+    },
+    "formally-verified": {
+      "criteria": [
+        {
+          "criterion": "per-instruction semantics are proven, not sampled",
+          "checks": [
+            "policy:formal-verification"
+          ],
+          "note": "riscv-formal bounded model checking with SymbiYosys and z3. Proves no counterexample exists within each check's depth; not an unbounded proof."
+        }
+      ]
     }
   },
   "phase_gates": {
@@ -130,6 +141,9 @@
     ],
     "independent-cross-check": [
       "independently-cross-checked"
+    ],
+    "formal-verification": [
+      "formally-verified"
     ]
   }
 }

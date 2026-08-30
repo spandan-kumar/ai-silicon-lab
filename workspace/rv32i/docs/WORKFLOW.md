@@ -30,6 +30,7 @@ every pass.
 | CV32E40P, vendored in this repository | yes | **used**; 621 programs agree |
 | `riscv-arch-test` | yes | unavailable: needs a RISC-V toolchain and a reference model to generate signatures |
 | `sail-riscv` formal model | yes | unavailable: needs a Sail/OCaml toolchain |
+| `riscv-formal` proof obligations | yes | **used**; per-instruction semantics proven by bounded model checking |
 
 **The limitation that used to matter most, and how it was closed.** The
 reference model and both cores were written from the same specification by the
@@ -54,6 +55,42 @@ What remains open: agreement was established for the instruction subset and
 stimulus distribution used here. It is not a proof of RV32I compliance, which
 is what `riscv-arch-test` and `sail-riscv` would provide, and both remain
 unavailable on this host.
+
+## What formal verification found that 1,241 test programs could not
+
+riscv-formal generates a proof obligation per instruction and drives it with
+SymbiYosys and z3. The memory response signals are left free, so the proofs
+hold for every memory behaviour the interface permits rather than for the one a
+testbench implements. Nothing is sampled: the solver chooses the inputs.
+
+The first campaign failed every branch and every jump. The assertion was
+`spec_trap == trap`, and the specification's own model sets `spec_trap` when a
+control-flow target is not four-byte aligned.
+
+**The core was missing the instruction-address-misaligned exception.** B- and
+J-immediates encode multiples of *two*, so a branch or jump target can be 2 mod
+4. RV32I without the C extension has IALIGN=32, and such a target must raise an
+exception rather than being taken. Both cores simply jumped there.
+
+Three independent-looking layers of testing had all missed it:
+
+* **The random corpus** never built a misaligned target, because the generator
+  computes offsets in whole instructions.
+* **The reference model had the identical omission.** Same author, same reading
+  of the specification, same blind spot. This is exactly the shared-author
+  failure mode, and it survived the CV32E40P cross-check.
+* **CV32E40P did not disagree**, because it is RV32IMC. With the C extension
+  IALIGN=16 and a 2-mod-4 target is perfectly legal, so on this specific rule it
+  implements a different ISA and is the wrong oracle.
+
+That last point is the sharpest lesson available here. An independent
+implementation is only an oracle for the specification it implements. CV32E40P
+closed the shared-author gap for everything the corpus reached and for every
+rule the two ISAs share, and it was silently useless for a rule where they
+differ. Formal verification has no such dependency: it checks against the
+specification the checker encodes, and it constructs the input itself.
+
+Both cores now raise the exception, and the reference model does too.
 
 ## Workflow configurations
 
@@ -221,12 +258,16 @@ gate, so every verification pass now includes a comparison against ground truth
 this repository did not write. The OBI memory model queues responses because
 CV32E40P's prefetcher keeps several transactions outstanding.
 
-**2. `riscv-formal`.** *Highest value overall.* A SymbiYosys-based framework
-that proves per-instruction ISA compliance rather than sampling it. It replaces
-"24 of 24 mutants killed" with "no counterexample exists within N cycles",
-which is a categorically stronger statement. `yosys-smtbmc` ships with the
-Yosys already installed here and z3 5.1.0 is now installed; `sby` is not in
-Homebrew and needs a source install from YosysHQ.
+**2. `riscv-formal`.** *Done, and it paid for itself immediately.* The core
+carries an RVFI interface under `RISCV_FORMAL`, so the synthesizable design is
+unchanged without the macro. `workspace/rv32i/formal/run` stages the design into
+a scratch clone, generates the obligations, and solves them with z3.
+
+Two configuration notes worth keeping: riscv-formal defaults to the `boolector`
+solver, which is not packaged for this host, so the config selects z3; and the
+generated Makefile must be run with `-k`, or one failing obligation leaves the
+rest unrun and a check that never executed looks indistinguishable from one that
+was not needed.
 
 **3. Verilator RTL coverage in the loop.** *Done, not yet wired into the
 harness.* Branch and expression coverage answer a different question from ISA
@@ -261,6 +302,14 @@ The loop is cheap, which is why it can be run constantly.
 | Full workflow, both cores, 620 programs each | ~12 s |
 | Encoding conformance, 38 instructions | under 1 s |
 | Mutation campaign, 26 mutants with rebuilds | ~60 s |
+| riscv-formal, 44 obligations with z3 | minutes, run deliberately |
 
 Median detection latency for a killable defect is 2 random programs. The
 expensive part of the loop is not running it.
+
+Formal is the exception and is worth its cost differently. It is too slow to
+run on every pass, so it is run deliberately and its results are read by the
+harness rather than produced there — a proof that was not run is reported as
+unavailable, never as a pass. It found in one campaign a conformance defect that
+1,241 programs across two independent execution oracles had missed, because it
+constructs its inputs instead of sampling them.
