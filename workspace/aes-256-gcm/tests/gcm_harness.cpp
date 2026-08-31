@@ -15,6 +15,18 @@ using Dut = Vaes_gcm_core;
 
 #ifdef ITERATIVE
 static constexpr const char *kArchitecture = "iterative-1r1b";
+#elif defined(BALANCED)
+static constexpr const char *kArchitecture = "balanced-1r8b";
+#elif defined(WIDE)
+static constexpr const char *kArchitecture = "wide-2r16b";
+#elif defined(ULTRAWIDE)
+static constexpr const char *kArchitecture = "ultrawide-2r32b";
+#elif defined(BALANCED_WIDE)
+static constexpr const char *kArchitecture = "balanced-wide-1r16b";
+#elif defined(BALANCED_ULTRAWIDE)
+static constexpr const char *kArchitecture = "balanced-ultrawide-1r32b";
+#elif defined(BALANCED_XWIDE)
+static constexpr const char *kArchitecture = "balanced-xwide-1r64b";
 #else
 static constexpr const char *kArchitecture = "unrolled-2r8b";
 #endif

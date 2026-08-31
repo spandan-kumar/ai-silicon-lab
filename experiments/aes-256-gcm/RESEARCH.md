@@ -8,6 +8,43 @@ profile.
 
 Research date: 2026-08-29
 
+## Boolean S-box and technology-aware architecture sweep — 2026-08-31
+
+- The original 2,048-bit lookup formulation was replaced by the NIST Circuit
+  Complexity team's pinned forward `g113-a32-d27-ad6` and inverse
+  `g121-a34-d21-ad4` AES S-box straight-line programs. The generator translates
+  only `AND`, `XOR`, and `XNOR` gates and checks the declared gate counts. A new
+  RTL harness exhaustively compares all 256 inputs in both directions before
+  the existing key-schedule, primitive, and full-GCM tests run.
+- Source revision `4e23832e62f490aeffd8770b1285d99056b5f8bf` and normalized file hashes
+  are recorded in `workspace/aes-256-gcm/third_party/nist-circuits/SOURCE.md`.
+  Primary sources are the [NIST circuit list](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits)
+  and [NIST Circuits repository](https://github.com/usnistgov/Circuits).
+- A Canright-style composite-field S-box was synthesized as a retained design
+  exploration, motivated by [OpenTitan's documented ASIC-oriented Canright
+  choice](https://opensecura.googlesource.com/3p/lowrisc/opentitan/+/refs/heads/master/hw/ip/aes/README.md),
+  but the pinned NIST SLP produced the smaller complete candidates in this
+  flow. The selected SLP lowered generic cells from 36,843 to about 24,700 for
+  the folded baseline and from 73,782 to about 42,700 for the original
+  two-round/eight-bit point. Those are same-flow comparisons, not universal
+  circuit-minimality claims.
+- GHASH was parameterized at 8, 16, 32, and 64 bits per cycle and crossed with
+  one- and two-round AES datapaths. This exposes a crucial target-aware result:
+  two-round AES reduces cycles but approximately doubles the mapped critical
+  combinational path, so its real-time estimate is dominated by one-round AES
+  points under the selected library and workload.
+- Named mapping uses Yosys `dfflibmap` and ABC against the Nangate Open Cell
+  Library typical corner (45 nm, 1.1 V, 25 C), pinned from OpenROAD Flow
+  Scripts revision `be0dca0b1fd41df54792b3012350cd52bccd99bb`. The exact library
+  SHA-256 and license provenance are in
+  `workspace/aes-256-gcm/third_party/nangate45/SOURCE.md`. The flow applies a
+  `BUF_X1` input driver and 5 fF output load, checks for unmapped internal
+  cells, and retains statistics, logs, and mapped netlists.
+- The mapped-netlist gate uses a functional model regenerated from that same
+  Liberty file and reruns all 1,038 GCM operations. This verifies synthesis
+  semantics for the selected frontier candidate; it is not formal equivalence
+  or routed silicon validation.
+
 ## Simulation-complete outcome — 2026-08-30
 
 - Candidate commit `9afd0b63e4d85b35a48013ef1bc97414e3e9852a` implements and measures two

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Synthesize both frozen AES-GCM organizations with the same generic flow."""
+"""Synthesize the AES-GCM architecture sweep with the same generic flow."""
 
 from __future__ import annotations
 
@@ -16,11 +16,43 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIGURATIONS = {
     "iterative-1r1b": {
         "arch": 0,
+        "stem": "iterative",
         "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/ghash_iterative.sv"],
     },
     "unrolled-2r8b": {
         "arch": 1,
+        "stem": "parallel",
         "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_parallel_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "balanced-1r8b": {
+        "arch": 2,
+        "stem": "balanced",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "wide-2r16b": {
+        "arch": 3,
+        "stem": "wide",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_parallel_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "ultrawide-2r32b": {
+        "arch": 4,
+        "stem": "ultrawide",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_parallel_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "balanced-wide-1r16b": {
+        "arch": 5,
+        "stem": "balanced_wide",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "balanced-ultrawide-1r32b": {
+        "arch": 6,
+        "stem": "balanced_ultrawide",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "balanced-xwide-1r64b": {
+        "arch": 7,
+        "stem": "balanced_xwide",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/ghash_parallel.sv"],
     },
 }
 
@@ -32,6 +64,7 @@ def sha256(path: Path) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--architecture", action="append", choices=CONFIGURATIONS)
     args = parser.parse_args()
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -50,8 +83,11 @@ def main() -> int:
         "power": None,
         "architectures": {},
     }
+    selected = set(args.architecture or CONFIGURATIONS)
     for name, configuration in CONFIGURATIONS.items():
-        stem = "iterative" if configuration["arch"] == 0 else "parallel"
+        if name not in selected:
+            continue
+        stem = configuration["stem"]
         stat_path = output_dir / f"{stem}-stat.json"
         netlist_path = output_dir / f"{stem}-netlist.json"
         log_path = output_dir / f"{stem}.log"

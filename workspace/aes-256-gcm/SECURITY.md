@@ -1,6 +1,7 @@
 # Security behavior review
 
-This review applies to profile `aes-256-gcm-64-v1` and both RTL organizations.
+This review applies to profile `aes-256-gcm-64-v1` and all eight measured RTL
+organizations.
 It supports narrow functional and cycle-control claims only. It is not FIPS
 140 validation and does not establish resistance to power, EM, timing-glitch,
 fault-injection, or other physical attacks.
@@ -51,9 +52,12 @@ target on which to measure those effects.
 
 ## Explicit limitations
 
-- The AES S-box is an unmasked data-dependent lookup synthesized into generic
-  logic. No masking, hiding, duplication, parity, infective response, or fault
-  detection is implemented. Secret-dependent switching activity is expected.
+- The AES S-box is a combinational Boolean circuit generated from the pinned
+  NIST Circuit Complexity straight-line programs (113 forward gates and 121
+  inverse gates), not a table or inferred ROM. Every one of the 256 forward and
+  256 inverse inputs is exhaustively checked. The circuit is still unmasked:
+  no hiding, duplication, parity, infective response, or fault detection is
+  implemented, and secret-dependent switching activity is expected.
 - Zeroization is verified by RTL behavior and source inspection, not by a
   post-route remanence or scan-chain study. Synthesis and implementation tools
   may transform clearing structures in target-specific ways.
@@ -62,9 +66,10 @@ target on which to measure those effects.
   public API result.
 - Nonce uniqueness is the caller's responsibility. The accelerator neither
   generates nor tracks IVs.
-- Timing frequency, power, energy, leakage, and fault-resistance metrics remain
-  unavailable until a named FPGA or ASIC implementation and suitable physical
-  instrumentation exist.
+- Nangate45 typical-library synthesis supplies comparative pre-layout cell area
+  and combinational-delay estimates. Routed timing, clock-tree effects, power,
+  energy, leakage, and fault-resistance remain unavailable until physical
+  implementation and suitable instrumentation exist.
 
 The supported claim is therefore: for the frozen bounded profile and simulated
 ready/valid interface, the RTL rejects all tested invalid authentications,

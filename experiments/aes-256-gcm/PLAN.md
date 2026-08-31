@@ -217,12 +217,13 @@ the first session merely because the Git branch is shared.
 
 ## Physical follow-up
 
-The current host has Verilator and Yosys but no detected FPGA board or ASIC
-implementation flow. When one becomes available, add a target profile with
-board/tool versions, clock constraints, memory technology, I/O capture method,
-bitstream/netlist hash, and power instrumentation. If no physical target is
-available, finish the simulation/synthesis stages and mark physical metrics
-unavailable; do not downgrade the claim silently.
+The current host has Verilator, Yosys, and a pinned open Nangate45 typical
+Liberty target for reproducible standard-cell mapping and pre-layout ABC delay
+comparison. It has no detected FPGA board or completed floorplan/place/route
+flow. A future physical phase must add clock uncertainty, floorplan, placement,
+clock-tree synthesis, routing, extracted parasitics, signoff checks, power
+analysis, and same-corpus target execution. Until then, routed slack, power,
+energy, and physical security metrics remain unavailable.
 
 ## Repository layout for the future candidate
 

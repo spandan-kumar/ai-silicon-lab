@@ -1,5 +1,7 @@
-// Eight-bit-per-cycle GHASH comparison point (16 cycles per multiplication).
-module ghash_parallel (
+// Parameterized multi-bit GHASH multiplier. BITS_PER_CYCLE must divide 128.
+module ghash_parallel #(
+    parameter integer BITS_PER_CYCLE = 8
+) (
     input  logic         clk,
     input  logic         rst,
     input  logic         zeroize,
@@ -12,7 +14,11 @@ module ghash_parallel (
     output logic [127:0] out
 );
   logic busy;
-  logic [3:0] byte_index;
+  localparam integer STEP_COUNT = 128 / BITS_PER_CYCLE;
+  localparam integer STEP_INDEX_WIDTH = $clog2(STEP_COUNT);
+  localparam logic [STEP_INDEX_WIDTH-1:0] LAST_STEP = STEP_INDEX_WIDTH'(STEP_COUNT - 1);
+
+  logic [STEP_INDEX_WIDTH-1:0] step_index;
   logic [127:0] x_register;
   logic [127:0] z_register;
   logic [127:0] v_register;
@@ -23,8 +29,8 @@ module ghash_parallel (
   always_comb begin
     z_step = z_register;
     v_step = v_register;
-    for (offset = 0; offset < 8; offset = offset + 1) begin
-      if (x_register[127 - (byte_index*8 + offset)]) z_step = z_step ^ v_step;
+    for (offset = 0; offset < BITS_PER_CYCLE; offset = offset + 1) begin
+      if (x_register[127 - (step_index*BITS_PER_CYCLE + offset)]) z_step = z_step ^ v_step;
       v_step = (v_step >> 1)
           ^ (128'he1000000000000000000000000000000 & {128{v_step[0]}});
     end
@@ -35,7 +41,7 @@ module ghash_parallel (
   always_ff @(posedge clk) begin
     if (rst || zeroize) begin
       busy <= 1'b0;
-      byte_index <= 4'h0;
+      step_index <= '0;
       x_register <= 128'h0;
       z_register <= 128'h0;
       v_register <= 128'h0;
@@ -48,23 +54,23 @@ module ghash_parallel (
       end
       if (in_valid && in_ready) begin
         busy <= 1'b1;
-        byte_index <= 4'h0;
+        step_index <= '0;
         x_register <= x;
         z_register <= 128'h0;
         v_register <= h;
       end else if (busy) begin
-        if (byte_index == 15) begin
+        if (step_index == LAST_STEP) begin
           out <= z_step;
           out_valid <= 1'b1;
           busy <= 1'b0;
-          byte_index <= 4'h0;
+          step_index <= '0;
           x_register <= 128'h0;
           z_register <= 128'h0;
           v_register <= 128'h0;
         end else begin
           z_register <= z_step;
           v_register <= v_step;
-          byte_index <= byte_index + 1'b1;
+          step_index <= step_index + 1'b1;
         end
       end
     end

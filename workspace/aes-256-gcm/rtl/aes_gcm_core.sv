@@ -1,5 +1,7 @@
 module aes_gcm_core #(
-    parameter integer ARCH = 0  // 0: one-round/one-bit, 1: two-round/eight-bit
+    // 0: 1 AES round/1 GHASH bit; 1: 2r/8b; 2: 1r/8b;
+    // 3: 2r/16b; 4: 2r/32b; 5: 1r/16b; 6: 1r/32b; 7: 1r/64b.
+    parameter integer ARCH = 0
 ) (
     input  logic         clk,
     input  logic         rst,
@@ -180,26 +182,36 @@ module aes_gcm_core #(
     end
   endfunction
 
+  localparam integer AES_ROUNDS_PER_CYCLE =
+      (ARCH == 0 || ARCH == 2 || ARCH == 5 || ARCH == 6 || ARCH == 7) ? 1 : 2;
+  localparam integer GHASH_BITS_PER_CYCLE = ARCH == 0 ? 1 :
+      ((ARCH == 3 || ARCH == 5) ? 16 :
+       ((ARCH == 4 || ARCH == 6) ? 32 : (ARCH == 7 ? 64 : 8)));
+
   generate
-    if (ARCH == 0) begin : gen_iterative
+    if (AES_ROUNDS_PER_CYCLE == 1) begin : gen_iterative_aes
       aes256_iterative_enc aes_unit (
           .clk, .rst, .zeroize, .key_valid(aes_key_valid), .key_ready(aes_key_ready),
           .key_loaded(aes_key_loaded), .key_in, .block_valid(aes_block_valid),
           .block_ready(aes_block_ready), .block_in(aes_block_input),
           .block_out_valid(aes_output_valid), .block_out_ready(aes_output_ready),
           .block_out(aes_output));
-      ghash_iterative ghash_unit (
-          .clk, .rst, .zeroize, .in_valid(ghash_input_valid), .in_ready(ghash_input_ready),
-          .x(ghash_input), .h(hash_subkey), .out_valid(ghash_output_valid),
-          .out_ready(ghash_output_ready), .out(ghash_output));
-    end else begin : gen_parallel
+    end else begin : gen_parallel_aes
       aes256_parallel_enc aes_unit (
           .clk, .rst, .zeroize, .key_valid(aes_key_valid), .key_ready(aes_key_ready),
           .key_loaded(aes_key_loaded), .key_in, .block_valid(aes_block_valid),
           .block_ready(aes_block_ready), .block_in(aes_block_input),
           .block_out_valid(aes_output_valid), .block_out_ready(aes_output_ready),
           .block_out(aes_output));
-      ghash_parallel ghash_unit (
+    end
+
+    if (GHASH_BITS_PER_CYCLE == 1) begin : gen_iterative_ghash
+      ghash_iterative ghash_unit (
+          .clk, .rst, .zeroize, .in_valid(ghash_input_valid), .in_ready(ghash_input_ready),
+          .x(ghash_input), .h(hash_subkey), .out_valid(ghash_output_valid),
+          .out_ready(ghash_output_ready), .out(ghash_output));
+    end else begin : gen_parallel_ghash
+      ghash_parallel #(.BITS_PER_CYCLE(GHASH_BITS_PER_CYCLE)) ghash_unit (
           .clk, .rst, .zeroize, .in_valid(ghash_input_valid), .in_ready(ghash_input_ready),
           .x(ghash_input), .h(hash_subkey), .out_valid(ghash_output_valid),
           .out_ready(ghash_output_ready), .out(ghash_output));

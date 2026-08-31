@@ -18,11 +18,18 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = ROOT.parents[1]
 BINARIES = [
     "build/openssl_baseline",
+    "build/aes_sbox_sim",
     "build/aes256_key_schedule_sim",
     "build/aes256_iterative_sim",
     "build/aes256_parallel_sim",
     "build/aes_gcm_iterative_sim",
     "build/aes_gcm_parallel_sim",
+    "build/aes_gcm_balanced_sim",
+    "build/aes_gcm_wide_sim",
+    "build/aes_gcm_ultrawide_sim",
+    "build/aes_gcm_balanced_wide_sim",
+    "build/aes_gcm_balanced_ultrawide_sim",
+    "build/aes_gcm_balanced_xwide_sim",
 ]
 
 
@@ -62,7 +69,7 @@ def main() -> int:
         ("precheck", ["make", "reference", "vectors", "software", "rtl-functions", "lint", "verify-nist"]),
         ("build", ["make", *BINARIES]),
         ("simulation", ["make", "rtl-primitives", "rtl-gcm", "repeatability"]),
-        ("synthesis", ["make", "synthesis"]),
+        ("synthesis", ["make", "synthesis", "asic-synthesis", "gate-verify"]),
     ]
     status = "pass"
     times: dict[str, float | None] = {
@@ -113,7 +120,14 @@ def main() -> int:
         "experiments/aes-256-gcm/profile.json": sha256(REPOSITORY / "experiments" / "aes-256-gcm" / "profile.json"),
         "workspace/aes-256-gcm/Makefile": sha256(ROOT / "Makefile"),
         "workspace/aes-256-gcm/tools/evaluate.py": sha256(Path(__file__)),
+        "workspace/aes-256-gcm/tools/run_asic_synthesis.py": sha256(ROOT / "tools" / "run_asic_synthesis.py"),
+        "workspace/aes-256-gcm/tools/verify_mapped_netlist.py": sha256(ROOT / "tools" / "verify_mapped_netlist.py"),
         "workspace/aes-256-gcm/reference/aes_gcm.py": sha256(ROOT / "reference" / "aes_gcm.py"),
+        "workspace/aes-256-gcm/rtl/aes_functions.svh": sha256(ROOT / "rtl" / "aes_functions.svh"),
+        "workspace/aes-256-gcm/rtl/aes_gcm_core.sv": sha256(ROOT / "rtl" / "aes_gcm_core.sv"),
+        "workspace/aes-256-gcm/rtl/ghash_parallel.sv": sha256(ROOT / "rtl" / "ghash_parallel.sv"),
+        "workspace/aes-256-gcm/third_party/nangate45/SOURCE.md": sha256(ROOT / "third_party" / "nangate45" / "SOURCE.md"),
+        "workspace/aes-256-gcm/third_party/nist-circuits/SOURCE.md": sha256(ROOT / "third_party" / "nist-circuits" / "SOURCE.md"),
         "workspace/aes-256-gcm/vectors/nist_subset.json": sha256(ROOT / "vectors" / "nist_subset.json"),
         "workspace/aes-256-gcm/vectors/generated.json": sha256(ROOT / "vectors" / "generated.json"),
     }
@@ -125,6 +139,13 @@ def main() -> int:
     synthesis_summary = ROOT / "build" / "synth" / "summary.json"
     if synthesis_summary.exists():
         artifacts.append(str(synthesis_summary.relative_to(REPOSITORY)))
+    asic_summary_path = ROOT / "build" / "asic-synth" / "summary.json"
+    gate_summary_path = ROOT / "build" / "gate-verify" / "summary.json"
+    asic_summary = json.loads(asic_summary_path.read_text()) if asic_summary_path.exists() else None
+    gate_summary = json.loads(gate_summary_path.read_text()) if gate_summary_path.exists() else None
+    for artifact in (asic_summary_path, gate_summary_path):
+        if artifact.exists():
+            artifacts.append(str(artifact.relative_to(REPOSITORY)))
     run_record = {
         "schema_version": 1,
         "record_type": "experiment-run",
@@ -192,10 +213,15 @@ def main() -> int:
             "status": "simulation-complete" if status == "pass" else "failed",
             "claim_level": "measured-local-evaluator",
             "reproducible": status == "pass" and not dirty_before,
-            "physical_target": None,
-            "timing": None,
+            "physical_target": "NangateOpenCellLibrary 45 nm typical, 1.1 V, 25 C (standard-cell synthesis only)",
+            "timing": {
+                "status": "prelayout-estimate",
+                "scope": asic_summary["scope"] if asic_summary else None,
+                "architectures": asic_summary["architectures"] if asic_summary else None,
+            },
             "power": None,
-            "notes": "Physical implementation metrics remain unavailable because no target flow or board is configured.",
+            "mapped_netlist_verification": gate_summary,
+            "notes": "Named-library standard-cell mapping and ABC combinational delay are measured. Placement, routing, extracted timing, clock-tree effects, power, and physical security remain unavailable.",
         },
         "evidence": [
             {
