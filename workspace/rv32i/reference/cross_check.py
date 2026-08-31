@@ -34,6 +34,22 @@ from rv32i_iss import Hart, Memory, Trap  # noqa: E402
 
 CV32_SIM = ROOT / "workspace" / "rv32i" / "sim" / "build-cv32" / "cv32e40p_sim"
 DATA_BASE = 0x1000
+
+# Programs whose expected result depends on a rule where CV32E40P's ISA differs
+# from the one under test. It is RV32IMC with hardware misaligned access; this
+# core is RV32I without it. Measured differences on the privileged program:
+# misa reads 0x40001104 against 0x40000100, mepc clears only bit 0 because
+# IALIGN is 16 there, mstatus resets MPP to machine, and two fewer traps occur
+# because misaligned loads and stores are handled rather than faulted.
+#
+# Excluding them scopes the oracle to what it is authoritative for. The Sail
+# model is configured to the exact ISA under test and checks these rules
+# instead, so nothing goes unchecked -- it is checked by the right oracle.
+ISA_DIVERGENT_PROGRAMS = {
+    "privileged": "CV32E40P is RV32IMC with hardware misaligned access; misa, "
+                  "mepc masking, mstatus reset, and which accesses trap all "
+                  "differ. Covered by the Sail cross-check instead.",
+}
 DATA_SIZE = 0x400
 
 
@@ -87,7 +103,11 @@ def cross_check(workflow: str, count: int, length: int, work: Path) -> dict[str,
     disagreements: list[dict[str, Any]] = []
     checked = 0
     total_cycles = 0
+    skipped: list[dict[str, Any]] = []
     for name, base_program in differential.program_suite(workflow, count, length):
+        if name in ISA_DIVERGENT_PROGRAMS:
+            skipped.append({"program": name, "reason": ISA_DIVERGENT_PROGRAMS[name]})
+            continue
         program = asm.with_signature(base_program)
         expected, stop = reference_registers(program)
         observed = run_cv32(program, work)
@@ -114,6 +134,7 @@ def cross_check(workflow: str, count: int, length: int, work: Path) -> dict[str,
         "disagreements": len(disagreements),
         "detail": disagreements[:5],
         "cv32_cycles": total_cycles,
+        "skipped_isa_divergent": skipped,
     }
 
 

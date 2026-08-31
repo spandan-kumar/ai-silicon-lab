@@ -578,6 +578,7 @@ def directed_programs() -> list[tuple[str, list[int]]]:
     suite.append(("far-backward-branch", directed_far_backward_branch()))
     suite.append(("immediate-extremes", directed_immediate_extremes()))
     suite.append(("arithmetic-edges", directed_arithmetic_edges()))
+    suite.append(("privileged", directed_privileged()))
     return suite
 
 

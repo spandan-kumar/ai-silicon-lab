@@ -58,10 +58,10 @@ module rv32i_pipe #(
   logic        ex_valid_q;
   logic [31:0] ex_pc_q, ex_instruction_q, ex_a_q, ex_b_q;
 
-  logic        mem_valid_q;
+  logic        mem_valid_q, mem_exception_q;
   logic [31:0] mem_pc_q, mem_instruction_q, mem_result_q, mem_store_q;
 
-  logic        wb_valid_q;
+  logic        wb_valid_q, wb_exception_q;
   logic [31:0] wb_pc_q, wb_instruction_q, wb_result_q;
 
   logic        retire_valid_q;
@@ -90,6 +90,9 @@ module rv32i_pipe #(
     unique case (w[6:0])
       7'b0110111, 7'b0010111, 7'b1101111, 7'b1100111,
       7'b0000011, 7'b0010011, 7'b0110011: f_writes_reg = 1'b1;
+      // Only the CSR forms of SYSTEM produce a result; ECALL, EBREAK, MRET,
+      // and WFI do not, and must not be forwarded as if they did.
+      7'b1110011: f_writes_reg = (w[14:12] != 3'b000);
       default: f_writes_reg = 1'b0;
     endcase
   endfunction
@@ -119,7 +122,7 @@ module rv32i_pipe #(
   // --- writeback (computed first; ID reads the forwarded value) -----------
   logic        wb_writes;
   logic [4:0]  wb_rd;
-  assign wb_writes = wb_valid_q && f_writes_reg(wb_instruction_q)
+  assign wb_writes = wb_valid_q && !wb_exception_q && f_writes_reg(wb_instruction_q)
                      && (f_rd(wb_instruction_q) != 5'd0);
   assign wb_rd = f_rd(wb_instruction_q);
 
@@ -158,7 +161,7 @@ module rv32i_pipe #(
 
   logic        mem_writes;
   logic [4:0]  mem_rd;
-  assign mem_writes = mem_valid_q && f_writes_reg(mem_instruction_q)
+  assign mem_writes = mem_valid_q && !mem_exception_q && f_writes_reg(mem_instruction_q)
                       && (f_rd(mem_instruction_q) != 5'd0);
   assign mem_rd = f_rd(mem_instruction_q);
 
@@ -213,6 +216,7 @@ module rv32i_pipe #(
           3'b111: ex_alu = ex_a & f_imm_i(ex_instruction_q);
         endcase
       end
+      7'b1110011: ex_alu = ex_csr_rdata;      // CSR read result
       7'b0110011: begin
         unique case (ex_funct3)
           3'b000: ex_alu = ex_funct7_5 ? (ex_a - ex_b) : (ex_a + ex_b);
@@ -266,8 +270,86 @@ module rv32i_pipe #(
     end
   end
 
-  logic ex_is_system;
-  assign ex_is_system = ex_valid_q && (f_opcode(ex_instruction_q) == 7'b1110011);
+  // --- machine-mode control and status registers -------------------------
+  //
+  // CSR access, trap entry, and MRET are all resolved in EX, the same stage
+  // that resolves branches. That keeps exceptions precise without a separate
+  // commit point: when an instruction is in EX every older instruction is
+  // already in MEM or WB and will complete, and everything younger is flushed
+  // exactly as a taken branch flushes it.
+  localparam logic [11:0] CSR_MSTATUS = 12'h300, CSR_MISA = 12'h301;
+  localparam logic [11:0] CSR_MIE = 12'h304, CSR_MTVEC = 12'h305;
+  localparam logic [11:0] CSR_MCOUNTEREN = 12'h306, CSR_MSTATUSH = 12'h310;
+  localparam logic [11:0] CSR_MCOUNTINHIBIT = 12'h320, CSR_MSCRATCH = 12'h340;
+  localparam logic [11:0] CSR_MEPC = 12'h341, CSR_MCAUSE = 12'h342;
+  localparam logic [11:0] CSR_MTVAL = 12'h343, CSR_MIP = 12'h344;
+  localparam logic [11:0] CSR_MCYCLE = 12'hB00, CSR_MINSTRET = 12'hB02;
+  localparam logic [11:0] CSR_MCYCLEH = 12'hB80, CSR_MINSTRETH = 12'hB82;
+  localparam logic [11:0] CSR_CYCLE = 12'hC00, CSR_INSTRET = 12'hC02;
+  localparam logic [11:0] CSR_CYCLEH = 12'hC80, CSR_INSTRETH = 12'hC82;
+  localparam logic [11:0] CSR_MVENDORID = 12'hF11, CSR_MARCHID = 12'hF12;
+  localparam logic [11:0] CSR_MIMPID = 12'hF13, CSR_MHARTID = 12'hF14;
+  localparam logic [31:0] MISA_RV32I = 32'h4000_0100;
+
+  logic [31:0] mstatus_q, mie_q, mtvec_q, mscratch_q;
+  logic [31:0] mepc_q, mcause_q, mtval_q;
+  logic [31:0] mcycle_q, mcycleh_q, minstret_q, minstreth_q;
+  logic [31:0] mcounteren_q, mcountinhibit_q;
+
+  logic [11:0] ex_csr_address;
+  assign ex_csr_address = ex_instruction_q[31:20];
+
+  logic [31:0] ex_csr_rdata;
+  logic        ex_csr_known;
+  always_comb begin
+    ex_csr_known = 1'b1;
+    unique case (ex_csr_address)
+      CSR_MSTATUS:       ex_csr_rdata = mstatus_q;
+      CSR_MISA:          ex_csr_rdata = MISA_RV32I;
+      CSR_MIE:           ex_csr_rdata = mie_q;
+      CSR_MTVEC:         ex_csr_rdata = mtvec_q;
+      CSR_MCOUNTEREN:    ex_csr_rdata = mcounteren_q;
+      CSR_MSTATUSH:      ex_csr_rdata = 32'd0;
+      CSR_MCOUNTINHIBIT: ex_csr_rdata = mcountinhibit_q;
+      CSR_MSCRATCH:      ex_csr_rdata = mscratch_q;
+      CSR_MEPC:          ex_csr_rdata = mepc_q;
+      CSR_MCAUSE:        ex_csr_rdata = mcause_q;
+      CSR_MTVAL:         ex_csr_rdata = mtval_q;
+      CSR_MIP:           ex_csr_rdata = 32'd0;
+      CSR_MCYCLE,    CSR_CYCLE:    ex_csr_rdata = mcycle_q;
+      CSR_MCYCLEH,   CSR_CYCLEH:   ex_csr_rdata = mcycleh_q;
+      CSR_MINSTRET,  CSR_INSTRET:  ex_csr_rdata = minstret_q;
+      CSR_MINSTRETH, CSR_INSTRETH: ex_csr_rdata = minstreth_q;
+      CSR_MVENDORID, CSR_MARCHID, CSR_MIMPID, CSR_MHARTID: ex_csr_rdata = 32'd0;
+      default: begin
+        ex_csr_rdata = 32'd0;
+        ex_csr_known = 1'b0;
+      end
+    endcase
+  end
+
+  logic [2:0]  ex_sys_funct3;
+  logic [11:0] ex_funct12;
+  assign ex_sys_funct3 = f_funct3(ex_instruction_q);
+  assign ex_funct12 = ex_instruction_q[31:20];
+
+  logic [31:0] ex_csr_operand, ex_csr_wdata;
+  assign ex_csr_operand = ex_sys_funct3[2] ? {27'd0, ex_rs1} : ex_a;
+  always_comb begin
+    unique case (ex_sys_funct3[1:0])
+      2'b01:   ex_csr_wdata = ex_csr_operand;
+      2'b10:   ex_csr_wdata = ex_csr_rdata | ex_csr_operand;
+      default: ex_csr_wdata = ex_csr_rdata & ~ex_csr_operand;
+    endcase
+  end
+
+  logic ex_is_system, ex_is_csr, ex_csr_writes, ex_csr_reads, ex_csr_illegal;
+  assign ex_is_system  = ex_valid_q && (f_opcode(ex_instruction_q) == 7'b1110011);
+  assign ex_is_csr     = ex_is_system && (ex_sys_funct3 != 3'b000);
+  assign ex_csr_writes = (ex_sys_funct3[1:0] == 2'b01) || (ex_rs1 != 5'd0);
+  assign ex_csr_reads  = (ex_sys_funct3[1:0] != 2'b01) || (f_rd(ex_instruction_q) != 5'd0);
+  assign ex_csr_illegal = !ex_csr_known
+                          || (ex_csr_writes && (ex_csr_address[11:10] == 2'b11));
 
   // RV32I without the C extension has IALIGN=32. B- and J-immediates encode
   // multiples of two, so a control-flow target can be 2 mod 4, which is an
@@ -276,6 +358,79 @@ module rv32i_pipe #(
   // and the same rule applies here.
   logic ex_fetch_misaligned;
   assign ex_fetch_misaligned = ex_redirect && (ex_target[1:0] != 2'b00);
+
+  // Data alignment is checked in EX, where the effective address is computed,
+  // so the exception is raised before the access reaches memory.
+  logic [31:0] ex_data_address;
+  logic        ex_data_misaligned;
+  assign ex_data_address = ex_alu;
+  always_comb begin
+    ex_data_misaligned = 1'b0;
+    if (ex_valid_q && (f_is_load(ex_instruction_q) || f_is_store(ex_instruction_q))) begin
+      unique case (f_funct3(ex_instruction_q))
+        3'b001, 3'b101: ex_data_misaligned = ex_data_address[0];
+        3'b010:         ex_data_misaligned = (ex_data_address[1:0] != 2'b00);
+        default:        ex_data_misaligned = 1'b0;
+      endcase
+    end
+  end
+
+  // An instruction this core does not implement raises illegal-instruction.
+  // Opcode alone is not enough: several opcodes have funct3 encodings that are
+  // reserved, and decoding them as a neighbouring operation would silently
+  // compute the wrong answer instead of faulting.
+  logic ex_illegal_encoding;
+  always_comb begin
+    ex_illegal_encoding = 1'b0;
+    unique case (f_opcode(ex_instruction_q))
+      7'b0110111, 7'b0010111, 7'b1101111,
+      7'b0010011, 7'b0110011, 7'b0001111, 7'b1110011: ex_illegal_encoding = 1'b0;
+      7'b1100111: ex_illegal_encoding = (f_funct3(ex_instruction_q) != 3'b000);
+      7'b1100011: ex_illegal_encoding = (f_funct3(ex_instruction_q) == 3'b010)
+                                     || (f_funct3(ex_instruction_q) == 3'b011);
+      7'b0000011: ex_illegal_encoding = (f_funct3(ex_instruction_q) == 3'b011)
+                                     || (f_funct3(ex_instruction_q) == 3'b110)
+                                     || (f_funct3(ex_instruction_q) == 3'b111);
+      7'b0100011: ex_illegal_encoding = (f_funct3(ex_instruction_q) > 3'b010);
+      default: ex_illegal_encoding = 1'b1;
+    endcase
+  end
+
+  // Exception detection, in priority order.
+  logic        ex_exception;
+  logic [31:0] ex_cause, ex_tval;
+  logic        ex_is_mret;
+  always_comb begin
+    ex_exception = 1'b0;
+    ex_cause = 32'd0;
+    ex_tval = 32'd0;
+    ex_is_mret = 1'b0;
+    if (ex_valid_q) begin
+      if (ex_illegal_encoding) begin
+        ex_exception = 1'b1; ex_cause = 32'd2; ex_tval = ex_instruction_q;
+      end else if (ex_fetch_misaligned) begin
+        ex_exception = 1'b1; ex_cause = 32'd0; ex_tval = ex_target;
+      end else if (ex_data_misaligned) begin
+        ex_exception = 1'b1;
+        ex_cause = f_is_store(ex_instruction_q) ? 32'd6 : 32'd4;
+        ex_tval = ex_data_address;
+      end else if (ex_is_csr) begin
+        if (ex_csr_illegal) begin
+          ex_exception = 1'b1; ex_cause = 32'd2; ex_tval = ex_instruction_q;
+        end
+      end else if (ex_is_system) begin
+        unique case (ex_funct12)
+          12'h000: begin ex_exception = 1'b1; ex_cause = 32'd11; end
+          12'h001: begin ex_exception = 1'b1; ex_cause = 32'd3; ex_tval = ex_pc_q; end
+          12'h302: ex_is_mret = 1'b1;
+          12'h105: ;                                    // WFI behaves as a nop
+          default: begin
+            ex_exception = 1'b1; ex_cause = 32'd2; ex_tval = ex_instruction_q;
+          end
+        endcase
+      end
+    end
+  end
 
   // --- memory stage -------------------------------------------------------
   logic [1:0] mem_offset;
@@ -302,8 +457,9 @@ module rv32i_pipe #(
     endcase
   end
 
-  assign dmem_req = mem_valid_q && (f_is_load(mem_instruction_q) || f_is_store(mem_instruction_q));
-  assign dmem_we = mem_valid_q && f_is_store(mem_instruction_q);
+  assign dmem_req = mem_valid_q && !mem_exception_q
+                    && (f_is_load(mem_instruction_q) || f_is_store(mem_instruction_q));
+  assign dmem_we = mem_valid_q && !mem_exception_q && f_is_store(mem_instruction_q);
   assign dmem_be = mem_store_be;
   assign dmem_addr = {mem_result_q[31:2], 2'b00};
   assign dmem_wdata = mem_store_data;
@@ -329,8 +485,27 @@ module rv32i_pipe #(
   assign mem_writeback_value = f_is_load(mem_instruction_q) ? mem_load_result : mem_result_q;
 
   // --- control ------------------------------------------------------------
+  // A trap or an MRET redirects the front end just as a taken branch does, and
+  // takes priority: an instruction that faults must not also be allowed to
+  // jump. Everything younger is flushed, which is what makes the exception
+  // precise.
+  logic        ex_control_redirect;
+  logic [31:0] ex_control_target;
+  always_comb begin
+    if (ex_exception) begin
+      ex_control_redirect = 1'b1;
+      ex_control_target = mtvec_q & ~32'd3;
+    end else if (ex_is_mret) begin
+      ex_control_redirect = 1'b1;
+      ex_control_target = mepc_q & ~32'd3;
+    end else begin
+      ex_control_redirect = ex_redirect && !ex_fetch_misaligned;
+      ex_control_target = ex_target;
+    end
+  end
+
   assign stall = load_use_hazard;
-  assign flush = ex_redirect;
+  assign flush = ex_control_redirect;
 
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -338,11 +513,18 @@ module rv32i_pipe #(
       id_valid_q <= 1'b0; id_pc_q <= 32'd0; id_instruction_q <= 32'd0;
       ex_valid_q <= 1'b0; ex_pc_q <= 32'd0; ex_instruction_q <= 32'd0;
       ex_a_q <= 32'd0; ex_b_q <= 32'd0;
-      mem_valid_q <= 1'b0; mem_pc_q <= 32'd0; mem_instruction_q <= 32'd0;
+      mem_valid_q <= 1'b0; mem_exception_q <= 1'b0;
+      mem_pc_q <= 32'd0; mem_instruction_q <= 32'd0;
       mem_result_q <= 32'd0; mem_store_q <= 32'd0;
-      wb_valid_q <= 1'b0; wb_pc_q <= 32'd0; wb_instruction_q <= 32'd0; wb_result_q <= 32'd0;
+      wb_valid_q <= 1'b0; wb_exception_q <= 1'b0;
+      wb_pc_q <= 32'd0; wb_instruction_q <= 32'd0; wb_result_q <= 32'd0;
       retire_valid_q <= 1'b0; retire_pc_q <= 32'd0; retire_instruction_q <= 32'd0;
       halted_q <= 1'b0; trap_q <= 1'b0; trap_cause_q <= 32'd0;
+      mstatus_q <= 32'd0; mie_q <= 32'd0; mtvec_q <= 32'd0; mscratch_q <= 32'd0;
+      mepc_q <= 32'd0; mcause_q <= 32'd0; mtval_q <= 32'd0;
+      mcycle_q <= 32'd0; mcycleh_q <= 32'd0;
+      minstret_q <= 32'd0; minstreth_q <= 32'd0;
+      mcounteren_q <= 32'd0; mcountinhibit_q <= 32'd0;
       for (int i = 0; i < 32; i++) regs_q[i] <= 32'd0;
     end else begin
       // Writeback commits before anything else this cycle.
@@ -354,12 +536,14 @@ module rv32i_pipe #(
       if (!halted_q) begin
         // MEM -> WB
         wb_valid_q <= mem_valid_q;
+        wb_exception_q <= mem_exception_q;
         wb_pc_q <= mem_pc_q;
         wb_instruction_q <= mem_instruction_q;
         wb_result_q <= mem_writeback_value;
 
         // EX -> MEM
-        mem_valid_q <= ex_valid_q && !ex_is_system;
+        mem_valid_q <= ex_valid_q;
+        mem_exception_q <= ex_exception;
         mem_pc_q <= ex_pc_q;
         mem_instruction_q <= ex_instruction_q;
         mem_result_q <= ex_alu;
@@ -378,27 +562,56 @@ module rv32i_pipe #(
         end
 
         // IF -> ID
-        if (flush && !ex_fetch_misaligned) begin
+        if (flush) begin
           id_valid_q <= 1'b0;
           id_instruction_q <= 32'd0;
-          pc_q <= ex_target;
-        end else if (!stall && !ex_fetch_misaligned) begin
+          pc_q <= ex_control_target;
+        end else if (!stall) begin
           id_valid_q <= 1'b1;
           id_pc_q <= pc_q;
           id_instruction_q <= imem_rdata;
           pc_q <= pc_q + 32'd4;
         end
 
-        // A system instruction stops the machine once everything ahead of it
-        // has retired. Stopping at EX would discard in-flight instructions.
-        if (ex_is_system) begin
+        // Counters. mcycle counts clock cycles; minstret counts retirements.
+        if (!mcountinhibit_q[0]) {mcycleh_q, mcycle_q} <= {mcycleh_q, mcycle_q} + 64'd1;
+        if (!mcountinhibit_q[2] && wb_valid_q) begin
+          {minstreth_q, minstret_q} <= {minstreth_q, minstret_q} + 64'd1;
+        end
+
+        if (ex_exception) begin
+          // Enter machine mode. Younger instructions are flushed by the
+          // redirect, so nothing after the faulting instruction commits.
+          mstatus_q <= {mstatus_q[31:8], mstatus_q[3], mstatus_q[6:4], 1'b0,
+                        mstatus_q[2:0]} | 32'h0000_1800;
+          mepc_q <= ex_pc_q & ~32'd3;
+          mcause_q <= ex_cause;
+          mtval_q <= ex_tval;
           trap_q <= 1'b1;
-          trap_cause_q <= ex_instruction_q[20] ? 32'd3 : 32'd11;
-          halted_q <= 1'b1;
-        end else if (ex_fetch_misaligned) begin
-          trap_q <= 1'b1;
-          trap_cause_q <= 32'd0;          // instruction address misaligned
-          halted_q <= 1'b1;
+          trap_cause_q <= ex_cause;
+        end else if (ex_is_mret) begin
+          mstatus_q <= {mstatus_q[31:8], 1'b1, mstatus_q[6:4], mstatus_q[7],
+                        mstatus_q[2:0]} | 32'h0000_1800;
+        end else if (ex_is_csr && !ex_csr_illegal && ex_csr_writes) begin
+          unique case (ex_csr_address)
+            CSR_MSTATUS: mstatus_q <= {19'd0,
+                           ((ex_csr_wdata[12:11] == 2'b00) ? 2'b00 : 2'b11),
+                           3'd0, ex_csr_wdata[7], 3'd0, ex_csr_wdata[3], 3'd0};
+            CSR_MIE:           mie_q <= ex_csr_wdata & 32'h0000_0888;
+            CSR_MTVEC:         mtvec_q <= {ex_csr_wdata[31:2],
+                                  (ex_csr_wdata[1:0] < 2'd2) ? ex_csr_wdata[1:0] : 2'd0};
+            CSR_MSCRATCH:      mscratch_q <= ex_csr_wdata;
+            CSR_MEPC:          mepc_q <= ex_csr_wdata & ~32'd3;
+            CSR_MCAUSE:        mcause_q <= ex_csr_wdata;
+            CSR_MTVAL:         mtval_q <= ex_csr_wdata;
+            CSR_MCOUNTEREN:    mcounteren_q <= ex_csr_wdata;
+            CSR_MCOUNTINHIBIT: mcountinhibit_q <= ex_csr_wdata & 32'h0000_0005;
+            CSR_MCYCLE:        mcycle_q <= ex_csr_wdata;
+            CSR_MCYCLEH:       mcycleh_q <= ex_csr_wdata;
+            CSR_MINSTRET:      minstret_q <= ex_csr_wdata;
+            CSR_MINSTRETH:     minstreth_q <= ex_csr_wdata;
+            default: ;
+          endcase
         end
       end else begin
         // Drain what is already past EX so their writebacks still land.

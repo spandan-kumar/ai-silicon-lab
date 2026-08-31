@@ -220,6 +220,104 @@ module rv32i_core #(
     endcase
   end
 
+  // --- machine-mode control and status registers -------------------------
+  //
+  // Only the subset this core actually implements exists here. Registers the
+  // specification defines but this design does not provide are decoded as
+  // illegal rather than silently reading zero, so a program that depends on
+  // one fails loudly instead of quietly getting the wrong answer.
+  localparam logic [11:0] CSR_MSTATUS = 12'h300, CSR_MISA = 12'h301;
+  localparam logic [11:0] CSR_MIE = 12'h304, CSR_MTVEC = 12'h305;
+  localparam logic [11:0] CSR_MCOUNTEREN = 12'h306, CSR_MSTATUSH = 12'h310;
+  localparam logic [11:0] CSR_MCOUNTINHIBIT = 12'h320, CSR_MSCRATCH = 12'h340;
+  localparam logic [11:0] CSR_MEPC = 12'h341, CSR_MCAUSE = 12'h342;
+  localparam logic [11:0] CSR_MTVAL = 12'h343, CSR_MIP = 12'h344;
+  localparam logic [11:0] CSR_MCYCLE = 12'hB00, CSR_MINSTRET = 12'hB02;
+  localparam logic [11:0] CSR_MCYCLEH = 12'hB80, CSR_MINSTRETH = 12'hB82;
+  localparam logic [11:0] CSR_CYCLE = 12'hC00, CSR_INSTRET = 12'hC02;
+  localparam logic [11:0] CSR_CYCLEH = 12'hC80, CSR_INSTRETH = 12'hC82;
+  localparam logic [11:0] CSR_MVENDORID = 12'hF11, CSR_MARCHID = 12'hF12;
+  localparam logic [11:0] CSR_MIMPID = 12'hF13, CSR_MHARTID = 12'hF14;
+
+  localparam logic [31:0] MISA_RV32I = 32'h4000_0100;   // MXL=1, extension I
+  localparam int MSTATUS_MIE_BIT = 3, MSTATUS_MPIE_BIT = 7;
+
+  logic [31:0] mstatus_q, mie_q, mtvec_q, mscratch_q;
+  logic [31:0] mepc_q, mcause_q, mtval_q;
+  logic [31:0] mcycle_q, mcycleh_q, minstret_q, minstreth_q;
+  logic [31:0] mcounteren_q, mcountinhibit_q;
+
+  logic [11:0] csr_address;
+  assign csr_address = instruction_q[31:20];
+
+  // Read value, and whether the address is implemented at all.
+  logic [31:0] csr_rdata;
+  logic        csr_known;
+  always_comb begin
+    csr_known = 1'b1;
+    unique case (csr_address)
+      CSR_MSTATUS:       csr_rdata = mstatus_q;
+      CSR_MISA:          csr_rdata = MISA_RV32I;
+      CSR_MIE:           csr_rdata = mie_q;
+      CSR_MTVEC:         csr_rdata = mtvec_q;
+      CSR_MCOUNTEREN:    csr_rdata = mcounteren_q;
+      CSR_MSTATUSH:      csr_rdata = 32'd0;
+      CSR_MCOUNTINHIBIT: csr_rdata = mcountinhibit_q;
+      CSR_MSCRATCH:      csr_rdata = mscratch_q;
+      CSR_MEPC:          csr_rdata = mepc_q;
+      CSR_MCAUSE:        csr_rdata = mcause_q;
+      CSR_MTVAL:         csr_rdata = mtval_q;
+      CSR_MIP:           csr_rdata = 32'd0;      // nothing raises an interrupt
+      CSR_MCYCLE,   CSR_CYCLE:     csr_rdata = mcycle_q;
+      CSR_MCYCLEH,  CSR_CYCLEH:    csr_rdata = mcycleh_q;
+      CSR_MINSTRET, CSR_INSTRET:   csr_rdata = minstret_q;
+      CSR_MINSTRETH, CSR_INSTRETH: csr_rdata = minstreth_q;
+      CSR_MVENDORID, CSR_MARCHID, CSR_MIMPID, CSR_MHARTID: csr_rdata = 32'd0;
+      default: begin
+        csr_rdata = 32'd0;
+        csr_known = 1'b0;
+      end
+    endcase
+  end
+
+  // Operand: a register for the plain forms, the rs1 field as a 5-bit unsigned
+  // immediate for the immediate forms.
+  logic [31:0] csr_operand;
+  assign csr_operand = funct3[2] ? {27'd0, rs1} : a;
+
+  logic [31:0] csr_wdata;
+  always_comb begin
+    unique case (funct3[1:0])
+      2'b01:   csr_wdata = csr_operand;               // csrrw
+      2'b10:   csr_wdata = csr_rdata | csr_operand;   // csrrs
+      default: csr_wdata = csr_rdata & ~csr_operand;  // csrrc
+    endcase
+  end
+
+  // A set or clear whose source is x0 or a zero immediate performs no write,
+  // so a read-only register may be read through them.
+  logic csr_writes, csr_reads, csr_read_only, csr_illegal;
+  assign csr_writes    = (funct3[1:0] == 2'b01) || (rs1 != 5'd0);
+  assign csr_reads     = (funct3[1:0] != 2'b01) || (rd != 5'd0);
+  assign csr_read_only = (csr_address[11:10] == 2'b11);
+  assign csr_illegal   = !csr_known || (csr_writes && csr_read_only);
+
+  // Reserved funct3 encodings within an otherwise valid opcode. Decoding one as
+  // a neighbouring operation would silently compute a wrong answer rather than
+  // fault, and nothing in the random corpus generates them, so this is checked
+  // explicitly rather than left to chance.
+  logic illegal_encoding;
+  always_comb begin
+    unique case (opcode)
+      7'b1100111: illegal_encoding = (funct3 != 3'b000);
+      7'b1100011: illegal_encoding = (funct3 == 3'b010) || (funct3 == 3'b011);
+      7'b0000011: illegal_encoding = (funct3 == 3'b011) || (funct3 == 3'b110)
+                                  || (funct3 == 3'b111);
+      7'b0100011: illegal_encoding = (funct3 > 3'b010);
+      default:    illegal_encoding = 1'b0;
+    endcase
+  end
+
   logic misaligned;
   always_comb begin
     unique case (funct3)
@@ -274,6 +372,27 @@ module rv32i_core #(
     if (index != 5'd0) regs_q[index] <= value;
   endtask
 
+  // Enter machine mode: record the cause and vector to mtvec. Exceptions
+  // always use the base address; only interrupts use the vectored offset, and
+  // this core raises none.
+  task automatic enter_trap(input logic [31:0] cause, input logic [31:0] tval,
+                            input logic [31:0] epc);
+    mstatus_q <= {mstatus_q[31:8],
+                  mstatus_q[MSTATUS_MIE_BIT],   // MPIE takes the old MIE
+                  mstatus_q[6:4],
+                  1'b0,                          // MIE clears on trap entry
+                  mstatus_q[2:0]} | 32'h0000_1800;
+    mepc_q <= epc & ~32'd3;
+    mcause_q <= cause;
+    mtval_q <= tval;
+    pc_q <= mtvec_q & ~32'd3;
+    trap_q <= 1'b1;
+    trap_cause_q <= cause;
+    retire_q <= 1'b1;
+    state_q <= S_FETCH_REQ;
+  endtask
+
+
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       state_q <= S_FETCH_REQ;
@@ -289,9 +408,29 @@ module rv32i_core #(
       load_funct3_q <= 3'd0;
       load_offset_q <= 2'd0;
       next_pc_q <= 32'd0;
+      // mstatus resets to zero, MPP included. The Sail model does the same and
+      // the certification suite compares against it; the specification leaves
+      // most of these reset values to the implementation.
+      mstatus_q <= 32'd0;
+      mie_q <= 32'd0; mtvec_q <= 32'd0; mscratch_q <= 32'd0;
+      mepc_q <= 32'd0; mcause_q <= 32'd0; mtval_q <= 32'd0;
+      mcycle_q <= 32'd0; mcycleh_q <= 32'd0;
+      minstret_q <= 32'd0; minstreth_q <= 32'd0;
+      mcounteren_q <= 32'd0; mcountinhibit_q <= 32'd0;
       for (int i = 0; i < 32; i++) regs_q[i] <= 32'd0;
     end else begin
       retire_q <= 1'b0;
+
+      // Counters. mcycle counts real clock cycles here; the reference model has
+      // no cycles to count and advances it per retired instruction instead, so
+      // the two disagree by construction and mcycle is kept out of differential
+      // stimulus. minstret means the same thing in both.
+      if (!mcountinhibit_q[0]) begin
+        {mcycleh_q, mcycle_q} <= {mcycleh_q, mcycle_q} + 64'd1;
+      end
+      if (!mcountinhibit_q[2] && retire_q) begin
+        {minstreth_q, minstret_q} <= {minstreth_q, minstret_q} + 64'd1;
+      end
 
       unique case (state_q)
         S_FETCH_REQ: begin
@@ -311,6 +450,9 @@ module rv32i_core #(
           retire_pc_q <= pc_q;
           retire_instruction_q <= instruction_q;
 
+          if (illegal_encoding) begin
+            enter_trap(32'd2, instruction_q, pc_q);
+          end else
           unique case (opcode)
             7'b0110111: begin                       // LUI
               write_register(rd, imm_u);
@@ -326,10 +468,7 @@ module rv32i_core #(
             end
             7'b1101111: begin                       // JAL
               if (fetch_misaligned) begin
-                trap_q <= 1'b1;
-                trap_cause_q <= 32'd0;              // instruction address misaligned
-                halted_q <= 1'b1;
-                state_q <= S_HALT;
+                enter_trap(32'd0, jal_target, pc_q);   // instruction address misaligned
               end else begin
                 write_register(rd, pc_q + 32'd4);
                 pc_q <= jal_target;
@@ -339,10 +478,7 @@ module rv32i_core #(
             end
             7'b1100111: begin                       // JALR
               if (fetch_misaligned) begin
-                trap_q <= 1'b1;
-                trap_cause_q <= 32'd0;
-                halted_q <= 1'b1;
-                state_q <= S_HALT;
+                enter_trap(32'd0, jalr_target, pc_q);   // instruction address misaligned
               end else begin
                 write_register(rd, pc_q + 32'd4);
                 pc_q <= jalr_target;
@@ -352,10 +488,7 @@ module rv32i_core #(
             end
             7'b1100011: begin                       // branches
               if (fetch_misaligned) begin
-                trap_q <= 1'b1;
-                trap_cause_q <= 32'd0;
-                halted_q <= 1'b1;
-                state_q <= S_HALT;
+                enter_trap(32'd0, branch_target, pc_q);   // instruction address misaligned
               end else begin
                 pc_q <= branch_taken ? branch_target : (pc_q + 32'd4);
                 retire_q <= 1'b1;
@@ -381,10 +514,9 @@ module rv32i_core #(
             end
             7'b0000011, 7'b0100011: begin           // loads and stores
               if (misaligned) begin
-                trap_q <= 1'b1;
-                trap_cause_q <= 32'd4;              // misaligned access
-                halted_q <= 1'b1;
-                state_q <= S_HALT;
+                // Cause 4 for a load, 6 for a store.
+                enter_trap((opcode == 7'b0100011) ? 32'd6 : 32'd4,
+                           mem_address, pc_q);
               end else begin
                 load_rd_q <= rd;
                 load_funct3_q <= funct3;
@@ -392,18 +524,62 @@ module rv32i_core #(
                 state_q <= S_MEM_REQ;
               end
             end
-            7'b1110011: begin                       // ECALL / EBREAK
-              trap_q <= 1'b1;
-              trap_cause_q <= instruction_q[20] ? 32'd3 : 32'd11;
-              halted_q <= 1'b1;
-              state_q <= S_HALT;
+            7'b1110011: begin                       // SYSTEM
+              if (funct3 == 3'b000) begin
+                unique case (instruction_q[31:20])
+                  12'h000: enter_trap(32'd11, 32'd0, pc_q);      // ECALL from M
+                  12'h001: enter_trap(32'd3, pc_q, pc_q);        // EBREAK
+                  12'h302: begin                                 // MRET
+                    mstatus_q <= {mstatus_q[31:8], 1'b1, mstatus_q[6:4],
+                                  mstatus_q[MSTATUS_MPIE_BIT], mstatus_q[2:0]}
+                                 | 32'h0000_1800;
+                    pc_q <= mepc_q & ~32'd3;
+                    retire_q <= 1'b1;
+                    state_q <= S_FETCH_REQ;
+                  end
+                  12'h105: begin                                 // WFI: a nop here
+                    pc_q <= pc_q + 32'd4;
+                    retire_q <= 1'b1;
+                    state_q <= S_FETCH_REQ;
+                  end
+                  default: enter_trap(32'd2, instruction_q, pc_q);
+                endcase
+              end else if (csr_illegal) begin
+                enter_trap(32'd2, instruction_q, pc_q);
+              end else begin
+                if (csr_reads) write_register(rd, csr_rdata);
+                if (csr_writes) begin
+                  // WARL masking, inlined because only one process may drive
+                  // the CSR state. MPP is writable but machine is the only
+                  // implemented level, so supervisor and the reserved encoding
+                  // read back as machine.
+                  unique case (csr_address)
+                    CSR_MSTATUS: mstatus_q <= {19'd0,
+                                   ((csr_wdata[12:11] == 2'b00) ? 2'b00 : 2'b11),
+                                   3'd0, csr_wdata[MSTATUS_MPIE_BIT], 3'd0,
+                                   csr_wdata[MSTATUS_MIE_BIT], 3'd0};
+                    CSR_MIE:           mie_q <= csr_wdata & 32'h0000_0888;
+                    CSR_MTVEC:         mtvec_q <= {csr_wdata[31:2],
+                                          (csr_wdata[1:0] < 2'd2) ? csr_wdata[1:0] : 2'd0};
+                    CSR_MSCRATCH:      mscratch_q <= csr_wdata;
+                    CSR_MEPC:          mepc_q <= csr_wdata & ~32'd3;
+                    CSR_MCAUSE:        mcause_q <= csr_wdata;
+                    CSR_MTVAL:         mtval_q <= csr_wdata;
+                    CSR_MCOUNTEREN:    mcounteren_q <= csr_wdata;
+                    CSR_MCOUNTINHIBIT: mcountinhibit_q <= csr_wdata & 32'h0000_0005;
+                    CSR_MCYCLE:        mcycle_q <= csr_wdata;
+                    CSR_MCYCLEH:       mcycleh_q <= csr_wdata;
+                    CSR_MINSTRET:      minstret_q <= csr_wdata;
+                    CSR_MINSTRETH:     minstreth_q <= csr_wdata;
+                    default: ;                    // read-only or unimplemented
+                  endcase
+                end
+                pc_q <= pc_q + 32'd4;
+                retire_q <= 1'b1;
+                state_q <= S_FETCH_REQ;
+              end
             end
-            default: begin
-              trap_q <= 1'b1;
-              trap_cause_q <= 32'd2;                // illegal instruction
-              halted_q <= 1'b1;
-              state_q <= S_HALT;
-            end
+            default: enter_trap(32'd2, instruction_q, pc_q);
           endcase
         end
 
@@ -442,6 +618,10 @@ module rv32i_core #(
     will_retire = 1'b0;
     will_trap   = 1'b0;
     if (state_q == S_EXEC) begin
+      if (illegal_encoding) begin
+        will_retire = 1'b1;
+        will_trap   = 1'b1;
+      end else
       unique case (opcode)
         7'b0110111, 7'b0010111, 7'b0010011, 7'b0110011, 7'b0001111:
           will_retire = 1'b1;
@@ -454,8 +634,13 @@ module rv32i_core #(
           will_trap   = misaligned;
         end
         7'b1110011: begin
-          will_retire = 1'b1;            // ECALL and EBREAK
-          will_trap   = 1'b1;
+          will_retire = 1'b1;
+          // ECALL, EBREAK, and an unsupported SYSTEM encoding trap; MRET, WFI,
+          // and a legal CSR access do not.
+          will_trap = (funct3 == 3'b000)
+                      ? !((instruction_q[31:20] == 12'h302)
+                          || (instruction_q[31:20] == 12'h105))
+                      : csr_illegal;
         end
         default: begin
           will_retire = 1'b1;            // illegal instruction
@@ -486,6 +671,12 @@ module rv32i_core #(
         7'b1100111: begin next_rd_addr = rd; next_rd_wdata = pc_q + 32'd4; end
         7'b0010011: begin next_rd_addr = rd; next_rd_wdata = alu_ri; end
         7'b0110011: begin next_rd_addr = rd; next_rd_wdata = alu_rr; end
+        7'b1110011: begin
+          if ((funct3 != 3'b000) && csr_reads) begin
+            next_rd_addr = rd;
+            next_rd_wdata = csr_rdata;
+          end
+        end
         default: ;
       endcase
     end
@@ -499,11 +690,18 @@ module rv32i_core #(
     next_pc_value = pc_q + 32'd4;
     if (state_q == S_MEM_WAIT) begin
       next_pc_value = next_pc_q;
+    end else if (will_trap) begin
+      next_pc_value = mtvec_q & ~32'd3;
     end else begin
       unique case (opcode)
         7'b1101111: next_pc_value = jal_target;
         7'b1100111: next_pc_value = jalr_target;
         7'b1100011: next_pc_value = branch_taken ? branch_target : (pc_q + 32'd4);
+        7'b1110011: begin
+          if ((funct3 == 3'b000) && (instruction_q[31:20] == 12'h302)) begin
+            next_pc_value = mepc_q & ~32'd3;      // MRET
+          end
+        end
         default: ;
       endcase
     end
@@ -520,6 +718,13 @@ module rv32i_core #(
         next_rs2_addr = 5'd0;
       end
       7'b1100111, 7'b0010011, 7'b0000011: next_rs2_addr = 5'd0;
+      7'b1110011: begin
+        // The immediate CSR forms encode a zero-extended constant in the rs1
+        // field, so no register is read; the plain SYSTEM instructions read
+        // neither operand.
+        next_rs1_addr = ((funct3 != 3'b000) && !funct3[2]) ? rs1 : 5'd0;
+        next_rs2_addr = 5'd0;
+      end
       default: ;
     endcase
   end
