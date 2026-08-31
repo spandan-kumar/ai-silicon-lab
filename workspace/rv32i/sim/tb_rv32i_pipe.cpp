@@ -50,6 +50,11 @@ int main(int argc, char** argv) {
   const char* image_path = nullptr;
   const char* output_path = nullptr;
   uint32_t load_address = 0;
+  // A store here ends the run. Once the core has a trap vector, ebreak is
+  // an exception it handles and returns from rather than a halt, so the
+  // environment decides when the program is over. Every model in this
+  // experiment now shares this HTIF convention.
+  uint32_t halt_address = 0x1500;
   uint64_t max_cycles = 2000000;
 
   for (int i = 1; i < argc; i++) {
@@ -58,6 +63,7 @@ int main(int argc, char** argv) {
     if (arg == "--image") image_path = next();
     else if (arg == "--output") output_path = next();
     else if (arg == "--load-address") load_address = (uint32_t)strtoul(next(), nullptr, 0);
+    else if (arg == "--halt-address") halt_address = (uint32_t)strtoul(next(), nullptr, 0);
     else if (arg == "--max-cycles") max_cycles = strtoull(next(), nullptr, 10);
   }
   if (!image_path || !output_path) {
@@ -83,6 +89,7 @@ int main(int argc, char** argv) {
 
   std::vector<Retire> trace;
   std::string stop_reason = "cycle-limit";
+  bool halt_requested = false;
   int drain = -1;
 
   while (cycles < max_cycles) {
@@ -115,13 +122,19 @@ int main(int argc, char** argv) {
     }
 
     if (dut->dmem_req && dut->dmem_we) {
-      write_word(dut->dmem_addr & ~3u, dut->dmem_wdata, (uint8_t)dut->dmem_be);
+      const uint32_t store_address = dut->dmem_addr & ~3u;
+      if (store_address == (halt_address & ~3u)) {
+        halt_requested = true;
+        stop_reason = "halt-store";
+      }
+      write_word(store_address, dut->dmem_wdata, (uint8_t)dut->dmem_be);
     }
 
     dut->clk = 1;
     dut->eval();
     cycles++;
 
+    if (halt_requested && drain < 0) drain = 4;   // let writebacks in flight land
     if (drain >= 0) {
       if (drain == 0) break;
       drain--;

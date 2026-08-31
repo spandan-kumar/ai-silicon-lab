@@ -70,19 +70,23 @@ def disassemble(word: int) -> str:
 def run_reference(image: bytes, limit: int) -> dict[str, Any]:
     memory = Memory()
     memory.load_image(LOAD_ADDRESS, image)
-    hart = Hart(memory, LOAD_ADDRESS)
+    hart = Hart(memory, LOAD_ADDRESS,
+                halt_address=asm.halt_address(DATA_BASE, 0x400))
     trace: list[dict[str, Any]] = []
     stop = "instruction-limit"
+    halt_pc = None
     for _ in range(limit):
         pc, instruction = hart.pc, memory.load_bytes(hart.pc, 4)
         try:
             hart.step()
         except Trap as trap:
             stop = trap.kind
+            halt_pc = trap.pc
             break
         trace.append({"pc": pc, "instruction": instruction, "regs": list(hart.x)})
     return {"stop_reason": stop, "retired": len(trace), "trace": trace,
-            "final_regs": list(hart.x), "memory": hart.memory.data}
+            "final_regs": list(hart.x), "memory": hart.memory.data,
+            "halt_pc": halt_pc}
 
 
 def run_rtl(image_path: Path, output_path: Path, max_cycles: int) -> dict[str, Any]:
@@ -107,12 +111,31 @@ EQUIVALENT_STOPS = {
     ("illegal-opcode", "illegal"), ("illegal-op", "illegal"),
     ("illegal-op-imm", "illegal"), ("illegal-branch-funct3", "illegal"),
     ("illegal-load-funct3", "illegal"), ("illegal-store-funct3", "illegal"),
+    # Both sides observed the same store to the halt address; only the name
+    # each gives that event differs.
+    ("halt", "halt-store"),
 }
 
 
 def compare(reference: dict[str, Any], rtl: dict[str, Any]) -> dict[str, Any]:
     findings: list[dict[str, Any]] = []
     ref_trace, rtl_trace = reference["trace"], rtl["trace"]
+
+    # Both traces are cut at the instruction that ended the run. The reference
+    # stops the moment it sees the store to the halt address; a pipelined core
+    # reports that retirement several cycles later and drains behind it. Those
+    # are the same architectural point reported with different latency, so
+    # comparing raw lengths would report a divergence that is purely an
+    # artefact of pipeline depth. Everything before the halt is still compared
+    # instruction by instruction.
+    halt_pc = reference.get("halt_pc")
+    if halt_pc is not None:
+        def truncate(trace):
+            for index, entry in enumerate(trace):
+                if entry["pc"] == halt_pc:
+                    return trace[:index]
+            return trace
+        ref_trace, rtl_trace = truncate(ref_trace), truncate(rtl_trace)
 
     if reference["stop_reason"] != rtl["stop_reason"] and \
             (reference["stop_reason"], rtl["stop_reason"]) not in EQUIVALENT_STOPS:
@@ -231,7 +254,8 @@ def sweep(seeds: range, work_dir: Path, length: int = 60,
     total_cycles = 0
     total_retired = 0
     for seed in seeds:
-        program = asm.random_program(seed, length, data_base=DATA_BASE, version=version)
+        program = asm.with_signature(
+            asm.random_program(seed, length, data_base=DATA_BASE, version=version))
         result = run_program(program, work_dir)
         total_cycles += result.get("rtl_cycles") or 0
         total_retired += result.get("reference_retired") or 0

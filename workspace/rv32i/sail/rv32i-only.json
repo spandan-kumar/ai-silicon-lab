@@ -231,7 +231,7 @@
           "write_idempotent": true,
           "misaligned_exceptions": {
             "load_store": {
-              "None": null
+              "Some": "AlignmentException"
             },
             "vector": {
               "None": null
@@ -252,6 +252,13 @@
     "dtb_address": {
       "len": 64,
       "value": "0x0FFF0000"
+    },
+    "misaligned": {
+      "exceptions": {
+        "load_store": {
+          "Some": "AlignmentException"
+        }
+      }
     }
   },
   "platform": {

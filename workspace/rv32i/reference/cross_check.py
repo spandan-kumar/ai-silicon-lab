@@ -49,7 +49,7 @@ def reference_registers(program: list[int], limit: int = 200000) -> tuple[list[i
     """
     memory = Memory()
     memory.load_image(0, asm.assemble(program))
-    hart = Hart(memory, 0)
+    hart = Hart(memory, 0, halt_address=asm.halt_address(DATA_BASE, DATA_SIZE))
     stop = "instruction-limit"
     for _ in range(limit):
         try:

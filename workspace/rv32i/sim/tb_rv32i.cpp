@@ -53,6 +53,11 @@ int main(int argc, char** argv) {
   const char* image_path = nullptr;
   const char* output_path = nullptr;
   uint32_t load_address = 0;
+  // A store here ends the run. Once the core has a trap vector, ebreak is
+  // an exception it handles and returns from rather than a halt, so the
+  // environment decides when the program is over. Every model in this
+  // experiment now shares this HTIF convention.
+  uint32_t halt_address = 0x1500;
   uint64_t max_cycles = 2000000;
   bool trace_registers = true;
 
@@ -62,6 +67,7 @@ int main(int argc, char** argv) {
     if (arg == "--image") image_path = next();
     else if (arg == "--output") output_path = next();
     else if (arg == "--load-address") load_address = (uint32_t)strtoul(next(), nullptr, 0);
+    else if (arg == "--halt-address") halt_address = (uint32_t)strtoul(next(), nullptr, 0);
     else if (arg == "--max-cycles") max_cycles = strtoull(next(), nullptr, 10);
     else if (arg == "--no-register-trace") trace_registers = false;
   }
@@ -91,6 +97,7 @@ int main(int argc, char** argv) {
   bool response_pending = false;
   uint32_t response_data = 0;
   std::string stop_reason = "cycle-limit";
+  bool halt_requested = false;
 
   while (cycles < max_cycles) {
     dut->clk = 0;
@@ -135,6 +142,10 @@ int main(int argc, char** argv) {
     if (dut->mem_req && dut->mem_gnt) {
       const uint32_t address = dut->mem_addr & ~3u;
       if (dut->mem_we) {
+        if (address == (halt_address & ~3u)) {
+          halt_requested = true;
+          stop_reason = "halt-store";
+        }
         write_word(address, dut->mem_wdata, (uint8_t)dut->mem_be);
       } else {
         next_data = read_word(address);
@@ -148,6 +159,8 @@ int main(int argc, char** argv) {
 
     response_pending = next_pending;
     response_data = next_data;
+
+    if (halt_requested) break;
   }
 
   // Final architectural state.

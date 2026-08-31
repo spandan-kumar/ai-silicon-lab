@@ -44,7 +44,7 @@ MEM_SIZE = 0x1600
 def reference_signature(program: list[int], limit: int = 200000) -> tuple[list[int], str]:
     memory = Memory()
     memory.load_image(0, asm.assemble(program))
-    hart = Hart(memory, 0)
+    hart = Hart(memory, 0, halt_address=asm.halt_address(DATA_BASE, DATA_SIZE))
     stop = "instruction-limit"
     for _ in range(limit):
         try:
@@ -64,18 +64,6 @@ def run_sail(program: list[int], work: Path, limit: int = 2000000) -> dict[str, 
     work.mkdir(parents=True, exist_ok=True)
     base, length = asm.signature_addresses(DATA_BASE, DATA_SIZE)
 
-    # Replace the terminating ebreak with a self-loop for this model only.
-    #
-    # The local cores stop at ebreak. Sail takes it as an exception, vectors to
-    # mtvec, and with mtvec at zero re-enters the program from the top; HTIF is
-    # noticed some instructions later, by which time a second and third pass
-    # have altered the registers. Measured on one program: 226 instructions in
-    # the reference against 680 in Sail, with the first 226 identical.
-    #
-    # The terminator is environment glue, not part of the test. Every
-    # instruction that computes anything runs identically on both sides, and
-    # the signature is already stored before either model stops.
-    program = [asm.jal(0, 0) if word == asm.ebreak() else word for word in program]
     elf = work / "program.elf"
     # Pad the loadable image with explicit zeros out to the full memory size so
     # the initial contents of the data and signature regions are defined by the

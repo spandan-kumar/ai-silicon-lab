@@ -169,7 +169,7 @@ class Rv32iPlugin(ExperimentPlugin):
         for name, program in programs_for(p["workflow"], p["random_programs"], p["length"]):
             memory = Memory()
             memory.load_image(0, asm.assemble(program))
-            hart = Hart(memory, 0)
+            hart = Hart(memory, 0, halt_address=asm.halt_address())
             trace, stop = [], "instruction-limit"
             for _ in range(200000):
                 pc, word = hart.pc, memory.load_bytes(hart.pc, 4)
@@ -292,7 +292,7 @@ class Rv32iPlugin(ExperimentPlugin):
         for _, program in programs_for("w4-hazards", 200, 150):
             memory = Memory()
             memory.load_image(0, asm.assemble(program))
-            hart = Hart(memory, 0)
+            hart = Hart(memory, 0, halt_address=asm.halt_address())
             for _ in range(200000):
                 pc, word = hart.pc, memory.load_bytes(hart.pc, 4)
                 before = list(hart.x)

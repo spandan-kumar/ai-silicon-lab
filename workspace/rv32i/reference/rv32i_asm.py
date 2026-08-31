@@ -798,10 +798,18 @@ def signature_epilogue() -> list[int]:
     # convention riscv-tests and the Sail model use. Value 1 is exit code 0.
     # x1 is clobbered here, but its architectural value is already captured
     # above, so the signature is unaffected.
+    # HTIF's tohost is a 64-bit location and the model processes it only once
+    # the whole doubleword has been written, so both halves are stored. This is
+    # the same sequence the certification framework's own RVMODEL_HALT_PASS
+    # uses. Writing only the low word leaves the command unprocessed: the model
+    # keeps running, which looked like a termination bug and was a protocol one.
     program.append(i_type("addi", 1, 0, 1))
     program.append(store("sw", DATA_POINTER, 1, HALT_OFFSET))
-    program.append(ebreak())            # how the local cores stop
-    program.append(jal(0, 0))           # safety net for a core that ignores ebreak
+    program.append(store("sw", DATA_POINTER, 0, HALT_OFFSET + 4))
+    # Spin rather than ebreak. Once the cores implement a trap vector, ebreak is
+    # an exception the hart handles and returns from, not a stop, and with mtvec
+    # at zero it re-enters the program. Every model now ends on the store above.
+    program.append(jal(0, 0))
     return program
 
 
@@ -814,3 +822,115 @@ def with_signature(program: list[int]) -> list[int]:
 def signature_addresses(data_base: int = 0x1000, data_size: int = 0x400) -> tuple[int, int]:
     """(base address, byte length) of the signature area."""
     return data_base + data_size // 2 + SIGNATURE_OFFSET, 31 * 4
+
+
+# --- Zicsr and the machine-mode privileged subset --------------------------
+
+CSR_OPS = {"csrrw": 0b001, "csrrs": 0b010, "csrrc": 0b011,
+           "csrrwi": 0b101, "csrrsi": 0b110, "csrrci": 0b111}
+
+# Machine-mode CSRs this implementation provides. The read-only identification
+# registers are included because the certification framework reads them.
+CSR_NUMBERS = {
+    "mstatus": 0x300, "misa": 0x301, "mie": 0x304, "mtvec": 0x305,
+    "mcounteren": 0x306, "mstatush": 0x310, "mcountinhibit": 0x320,
+    "mscratch": 0x340, "mepc": 0x341, "mcause": 0x342, "mtval": 0x343,
+    "mip": 0x344,
+    "mcycle": 0xB00, "minstret": 0xB02, "mcycleh": 0xB80, "minstreth": 0xB82,
+    "cycle": 0xC00, "instret": 0xC02, "cycleh": 0xC80, "instreth": 0xC82,
+    "mvendorid": 0xF11, "marchid": 0xF12, "mimpid": 0xF13, "mhartid": 0xF14,
+}
+
+
+def _csr_number(csr) -> int:
+    if isinstance(csr, str):
+        return CSR_NUMBERS[csr]
+    return _check(csr, 0, 0xFFF, "csr address")
+
+
+def csr(name: str, rd: int, csr_id, source: int) -> int:
+    """A Zicsr instruction. `source` is a register for the register forms and a
+    5-bit unsigned immediate for the immediate forms."""
+    funct3 = CSR_OPS[name]
+    if name.endswith("i"):
+        _check(source, 0, 31, "csr immediate")
+    return ((_csr_number(csr_id) & 0xFFF) << 20) | ((source & 0x1F) << 15) \
+        | (funct3 << 12) | (rd << 7) | 0b1110011
+
+
+def mret() -> int:
+    return (0x302 << 20) | 0b1110011
+
+
+def wfi() -> int:
+    return (0x105 << 20) | 0b1110011
+
+
+def ecall() -> int:
+    return 0b1110011
+
+
+def halt_address(data_base: int = 0x1000, data_size: int = 0x400) -> int:
+    """Address whose store ends a run, for every model in the comparison."""
+    return data_base + data_size // 2 + HALT_OFFSET
+
+
+def directed_privileged() -> list[int]:
+    """Exercise Zicsr, trap entry, and MRET against every cause this core raises.
+
+    The handler accumulates causes rather than overwriting, so a single
+    signature shows every trap that occurred and in what order. mepc is
+    advanced by four before returning because every faulting instruction here
+    is a full-width one.
+    """
+    HANDLER = 0x100                       # byte address of the trap handler
+    program = _zero_registers() + [
+        lui(DATA_POINTER, 0x1), i_type("addi", DATA_POINTER, DATA_POINTER, 0x200),
+        i_type("addi", 5, 0, HANDLER), csr("csrrw", 0, "mtvec", 5),
+
+        # CSR read/modify/write behaviour on a scratch register.
+        i_type("addi", 6, 0, 0x55), csr("csrrw", 7, "mscratch", 6),   # x7 = old (0)
+        i_type("addi", 8, 0, 0x0F), csr("csrrs", 9, "mscratch", 8),   # x9 = 0x55
+        csr("csrrc", 10, "mscratch", 8),                              # x10 = 0x5f
+        csr("csrrs", 11, "mscratch", 0),                              # x11 = 0x50
+        csr("csrrwi", 12, "mscratch", 9),                             # x12 = 0x50
+        csr("csrrsi", 13, "mscratch", 6),                             # x13 = 9
+        csr("csrrci", 14, "mscratch", 3),                             # x14 = 0xf
+        csr("csrrs", 15, "mscratch", 0),                              # x15 = 0xc
+
+        # Architectural identity and WARL behaviour.
+        csr("csrrs", 16, "misa", 0),
+        csr("csrrs", 17, "mstatus", 0),
+        i_type("addi", 18, 0, 0x66), csr("csrrw", 0, "mepc", 18),
+        csr("csrrs", 19, "mepc", 0),                                  # low bits cleared
+        csr("csrrs", 24, "mhartid", 0),                               # read-only zero
+    ]
+    # Each of these traps; the handler accumulates the cause into x20.
+    program += [ecall(), i_type("addi", 25, 0, 1)]
+    program += [(1 << 20) | 0b1110011, i_type("addi", 26, 0, 2)]      # ebreak
+    program += [0x00000000, i_type("addi", 27, 0, 3)]                 # illegal
+    program += [i_type("addi", 3, DATA_POINTER, 1), load("lw", 28, 3, 0)]  # misaligned load
+    program += [store("sw", 3, 0, 0)]                                 # misaligned store
+    program += [csr("csrrw", 0, "mvendorid", 1)]                      # write read-only: illegal
+
+    # The handler sits at a fixed address, so the body must jump over it to
+    # reach the epilogue the caller appends. Falling through into the handler
+    # would execute an MRET with a stale mepc and loop forever.
+    handler_words = 7
+    epilogue_index = HANDLER // 4 + handler_words
+    if len(program) >= HANDLER // 4:
+        raise ValueError("privileged test body overruns the handler address")
+    program.append(jal(0, 4 * (epilogue_index - len(program))))
+    while len(program) < HANDLER // 4:
+        program.append(nop())
+    handler = [
+        csr("csrrs", 21, "mcause", 0),
+        r_type("add", 20, 20, 21),                                    # accumulate causes
+        i_type("addi", 23, 23, 1),                                    # count traps
+        csr("csrrs", 21, "mepc", 0),
+        i_type("addi", 21, 21, 4),
+        csr("csrrw", 0, "mepc", 21),
+        mret(),
+    ]
+    assert len(handler) == handler_words
+    return program + handler
