@@ -170,7 +170,8 @@ repeatability: $(BUILD)/aes_gcm_iterative_sim $(BUILD)/aes_gcm_parallel_sim $(BU
 synthesis:
 	$(PYTHON) tools/run_synthesis.py --output-dir $(BUILD)/synth
 
-asic-synthesis: $(ASIC_SUMMARY)
+asic-synthesis: $(NANGATE_LIB)
+	$(PYTHON) tools/run_asic_synthesis.py --output-dir $(BUILD)/asic-synth --liberty $(NANGATE_LIB)
 
 gate-verify: $(ASIC_SUMMARY)
 	$(PYTHON) tools/verify_mapped_netlist.py --synthesis-dir $(BUILD)/asic-synth --output-dir $(BUILD)/gate-verify --architecture balanced-ultrawide-1r32b
