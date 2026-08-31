@@ -12112,7 +12112,7 @@
       }
     }
   },
-  "candidate_commit": "48acc327fc2a4e7bbeb094f792768af5198e4da2",
+  "candidate_commit": "16c14440ae3437def7e5625f5ba07e3b9162ea14",
   "corpus": {
     "gcm_operations_per_architecture": 1038,
     "generated_negative_vectors": 150,
