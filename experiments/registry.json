@@ -14,8 +14,15 @@
       "experiment_id": "aes-256-gcm",
       "title": "AES-256-GCM hardware accelerator",
       "path": "aes-256-gcm/experiment.json",
-      "status": "specified",
+      "status": "in-progress",
       "kind": "cryptographic-accelerator"
+    },
+    {
+      "experiment_id": "rv32i-core",
+      "title": "RV32I core designed from specification",
+      "path": "rv32i-core/experiment.json",
+      "status": "in-progress",
+      "kind": "processor-core"
     }
   ]
 }

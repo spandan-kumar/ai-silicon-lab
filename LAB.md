@@ -13,7 +13,19 @@
 ./tools/experiment list               # list versioned experiment specifications
 ./tools/experiment check               # validate specifications and run examples
 ./tools/experiment show <experiment>  # print one experiment manifest
+
+./harness/aisl experiments            # experiments and their harness wiring
+./harness/aisl env <experiment>       # toolchain the experiment declares it needs
+./harness/aisl verify <experiment>    # build, reference, execute, compare
+./harness/aisl gate <experiment>      # gate criteria joined to check results
+./harness/aisl record <experiment>    # emit and validate a provenance run record
+./harness/aisl loop step <experiment> # one iteration, stopping at the phase boundary
 ```
+
+`./harness/aisl` is the experiment-agnostic layer described in
+[`harness/README.md`](harness/README.md). It never writes inside `lab/` or
+`ground_truth/`, and it does not replace `./lab/evaluate`, which remains the
+canonical Doom judge.
 
 `./lab/evaluate` fails clearly when `workspace/candidate.json` is absent. That
 is intentional: the lab does not supply an architecture or pretend that an

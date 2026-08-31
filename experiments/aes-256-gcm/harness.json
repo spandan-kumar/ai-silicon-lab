@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "plugin": "workspace/aes256gcm/harness_plugin.py",
+  "entry": "create_plugin",
+  "description": "Baseline AES-256-GCM RTL wired to the autonomous harness. This file records how the repository currently executes the experiment; experiment.json remains the frozen contract.",
+  "requirements": {
+    "required": ["verilator", "cc", "python3"],
+    "optional": ["yosys", "sv2v", "gtkwave"]
+  },
+  "suites": [
+    { "workload": "aes-256-block-kat", "comparator_options": { "vector_file": "vectors.json" } },
+    { "workload": "gcm-known-answer", "comparator_options": { "vector_file": "vectors.json" } },
+    { "workload": "gcm-edge-cases", "comparator_options": { "vector_file": "vectors.json" } },
+    { "workload": "gcm-random-differential", "comparator_options": { "vector_file": "vectors.json" } },
+    { "workload": "gcm-interface-stress", "comparator_options": { "vector_file": "vectors.json" } },
+    { "workload": "gcm-throughput-sweep", "comparator_options": { "vector_file": "vectors.json" } }
+  ],
+  "gates": {
+    "profile-frozen": {
+      "criteria": [
+        {
+          "criterion": "normative AES and GCM revisions are pinned",
+          "checks": [],
+          "evidence": "manual",
+          "note": "Recorded in experiments/aes-256-gcm/PROFILE.md. No executable check can establish that a document names the right revision, so this stays a reviewed criterion rather than an automated pass."
+        },
+        {
+          "criterion": "byte/bit order, IV, tag, length, reset, and tag-failure semantics are documented",
+          "checks": [],
+          "evidence": "manual",
+          "note": "PROFILE.md states each decision; the edge-case and negative workloads exercise them, but the documentation itself is reviewed by a human."
+        },
+        {
+          "criterion": "target profile and objective function are explicit",
+          "checks": [],
+          "evidence": "manual",
+          "note": "No physical target is frozen yet. This criterion is deliberately unevaluated rather than assumed."
+        }
+      ]
+    },
+    "simulation-complete": {
+      "criteria": [
+        {
+          "criterion": "primitive, full-GCM, edge, random, and interface workloads pass",
+          "checks": [
+            "suite:aes-256-block-kat",
+            "suite:gcm-known-answer",
+            "suite:gcm-edge-cases",
+            "suite:gcm-random-differential",
+            "suite:gcm-interface-stress"
+          ]
+        },
+        {
+          "criterion": "synthesizable RTL lint and synthesis pass",
+          "checks": ["tool:lint", "tool:synthesize"]
+        },
+        {
+          "criterion": "candidate never calls host crypto or reads oracle verdicts",
+          "checks": ["policy:no-host-crypto", "policy:no-oracle-in-stimulus"]
+        },
+        {
+          "criterion": "cycle and throughput measurements are reproducible for frozen vectors",
+          "checks": ["suite:gcm-throughput-sweep", "determinism:gcm-interface-stress"]
+        },
+        {
+          "criterion": "all unknown metrics and security limitations are labeled",
+          "checks": [],
+          "evidence": "manual",
+          "note": "Area is measured in generic Yosys cells only; no target library, timing, or power number exists, and the run record carries those as null. A human confirms the labelling is honest."
+        }
+      ]
+    },
+    "target-implemented": {
+      "criteria": [
+        {
+          "criterion": "named FPGA or ASIC target accepts the exact RTL configuration",
+          "checks": [],
+          "evidence": "unavailable",
+          "note": "No FPGA or ASIC flow is installed on this host. lab/status reports the capability as unavailable."
+        },
+        {
+          "criterion": "timing constraints and resource reports are retained",
+          "checks": [],
+          "evidence": "unavailable"
+        },
+        {
+          "criterion": "physical output matches RTL for the same vectors",
+          "checks": [],
+          "evidence": "unavailable"
+        }
+      ]
+    },
+    "security-claim-reviewed": {
+      "criteria": [
+        {
+          "criterion": "each security claim has a stated threat model",
+          "checks": [],
+          "evidence": "manual",
+          "note": "PROFILE.md states the threat model and the claim boundary."
+        },
+        {
+          "criterion": "data-dependent control and latency paths are inspected or asserted",
+          "checks": ["policy:fixed-length-constant-latency"]
+        },
+        {
+          "criterion": "physical leakage/fault claims use appropriate measurements rather than simulation-only inference",
+          "checks": [],
+          "evidence": "unavailable",
+          "note": "No leakage instrumentation exists here. Simulation cannot establish this, so it must never be marked passed from RTL evidence."
+        }
+      ]
+    }
+  },
+  "phase_gates": {
+    "specification-and-reference": ["profile-frozen"],
+    "software-and-rtl-baselines": ["profile-frozen"],
+    "architecture-exploration": ["simulation-complete"],
+    "simulation-complete": ["simulation-complete"],
+    "target-implementation": ["target-implemented"],
+    "security-review": ["security-claim-reviewed"]
+  }
+}
