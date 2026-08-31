@@ -10,6 +10,12 @@ Research date: 2026-08-29
 
 ## Boolean S-box and technology-aware architecture sweep — 2026-08-31
 
+- The clean retained evaluator run
+  `aes-gcm-2ba718c-nangate45-breakthrough` passes at candidate commit
+  `2ba718c926fb170c3223086c0cfa8b7f597c38ac`. It records separate precheck,
+  build, simulation, and synthesis durations and hashes; the fresh synthesis
+  phase took 1,541.114 seconds. All phase exit codes are zero.
+
 - The original 2,048-bit lookup formulation was replaced by the NIST Circuit
   Complexity team's pinned forward `g113-a32-d27-ad6` and inverse
   `g121-a34-d21-ad4` AES S-box straight-line programs. The generator translates

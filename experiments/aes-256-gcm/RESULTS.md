@@ -3,9 +3,12 @@
 Profile `aes-256-gcm-64-v1` now includes a Boolean-circuit S-box, an
 eight-point AES/GHASH architecture sweep, pinned Nangate45 standard-cell
 mapping, pre-layout timing estimates, and full-corpus simulation of a mapped
-netlist. The candidate commit and clean evaluator run are recorded in
-`workspace/aes-256-gcm/reports/results.json` and the corresponding
-`runs/<run-id>/run.json`.
+netlist. The machine report was generated from clean candidate commit
+`16c14440ae3437def7e5625f5ba07e3b9162ea14`. Clean evaluator commit
+`2ba718c926fb170c3223086c0cfa8b7f597c38ac` changes only that generated report
+and passes in
+`runs/aes-gcm-2ba718c-nangate45-breakthrough/run.json`; the run record passes
+`./tools/experiment validate-run`.
 
 ## Correctness and reproducibility
 
