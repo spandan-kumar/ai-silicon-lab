@@ -8,6 +8,224 @@ profile.
 
 Research date: 2026-08-29
 
+## First-order HPC2 masked S-box study — 2026-08-31 to 2026-09-01
+
+Research hypothesis: the three fewer nonlinear operations in the new 29-AND
+circuits may be valuable after each AND is replaced by a substantially more
+expensive masked gadget, even though the unmasked study below shows that the
+same circuits are worse conventional standard-cell implementations.
+
+- `make masked-sbox-study` translates the classic and eight new NIST SLPs into
+  two-share, first-order HPC2 pipelines. Each AND consumes one fresh random bit.
+  The compiler uses HPC2's asymmetric operand timing and swaps commutative AND
+  operands when doing so shortens the schedule. All nine generated S-boxes have
+  an eight-cycle pipeline latency and accept one input per cycle.
+- Every generated RTL and its Nangate45-mapped netlist passed 4,096 streamed
+  functional transactions: all 256 byte values under 16 deterministic
+  share-mask/fresh-random trials. A separate Yosys SAT proof checks the actual
+  two-cycle HPC2 gadget for every possible pair of two-share inputs and fresh
+  random bit. The full sweep was repeated and produced identical report SHA-256
+  `06ccea74ba01e5c04d1006d27c40edcff4901d32c2bae4cea8df597fddff3b8a`.
+- Candidate `a29-ad5-g161-d24` is nondominated in this study. Compared with the
+  classic `g113-a32-d27` circuit, it needs 29 rather than 32 fresh random bits
+  per S-box (-9.375%) and has a 436.16 ps rather than 453.66 ps mapped
+  combinational critical path (-3.858%). Both have eight-cycle latency. Its
+  cost is 5,061.182 rather than 4,658.458 um^2 of mapped cell area (+8.645%).
+- The closest prior art found materially narrows the result. Hadzic and Bloem,
+  ["Efficient and Composable Masked AES S-Box Designs Using Optimized
+  Inverters"](https://doi.org/10.46586/tches.v2025.i1.656-683), TCHES 2025(1),
+  Table 2, already report a first-order, composable Canright-based S-box using
+  29 random bits with four-cycle latency (1,806 GE standalone and 2,948 GE
+  including their PRNG model). Therefore 29 random bits is neither new nor a
+  global record, and this eight-cycle result is not globally latency-best. The
+  paper also discusses the earlier DOM/HPC2 reuse method of Feldtkeller et al.,
+  ["Randomness Optimization for Gadget Compositions in Higher-Order
+  Masking"](https://doi.org/10.46586/tches.v2022.i4.188-227), which preserves
+  restricted rather than full SNI/PINI notions. Any claim below 29 random bits
+  for this SLP would require a new reuse construction and a security argument
+  matched to the claimed composability notion; it cannot be inferred here.
+- This is evidence for a new target-specific Pareto point, not evidence of a
+  world-first or a physically leakage-resistant chip. The functional/mapped
+  RTL and the independently generated composition model cross-check the AND
+  count, latency, and five schedule-driven operand swaps. They are separate
+  representations, so the fullVerif result below proves the abstract gadget
+  composition and randomness discipline rather than the final mapped netlist.
+- Two independent leakage tools were investigated rather than treating the
+  functional SAT result as security evidence. CocoAlma revision
+  `95c80df5d6d704bf525f47ef6e58e98e27fedf97` reports a cycle-2 dependency on
+  `c[0]`, but the same report reproduces on an isolated HPC2 gadget. Exact
+  enumeration of all four reconstructed input pairs, all four input-share
+  masks, and both fresh-bit values shows that every named stable first-order
+  probe has the same distribution for every secret; in particular
+  `c[0] = a[0](b[0] xor b[1]) xor r` is uniform because `r` is fresh. SILVER
+  revision `0a3c85fc5a60d76eedb84d996473df28fc18ef42` independently passes the
+  exact RTL gadget under first-order robust probing, robust NI, robust PINI,
+  and output uniformity. This makes the CocoAlma result a documented
+  tool-model incompatibility for this HPC2 construction, not a demonstrated
+  physical leak. A monolithic SILVER run over the complete S-box exceeded the
+  practical BDD state-space budget and was not reported as a pass.
+- fullVerif revision `227f31215d8269c3b78bb0ebaebf6a1db6bc198e`, which
+  was designed for compositional masked-hardware verification and ships an
+  assumed-PINI HPC2 gadget, verifies both the 29-AND candidate and the classic
+  32-AND baseline. Transition-robust and cleared-state checks remain enabled.
+  For the candidate, fullVerif finds all 29 HPC2 instances valid, traces all 29
+  unique fresh bits to cycle zero, preserves all sharings and output latencies,
+  and finishes successfully. Repeated candidate and baseline runs are
+  bit-for-bit deterministic after normalizing VCD timestamps, temporary source
+  paths, and unordered diagnostic presentation. Their report SHA-256 values are
+  respectively `bc07448cbf47cfbeb48c2c242efe71beefc3bb7a274ecf79decbda24e5233051`
+  and `632a25df432ac05790d076c8b5d68d684798208b80d34f662e5868c51677de0a`.
+- The primary masking source is [Hardware Private Circuits: From Trivial
+  Composition to Full Verification](https://www.eng.biu.ac.il/leviita2/files/2020/12/Hardware-Private-Circuits-From-Trivial-Composition-to-Full-Verification.pdf).
+  Relevant independent verification/tool context includes
+  [AGEMA](https://eprint.iacr.org/2021/569.pdf) and [Formal Analysis of
+  Masked Hardware Implementations](https://eprint.iacr.org/2017/897.pdf), plus
+  the [fullVerif repository](https://github.com/cassiersg/fullverif) and its
+  [composition paper](https://eprint.iacr.org/2020/185).
+  The primary-source web search found no publication evaluating these exact
+  August 2026 29-AND circuits as HPC2-masked hardware. That identifies a
+  plausible publication gap but cannot prove nonexistence.
+- Machine-readable source hashes, generated RTL and mapped-netlist hashes,
+  formal-log identities, cell counts, timing, and verification results are in
+  `workspace/aes-256-gcm/reports/masked_sbox_study.json`. The independent
+  candidate and baseline composition records are in
+  `masked_sbox_fullverif.json` and `masked_sbox_fullverif_classic.json` in the
+  same reports directory. Random-generator area/energy, routed timing, power,
+  leakage, and full AES-GCM integration are currently unavailable and must not
+  be inferred from this S-box experiment.
+
+## Novelty boundary and 29-AND affine search — 2026-09-01
+
+- The proposed first-order HPC2 randomness-reuse direction does not follow
+  from Feldtkeller et al.'s 2022 theorem. Their optimized HPC2 distribution
+  starts at masking order `t >= 2`; the authors' SAIREDA implementation at
+  revision `f29af69b30309db669c70014ed70e4938c51c71e` explicitly rejects its
+  optimized distribution pass at order one. Strict reuse yields only R-PINI,
+  while the relaxed HPC2+ construction adds output registers to retain the
+  stronger composability property. This is a falsified hypothesis, not a
+  license to share the 29 first-order gadget random bits.
+- Groß et al., ["First-Order Masking with Only Two Random
+  Bits"](https://eprint.iacr.org/2018/1007.pdf), already demonstrate a
+  first-order AES S-box construction using two total random bits and no online
+  randomness in their probing model. The paper also identifies transition and
+  horizontal-leakage limitations. Its local PDF SHA-256 is
+  `14301ad1a4d00c92cae234066a8d7a6caf829ddc6c79c75cf4915e124493404b`.
+  Therefore merely reducing first-order randomness below 29 bits cannot be a
+  world-first claim; any advance would need a materially stronger threat model
+  and evidence.
+- The active clean novelty target is instead the Boolean circuit frontier
+  added by NIST in August 2026. Its smallest 29-AND forward AES S-box uses 109
+  XOR/XNOR gates. The eight circuits normalize to five distinct nonlinear
+  schedules; pairs with different published depth/size points can share the
+  same schedule. A correct 29-AND circuit with fewer than 109 affine gates, or
+  a strictly better size/depth point, would be an externally checkable result
+  but would still require a final public-code and literature signature search.
+- A custom constrained linear-resynthesis harness reconstructs each circuit as
+  an affine network around 29 fixed ANDs, strips and later restores XNOR
+  phases, prevents an AND operand from using its own or any later AND output,
+  and exhaustively compares all 256 input values after synthesis. Mockturtle
+  revision `0886ebfdd101ce1110daf3d60b96d72edd3143ea` supplies the exact SAT
+  backend. Quick 1,000-conflict searches found no 108-gate solution for any of
+  the eight circuits; a 100,000-conflict search on the 109-gate schedule also
+  found no solution before its limit. These are bounded timeouts, not
+  lower-bound proofs. Mockturtle's cancellation-free Paar heuristic produced
+  180 gates on the smallest target and is not competitive.
+- A second, independent search route uses the authors' implementation of
+  ["A Framework for Generating S-Box Circuits with Boyar-Peralta
+  Algorithm-Based Heuristics, and Its Applications to AES, SNOW3G, and
+  Saturnin"](https://doi.org/10.46586/tches.v2025.i1.586-631), revision
+  `11e6b783f179cb9089a08be597d5974e99966e3a`. The paper's method preserves
+  nonlinear-gate count and AND depth while resynthesizing the surrounding XOR
+  network and optionally applies correctness-preserving nonlinear-gate
+  transformations. The retrieved paper SHA-256 is
+  `561bc90bff50b255bb6d2f033a92149a7b3cadb15a1875e3a7e4e759977deca8`.
+  A converter maps the NIST bit convention into the framework and its output
+  passed all 256 AES S-box inputs before the long randomized searches began.
+  No improvement is recorded until a generated circuit completes and passes
+  independent equivalence and gate-count checks.
+
+## Exact affine-completion search — 2026-09-01
+
+- The public target remains a 29-AND AES S-box with at most 108 affine gates,
+  or 137 total gates. Exact web signature searches for `137 gates`, `108 XOR`
+  with `29 AND`, and the NIST-style `g137` filename found no matching public
+  circuit. This makes 137 a clean candidate threshold, but search-engine
+  absence is not a proof that no unpublished or differently described result
+  exists.
+- Maximal affine-region extraction reduces the 138-gate circuit's only hard
+  local question to whether eight required values can be completed from 42
+  already available values in 15 XORs instead of the published 16. Eleven of
+  the fourteen regions are trivially optimal; separate exact runs also proved
+  the small 6-to-5 case and the bounded final-suffix reductions UNSAT. The
+  remaining 16-to-15 region is the only schedule-local route to 137 gates.
+- The hard problem was initially encoded in a 37-bit ambient basis, but its 42
+  available values have rank only 17. A lossless Gaussian coordinate pass now
+  compresses every source and target into that 17-dimensional span before SAT
+  construction. The map is injective on the span and therefore preserves XOR,
+  equality, source availability, and target realization. Positive and negative
+  controls pass after compression: a one-gate toy is SAT and its zero-gate
+  form UNSAT; a published four-gate completion is SAT and its three-gate form
+  UNSAT; and the published hard block is reconstructed in 16 gates.
+- CryptoMiniSat 5.14.7 supplies an independent native-XOR encoding alongside
+  Mockturtle revision `0886ebfdd101ce1110daf3d60b96d72edd3143ea` and its
+  [SAT-based optimum linear synthesis](https://mockturtle.readthedocs.io/en/latest/algorithms/linear_resynthesis.html).
+  On the 12 independent incoming values used by the published completion, the
+  native solver proved two complete 15-gate schedule classes UNSAT: removing
+  an internal before the first required target, and removing one of the three
+  middle internals. These results quantify over every operand choice and every
+  internal affine value under the stated source set and target schedule. They
+  were independently reproduced by the Glucose and Maple backends,
+  respectively. They are not a lower bound for arbitrary schedules or for all
+  42 free inputs.
+- A rank-compressed constructive search independently reproduces the known
+  16-gate block. It found no 15-gate completion in 476 full-source randomized
+  trials, the earlier 2,000 sparse trials, all 435 pairs, or all 4,060 triples
+  of extra incoming wires added to the published 12-wire support. These are
+  negative heuristic observations, not proofs. The remaining late-deletion
+  exact schedule remained unresolved after at least 30 minutes in
+  CryptoMiniSat, 19 minutes in BMCG, and 16 minutes in Maple; all three were
+  externally stopped and are recorded as unknown, not UNSAT.
+- Commands, hashes, source scopes, controls, null timing provenance, and the
+  precise claim boundary are retained in
+  `workspace/aes-256-gcm/reports/xor_completion_study.json`. No 137-gate
+  candidate and no world-first result is claimed.
+
+## Current 29-AND S-box ASIC study — 2026-08-31
+
+Research hypothesis: the eight forward AES S-box circuits that NIST added in
+August 2026, each using 29 AND gates, might improve the unmasked standard-cell
+area or critical path of this AES-256-GCM accelerator compared with the classic
+113-gate, 32-AND NIST circuit. This hypothesis was falsified on the pinned
+Nangate45 target.
+
+- `make sbox-circuit-study` retrieves each circuit from NIST revision
+  `4e23832e62f490aeffd8770b1285d99056b5f8bf`, refuses a source whose SHA-256
+  differs from its manifest, translates the SLP to standalone Verilog,
+  exhaustively compares all 256 inputs with the independent AES reference, and
+  maps it with the same Yosys/ABC library, input driver, and output load.
+- All nine circuits pass all 256 functional values. The classic circuit maps
+  to 200.830 um^2 and 1,019.48 ps. Every 29-AND circuit is dominated by it in
+  both dimensions: the smallest new result is 274.246 um^2 (+36.6%), while the
+  fastest is 1,070.65 ps (+5.0%). The best new area-delay product is 70.5%
+  worse than the classic result.
+- This does not contradict the new circuits' multiplicative-complexity result.
+  In an ordinary unmasked standard-cell flow, reducing three AND gates does
+  not compensate for the added affine gates and, depending on the circuit,
+  added logic depth. The result suggests that their most promising chip-design
+  use is masked hardware, where a nonlinear gadget can cost registers and fresh
+  randomness rather than one ordinary AND cell.
+- The primary sources are NIST's [current circuit
+  list](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits),
+  the pinned [NIST Circuits repository](https://github.com/usnistgov/Circuits),
+  and the author's [explicit 29-AND construction](https://umizame.github.io/S-box_29-AND/).
+  The web and primary-paper search found no published hardware evaluation of
+  these exact August 2026 circuits and no masked realization of them. That is
+  evidence of a research gap, not proof of absence or a novelty claim.
+- Machine-readable results, cell-type counts, hashes, and constraint identity
+  are retained in `workspace/aes-256-gcm/reports/sbox_circuit_study.json`.
+  These are pre-layout unmasked results; routed timing, power, leakage, and
+  first-order masking security remain unmeasured.
+
 ## Boolean S-box and technology-aware architecture sweep — 2026-08-31
 
 - The clean retained evaluator run

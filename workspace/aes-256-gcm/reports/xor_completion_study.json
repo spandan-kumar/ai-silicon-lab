@@ -1,0 +1,148 @@
+{
+  "study": "aes-sbox-29-and-137-gate-search",
+  "date": "2026-09-01",
+  "breakthrough_found": false,
+  "public_frontier": {
+    "circuit": "aes-sbox-fwd-g138-a29-d38-ad6",
+    "nonlinear_gates": 29,
+    "affine_gates": 109,
+    "total_gates": 138,
+    "candidate_threshold": {
+      "nonlinear_gates": 29,
+      "maximum_affine_gates": 108,
+      "maximum_total_gates": 137
+    },
+    "sources": [
+      "https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits",
+      "https://github.com/usnistgov/Circuits",
+      "https://umizame.github.io/S-box_29-AND/"
+    ],
+    "nist_circuits_revision": "4e23832e62f490aeffd8770b1285d99056b5f8bf",
+    "exact_signature_searches": [
+      "AES S-box 137 gates",
+      "AES S-box 108 XOR 29 AND",
+      "29 AND 108 XOR AES",
+      "aes-sbox-fwd g137"
+    ],
+    "exact_signature_match_found": false,
+    "absence_is_proof_of_novelty": false
+  },
+  "subject": {
+    "bench_sha256": "be26deff45607ac79c8e4a5d7d0d78b4c664df78f634fa3f65f5ce051303319d",
+    "hard_affine_block_sha256": "5adbd720f4604e88a55c47e6da67602eb63648042775f460d2853190c1f3fb2a",
+    "incoming_wires": 42,
+    "incoming_wire_rank": 17,
+    "targets": 8,
+    "published_completion_gates": 16,
+    "candidate_completion_gates": 15,
+    "published_support_source_indices": [27, 35, 0, 39, 22, 28, 40, 38, 13, 41, 6, 36],
+    "published_support_rank": 12
+  },
+  "tools": {
+    "mockturtle_revision": "0886ebfdd101ce1110daf3d60b96d72edd3143ea",
+    "cryptominisat_version": "5.14.7",
+    "xor_completion_sat_sha256": "7ba7c35dd015159015632695caf7c33ee98283d741b41e8f24a8c3b953c55fbe",
+    "xor_completion_cms_sha256": "5befce6f89c1c6f09c11431b2ff2b02ed73aeeab2a1a76854b4eb3de590b7baa",
+    "xor_bp_complete_sha256": "41fe704bda096fc154caecfb273d0d88abaac2afc546d9e63025b8803101e539",
+    "xor_linear_exact_sha256": "e8f2fa3dc8a335dd231e9f4a539de92d962ee1781de7db20f2f99febf134ae34",
+    "xag_exact_resynth_sha256": "0f4a9e3f41fc1cd9b2a0ac7774ed577085be4470c1b99baeed20131bea89b802"
+  },
+  "solver_controls": [
+    {
+      "case": "two-input one-target toy",
+      "steps": 1,
+      "result": "sat"
+    },
+    {
+      "case": "two-input one-target toy",
+      "steps": 0,
+      "result": "unsat"
+    },
+    {
+      "case": "published final-affine prefix-20 completion",
+      "steps": 4,
+      "result": "sat"
+    },
+    {
+      "case": "published final-affine prefix-20 completion",
+      "steps": 3,
+      "result": "unsat"
+    },
+    {
+      "case": "hard block, published 12-wire support and target schedule",
+      "steps": 16,
+      "result": "sat"
+    }
+  ],
+  "rank_compression": {
+    "enabled": true,
+    "method": "injective GF(2) coordinate map on the source span",
+    "preserves": ["xor", "equality", "source availability", "target membership"],
+    "hard_block_dimension_before": 37,
+    "hard_block_dimension_after": 17
+  },
+  "restricted_exact_results": [
+    {
+      "source_scope": "published 12-wire support",
+      "target_steps_zero_based": [3, 7, 8, 9, 10, 12, 13, 14],
+      "interpretation": "one internal removed before the first target",
+      "steps": 15,
+      "conflict_limit": 10000000,
+      "result": "unsat",
+      "solvers": ["CryptoMiniSat 5.14.7", "Glucose 4.1 via Bill/Mockturtle"],
+      "proof_scope": "all binary-XOR operand choices and all internal values under this source set and target schedule",
+      "wall_time_seconds": null,
+      "wall_time_source": "not retained by the solver invocation"
+    },
+    {
+      "source_scope": "published 12-wire support",
+      "target_steps_zero_based": [4, 7, 8, 9, 10, 12, 13, 14],
+      "interpretation": "one of the three middle internals removed",
+      "steps": 15,
+      "conflict_limit": 10000000,
+      "result": "unsat",
+      "solvers": ["CryptoMiniSat 5.14.7", "Maple via Bill/Mockturtle"],
+      "proof_scope": "all binary-XOR operand choices and all internal values under this source set and target schedule",
+      "wall_time_seconds": null,
+      "wall_time_source": "not retained by the solver invocation"
+    },
+    {
+      "source_scope": "published 12-wire support",
+      "target_steps_zero_based": [4, 8, 9, 10, 11, 12, 13, 14],
+      "interpretation": "late internal removed",
+      "steps": 15,
+      "conflict_limit": 10000000,
+      "result": "externally_stopped_no_result",
+      "attempts": [
+        {
+          "solver": "CryptoMiniSat 5.14.7",
+          "wall_time_lower_bound_seconds": 1800,
+          "result": "externally_stopped_no_result"
+        },
+        {
+          "solver": "BMCG via Bill/Mockturtle",
+          "wall_time_lower_bound_seconds": 1140,
+          "result": "externally_stopped_no_result"
+        },
+        {
+          "solver": "Maple via Bill/Mockturtle",
+          "wall_time_lower_bound_seconds": 1000,
+          "result": "externally_stopped_no_result"
+        }
+      ],
+      "proof_scope": "none"
+    }
+  ],
+  "constructive_search": {
+    "known_16_gate_completion_reconstructed": true,
+    "full_42_source_randomized_15_gate_trials": 476,
+    "prior_sparse_randomized_15_gate_trials": 2000,
+    "single_extra_source_configurations": 30,
+    "single_extra_trials_per_configuration": 3,
+    "all_extra_source_pairs_tested": 435,
+    "all_extra_source_triples_tested": 4060,
+    "15_gate_completion_found": false,
+    "claim_boundary": "heuristic failure is not an UNSAT proof"
+  },
+  "conclusion": "No 137-gate AES S-box candidate has been found or claimed. Two schedule- and source-restricted 15-gate completion classes are UNSAT; the third remained unresolved, and unrestricted 42-source exact searches reached their conflict limits."
+}

@@ -1,0 +1,53 @@
+{
+  "and_inputs_swapped_for_schedule": 5,
+  "circuit": "a29-ad5-g161-d24",
+  "claim_boundary": "fullVerif compositional PINI analysis of a schedule-equivalent gadget graph; the functional/mapped RTL is checked separately, and this is neither a placed-and-routed netlist proof nor a physical leakage measurement",
+  "cross_checks": {
+    "and_count_matches_rtl": true,
+    "latency_matches_rtl": true,
+    "one_hpc2_per_source_and": true,
+    "operand_swaps_match_rtl": true
+  },
+  "fresh_random_bits_per_sbox": 29,
+  "fullverif_binary_sha256": "6d9314fe936d3c2521818a10a1631770d00bc8e99012a11ffe4bba1e4142e6bd",
+  "fullverif_repository": "https://github.com/cassiersg/fullverif",
+  "fullverif_revision": "227f31215d8269c3b78bb0ebaebf6a1db6bc198e",
+  "generated_model_sha256": "8dfce70727b6d8bea8736c3ddad8979f27d6eb3b2873d4546aeedb23638cf435",
+  "pipeline_latency_cycles": 8,
+  "retained_artifact_sha256": {
+    "masked_sbox_fullverif.vcd": "a27686de24b6b98a9a6bde5cdc3fa72c9515661def7bb7c1abcc7ff399ae24eb",
+    "masked_sbox_fullverif_synth.json": "bffbc7ad6a6fec4bb13e6834dd959f747c60e0b2354aaeb1475e8673f21d9bfe",
+    "masked_sbox_fullverif_synth.v": "b477401f173bcb4161c6a9f722dc5f60b720b904d7e639ad63716f961fdadfde"
+  },
+  "schema_version": 1,
+  "simulation_output": "VCD info: dumpfile <TEMP>/synthesis/masked_sbox_fullverif.vcd opened for output.\n<TEMP>/implementation/tb_masked_sbox_fullverif.v:32: $finish called at 166000 (1ps)",
+  "source_operation_counts": {
+    "AND": 29,
+    "XNOR": 1,
+    "XOR": 131
+  },
+  "source_sha256": "47e64a9e7ae1fbd51e38bf9d3a0394c74c9635ff4f0ab37dec41749fc09fb2f9",
+  "testbench_sha256": "ccfb9da1a8eb397c7743b88bbd8874df5b6d6e1b8e39a1597552babcb8d857f9",
+  "tools": {
+    "iverilog": "Icarus Verilog version 13.0 (stable) (v13_0)",
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18) (Homebrew)",
+    "yosys": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+  },
+  "verification_checks": {
+    "all_fresh_bits_at_cycle_0": true,
+    "cleared_state_check_enabled": true,
+    "finished_successfully": true,
+    "outputs_valid": true,
+    "randoms_timed": true,
+    "sharings_preserved": true,
+    "top_level_composition_success": true,
+    "transition_robust_check_enabled": true
+  },
+  "verification_counts": {
+    "sensitive_gadget_instances": 349,
+    "valid_gadget_instances": 349,
+    "valid_hpc2_instances": 29
+  },
+  "verification_evidence_sha256": "49ec35d0936081dc9f94a48bf84f692bac84158d8ef769bda6f6c5f08fffeb7b",
+  "verification_pass": true
+}

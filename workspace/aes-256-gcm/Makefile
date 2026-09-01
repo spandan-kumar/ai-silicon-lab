@@ -1,4 +1,4 @@
-.PHONY: check reference vectors software software-benchmark rtl-functions rtl-primitives rtl-gcm lint repeatability synthesis asic-synthesis gate-verify evidence-logs results simulation-complete verify-nist
+.PHONY: check reference vectors software software-benchmark rtl-functions rtl-primitives rtl-gcm lint repeatability synthesis asic-synthesis sbox-circuit-study masked-sbox-study masked-sbox-fullverif gate-verify evidence-logs results simulation-complete verify-nist
 
 PYTHON ?= python3
 BUILD := build
@@ -26,6 +26,7 @@ AES_URL := https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Val
 GCM_URL := https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/mac/gcmtestvectors.zip
 NANGATE_LIB := $(BUILD)/technology/nangate45/NangateOpenCellLibrary_typical.lib
 ASIC_SUMMARY := $(BUILD)/asic-synth/summary.json
+FULLVERIF_ROOT ?= $(BUILD)/research-tools/fullverif
 
 check: reference vectors software rtl-functions lint rtl-primitives rtl-gcm repeatability
 
@@ -172,6 +173,16 @@ synthesis:
 
 asic-synthesis: $(NANGATE_LIB)
 	$(PYTHON) tools/run_asic_synthesis.py --output-dir $(BUILD)/asic-synth --liberty $(NANGATE_LIB)
+
+sbox-circuit-study: $(NANGATE_LIB)
+	$(PYTHON) tools/benchmark_sbox_circuits.py --output-dir $(BUILD)/sbox-circuit-study --summary-output reports/sbox_circuit_study.json --liberty $(NANGATE_LIB)
+
+masked-sbox-study: $(NANGATE_LIB)
+	$(PYTHON) tools/benchmark_masked_sbox_circuits.py --output-dir $(BUILD)/masked-sbox-study --summary-output reports/masked_sbox_study.json --liberty $(NANGATE_LIB)
+
+masked-sbox-fullverif:
+	$(PYTHON) tools/verify_masked_sbox_fullverif.py --fullverif-root $(FULLVERIF_ROOT) --output-dir $(BUILD)/masked-sbox-fullverif --summary-output reports/masked_sbox_fullverif.json
+	$(PYTHON) tools/verify_masked_sbox_fullverif.py --circuit classic-g113-d27 --fullverif-root $(FULLVERIF_ROOT) --output-dir $(BUILD)/masked-sbox-fullverif-classic --summary-output reports/masked_sbox_fullverif_classic.json
 
 gate-verify: $(ASIC_SUMMARY)
 	$(PYTHON) tools/verify_mapped_netlist.py --synthesis-dir $(BUILD)/asic-synth --output-dir $(BUILD)/gate-verify --architecture balanced-ultrawide-1r32b
