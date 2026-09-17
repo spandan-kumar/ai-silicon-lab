@@ -27,6 +27,8 @@ static constexpr const char *kArchitecture = "balanced-wide-1r16b";
 static constexpr const char *kArchitecture = "balanced-ultrawide-1r32b";
 #elif defined(BALANCED_XWIDE)
 static constexpr const char *kArchitecture = "balanced-xwide-1r64b";
+#elif defined(KARATSUBA)
+static constexpr const char *kArchitecture = "karatsuba-1r2c";
 #else
 static constexpr const char *kArchitecture = "unrolled-2r8b";
 #endif

@@ -6,6 +6,11 @@ pinned NIST-derived and deterministic generated vectors, an OpenSSL software
 baseline, eight synthesizable RTL organizations, and an
 architecture-independent cycle harness.
 
+An additional exploratory `ARCH=8` branch (`karatsuba-1r2c`) implements a
+two-stage Karatsuba GHASH multiplier. It is intentionally outside the frozen
+eight-point Pareto sweep; reproduce it with the commands recorded in
+`reports/karatsuba_exploration.json`.
+
 The implementation is intentionally separate from the protected Doom
 evaluator.
 

@@ -23,6 +23,7 @@ ORGANIZATIONS = {
     "balanced-wide-1r16b": "one AES round/cycle; sixteen GHASH bits/cycle",
     "balanced-ultrawide-1r32b": "one AES round/cycle; thirty-two GHASH bits/cycle",
     "balanced-xwide-1r64b": "one AES round/cycle; sixty-four GHASH bits/cycle",
+    "karatsuba-1r2c": "one AES round/cycle; two-stage 64-bit Karatsuba GHASH",
 }
 
 

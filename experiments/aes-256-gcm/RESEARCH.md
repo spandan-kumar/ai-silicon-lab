@@ -369,6 +369,31 @@ Nangate45 target.
 
 ## Architecture context
 
+### Constructive GHASH branch — Karatsuba exploration (2026-09-17)
+
+To complement the exact affine-search frontier, the workspace now contains an
+`ARCH=8` two-stage 64-bit Karatsuba carry-less multiplier for GHASH
+(`workspace/aes-256-gcm/rtl/ghash_karatsuba.sv`).  It was checked against all
+1,038 existing GCM RTL operations, including 32 stalled replays; the retained
+log is `workspace/aes-256-gcm/reports/karatsuba_rtl.log`.  The representative
+96-bit-IV/0-AAD/64-byte encryption case measured 210 warm cycles.
+
+The same frozen Yosys/ABC flow measured 99,267.21 um² total Nangate45 mapped
+cell area, 4,981.05 ps critical combinational delay, and 200.760884 MHz
+pre-layout Fmax.  The existing balanced-xwide 1r/64b point is 75,700.408 um²,
+2,726.41 ps, and 257 warm cycles.  Thus this branch trades cycles for a much
+larger and slower mapped design; it is a measured negative result, not a
+Pareto improvement or a world-first claim.  The full machine-readable record
+is `workspace/aes-256-gcm/reports/karatsuba_exploration.json`.
+
+This direction is also not claimed as unprecedented.  A current prior-art
+anchor is Chuang et al., “High-Performance AES-GCM Hardware via Circuit and
+Architecture Co-Design of AES and GHASH,” ISCAS 2026,
+[published record](https://researchoutput.ncku.edu.tw/en/publications/high-performance-aes-gcm-hardware-via-circuit-and-architecture-co/),
+which reports a redundant-basis S-box and two-stage Overlap-Free Karatsuba
+GHASH.  The local design is a separately measured, simpler RTL point and does
+not reproduce or supersede that work.
+
 - [RISC-V Unprivileged ISA — Scalar Cryptography](https://docs.riscv.org/reference/isa/unpriv/scalar-crypto.html)
   is the primary source to consult if the AES implementation is exposed as
   scalar ISA instructions. Any instruction proposal or custom extension must

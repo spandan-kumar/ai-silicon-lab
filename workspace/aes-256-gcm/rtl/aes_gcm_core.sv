@@ -1,6 +1,7 @@
 module aes_gcm_core #(
     // 0: 1 AES round/1 GHASH bit; 1: 2r/8b; 2: 1r/8b;
-    // 3: 2r/16b; 4: 2r/32b; 5: 1r/16b; 6: 1r/32b; 7: 1r/64b.
+    // 3: 2r/16b; 4: 2r/32b; 5: 1r/16b; 6: 1r/32b; 7: 1r/64b;
+    // 8: 1 AES round/cycle; two-stage Karatsuba GHASH.
     parameter integer ARCH = 0
 ) (
     input  logic         clk,
@@ -205,7 +206,12 @@ module aes_gcm_core #(
           .block_out(aes_output));
     end
 
-    if (GHASH_BITS_PER_CYCLE == 1) begin : gen_iterative_ghash
+    if (ARCH == 8) begin : gen_karatsuba_ghash
+      ghash_karatsuba ghash_unit (
+          .clk, .rst, .zeroize, .in_valid(ghash_input_valid), .in_ready(ghash_input_ready),
+          .x(ghash_input), .h(hash_subkey), .out_valid(ghash_output_valid),
+          .out_ready(ghash_output_ready), .out(ghash_output));
+    end else if (GHASH_BITS_PER_CYCLE == 1) begin : gen_iterative_ghash
       ghash_iterative ghash_unit (
           .clk, .rst, .zeroize, .in_valid(ghash_input_valid), .in_ready(ghash_input_ready),
           .x(ghash_input), .h(hash_subkey), .out_valid(ghash_output_valid),

@@ -13,7 +13,7 @@ import time
 from pathlib import Path
 
 from fetch_nangate45 import EXPECTED_SHA256
-from run_synthesis import CONFIGURATIONS
+from run_synthesis import ALL_CONFIGURATIONS, CONFIGURATIONS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +42,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--liberty", type=Path, default=DEFAULT_LIBERTY)
-    parser.add_argument("--architecture", action="append", choices=CONFIGURATIONS)
+    parser.add_argument("--architecture", action="append", choices=ALL_CONFIGURATIONS)
     args = parser.parse_args()
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -82,8 +82,8 @@ def main() -> int:
         ),
         "architectures": {},
     }
-    selected = set(args.architecture or CONFIGURATIONS)
-    for name, configuration in CONFIGURATIONS.items():
+    selected = set(args.architecture or ALL_CONFIGURATIONS)
+    for name, configuration in ALL_CONFIGURATIONS.items():
         if name not in selected:
             continue
         stem = str(configuration["stem"])

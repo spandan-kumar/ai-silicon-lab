@@ -56,6 +56,16 @@ CONFIGURATIONS = {
     },
 }
 
+# Exploratory branches are kept out of the frozen baseline report collector.
+EXPLORATORY_CONFIGURATIONS = {
+    "karatsuba-1r2c": {
+        "arch": 8,
+        "stem": "karatsuba",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/aes256_parallel_enc.sv", "rtl/ghash_karatsuba.sv"],
+    },
+}
+ALL_CONFIGURATIONS = {**CONFIGURATIONS, **EXPLORATORY_CONFIGURATIONS}
+
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -64,7 +74,7 @@ def sha256(path: Path) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--architecture", action="append", choices=CONFIGURATIONS)
+    parser.add_argument("--architecture", action="append", choices=ALL_CONFIGURATIONS)
     args = parser.parse_args()
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -83,8 +93,8 @@ def main() -> int:
         "power": None,
         "architectures": {},
     }
-    selected = set(args.architecture or CONFIGURATIONS)
-    for name, configuration in CONFIGURATIONS.items():
+    selected = set(args.architecture or ALL_CONFIGURATIONS)
+    for name, configuration in ALL_CONFIGURATIONS.items():
         if name not in selected:
             continue
         stem = configuration["stem"]
