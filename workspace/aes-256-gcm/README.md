@@ -11,6 +11,11 @@ two-stage Karatsuba GHASH multiplier. It is intentionally outside the frozen
 eight-point Pareto sweep; reproduce it with the commands recorded in
 `reports/karatsuba_exploration.json`.
 
+Exploratory `ARCH=9` and `ARCH=10` branches overlap the next AES-CTR block
+with the current payload GHASH multiply (`overlap-1r64b` and
+`overlap-karatsuba-1r2c`). They are outside the frozen sweep; reproduce them
+with `reports/overlap_exploration.json`.
+
 The implementation is intentionally separate from the protected Doom
 evaluator.
 

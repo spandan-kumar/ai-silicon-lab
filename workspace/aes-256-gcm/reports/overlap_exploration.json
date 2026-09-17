@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "date": "2026-09-17",
+  "candidate_commit": "68af6c7",
+  "status": "measured-exploration",
+  "claim_boundary": "The schedule is a local architectural improvement for this bounded AES-256-GCM core. Pipelined and overlapping AES/GHASH organizations are established prior art; no world-first claim is made.",
+  "design": {
+    "architecture": "overlap-1r64b",
+    "arch_parameter": 9,
+    "description": "One AES round per cycle and 64-bit GHASH; after the first payload block, the next counter/AES block is launched while the current ciphertext is being GHASHed.",
+    "rtl": "rtl/aes_gcm_core.sv",
+    "rtl_sha256": "9ce75fb0b3172c852c67e4d457b67b9bf16f1fa482377977cbbe723bae454f90"
+  },
+  "correctness": {
+    "status": "pass",
+    "verilator": "Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260701",
+    "corpus_operations": 1038,
+    "stalled_replays": 32,
+    "fixed_cycle_comparisons": 38,
+    "log": "reports/overlap_rtl.log",
+    "log_sha256": "75a8a26a5c96424db7b724a51c6e82695ada554968f3485071afc2a39ba94c11",
+    "summary": "GCM RTL: PASS architecture=overlap-1r64b corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=46 max_cycles=326 mean_cycles=168.032 total_sim_cycles=204927"
+  },
+  "performance": {
+    "workload": "96-bit IV, 0-byte AAD, 64-byte encryption",
+    "warm_cycles": 245,
+    "cold_cycles": 253,
+    "bytes_per_cycle": 0.26122449,
+    "cycles_per_byte": 3.828125,
+    "estimated_prelayout_latency_ns": 678.1159
+  },
+  "generic_synthesis": {
+    "flow": "generic-yosys-synth-v1",
+    "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6)",
+    "generic_cell_count": 44089,
+    "elapsed_seconds": 34.265117,
+    "stat": "build/synth-overlap/overlap-stat.json",
+    "stat_sha256": "834dc20ae26798c52d0754b09638166994e1f31fa2cb1d580cd79a8683b525df",
+    "summary_sha256": "b6472e3d0e49d65285cae04c26d3682195685a5b915046c6906d0e7129d5027c"
+  },
+  "nangate45_synthesis": {
+    "flow": "yosys-abc-nangate45-typical-v1",
+    "technology_nm": 45,
+    "total_cell_area_um2": 78137.766,
+    "critical_combinational_delay_ps": 2767.82,
+    "prelayout_fmax_mhz": 361.295171,
+    "elapsed_seconds": 56.135198,
+    "summary": "build/asic-synth-overlap/summary.json",
+    "summary_sha256": "9738918e4bac19a55f1c9b8044db44ae967a5a137f510be0e664844e36fb045c",
+    "stat_sha256": "3d299fa5b31f7d0983443fc8caa2348938d9c83af0b80d901fd76aae27bd7adc"
+  },
+  "comparison": {
+    "baseline": {
+      "architecture": "balanced-xwide-1r64b",
+      "warm_cycles": 257,
+      "total_cell_area_um2": 75700.408,
+      "critical_combinational_delay_ps": 2726.41,
+      "estimated_prelayout_latency_ns": 700.68737
+    },
+    "delta": {
+      "warm_cycles_percent": -4.6692607,
+      "area_percent": 3.2197422,
+      "delay_percent": 1.5188471,
+      "estimated_latency_percent": -3.2213325
+    },
+    "interpretation": "This branch is a measured local Pareto point: 4.7% fewer warm cycles and 3.2% lower estimated prelayout latency at 3.2% higher mapped area and 1.5% longer critical delay than the best existing 1r64b point. It is not evidence of global optimality or novelty.",
+    "prior_art": [
+      "https://research.ibm.com/publications/high-speed-hardware-architectures-for-authenticated-encryption-mode-gcm",
+      "https://researchoutput.ncku.edu.tw/en/publications/high-performance-aes-gcm-hardware-via-circuit-and-architecture-co/"
+    ]
+  },
+  "karatsuba_variant": {
+    "architecture": "overlap-karatsuba-1r2c",
+    "arch_parameter": 10,
+    "description": "The same data-overlap schedule using the two-stage Karatsuba GHASH multiplier.",
+    "rtl_log": "reports/overlap_karatsuba_rtl.log",
+    "rtl_log_sha256": "473dd32c4842d068c3bb0f90fe9ae29d1fd688f045ed0256bac8c3a1431758bf",
+    "correctness_summary": "GCM RTL: PASS architecture=overlap-karatsuba-1r2c corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=43 max_cycles=320 mean_cycles=163.087 total_sim_cycles=199166",
+    "workload": {
+      "warm_cycles": 243,
+      "cold_cycles": 251,
+      "bytes_per_cycle": 0.263374486,
+      "cycles_per_byte": 3.796875,
+      "critical_combinational_delay_ps": 2752.06,
+      "total_cell_area_um2": 88751.698,
+      "prelayout_fmax_mhz": 363.364171,
+      "estimated_prelayout_latency_ns": 668.75058
+    },
+    "generic_synthesis": {
+      "generic_cell_count": 51979,
+      "stat": "build/synth-overlap-karatsuba/overlap_karatsuba-stat.json",
+      "stat_sha256": "7ed68c5022d6007a6f9cd41ee197e6390a51710bb644506f18b285668791f2b6",
+      "summary_sha256": "9b582d970b56255a963bd0b11b609c33a0782b689c0a864b170f606efb361fe5"
+    },
+    "nangate45_synthesis": {
+      "summary": "build/asic-synth-overlap-karatsuba/summary.json",
+      "summary_sha256": "c6d86a70ee33df437e88f6b4cf7c38e6e6c5663af8f198279c0bdbe1d84a7efa",
+      "stat_sha256": "e45751c938a791d0c956e1ba030c0a19c116b5ac4784eee77672cfe18af9c572"
+    },
+    "interpretation": "The Karatsuba combination lowers the estimated latency further, but its 17.2% area increase over balanced-xwide makes it a latency-oriented point rather than a uniformly better design."
+  },
+  "reproduction": {
+    "rtl_compile": "cp tests/gcm_harness.cpp tests/gcm_vectors.h /tmp/aisl-gcm-overlap-2/ && verilator --cc --exe --build --sv -Wall -Irtl --Mdir /tmp/aisl-gcm-overlap-2 --top-module aes_gcm_core -GARCH=9 -CFLAGS '-DOVERLAP -O3' -MAKEFLAGS 'OPT_FAST=-O3 OPT_GLOBAL=-O3' rtl/aes_gcm_core.sv rtl/aes256_iterative_enc.sv rtl/aes256_parallel_enc.sv rtl/ghash_iterative.sv rtl/ghash_parallel.sv /tmp/aisl-gcm-overlap-2/gcm_harness.cpp",
+    "generic_synthesis": "python3 tools/run_synthesis.py --output-dir build/synth-overlap --architecture overlap-1r64b",
+    "nangate45_synthesis": "python3 tools/run_asic_synthesis.py --output-dir build/asic-synth-overlap --liberty build/technology/nangate45/NangateOpenCellLibrary_typical.lib --architecture overlap-1r64b",
+    "karatsuba_generic_synthesis": "python3 tools/run_synthesis.py --output-dir build/synth-overlap-karatsuba --architecture overlap-karatsuba-1r2c",
+    "karatsuba_nangate45_synthesis": "python3 tools/run_asic_synthesis.py --output-dir build/asic-synth-overlap-karatsuba --liberty build/technology/nangate45/NangateOpenCellLibrary_typical.lib --architecture overlap-karatsuba-1r2c",
+    "baseline_regression": "make -C workspace/aes-256-gcm check"
+  }
+}

@@ -400,6 +400,38 @@ which reports a redundant-basis S-box and two-stage Overlap-Free Karatsuba
 GHASH.  The local design is a separately measured, simpler RTL point and does
 not reproduce or supersede that work.
 
+### AES/GHASH data-overlap branches — 2026-09-17
+
+The next constructive branch attacks a different bottleneck: the original
+state machine waited for a payload GHASH multiply to finish before launching
+the next counter/AES block.  `ARCH=9` keeps the same one-round AES and 64-bit
+GHASH datapaths but, after the first payload block, launches those two
+independent operations in parallel.  `ARCH=10` combines the schedule with the
+two-stage Karatsuba multiplier from the preceding exploration.  Both variants
+pass the complete 1,038-operation corpus, 32 deterministic stalled replays,
+and 38 fixed-cycle comparisons; the retained logs are
+`workspace/aes-256-gcm/reports/overlap_rtl.log` and
+`workspace/aes-256-gcm/reports/overlap_karatsuba_rtl.log`.
+
+On the representative 96-bit-IV/0-AAD/64-byte encryption workload, `ARCH=9`
+measures 245 warm cycles versus 257 for the frozen `balanced-xwide-1r64b`
+baseline.  The pinned Nangate45 flow maps it to 78,137.766 um² with a 2,767.82
+ps critical path, versus 75,700.408 um² and 2,726.41 ps for the baseline.  The
+result is a measured local Pareto point: 4.7% fewer cycles and 3.2% lower
+estimated pre-layout latency at 3.2% more area.  `ARCH=10` reaches 243 warm
+cycles and an estimated 668.75 ns pre-layout latency, but costs 88,751.698 um²;
+it is a latency-oriented point rather than a uniformly better design.  Exact
+hashes, synthesis reports, commands, and deltas are retained in
+`workspace/aes-256-gcm/reports/overlap_exploration.json`.
+
+The idea is not presented as a world first.  IBM's ISCAS 2006 study already
+reported sequential GCM organizations with full-pipelined AES and a block per
+clock ([primary record](https://research.ibm.com/publications/high-speed-hardware-architectures-for-authenticated-encryption-mode-gcm)).
+The 2026 ISCAS paper cited above also combines two AES modules with a pipelined
+Karatsuba GHASH.  The contribution here is narrower: a reproducible overlap
+schedule for this small, one-round AES-256-GCM core, measured against its own
+technology-aware Pareto sweep.
+
 - [RISC-V Unprivileged ISA — Scalar Cryptography](https://docs.riscv.org/reference/isa/unpriv/scalar-crypto.html)
   is the primary source to consult if the AES implementation is exposed as
   scalar ISA instructions. Any instruction proposal or custom extension must
