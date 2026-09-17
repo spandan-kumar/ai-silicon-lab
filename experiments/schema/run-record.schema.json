@@ -24,16 +24,94 @@
     "record_type": { "const": "experiment-run" },
     "run_id": { "type": "string", "minLength": 1 },
     "experiment_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "experiment_revision": { "type": ["integer", "string"] },
-    "status": { "type": "string" },
-    "measurement_status": { "type": "string" },
-    "agent": { "type": "object" },
-    "usage": { "type": "object" },
-    "time": { "type": "object" },
-    "cost": { "type": "object" },
+    "experiment_revision": { "type": ["integer", "string"], "pattern": "\\S" },
+    "status": { "enum": ["draft", "running", "pass", "fail", "blocked", "reported"] },
+    "measurement_status": { "$ref": "#/$defs/source" },
+    "agent": {
+      "type": "object",
+      "required": ["model", "harness", "reasoning"],
+      "properties": {
+        "model": { "$ref": "#/$defs/model" },
+        "harness": { "type": "object" },
+        "reasoning": { "type": "object" }
+      }
+    },
+    "usage": { "$ref": "#/$defs/usage" },
+    "time": { "$ref": "#/$defs/measurement" },
+    "cost": { "$ref": "#/$defs/measurement" },
     "execution": { "type": "object" },
     "result": { "type": "object" },
     "evidence": { "type": "array" }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "$defs": {
+    "source": { "enum": ["measured", "reported", "estimated", "mixed", "unavailable"] },
+    "nullableNumber": { "type": ["number", "null"], "minimum": 0 },
+    "nullableTokens": { "type": ["integer", "null"], "minimum": 0 },
+    "model": {
+      "type": "object",
+      "required": ["identity_status", "canonical_id"],
+      "properties": {
+        "provider": { "type": ["string", "null"] },
+        "display_name": { "type": ["string", "null"] },
+        "canonical_id": { "type": ["string", "null"] },
+        "identity_status": { "enum": ["exact", "alias-only", "unknown"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "identity_status": { "const": "exact" } } },
+          "then": { "properties": { "canonical_id": { "type": "string", "pattern": "\\S" } } },
+          "else": { "properties": { "canonical_id": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "identity_status": { "const": "alias-only" } } },
+          "then": {
+            "required": ["display_name"],
+            "properties": { "display_name": { "type": "string", "pattern": "\\S" } }
+          }
+        }
+      ]
+    },
+    "sourceSection": {
+      "type": "object",
+      "required": ["source"],
+      "properties": { "source": { "$ref": "#/$defs/source" } },
+      "if": { "properties": { "source": { "const": "unavailable" } } },
+      "then": {
+        "required": ["notes"],
+        "properties": { "notes": { "type": "string", "pattern": "\\S" } }
+      }
+    },
+    "usage": {
+      "allOf": [{ "$ref": "#/$defs/sourceSection" }],
+      "required": ["input_tokens", "cached_input_tokens", "cache_write_tokens", "output_tokens", "reasoning_tokens", "total_tokens"],
+      "properties": {
+        "input_tokens": { "$ref": "#/$defs/nullableTokens" },
+        "cached_input_tokens": { "$ref": "#/$defs/nullableTokens" },
+        "cache_write_tokens": { "$ref": "#/$defs/nullableTokens" },
+        "output_tokens": { "$ref": "#/$defs/nullableTokens" },
+        "reasoning_tokens": { "$ref": "#/$defs/nullableTokens" },
+        "total_tokens": { "$ref": "#/$defs/nullableTokens" }
+      },
+      "if": { "properties": { "source": { "const": "unavailable" } } },
+      "then": {
+        "properties": {
+          "input_tokens": { "type": "null" },
+          "cached_input_tokens": { "type": "null" },
+          "cache_write_tokens": { "type": "null" },
+          "output_tokens": { "type": "null" },
+          "reasoning_tokens": { "type": "null" },
+          "total_tokens": { "type": "null" }
+        }
+      }
+    },
+    "measurement": {
+      "allOf": [{ "$ref": "#/$defs/sourceSection" }],
+      "patternProperties": { "(_seconds|_hours)$|^amount$": { "$ref": "#/$defs/nullableNumber" } },
+      "if": { "properties": { "source": { "const": "unavailable" } } },
+      "then": {
+        "patternProperties": { "(_seconds|_hours)$|^amount$": { "type": "null" } }
+      }
+    }
+  }
 }

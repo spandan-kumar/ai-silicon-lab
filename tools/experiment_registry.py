@@ -32,18 +32,38 @@ EXPERIMENT_STATUSES = {
 RUN_STATUSES = {"draft", "running", "pass", "fail", "blocked", "reported"}
 MEASUREMENT_STATUSES = {"measured", "reported", "estimated", "mixed", "unavailable"}
 VALUE_SOURCES = {"measured", "reported", "estimated", "unavailable", "mixed"}
+MODEL_IDENTITY_STATUSES = {"exact", "alias-only", "unknown"}
+TOKEN_FIELDS = (
+    "input_tokens", "cached_input_tokens", "cache_write_tokens",
+    "output_tokens", "reasoning_tokens", "total_tokens",
+)
 
 
 class JsonLoadError(Exception):
     pass
 
 
+def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    obj: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in obj:
+            raise ValueError(f"duplicate JSON key {key!r}")
+        obj[key] = value
+    return obj
+
+
+def finite_float(text: str) -> float:
+    value = float(text)
+    if not math.isfinite(value):
+        raise ValueError(f"non-finite JSON number {text}")
+    return value
+
+
 def load_json(path: Path) -> Any:
     try:
         text = path.read_text(encoding="utf-8")
-        return json.loads(text, parse_constant=lambda value: (_ for _ in ()).throw(
-            ValueError(f"non-finite JSON constant {value}")
-        ))
+        return json.loads(text, object_pairs_hook=unique_object,
+                          parse_float=finite_float, parse_constant=finite_float)
     except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         raise JsonLoadError(f"{path}: cannot load JSON: {exc}") from exc
 
@@ -69,6 +89,21 @@ def require_string(obj: dict[str, Any], key: str, path: str, issues: list[str]) 
         issues.append(f"{path}.{key}: expected a non-empty string")
         return None
     return value
+
+
+def check_enum(value: Any, choices: set[str], path: str, issues: list[str]) -> None:
+    if not isinstance(value, str) or value not in choices:
+        issues.append(f"{path}: expected one of {sorted(choices)}")
+
+
+def check_measurement_source(section: dict[str, Any], fields: list[str] | tuple[str, ...],
+                             path: str, issues: list[str]) -> None:
+    check_enum(section.get("source"), VALUE_SOURCES, path + ".source", issues)
+    if section.get("source") == "unavailable":
+        require_string(section, "notes", path, issues)
+        for key in fields:
+            if section.get(key) is not None:
+                issues.append(f"{path}.{key}: must be null when source is unavailable")
 
 
 def check_slug(value: Any, path: str, issues: list[str]) -> None:
@@ -115,15 +150,13 @@ def validate_manifest(manifest: Any, path: Path) -> list[str]:
     if obj is None:
         return issues
 
-    if obj.get("schema_version") != 1:
+    if isinstance(obj.get("schema_version"), bool) or obj.get("schema_version") != 1:
         issues.append(path_issue(path, "schema_version must be 1"))
     experiment_id = obj.get("experiment_id")
     check_slug(experiment_id, path_issue(path, "experiment_id"), issues)
     for key in ("title", "domain", "objective"):
         require_string(obj, key, str(path), issues)
-    status = obj.get("status")
-    if status not in EXPERIMENT_STATUSES:
-        issues.append(path_issue(path, f"status must be one of {sorted(EXPERIMENT_STATUSES)}"))
+    check_enum(obj.get("status"), EXPERIMENT_STATUSES, f"{path}.status", issues)
 
     for key in ("scope", "design_space", "correctness"):
         if not isinstance(obj.get(key), dict):
@@ -177,21 +210,21 @@ def validate_run_record(record: Any, path: Path, known_experiment_ids: set[str] 
     if obj is None:
         return issues
 
-    if obj.get("schema_version") != 1:
+    if isinstance(obj.get("schema_version"), bool) or obj.get("schema_version") != 1:
         issues.append(path_issue(path, "schema_version must be 1"))
     if obj.get("record_type") != "experiment-run":
         issues.append(path_issue(path, "record_type must be 'experiment-run'"))
     require_string(obj, "run_id", str(path), issues)
     experiment_id = obj.get("experiment_id")
     check_slug(experiment_id, path_issue(path, "experiment_id"), issues)
-    if known_experiment_ids and isinstance(experiment_id, str) and experiment_id not in known_experiment_ids:
+    if known_experiment_ids is not None and isinstance(experiment_id, str) and experiment_id not in known_experiment_ids:
         issues.append(path_issue(path, f"experiment_id {experiment_id!r} is not in the registry"))
     if not isinstance(obj.get("experiment_revision"), (int, str)) or isinstance(obj.get("experiment_revision"), bool):
         issues.append(path_issue(path, "experiment_revision must be an integer or string"))
-    if obj.get("status") not in RUN_STATUSES:
-        issues.append(path_issue(path, f"status must be one of {sorted(RUN_STATUSES)}"))
-    if obj.get("measurement_status") not in MEASUREMENT_STATUSES:
-        issues.append(path_issue(path, f"measurement_status must be one of {sorted(MEASUREMENT_STATUSES)}"))
+    elif isinstance(obj["experiment_revision"], str) and not obj["experiment_revision"].strip():
+        issues.append(path_issue(path, "experiment_revision must not be blank"))
+    check_enum(obj.get("status"), RUN_STATUSES, f"{path}.status", issues)
+    check_enum(obj.get("measurement_status"), MEASUREMENT_STATUSES, f"{path}.measurement_status", issues)
 
     agent = obj.get("agent")
     if not isinstance(agent, dict):
@@ -204,8 +237,15 @@ def validate_run_record(record: Any, path: Path, known_experiment_ids: set[str] 
             for key in ("provider", "display_name", "canonical_id", "identity_status"):
                 if key in model and model[key] is not None and not isinstance(model[key], str):
                     issues.append(path_issue(path, f"agent.model.{key} must be a string or null"))
-            if model.get("identity_status") not in {None, "exact", "alias-only", "unknown"}:
-                issues.append(path_issue(path, "agent.model.identity_status is invalid"))
+            identity = model.get("identity_status")
+            check_enum(identity, MODEL_IDENTITY_STATUSES, f"{path}.agent.model.identity_status", issues)
+            if identity == "exact":
+                require_string(model, "canonical_id", f"{path}.agent.model", issues)
+            elif identity in ("alias-only", "unknown"):
+                if "canonical_id" not in model or model["canonical_id"] is not None:
+                    issues.append(path_issue(path, "agent.model.canonical_id must be null without an exact identity"))
+                if identity == "alias-only":
+                    require_string(model, "display_name", f"{path}.agent.model", issues)
         harness = agent.get("harness")
         if not isinstance(harness, dict):
             issues.append(path_issue(path, "agent.harness must be an object"))
@@ -225,28 +265,22 @@ def validate_run_record(record: Any, path: Path, known_experiment_ids: set[str] 
     if not isinstance(usage, dict):
         issues.append(path_issue(path, "usage must be an object"))
     else:
-        for key in (
-            "input_tokens",
-            "cached_input_tokens",
-            "cache_write_tokens",
-            "output_tokens",
-            "reasoning_tokens",
-            "total_tokens",
-        ):
+        for key in TOKEN_FIELDS:
+            if key not in usage:
+                issues.append(path_issue(path, f"usage.{key} is required; use null when unavailable"))
             check_nonnegative(usage.get(key), f"{path}.usage.{key}", issues, integer=True)
-        if usage.get("source") not in VALUE_SOURCES:
-            issues.append(path_issue(path, "usage.source must identify how usage was obtained"))
+        check_measurement_source(usage, TOKEN_FIELDS, f"{path}.usage", issues)
 
     for section_name in ("time", "cost"):
         section = obj.get(section_name)
         if not isinstance(section, dict):
             issues.append(path_issue(path, f"{section_name} must be an object"))
             continue
-        for key, value in section.items():
-            if key.endswith("_seconds") or key.endswith("_hours") or key == "amount":
-                check_nonnegative(value, f"{path}.{section_name}.{key}", issues)
-        if section.get("source") not in VALUE_SOURCES:
-            issues.append(path_issue(path, f"{section_name}.source must identify how the values were obtained"))
+        numeric_fields = [key for key in section
+                          if key.endswith("_seconds") or key.endswith("_hours") or key == "amount"]
+        for key in numeric_fields:
+            check_nonnegative(section[key], f"{path}.{section_name}.{key}", issues)
+        check_measurement_source(section, numeric_fields, f"{path}.{section_name}", issues)
 
     for key in ("execution", "result"):
         if not isinstance(obj.get(key), dict):
@@ -276,7 +310,7 @@ def load_registry() -> tuple[dict[str, Any] | None, list[str]]:
     obj = require_object(registry, str(REGISTRY_PATH), issues)
     if obj is None:
         return None, issues
-    if obj.get("schema_version") != 1:
+    if isinstance(obj.get("schema_version"), bool) or obj.get("schema_version") != 1:
         issues.append(path_issue(REGISTRY_PATH, "schema_version must be 1"))
     entries = obj.get("experiments")
     if not isinstance(entries, list) or not entries:
