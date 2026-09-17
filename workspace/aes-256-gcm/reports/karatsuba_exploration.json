@@ -4,6 +4,11 @@
   "candidate_commit": "7ec010e",
   "architecture": "karatsuba-1r2c",
   "status": "measured-exploration",
+  "reproduction": {
+    "rtl_compile": "verilator --cc --exe --build --sv -Wall -Irtl --top-module aes_gcm_core -GARCH=8 -DKARATSUBA rtl/aes_gcm_core.sv rtl/aes256_iterative_enc.sv rtl/aes256_parallel_enc.sv rtl/ghash_iterative.sv rtl/ghash_parallel.sv rtl/ghash_karatsuba.sv tests/gcm_harness.cpp",
+    "generic_synthesis": "python3 tools/run_synthesis.py --output-dir build/synth-karatsuba-v2 --architecture karatsuba-1r2c",
+    "nangate45_synthesis": "python3 tools/run_asic_synthesis.py --output-dir build/asic-synth-karatsuba --liberty build/technology/nangate45/NangateOpenCellLibrary_typical.lib --architecture karatsuba-1r2c"
+  },
   "design": {
     "rtl": "rtl/ghash_karatsuba.sv",
     "description": "Two-stage 64-bit Karatsuba carry-less GHASH product with constant-time GF(2^128) reduction",
