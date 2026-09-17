@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "evidence-validation-maintenance-2026-09-17",
+  "experiment_id": "doom-rv32imc",
+  "experiment_revision": "b9beb9f5a97c6706ccb04c33f017134c3d283c0b",
+  "status": "pass",
+  "measurement_status": "mixed",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "GPT-6",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex",
+      "version": null,
+      "environment": "desktop"
+    },
+    "reasoning": {
+      "effort": null,
+      "mode": null,
+      "context": null
+    },
+    "goal_sha256": "576c9ea2111b40006fdbecd4fa478323650ce83208a394dd0ffb36ce214e7ab0",
+    "instruction_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "55a0c86976b675178801e1169510eec0df6e9a2c8efcaaeebe05825833e33a20"
+      },
+      {
+        "path": "experiments/registry.json",
+        "sha256": "add6b58fccd0d9ad2b1b61768b5be54c75b5ea8150fd3770a3daff169b09a343"
+      },
+      {
+        "path": "experiments/doom-rv32imc/experiment.json",
+        "sha256": "b4ce52ae5fd1bf7635f98f452dd697e5a39892f0a66c9f1c5acebc756bf05523"
+      },
+      {
+        "path": "experiments/doom-rv32imc/PLAN.md",
+        "sha256": "8639a862137e68e30c1aba1397a0b5e1a1fae3fa58319812f78eb082bad9cf39"
+      }
+    ],
+    "skills": [
+      {
+        "name": "karpathy-guidelines",
+        "sha256": "6e22cc54cb02a5e98ae42d06d9d7292db0c1b43894831b32879beb0166b2aea7"
+      }
+    ],
+    "subagents": [],
+    "attribution_source": "Active session identifies GPT-6 family and Codex desktop; exact canonical model identifier, harness version, and reasoning controls are not exposed. No subagents were used."
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null,
+    "source": "unavailable",
+    "notes": "Per-attempt usage telemetry is not exposed to this session."
+  },
+  "time": {
+    "agent_wall_seconds": null,
+    "human_seconds": null,
+    "build_seconds": null,
+    "simulation_seconds": null,
+    "synthesis_seconds": null,
+    "hardware_seconds": null,
+    "source": "unavailable",
+    "notes": "Agent and human timing telemetry is unavailable. No candidate build, RTL workload simulation, synthesis study, or physical measurement was performed. Direct subprocess durations for validation and lab smoke tests are retained separately in execution.commands."
+  },
+  "cost": {
+    "amount": null,
+    "currency": null,
+    "rate_date": null,
+    "source": "unavailable",
+    "notes": "No billing telemetry or pinned price source is exposed."
+  },
+  "execution": {
+    "candidate_commit": "fdcceb7abcc29fc07360a970dac038b48ac39f84",
+    "candidate_manifest": null,
+    "working_tree": "clean at committed-tests and committed evaluator fixture runs",
+    "related_experiments": [
+      "aes-256-gcm"
+    ],
+    "scope": "Shared provenance tooling maintenance associated with the Doom baseline; no hardware candidate changes.",
+    "lab_run_ids": [
+      "evidence-validator-committed-known-good",
+      "evidence-validator-committed-broken"
+    ],
+    "tool_versions": {
+      "python_system": "3.9.6",
+      "python_homebrew": "3.14.7",
+      "jsonschema": "4.25.1"
+    },
+    "dependency_notes": "jsonschema installed only in ignored runs/evidence-validation-maintenance/schema-venv for independent schema QA; the CLI and normal test suite remain standard-library-only.",
+    "source_hashes": [
+      {
+        "path": "tools/experiment_registry.py",
+        "sha256": "351618d3f310609d13873b4beff2a42964fb70bacbb197e174047c46595db88e"
+      },
+      {
+        "path": "tools/test_experiment_registry.py",
+        "sha256": "7d973f3b8767961544b58ad0d1038179231bc46860d8a014fdf0a470ce3a33b0"
+      },
+      {
+        "path": "experiments/schema/run-record.schema.json",
+        "sha256": "28d7fca56f20203b602a95d2c882bf942a53de2adb3af050be2e085ad6cc1db9"
+      },
+      {
+        "path": "experiments/schema/experiment.schema.json",
+        "sha256": "c1888f473b120921580f93b6dd4183cb05141f1b26faaecbf55773dad5bd60ba"
+      }
+    ],
+    "commands": [
+      {
+        "path": "runs/evidence-validation-maintenance/broken.command.json",
+        "sha256": "0fed376b73c99beed194823749a4a50bef54312af7546c1be68f66dcd0d88076",
+        "command": [
+          "./lab/evaluate",
+          "--self-test",
+          "broken",
+          "--run-id",
+          "evidence-validator-broken",
+          "--json-only"
+        ],
+        "started_at": "2026-09-17T17:39:40.609144+00:00",
+        "finished_at": "2026-09-17T17:39:42.564384+00:00",
+        "elapsed_seconds": 1.9551525,
+        "returncode": 1
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/committed-broken.command.json",
+        "sha256": "646fc6b7a974fcf75ed87601c3455b582bf8e9738916273d87b5e552b8ef0687",
+        "command": [
+          "./lab/evaluate",
+          "--self-test",
+          "broken",
+          "--run-id",
+          "evidence-validator-committed-broken",
+          "--json-only"
+        ],
+        "started_at": "2026-09-17T17:42:00.303572+00:00",
+        "finished_at": "2026-09-17T17:42:02.346872+00:00",
+        "elapsed_seconds": 2.0433005840000003,
+        "returncode": 1
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/committed-known-good.command.json",
+        "sha256": "3395287afbcccc72f3448571b5bd3d10dccabda5a2a17abe9395d454f07b4f2b",
+        "command": [
+          "./lab/evaluate",
+          "--self-test",
+          "known-good",
+          "--run-id",
+          "evidence-validator-committed-known-good",
+          "--json-only"
+        ],
+        "started_at": "2026-09-17T17:42:00.303577+00:00",
+        "finished_at": "2026-09-17T17:42:00.698742+00:00",
+        "elapsed_seconds": 0.39505,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/committed-tests.command.json",
+        "sha256": "4f5ddbfd5299a4b98f4eb68cb96a0e5e0aa0036b21afcdeb54232b46d383d4f5",
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "started_at": "2026-09-17T17:42:00.304432+00:00",
+        "finished_at": "2026-09-17T17:42:00.450264+00:00",
+        "elapsed_seconds": 0.145761542,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/known-good.command.json",
+        "sha256": "24bc51e801ea03c99040d5feeb12fd97614f71371c2e60feea7e6e06f784e46a",
+        "command": [
+          "./lab/evaluate",
+          "--self-test",
+          "known-good",
+          "--run-id",
+          "evidence-validator-known-good",
+          "--json-only"
+        ],
+        "started_at": "2026-09-17T17:39:26.328975+00:00",
+        "finished_at": "2026-09-17T17:39:28.379773+00:00",
+        "elapsed_seconds": 2.050702917,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/lab-status.command.json",
+        "sha256": "8f7bc0741132112540626b43afb9d66483abf8001a76765e1e5ca339d2039172",
+        "command": [
+          "./lab/status",
+          "--json"
+        ],
+        "started_at": "2026-09-17T17:37:17.452212+00:00",
+        "finished_at": "2026-09-17T17:37:20.994141+00:00",
+        "elapsed_seconds": 3.5416995,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/protect.command.json",
+        "sha256": "ab2be13c40f2972f86186f3faf3d089b1594082e5a278577936c5a8af76776b0",
+        "command": [
+          "./lab/protect",
+          "--apply"
+        ],
+        "started_at": "2026-09-17T17:37:16.867527+00:00",
+        "finished_at": "2026-09-17T17:37:17.410098+00:00",
+        "elapsed_seconds": 0.542476792,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/registry-check.command.json",
+        "sha256": "afa1c360310dc35364d161195bc5b763f5185b4f7e4169882570c0c5c8214e6d",
+        "command": [
+          "./tools/experiment",
+          "--json",
+          "check"
+        ],
+        "started_at": "2026-09-17T17:39:26.249524+00:00",
+        "finished_at": "2026-09-17T17:39:26.296109+00:00",
+        "elapsed_seconds": 0.04602725,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/regression-after.command.json",
+        "sha256": "719928e2a01ce2fef18b20c78ed5fc1a2e27fab58dfd983209f6247a62da40db",
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "started_at": "2026-09-17T17:36:51.556302+00:00",
+        "finished_at": "2026-09-17T17:36:51.659487+00:00",
+        "elapsed_seconds": 0.103086417,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/regression-before.command.json",
+        "sha256": "06373d28f7b927bcb9975c0cff9df4788ec1fe3d28078c8ad5e27b04527f8621",
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "started_at": "2026-09-17T17:36:51.389337+00:00",
+        "finished_at": "2026-09-17T17:36:51.505890+00:00",
+        "elapsed_seconds": 0.11635737499999999,
+        "returncode": 1
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/schema-check.command.json",
+        "sha256": "7b941a9323cbc58750e39730aa23a315879b73b1cbd3b31a7275b6daff724f17",
+        "command": [
+          "runs/evidence-validation-maintenance/schema-venv/bin/python",
+          "runs/evidence-validation-maintenance/check_schema.py"
+        ],
+        "started_at": "2026-09-17T17:41:06.556160+00:00",
+        "finished_at": "2026-09-17T17:41:06.925989+00:00",
+        "elapsed_seconds": 0.369746167,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/schema-dependency-install.command.json",
+        "sha256": "7bec532f6376ac1f9d21d2969fda1ae29b958024215eb8f9a2712576b2966764",
+        "command": [
+          "runs/evidence-validation-maintenance/schema-venv/bin/python",
+          "-m",
+          "pip",
+          "install",
+          "jsonschema"
+        ],
+        "started_at": "2026-09-17T17:39:42.568781+00:00",
+        "finished_at": "2026-09-17T17:39:46.486678+00:00",
+        "elapsed_seconds": 3.9177550830000003,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/tests-python314.command.json",
+        "sha256": "340a9b0e93ef6de76da03a0611596644ea4e9c094a24096f38ea618e7532f1c3",
+        "command": [
+          "/opt/homebrew/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "started_at": "2026-09-17T17:41:06.976054+00:00",
+        "finished_at": "2026-09-17T17:41:07.150754+00:00",
+        "elapsed_seconds": 0.174613459,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/tests-python39.command.json",
+        "sha256": "d7dcf63481f28c72d04c0a8ac4f2336efb3e79c4eee62551e95bc2f2b9e62168",
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "started_at": "2026-09-17T17:41:06.969799+00:00",
+        "finished_at": "2026-09-17T17:41:07.088327+00:00",
+        "elapsed_seconds": 0.11840712500000002,
+        "returncode": 0
+      },
+      {
+        "path": "runs/evidence-validation-maintenance/trace-noop.command.json",
+        "sha256": "d2474fd567281492b32859e8f33f9c8ecd9304f357aa4e3b8bfd45460e0498c3",
+        "command": [
+          "./lab/trace",
+          "--run-id",
+          "evidence-trace-probe",
+          "--label",
+          "should-fail",
+          "--",
+          "/usr/bin/false"
+        ],
+        "started_at": "2026-09-17T17:42:00.484395+00:00",
+        "finished_at": "2026-09-17T17:42:00.635866+00:00",
+        "elapsed_seconds": 0.151359958,
+        "returncode": 0
+      }
+    ]
+  },
+  "result": {
+    "status": "provenance-validator-regressions-fixed",
+    "claim_level": "executed-tooling-tests-and-evaluator-self-tests",
+    "unit_test_methods": 17,
+    "schema_record_cases": 45,
+    "protected_files_checked": 236,
+    "protected_files_intact": true,
+    "candidate_hardware_evaluated": false,
+    "notes": "Pass applies to the scoped tooling change. The known-good run uses the trusted native reference, not candidate RTL. The broken fixture is expected to fail. Raw evidence remains in ignored local runs directories; tracked tests reproduce the validator checks.",
+    "remaining_issues": [
+      "Protected lab/trace wrapper is a no-op because trace_command.py has no main entrypoint. It is unchanged; maintenance would require a trusted-manifest refresh and full lab validation."
+    ]
+  },
+  "evidence": [
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/regression-before.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Regression suite against the original main validator: exit 1, with 27 failed assertions and 14 errors across 14 test methods."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/regression-before.stderr.log",
+      "sha256": "646320219ca490e0b4c53f381302743df20106b4c07385511fb15be82b4dbd56",
+      "description": "Regression suite against the original main validator: exit 1, with 27 failed assertions and 14 errors across 14 test methods."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/committed-tests.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "All 17 test methods pass on Python 3.9.6 at the clean implementation commit."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/committed-tests.stderr.log",
+      "sha256": "e1f18e1a1c4eb6e01075530f9785cf0327d079431dd5b4d56d9d0d78912d8256",
+      "description": "All 17 test methods pass on Python 3.9.6 at the clean implementation commit."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/tests-python314.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "All 17 test methods pass on Python 3.14.7; tested sources match the implementation commit."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/tests-python314.stderr.log",
+      "sha256": "abc5a2413dddd8ba483a2d891722249934aef05dd55652791da0acb3e49ae6fd",
+      "description": "All 17 test methods pass on Python 3.14.7; tested sources match the implementation commit."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/schema-check.stdout.log",
+      "sha256": "a8c4e715935a0c42c2f68791186bd2bd6b2785f06d5824405094e350504d5a57",
+      "description": "JSON Schema 2020-12 validation with jsonschema 4.25.1: two manifests and 45 record cases agree with expected outcomes."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/schema-check.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "JSON Schema 2020-12 validation with jsonschema 4.25.1: two manifests and 45 record cases agree with expected outcomes."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/lab-status.stdout.log",
+      "sha256": "f5ea0b5ee17294e41e54ad75b86d75d79206c4a0528f73bd48ccef700bb413e2",
+      "description": "Core health passes after applying filesystem protection; 236 trusted files verified."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/lab-status.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Core health passes after applying filesystem protection; 236 trusted files verified."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/committed-known-good.stdout.log",
+      "sha256": "73da672d719857c47ea42a1c5aca5bdc8870ddaaf3a39beaa0356cab29026a36",
+      "description": "Trusted evaluator self-test passes with all 120 exact frames at a clean commit."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/committed-known-good.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Trusted evaluator self-test passes with all 120 exact frames at a clean commit."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/committed-broken.stdout.log",
+      "sha256": "a844c88b63ef72aef1875776ac853e076a251c1499197358cf389591d4d1a18d",
+      "description": "Intentionally broken self-test exits 1 with frame comparison failure at a clean commit."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/committed-broken.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Intentionally broken self-test exits 1 with frame comparison failure at a clean commit."
+    },
+    {
+      "kind": "command-stdout",
+      "path": "runs/evidence-validation-maintenance/trace-noop.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Separate unresolved issue: lab/trace returns 0 for /usr/bin/false without creating its requested run directory."
+    },
+    {
+      "kind": "command-stderr",
+      "path": "runs/evidence-validation-maintenance/trace-noop.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Separate unresolved issue: lab/trace returns 0 for /usr/bin/false without creating its requested run directory."
+    },
+    {
+      "kind": "reproduction-artifact",
+      "path": "runs/evidence-validation-maintenance/capture.py",
+      "sha256": "0fd83a43342ca06abcc1325d94d9790adc2b6b3b64ccbc967b3d97575ad7810d",
+      "description": "Retained local reproduction script or original validator failure summary."
+    },
+    {
+      "kind": "reproduction-artifact",
+      "path": "runs/evidence-validation-maintenance/check_schema.py",
+      "sha256": "85c0fd777a719b74af99d90079e891497ee8efecd40432ed0c5e7289611bd77e",
+      "description": "Retained local reproduction script or original validator failure summary."
+    },
+    {
+      "kind": "reproduction-artifact",
+      "path": "runs/evidence-validation-maintenance/before.json",
+      "sha256": "486ffd7a46a3d7f3ab23a8bea568797bacd1f16d69e806ea9f882face096e535",
+      "description": "Retained local reproduction script or original validator failure summary."
+    }
+  ]
+}
