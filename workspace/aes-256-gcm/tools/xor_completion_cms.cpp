@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -101,7 +102,10 @@ class completion_sat
 public:
   completion_sat( completion_problem const& problem, uint32_t steps,
                   uint64_t conflict_limit, bool order_targets,
-                  std::vector<uint32_t> target_steps )
+                  std::vector<uint32_t> target_steps,
+                  std::optional<std::pair<uint32_t, uint32_t>> last_operands,
+                  std::vector<std::tuple<uint32_t, uint32_t, uint32_t>>
+                      pinned_step_operands )
       : problem_( problem ), steps_( steps ),
         source_count_( static_cast<uint32_t>( problem.sources.size() ) ),
         target_count_( static_cast<uint32_t>( problem.targets.size() ) ),
@@ -122,6 +126,11 @@ public:
     constrain_values();
     constrain_outputs();
     if ( !target_steps.empty() ) constrain_target_steps( target_steps );
+    if ( last_operands ) constrain_last_operands( *last_operands );
+    for ( auto const& operands : pinned_step_operands )
+      constrain_step_operands( std::get<0>( operands ),
+                               { std::get<1>( operands ),
+                                 std::get<2>( operands ) } );
     if ( order_targets ) constrain_target_order();
     constrain_step_usage();
   }
@@ -310,6 +319,23 @@ private:
     }
   }
 
+  void constrain_last_operands( std::pair<uint32_t, uint32_t> operands )
+  {
+    if ( steps_ == 0u ) throw std::runtime_error( "there is no last step" );
+    constrain_step_operands( steps_ - 1u, operands );
+  }
+
+  void constrain_step_operands( uint32_t step,
+                                std::pair<uint32_t, uint32_t> operands )
+  {
+    if ( step >= steps_ || operands.first >= source_count_ + step ||
+         operands.second >= source_count_ + step ||
+         operands.first == operands.second )
+      throw std::runtime_error( "step operand is out of range" );
+    add_clause( { Lit( selected( step, operands.first ), false ) } );
+    add_clause( { Lit( selected( step, operands.second ), false ) } );
+  }
+
   uint32_t source_selected( uint32_t step, uint32_t source ) const
   { return select_sources_.at( step * source_count_ + source ); }
   uint32_t step_selected( uint32_t step, uint32_t previous ) const
@@ -334,10 +360,11 @@ private:
 
 int main( int argc, char** argv )
 {
-  if ( argc < 4 || argc > 6 )
+  if ( argc < 4 )
   {
     std::cerr << "usage: xor_completion_cms PROBLEM.txt STEPS CONFLICT_LIMIT "
-                 "[TARGET_MODE] [SOURCE_INDICES]\n";
+                 "[TARGET_MODE] [SOURCE_INDICES] [LAST_OPERANDS] "
+                 "[STEP_OPERANDS ...]\n";
     return 2;
   }
   auto problem = read_problem( argv[1] );
@@ -362,7 +389,7 @@ int main( int argc, char** argv )
         target_steps.push_back( static_cast<uint32_t>( std::stoul( piece ) ) );
     }
   }
-  if ( argc == 6 )
+  if ( argc >= 6 )
   {
     std::vector<uint64_t> selected_sources;
     std::istringstream stream( argv[5] );
@@ -379,8 +406,43 @@ int main( int argc, char** argv )
     problem->sources = std::move( selected_sources );
     *problem = compress_problem( std::move( *problem ) );
   }
+  std::optional<std::pair<uint32_t, uint32_t>> last_operands;
+  if ( argc >= 7 )
+  {
+    std::istringstream stream( argv[6] );
+    std::string left, right, extra;
+    if ( !std::getline( stream, left, ',' ) ||
+         !std::getline( stream, right, ',' ) || std::getline( stream, extra, ',' ) ||
+         left.empty() || right.empty() )
+      throw std::runtime_error( "last operands must be LEFT,RIGHT" );
+    last_operands = std::make_pair(
+        static_cast<uint32_t>( std::stoul( left ) ),
+        static_cast<uint32_t>( std::stoul( right ) ) );
+  }
+  std::vector<std::tuple<uint32_t, uint32_t, uint32_t>> pinned_step_operands;
+  for ( int argument = 7; argument < argc; ++argument )
+  {
+    std::istringstream stream( argv[argument] );
+    std::string step, left, right, extra;
+    if ( !std::getline( stream, step, ',' ) ||
+         !std::getline( stream, left, ',' ) ||
+         !std::getline( stream, right, ',' ) || std::getline( stream, extra, ',' ) ||
+         step.empty() || left.empty() || right.empty() )
+      throw std::runtime_error( "step operands must be STEP,LEFT,RIGHT" );
+    const auto step_index = static_cast<uint32_t>( std::stoul( step ) );
+    if ( std::any_of( pinned_step_operands.begin(), pinned_step_operands.end(),
+                      [step_index]( auto const& pin ) {
+                        return std::get<0>( pin ) == step_index;
+                      } ) )
+      throw std::runtime_error( "a step may be pinned only once" );
+    pinned_step_operands.push_back( std::make_tuple(
+        step_index,
+        static_cast<uint32_t>( std::stoul( left ) ),
+        static_cast<uint32_t>( std::stoul( right ) ) ) );
+  }
   completion_sat solver( *problem, steps, std::stoull( argv[3] ), order_targets,
-                         std::move( target_steps ) );
+                         std::move( target_steps ), last_operands,
+                         pinned_step_operands );
   const auto result = solver.solve();
   if ( result != l_True )
   {

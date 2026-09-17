@@ -1,6 +1,6 @@
 {
   "study": "aes-sbox-29-and-137-gate-search",
-  "date": "2026-09-01",
+  "date": "2026-09-16",
   "breakthrough_found": false,
   "public_frontier": {
     "circuit": "aes-sbox-fwd-g138-a29-d38-ad6",
@@ -42,7 +42,8 @@
     "mockturtle_revision": "0886ebfdd101ce1110daf3d60b96d72edd3143ea",
     "cryptominisat_version": "5.14.7",
     "xor_completion_sat_sha256": "7ba7c35dd015159015632695caf7c33ee98283d741b41e8f24a8c3b953c55fbe",
-    "xor_completion_cms_sha256": "5befce6f89c1c6f09c11431b2ff2b02ed73aeeab2a1a76854b4eb3de590b7baa",
+    "xor_completion_cms_sha256": "967db58122ccae2a1ea73efd378e6e661beb0f13c70b24e201518aded176acb1",
+    "xor_completion_branch_classifier_sha256": "c63f068f415534d87b9226fb4f297aa97bf621a74dda10c6d2d97d308d8cb07d",
     "xor_bp_complete_sha256": "41fe704bda096fc154caecfb273d0d88abaac2afc546d9e63025b8803101e539",
     "xor_linear_exact_sha256": "e8f2fa3dc8a335dd231e9f4a539de92d962ee1781de7db20f2f99febf134ae34",
     "xag_exact_resynth_sha256": "0f4a9e3f41fc1cd9b2a0ac7774ed577085be4470c1b99baeed20131bea89b802"
@@ -144,5 +145,12 @@
     "15_gate_completion_found": false,
     "claim_boundary": "heuristic failure is not an UNSAT proof"
   },
-  "conclusion": "No 137-gate AES S-box candidate has been found or claimed. Two schedule- and source-restricted 15-gate completion classes are UNSAT; the third remained unresolved, and unrestricted 42-source exact searches reached their conflict limits."
+  "late_schedule_branch_partition": {
+    "report": "workspace/aes-256-gcm/reports/xor_completion_branch_study.json",
+    "fully_closed_final_pairs": [[0, 19], [1, 19], [2, 19], [3, 19], [5, 19], [6, 19], [8, 19]],
+    "result_for_closed_pairs": "unsat",
+    "scope": "published 12-wire support and fixed late-deletion target schedule",
+    "remaining_final_pairs_open": true
+  },
+  "conclusion": "No 137-gate AES S-box candidate has been found or claimed. Two schedule- and source-restricted 15-gate completion classes are UNSAT. The third is now split into finite operand partitions, with seven final-pair partitions proved UNSAT and others still open; unrestricted 42-source exact searches reached their conflict limits."
 }

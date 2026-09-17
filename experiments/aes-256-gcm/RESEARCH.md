@@ -152,6 +152,11 @@ same circuits are worse conventional standard-cell implementations.
   circuit. This makes 137 a clean candidate threshold, but search-engine
   absence is not a proof that no unpublished or differently described result
   exists.
+- A live recheck on 2026-09-16 found the NIST circuit list unchanged at 29
+  AND plus 109 XOR/XNOR gates (138 total) for its smallest 29-AND forward AES
+  S-box. Refreshed exact-signature searches again found no public 137-gate or
+  29-AND/108-affine circuit. This only refreshes the public candidate frontier;
+  it does not convert search absence into a novelty proof.
 - Maximal affine-region extraction reduces the 138-gate circuit's only hard
   local question to whether eight required values can be completed from 42
   already available values in 15 XORs instead of the published 16. Eleven of
@@ -185,6 +190,36 @@ same circuits are worse conventional standard-cell implementations.
   exact schedule remained unresolved after at least 30 minutes in
   CryptoMiniSat, 19 minutes in BMCG, and 16 minutes in Maple; all three were
   externally stopped and are recorded as unknown, not UNSAT.
+- The late schedule is now decomposed into finite, independently replayable
+  operand partitions. All 325 possible final-step operand pairs were tested at
+  100,000 conflicts: 270 are exact UNSAT and 55 timed out, with no SAT branch.
+  The four hardest final pairs were each split over all 171 operand pairs for
+  internal step 7. At 10,000 conflicts those 684 branches yielded 516 UNSAT
+  and 168 timeouts; deepening precisely those timeouts to 100,000 conflicts
+  yielded another 95 UNSAT and 73 timeouts. Every one of those 73 parents was
+  then partitioned over the definition of its latest referenced internal
+  value. Across 10,965 child branches, staged limits of 1,000, 10,000, and
+  100,000 conflicts reduced the open set from 3,554 to 1,735 to three. One
+  final recursive partition for each of those three parents closed all seven
+  residual leaves UNSAT. Thus the four hard final pairs are now fully UNSAT
+  for the published 12-source support and fixed late-deletion schedule. Three
+  additional final pairs, `5,19`, `6,19`, and `8,19`, were independently
+  closed the same way. The `8,19` class alone had 171
+  step-7 branches produced 141 UNSAT and 30 timeouts at 10,000 conflicts; the
+  timeout replay produced 14 UNSAT and 16 timeouts at 100,000 conflicts. Those
+  16 parents expanded to 2,431 child branches, which staged replay reduced
+  from 686 to 306 to zero timeouts; the last 306 leaves were all UNSAT. Other
+  top-level final pairs remain under durable replay, so this is not yet a
+  fixed-schedule lower bound. Every retained branch status and the exact scope
+  are recorded in `workspace/aes-256-gcm/reports/xor_completion_branch_study.json`;
+  the replay harness records per-branch exit status and elapsed time and now
+  checkpoints atomically after every completed branch.
+- The replay harness now supports `--resume-from` for interrupted partial
+  reports. It preserves prior branch records, classifies only missing operand
+  pairs, and marks completion only when the full theoretical pair set is
+  present. Recursive partitioning also handles a timeout whose pinned internal
+  uses only the original source values by splitting the preceding step; this
+  avoids silently discarding source-only branches.
 - Commands, hashes, source scopes, controls, null timing provenance, and the
   precise claim boundary are retained in
   `workspace/aes-256-gcm/reports/xor_completion_study.json`. No 137-gate
