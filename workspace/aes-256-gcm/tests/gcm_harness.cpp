@@ -29,6 +29,10 @@ static constexpr const char *kArchitecture = "balanced-ultrawide-1r32b";
 static constexpr const char *kArchitecture = "balanced-xwide-1r64b";
 #elif defined(KARATSUBA)
 static constexpr const char *kArchitecture = "karatsuba-1r2c";
+#elif defined(OVERLAP)
+static constexpr const char *kArchitecture = "overlap-1r64b";
+#elif defined(OVERLAP_KARATSUBA)
+static constexpr const char *kArchitecture = "overlap-karatsuba-1r2c";
 #else
 static constexpr const char *kArchitecture = "unrolled-2r8b";
 #endif

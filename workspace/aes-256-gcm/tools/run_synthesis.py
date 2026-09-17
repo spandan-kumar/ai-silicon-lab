@@ -63,6 +63,16 @@ EXPLORATORY_CONFIGURATIONS = {
         "stem": "karatsuba",
         "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/aes256_parallel_enc.sv", "rtl/ghash_karatsuba.sv"],
     },
+    "overlap-1r64b": {
+        "arch": 9,
+        "stem": "overlap",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/ghash_parallel.sv"],
+    },
+    "overlap-karatsuba-1r2c": {
+        "arch": 10,
+        "stem": "overlap_karatsuba",
+        "sources": ["rtl/aes_gcm_core.sv", "rtl/aes256_iterative_enc.sv", "rtl/aes256_parallel_enc.sv", "rtl/ghash_karatsuba.sv"],
+    },
 }
 ALL_CONFIGURATIONS = {**CONFIGURATIONS, **EXPLORATORY_CONFIGURATIONS}
 
