@@ -1,0 +1,674 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "reliable-lab-evidence-2026-09-17",
+  "experiment_id": "doom-rv32imc",
+  "experiment_revision": "6eb69885d74d0d37fcd4f4b60121c73ffd3a0dd3",
+  "status": "pass",
+  "measurement_status": "mixed",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "GPT-6",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex",
+      "version": null,
+      "environment": "desktop"
+    },
+    "reasoning": {
+      "effort": null,
+      "mode": null,
+      "context": null
+    },
+    "goal_sha256": "22fe00ac1f9b6456cc69d51d8d3305822ef552ddf4b9010fb51e8094b0672c76",
+    "goal_source": "Public three-part improvement proposal approved by the user.",
+    "instruction_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "55a0c86976b675178801e1169510eec0df6e9a2c8efcaaeebe05825833e33a20"
+      },
+      {
+        "path": "experiments/registry.json",
+        "sha256": "add6b58fccd0d9ad2b1b61768b5be54c75b5ea8150fd3770a3daff169b09a343"
+      },
+      {
+        "path": "experiments/doom-rv32imc/experiment.json",
+        "sha256": "b4ce52ae5fd1bf7635f98f452dd697e5a39892f0a66c9f1c5acebc756bf05523"
+      },
+      {
+        "path": "experiments/doom-rv32imc/PLAN.md",
+        "sha256": "8639a862137e68e30c1aba1397a0b5e1a1fae3fa58319812f78eb082bad9cf39"
+      }
+    ],
+    "skills": [
+      {
+        "name": "karpathy-guidelines",
+        "sha256": "6e22cc54cb02a5e98ae42d06d9d7292db0c1b43894831b32879beb0166b2aea7"
+      }
+    ],
+    "subagents": [],
+    "attribution_source": "Session identifies the GPT-6 family and Codex desktop. Canonical model ID, exact harness version and reasoning controls are not exposed; no subagents were used."
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null,
+    "source": "unavailable",
+    "notes": "Per-attempt usage telemetry is not exposed."
+  },
+  "time": {
+    "agent_wall_seconds": null,
+    "human_seconds": null,
+    "build_seconds": null,
+    "simulation_seconds": null,
+    "synthesis_seconds": null,
+    "hardware_seconds": null,
+    "source": "unavailable",
+    "notes": "Agent/human telemetry is unavailable. No candidate RTL build, benchmark simulation, synthesis study, or physical measurement was performed. Direct command durations, lab smoke tests, and native-reference fixture durations are measured separately in the retained artifacts."
+  },
+  "cost": {
+    "amount": null,
+    "currency": null,
+    "rate_date": null,
+    "source": "unavailable",
+    "notes": "Billing telemetry and a pinned price source are unavailable."
+  },
+  "execution": {
+    "candidate_commit": "adf5cf7b5b49510093e445f487af88e3f82a36a0",
+    "candidate_manifest": null,
+    "working_tree": "clean at committed-tests, known-good and broken evaluator fixture runs, and detached reproduction",
+    "scope": "Trusted trace-tool maintenance, shared provenance artifact verification, and portable CI checks. Hardware candidates and evaluator correctness rules are unchanged.",
+    "related_experiments": [
+      "aes-256-gcm"
+    ],
+    "lab_run_ids": [
+      "reliable-lab-known-good",
+      "reliable-lab-broken"
+    ],
+    "reproduction_metrics": ".aisl/reproduce/reliable-lab-known-good/runs/20260917T180210Z-d567b028/metrics.json",
+    "tool_versions": {
+      "python_host": [
+        "3.9.6",
+        "3.14.7"
+      ],
+      "python_linux": "Python 3.14.7",
+      "actionlint": "1.7.12",
+      "jsonschema": "4.25.1",
+      "docker": "29.4.0"
+    },
+    "dependency_notes": "actionlint 1.7.12 built locally with Go into ignored runs storage. The independent schema checker used the prior ignored jsonschema virtualenv. Runtime tools and normal tests remain standard-library-only. Linux checks used an isolated container with a read-only source snapshot and networking disabled; the image digest is in image-identity artifacts.",
+    "source_hashes": [
+      {
+        "path": ".github/workflows/lab-checks.yml",
+        "sha256": "92bb595673c7c246bdd99fc86684ae13c747d159d44362674f2d44ed7f9c5d57"
+      },
+      {
+        "path": "LAB.md",
+        "sha256": "76f4f57f5ecbf56f78964cf46784da1a7788dcb2f769da4a43bb1546a20a419a"
+      },
+      {
+        "path": "SECURITY.md",
+        "sha256": "49c7e5909496de73fe570f2c674f5424d25227230cf905f57c6bbd220dae9859"
+      },
+      {
+        "path": "experiments/schema/README.md",
+        "sha256": "00f262e08ba8ddc26358cfa6ec46097a63c6edcb53234233ea32b66033b0a1a5"
+      },
+      {
+        "path": "experiments/schema/run-record.schema.json",
+        "sha256": "8ba2637a6400e42ba5ad5a36868b1c3541727f8c550c2c0aa989d0ccef7b678c"
+      },
+      {
+        "path": "ground_truth/trusted-manifest.json",
+        "sha256": "607f7e32bf53065c351d8251a92966aa887d654a8dbc13f17f184676ddb5348b"
+      },
+      {
+        "path": "lab/trace_command.py",
+        "sha256": "dbd23069bac7d6348c4d9234fe63fffff9f5acd36b68da5ffb9eceb0e0a8e176"
+      },
+      {
+        "path": "tools/experiment_registry.py",
+        "sha256": "e17375c285aaa1583505807e2ce29128829d308b199657b68158fddafca73b0e"
+      },
+      {
+        "path": "tools/test_evidence_files.py",
+        "sha256": "beb79311d522ef3cf6a64fedd85039656a5417ae0b72657af02b6c4650c8e5d3"
+      },
+      {
+        "path": "tools/test_trace_command.py",
+        "sha256": "5680711b192bcb015154840f6a97d7005db699986e764a94b53e81510b302f78"
+      },
+      {
+        "path": "tools/test_trusted_integrity.py",
+        "sha256": "b06fcf1a52b756b289e8157e6030be6e11ff0ff25a10f72df91928c7e47eded8"
+      },
+      {
+        "path": "tools/verify_trusted.py",
+        "sha256": "cad11fb8a925c82cedb9d9cfcc36e4461d2c6a8e5adfc43cbd33419b28413751"
+      }
+    ],
+    "commands_note": "Each trace attempt has its own immutable-in-practice command.json plus stdout/stderr. Early baseline checks use capture.py with equivalent exit-status and timing records. The aggregate commands.json is not hashed because further trace attempts append to it."
+  },
+  "result": {
+    "status": "scoped-maintenance-validated",
+    "claim_level": "executed-tooling-tests-and-evaluator-self-tests",
+    "unit_test_methods": 38,
+    "comparator_test_methods": 5,
+    "host_python_versions_passed": [
+      "3.9.6",
+      "3.14.7"
+    ],
+    "linux_checks_passed": true,
+    "workflow_lint_passed": true,
+    "remote_ci_run": null,
+    "remote_ci_notes": "Workflow is committed but has not been pushed or run on GitHub. Linux container checks exercised the same four check commands, not the hosted Actions services.",
+    "protected_files_checked": 236,
+    "protected_files_intact": true,
+    "filesystem_protection_reapplied": true,
+    "known_good_fixture_passed": true,
+    "broken_fixture_rejected_for_frame_mismatch": true,
+    "detached_known_good_reproduction_passed": true,
+    "historical_evidence_files_verified": 19,
+    "candidate_hardware_evaluated": false,
+    "limitations": [
+      "Artifact verification is opt-in and checks evidence entries only. Null-path reports remain unverified.",
+      "Generated run artifacts are local and Git-ignored. Restore them and use the recorded checkout to verify this record.",
+      "The aggregate trace index uses Unix flock; supported hosts are macOS and Linux.",
+      "A matching trusted manifest cannot by itself approve coordinated changes to protected code and hashes; trusted maintenance still needs review."
+    ]
+  },
+  "evidence": [
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trace-before.command.json",
+      "sha256": "a44117bb707bdf63bf6f050dfb9f91a7a793095f36f745c4e84ce23bf6df0d4a",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trace-before.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trace-before.stderr.log",
+      "sha256": "4a584953519d98b080239a55a9c3b070f3fca00e0667a927a28b2c57bf621d1f",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trace-after.command.json",
+      "sha256": "4e6637643d7fc604370595393f650ffbb335cffbb3ca0f8150a375d1b7e23f3a",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trace-after.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trace-after.stderr.log",
+      "sha256": "c3293cfea00dc4a03fcbccc0a0bb272b13beb5792e8fc9ef7cbf07ca1c5c228b",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/evidence-tests.command.json",
+      "sha256": "8b6d60d2d4ce763670328b9b812412c6a86d73aa5f18e3a017040e90aba1c768",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/evidence-tests.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/evidence-tests.stderr.log",
+      "sha256": "79b32b7eafe3a12e1bfc4246c2a114ac4c8220bae3e5665d5ae7427bf624639d",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/all-tests.command.json",
+      "sha256": "727f991a5622ff354801e77c868b416a8f07ba1ddb13d635748773b751122eab",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/all-tests.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/all-tests.stderr.log",
+      "sha256": "14e706a13fc2164a37da1539d9fdddc5d5809c5fb7964cf2d65d3a891fe9ad3f",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/all-tests-python314.command.json",
+      "sha256": "50740cfafb7913798f5d2e98e166f4030090c075d3cf6e818d90800a5f9dc270",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/all-tests-python314.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/all-tests-python314.stderr.log",
+      "sha256": "ed1b1f9a9d64d098f0bec8f7ff240a16d9db32010ae1bf7043ef2b8fad1d7d18",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/comparator-tests.command.json",
+      "sha256": "bb9f6675f706e4fa495fb33e77049c3b47439208e867b69520fcf96a114c4193",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/comparator-tests.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/comparator-tests.stderr.log",
+      "sha256": "028dc77482ce4b8d83121b8247724ab3ff419ca4ce6545535c0c9f56513c7cb6",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/registry-check.command.json",
+      "sha256": "87a5f8e874f0a7ba9e14e76cc5fb9c63ce47915cc10dc3e8af36641df762518a",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/registry-check.stdout.log",
+      "sha256": "be64df4a431fa850f3a2763d4eefaa258aaf0bffbb46fe089cb434bbebfdc17d",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/registry-check.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/integrity-before-refresh.command.json",
+      "sha256": "bc653092bc57b0d715f208583a89e9d93a25f990251d323bd42d8018d055f670",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/integrity-before-refresh.stdout.log",
+      "sha256": "0076d2b5acf0491c4c6fb1299c1a2e77095d334c8c71b1049a268a8d8b10a304",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/integrity-before-refresh.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/integrity-after-refresh.command.json",
+      "sha256": "2e67ac4acb901c06258b331f2b93bfba210555235b44b254961c97a3adabd2ed",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/integrity-after-refresh.stdout.log",
+      "sha256": "2ae7af8d234b5c080a8025220283fe17092fd227ff18040a1de8fcfcf2bf4fc6",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/integrity-after-refresh.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/protect.command.json",
+      "sha256": "c56fd4a3092236d6c1f7a1b88c56cafaea7b3c961d01ebdfe11a275e5453e272",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/protect.stdout.log",
+      "sha256": "a8762905e2cad5c46cc015a75021bb402bd2ba767bb9074cc9324b9aac25b162",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/protect.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/lab-status.command.json",
+      "sha256": "0c7acba30f7d09f3885127ef49982eb1ef7050d85ed0a5b1befea2787ccfd3a5",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/lab-status.stdout.log",
+      "sha256": "f5ea0b5ee17294e41e54ad75b86d75d79206c4a0528f73bd48ccef700bb413e2",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/lab-status.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/actionlint-version-8znj3bfq/command.json",
+      "sha256": "320a8c9f607b15d0384c53a30c2d4c0f7794466623c661f5778f5e8ee746b0a2",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/actionlint-version-8znj3bfq/stdout.log",
+      "sha256": "cb6d4006e6a7f9dd7ef0db7e989354fb07065a8ff6a13a3f959f6c732189359d",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/actionlint-version-8znj3bfq/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/broken-ws0xmsix/command.json",
+      "sha256": "0384ddfd4b1ed8dd142fe473da095677fc4773a9bb6759df54b0e01807c70517",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/broken-ws0xmsix/stdout.log",
+      "sha256": "bdc237c532affdf83b0ea537b90f8019dfd60ac23c4ccc562b52ed81fb8d465c",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/broken-ws0xmsix/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/committed-tests-as27m3ek/command.json",
+      "sha256": "c0f031fe0614c0f9e36d994b1aba6d3c22e9b5a297cefb506b4498e05fe06522",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/committed-tests-as27m3ek/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/committed-tests-as27m3ek/stderr.log",
+      "sha256": "963ab2439cdce2e8708e1d52af187e98ffc1d8003f8a65ae7331fb72d05d01c0",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/false-command-0q99dv5t/command.json",
+      "sha256": "28bc22cbafc3ce40c62956ed028ebfec8335da5769a1073ad6fa06f78d754780",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/false-command-0q99dv5t/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/false-command-0q99dv5t/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/image-identity-e2uagujb/command.json",
+      "sha256": "80c4e47bfba9accb5b85aff723570aace2ea6dd7a999a16c76b53a49f0b9b034",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/image-identity-e2uagujb/stdout.log",
+      "sha256": "ecfac2aa157a1ba813ce494ff38d1b331fddebc23d2f31d3e32d267b9ced20da",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/image-identity-e2uagujb/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/known-good-fqr9j7et/command.json",
+      "sha256": "63e35f074c37f10070c91b20fa6b5ee62f4204419f1143a0214b49b581f49e21",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/known-good-fqr9j7et/stdout.log",
+      "sha256": "1201c64c3500859266959bc7de3b97063a572b8a93a3438ec4f0d416394f776b",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/known-good-fqr9j7et/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/linux-checks-u6xmv0j2/command.json",
+      "sha256": "cd2536342961895d48ab209b2cc50a9013cddf5061a6e70850595e3955a6f824",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/linux-checks-u6xmv0j2/stdout.log",
+      "sha256": "8f0f8b966e61ff0e05355f56300d4a581d1740e2b73eda13c38bbe94e016a023",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/linux-checks-u6xmv0j2/stderr.log",
+      "sha256": "5f662202e69b5bc20f74f4e59a43943f899c6a8bfc39023c58492571fd8f3e5f",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/linux-image-8t48nogz/command.json",
+      "sha256": "99e3154fb2d70a6c0815f820f2c0733073714a7a21ae6ea357d8b9c5e6433fc3",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/linux-image-8t48nogz/stdout.log",
+      "sha256": "14cab5b47a4189054ce523721b2af1c21205bbd48deb5a7045fbd5fd5c807bb4",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/linux-image-8t48nogz/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/protect-reproduction-8c1wfkp0/command.json",
+      "sha256": "772da5f807275d99e9caf0535a659f93ff416d2c74aafdb895ed6cd48624416e",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/protect-reproduction-8c1wfkp0/stdout.log",
+      "sha256": "a8762905e2cad5c46cc015a75021bb402bd2ba767bb9074cc9324b9aac25b162",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/protect-reproduction-8c1wfkp0/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/reproduction-swigrrdd/command.json",
+      "sha256": "928853b759e434ca83ee3c17662dd4895de229a5aeffb66f1009de6564ffb93c",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/reproduction-swigrrdd/stdout.log",
+      "sha256": "d47ceebce18f1b802de5bec78fae6df07bc7625ca0b5d1000cc96d16b89573eb",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/reproduction-swigrrdd/stderr.log",
+      "sha256": "bd6a4741f1b5210770f38a0060d3535b61e1ea5663880c04b00b664c986f5585",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/schema-check-o1kqfzag/command.json",
+      "sha256": "66c3be8d81063ba0fd75bb94f8c9cf5b7aa7f00984147b276a4042855f4432e1",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/schema-check-o1kqfzag/stdout.log",
+      "sha256": "a8c4e715935a0c42c2f68791186bd2bd6b2785f06d5824405094e350504d5a57",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/schema-check-o1kqfzag/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/verify-historical-evidence-ymiuwg2o/command.json",
+      "sha256": "0976752ab086a9e7b76ca246ea4430556271a4b34d54beecedb6ec52790d40bf",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/verify-historical-evidence-ymiuwg2o/stdout.log",
+      "sha256": "3718274b32a42dd74eec044222af026f52f33c5e6f324ca9c1556d1a4bb2624d",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/verify-historical-evidence-ymiuwg2o/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/workflow-lint-arkslhbn/command.json",
+      "sha256": "ad22092e980559e7b212ae1b358bb20680f23e880538fabe9ab36e6de060a2ae",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/workflow-lint-arkslhbn/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/traces/workflow-lint-arkslhbn/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-known-good/metrics.json",
+      "sha256": "189e69e89a7617af2959c036fda1a70e250587d9478c2c9ed2ba7d098635bb26",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-known-good/artifacts/frame-comparison.json",
+      "sha256": "c3ecffecbddca72a54ba7e18faf2e8d3729f2a779d0a11346ea479d45810a529",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-broken/metrics.json",
+      "sha256": "4dae9c6704bbc75a62de1322a4bb0e3529c64672bd92541d714a7c56bc9da70c",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-broken/artifacts/frame-comparison.json",
+      "sha256": "69be459149536ff8f7f3f2c681f65a9dcebc5e679f22410eb37dc7484dbc927a",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/capture.py",
+      "sha256": "0fd83a43342ca06abcc1325d94d9790adc2b6b3b64ccbc967b3d97575ad7810d",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trusted-manifest-before.json",
+      "sha256": "e308247fa3c49e8b7df64a473d38a7116973ac1342fb3dac045e6f0b6e2c8c7f",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": "runs/reliable-lab-evidence/trusted-manifest-after.json",
+      "sha256": "607f7e32bf53065c351d8251a92966aa887d654a8dbc13f17f184676ddb5348b",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "validation-artifact",
+      "path": ".aisl/reproduce/reliable-lab-known-good/runs/20260917T180210Z-d567b028/metrics.json",
+      "sha256": "4e9d65a00c58f13bab87e9ff6babeacaa8d0212c507a8672ef1630e1ea181947",
+      "description": "Retained command, stdout/stderr, evaluator result, or trusted-state snapshot; interpret using the maintenance report and command exit status."
+    },
+    {
+      "kind": "linux-source-snapshot",
+      "path": "runs/reliable-lab-evidence/ci-snapshot.tar",
+      "sha256": "796c3fd6c3f49dae3bfeefaaef918292d8e5f3d54b0d82711186a601164b796d",
+      "description": "Read-only source snapshot used by the Linux checks; all changed implementation files were compared against the recorded commit hashes."
+    }
+  ]
+}

@@ -69,6 +69,9 @@ The protected evaluator and ground truth contents are unchanged.
 
 ## Follow-up found during this work
 
+Update: the tracing defect below is resolved by the subsequent
+[reliable evidence maintenance](RELIABLE_EVIDENCE.md), with retained validation.
+
 `./lab/trace --run-id evidence-trace-probe --label should-fail -- /usr/bin/false`
 returned 0 and created no run directory. Inspection shows that
 `lab/trace_command.py` defines `main()` but never invokes it. This pre-existing
