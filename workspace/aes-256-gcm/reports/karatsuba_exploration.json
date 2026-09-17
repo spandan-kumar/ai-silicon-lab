@@ -26,28 +26,29 @@
   },
   "performance": {
     "workload": "96-bit IV, 0-byte AAD, 64-byte encryption",
-    "warm_cycles": 210,
-    "cold_cycles": 215,
-    "bytes_per_cycle": 0.304761905,
-    "cycles_per_byte": 3.28125
+    "warm_cycles": 252,
+    "cold_cycles": 260,
+    "bytes_per_cycle": 0.253968254,
+    "cycles_per_byte": 3.9375,
+    "estimated_prelayout_latency_ns": 680.632
   },
   "generic_synthesis": {
     "flow": "generic-yosys-synth-v1",
     "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6)",
-    "generic_cell_count": 64858,
-    "elapsed_seconds": 129.300052,
-    "stat": "build/synth-karatsuba-v2/karatsuba-stat.json",
-    "stat_sha256": "4b1c41fc5b944ab82dba91c87877a39828f1fd933c2b94b113c63e1d60c31b87"
+    "generic_cell_count": 48746,
+    "elapsed_seconds": 85.001673,
+    "stat": "build/synth-karatsuba-correct/karatsuba-stat.json",
+    "stat_sha256": "63c3feeb3a5b2de1d483ceb13423547a5704c5ceded4c540cf2351967897068d"
   },
   "nangate45_synthesis": {
     "flow": "yosys-abc-nangate45-typical-v1",
     "technology_nm": 45,
-    "total_cell_area_um2": 99267.21,
-    "critical_combinational_delay_ps": 4981.05,
-    "prelayout_fmax_mhz": 200.760884,
-    "elapsed_seconds": 154.590543,
-    "summary": "build/asic-synth-karatsuba/summary.json",
-    "summary_sha256": "d386e46743fc51f57985ffaf4b99cfae18927debfa79da9f858001cd79fc84b1"
+    "total_cell_area_um2": 86537.248,
+    "critical_combinational_delay_ps": 2700.92,
+    "prelayout_fmax_mhz": 370.244213,
+    "elapsed_seconds": 108.948726,
+    "summary": "build/asic-synth-karatsuba-correct/summary.json",
+    "summary_sha256": "61f3df9e90dfaad52e535e20b1e007819ca4581dc6847d3016265850d42f57ec"
   },
   "comparison": {
     "best_existing_1r64b": {
@@ -56,6 +57,6 @@
       "total_cell_area_um2": 75700.408,
       "critical_combinational_delay_ps": 2726.41
     },
-    "interpretation": "Karatsuba reduces simulated warm cycles versus the existing 1r64b point, but its mapped area and delay make the estimated prelayout latency worse; it is not a verified Pareto improvement or world-first result."
+    "interpretation": "Karatsuba reduces warm cycles and slightly improves the estimated prelayout latency versus the existing 1r64b point, at higher mapped area. It is a local Pareto point within this frozen flow, not a world-first claim."
   }
 }

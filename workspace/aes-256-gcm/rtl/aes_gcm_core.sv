@@ -184,7 +184,7 @@ module aes_gcm_core #(
   endfunction
 
   localparam integer AES_ROUNDS_PER_CYCLE =
-      (ARCH == 0 || ARCH == 2 || ARCH == 5 || ARCH == 6 || ARCH == 7) ? 1 : 2;
+      (ARCH == 0 || ARCH == 2 || ARCH == 5 || ARCH == 6 || ARCH == 7 || ARCH == 8) ? 1 : 2;
   localparam integer GHASH_BITS_PER_CYCLE = ARCH == 0 ? 1 :
       ((ARCH == 3 || ARCH == 5) ? 16 :
        ((ARCH == 4 || ARCH == 6) ? 32 : (ARCH == 7 ? 64 : 8)));

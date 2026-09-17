@@ -376,15 +376,15 @@ To complement the exact affine-search frontier, the workspace now contains an
 (`workspace/aes-256-gcm/rtl/ghash_karatsuba.sv`).  It was checked against all
 1,038 existing GCM RTL operations, including 32 stalled replays; the retained
 log is `workspace/aes-256-gcm/reports/karatsuba_rtl.log`.  The representative
-96-bit-IV/0-AAD/64-byte encryption case measured 210 warm cycles.
+96-bit-IV/0-AAD/64-byte encryption case measured 252 warm cycles.
 
-The same frozen Yosys/ABC flow measured 99,267.21 um² total Nangate45 mapped
-cell area, 4,981.05 ps critical combinational delay, and 200.760884 MHz
+The same frozen Yosys/ABC flow measured 86,537.248 um² total Nangate45 mapped
+cell area, 2,700.92 ps critical combinational delay, and 370.244213 MHz
 pre-layout Fmax.  The existing balanced-xwide 1r/64b point is 75,700.408 um²,
-2,726.41 ps, and 257 warm cycles.  Thus this branch trades cycles for a much
-larger and slower mapped design; it is a measured negative result, not a
-Pareto improvement or a world-first claim.  The full machine-readable record
-is `workspace/aes-256-gcm/reports/karatsuba_exploration.json`.
+2,726.41 ps, and 257 warm cycles.  This makes the branch a local Pareto point
+in the measured area/latency plane (about 680.6 ns versus 700.8 ns estimated
+pre-layout latency), but not a world-first claim.  The full machine-readable
+record is `workspace/aes-256-gcm/reports/karatsuba_exploration.json`.
 
 This direction is also not claimed as unprecedented.  A current prior-art
 anchor is Chuang et al., “High-Performance AES-GCM Hardware via Circuit and
