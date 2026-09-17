@@ -1,0 +1,30 @@
+name: Lab checks
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.14']
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Verify protected files and manifest coverage
+        run: python3 tools/verify_trusted.py --json
+      - name: Test experiment records, artifact verification, and command tracing
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Test exact-frame comparator
+        run: python3 -m unittest discover -s workspace/verification -p 'test_*.py' -v
+      - name: Validate registry and saved provenance
+        run: ./tools/experiment --json check

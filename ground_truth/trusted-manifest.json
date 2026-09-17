@@ -236,7 +236,7 @@
     "lab/status": "400eaf5d9f7b65653edbe0b68ad9238bbcc30d9a62cce4d41403681cfe89669f",
     "lab/status.py": "ae0964276a4ffb9899db0534fda9f33f31bf46926f8bf82e8f0d4e54f9a8509d",
     "lab/trace": "4e5a2a445cb3d44c9b6db39fc27c179197e9c432289d71f0972b881e9d7af2ff",
-    "lab/trace_command.py": "52053c93f2c88cfc61c0312b6030210a57b7f50dd87df72f2b629477a5881711"
+    "lab/trace_command.py": "dbd23069bac7d6348c4d9234fe63fffff9f5acd36b68da5ffb9eceb0e0a8e176"
   },
   "protected_roots": [
     "lab",

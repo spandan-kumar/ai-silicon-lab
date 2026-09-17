@@ -57,6 +57,7 @@ must not be promoted to an exact identity without supporting harness metadata.
 ```sh
 ./tools/experiment --json check
 ./tools/experiment --json validate-run path/to/run-record.json
+./tools/experiment --json validate-run path/to/run-record.json --verify-evidence
 python3 -m unittest discover -s tools -p 'test_*.py' -v
 ```
 
@@ -65,12 +66,30 @@ numbers, including exponents that overflow the runtime's numeric range.
 Malformed enum fields return validation issues instead of a traceback.
 Unknown experiment IDs are rejected when validating against the registry.
 
+`check` includes both examples and saved `experiments/*/records/**/*.json`
+records. It does not require ignored run artifacts to exist in a fresh clone.
+
+`validate-run --verify-evidence` also checks every non-null `evidence[].path`
+against its `evidence[].sha256`. Paths are relative to the repository containing
+the tool, regardless of the caller's working directory or record location.
+Paths must identify regular files within that repository; absolute paths,
+parent traversal, and symlinks resolving outside it are rejected. Hashes are
+64 hexadecimal digits. Missing files, absent hashes, or mismatches fail with
+exit 1 and structured issues. JSON output includes `artifacts_checked`, the
+number of files successfully read and hashed, including any mismatches.
+
+Entries with a null path describe reports without a file and remain unverified.
+At least one file-backed entry is required for this option to succeed. Only
+`evidence` entries are verified; command strings, source identities, and other
+path fields are descriptive metadata. Use the recorded candidate checkout and
+restore its run artifacts before verifying historical evidence.
+
 The JSON Schemas describe the structural and measurement constraints.
 The dependency-free CLI additionally checks registry membership, unique IDs,
 and the JSON encoding itself; validate with the CLI before retaining a record.
-A validation pass establishes record consistency, not that the referenced
-artifacts exist, their hashes match, or the candidate passed its experiment.
-Those claims still require the experiment's evaluator and retained evidence.
+Without `--verify-evidence`, a validation pass establishes record consistency
+only. Matching file hashes establish artifact identity, not that the candidate
+passed its experiment; that claim still requires the experiment's evaluator.
 
 ## Provenance privacy
 

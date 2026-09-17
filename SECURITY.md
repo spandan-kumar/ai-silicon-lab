@@ -31,3 +31,37 @@ the candidate workspace and required read-only inputs into that environment.
 The repository does not attempt to claim that host execution is a security
 boundary.
 
+## Trusted maintenance
+
+Changes to a protected tool are a lab maintenance operation. Preserve the
+starting trusted manifest and restrict the edit to the intended files. Before
+refreshing the manifest, run `python3 tools/verify_trusted.py --json` and inspect
+every mismatch. Regenerate SHA-256 values for the complete set of tracked
+files under `lab/` and `ground_truth/`, excluding the manifest itself. Review
+the resulting manifest diff; it must match the intended maintenance scope.
+
+Run the full lab validation after a trusted change:
+
+```sh
+python3 -m unittest discover -s tools -p 'test_*.py' -v
+python3 -m unittest discover -s workspace/verification -p 'test_*.py' -v
+./tools/experiment --json check
+python3 tools/verify_trusted.py --json
+./lab/protect --apply
+./lab/status --json
+./lab/evaluate --self-test known-good
+./lab/evaluate --self-test broken
+```
+
+The known-good fixture must pass with 120 exact frames. The broken fixture must
+exit 1 specifically for a frame-comparison failure; an unrelated failure does
+not validate rejection. Both must preserve trusted-file integrity. Commit the
+new trusted state, retain a clean-commit known-good run, and use
+`./lab/reproduce <run-id>` to verify it in a detached worktree. Protect that
+worktree's lab files too. Retain commands, return codes, logs, and result hashes,
+including failures encountered while developing the maintenance.
+
+The portable CI integrity check also rejects tracked protected files omitted
+from the manifest. A manifest and source changed together can still agree;
+review of trusted changes remains necessary. The manifest is never regenerated
+automatically by CI or a normal evaluation.

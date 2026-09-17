@@ -13,7 +13,31 @@
 ./tools/experiment list               # list versioned experiment specifications
 ./tools/experiment check               # validate specifications and run examples
 ./tools/experiment show <experiment>  # print one experiment manifest
+./lab/trace --run-id <id> --label <label> -- <command> [args...]
+python3 tools/verify_trusted.py --json # hashes and tracked-file coverage
 ```
+
+`lab/trace` executes an argv command from the repository root and returns its
+exit status. Each invocation creates a separate `runs/<id>/traces/<label>-*/`
+directory containing `stdout.log`, `stderr.log`, and `command.json`. Repeated
+labels preserve earlier attempts. A locked, atomically replaced `commands.json`
+index retains concurrent commands in the same run. The per-attempt record
+survives an index-write failure, which makes the wrapper fail visibly.
+
+Trace records retain the child's raw return code; a signal exit is mapped to
+`128 + signal` for the wrapper's shell status. Launch failures are recorded as
+127 (missing executable) or 126 (other launch error). Run IDs and labels must
+start with a letter or digit and contain only letters, digits, dots, underscores,
+or hyphens. Commands use normal argv parsing; explicitly invoke a shell when
+shell syntax is needed. Tracing supports the lab's macOS and Linux hosts.
+
+The [Lab checks workflow](.github/workflows/lab-checks.yml) runs on pushes and
+pull requests with Python 3.9 and 3.14. It verifies protected-file hashes and
+manifest coverage, exercises the tooling and frame-comparator tests, and
+validates the registry plus saved provenance. It does not regenerate the trust
+manifest or depend on local run artifacts, hardware tools, or the host-specific
+reference executable. See [trusted maintenance](SECURITY.md#trusted-maintenance)
+for the additional checks required when changing protected code.
 
 `./lab/evaluate` fails clearly when `workspace/candidate.json` is absent. That
 is intentional: the lab does not supply an architecture or pretend that an

@@ -9,9 +9,11 @@ touching the protected Doom evaluator or ground truth.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
+import stat
 import sys
 from pathlib import Path
 from typing import Any
@@ -21,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS_DIR = ROOT / "experiments"
 REGISTRY_PATH = EXPERIMENTS_DIR / "registry.json"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SHA256_RE = re.compile(r"^[0-9a-fA-F]{64}$")
 EXPERIMENT_STATUSES = {
     "specified",
     "in-progress",
@@ -104,6 +107,52 @@ def check_measurement_source(section: dict[str, Any], fields: list[str] | tuple[
         for key in fields:
             if section.get(key) is not None:
                 issues.append(f"{path}.{key}: must be null when source is unavailable")
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def verify_evidence(record: dict[str, Any], path: Path, root: Path = ROOT) -> tuple[int, list[str]]:
+    """Verify file-backed evidence against the selected checkout, never the caller's cwd."""
+    issues: list[str] = []
+    checked = 0
+    file_entries = 0
+    root = root.resolve()
+    for index, item in enumerate(record["evidence"]):
+        relative = item.get("path")
+        if relative is None:
+            continue  # Reports without an artifact remain explicitly unverified.
+        file_entries += 1
+        location = f"{path}.evidence[{index}]"
+        expected = item.get("sha256")
+        if not isinstance(expected, str) or not SHA256_RE.fullmatch(expected):
+            issues.append(f"{location}.sha256: file verification requires a SHA-256 digest")
+            continue
+        try:
+            artifact = Path(relative)
+            if artifact.is_absolute() or ".." in artifact.parts:
+                raise ValueError("expected a repository-relative path without '..'")
+            artifact = (root / artifact).resolve()
+            try:
+                artifact.relative_to(root)
+            except ValueError:
+                raise ValueError("artifact resolves outside the repository") from None
+            if not stat.S_ISREG(artifact.stat().st_mode):
+                raise ValueError("artifact is not a regular file")
+            actual = sha256_file(artifact)
+            checked += 1
+            if actual.lower() != expected.lower():
+                issues.append(f"{location}: SHA-256 mismatch for {relative!r}: expected {expected}, got {actual}")
+        except (OSError, ValueError, RuntimeError) as exc:
+            issues.append(f"{location}: cannot verify {relative!r}: {exc}")
+    if not file_entries:
+        issues.append(path_issue(path, "no file-backed evidence to verify"))
+    return checked, issues
 
 
 def check_slug(value: Any, path: str, issues: list[str]) -> None:
@@ -295,8 +344,14 @@ def validate_run_record(record: Any, path: Path, known_experiment_ids: set[str] 
                 continue
             require_string(item, "kind", f"{path}.evidence[{index}]", issues)
             require_string(item, "description", f"{path}.evidence[{index}]", issues)
-            if "path" in item and item["path"] is not None and not isinstance(item["path"], str):
-                issues.append(path_issue(path, f"evidence[{index}].path must be a string or null"))
+            if item.get("path") is not None:
+                require_string(item, "path", f"{path}.evidence[{index}]", issues)
+            if item.get("sha256") is not None:
+                digest = item["sha256"]
+                if not isinstance(digest, str) or not SHA256_RE.fullmatch(digest):
+                    issues.append(path_issue(path, f"evidence[{index}].sha256 must be a 64-digit hexadecimal digest or null"))
+                if item.get("path") is None:
+                    issues.append(path_issue(path, f"evidence[{index}].sha256 requires an artifact path"))
 
     return issues
 
@@ -357,11 +412,12 @@ def registry_experiment_ids(registry: dict[str, Any] | None) -> set[str]:
     }
 
 
-def validate_example_runs(registry: dict[str, Any] | None) -> list[str]:
+def validate_saved_runs(registry: dict[str, Any] | None) -> list[str]:
     issues: list[str] = []
     known_ids = registry_experiment_ids(registry)
-    examples_dir = EXPERIMENTS_DIR / "examples"
-    for path in sorted(examples_dir.glob("*.json")):
+    paths = sorted((EXPERIMENTS_DIR / "examples").glob("*.json"))
+    paths.extend(sorted(EXPERIMENTS_DIR.glob("*/records/**/*.json")))
+    for path in paths:
         try:
             record = load_json(path)
         except JsonLoadError as exc:
@@ -371,11 +427,16 @@ def validate_example_runs(registry: dict[str, Any] | None) -> list[str]:
     return issues
 
 
-def print_result(ok: bool, issues: list[str], as_json: bool) -> int:
+def print_result(ok: bool, issues: list[str], as_json: bool, artifacts_checked: int | None = None) -> int:
     if as_json:
-        print(json.dumps({"ok": ok, "issues": issues}, indent=2, sort_keys=True))
+        result: dict[str, Any] = {"ok": ok, "issues": issues}
+        if artifacts_checked is not None:
+            result["artifacts_checked"] = artifacts_checked
+        print(json.dumps(result, indent=2, sort_keys=True))
     elif ok:
         print("experiment registry: pass")
+        if artifacts_checked is not None:
+            print(f"evidence files verified: {artifacts_checked}")
     else:
         print("experiment registry: fail", file=sys.stderr)
         for issue in issues:
@@ -385,7 +446,7 @@ def print_result(ok: bool, issues: list[str], as_json: bool) -> int:
 
 def command_check(as_json: bool) -> int:
     registry, issues = load_registry()
-    issues.extend(validate_example_runs(registry))
+    issues.extend(validate_saved_runs(registry))
     return print_result(not issues, issues, as_json)
 
 
@@ -422,28 +483,33 @@ def command_show(experiment_id: str) -> int:
     return 2
 
 
-def command_validate_run(path: Path, as_json: bool) -> int:
+def command_validate_run(path: Path, as_json: bool, verify_files: bool = False) -> int:
     registry, registry_issues = load_registry()
     issues = list(registry_issues)
+    checked = 0 if verify_files else None
     try:
         record = load_json(path)
     except JsonLoadError as exc:
         issues.append(str(exc))
     else:
         issues.extend(validate_run_record(record, path, registry_experiment_ids(registry)))
-    return print_result(not issues, issues, as_json)
+        if verify_files and not issues:
+            checked, evidence_issues = verify_evidence(record, path)
+            issues.extend(evidence_issues)
+    return print_result(not issues, issues, as_json, checked)
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", dest="as_json", help="emit machine-readable output")
     subparsers = parser.add_subparsers(dest="command", required=True)
-    subparsers.add_parser("check", help="validate the registry, manifests, and example run records")
+    subparsers.add_parser("check", help="validate the registry, manifests, examples, and saved run records")
     subparsers.add_parser("list", help="list registered experiments")
     show_parser = subparsers.add_parser("show", help="print one experiment manifest")
     show_parser.add_argument("experiment_id")
     run_parser = subparsers.add_parser("validate-run", help="validate a run-record JSON file")
     run_parser.add_argument("path", type=Path)
+    run_parser.add_argument("--verify-evidence", action="store_true", help="check evidence files and SHA-256 hashes in this checkout")
     args = parser.parse_args(argv)
     if args.command == "check":
         return command_check(args.as_json)
@@ -452,7 +518,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "show":
         return command_show(args.experiment_id)
     if args.command == "validate-run":
-        return command_validate_run(args.path, args.as_json)
+        return command_validate_run(args.path, args.as_json, args.verify_evidence)
     parser.error("a command is required")
     return 2
 

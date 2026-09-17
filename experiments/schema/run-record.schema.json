@@ -41,10 +41,22 @@
     "cost": { "$ref": "#/$defs/measurement" },
     "execution": { "type": "object" },
     "result": { "type": "object" },
-    "evidence": { "type": "array" }
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
   },
   "additionalProperties": true,
   "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "description"],
+      "properties": {
+        "kind": { "type": "string", "pattern": "\\S" },
+        "description": { "type": "string", "pattern": "\\S" },
+        "path": { "type": ["string", "null"], "pattern": "\\S" },
+        "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-fA-F]{64}$" }
+      },
+      "if": { "required": ["sha256"], "properties": { "sha256": { "type": "string" } } },
+      "then": { "required": ["path"], "properties": { "path": { "type": "string", "pattern": "\\S" } } }
+    },
     "source": { "enum": ["measured", "reported", "estimated", "mixed", "unavailable"] },
     "nullableNumber": { "type": ["number", "null"], "minimum": 0 },
     "nullableTokens": { "type": ["integer", "null"], "minimum": 0 },
