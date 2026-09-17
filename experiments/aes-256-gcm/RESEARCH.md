@@ -224,6 +224,12 @@ same circuits are worse conventional standard-cell implementations.
   precise claim boundary are retained in
   `workspace/aes-256-gcm/reports/xor_completion_study.json`. No 137-gate
   candidate and no world-first result is claimed.
+- An unrestricted follow-up over all 42 incoming wires (rather than the
+  published 12-source support) requested 15 affine steps with a 10,000,000
+  conflict budget and returned `timeout`. It found no candidate but is not an
+  UNSAT proof; the exact scope, command, hashes, and null elapsed-time
+  provenance are retained in
+  `workspace/aes-256-gcm/reports/xor_completion_all_sources_search.json`.
 
 ## Current 29-AND S-box ASIC study — 2026-08-31
 

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "date": "2026-09-17",
+  "problem": "build/xag-opt/affine-blocks/affine-block-04.txt",
+  "scope": {
+    "source_restriction": "none (all 42 incoming wires)",
+    "target_count": 8,
+    "requested_affine_steps": 15,
+    "target_order_constraint": "none"
+  },
+  "command": "build/xag-opt/cmake-build/xor_completion_cms build/xag-opt/affine-blocks/affine-block-04.txt 15 10000000 none",
+  "result": {
+    "status": "timeout",
+    "conflict_limit": 10000000,
+    "sat_candidate_found": false,
+    "unsat_proven": false,
+    "elapsed_seconds": null,
+    "elapsed_source": "not captured by the terminal harness"
+  },
+  "tooling": {
+    "solver": "CryptoMiniSat",
+    "solver_binary_sha256": "b2b2bf4cde2ba8512f5f9638865689d6c568611b6f65542d8cba56c03d1c7f3e",
+    "solver_source_sha256": "967db58122ccae2a1ea73efd378e6e661beb0f13c70b24e201518aded176acb1"
+  },
+  "claim_boundary": "This broader unrestricted search did not produce a 137-gate S-box candidate and did not prove that 15 affine steps are impossible."
+}
