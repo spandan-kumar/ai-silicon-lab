@@ -21,6 +21,13 @@ target on which to measure those effects.
 
 ## Measured and inspected properties
 
+- Review on 2026-09-18 found that earlier revisions drove buffered plaintext
+  on `out_data` while `out_valid=0`, and returned the computed tag on failed
+  decryptions. The previous transfer-only checks did not establish the stated
+  external-port confidentiality claim. The RTL now gates invalid data to zero
+  and suppresses all decryption result tags; the harness checks raw invalid
+  data cycles and decryption tag values as well as accepted transfers. Earlier
+  passing reports must not be treated as evidence for these stronger checks.
 - Decryption is fully buffered. The state machine enters `ST_OUTPUT` only after
   the complete 128-bit tag comparison succeeds. Every one of the 150 generated
   modified-key/IV/AAD/ciphertext/tag cases rejects without a plaintext byte.

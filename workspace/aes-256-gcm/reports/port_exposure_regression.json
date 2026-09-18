@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-18",
+  "architecture": "overlap-both-1r64b",
+  "arch_parameter": 13,
+  "frozen_rtl_sha256": "6f349205f3cec1a2ffc33fd27fd19c25aa101c764d343e6d7a4bce3cc69c6a7f",
+  "description": "Deliberately invalid tags on public deterministic fixtures; older RTL rejects but exposes plaintext and correct tag at raw ports. Failures below are the expected regression result. Sources and logs retained in runs/aes-gcm-port-exposure-20260918.",
+  "runs": [
+    {
+      "argv": [
+        "/tmp/aisl-gcm-port-regression-L26Guk/obj/Vaes_gcm_core"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "overlap-both-1r64b exposed out_data=0x9b while out_valid=0 at cycle 410\n",
+      "binary_sha256": "fe9780772a346440e0a54e568cd6766a5540f58568ac7b337f4303015f8bbf88"
+    },
+    {
+      "argv": [
+        "/tmp/aisl-gcm-port-regression-L26Guk/probe"
+      ],
+      "exit_code": 1,
+      "stdout": "probe case=perf-iv12-aad0-data1-decrypt supplied_tag=0e33544a1680f89be18bb0ab7fe03a3a valid_tag=3e33544a1680f89be18bb0ab7fe03a3a plaintext=01 status=1 auth=0 valid_output_bytes=0 observed_result_tag=3e33544a1680f89be18bb0ab7fe03a3a\n",
+      "stderr": "overlap-both-1r64b exposed out_data=0x01 while out_valid=0 at cycle 74\noverlap-both-1r64b exposed out_data=0x01 while out_valid=0 at cycle 75\noverlap-both-1r64b exposed out_data=0x01 while out_valid=0 at cycle 76\noverlap-both-1r64b exposed out_data=0x01 while out_valid=0 at cycle 77\noverlap-both-1r64b exposed out_data=0x01 while out_valid=0 at cycle 78\noverlap-both-1r64b case perf-iv12-aad0-data1-decrypt failed: status=1/1 auth=0/0 output=0/0 tag=3e33544a1680f89be18bb0ab7fe03a3a/00000000000000000000000000000000 cycles=67\n",
+      "binary_sha256": "fbe0d741ad3411b0b371cc2508162460e491cf95285a938c3216741f41d69bd9"
+    },
+    {
+      "argv": [
+        "/tmp/aisl-gcm-port-regression-L26Guk/probe",
+        "empty"
+      ],
+      "exit_code": 1,
+      "stdout": "probe case=perf-iv12-aad0-data0-decrypt supplied_tag=0f6c8438297ffa51072ad2ce123f2d41 valid_tag=3f6c8438297ffa51072ad2ce123f2d41 plaintext= status=1 auth=0 valid_output_bytes=0 observed_result_tag=3f6c8438297ffa51072ad2ce123f2d41\n",
+      "stderr": "overlap-both-1r64b case perf-iv12-aad0-data0-decrypt failed: status=1/1 auth=0/0 output=0/0 tag=3f6c8438297ffa51072ad2ce123f2d41/00000000000000000000000000000000 cycles=50\n",
+      "binary_sha256": "fbe0d741ad3411b0b371cc2508162460e491cf95285a938c3216741f41d69bd9"
+    }
+  ]
+}

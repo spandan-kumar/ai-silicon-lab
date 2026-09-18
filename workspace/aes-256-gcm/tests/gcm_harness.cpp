@@ -33,6 +33,14 @@ static constexpr const char *kArchitecture = "karatsuba-1r2c";
 static constexpr const char *kArchitecture = "overlap-1r64b";
 #elif defined(OVERLAP_KARATSUBA)
 static constexpr const char *kArchitecture = "overlap-karatsuba-1r2c";
+#elif defined(DECRYPT_OVERLAP)
+static constexpr const char *kArchitecture = "decrypt-overlap-1r64b";
+#elif defined(DECRYPT_OVERLAP_KARATSUBA)
+static constexpr const char *kArchitecture = "decrypt-overlap-karatsuba-1r2c";
+#elif defined(OVERLAP_BOTH)
+static constexpr const char *kArchitecture = "overlap-both-1r64b";
+#elif defined(OVERLAP_BOTH_KARATSUBA)
+static constexpr const char *kArchitecture = "overlap-both-karatsuba-1r2c";
 #else
 static constexpr const char *kArchitecture = "unrolled-2r8b";
 #endif
@@ -40,6 +48,7 @@ static constexpr const char *kArchitecture = "unrolled-2r8b";
 static uint64_t global_cycles = 0;
 static uint32_t stall_prng = 0x6a09e667u;
 static bool transaction_active = false;
+static bool transaction_encrypt = false;
 
 struct Result {
     std::vector<uint8_t> output;
@@ -95,6 +104,23 @@ static void tick(Dut &dut) {
     dut.clk = 1;
     dut.eval();
     ++global_cycles;
+    // Invalid output cycles are observable at the RTL boundary too.
+    if (!dut.out_valid && dut.out_data != 0) {
+        std::fprintf(stderr,
+                     "%s exposed out_data=0x%02x while out_valid=0 at cycle %llu\n",
+                     kArchitecture, static_cast<unsigned>(dut.out_data),
+                     static_cast<unsigned long long>(global_cycles));
+        std::exit(1);
+    }
+    if (transaction_active && !transaction_encrypt
+        && (dut.result_tag[0] | dut.result_tag[1] | dut.result_tag[2] | dut.result_tag[3])) {
+        std::fprintf(stderr,
+                     "%s exposed decrypt result_tag=%s at cycle %llu (result_valid=%u)\n",
+                     kArchitecture, get_hex(dut.result_tag).c_str(),
+                     static_cast<unsigned long long>(global_cycles),
+                     static_cast<unsigned>(dut.result_valid));
+        std::exit(1);
+    }
     if (!dut.rst && transaction_active && (dut.cmd_ready || dut.key_ready)) {
         std::fprintf(stderr, "%s accepted interleaving while a transaction was active\n",
                      kArchitecture);
@@ -148,6 +174,7 @@ static void send_command(Dut &dut, bool encrypting, size_t iv, size_t aad, size_
     dut.cmd_aad_bytes = static_cast<uint8_t>(aad);
     dut.cmd_data_bytes = static_cast<uint8_t>(data);
     dut.cmd_valid = 1;
+    transaction_encrypt = encrypting;
     tick(dut);
     dut.cmd_valid = 0;
     transaction_active = true;
@@ -239,12 +266,14 @@ static Result run_case(Dut &dut, const GcmVector &vector, bool stress, bool relo
 static void verify_case(const GcmVector &vector, const Result &result) {
     std::vector<uint8_t> expected = decode_hex(vector.output);
     uint8_t expected_status = vector.auth ? 0 : 1;
+    // Decrypt returns a verdict only, including when authentication fails.
+    const char *expected_tag = vector.encrypt ? vector.tag : "00000000000000000000000000000000";
     if (result.status != expected_status || result.auth != vector.auth || result.output != expected
-        || (vector.encrypt && result.tag != vector.tag) || result.cycles == 0) {
+        || result.tag != expected_tag || result.cycles == 0) {
         std::fprintf(stderr,
             "%s case %s failed: status=%u/%u auth=%u/%u output=%zu/%zu tag=%s/%s cycles=%u\n",
             kArchitecture, vector.id, result.status, expected_status, result.auth, vector.auth,
-            result.output.size(), expected.size(), result.tag.c_str(), vector.tag, result.cycles);
+            result.output.size(), expected.size(), result.tag.c_str(), expected_tag, result.cycles);
         std::exit(1);
     }
 }

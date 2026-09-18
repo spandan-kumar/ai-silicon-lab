@@ -16,6 +16,13 @@ with the current payload GHASH multiply (`overlap-1r64b` and
 `overlap-karatsuba-1r2c`). They are outside the frozen sweep; reproduce them
 with `reports/overlap_exploration.json`.
 
+Exploratory `ARCH=11–14` also test overlapping authentication of the current
+ciphertext with its AES counter block during decryption. `ARCH=13` combines
+both encrypt and decrypt schedules; `ARCH=14` adds Karatsuba GHASH. Preliminary
+measurements are retained in `reports/dual_overlap_pre_hardening.json` and are
+superseded for security and implementation recommendations: a subsequent
+review found and fixed raw output-port exposures described in `SECURITY.md`.
+
 The implementation is intentionally separate from the protected Doom
 evaluator.
 

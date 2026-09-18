@@ -41,6 +41,10 @@ invalidates direct cycle/area comparisons with this one.
   tag and success status.
 - Decryption buffers the complete ciphertext and supplied tag. It emits no
   plaintext until a constant-work 128-bit tag comparison succeeds.
+- The raw `out_data` pins are zero whenever `out_valid` is false. Decryption
+  returns a verdict only: `result_tag` remains zero for both accepted and
+  rejected decryptions. These port-observation requirements were made explicit
+  on 2026-09-18 after finding exposures missed by the transfer-only scoreboard.
 - On tag failure no plaintext byte is valid, `auth_ok` is false, an
   authentication error is reported, and message, GHASH, and temporary AES
   state are cleared before the next command.

@@ -67,6 +67,11 @@ module aes_gcm_core #(
     ST_DATA_GHASH_WAIT,
     // ARCH=9 overlaps the next CTR/AES block with the current GHASH block.
     // ARCH=10 combines that schedule with the Karatsuba GHASH multiplier.
+    // ARCH=11/12 overlap decrypt-side ciphertext GHASH with AES-CTR.
+    // ARCH=13/14 combine that decrypt schedule with the ARCH=9/10
+    // encrypt schedule.
+    ST_DATA_DUAL_START,
+    ST_DATA_DUAL_WAIT,
     ST_DATA_PIPE_GHASH_START,
     ST_DATA_PIPE_WAIT,
     ST_LENGTH_GHASH_START,
@@ -101,6 +106,10 @@ module aes_gcm_core #(
   logic data_pipe_aes_issued;
   logic data_pipe_ghash_done;
   logic data_pipe_aes_done;
+  logic data_dual_ghash_issued;
+  logic data_dual_aes_issued;
+  logic data_dual_ghash_done;
+  logic data_dual_aes_done;
   logic [31:0] transaction_cycles;
   logic [31:0] transaction_stalls;
 
@@ -193,11 +202,12 @@ module aes_gcm_core #(
   endfunction
 
   localparam integer AES_ROUNDS_PER_CYCLE =
-      (ARCH == 0 || ARCH == 2 || ARCH == 5 || ARCH == 6 || ARCH == 7 || ARCH == 8 || ARCH == 9 || ARCH == 10) ? 1 : 2;
+      (ARCH == 0 || ARCH == 2 || ARCH == 5 || ARCH == 6 || ARCH == 7 || ARCH == 8 || ARCH == 9 || ARCH == 10 || ARCH == 11 || ARCH == 12 || ARCH == 13 || ARCH == 14) ? 1 : 2;
   localparam integer GHASH_BITS_PER_CYCLE = ARCH == 0 ? 1 :
       ((ARCH == 3 || ARCH == 5) ? 16 :
-       ((ARCH == 4 || ARCH == 6) ? 32 : ((ARCH == 7 || ARCH == 9) ? 64 : 8)));
-  localparam bit DATA_PIPELINE = ARCH == 9 || ARCH == 10;
+       ((ARCH == 4 || ARCH == 6) ? 32 : ((ARCH == 7 || ARCH == 9 || ARCH == 11 || ARCH == 13) ? 64 : 8)));
+  localparam bit DATA_PIPELINE = ARCH == 9 || ARCH == 10 || ARCH == 13 || ARCH == 14;
+  localparam bit DATA_DECRYPT_PIPE = ARCH == 11 || ARCH == 12 || ARCH == 13 || ARCH == 14;
 
   generate
     if (AES_ROUNDS_PER_CYCLE == 1) begin : gen_iterative_aes
@@ -216,7 +226,7 @@ module aes_gcm_core #(
           .block_out(aes_output));
     end
 
-    if (ARCH == 8 || ARCH == 10) begin : gen_karatsuba_ghash
+    if (ARCH == 8 || ARCH == 10 || ARCH == 12 || ARCH == 14) begin : gen_karatsuba_ghash
       ghash_karatsuba ghash_unit (
           .clk, .rst, .zeroize, .in_valid(ghash_input_valid), .in_ready(ghash_input_ready),
           .x(ghash_input), .h(hash_subkey), .out_valid(ghash_output_valid),
@@ -241,7 +251,8 @@ module aes_gcm_core #(
   assign in_ready = state == ST_INPUT_IV || state == ST_INPUT_AAD || state == ST_INPUT_DATA;
   assign tag_in_ready = state == ST_INPUT_TAG;
   assign out_valid = state == ST_OUTPUT;
-  assign out_data = output_memory[output_index[5:0]];
+  // Invalid cycles must not expose buffered, unauthenticated plaintext.
+  assign out_data = out_valid ? output_memory[output_index[5:0]] : 8'h00;
 
   always_comb begin
     aes_block_valid = 1'b0;
@@ -266,8 +277,14 @@ module aes_gcm_core #(
           aes_block_input = increment_counter(counter);
         end
       end
+      ST_DATA_DUAL_START: begin
+        if (DATA_DECRYPT_PIPE && !data_dual_aes_issued) begin
+          aes_block_valid = 1'b1;
+          aes_block_input = counter;
+        end
+      end
       ST_AES_H_WAIT, ST_AES_S0_WAIT, ST_DATA_AES_WAIT,
-      ST_DATA_PIPE_WAIT: aes_output_ready = 1'b1;
+      ST_DATA_PIPE_WAIT, ST_DATA_DUAL_WAIT: aes_output_ready = 1'b1;
       default: begin end
     endcase
   end
@@ -299,12 +316,19 @@ module aes_gcm_core #(
           ghash_input = ghash_state ^ cipher_block;
         end
       end
+      ST_DATA_DUAL_START: begin
+        if (DATA_DECRYPT_PIPE && !data_dual_ghash_issued) begin
+          ghash_input_valid = 1'b1;
+          ghash_input = ghash_state ^ data_block(block_index);
+        end
+      end
       ST_LENGTH_GHASH_START: begin
         ghash_input_valid = 1'b1;
         ghash_input = ghash_state ^ message_length_block();
       end
       ST_IV_GHASH_WAIT, ST_IV_LENGTH_WAIT, ST_AAD_GHASH_WAIT,
-      ST_DATA_GHASH_WAIT, ST_DATA_PIPE_WAIT, ST_LENGTH_GHASH_WAIT:
+      ST_DATA_GHASH_WAIT, ST_DATA_PIPE_WAIT, ST_DATA_DUAL_WAIT,
+      ST_LENGTH_GHASH_WAIT:
         ghash_output_ready = 1'b1;
       default: begin end
     endcase
@@ -334,6 +358,10 @@ module aes_gcm_core #(
       data_pipe_aes_issued <= 1'b0;
       data_pipe_ghash_done <= 1'b0;
       data_pipe_aes_done <= 1'b0;
+      data_dual_ghash_issued <= 1'b0;
+      data_dual_aes_issued <= 1'b0;
+      data_dual_ghash_done <= 1'b0;
+      data_dual_aes_done <= 1'b0;
       transaction_cycles <= 32'h0;
       transaction_stalls <= 32'h0;
       result_valid <= 1'b0;
@@ -452,7 +480,9 @@ module aes_gcm_core #(
           ghash_state <= 128'h0;
           block_index <= 3'h0;
           if (aad_length != 0) state <= ST_AAD_GHASH_START;
-          else if (data_length != 0) state <= ST_DATA_AES_START;
+          else if (data_length != 0)
+            state <= (DATA_DECRYPT_PIPE && !operation_encrypt)
+                ? ST_DATA_DUAL_START : ST_DATA_AES_START;
           else state <= ST_LENGTH_GHASH_START;
         end
 
@@ -464,7 +494,9 @@ module aes_gcm_core #(
             state <= ST_AAD_GHASH_START;
           end else begin
             block_index <= 3'h0;
-            if (data_length != 0) state <= ST_DATA_AES_START;
+            if (data_length != 0)
+              state <= (DATA_DECRYPT_PIPE && !operation_encrypt)
+                  ? ST_DATA_DUAL_START : ST_DATA_AES_START;
             else state <= ST_LENGTH_GHASH_START;
           end
         end
@@ -555,9 +587,56 @@ module aes_gcm_core #(
           end
         end
 
+        ST_DATA_DUAL_START: begin
+          if (ghash_input_valid && ghash_input_ready)
+            data_dual_ghash_issued <= 1'b1;
+          if (aes_block_valid && aes_block_ready)
+            data_dual_aes_issued <= 1'b1;
+          if ((data_dual_ghash_issued
+               || (ghash_input_valid && ghash_input_ready))
+              && (data_dual_aes_issued
+                  || (aes_block_valid && aes_block_ready))) begin
+            data_dual_ghash_done <= 1'b0;
+            data_dual_aes_done <= 1'b0;
+            state <= ST_DATA_DUAL_WAIT;
+          end
+        end
+
+        ST_DATA_DUAL_WAIT: begin
+          if (ghash_output_valid && ghash_output_ready) begin
+            ghash_state <= ghash_output;
+            data_dual_ghash_done <= 1'b1;
+          end
+          if (aes_output_valid && aes_output_ready) begin
+            for (store_index = 0; store_index < 16; store_index = store_index + 1)
+              if (block_index * 16 + store_index < data_length)
+                output_memory[block_index * 16 + store_index] <=
+                    data_memory[block_index * 16 + store_index]
+                    ^ aes_output[127 - store_index*8 -: 8];
+            data_dual_aes_done <= 1'b1;
+          end
+          if ((data_dual_ghash_done
+               || (ghash_output_valid && ghash_output_ready))
+              && (data_dual_aes_done
+                  || (aes_output_valid && aes_output_ready))) begin
+            if ({block_index, 4'h0} + 7'd16 < data_length) begin
+              block_index <= block_index + 1'b1;
+              counter <= increment_counter(counter);
+              data_dual_ghash_issued <= 1'b0;
+              data_dual_aes_issued <= 1'b0;
+              data_dual_ghash_done <= 1'b0;
+              data_dual_aes_done <= 1'b0;
+              state <= ST_DATA_DUAL_START;
+            end else begin
+              state <= ST_LENGTH_GHASH_START;
+            end
+          end
+        end
+
         ST_LENGTH_GHASH_START: if (ghash_input_valid && ghash_input_ready) state <= ST_LENGTH_GHASH_WAIT;
         ST_LENGTH_GHASH_WAIT: if (ghash_output_valid && ghash_output_ready) begin
-          result_tag <= tag_mask ^ ghash_output;
+          // Decryption returns a verdict, never a computed authentication tag.
+          result_tag <= operation_encrypt ? (tag_mask ^ ghash_output) : 128'h0;
           if (!operation_encrypt && |(expected_tag ^ tag_mask ^ ghash_output)) begin
             result_status <= STATUS_AUTH;
             result_auth_ok <= 1'b0;
@@ -605,6 +684,10 @@ module aes_gcm_core #(
           data_pipe_aes_issued <= 1'b0;
           data_pipe_ghash_done <= 1'b0;
           data_pipe_aes_done <= 1'b0;
+          data_dual_ghash_issued <= 1'b0;
+          data_dual_aes_issued <= 1'b0;
+          data_dual_ghash_done <= 1'b0;
+          data_dual_aes_done <= 1'b0;
           transaction_cycles <= 32'h0;
           transaction_stalls <= 32'h0;
           for (clear_index = 0; clear_index < 12; clear_index = clear_index + 1)

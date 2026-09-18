@@ -375,6 +375,42 @@ Nangate45 target.
 
 ## Architecture context
 
+### Current-ciphertext decrypt overlap and port review — 2026-09-18
+
+`ARCH=11` and `ARCH=12` launch GHASH of input ciphertext alongside its AES
+counter encryption. `ARCH=13` and `ARCH=14` combine that decrypt schedule with
+the earlier encrypt overlap; the even-numbered variants use Karatsuba GHASH.
+All four preliminary RTL and mapped-netlist runs passed the 1,038-operation
+transfer scoreboard and repeatable cycle traces. The complete preliminary
+numbers and source hashes are in
+`workspace/aes-256-gcm/reports/dual_overlap_pre_hardening.json`.
+
+These measurements exposed two reasons to withhold an implementation claim.
+First, rebuilding the baseline from the same modified source produced
+77,866.446 um² and 2,772.31 ps, different from the older 75,700.408 um² and
+2,726.41 ps baseline. Direct comparisons must use the same source snapshot.
+Second, independent source review found that the raw output pins revealed
+buffered plaintext during invalid cycles, and that decryption returned the
+computed tag even after rejection. These bugs predate the new overlap path;
+the previous harness checked transfers and encryption tags only. They
+invalidate the broad external-port confidentiality claim in prior revisions.
+The wrapper now drives zero on invalid data cycles and suppresses decryption
+result tags. New raw-port regressions require rebuilding and remeasuring the
+candidate; preliminary results are retained as superseded evidence.
+
+The scheduling principle is established prior art. Yang, Mishra and Karri,
+[A High Speed Architecture for GCM](https://eprint.iacr.org/2005/146.pdf)
+(2005), section 3.3 and Figure 4(b), describe overlapping decrypt hashing with
+keystream generation. NIST also links that paper in its
+[2005 mode-selection comments](https://csrc.nist.gov/projects/block-cipher-techniques/bcm/public-comments-modes-development).
+Eric Biggers' original
+[Linux AES-GCM implementation](https://github.com/torvalds/linux/blob/master/arch/x86/crypto/aes-gcm-aesni-x86_64.S)
+explains the same dependency distinction in `_aes_gcm_update`: ciphertext is
+immediately available during decryption; encryption hashes the previous batch
+while encrypting the next. Sources were checked on 2026-09-18. These are
+prior-art anchors, not evidence of comparable area or latency across targets.
+No novelty claim follows from the local schedule or the security fixes.
+
 ### Constructive GHASH branch — Karatsuba exploration (2026-09-17)
 
 To complement the exact affine-search frontier, the workspace now contains an

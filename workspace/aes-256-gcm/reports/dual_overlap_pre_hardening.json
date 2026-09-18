@@ -1,0 +1,486 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "date": "2026-09-18",
+  "status": "superseded-security-findings",
+  "candidate_commit": null,
+  "base_commit": "5860ff6daf3cf7acf2ad41f78ff7bc1ebaece486",
+  "source_note": "Measurements were made on uncommitted ARCH11\u201314 sources. Source hashes identify the snapshot; candidate_commit is unavailable. Subsequent port-hardening changes require fresh mapping.",
+  "source_sha256": {
+    "workspace/aes-256-gcm/rtl/aes_gcm_core.sv": "6f349205f3cec1a2ffc33fd27fd19c25aa101c764d343e6d7a4bce3cc69c6a7f",
+    "workspace/aes-256-gcm/rtl/aes256_iterative_enc.sv": "d6afe9bf6981e718f22e9598ba53d6090d4bcc179b19b8ded0c4aa655da20a9c",
+    "workspace/aes-256-gcm/rtl/aes_functions.svh": "ff178d83f3d3325d8d464170672317497e058b6b36bda74d98b5bd2e0c44d20b",
+    "workspace/aes-256-gcm/rtl/ghash_parallel.sv": "f1b632a56d955d8b8e134455942e41053a7886cd021594f9bfe06efe671a50b3",
+    "workspace/aes-256-gcm/rtl/ghash_karatsuba.sv": "ae83ee18830258d58607efa7dfcebd3569368e2fee149c797df72b4e465880ec"
+  },
+  "claim_boundary": "Known AES/GHASH overlap techniques. No novel/world-first claim. Prelayout ABC timing only. Snapshot has raw plaintext and computed-decrypt-tag port exposures; do not recommend it as secure.",
+  "architectures": {
+    "decrypt_overlap": {
+      "rtl_log": "reports/decrypt_overlap_rtl.log",
+      "rtl_log_sha256": "03287e1f866e8a702b0368058c9b39691cc01c13975f9c946ea9d6bff3e21304",
+      "correctness_summary": "GCM RTL: PASS architecture=decrypt-overlap-1r64b corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=46 max_cycles=337 mean_cycles=167.831 total_sim_cycles=204661",
+      "representative_metrics": [
+        "METRIC architecture=decrypt-overlap-1r64b case=perf-iv12-aad0-data64-encrypt mode=encrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=257 cold_cycles=265 bytes_per_cycle=0.249027237 cycles_per_byte=4.015625000 stalls=0",
+        "METRIC architecture=decrypt-overlap-1r64b case=perf-iv12-aad0-data64-decrypt mode=decrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=242 cold_cycles=250 bytes_per_cycle=0.264462810 cycles_per_byte=3.781250000 stalls=0"
+      ],
+      "repeatability": "Full stdout matched a repeated execution on 2026-09-18; exit 0, stderr empty.",
+      "synth": {
+        "summary_path": "build/synth-decrypt-overlap/summary.json",
+        "summary_sha256": "74800cf69a0bddc130e0b27c65502a2389ffdbccaae2c84d6271684acede71a0",
+        "data": {
+          "architectures": {
+            "decrypt-overlap-1r64b": {
+              "arch_parameter": 11,
+              "elapsed_seconds": 100.942559,
+              "elapsed_source": "measured-monotonic-clock",
+              "generic_cell_count": 44529,
+              "log_sha256": "c9a027879f60fd685b8d308df1b1756009b8edcda3bf5b2da74de5c124a6d449",
+              "netlist_sha256": "6a8253bbad11500351f2a463674ce1d96f7ba0581da59f54973f254257ebe479",
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/ghash_parallel.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "dcf023d77cc64409c80846cbe8fa50cf71c609fe734bb1103f4aa0c212fe3708"
+            }
+          },
+          "flow": "generic-yosys-synth-v1",
+          "power": null,
+          "schema_version": 1,
+          "target": "generic Yosys Boolean-cell netlist; no technology mapping",
+          "timing": null,
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "asic-synth": {
+        "summary_path": "build/asic-synth-decrypt-overlap/summary.json",
+        "summary_sha256": "ba0a61c372ef4733e97d6cf8a7df6d49fd4ab1d1ec927e3f92d41dfc651dd4ce",
+        "data": {
+          "architectures": {
+            "decrypt-overlap-1r64b": {
+              "abc_combinational_area_um2": 52722.53,
+              "arch_parameter": 11,
+              "critical_combinational_delay_ps": 2823.21,
+              "elapsed_seconds": 140.830554,
+              "elapsed_source": "measured-monotonic-clock",
+              "log_sha256": "46c40c4d8ef9d080254f9b0991f33edee19a7776ae0b4e228857700c67930e73",
+              "mapped_cell_count": 52942,
+              "netlist_sha256": "d2bfeb97fabb4c27f219b26aa52aa03840d5da8a6b1fa4479e0de4ded8b546d1",
+              "prelayout_fmax_mhz": 354.206736,
+              "sequential_cell_area_um2": 26254.732,
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/ghash_parallel.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "44fa9e643d6d7a6db12222aa63e2b9f5720586d4975a197aad1744e3a3ecc516",
+              "total_cell_area_um2": 78977.262
+            }
+          },
+          "constraints": {
+            "file_sha256": "6710077f5f66e43fcb9993d501d605c2a9a99549566ad74fa987bc839a803c89",
+            "input_driver": "BUF_X1",
+            "output_load_ff": 5.0,
+            "wire_load": "none"
+          },
+          "flow": "yosys-abc-nangate45-typical-v1",
+          "library": {
+            "corner": "typical",
+            "name": "NangateOpenCellLibrary",
+            "sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+            "technology_nm": 45,
+            "temperature_c": 25,
+            "voltage_v": 1.1
+          },
+          "schema_version": 1,
+          "scope": "flattened RTL-to-standard-cell synthesis; ABC pre-layout combinational delay, no floorplan, placement, routing, extracted parasitics, clock tree, power, DRC, or signoff",
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "gate-verify": {
+        "summary_path": "build/gate-verify-decrypt-overlap/summary.json",
+        "summary_sha256": "c9ef2de9ecfd776b4cc7d419ac010efa7b9225551169583b7a567377786f233b",
+        "data": {
+          "architecture": "decrypt-overlap-1r64b",
+          "corpus_operations": 1038,
+          "flow": "verilator-nangate45-functional-netlist-v1",
+          "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+          "harness_sha256": "280b4b35f2d9c24aa6c4e2a65468f5dcde0dd66017e6d3cdf8cc8192d9e6f752",
+          "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+          "log_sha256": "03287e1f866e8a702b0368058c9b39691cc01c13975f9c946ea9d6bff3e21304",
+          "netlist_sha256": "d2bfeb97fabb4c27f219b26aa52aa03840d5da8a6b1fa4479e0de4ded8b546d1",
+          "schema_version": 1,
+          "status": "pass",
+          "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+        }
+      }
+    },
+    "decrypt_overlap_karatsuba": {
+      "rtl_log": "reports/decrypt_overlap_karatsuba_rtl.log",
+      "rtl_log_sha256": "64b9764203e73969d7adad344b6b2103470104b09ba4d9a690611c48adaac17c",
+      "correctness_summary": "GCM RTL: PASS architecture=decrypt-overlap-karatsuba-1r2c corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=43 max_cycles=328 mean_cycles=162.936 total_sim_cycles=198951",
+      "representative_metrics": [
+        "METRIC architecture=decrypt-overlap-karatsuba-1r2c case=perf-iv12-aad0-data64-encrypt mode=encrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=252 cold_cycles=260 bytes_per_cycle=0.253968254 cycles_per_byte=3.937500000 stalls=0",
+        "METRIC architecture=decrypt-overlap-karatsuba-1r2c case=perf-iv12-aad0-data64-decrypt mode=decrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=241 cold_cycles=249 bytes_per_cycle=0.265560166 cycles_per_byte=3.765625000 stalls=0"
+      ],
+      "repeatability": "Full stdout matched a repeated execution on 2026-09-18; exit 0, stderr empty.",
+      "synth": {
+        "summary_path": "build/synth-decrypt-overlap-karatsuba/summary.json",
+        "summary_sha256": "5185c6592075aa5b69ef8aabac802ce889015542d6f614365f19d28d755d3a88",
+        "data": {
+          "architectures": {
+            "decrypt-overlap-karatsuba-1r2c": {
+              "arch_parameter": 12,
+              "elapsed_seconds": 282.048468,
+              "elapsed_source": "measured-monotonic-clock",
+              "generic_cell_count": 52395,
+              "log_sha256": "f84bb5510cb57469eeb8e3afcd7537cdca3784e28d74e98715976236d90f0c67",
+              "netlist_sha256": "e5a37c5f182a2792c6b1776ffb1a8ac4c9106ac1005d8ccbc4c52a373d1b477e",
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/aes256_parallel_enc.sv",
+                "rtl/ghash_karatsuba.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "80e7f864e3d70791d87e98b18a050d102e6602da368c226cb61a78f74c66e595"
+            }
+          },
+          "flow": "generic-yosys-synth-v1",
+          "power": null,
+          "schema_version": 1,
+          "target": "generic Yosys Boolean-cell netlist; no technology mapping",
+          "timing": null,
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "asic-synth": {
+        "summary_path": "build/asic-synth-decrypt-overlap-karatsuba/summary.json",
+        "summary_sha256": "d593e862338e4ebbb247f9ce69240ec7f7aca4b1bc0e287e904b9025ef22b762",
+        "data": {
+          "architectures": {
+            "decrypt-overlap-karatsuba-1r2c": {
+              "abc_combinational_area_um2": 63254.53,
+              "arch_parameter": 12,
+              "critical_combinational_delay_ps": 2783.06,
+              "elapsed_seconds": 333.843807,
+              "elapsed_source": "measured-monotonic-clock",
+              "log_sha256": "d0b743043480aed4431319a59110245ac9295dd9d14d6604cf5ab8a412e6b323",
+              "mapped_cell_count": 62070,
+              "netlist_sha256": "adfdac4bf21067af2a3656154f840960c8053641d71595f56d8e919973185ab7",
+              "prelayout_fmax_mhz": 359.316723,
+              "sequential_cell_area_um2": 26236.644,
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/aes256_parallel_enc.sv",
+                "rtl/ghash_karatsuba.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "b1d0dc0973cc70f85c574d39a5d7b80708bf6ad43435b2b12d3827d09c775438",
+              "total_cell_area_um2": 89491.178
+            }
+          },
+          "constraints": {
+            "file_sha256": "6710077f5f66e43fcb9993d501d605c2a9a99549566ad74fa987bc839a803c89",
+            "input_driver": "BUF_X1",
+            "output_load_ff": 5.0,
+            "wire_load": "none"
+          },
+          "flow": "yosys-abc-nangate45-typical-v1",
+          "library": {
+            "corner": "typical",
+            "name": "NangateOpenCellLibrary",
+            "sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+            "technology_nm": 45,
+            "temperature_c": 25,
+            "voltage_v": 1.1
+          },
+          "schema_version": 1,
+          "scope": "flattened RTL-to-standard-cell synthesis; ABC pre-layout combinational delay, no floorplan, placement, routing, extracted parasitics, clock tree, power, DRC, or signoff",
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "gate-verify": {
+        "summary_path": "build/gate-verify-decrypt-overlap-karatsuba/summary.json",
+        "summary_sha256": "cbec7c225ee2b19b860f25ae8d1bb54249cd9a0e71d74d0fbcd0f3bab27cbc2f",
+        "data": {
+          "architecture": "decrypt-overlap-karatsuba-1r2c",
+          "corpus_operations": 1038,
+          "flow": "verilator-nangate45-functional-netlist-v1",
+          "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+          "harness_sha256": "280b4b35f2d9c24aa6c4e2a65468f5dcde0dd66017e6d3cdf8cc8192d9e6f752",
+          "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+          "log_sha256": "64b9764203e73969d7adad344b6b2103470104b09ba4d9a690611c48adaac17c",
+          "netlist_sha256": "adfdac4bf21067af2a3656154f840960c8053641d71595f56d8e919973185ab7",
+          "schema_version": 1,
+          "status": "pass",
+          "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+        }
+      }
+    },
+    "overlap_both": {
+      "rtl_log": "reports/overlap_both_rtl.log",
+      "rtl_log_sha256": "8deaac30162fd072a055c2588810e8f01b7f5ceaabc133d1a23aab6185166d1f",
+      "correctness_summary": "GCM RTL: PASS architecture=overlap-both-1r64b corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=46 max_cycles=325 mean_cycles=165.912 total_sim_cycles=202500",
+      "representative_metrics": [
+        "METRIC architecture=overlap-both-1r64b case=perf-iv12-aad0-data64-encrypt mode=encrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=245 cold_cycles=253 bytes_per_cycle=0.261224490 cycles_per_byte=3.828125000 stalls=0",
+        "METRIC architecture=overlap-both-1r64b case=perf-iv12-aad0-data64-decrypt mode=decrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=242 cold_cycles=250 bytes_per_cycle=0.264462810 cycles_per_byte=3.781250000 stalls=0"
+      ],
+      "repeatability": "Full stdout matched a repeated execution on 2026-09-18; exit 0, stderr empty.",
+      "synth": {
+        "summary_path": "build/synth-overlap-both/summary.json",
+        "summary_sha256": "dc3bea469271b9165026820ad25713b72628f96806afc504c158d921c122d7e0",
+        "data": {
+          "architectures": {
+            "overlap-both-1r64b": {
+              "arch_parameter": 13,
+              "elapsed_seconds": 100.970963,
+              "elapsed_source": "measured-monotonic-clock",
+              "generic_cell_count": 44616,
+              "log_sha256": "fcfcb3cbe6ae7c91779fac13655fb42f351c52d4c3467c905e86f54bdb3fa52e",
+              "netlist_sha256": "75609641b04025ce332a10ef91cbb3b5d157bc7af00a7fc7f2b2c66c17e4eaf7",
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/ghash_parallel.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "f32d03e5a96f2a0e2700cce96bca5a8f55b368864b553f3780820b789759e3a2"
+            }
+          },
+          "flow": "generic-yosys-synth-v1",
+          "power": null,
+          "schema_version": 1,
+          "target": "generic Yosys Boolean-cell netlist; no technology mapping",
+          "timing": null,
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "asic-synth": {
+        "summary_path": "build/asic-synth-overlap-both/summary.json",
+        "summary_sha256": "cfce121581c4255dfe4d21ba3a87b4a781d217f2e55646d8147ba3cdba2dd449",
+        "data": {
+          "architectures": {
+            "overlap-both-1r64b": {
+              "abc_combinational_area_um2": 52515.58,
+              "arch_parameter": 13,
+              "critical_combinational_delay_ps": 2708.4,
+              "elapsed_seconds": 142.795277,
+              "elapsed_source": "measured-monotonic-clock",
+              "log_sha256": "c575cd6f554d7bf0beebe3522c47a487fae4af1e8578add369a89b65d69ca176",
+              "mapped_cell_count": 52703,
+              "netlist_sha256": "7b5c0205dac3deb9c141d8dba98a6ced656c2863eb658d3d13e915e86a05a620",
+              "prelayout_fmax_mhz": 369.221681,
+              "sequential_cell_area_um2": 26254.732,
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/ghash_parallel.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "3e05eb580948cbb180214aabeaae630710d222220d616988cfa3a945c7aa17a4",
+              "total_cell_area_um2": 78770.314
+            }
+          },
+          "constraints": {
+            "file_sha256": "6710077f5f66e43fcb9993d501d605c2a9a99549566ad74fa987bc839a803c89",
+            "input_driver": "BUF_X1",
+            "output_load_ff": 5.0,
+            "wire_load": "none"
+          },
+          "flow": "yosys-abc-nangate45-typical-v1",
+          "library": {
+            "corner": "typical",
+            "name": "NangateOpenCellLibrary",
+            "sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+            "technology_nm": 45,
+            "temperature_c": 25,
+            "voltage_v": 1.1
+          },
+          "schema_version": 1,
+          "scope": "flattened RTL-to-standard-cell synthesis; ABC pre-layout combinational delay, no floorplan, placement, routing, extracted parasitics, clock tree, power, DRC, or signoff",
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "gate-verify": {
+        "summary_path": "build/gate-verify-overlap-both/summary.json",
+        "summary_sha256": "ba6ff46bd0831e6d1fee7914774e9a49f648242b864fb5cde31244738b156535",
+        "data": {
+          "architecture": "overlap-both-1r64b",
+          "corpus_operations": 1038,
+          "flow": "verilator-nangate45-functional-netlist-v1",
+          "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+          "harness_sha256": "280b4b35f2d9c24aa6c4e2a65468f5dcde0dd66017e6d3cdf8cc8192d9e6f752",
+          "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+          "log_sha256": "8deaac30162fd072a055c2588810e8f01b7f5ceaabc133d1a23aab6185166d1f",
+          "netlist_sha256": "7b5c0205dac3deb9c141d8dba98a6ced656c2863eb658d3d13e915e86a05a620",
+          "schema_version": 1,
+          "status": "pass",
+          "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+        }
+      }
+    },
+    "overlap_both_karatsuba": {
+      "rtl_log": "reports/overlap_both_karatsuba_rtl.log",
+      "rtl_log_sha256": "400086979d049af77ee6aa7a68a46caf4f30e9353e3760bc33a3b9f40fed4507",
+      "correctness_summary": "GCM RTL: PASS architecture=overlap-both-karatsuba-1r2c corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=43 max_cycles=319 mean_cycles=161.497 total_sim_cycles=197333",
+      "representative_metrics": [
+        "METRIC architecture=overlap-both-karatsuba-1r2c case=perf-iv12-aad0-data64-encrypt mode=encrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=243 cold_cycles=251 bytes_per_cycle=0.263374486 cycles_per_byte=3.796875000 stalls=0",
+        "METRIC architecture=overlap-both-karatsuba-1r2c case=perf-iv12-aad0-data64-decrypt mode=decrypt iv_bytes=12 aad_bytes=0 data_bytes=64 key_setup_cycles=8 warm_cycles=241 cold_cycles=249 bytes_per_cycle=0.265560166 cycles_per_byte=3.765625000 stalls=0"
+      ],
+      "repeatability": "Full stdout matched a repeated execution on 2026-09-18; exit 0, stderr empty.",
+      "synth": {
+        "summary_path": "build/synth-overlap-both-karatsuba/summary.json",
+        "summary_sha256": "655ee40b8b1615985d9de1c4132d1892fe48fdaa4afff624636b5d146b2db77d",
+        "data": {
+          "architectures": {
+            "overlap-both-karatsuba-1r2c": {
+              "arch_parameter": 14,
+              "elapsed_seconds": 283.061736,
+              "elapsed_source": "measured-monotonic-clock",
+              "generic_cell_count": 52646,
+              "log_sha256": "c630838ed6a170979e39c519fbb4335d8a92aefdb75b7ebe7d247130ace1c883",
+              "netlist_sha256": "8ea1c95d48f26f465d005baede35661417319505c5ab36206133434d1fe4ef49",
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/aes256_parallel_enc.sv",
+                "rtl/ghash_karatsuba.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "1907ccef75b3d47a006a1b96740436e69972e4eba8858a3389423a70c528012e"
+            }
+          },
+          "flow": "generic-yosys-synth-v1",
+          "power": null,
+          "schema_version": 1,
+          "target": "generic Yosys Boolean-cell netlist; no technology mapping",
+          "timing": null,
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "asic-synth": {
+        "summary_path": "build/asic-synth-overlap-both-karatsuba/summary.json",
+        "summary_sha256": "0c35fe51d5f8448ef807248af67077dd1a2c192ee38b5213b4b9f53fc23ae703",
+        "data": {
+          "architectures": {
+            "overlap-both-karatsuba-1r2c": {
+              "abc_combinational_area_um2": 63703.27,
+              "arch_parameter": 14,
+              "critical_combinational_delay_ps": 2641.52,
+              "elapsed_seconds": 332.787379,
+              "elapsed_source": "measured-monotonic-clock",
+              "log_sha256": "a9e0848646558ffec9c5e2eb1f435d1131707171ed1ed494e24414322c9f9ac9",
+              "mapped_cell_count": 62476,
+              "netlist_sha256": "45b1488ae65940ffc0a243e58ba8cbc1255922cf793ef6a5b94282b20d047031",
+              "prelayout_fmax_mhz": 378.569914,
+              "sequential_cell_area_um2": 26236.644,
+              "sources": [
+                "rtl/aes_gcm_core.sv",
+                "rtl/aes256_iterative_enc.sv",
+                "rtl/aes256_parallel_enc.sv",
+                "rtl/ghash_karatsuba.sv",
+                "rtl/aes_functions.svh"
+              ],
+              "stat_sha256": "608af3e856d944440bdf0702f917238b2caf593cf67b503e956781df89a8a25a",
+              "total_cell_area_um2": 89939.92
+            }
+          },
+          "constraints": {
+            "file_sha256": "6710077f5f66e43fcb9993d501d605c2a9a99549566ad74fa987bc839a803c89",
+            "input_driver": "BUF_X1",
+            "output_load_ff": 5.0,
+            "wire_load": "none"
+          },
+          "flow": "yosys-abc-nangate45-typical-v1",
+          "library": {
+            "corner": "typical",
+            "name": "NangateOpenCellLibrary",
+            "sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+            "technology_nm": 45,
+            "temperature_c": 25,
+            "voltage_v": 1.1
+          },
+          "schema_version": 1,
+          "scope": "flattened RTL-to-standard-cell synthesis; ABC pre-layout combinational delay, no floorplan, placement, routing, extracted parasitics, clock tree, power, DRC, or signoff",
+          "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+        }
+      },
+      "gate-verify": {
+        "summary_path": "build/gate-verify-overlap-both-karatsuba/summary.json",
+        "summary_sha256": "2beb91d244bc55a668d40bd4762d9899ad4961bdb9407c5f0e42304cc56c1de3",
+        "data": {
+          "architecture": "overlap-both-karatsuba-1r2c",
+          "corpus_operations": 1038,
+          "flow": "verilator-nangate45-functional-netlist-v1",
+          "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+          "harness_sha256": "280b4b35f2d9c24aa6c4e2a65468f5dcde0dd66017e6d3cdf8cc8192d9e6f752",
+          "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+          "log_sha256": "400086979d049af77ee6aa7a68a46caf4f30e9353e3760bc33a3b9f40fed4507",
+          "netlist_sha256": "45b1488ae65940ffc0a243e58ba8cbc1255922cf793ef6a5b94282b20d047031",
+          "schema_version": 1,
+          "status": "pass",
+          "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+        }
+      }
+    }
+  },
+  "same_source_baseline": {
+    "data": {
+      "architectures": {
+        "balanced-xwide-1r64b": {
+          "abc_combinational_area_um2": 51616.23,
+          "arch_parameter": 7,
+          "critical_combinational_delay_ps": 2772.31,
+          "elapsed_seconds": 114.972635,
+          "elapsed_source": "measured-monotonic-clock",
+          "log_sha256": "08219f95d3b6cc939822fedc2434d6a651e587572f7129e8cd54b409a3943297",
+          "mapped_cell_count": 51833,
+          "netlist_sha256": "fa9d7de9994943be6cdc21fa2b9e5614f38b61f224a0acee58905365f59aca95",
+          "prelayout_fmax_mhz": 360.710022,
+          "sequential_cell_area_um2": 26250.21,
+          "sources": [
+            "rtl/aes_gcm_core.sv",
+            "rtl/aes256_iterative_enc.sv",
+            "rtl/ghash_parallel.sv",
+            "rtl/aes_functions.svh"
+          ],
+          "stat_sha256": "85a70f1c7c6e99115b310bd5550693f9a1eb2dfa9cd6751c8dd424697d081454",
+          "total_cell_area_um2": 77866.446
+        }
+      },
+      "constraints": {
+        "file_sha256": "6710077f5f66e43fcb9993d501d605c2a9a99549566ad74fa987bc839a803c89",
+        "input_driver": "BUF_X1",
+        "output_load_ff": 5.0,
+        "wire_load": "none"
+      },
+      "flow": "yosys-abc-nangate45-typical-v1",
+      "library": {
+        "corner": "typical",
+        "name": "NangateOpenCellLibrary",
+        "sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "technology_nm": 45,
+        "temperature_c": 25,
+        "voltage_v": 1.1
+      },
+      "schema_version": 1,
+      "scope": "flattened RTL-to-standard-cell synthesis; ABC pre-layout combinational delay, no floorplan, placement, routing, extracted parasitics, clock tree, power, DRC, or signoff",
+      "tool": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)"
+    },
+    "summary_path": "build/asic-synth-dual-baseline/summary.json",
+    "sha256": "f600267129f9c6794e2b01074d22fa32f405d41b0d26180cb9d69fd1c968caa5",
+    "exit_code": 0,
+    "note": "Rebuilt after ARCH11\u201314 additions. Supersedes older-revision baseline for direct comparisons."
+  },
+  "unavailable": {
+    "routed_timing": null,
+    "power": null,
+    "energy": null,
+    "physical_security": null,
+    "reason": "No physical implementation or instrumentation."
+  }
+}

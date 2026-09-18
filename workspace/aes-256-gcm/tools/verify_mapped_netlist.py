@@ -12,7 +12,7 @@ import tempfile
 from pathlib import Path
 
 from fetch_nangate45 import EXPECTED_SHA256
-from run_synthesis import CONFIGURATIONS
+from run_synthesis import ALL_CONFIGURATIONS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +29,13 @@ HARNESS_DEFINES = {
     "balanced-wide-1r16b": "BALANCED_WIDE",
     "balanced-ultrawide-1r32b": "BALANCED_ULTRAWIDE",
     "balanced-xwide-1r64b": "BALANCED_XWIDE",
+    "karatsuba-1r2c": "KARATSUBA",
+    "overlap-1r64b": "OVERLAP",
+    "overlap-karatsuba-1r2c": "OVERLAP_KARATSUBA",
+    "decrypt-overlap-1r64b": "DECRYPT_OVERLAP",
+    "decrypt-overlap-karatsuba-1r2c": "DECRYPT_OVERLAP_KARATSUBA",
+    "overlap-both-1r64b": "OVERLAP_BOTH",
+    "overlap-both-karatsuba-1r2c": "OVERLAP_BOTH_KARATSUBA",
 }
 
 
@@ -48,7 +55,7 @@ def main() -> int:
     parser.add_argument("--synthesis-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--liberty", type=Path, default=DEFAULT_LIBERTY)
-    parser.add_argument("--architecture", choices=CONFIGURATIONS, required=True)
+    parser.add_argument("--architecture", choices=ALL_CONFIGURATIONS, required=True)
     args = parser.parse_args()
     synthesis_dir = args.synthesis_dir.resolve()
     output_dir = args.output_dir.resolve()
@@ -61,7 +68,7 @@ def main() -> int:
     if yosys is None or verilator is None:
         raise SystemExit("yosys and verilator are required")
 
-    configuration = CONFIGURATIONS[args.architecture]
+    configuration = ALL_CONFIGURATIONS[args.architecture]
     stem = str(configuration["stem"])
     netlist = synthesis_dir / f"{stem}-netlist.v"
     if not netlist.exists():

@@ -21,6 +21,8 @@
   "interface": {
     "input_width_bits": 8,
     "output_width_bits": 8,
+    "invalid_output_data": "zero",
+    "decryption_result_tag": "zero",
     "handshake": "ready-valid",
     "phase_order": ["iv", "aad", "payload", "decrypt_tag"],
     "interleaving": false,
