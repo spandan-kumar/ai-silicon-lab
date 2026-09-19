@@ -8,6 +8,77 @@ profile.
 
 Research date: 2026-08-29
 
+## Equal-effort masked-S-box scheduling test — 2026-09-18, reviewed 2026-09-19
+
+The next falsifiable hypothesis was that better register scheduling could
+remove the area penalty of the public 29-AND S-boxes without losing their
+randomness and delay advantages. A fixed-topology CP-SAT model jointly chooses
+integer operation cycles and the orientation of asymmetric HPC2 operands.
+It minimizes shared alignment-register bits at eight-cycle latency. Each
+transaction still receives an independent random bit per AND at cycle zero.
+Internal gadget registers and the valid pipeline are constant for each
+topology; they are excluded from the optimization objective, not from mapping.
+
+All nine models returned `OPTIMAL` with equal objective and bound, and their
+emitted alignment-register counts independently matched the model. This is a
+solver result for that precise register-cost model, without an external proof
+certificate. It does not establish minimum mapped area or delay, or a lower
+bound for alternative Boolean circuits, gadgets, or randomness interfaces.
+
+| Circuit | Alignment bits before → after | Nangate45 area (um²) | ABC delay (ps) | Fresh bits |
+| --- | ---: | ---: | ---: | ---: |
+| classic-g113-d27 | 389 → 366 | 4,540.620 | 390.03 | 32 |
+| a29-ad5-g140-d37 | 445 → 415 | 4,729.480 | 732.57 | 29 |
+| a29-ad5-g141-d32 | 445 → 415 | 4,741.716 | 501.30 | 29 |
+| a29-ad5-g161-d24 | 473 → 427 | 4,865.406 | 416.36 | 29 |
+| a29-ad5-g184-d20 | 525 → 468 | 5,101.614 | 449.39 | 29 |
+| a29-ad6-g138-d38 | 443 → 417 | 4,728.150 | 753.26 | 29 |
+| a29-ad6-g139-d33 | 447 → 419 | 4,741.716 | 486.32 | 29 |
+| a29-ad6-g154-d27 | 495 → 449 | 4,942.812 | 539.37 | 29 |
+| a29-ad6-g181-d21 | 523 → 477 | 5,180.882 | 513.74 | 29 |
+
+The hypothesis failed in this test: every 29-AND candidate is larger and
+slower than the equally optimized classic circuit. The 29-bit randomness
+advantage remains, so those designs are not dominated when randomness is
+included as a third objective. Comparing only against the older, unoptimized
+classic mapping would overstate the improvement. A next search must change
+the Boolean topology, gadget choice, or another explicitly modeled cost;
+register-count minimization in this model has already reached its reported
+optimum. Other equally register-optimal schedules can still map differently;
+one mapping per topology does not exhaust the area/delay frontier.
+
+Every RTL and mapped candidate passes 4,096 functional transactions. The
+implemented HPC2 gadget passes universal functional SAT checks. fullVerif
+passes the corresponding independently emitted composition graph, including
+sharing preservation, output latency, fresh-random timing, transition-robust,
+and cleared-state checks. The latter check sharing validity after pipeline
+flush, not reset zeroization. HPC2 security is assumed by the trusted gadget
+library. This is not a leakage proof for the mapped netlist or a physical
+measurement. Full records and hashes are in
+`workspace/aes-256-gcm/reports/masked_sbox_schedule_study.json` and
+`runs/aes-masked-schedule-20260918/`.
+
+The technique itself is established prior art:
+[COMPRESS](https://eprint.iacr.org/2023/1600) already jointly optimizes masked
+pipeline scheduling, gadget choice, and register overhead. Its
+[official implementation](https://github.com/cassiersg/compress) was inspected
+on 2026-09-18. The local experiment uses a narrower, independently implemented
+fixed-HPC2 model with OR-Tools 9.14.6206, not COMPRESS-generated circuitry.
+No world-first or globally best masked S-box claim follows.
+
+The promoted command-line tools were replayed on 2026-09-20. The candidate's
+solver result, emitted RTL, mapped netlist and statistics reproduce the
+prototype exactly: 427 alignment bits, 4,865.406 um², and 416.36 ps. Both sets
+of 4,096 functional tests and the independently generated fullVerif composition
+pass again. All nine archived schedules regenerate byte-identical RTL; all
+nine reject a deliberately invalid input-arrival cycle. The original 152-entry
+artifact manifest passes hash verification. The new verifier binds its report
+to the measured RTL and schedule hashes, and the measurement entry point
+checks the library pin. Historical child records saying composition was
+pending are superseded by the completed combined report, not rewritten.
+Reproduction commands are in the workspace README; the promoted replay is
+retained under `runs/aes-masked-schedule-20260918/promoted-replay-20260920/`.
+
 ## First-order HPC2 masked S-box study — 2026-08-31 to 2026-09-01
 
 Research hypothesis: the three fewer nonlinear operations in the new 29-AND
@@ -397,6 +468,25 @@ invalidate the broad external-port confidentiality claim in prior revisions.
 The wrapper now drives zero on invalid data cycles and suppresses decryption
 result tags. New raw-port regressions require rebuilding and remeasuring the
 candidate; preliminary results are retained as superseded evidence.
+
+The hardened candidate `25da99238a162c2a4c55e204f315054c151191b4` subsequently
+passed the complete baseline `make check` and the retained targeted evaluator
+`aes-gcm-dual-hardened-20260918` from a clean tree with unchanged source hashes.
+All five selected configurations (baseline ARCH7 and ARCH11–14) passed the
+1,038-operation RTL corpus twice with byte-identical logs, generic synthesis,
+Nangate45 mapping, and byte-identical mapped-netlist corpus output. The new
+raw-port checks run in both RTL and mapped simulations.
+
+For the same 96-bit-IV/0-AAD/64-byte warm-key workload, ARCH11 reduces the
+estimated decrypt latency by 5.48% for 0.82% more area; encryption is 0.77%
+slower. ARCH14 reduces estimated encrypt/decrypt latency by 5.46%/6.60% at
+14.75% more area. ARCH12 and ARCH13 are dominated by ARCH11 in this five-point
+area/encrypt-latency/decrypt-latency comparison. Repeated ARCH13 mapping has
+identical netlist and statistic hashes: its 2,939.95 ps path erases the cycle
+savings, reversing the preliminary ranking. These are pre-layout estimates,
+not routed clock or silicon measurements. Exact measurements, deltas and
+reproduction command are in
+`workspace/aes-256-gcm/reports/dual_overlap_hardened.json`.
 
 The scheduling principle is established prior art. Yang, Mishra and Karri,
 [A High Speed Architecture for GCM](https://eprint.iacr.org/2005/146.pdf)

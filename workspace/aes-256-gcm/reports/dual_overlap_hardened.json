@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "measurement_date": "2026-09-18",
+  "review_date": "2026-09-19",
+  "candidate_commit": "25da99238a162c2a4c55e204f315054c151191b4",
+  "run_id": "aes-gcm-dual-hardened-20260918",
+  "run_record_sha256": "ec400dbd2d6a7addb3d52fa83d264141891216b214514fdf97f85421668e84f8",
+  "status": "pass",
+  "claim": "Target-specific comparison of known AES/GHASH schedules with hardened raw output pins; no world-first, physical timing, or leakage-resistance claim.",
+  "profile_sha256": "b3682e51526bcd438dfc80d21f01f0409aab0ee38b1529b650a1b35325433d53",
+  "sources_unchanged": true,
+  "clean_before": true,
+  "clean_after": true,
+  "workload": "96-bit IV, zero AAD, 64-byte payload, warm expanded key, 8-bit serialized interface. Estimated latency = measured cycles times ABC combinational delay; no routed clock model.",
+  "architectures": {
+    "balanced-xwide-1r64b": {
+      "arch": 7,
+      "status": "pass",
+      "asic": {
+        "abc_combinational_area_um2": 51826.38,
+        "arch_parameter": 7,
+        "critical_combinational_delay_ps": 2719.31,
+        "elapsed_seconds": 116.877686,
+        "elapsed_source": "measured-monotonic-clock",
+        "log_sha256": "f6c4d40ae63d73e992a1b10c12bf1398ae9e73f20da0caf1418ecb8f9b89e047",
+        "mapped_cell_count": 52251,
+        "netlist_sha256": "080201191eb43d5919a1d06c19527f29d712172111f00336ab7a18f199c11b4e",
+        "prelayout_fmax_mhz": 367.740346,
+        "sequential_cell_area_um2": 26250.21,
+        "sources": [
+          "rtl/aes_gcm_core.sv",
+          "rtl/aes256_iterative_enc.sv",
+          "rtl/ghash_parallel.sv",
+          "rtl/aes_functions.svh"
+        ],
+        "stat_sha256": "1c734d56e0e5e81bcc113b11918490da8937a0e8e95d595bc9690b46d53c7af6",
+        "total_cell_area_um2": 78076.586
+      },
+      "generic_cells": 44156,
+      "workload": {
+        "encrypt": {
+          "warm_cycles": 257,
+          "cold_cycles": 265,
+          "estimated_prelayout_latency_ns": 698.86267
+        },
+        "decrypt": {
+          "warm_cycles": 258,
+          "cold_cycles": 266,
+          "estimated_prelayout_latency_ns": 701.58198
+        }
+      },
+      "rtl_summary": "GCM RTL: PASS architecture=balanced-xwide-1r64b corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=46 max_cycles=338 mean_cycles=172.652 total_sim_cycles=210064",
+      "rtl_repeatability": {
+        "comparison": "byte-identical-stdout",
+        "corpus_operations_per_run": 1038,
+        "runs": 2,
+        "status": "pass",
+        "stdout_sha256": "a8e77d7965b8a4bfa37e4c5d15c193f5a0ce8aa96d5864eda504ba018749bc32"
+      },
+      "mapped_netlist": {
+        "architecture": "balanced-xwide-1r64b",
+        "corpus_operations": 1038,
+        "flow": "verilator-nangate45-functional-netlist-v1",
+        "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+        "harness_sha256": "fa6d6430cbc2ade5ab0946942624613abc8881db7c6bc629a79dcb5e4267b5bd",
+        "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "log_sha256": "a8e77d7965b8a4bfa37e4c5d15c193f5a0ce8aa96d5864eda504ba018749bc32",
+        "netlist_sha256": "080201191eb43d5919a1d06c19527f29d712172111f00336ab7a18f199c11b4e",
+        "schema_version": 1,
+        "status": "pass",
+        "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+      },
+      "delta_vs_same_revision_baseline_percent": {
+        "area": 0.0,
+        "encrypt_estimated_latency": 0.0,
+        "decrypt_estimated_latency": 0.0
+      }
+    },
+    "decrypt-overlap-1r64b": {
+      "arch": 11,
+      "status": "pass",
+      "asic": {
+        "abc_combinational_area_um2": 52465.57,
+        "arch_parameter": 11,
+        "critical_combinational_delay_ps": 2740.3,
+        "elapsed_seconds": 118.656145,
+        "elapsed_source": "measured-monotonic-clock",
+        "log_sha256": "673913e427d56b0c9b9caffd15f5a2a421a37ebd7453dfb3a8174f6cdc0638a4",
+        "mapped_cell_count": 52567,
+        "netlist_sha256": "786f2083defbb3399105ec4591c3abe2972fb46182eee1636ec1c696cc387eae",
+        "prelayout_fmax_mhz": 364.923549,
+        "sequential_cell_area_um2": 26254.732,
+        "sources": [
+          "rtl/aes_gcm_core.sv",
+          "rtl/aes256_iterative_enc.sv",
+          "rtl/ghash_parallel.sv",
+          "rtl/aes_functions.svh"
+        ],
+        "stat_sha256": "555a86618604f93ca434136859df3e0dee1e0d5fa87eac2b5e27dc8bbcfc29e9",
+        "total_cell_area_um2": 78720.306
+      },
+      "generic_cells": 44602,
+      "workload": {
+        "encrypt": {
+          "warm_cycles": 257,
+          "cold_cycles": 265,
+          "estimated_prelayout_latency_ns": 704.2571
+        },
+        "decrypt": {
+          "warm_cycles": 242,
+          "cold_cycles": 250,
+          "estimated_prelayout_latency_ns": 663.1526
+        }
+      },
+      "rtl_summary": "GCM RTL: PASS architecture=decrypt-overlap-1r64b corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=46 max_cycles=337 mean_cycles=167.831 total_sim_cycles=204661",
+      "rtl_repeatability": {
+        "comparison": "byte-identical-stdout",
+        "corpus_operations_per_run": 1038,
+        "runs": 2,
+        "status": "pass",
+        "stdout_sha256": "03287e1f866e8a702b0368058c9b39691cc01c13975f9c946ea9d6bff3e21304"
+      },
+      "mapped_netlist": {
+        "architecture": "decrypt-overlap-1r64b",
+        "corpus_operations": 1038,
+        "flow": "verilator-nangate45-functional-netlist-v1",
+        "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+        "harness_sha256": "fa6d6430cbc2ade5ab0946942624613abc8881db7c6bc629a79dcb5e4267b5bd",
+        "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "log_sha256": "03287e1f866e8a702b0368058c9b39691cc01c13975f9c946ea9d6bff3e21304",
+        "netlist_sha256": "786f2083defbb3399105ec4591c3abe2972fb46182eee1636ec1c696cc387eae",
+        "schema_version": 1,
+        "status": "pass",
+        "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+      },
+      "delta_vs_same_revision_baseline_percent": {
+        "area": 0.824473,
+        "encrypt_estimated_latency": 0.771887,
+        "decrypt_estimated_latency": -5.477532
+      }
+    },
+    "decrypt-overlap-karatsuba-1r2c": {
+      "arch": 12,
+      "status": "pass",
+      "asic": {
+        "abc_combinational_area_um2": 63164.62,
+        "arch_parameter": 12,
+        "critical_combinational_delay_ps": 2812.87,
+        "elapsed_seconds": 288.983396,
+        "elapsed_source": "measured-monotonic-clock",
+        "log_sha256": "bcf3f2e08fdfa858479000bdc51e4b44e290a306c33e8ce171b0debd1a444f30",
+        "mapped_cell_count": 61871,
+        "netlist_sha256": "fe229b67d568430190984b54256cb814e06ebaee89591de195d27350040eff84",
+        "prelayout_fmax_mhz": 355.508786,
+        "sequential_cell_area_um2": 26236.644,
+        "sources": [
+          "rtl/aes_gcm_core.sv",
+          "rtl/aes256_iterative_enc.sv",
+          "rtl/aes256_parallel_enc.sv",
+          "rtl/ghash_karatsuba.sv",
+          "rtl/aes_functions.svh"
+        ],
+        "stat_sha256": "66e0475fddce1627b439b5c19e1d9e510f1279ac3a95f93ba3766c224731f1b4",
+        "total_cell_area_um2": 89401.27
+      },
+      "generic_cells": 52503,
+      "workload": {
+        "encrypt": {
+          "warm_cycles": 252,
+          "cold_cycles": 260,
+          "estimated_prelayout_latency_ns": 708.84324
+        },
+        "decrypt": {
+          "warm_cycles": 241,
+          "cold_cycles": 249,
+          "estimated_prelayout_latency_ns": 677.90167
+        }
+      },
+      "rtl_summary": "GCM RTL: PASS architecture=decrypt-overlap-karatsuba-1r2c corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=43 max_cycles=328 mean_cycles=162.936 total_sim_cycles=198951",
+      "rtl_repeatability": {
+        "comparison": "byte-identical-stdout",
+        "corpus_operations_per_run": 1038,
+        "runs": 2,
+        "status": "pass",
+        "stdout_sha256": "64b9764203e73969d7adad344b6b2103470104b09ba4d9a690611c48adaac17c"
+      },
+      "mapped_netlist": {
+        "architecture": "decrypt-overlap-karatsuba-1r2c",
+        "corpus_operations": 1038,
+        "flow": "verilator-nangate45-functional-netlist-v1",
+        "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+        "harness_sha256": "fa6d6430cbc2ade5ab0946942624613abc8881db7c6bc629a79dcb5e4267b5bd",
+        "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "log_sha256": "64b9764203e73969d7adad344b6b2103470104b09ba4d9a690611c48adaac17c",
+        "netlist_sha256": "fe229b67d568430190984b54256cb814e06ebaee89591de195d27350040eff84",
+        "schema_version": 1,
+        "status": "pass",
+        "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+      },
+      "delta_vs_same_revision_baseline_percent": {
+        "area": 14.504584,
+        "encrypt_estimated_latency": 1.428116,
+        "decrypt_estimated_latency": -3.375273
+      }
+    },
+    "overlap-both-1r64b": {
+      "arch": 13,
+      "status": "pass",
+      "asic": {
+        "abc_combinational_area_um2": 52537.93,
+        "arch_parameter": 13,
+        "critical_combinational_delay_ps": 2939.95,
+        "elapsed_seconds": 124.073518,
+        "elapsed_source": "measured-monotonic-clock",
+        "log_sha256": "c4076a7c1b839851d419f3a06d18dc13352782bc2f757e139dec7eb391bf5ed5",
+        "mapped_cell_count": 52894,
+        "netlist_sha256": "e92ed63f2c67dcf023393cf2f2be62e33acba65445e97be7702ad42876450e26",
+        "prelayout_fmax_mhz": 340.141839,
+        "sequential_cell_area_um2": 26254.732,
+        "sources": [
+          "rtl/aes_gcm_core.sv",
+          "rtl/aes256_iterative_enc.sv",
+          "rtl/ghash_parallel.sv",
+          "rtl/aes_functions.svh"
+        ],
+        "stat_sha256": "6938920c8c818be0d592a08e6564fb6ab00f35e245459d2835ee03b037300896",
+        "total_cell_area_um2": 78792.658
+      },
+      "generic_cells": 44722,
+      "workload": {
+        "encrypt": {
+          "warm_cycles": 245,
+          "cold_cycles": 253,
+          "estimated_prelayout_latency_ns": 720.28775
+        },
+        "decrypt": {
+          "warm_cycles": 242,
+          "cold_cycles": 250,
+          "estimated_prelayout_latency_ns": 711.4679
+        }
+      },
+      "rtl_summary": "GCM RTL: PASS architecture=overlap-both-1r64b corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=46 max_cycles=325 mean_cycles=165.912 total_sim_cycles=202500",
+      "rtl_repeatability": {
+        "comparison": "byte-identical-stdout",
+        "corpus_operations_per_run": 1038,
+        "runs": 2,
+        "status": "pass",
+        "stdout_sha256": "8deaac30162fd072a055c2588810e8f01b7f5ceaabc133d1a23aab6185166d1f"
+      },
+      "mapped_netlist": {
+        "architecture": "overlap-both-1r64b",
+        "corpus_operations": 1038,
+        "flow": "verilator-nangate45-functional-netlist-v1",
+        "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+        "harness_sha256": "fa6d6430cbc2ade5ab0946942624613abc8881db7c6bc629a79dcb5e4267b5bd",
+        "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "log_sha256": "8deaac30162fd072a055c2588810e8f01b7f5ceaabc133d1a23aab6185166d1f",
+        "netlist_sha256": "e92ed63f2c67dcf023393cf2f2be62e33acba65445e97be7702ad42876450e26",
+        "schema_version": 1,
+        "status": "pass",
+        "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+      },
+      "delta_vs_same_revision_baseline_percent": {
+        "area": 0.917141,
+        "encrypt_estimated_latency": 3.065707,
+        "decrypt_estimated_latency": 1.40909
+      }
+    },
+    "overlap-both-karatsuba-1r2c": {
+      "arch": 14,
+      "status": "pass",
+      "asic": {
+        "abc_combinational_area_um2": 63357.74,
+        "arch_parameter": 14,
+        "critical_combinational_delay_ps": 2718.9,
+        "elapsed_seconds": 239.482074,
+        "elapsed_source": "measured-monotonic-clock",
+        "log_sha256": "30aa72efa7bb148767dd7f10164631535e7c13cc8e98072f82c60386d832a3d2",
+        "mapped_cell_count": 62048,
+        "netlist_sha256": "7442a9a9450b8e63cd4781a04f24f604f54f9150de015893fe4bf117afa3388b",
+        "prelayout_fmax_mhz": 367.7958,
+        "sequential_cell_area_um2": 26236.644,
+        "sources": [
+          "rtl/aes_gcm_core.sv",
+          "rtl/aes256_iterative_enc.sv",
+          "rtl/aes256_parallel_enc.sv",
+          "rtl/ghash_karatsuba.sv",
+          "rtl/aes_functions.svh"
+        ],
+        "stat_sha256": "bd68640b1a631d49a5de18da5ab5e7c96968d3db883a173161779719228e52d6",
+        "total_cell_area_um2": 89594.386
+      },
+      "generic_cells": 52632,
+      "workload": {
+        "encrypt": {
+          "warm_cycles": 243,
+          "cold_cycles": 251,
+          "estimated_prelayout_latency_ns": 660.6927
+        },
+        "decrypt": {
+          "warm_cycles": 241,
+          "cold_cycles": 249,
+          "estimated_prelayout_latency_ns": 655.2549
+        }
+      },
+      "rtl_summary": "GCM RTL: PASS architecture=overlap-both-karatsuba-1r2c corpus_operations=1038 stalled_replays=32 fixed_cycle_comparisons=38 min_cycles=43 max_cycles=319 mean_cycles=161.497 total_sim_cycles=197333",
+      "rtl_repeatability": {
+        "comparison": "byte-identical-stdout",
+        "corpus_operations_per_run": 1038,
+        "runs": 2,
+        "status": "pass",
+        "stdout_sha256": "400086979d049af77ee6aa7a68a46caf4f30e9353e3760bc33a3b9f40fed4507"
+      },
+      "mapped_netlist": {
+        "architecture": "overlap-both-karatsuba-1r2c",
+        "corpus_operations": 1038,
+        "flow": "verilator-nangate45-functional-netlist-v1",
+        "functional_cell_model_sha256": "95022c96e5fee82caae7574a6143e57a588b14a103224e8f2624496d51b73028",
+        "harness_sha256": "fa6d6430cbc2ade5ab0946942624613abc8881db7c6bc629a79dcb5e4267b5bd",
+        "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "log_sha256": "400086979d049af77ee6aa7a68a46caf4f30e9353e3760bc33a3b9f40fed4507",
+        "netlist_sha256": "7442a9a9450b8e63cd4781a04f24f604f54f9150de015893fe4bf117afa3388b",
+        "schema_version": 1,
+        "status": "pass",
+        "vectors_sha256": "9615da40b5a94d77afa0f3c47b8787a29b0aad6b56f56ffb8e82ead927953ab8"
+      },
+      "delta_vs_same_revision_baseline_percent": {
+        "area": 14.751926,
+        "encrypt_estimated_latency": -5.461727,
+        "decrypt_estimated_latency": -6.603231
+      }
+    }
+  },
+  "interpretation": "Baseline, decrypt-only ARCH11, and Karatsuba both-direction ARCH14 are nondominated among these five points in area/encrypt-estimate/decrypt-estimate space. ARCH11 dominates ARCH12 and ARCH13 in that space. The earlier apparent advantage of ARCH13 does not survive the raw-port fixes and same-revision comparison. These rankings are workload- and mapping-specific.",
+  "repeat_mapping_arch13": {
+    "stat_sha256": "6938920c8c818be0d592a08e6564fb6ab00f35e245459d2835ee03b037300896",
+    "netlist_sha256": "e92ed63f2c67dcf023393cf2f2be62e33acba65445e97be7702ad42876450e26",
+    "area_and_delay_identical": true,
+    "summary": "build/dual-hardened-repeat13/summary.json"
+  },
+  "security": "All five RTL and mapped-netlist runs include invalid-data-pin zero checks and suppressed decrypt-tag checks, 1038 corpus operations, 32 stalled replays, 38 fixed-cycle comparisons. Baseline make check also passed. This does not prove physical security.",
+  "unknowns": {
+    "routed_timing": null,
+    "power": null,
+    "energy": null,
+    "physical_leakage": null,
+    "reason": "No physical implementation or instrumentation."
+  },
+  "reproduction": "python3 tools/evaluate_exploration.py --run-id <unique-id> --architecture balanced-xwide-1r64b --architecture decrypt-overlap-1r64b --architecture decrypt-overlap-karatsuba-1r2c --architecture overlap-both-1r64b --architecture overlap-both-karatsuba-1r2c --jobs 2"
+}

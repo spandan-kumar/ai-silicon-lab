@@ -1,0 +1,10 @@
+# Installed solver environment used for the retained scheduling experiments.
+absl-py==2.5.0
+immutabledict==4.3.1
+numpy==2.5.3
+ortools==9.14.6206
+pandas==3.0.6
+protobuf==6.31.1
+python-dateutil==2.9.0.post0
+six==1.17.0
+typing_extensions==4.16.0

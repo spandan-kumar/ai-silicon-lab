@@ -22,6 +22,16 @@ both encrypt and decrypt schedules; `ARCH=14` adds Karatsuba GHASH. Preliminary
 measurements are retained in `reports/dual_overlap_pre_hardening.json` and are
 superseded for security and implementation recommendations: a subsequent
 review found and fixed raw output-port exposures described in `SECURITY.md`.
+The clean, hardened five-configuration comparison is retained in
+`reports/dual_overlap_hardened.json`; it supersedes the preliminary ranking.
+Use `tools/evaluate_exploration.py --help` to reproduce selected architectures
+with retained command logs, source snapshots, repeatability and mapped checks.
+
+The masked S-box follow-up, `reports/masked_sbox_schedule_study.json`, reports
+exact register-cost scheduling for nine public circuits. None of the eight
+29-AND circuits beats the equally optimized classic circuit in both mapped
+area and delay; their lower random-bit count remains a separate tradeoff.
+The retained run record is `runs/aes-masked-schedule-20260918/run.json`.
 
 The implementation is intentionally separate from the protected Doom
 evaluator.
@@ -74,3 +84,33 @@ logs, hashes, exit codes, durations, and a schema-validated run record under
 `reports/software_baseline.json` is the host-specific software measurement.
 See `SECURITY.md` for the threat model and the exact boundary of the timing and
 zeroization evidence.
+
+### Scheduled masked S-box reproduction
+
+From `workspace/aes-256-gcm`, after obtaining the pinned sources/library with
+the existing `make masked-sbox-study` flow:
+
+```sh
+python3 -m venv build/schedule-venv
+build/schedule-venv/bin/pip install -r tools/requirements-hpc2-schedule.txt
+build/schedule-venv/bin/python tools/optimize_masked_sbox_schedule.py \
+  --source build/masked-sbox-study/sources/aes-sbox-fwd-a29-ad5-g161-gd24-xx132-1.ncff.txt \
+  --gates 161 --output build/scheduled-candidate --seconds 60
+python3 tools/measure_scheduled_sbox.py \
+  --schedule build/scheduled-candidate/schedule.json \
+  --output-dir build/scheduled-candidate-mapping
+python3 tools/verify_scheduled_sbox.py \
+  --schedule build/scheduled-candidate/schedule.json \
+  --circuit a29-ad5-g161-d24 \
+  --fullverif-root build/research-tools/fullverif \
+  --output-dir build/scheduled-candidate-fullverif
+```
+
+The last command requires a built fullVerif checkout at the revision recorded
+in the report. Each output directory must be new. The solver environment was
+tested with Python 3.13.5 and OR-Tools 9.14.6206. Source hashes, schedule
+dependencies, emitted RTL identity, and the pinned Liberty hash are checked
+before measurement. `--source` permits a relocated, hash-identical SLP archive.
+The optimizer minimizes alignment-register bits, not mapped area or delay.
+Composition verification assumes the library's HPC2 security contract and
+does not prove leakage security of the mapped netlist.
