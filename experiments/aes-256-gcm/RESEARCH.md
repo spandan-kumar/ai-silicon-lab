@@ -10,19 +10,37 @@ Research date: 2026-08-29
 
 ## Self-equivalence sweep and moving frontier — 2026-09-20 to 2026-10-02
 
-The fresh 2026-10-02 primary-source check changed the size-only target.
-[NIST's current table](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits)
-now includes **29 AND + 108 XOR/XNOR = 137 gates**, gate depth 32 and AND
-depth 5. The exact source at upstream commit
-`b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc` has SHA-256
-`76b18ad86c324a5a32eb7155cf8fc3df0b3cfa3387081a96b76cf8b51feb7e91`.
-Local evaluation independently confirms every one of its 256 AES outputs,
-86 XORs, 22 XNORs, 29 ANDs, and both depths. This is reproduced public prior
-art, not our discovery. The earlier 108-affine-gate novelty target below is
-superseded: a size-only advance now needs at most **107 affine gates** with
-29 ANDs, followed by a further literature/code check. Other Pareto objectives
-need their own current comparisons. The nine-circuit masking results remain
-historical controlled comparisons, not a sweep of this updated library.
+The 2026-10-02 primary-source check first found a 137-gate, 29-AND circuit
+on NIST's website, then found a substantially stronger frontier in its
+[pinned official repository](https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md).
+The latter includes **28 AND + 96 XOR/XNOR = 124 gates**, gate depth 27 and
+AND depth 5. The README attributes the 28-AND contributions to Milad Nasr
+(@ Anthropic), communicated on 2026-09-24. These are public prior art, not
+our discovery. The source hash is
+`dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac`;
+the pinned upstream revision is `b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc`.
+The source describes a tower-field construction with norm `N=x^17`, inversion
+of N in GF(16), and products involving `x` and `N+N^-1`. Its contributor's
+Lean proof claim was not independently replayed here.
+
+The retained inventory verifies all 55 forward AES S-box files in the three
+selected repository directories over all 256 inputs and checks their source
+Git blob hashes. It is not a survey of every global implementation. Importantly,
+124 is **not** an unrestricted total-gate record: the same repository lists
+110-gate circuits with 32 or 34 ANDs. A candidate must state its AND-count,
+depth, or physical objective before making a comparison. The previous
+29-AND/108-affine and 29-AND/107-affine novelty thresholds are superseded.
+The nine-circuit masking results below remain historical controlled comparisons,
+not a sweep of this updated library.
+
+Bounded local resubstitution did reduce the public 137-gate source to
+**136 gates (29 AND, 107 affine), depth 33, AND depth 6**. The strict
+AND/XOR/XNOR circuit passes an independent 256-input replay. However, the
+public 28-AND/124-gate source dominates it in all four metrics. This is a
+real local reduction, not a frontier improvement or world-first. The same
+local optimizer left the public 124-gate source unchanged. Its bounded
+95-affine-gate exact-synthesis attempt returned no candidate at a 10,000-conflict
+limit; that result is not an UNSAT proof or a global lower bound.
 
 Meanwhile, a bounded search tested all 2,040 multiplicative/Frobenius
 self-equivalences of AES. With `F(x)=L(inv(x)) xor 0x63`, the maps
@@ -62,15 +80,35 @@ whether all targets can be reached using only other target forms strengthens
 2,024 bounds by one gate. The resulting histogram is
 `13:1, 14:1, 15:13, 16:150, 17:756, 18:1119`; only `a=8,k=0` has a
 nonidentity bound of 14. These are affine-prefix bounds, not whole-circuit
-lower bounds. With the fixed 101-gate middle, beating the newly verified
-137-gate source requires prefix plus suffix at most 35 gates.
+lower bounds. With the fixed 101-gate middle, beating the older 137-gate
+reference requires prefix plus suffix at most 35 gates; that threshold no
+longer implies an advance over current public prior art.
+
+The phase-aware search was subsequently applied to the newly pinned sources:
+
+| Source | Retained middle | Pairs | Best total gates | Outcome |
+| --- | ---: | ---: | ---: | --- |
+| 29 AND / 137 gates | 107 | 2,040 | 137 | Matches source, no improvement |
+| 28 AND / 124 gates | 97 | 2,040 | 126 | Worse than source |
+
+Both completed sweeps check every candidate over all 256 inputs. The 28-AND
+source exposed two tool assumptions: outputs may precede the final AND, and
+complement absorption must not rewrite protected middle gates. Both failed
+attempts are retained separately, both issues have regression tests, and the
+corrected sweep passes. The tests do not establish that this restricted
+boundary model or greedy heuristic is an effective search of all circuits.
+An entire repeat of the corrected 28-AND sweep returns identical result rows
+and a byte-identical best candidate; only the measured runtime differs.
 
 Reproducible tools and the compact report are in
 `workspace/aes-256-gcm/tools/search_sbox_self_equivalence.py`,
 `tools/xor_distance_heuristic.py`, and
 `reports/sbox_self_equivalence_study.json` under that workspace. Full run
 records retain scripts, logs, hashes, candidates and failed comparisons in
-`runs/aes-self-equivalence-*/` and `runs/aes-frontier-refresh-20261002/`.
+`runs/aes-self-equivalence-*/`, `runs/aes-frontier-inventory-20261002/`,
+`runs/aes-new137-resub-20261002/`, `runs/aes-new124-resub-20261002/`,
+`runs/aes-new137-orbit-20261002/`, and
+`runs/aes-new28-orbit-protected-20261002/`.
 No new chip, mapped improvement, leakage result, or world-first follows.
 
 ## Equal-effort masked-S-box scheduling test — 2026-09-18, reviewed 2026-09-19

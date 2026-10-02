@@ -1,7 +1,7 @@
 """Deterministic, bounded XOR synthesis using exact available-word distances.
 
 This is a gate-count heuristic, not an optimal circuit synthesis algorithm.
-For at most 17 independent formal inputs, distance[x] is the fewest currently
+For at most 18 independent formal inputs, distance[x] is the fewest currently
 available wires whose XOR equals x. Adding vector v updates every distance by
 min(distance[x], 1 + distance[x ^ v]); the old array is used on both sides.
 Greedy pair selection minimizes the sum of remaining target word distances.
@@ -18,7 +18,7 @@ import time
 import numpy as np
 
 
-MAX_DIMENSION = 17
+MAX_DIMENSION = 18
 MAX_TARGETS = 64
 MAX_XOR_GATES = 256
 MAX_SECONDS = 60.0

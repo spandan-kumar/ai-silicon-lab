@@ -33,11 +33,13 @@ exact register-cost scheduling for nine public circuits. None of the eight
 area and delay; their lower random-bit count remains a separate tradeoff.
 The retained run record is `runs/aes-masked-schedule-20260918/run.json`.
 
-`reports/sbox_self_equivalence_study.json` records three complete 2,040-pair
+`reports/sbox_self_equivalence_study.json` records five complete 2,040-pair
 boundary-resynthesis sweeps and their negative results. Its October 2026
-prior-art refresh independently verifies NIST's newer 137-gate, 29-AND S-box;
-the older 138-gate source remains a historical reference, not today's size
-target. Reproduce the phase-aware sweep with a new output directory:
+prior-art refresh verifies the public 28-AND, 124-gate S-box and the wider
+55-circuit pinned inventory. The local 29-AND, 136-gate reduction is dominated
+by public prior art. The library also has 110-gate circuits with more ANDs;
+124 is not an unrestricted size record. Reproduce the historical 138-gate
+phase-aware sweep with a new output directory:
 
 ```sh
 build/schedule-venv/bin/python tools/search_sbox_self_equivalence.py \
@@ -48,6 +50,10 @@ build/schedule-venv/bin/python tools/search_sbox_self_equivalence.py \
 Run this from `workspace/aes-256-gcm` with the solver environment below
 (the distance backend uses its pinned NumPy). `--limit` permits a small smoke
 test. These are heuristic gate-count searches, not physical or security claims.
+For the new baseline, supply `--circuit a28-ad5-g124-d27` and the pinned
+`aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt` source (SHA-256 and URL are in
+`SEARCH_CIRCUITS`); the tool rejects a mismatched source. Run regressions with
+`build/schedule-venv/bin/python tools/test_sbox_search.py`.
 
 The implementation is intentionally separate from the protected Doom
 evaluator.

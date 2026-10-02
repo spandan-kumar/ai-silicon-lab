@@ -13,6 +13,23 @@ import time
 from benchmark_sbox_circuits import CIRCUITS, load_sbox, parse_slp, sha256_file
 
 
+SEARCH_CIRCUITS = {
+    **CIRCUITS,
+    "a29-ad5-g137-d32": {
+        "sha256": "76b18ad86c324a5a32eb7155cf8fc3df0b3cfa3387081a96b76cf8b51feb7e91",
+        "gates": 137,
+        "ports": "xy",
+        "source_url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/aes-sbox-a29-ad5-g137-gd32-xx108-22.circ.txt",
+    },
+    "a28-ad5-g124-d27": {
+        "sha256": "dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac",
+        "gates": 124,
+        "ports": "xy",
+        "source_url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+    },
+}
+
+
 def mul(a: int, b: int) -> int:
     result = 0
     while b:
@@ -118,6 +135,13 @@ def symbolic(operations, sources):
     return values
 
 
+def tail_boundary(suffix, outputs):
+    """Include outputs produced before the cut, even if no tail gate uses them."""
+    defined = {gate[1] for gate in suffix}
+    needed = {name for _, _, left, right in suffix for name in (left, right)} | set(outputs)
+    return sorted(needed - defined)
+
+
 def compose(rows, phases, values):
     result = []
     for row, phase in zip(rows, phases):
@@ -149,8 +173,9 @@ def prefix_lower_bound(targets):
     return count
 
 
-def simplify(operations, outputs):
+def simplify(operations, outputs, protected=()):
     """Absorb a single-use complement into its XOR/XNOR producer; remove dead gates."""
+    protected = set(protected)
     uses = Counter(outputs)
     uses.update(wire for _, _, left, right in operations for wire in (left, right))
     producers = {output: (operation, left, right) for operation, output, left, right in operations}
@@ -159,7 +184,8 @@ def simplify(operations, outputs):
         zero = producers.get(right)
         producer = producers.get(left)
         if (operation == "XNOR" and zero and zero[0] == "XOR" and zero[1] == zero[2]
-                and producer and producer[0] in {"XOR", "XNOR"} and uses[left] == 1):
+                and producer and producer[0] in {"XOR", "XNOR"} and uses[left] == 1
+                and left not in protected):
             replacements[output] = ("XNOR" if producer[0] == "XOR" else "XOR", output,
                                     producer[1], producer[2])
     changed = [replacements.get(output, (operation, output, left, right))
@@ -191,7 +217,7 @@ def evaluate_all(operations, outputs):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True)
-    parser.add_argument("--circuit", choices=CIRCUITS, default="a29-ad6-g138-d38")
+    parser.add_argument("--circuit", choices=SEARCH_CIRCUITS, default="a29-ad6-g138-d38")
     parser.add_argument("--output", type=Path, required=True, help="new evidence directory")
     parser.add_argument("--limit", type=int, default=2040, help="first N (k,a) pairs; default entire orbit")
     parser.add_argument("--heuristic", choices=("common-pair", "distance"), default="common-pair")
@@ -206,26 +232,30 @@ def main():
         import xor_distance_heuristic as backend
         synthesizer = backend.synthesize
         backend_sha256 = sha256_file(Path(backend.__file__))
-    metadata = CIRCUITS[args.circuit]
+    metadata = SEARCH_CIRCUITS[args.circuit]
     if sha256_file(args.source) != metadata["sha256"]:
         parser.error("source does not match the named pinned circuit")
     operations = parse_slp(args.source, metadata["gates"])
+    if metadata.get("ports") == "xy":
+        names = {**{f"x{i}": f"U{i}" for i in range(8)},
+                 **{f"y{i}": f"S{i}" for i in range(8)}}
+        operations = [(op, names.get(out, out), names.get(left, left), names.get(right, right))
+                      for op, out, left, right in operations]
     and_indices = [i for i, gate in enumerate(operations) if gate[0] == "AND"]
+    original_ands = len(and_indices)
     first, last = and_indices[0], and_indices[-1]
     prefix, middle, suffix = operations[:first], operations[first:last + 1], operations[last + 1:]
     inputs = [f"U{i}" for i in range(8)]
     prefix_values = symbolic(prefix, inputs)
+    original_outputs = [f"S{i}" for i in range(8)]
     middle_defined = {gate[1] for gate in middle}
     boundary_in = sorted({name for _, _, left, right in middle + suffix for name in (left, right)
                           if name in prefix_values})
-    suffix_defined = {gate[1] for gate in suffix}
-    boundary_out = sorted({name for _, _, left, right in suffix for name in (left, right)
-                           if name not in suffix_defined})
+    boundary_out = tail_boundary(suffix, original_outputs)
     if not set(boundary_out) <= set(boundary_in) | middle_defined:
         raise ValueError("tail uses an unavailable signal")
     suffix_values = symbolic(suffix, boundary_out)
     oracle = list(load_sbox())
-    original_outputs = [f"S{i}" for i in range(8)]
     if evaluate_all(operations, original_outputs) != oracle:
         raise ValueError("pinned source differs from the independent AES oracle")
     started = time.monotonic()
@@ -250,14 +280,14 @@ def main():
         tail_targets = compose(output_rows, output_phases,
                                [suffix_values[name] for name in original_outputs])
         outputs = synthesizer(emitter, [names[name] for name in boundary_out], tail_targets)
-        candidate = simplify(emitter.operations, outputs)
+        candidate = simplify(emitter.operations, outputs, protected=middle_names)
         if not middle_names <= {gate[1] for gate in candidate}:
-            raise ValueError("candidate violates the fixed-middle retention constraint")
+            raise ValueError(f"candidate violates the fixed-middle retention constraint a={a}, k={k}")
         if evaluate_all(candidate, outputs) != oracle:
             raise ValueError(f"emitted candidate fails exhaustive check a={a}, k={k}")
         nonlinear = sum(gate[0] == "AND" for gate in candidate)
-        if nonlinear != 29:
-            raise ValueError(f"expected exactly 29 retained ANDs, found {nonlinear}")
+        if nonlinear != original_ands:
+            raise ValueError(f"expected exactly {original_ands} retained ANDs, found {nonlinear}")
         result = {"a": a, "k": k, "and_gates": nonlinear,
                   "affine_gates": len(candidate) - nonlinear, "total_gates": len(candidate),
                   "prefix_gate_lower_bound": prefix_lower_bound(head_targets),
@@ -273,7 +303,8 @@ def main():
         "script_sha256": sha256_file(Path(__file__)),
         "heuristic": args.heuristic,
         "backend_sha256": backend_sha256,
-        "source_gates": len(operations), "source_affine_gates": len(operations) - 29,
+        "source_gates": len(operations), "source_and_gates": original_ands,
+        "source_affine_gates": len(operations) - original_ands,
         "retained_middle_gates": len(middle), "prefix_live_outputs": boundary_in,
         "suffix_available_inputs": boundary_out, "pairs_checked": len(rows),
         "identity_and_emitted_circuit_inputs_checked": len(rows) * 256,

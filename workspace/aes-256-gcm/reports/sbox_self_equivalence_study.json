@@ -7,7 +7,7 @@
     "2026-10-02"
   ],
   "world_first_established": false,
-  "hypothesis": "The known 255 multiplicative offsets times eight Frobenius offsets might lower the XOR/XNOR cost of a fixed 29-AND circuit after fusing the outer maps into its affine boundaries.",
+  "hypothesis": "The known 255 multiplicative offsets times eight Frobenius offsets might lower the XOR/XNOR cost of fixed 29-AND and 28-AND circuits after fusing the outer maps into their affine boundaries.",
   "construction": {
     "field_polynomial": "0x11b",
     "sbox": "F(x)=L(inv(x)) xor 0x63, with inv(0)=0",
@@ -15,7 +15,7 @@
     "output_map": "B(y)=L((a*L^-1(y xor 0x63))^(2^(8-k))) xor 0x63",
     "identity": "B(F(A(x)))=F(x)",
     "parameters": "a=1..255, k=0..7",
-    "scope": "Replace maximal affine prefix and suffix only. Retain the 101-gate middle of the pinned 138-gate source. Charge for transformed U0,U4,U6,U7 consumed downstream; track affine phases."
+    "scope": "Replace affine prefix before the first AND and suffix after the last AND in the pinned SLP order. Retain the middle (101, 107 or 97 gates depending on source). Charge for transformed inputs consumed downstream; track affine phases and outputs computed before the final AND."
   },
   "source": {
     "name": "a29-ad6-g138-d38",
@@ -64,6 +64,38 @@
       "identity_total_gates": 144,
       "all_middle_gates_retained_asserted": true,
       "run": "runs/aes-self-equivalence-distance-phase-20261002/run.json"
+    },
+    {
+      "source": "a29-ad5-g137-d32",
+      "source_total_gates": 137,
+      "source_and_gates": 29,
+      "retained_middle_gates": 107,
+      "heuristic": "exact-word-distance greedy, phase-aware",
+      "pairs": 2040,
+      "inputs_per_candidate": 256,
+      "best_total_gates": 137,
+      "best": {"a": 1, "k": 0},
+      "identity_total_gates": 137,
+      "all_middle_gates_retained_asserted": true,
+      "algorithm_wall_seconds": 88.82469833409414,
+      "run": "runs/aes-new137-orbit-20261002/run.json"
+    },
+    {
+      "source": "a28-ad5-g124-d27",
+      "source_total_gates": 124,
+      "source_and_gates": 28,
+      "retained_middle_gates": 97,
+      "heuristic": "exact-word-distance greedy, phase-aware, protected middle",
+      "pairs": 2040,
+      "inputs_per_candidate": 256,
+      "best_total_gates": 126,
+      "best": {"a": 1, "k": 0},
+      "identity_total_gates": 126,
+      "all_middle_gates_retained_asserted": true,
+      "algorithm_wall_seconds": 22.826139667071402,
+      "full_repeat_report_equal_except_time": true,
+      "full_repeat_best_candidate_byte_identical": true,
+      "run": "runs/aes-new28-orbit-protected-20261002/run.json"
     }
   ],
   "verification": {
@@ -74,7 +106,16 @@
     "symbolic_and_determinism_tests": 49,
     "invalid_input_checks": 6,
     "runtime_and_gate_guards_passed": true,
-    "conflicting_phases_and_fanout_checked": true
+    "conflicting_phases_and_fanout_checked": true,
+    "new_baseline_audit": "runs/aes-frontier-closeout-20261002/orbit-audit.json",
+    "independent_public_and_local_circuit_audit": "runs/aes-frontier-inventory-20261002/independent-audit.json",
+    "root_audit_replay_journal": "runs/aes-frontier-closeout-20261002/commands.json",
+    "new_regression_tests": 8,
+    "regression_script": "workspace/aes-256-gcm/tools/test_sbox_search.py",
+    "failed_attempts_retained": [
+      {"run": "runs/aes-new28-orbit-20261002/run.json", "failure": "Early output S2 missing from suffix boundary"},
+      {"run": "runs/aes-new28-orbit-fixed-20261002/run.json", "failure": "Complement absorption crossed the fixed-middle boundary"}
+    ]
   },
   "prefix_lower_bounds": {
     "rule": "Each distinct required non-source linear form costs a gate. If the target-only XOR closure fails, at least one additional auxiliary form is necessary. Ignoring constants weakens this bound; it is not a whole-circuit optimum.",
@@ -103,27 +144,38 @@
   "current_prior_art": {
     "checked": "2026-10-02",
     "status": "pass",
-    "source_sha256": "76b18ad86c324a5a32eb7155cf8fc3df0b3cfa3387081a96b76cf8b51feb7e91",
+    "source_sha256": "dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac",
     "upstream_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
-    "upstream_blob": "905a9fc9a161f56a019ce1784e8927071439dcc0",
-    "source_url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/aes-sbox-a29-ad5-g137-gd32-xx108-22.circ.txt",
-    "normalization": "Only x0..x7 -> U0..U7 and y0..y7 -> S0..S7 wire labels, MSB first.",
+    "source_url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+    "normalization": "U0..U7 and S0..S7, MSB first; no logic changes.",
     "operation_counts": {
-      "XOR": 86,
-      "XNOR": 22,
-      "AND": 29
+      "XOR": 70,
+      "XNOR": 26,
+      "AND": 28
     },
-    "gate_depth": 32,
+    "gate_depth": 27,
     "and_depth": 5,
     "functional_inputs": 256,
     "oracle_sha256": "c2d8e5eed6cbebd8625fc18f81486a7733c04f9b0129ffbe974c68b90308b4f2",
-    "verification_script_sha256": "544e9aad2aacb150c8ef18bf4c4c241ac4dc8e9a874b1ef021df6981b3748bdc",
     "claim_boundary": "Reproduction of public prior art, not a locally discovered circuit; no mapping, physical or security measurement.",
-    "run": "runs/aes-frontier-refresh-20261002/run.json",
-    "effect": "The old size-only target of 29 AND plus 108 XOR/XNOR is already public prior art. A size-only improvement must now be at most 136 total gates (29 AND plus at most 107 XOR/XNOR), with another prior-art check before any novelty claim."
+    "run": "runs/aes-frontier-inventory-20261002/run.json",
+    "inventory_circuits_verified": 55,
+    "inventory_scope": "All forward AES S-box files in aes-sbox/, sbox/ and old-2020/ of this pinned official tree, not all global research.",
+    "attribution": "Official README credits 28-AND contributions to Milad Nasr (@ Anthropic), communicated 2026-09-24; local work does not claim authorship or independent replay of the contributor's Lean proof.",
+    "effect": "The public 28-AND/124-gate/GD27/AD5 circuit dominates the local 29-AND/136-gate/GD33/AD6 candidate. Neither the previous 137 nor 136 threshold establishes novelty. The repository also contains 110-gate circuits with 32 or 34 ANDs; 124 is not an unrestricted minimum-gate record."
   },
-  "conclusion": "No improvement over the original 138-gate circuit, and still worse than the newly verified 137-gate public circuit. Exhausting the 2040 parameters under deterministic heuristics is not exhaustive circuit synthesis. The source itself remains better than all generated candidates. Wider cuts, extra available affine sources, different nonlinear topologies and other optimization methods remain untested here.",
+  "local_resubstitution": {
+    "137_source_result": {"total_gates": 136, "and_gates": 29, "affine_gates": 107, "gate_depth": 33, "and_depth": 6, "functional_inputs": 256, "strict_slp_sha256": "e5134b5546d3e1bec11052abb722d7cd0f94925d6bd818fc79bb56c6e91d685f", "run": "runs/aes-new137-resub-20261002/run.json", "frontier_improvement": false},
+    "124_source_result": {"total_gates": 124, "and_gates": 28, "affine_gates": 96, "gate_depth": 27, "and_depth": 5, "improved": false, "run": "runs/aes-new124-resub-20261002/run.json"},
+    "exact95_attempt": {"conflict_limit": 10000, "exit_code": 1, "wall_seconds": 7.6695845, "result": "no candidate", "unsat_proven": false}
+  },
+  "conclusion": "Five completed boundary sweeps produce no improvement over their respective sources. The separate 136-gate local resubstitution is correct but dominated by the newer public 28-AND/124-gate source. Exhausting 2040 parameters under these heuristics is not exhaustive circuit synthesis. No world-first, globally optimal circuit, mapped improvement or physical/security result is established.",
   "research_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md",
+      "checked": "2026-10-02",
+      "fact": "The official pinned repository lists 28-AND constructions including 124 gates and attributes contributions to Milad Nasr. It also lists 110-gate constructions using more ANDs."
+    },
     {
       "url": "https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits",
       "checked": "2026-10-02",
