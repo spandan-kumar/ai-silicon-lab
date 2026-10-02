@@ -8,6 +8,71 @@ profile.
 
 Research date: 2026-08-29
 
+## Self-equivalence sweep and moving frontier — 2026-09-20 to 2026-10-02
+
+The fresh 2026-10-02 primary-source check changed the size-only target.
+[NIST's current table](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits)
+now includes **29 AND + 108 XOR/XNOR = 137 gates**, gate depth 32 and AND
+depth 5. The exact source at upstream commit
+`b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc` has SHA-256
+`76b18ad86c324a5a32eb7155cf8fc3df0b3cfa3387081a96b76cf8b51feb7e91`.
+Local evaluation independently confirms every one of its 256 AES outputs,
+86 XORs, 22 XNORs, 29 ANDs, and both depths. This is reproduced public prior
+art, not our discovery. The earlier 108-affine-gate novelty target below is
+superseded: a size-only advance now needs at most **107 affine gates** with
+29 ANDs, followed by a further literature/code check. Other Pareto objectives
+need their own current comparisons. The nine-circuit masking results remain
+historical controlled comparisons, not a sweep of this updated library.
+
+Meanwhile, a bounded search tested all 2,040 multiplicative/Frobenius
+self-equivalences of AES. With `F(x)=L(inv(x)) xor 0x63`, the maps
+`A(x)=a*x^(2^k)` and
+`B(y)=L((a*L^-1(y xor 0x63))^(2^(8-k))) xor 0x63` satisfy
+`B(F(A(x)))=F(x)`, including zero, for nonzero `a` and `k=0..7`.
+An independent implementation checked all 522,240 parameter/input pairs.
+This technique is already used in hardware optimization; see Nakashima,
+Ueno and Homma, [IEEE TCAS-II 2022](https://doi.org/10.1109/TCSII.2022.3185632),
+whose primary text explicitly describes the 255-by-8 offset search. The
+[SAC self-equivalence paper](https://sacworkshop.org/SAC20/files/preproceedings/02-WhiteBox.pdf)
+also documents the group size. Neither algebra nor the search method is
+claimed as novel.
+
+The local experiment retains the old 138-gate circuit's 101-gate middle and
+resynthesizes only its affine boundaries. It includes the cost of transformed
+input bits consumed later and tracks XNOR phases. Every generated circuit is
+checked against the independent AES oracle over all 256 byte values.
+
+| Heuristic, all 2,040 pairs | Best total gates | Identity total gates |
+| --- | ---: | ---: |
+| Common-pair factoring | 149 | 151 |
+| Greedy exact-word-distance scoring | 147 | 147 |
+| Same scoring with phase-aware XOR/XNOR emission | 144 | 144 |
+
+The last sweep additionally asserts retention of all middle gates. The
+backend passes symbolic, determinism, invalid-input, conflicting-phase,
+fanout, and resource-guard tests. Exact word distances do **not** make the
+greedy circuit search exact. In particular, its identity result remains
+worse than the known 138-gate construction. These negative results reject
+these heuristic candidates, not the entire self-equivalence design space.
+
+A useful necessary bound reduces unproductive work: the original prefix has
+13 gates and attains its distinct-target lower bound. Every nonidentity map
+increases that bound because transformed input bits are not free. Checking
+whether all targets can be reached using only other target forms strengthens
+2,024 bounds by one gate. The resulting histogram is
+`13:1, 14:1, 15:13, 16:150, 17:756, 18:1119`; only `a=8,k=0` has a
+nonidentity bound of 14. These are affine-prefix bounds, not whole-circuit
+lower bounds. With the fixed 101-gate middle, beating the newly verified
+137-gate source requires prefix plus suffix at most 35 gates.
+
+Reproducible tools and the compact report are in
+`workspace/aes-256-gcm/tools/search_sbox_self_equivalence.py`,
+`tools/xor_distance_heuristic.py`, and
+`reports/sbox_self_equivalence_study.json` under that workspace. Full run
+records retain scripts, logs, hashes, candidates and failed comparisons in
+`runs/aes-self-equivalence-*/` and `runs/aes-frontier-refresh-20261002/`.
+No new chip, mapped improvement, leakage result, or world-first follows.
+
 ## Equal-effort masked-S-box scheduling test — 2026-09-18, reviewed 2026-09-19
 
 The next falsifiable hypothesis was that better register scheduling could

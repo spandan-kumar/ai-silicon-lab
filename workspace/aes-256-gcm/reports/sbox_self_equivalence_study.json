@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "study": "AES self-equivalence boundary resynthesis",
+  "dates": [
+    "2026-09-20",
+    "2026-10-02"
+  ],
+  "world_first_established": false,
+  "hypothesis": "The known 255 multiplicative offsets times eight Frobenius offsets might lower the XOR/XNOR cost of a fixed 29-AND circuit after fusing the outer maps into its affine boundaries.",
+  "construction": {
+    "field_polynomial": "0x11b",
+    "sbox": "F(x)=L(inv(x)) xor 0x63, with inv(0)=0",
+    "input_map": "A(x)=a*x^(2^k)",
+    "output_map": "B(y)=L((a*L^-1(y xor 0x63))^(2^(8-k))) xor 0x63",
+    "identity": "B(F(A(x)))=F(x)",
+    "parameters": "a=1..255, k=0..7",
+    "scope": "Replace maximal affine prefix and suffix only. Retain the 101-gate middle of the pinned 138-gate source. Charge for transformed U0,U4,U6,U7 consumed downstream; track affine phases."
+  },
+  "source": {
+    "name": "a29-ad6-g138-d38",
+    "sha256": "13e27e7dfd655a3744d8fa349f400a7e6d83764f67c1a169d524a8f94789d565",
+    "gates": 138,
+    "and_gates": 29,
+    "affine_gates": 109,
+    "prefix_gates": 13,
+    "middle_gates": 101,
+    "suffix_gates": 24
+  },
+  "sweeps": [
+    {
+      "heuristic": "common-pair",
+      "pairs": 2040,
+      "inputs_per_candidate": 256,
+      "best_total_gates": 149,
+      "best": {
+        "a": 135,
+        "k": 7
+      },
+      "identity_total_gates": 151,
+      "run": "runs/aes-self-equivalence-sweep-20260920/run.json"
+    },
+    {
+      "heuristic": "exact-word-distance greedy, explicit phases",
+      "pairs": 2040,
+      "inputs_per_candidate": 256,
+      "best_total_gates": 147,
+      "best": {
+        "a": 1,
+        "k": 0
+      },
+      "identity_total_gates": 147,
+      "run": "runs/aes-self-equivalence-distance-20261002/run.json"
+    },
+    {
+      "heuristic": "exact-word-distance greedy, phases absorbed into XOR/XNOR",
+      "pairs": 2040,
+      "inputs_per_candidate": 256,
+      "best_total_gates": 144,
+      "best": {
+        "a": 1,
+        "k": 0
+      },
+      "identity_total_gates": 144,
+      "all_middle_gates_retained_asserted": true,
+      "run": "runs/aes-self-equivalence-distance-phase-20261002/run.json"
+    }
+  ],
+  "verification": {
+    "independent_identity_audit": "runs/aes-self-equivalence-audit-20260920/audit.json",
+    "identity_pairs_inputs_checked": 522240,
+    "emitted_candidates_per_sweep_checked_inputs": 522240,
+    "backend_tests": "runs/aes-self-equivalence-bp-phase-20261002/run.json",
+    "symbolic_and_determinism_tests": 49,
+    "invalid_input_checks": 6,
+    "runtime_and_gate_guards_passed": true,
+    "conflicting_phases_and_fanout_checked": true
+  },
+  "prefix_lower_bounds": {
+    "rule": "Each distinct required non-source linear form costs a gate. If the target-only XOR closure fails, at least one additional auxiliary form is necessary. Ignoring constants weakens this bound; it is not a whole-circuit optimum.",
+    "distinct_target_histogram": {
+      "13": 1,
+      "14": 12,
+      "15": 148,
+      "16": 752,
+      "17": 1127
+    },
+    "closure_strengthened_histogram": {
+      "13": 1,
+      "14": 1,
+      "15": 13,
+      "16": 150,
+      "17": 756,
+      "18": 1119
+    },
+    "identity_only_bound13": true,
+    "only_nonidentity_bound14": {
+      "a": 8,
+      "k": 0
+    },
+    "boundary": "Bounds apply to raw eight input sources and the fixed affine-prefix/retained-middle model only."
+  },
+  "current_prior_art": {
+    "checked": "2026-10-02",
+    "status": "pass",
+    "source_sha256": "76b18ad86c324a5a32eb7155cf8fc3df0b3cfa3387081a96b76cf8b51feb7e91",
+    "upstream_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+    "upstream_blob": "905a9fc9a161f56a019ce1784e8927071439dcc0",
+    "source_url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/aes-sbox-a29-ad5-g137-gd32-xx108-22.circ.txt",
+    "normalization": "Only x0..x7 -> U0..U7 and y0..y7 -> S0..S7 wire labels, MSB first.",
+    "operation_counts": {
+      "XOR": 86,
+      "XNOR": 22,
+      "AND": 29
+    },
+    "gate_depth": 32,
+    "and_depth": 5,
+    "functional_inputs": 256,
+    "oracle_sha256": "c2d8e5eed6cbebd8625fc18f81486a7733c04f9b0129ffbe974c68b90308b4f2",
+    "verification_script_sha256": "544e9aad2aacb150c8ef18bf4c4c241ac4dc8e9a874b1ef021df6981b3748bdc",
+    "claim_boundary": "Reproduction of public prior art, not a locally discovered circuit; no mapping, physical or security measurement.",
+    "run": "runs/aes-frontier-refresh-20261002/run.json",
+    "effect": "The old size-only target of 29 AND plus 108 XOR/XNOR is already public prior art. A size-only improvement must now be at most 136 total gates (29 AND plus at most 107 XOR/XNOR), with another prior-art check before any novelty claim."
+  },
+  "conclusion": "No improvement over the original 138-gate circuit, and still worse than the newly verified 137-gate public circuit. Exhausting the 2040 parameters under deterministic heuristics is not exhaustive circuit synthesis. The source itself remains better than all generated candidates. Wider cuts, extra available affine sources, different nonlinear topologies and other optimization methods remain untested here.",
+  "research_sources": [
+    {
+      "url": "https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits",
+      "checked": "2026-10-02",
+      "fact": "The current NIST table lists the 29-AND, 108-affine, depth32, AND-depth5 source; exact downloaded source was independently evaluated."
+    },
+    {
+      "url": "https://doi.org/10.1109/TCSII.2022.3185632",
+      "read_at": "https://www.researchgate.net/publication/361496877_AES_S-Box_Hardware_with_Efficiency_Improvement_Based_on_Linear_Mapping_Optimization",
+      "checked": "2026-10-02",
+      "fact": "The primary paper describes multiplicative and exponential offset fusion and the 2040 hardware mapping choices. The transformation technique is established prior art."
+    },
+    {
+      "url": "https://sacworkshop.org/SAC20/files/preproceedings/02-WhiteBox.pdf",
+      "checked": "2026-09-20",
+      "fact": "Primary self-equivalence reference independently documents the 2040-element structure."
+    },
+    {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-13193-6_16",
+      "checked": "2026-09-20",
+      "fact": "Boyar-Peralta linear-circuit optimization is established prior art; the local greedy backend is not claimed as a new method."
+    }
+  ],
+  "unavailable": {
+    "mapped_area": null,
+    "mapped_delay": null,
+    "power": null,
+    "physical_leakage": null
+  }
+}

@@ -33,6 +33,22 @@ exact register-cost scheduling for nine public circuits. None of the eight
 area and delay; their lower random-bit count remains a separate tradeoff.
 The retained run record is `runs/aes-masked-schedule-20260918/run.json`.
 
+`reports/sbox_self_equivalence_study.json` records three complete 2,040-pair
+boundary-resynthesis sweeps and their negative results. Its October 2026
+prior-art refresh independently verifies NIST's newer 137-gate, 29-AND S-box;
+the older 138-gate source remains a historical reference, not today's size
+target. Reproduce the phase-aware sweep with a new output directory:
+
+```sh
+build/schedule-venv/bin/python tools/search_sbox_self_equivalence.py \
+  --source build/masked-sbox-study/sources/aes-sbox-fwd-a29-ad6-g138-gd38-xx109-14.ncff.txt \
+  --heuristic distance --output build/self-equivalence-replay
+```
+
+Run this from `workspace/aes-256-gcm` with the solver environment below
+(the distance backend uses its pinned NumPy). `--limit` permits a small smoke
+test. These are heuristic gate-count searches, not physical or security claims.
+
 The implementation is intentionally separate from the protected Doom
 evaluator.
 
