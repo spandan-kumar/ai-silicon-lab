@@ -1,0 +1,83 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "date": "2026-10-03",
+  "base_commit": "12751b087ba223d962ba7ebc51f3be2857ac574f",
+  "status": "bounded-searches-no-correct-smaller-circuit",
+  "world_first_established": false,
+  "correct_27_and_circuit_found": false,
+  "seed": {
+    "and_gates": 27,
+    "correct_aes": false,
+    "output_rank_deficit": 1,
+    "affine_factor_selector_bits": 1188,
+    "source": "runs/aes-local-nonlinear-repair-20261003/seed.json",
+    "sha256": "aa48a3e0fcd3167e91c34c0573ca48c5caac306c054b903d08c27d8f7ba9a6c7"
+  },
+  "original_walk_audit": {
+    "selected_states_plus_terminal": 65,
+    "sole_changed_gate_zero_based": 14,
+    "fixed_core_dimension": 35,
+    "within_previously_excluded_one_product_family": true,
+    "initial_radius_two_deficit_one_assignments": 2492,
+    "distinct_full_spans_in_initial_neighborhood": 991,
+    "distinct_core_spans_in_initial_neighborhood": 1,
+    "independent_root_replay_of_all_2492": true,
+    "evidence": "runs/aes-neutral-structure-20261003/",
+    "review_recommendation_correction": "runs/aes-deficit2-bridge-20261003/review-erratum.json"
+  },
+  "deficit_two_bridge": {
+    "states": 32,
+    "distinct_core_spans": 32,
+    "deficit_two_states": 31,
+    "neighborhood_evaluations": 22600512,
+    "final_deficit": 2,
+    "early_middle_gates_unchanged": true,
+    "changed_gate_indices_across_trajectory": [14, 15, 16, 17],
+    "deterministic_full_repeat_identical": true,
+    "scalar_aes_target_checks": 256,
+    "independent_toy_selection_evaluations": 2024,
+    "core_diversity_is_only_a_heuristic": true,
+    "evidence": "runs/aes-deficit2-bridge-20261003/"
+  },
+  "exact_radius_three": {
+    "assignments": 278740836,
+    "combined_radius_zero_through_three": 279447103,
+    "best_deficit": 1,
+    "deficit_histogram": {
+      "1": 55163,
+      "2": 3384600,
+      "3": 27497846,
+      "4": 40226422,
+      "6": 260,
+      "7": 2579263,
+      "8": 204997282
+    },
+    "disjoint_shard_counts": [139546539, 139194297],
+    "concurrent_shard_command_seconds": [374.2569015000481, 373.3084667501971],
+    "complete_small_instance_histogram_controls": 8,
+    "independent_full_aes_repeat": false,
+    "evidence": "runs/aes-radius3-repair-20261003/"
+  },
+  "prefix_barrier": {
+    "complete_radius_two_assignments": 706267,
+    "changed_prefix_deficit_histogram": {"6": 1, "7": 11364, "8": 404953},
+    "minimum_deficit_with_changed_prefix": 6,
+    "independent_minimum_witness_check": true,
+    "deficit_at_most_three_walk_states": 1,
+    "reason_stopped": "No eligible changed-prefix neighbor in the initial radius-two neighborhood.",
+    "evidence": "runs/aes-prefix-bridge-20261003/"
+  },
+  "limitations": [
+    "Every radius claim concerns one explicit selector encoding, not all representations of its Boolean functions.",
+    "Core/prefix span keys do not preserve all sequential operand-availability information.",
+    "Counts from separate neighborhoods may overlap and are not globally distinct circuits.",
+    "No global AES lower bound, new synthesis method, or world-first result is established.",
+    "No physical area, timing, power, or side-channel property was measured."
+  ],
+  "next_direction": "Joint coordinated nonlinear-factor replacement or a different representation/construction, rather than extending the same low-deficit tail orbit.",
+  "validation": "runs/aes-local-barrier-closeout-20261003/",
+  "web_sources_rechecked": [
+    "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md",
+    "https://arxiv.org/abs/2005.01778"
+  ]
+}

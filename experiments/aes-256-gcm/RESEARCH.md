@@ -8,6 +8,75 @@ profile.
 
 Research date: 2026-08-29
 
+## Auditing the local-search barrier — 2026-10-03
+
+No correct 27-AND circuit or world-first result was obtained. The current
+local-search evidence explains a limitation of the search representation,
+not a general limitation of AES implementations.
+
+An independent audit of the previous 64-state walk and its terminal choice
+found that **only gate index 14, the first tail product, changed**. All other
+26 gate selectors and operand functions stayed fixed. Its distinct full
+function spaces were real, but each was only a one-product extension of the
+same 35-dimensional space, inside the already excluded `P x W` repair family.
+The complete initial radius-two neighborhood contains 2,492 deficit-one
+assignments and 991 distinct full spaces; every one has the same core span
+when gate 14 is omitted. Root independently replayed all 2,492 assignments
+using a different elimination direction. Evidence:
+`runs/aes-neutral-structure-20261003/`, including `neighborhood/`, and
+`runs/aes-deficit2-bridge-20261003/neutral-cross-check.json`.
+
+One recommendation from that review was incorrect: replacing the first tail
+gate by products in two distinct singleton-tail cosets was not an unsearched
+family. The earlier twelve `t_i + P` enumerations already permitted arbitrary
+right operands in W and therefore cover those 66 pairs. The structural audit
+remains valid; this recommendation is explicitly corrected in
+`runs/aes-deficit2-bridge-20261003/review-erratum.json`, without overwriting the
+original review record.
+
+A new bounded walk permits temporary output-rank deficit two and chooses
+states with distinct **core** spans, omitting only gate 14 from its diversity
+key while fully reevaluating all downstream gates. It checks 22,600,512
+neighborhood assignments across 32 states, including 31 deficit-two states,
+and finds no repair. This time four tail gates vary, but the first fourteen
+early/middle gates still do not. A full deterministic repeat agrees; all
+selected states are independently replayed on 256 input rows. A nonvacuous
+toy control independently enumerates 2,024 neighbors across eight states and
+verifies the minimum-deficit/diversity selection rule, including a transition
+from deficit two to one. The diversity key is a heuristic, not a
+completeness-preserving equivalence for sequential circuits. Evidence:
+`runs/aes-deficit2-bridge-20261003/`.
+
+An exact radius-three search tests **278,740,836** selector assignments, split
+into disjoint even/odd first-edit shards. None has output deficit zero. Together
+with the earlier radius-zero/one/two enumeration, this excludes all
+279,447,103 assignments within three selector-bit changes of this particular
+27-AND encoding. Eight complete small-instance histograms agree with an
+independent Python evaluator; combinatorial counts check shard coverage. The
+two AES shards finish successfully in 374.257 and 373.308 seconds of observed
+command wall time. They run concurrently, so these are not additive elapsed
+experiment time. No second full AES radius-three replay is claimed. Evidence:
+`runs/aes-radius3-repair-20261003/`.
+
+Finally, requiring a changed pre-tail function space and allowing deficit up
+to three produces **no eligible first move**. A complete radius-two
+classification finds that changing this prefix span requires deficit at least
+six: one assignment has deficit six, 11,364 have seven, and 404,953 have eight.
+The deficit-six witness is independently replayed. This is a local landscape
+measurement for the recorded selectors, not a global lower bound, an invariant
+of all equivalent representations, or evidence that coordinated changes are
+impossible. Evidence: `runs/aes-prefix-bridge-20261003/`.
+
+The next search should change multiple dependent factors jointly, change the
+representation, or select a different nonlinear construction. More steps in
+the same low-deficit tail orbit do not address the observed prefix barrier.
+The [pinned NIST frontier](https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md)
+and [Soeken's SAT-synthesis paper](https://arxiv.org/abs/2005.01778) were checked
+again during this work. Neither local search nor SAT-based XOR–AND synthesis
+is presented as a new technique. Physical area, timing, power and leakage
+remain unmeasured by these searches. The compact record is
+`workspace/aes-256-gcm/reports/sbox_local_barrier_study.json`.
+
 ## Joint nonlinear search beyond the fixed interfaces — 2026-10-03
 
 The fixed-interface obstruction below motivated three broader searches. None
