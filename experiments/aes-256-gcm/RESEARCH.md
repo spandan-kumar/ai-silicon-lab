@@ -8,6 +8,134 @@ profile.
 
 Research date: 2026-08-29
 
+## Nonlinear stage splicing and a restricted obstruction — 2026-10-02 to 2026-10-03
+
+The public 28-AND circuits use either 10+5+13 or 9+6+13 nonlinear stages,
+as described in the
+[pinned source](https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt).
+The experiment tried 9+5+13 by combining compatible stages. All selected
+AND operands can be reconstructed from previously available signals, but
+the resulting 27 products omit one independent AES output function. Such
+a splice is therefore not a correct AES circuit.
+
+Three representative outer circuits (131, 141 and 177 gates, all 28 ANDs
+and AND depth four) were combined with the 124-gate circuit's five-AND
+middle. For each, only one of the thirteen single-tail removals leaves an
+output deficit that one new product could fill. Exhaustive searches found
+no repair in the original 13-dimensional tail operand space. A wider exact
+enumeration then tested every nonconstant left form in the 23-dimensional
+pre-tail space and solved the right form over all 35 retained signals.
+All 4,194,303 choices per case failed: 12,582,909 in total. This covers
+either factor lying in the pre-tail space, including arbitrary affine
+forms of the retained tail signals in the other factor. It does not cover
+two factors with independent nonzero cosets outside that space. The general
+35-by-35 CP-SAT and CryptoMiniSat runs timed out without a conclusion.
+
+There is a stronger obstruction to changing only the norm-based middle.
+Let `N=x^17`, and allow arbitrary XOR/NOT operations and AND gates on its
+four bits. Keep the nine early gates and the thirteen tail gates **with
+their original operand truth functions** fixed. For each of the three
+pinned outer circuits:
+
+1. The affine functions of N form a space of dimension five, including the
+   constant. The required tail operands additionally require all four
+   coordinates of `N^-1`.
+2. Completing the AES outputs requires one further function of N. Together
+   these functions span a ten-dimensional space T. The retained source
+   and exact intersection calculations establish this necessity; it is
+   not inferred from the failed heuristic searches.
+3. Five ANDs could add at most five dimensions to the affine input space.
+   To produce T with five ANDs, every intermediate AND output would have
+   to lie in T.
+4. Exhausting all 32-by-32 pairs of affine norm functions finds **no
+   non-affine product in T**. Hence the first useful AND cannot lie in T,
+   contradicting a five-AND construction.
+
+Thus this precisely defined middle stage needs at least six ANDs. The
+original six-AND middle is also verified to be realizable using only norm
+bits, so six is attained in this restricted family. This does not establish
+a global 28-AND lower bound for AES. Refactored tail operands and different
+outer gates are outside the claim. The known 60 distinct middle-stage self-equivalences all preserve
+the observed one-function deficit in the tested splices.
+
+The result was strengthened to permit the middle to use **all early signals**,
+including the raw input bits and nine early AND outputs. Their span A has
+dimension 18. The tail operands increase that to 22; adding tail outputs
+gives dimension 35, and adding AES outputs gives a space V of dimension 36.
+If five middle ANDs were enough, their available span M would have dimension
+at most 23. The required interfaces imply `V` is contained in `M + tail`,
+whose dimension is at most `23+13=36`. Equality therefore forces every
+middle output to lie in V. The first useful middle AND has algebraic degree
+at most four, since its inputs have degree at most two. The degree-at-most-four
+part of V has dimension 19, extending A by just one direction. Exhaustive
+factor enumeration excludes that direction for all 131,071 nonconstant left
+forms, with an exact linear solve for the right form. All three cases fail.
+The original six-AND middle attains this stronger restricted bound as well.
+
+An independent implementation verifies the scalar AES truth tables, the
+18/22/35/36 dimensions, the degree-four intersection, and all 393,213 left
+factor cases using a separately written C++ engine. This result still fixes
+the early gates and original tail operand functions, and requires the middle
+to finish before the tail. It does not bound refactored operands, interleaved
+stages, or arbitrary AES circuits. Evidence is in
+`runs/aes-middle-initial-span-20261003/`, including the independent proof and
+audit under `review/` and the dependency-free Python replay under `promoted/`.
+
+For the failed 9+5+13 hybrid, all 234 two-tail replacement windows are excluded
+when each new product has one factor in the pre-tail span and the other in
+the retained span, with neither replacement feeding another. Of these,
+198 fail the output-dimension requirement and 36 reduce to the prior exhaustive
+single-product exclusion. Scanning every nonempty tail subset identifies
+four removals as the first size with room for an auxiliary function: two
+such windows per outer circuit. Each was tested with all 31 nonzero directions
+in the five-dimensional space generated by missing AES outputs and removed
+tail products. No set of at most four attainable product directions covers
+the required outputs. This additional restriction leaves functions outside
+that five-dimensional space and sequential new products open. Retained
+records are in `runs/aes-two-tail-repair-20261003/` and
+`runs/aes-four-tail-repair-20261003/`.
+
+An independent implementation reconstructed all six four-tail problems,
+checked the positive witnesses, replayed each 4,194,303-left-form search,
+and checked every subset of at most four attainable directions. All six
+negative results agree; twelve small brute-force controls also pass.
+Evidence is under `runs/aes-four-tail-repair-20261003/review/`.
+
+A subsequent pilot allows a replacement product to feed later replacements,
+while retaining the same five-dimensional quotient envelope. For the two
+four-tail windows of the 131-gate outer circuit, it tests all three
+four-dimensional subspaces containing the required three-dimensional output
+space. Monotone product-span closure reaches a fixed point without completing
+the outputs in all six cases. The other two outer circuits were not included
+in this sequential pilot; functions outside the envelope and products with
+both factors outside the pre-tail span remain open.
+`runs/aes-joint-candidate-20261003/run.json` retains this scope. Its materialized
+28-AND control passes an independent scalar AES check on all 256 inputs, but
+has 600 total gates with unoptimized affine reconstruction. Both operands of
+the added repair lie in the pre-tail span, so this control merely restores a
+sixth middle gate and is not an escape from the bound or a frontier result.
+
+The small verifier is
+`workspace/aes-256-gcm/tools/analyze_sbox_stage_splice.py`; its report includes
+16-bit truth-vector generators so the finite obstruction can be checked
+without a SAT solver, plus the wider first-product enumeration. Evidence is retained in `runs/aes-norm-stage-bound-20261002/`,
+`runs/aes-stage-splice-20261002/`, `runs/aes-stage-splice-wide-20261002/`, and
+`runs/aes-splice-algebra-20261002/`. No smaller correct AES circuit, physical
+improvement, or world-first has been established. The obstruction directs
+further work toward changing the nonlinear stages jointly.
+
+A 2026-10-03 web search for AES 27/28-AND lower bounds and subspace-based
+multiplicative complexity did not establish novelty of this obstruction.
+General low-multiplicative-complexity and component-optimization techniques
+are established; see
+[Boyar, Matthews and Peralta](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=908384)
+and [Small Low-Depth Circuits for Cryptographic Applications](https://pmc.ncbi.nlm.nih.gov/articles/PMC6463518/).
+The limited search provides no basis for a world-first claim.
+The pinned NIST table was reopened on 2026-10-03 and still credits the public
+28-AND constructions to Milad Nasr. A search hit mentioning 27 AND gates in
+[Jeon et al.](https://eprint.iacr.org/2024/1996.pdf) describes an intermediate
+field multiplication, not a complete 27-AND AES S-box.
+
 ## Self-equivalence sweep and moving frontier — 2026-09-20 to 2026-10-02
 
 The 2026-10-02 primary-source check first found a 137-gate, 29-AND circuit

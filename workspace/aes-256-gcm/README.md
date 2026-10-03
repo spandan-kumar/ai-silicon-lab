@@ -55,6 +55,25 @@ For the new baseline, supply `--circuit a28-ad5-g124-d27` and the pinned
 `SEARCH_CIRCUITS`); the tool rejects a mismatched source. Run regressions with
 `build/schedule-venv/bin/python tools/test_sbox_search.py`.
 
+The nonlinear stage-splice follow-up is recorded in
+`reports/sbox_stage_splice_study.json`. The attempted 9+5+13 construction
+does not compute all AES output functions. A finite truth-space argument
+shows that three fixed public outer stages require at least six middle
+ANDs, even when every early signal is available, provided the original tail
+operand functions are preserved. Reproduce that restricted result with:
+
+```sh
+build/schedule-venv/bin/python tools/analyze_sbox_stage_splice.py \
+  --source-dir ../../runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox \
+  --output build/norm-stage-bound-replay.json
+```
+
+The output path must be new. Source hashes are pinned in the verifier.
+Run the verifier's positive/negative controls and evidence-preservation guards
+with `build/schedule-venv/bin/python tools/test_sbox_stage_splice.py`.
+This result leaves other nonlinear organizations open and establishes no
+world-first circuit or physical performance result.
+
 The implementation is intentionally separate from the protected Doom
 evaluator.
 

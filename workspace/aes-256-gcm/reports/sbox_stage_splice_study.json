@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "study": "Nonlinear stage splicing and restricted norm-stage obstruction",
+  "dates": ["2026-10-02", "2026-10-03"],
+  "world_first_established": false,
+  "correct_27_and_circuit_found": false,
+  "hypothesis": "Combine nine early products, a five-AND inverse-norm middle, and thirteen final products from current public AES constructions.",
+  "prior_art": {
+    "revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+    "url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md",
+    "fact": "The public 28-AND constructions and their 10+5+13 or 9+6+13 stages are prior art attributed to Milad Nasr. No authorship claim is made for those circuits."
+  },
+  "splice": {
+    "outer_circuits": ["a28-ad4-g131-gd32", "a28-ad4-g141-gd16", "a28-ad4-g177-gd14"],
+    "inner_circuit": "a28-ad5-g124-gd27",
+    "stage_ands": [9, 5, 13],
+    "all_operands_reconstructible": true,
+    "missing_output_rank_each": 1,
+    "run": "runs/aes-stage-splice-20261002/run.json"
+  },
+  "one_product_repairs": {
+    "original_operand_span_dimension": 13,
+    "original_left_forms_per_case": 8192,
+    "pre_tail_span_dimension": 23,
+    "retained_span_dimension": 35,
+    "wide_left_forms_per_case": 4194303,
+    "wide_left_forms_total": 12582909,
+    "wide_right_search": "Exact GF(2) linear solve over every retained right form for each left form; constants omitted modulo retained space.",
+    "result": "No repair when either operand lies in the pre-tail span.",
+    "independent_small_brute_force_controls": 16,
+    "run": "runs/aes-splice-algebra-20261002/run.json",
+    "remaining_scope": "Two operands with independent nonzero cosets outside the pre-tail span are not covered."
+  },
+  "general_repair_solvers": {
+    "operand_span_dimension": 35,
+    "cases": 3,
+    "seconds_per_solver_case": 60,
+    "cp_sat_status": "UNKNOWN",
+    "cryptominisat_status": "INDETERMINATE",
+    "infeasibility_established": false,
+    "run": "runs/aes-stage-splice-wide-20261002/run.json"
+  },
+  "middle_self_equivalences": {
+    "parameters": 2040,
+    "distinct_middle_truth_tuples": 60,
+    "outer_circuits": 3,
+    "missing_output_rank_every_variant": 1,
+    "report": "runs/aes-stage-splice-wide-20261002/middle-orbit-report.json"
+  },
+  "restricted_lower_bound": {
+    "scope": "Three pinned outer circuits. Nine early gates and thirteen tail gates with their original operand truth functions fixed. Replacement middle uses only the four bits of N=x^17, with unrestricted affine operations.",
+    "affine_input_space_dimension": 5,
+    "required_middle_space_dimension": 10,
+    "first_gate_operand_pairs_checked_per_case": 1024,
+    "non_affine_first_products_in_required_space": 0,
+    "minimum_middle_ands": 6,
+    "existing_six_and_middle_verified": true,
+    "minimum_total_ands_in_this_family": 28,
+    "global_aes_lower_bound": false,
+    "argument": "Five ANDs would have to add exactly the five missing dimensions, so every AND output must lie in the required space. Exhaustive affine-factor enumeration shows the first useful AND cannot lie there.",
+    "tool": "workspace/aes-256-gcm/tools/analyze_sbox_stage_splice.py",
+    "report": "runs/aes-norm-stage-bound-20261002/operand-scope/report.json",
+    "run": "runs/aes-norm-stage-bound-20261002/run.json"
+  },
+  "stronger_fixed_interface_bound": {
+    "scope": "Three pinned outer circuits; original nine early gates and thirteen tail operand functions fixed. Middle may use all initial signals but must finish before tail computation.",
+    "initial_span_dimension": 18,
+    "required_operand_span_dimension": 22,
+    "operand_tail_span_dimension": 35,
+    "operand_tail_output_span_dimension": 36,
+    "degree_at_most_four_intersection_dimension": 19,
+    "left_forms_exhausted_each": 131071,
+    "left_forms_exhausted_total": 393213,
+    "qualifying_first_products": 0,
+    "minimum_middle_ands": 6,
+    "minimum_total_ands_in_fixed_family": 28,
+    "independent_review": "runs/aes-middle-initial-span-20261003/review/report.json",
+    "run": "runs/aes-middle-initial-span-20261003/run.json",
+    "promoted_replay": "runs/aes-middle-initial-span-20261003/promoted/report.json",
+    "global_aes_lower_bound": false
+  },
+  "tail_windows": {
+    "two_removals_examined": 234,
+    "two_removals_excluded_by_rank": 198,
+    "two_removals_excluded_by_projection": 36,
+    "independent_new_products_only": true,
+    "all_nonempty_subsets_per_topology": 8191,
+    "smallest_removal_count_with_output_rank_slack": 4,
+    "four_removal_windows_examined": 6,
+    "four_removal_quotient_envelope_dimension": 5,
+    "four_removal_nonzero_quotient_directions_each": 31,
+    "four_removal_left_forms_each": 4194303,
+    "four_removal_completion_found": false,
+    "scope": "Each product has one factor in the pre-tail span and one in retained signals. For four removals, quotient directions are limited to the span of missing outputs and removed original products. Sequential replacements and other directions remain open.",
+    "runs": ["runs/aes-two-tail-repair-20261003/run.json", "runs/aes-four-tail-repair-20261003/run.json"],
+    "independent_four_tail_review": "runs/aes-four-tail-repair-20261003/review/run.json",
+    "independent_four_tail_replay_cases": 6,
+    "independent_small_brute_force_controls": 12
+  },
+  "sequential_pilot": {
+    "outer_circuit": "a28-ad4-g131-gd32",
+    "windows": 2,
+    "four_dimensional_subspaces_each": 3,
+    "completion_found": false,
+    "scope": "Sequential replacement products allowed; one operand remains in the original pre-tail span and the other may include earlier replacements. Every quotient remains inside the same five-dimensional envelope. Only the 131-gate outer circuit was tested.",
+    "run": "runs/aes-joint-candidate-20261003/run.json",
+    "control_candidate": {
+      "and_gates": 28,
+      "total_gates": 600,
+      "independently_verified_inputs": 256,
+      "repair_both_operands_pre_tail": true,
+      "outside_fixed_middle_family": false,
+      "frontier_improvement": false,
+      "verification": "runs/aes-joint-candidate-20261003/root-verification.json"
+    }
+  },
+  "verifier_validation": {
+    "regression_tests_passed": 5,
+    "existing_search_regressions_passed": 8,
+    "evidence": "runs/aes-stage-results-20261003/",
+    "checks": ["positive and negative product search", "all 256 ANF monomials", "dependent-input span reconstruction", "existing-output preservation", "pinned-source rejection", "experiment registry", "run schemas", "git diff whitespace"]
+  },
+  "conclusion": "The tested splice fails. With the original early gates and tail operand functions fixed, six middle ANDs are necessary even with access to every early signal. Tested independent tail repairs also fail. Further 27-AND work must change the covered restrictions; no world-first or physical result has been established.",
+  "unavailable": {"mapped_area": null, "mapped_delay": null, "power": null, "physical_security": null}
+}
