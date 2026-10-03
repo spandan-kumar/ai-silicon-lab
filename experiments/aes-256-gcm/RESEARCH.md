@@ -8,6 +8,78 @@ profile.
 
 Research date: 2026-08-29
 
+## Joint nonlinear search beyond the fixed interfaces — 2026-10-03
+
+The fixed-interface obstruction below motivated three broader searches. None
+has produced a correct 27-AND AES S-box or established a world-first result.
+
+First, the single-product repair was allowed to use a retained tail function
+in its left operand: each of the twelve cosets `t_i + P`, where P is the
+23-dimensional pre-tail span. The right operand is arbitrary in the retained
+35-dimensional span. For the 131-gate outer source with a16 removed, every
+one of the 4,194,304 left forms in each tested coset failed: 50,331,648 forms.
+This tests only twelve of 4,095 nonzero tail cosets, not every retained-space
+left operand. The new offset enumerator includes step zero. A separate audit
+reconstructs the source/matrices, brute-forces 24 small controls, checks
+first/last-step probes and sampled AES steps, and verifies constant omission;
+it does not independently repeat all 50 million forms. Evidence:
+`runs/aes-tail-coset-repair-20261003/`, including `review/`.
+
+Second, an inventory of nine public 28-AND circuits and 252 dependency-closed
+single-root cones identifies a ten-gate middle-to-tail cone with room for a
+one-AND reduction by the necessary output-rank test. In the 131-gate source,
+remove a13 and its nine nonlinear descendants. The 18 retained ANDs plus
+inputs and constant span 27 functions; the eight AES outputs add eight
+independent functions. The new solver allows nine arbitrary sequential ANDs,
+with both operands using any retained signal or earlier replacement, and an
+arbitrary affine output decoder. It constrains all 256 reachable input rows,
+not 27 fictitiously independent inputs. Removed internal functions, AND depth,
+and the earlier quotient envelope are not fixed.
+
+The original ten-gate cone passes positive controls with all factors fixed
+and with its root factors free. An independent review checks all source
+cones, 40 small brute-force comparisons, lexical symmetry, and the scalar AES
+control. The fully free nine-gate instance returns **INDETERMINATE**, exit 15,
+after 60.823 seconds. A 24-row counterexample-guided solve returns a circuit
+that fails all 232 unchecked rows; after adding sixteen counterexamples, the
+40-row solve is also inconclusive. These are not UNSAT results. Evidence:
+`runs/aes-joint-method-20261003/`, including `review/`.
+
+A canonical operand-plane variant strips constant selectors and chooses an
+echelon pair for each AND. The product changes only by previously available
+affine functions, which later factors and the decoder can absorb. All 40
+small brute-force outcomes agree; 4,752 ordered affine-pair checks verify the
+normalization identity; the normalized ten-gate control passes scalar AES on
+all 256 inputs. The canonical nine-gate solve nevertheless remains
+INDETERMINATE after 63.589 seconds. Evidence:
+`runs/aes-joint-canonical-20261003/`.
+
+Third, the invalid 27-AND 9+5+13 hybrid was used as a local-repair seed.
+All 706,267 selector assignments within Hamming distance two of its 1,188
+affine-factor selectors were evaluated with a free affine output decoder.
+None completes AES. There are 2,492 assignments, including the seed, that
+retain a one-function output deficit; 2,134 introduce a function outside the
+seed's available span. A deterministic, seeded walk through 64 distinct
+function spans evaluates 45,201,024 additional neighborhood assignments,
+without finding a correct circuit. These are evaluation counts, not counts
+of globally distinct circuits. A second execution reproduces the walk;
+separate low-pivot elimination checks every retained state on all 256 rows,
+semantic distinctness, and one/two-bit adjacency. Eight complete toy
+neighborhood histograms and a known one-bit repair control pass. This remains
+a bounded local search, not an AES lower bound. Evidence:
+`runs/aes-local-nonlinear-repair-20261003/`.
+
+The synthesis concepts themselves are established prior art: see
+[Soeken, arXiv:2005.01778](https://arxiv.org/abs/2005.01778) for abstract XOR–AND
+selectors, symmetry reduction and counterexample-guided refinement, and
+[Haaswijk et al., DAC 2018](https://people.eecs.berkeley.edu/~alanmi/publications/2018/dac18_topo.pdf)
+for topology-family exact synthesis. The sources were checked on 2026-10-03.
+The useful next search must cross a larger structural neighborhood or change
+the selected cone/topology; extending an inconclusive timeout is not evidence
+of novelty. No physical area, timing, power, or security metric was measured
+by these Boolean searches. The compact record is
+`workspace/aes-256-gcm/reports/sbox_joint_nonlinear_study.json`.
+
 ## Nonlinear stage splicing and a restricted obstruction — 2026-10-02 to 2026-10-03
 
 The public 28-AND circuits use either 10+5+13 or 9+6+13 nonlinear stages,
