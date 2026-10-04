@@ -8,6 +8,99 @@ profile.
 
 Research date: 2026-08-29
 
+## Constructive two-AND prefixes and exact auxiliary closures — 2026-10-04
+
+The current fixed eighteen-product family still has no complete 27-AND AES
+construction. The three unrestricted two-product SAT searches (free, excluding
+the original auxiliary envelope, and fixing only the original first product)
+each returned `INDETERMINATE`, exit 15, under a 120-second solver budget. Actual
+command wall times were 135.77–136.02 seconds. Twelve brute-force controls and
+the fully fixed original AES prefix passed. Independent review checked 31
+small encoded instances, including 15 envelope-exclusion cases. Timeouts are
+inconclusive.
+
+A constructive alternative fixes two operand functions f,h in W and writes
+q=f*g and p=h*(v+alpha*q), where g,v are arbitrary affine forms in W and
+alpha,beta are bits. Requiring p+beta*q in T gives the linear relation
+h*v+(alpha*h+beta)*f*g in T. On its kernel, q modulo T and the relation modulo
+W must both be nonzero. These two linear maps may be nonzero on different
+kernel generators; their sum then supplies a valid witness. This avoids
+discarding feasible systems merely because no individual generator satisfies
+both conditions. A second operand plane in W+q always intersects W, so the
+form covers every two-product prefix if all f,h in W are enumerated. The
+actual search uses a finite factor pool and makes no such coverage claim.
+
+The pool contains 161 constant-free coefficient masks: available source wires,
+individual W basis factors, and single-coefficient neighbors of the known
+first factors. Its 103,684 fixed systems have 38 feasible cases. Sampling kernel
+generators and their pairwise sums produced 58 distinct realizable auxiliary
+envelopes, 57 different from the original and 56 absent from the preceding 79
+proposal sample. These are two-product prefixes only. A separate low-pivot
+implementation replayed every fixed system and agreed on feasibility and
+kernel dimensions. It also verified all 58 truth witnesses and independently
+replayed the public source against scalar AES on all 256 inputs.
+
+The implementation is retained as
+`workspace/aes-256-gcm/tools/search_two_and_prefix.py`. Its rerun reproduces
+the same fixed-system counts, kernel dimensions and exact witness list from
+the run-local input. The measured search times were 39.44 seconds for the
+run-local program and 40.47 seconds for the retained tool. These are algorithm
+wall times on the host, not agent time, RTL simulation or a fair speedup
+comparison against unrestricted SAT. Four tool tests cover nullspaces,
+exhaustive affine operand choices, malformed inputs and preserving existing
+output evidence. The exhaustive feasibility test includes 966 positive and
+1,974 negative cases. Independent extraction controls include 37 cases that
+require combining two kernel generators.
+
+Constructive extensions using source gates and finite dynamic left-factor
+pools stalled in all 58 envelopes: 56 ended at dimension 29, one at 33, and one
+at 30. This heuristic stagnation alone does not prove impossibility. Three
+selected new envelopes received complete product scans instead. A useful
+operand plane modulo constants meets a codimension-one hyperplane; changing
+its basis changes the product only by current-span functions. Therefore
+restricting the left operand to that hyperplane preserves every useful
+quotient product while halving the number of left forms. All three scans
+returned `EXHAUSTED_NO_EXTENSION`:
+
+- Prefix index 0: dimension 29, 134,217,727 left forms, 213.73 seconds command wall.
+- Prefix index 1: dimension 29, 134,217,727 left forms, 222.73 seconds command wall.
+- Prefix index 53: dimension 30, 268,435,455 left forms, 442.89 seconds command wall.
+
+The total is 536,870,909 forms. Every introduced product is constructively
+available inside its fixed S=T+q. Complete absence of another product makes
+the final span the least S-constrained product closure of W. Since AES is
+outside each closed span, every completion confined to each of these three
+envelopes is excluded. This does not exclude the remaining 55 witnessed
+envelopes, all other auxiliaries, changed retained gates, or arbitrary AES
+circuits. Independent checks verified all 2,324 serialized matrix entries,
+32 small hyperplane quotient comparisons, and 12 actual-binary controls
+(six positive, six negative). The large scans were observed, not independently
+repeated. No candidate RTL changed, so no new physical or security metrics
+are claimed.
+
+Primary web sources were checked again on 2026-10-04. The current
+[NIST AES circuit table](https://raw.githubusercontent.com/usnistgov/Circuits/master/data/slp/aes/aes-sbox/README.md)
+still lists 28 ANDs as its minimum and credits the A28 contributions to Milad
+Nasr, communicated 2026-09-24. That table is not an optimality proof. Find,
+Smith-Tone and Turan's
+[two-AND function study](https://www.nist.gov/publications/number-boolean-functions-multiplicative-complexity-2)
+(2015 preprint, 2017 journal publication) establishes prior work on this
+structure. Soeken's
+[SAT synthesis paper](https://arxiv.org/abs/2005.01778) (2020) establishes prior
+work on exact multiplicative-complexity synthesis with symmetry breaking.
+The local MC2 PDF retrieval failed with HTTP 403 and is retained as a failure;
+the primary publication record supports the limited attribution above.
+Neither the local application of linear kernels nor the scoped negative
+results establish a world first.
+
+Detailed evidence is retained in `runs/aes-linear-two-prefix-20261004/`,
+`runs/aes-two-gate-auxiliary-20261004/`, the corresponding review directories,
+`runs/aes-two-prefix-prior-art-20261004/`, and
+`runs/aes-two-prefix-closeout-20261004/`. The compact committed record is
+`workspace/aes-256-gcm/reports/sbox_two_prefix_study.json`; unknown model,
+per-attempt tokens, agent time and cost telemetry remain explicitly null in
+schema-validated run records.
+
 ## One-auxiliary envelopes and four-terminal windows — 2026-10-04
 
 The next search permits a coordinated change to the depth-four public

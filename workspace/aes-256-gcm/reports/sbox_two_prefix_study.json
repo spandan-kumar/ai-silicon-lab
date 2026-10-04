@@ -1,0 +1,180 @@
+{
+  "status": "verified-scoped-two-product-study",
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "base_commit": "ef2752cd1146f4fa75989522d89d9355afbcbdfc",
+  "source": "aes-sbox-a28-ad4-g131-gd32-xx103-47.circ.txt",
+  "source_sha256": "9e6c8dbed90aab60b19587c9a281f7962813b8557aac6c3a7498bc454a8c48bb",
+  "fixed_retained_ANDs": 18,
+  "W_dimension": 27,
+  "T_dimension": 35,
+  "replacement_AND_budget": 9,
+  "joint_SAT": {
+    "searches": [
+      {
+        "label": "aes-two-free",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "command_wall_seconds": 136.02116837492213
+      },
+      {
+        "label": "aes-two-new-envelope",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "command_wall_seconds": 135.92148854210973
+      },
+      {
+        "label": "aes-two-first-fixed",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "command_wall_seconds": 135.76960274996236
+      }
+    ],
+    "bruteforce_controls": 12,
+    "fixed_original_AES_prefix_control": true,
+    "independent_encoder_controls": {
+      "total": 31,
+      "SAT": 14,
+      "UNSAT": 17,
+      "exclusion_cases": 15
+    }
+  },
+  "linear_search": {
+    "fixed_factor_pool_size": 161,
+    "systems": 103684,
+    "feasible_systems": 38,
+    "witnessed_auxiliary_envelopes": 58,
+    "different_from_original_envelope": 57,
+    "different_from_previous_79_proposal_envelopes": 56,
+    "run_local_algorithm_wall_seconds": 39.43738770810887,
+    "promoted_tool_wall_seconds": 40.470623166067526,
+    "independent_complete_pool_replay": true,
+    "scope": "Finite fixed-factor pool; exact feasibility for its systems, kernel-witness sampling for its envelopes. Does not enumerate all auxiliary envelopes or all AES circuits."
+  },
+  "constructive_extension": {
+    "spaces_tested": 58,
+    "final_dimension_histogram": {
+      "29": 56,
+      "33": 1,
+      "30": 1
+    },
+    "complete_AES_found": false,
+    "scope": "Finite dynamic left-factor pools plus original-gate warm starts. Stagnation is not an impossibility proof."
+  },
+  "exact_selected_closures": [
+    {
+      "index": 0,
+      "auxiliary_mod_T_hex": "0x3320f60704fc863f399d077e0566e57d985d1cb02976fab35a9ea4336",
+      "final_dimension": 29,
+      "status": "EXACT_CLOSED_BEFORE_AES",
+      "left_forms": 134217727,
+      "command_wall_seconds": 213.72907733311877
+    },
+    {
+      "index": 1,
+      "auxiliary_mod_T_hex": "0x70615a21247749cb2dd3fadd10c32852687dec1445c140c6a827c5d6",
+      "final_dimension": 29,
+      "status": "EXACT_CLOSED_BEFORE_AES",
+      "left_forms": 134217727,
+      "command_wall_seconds": 222.73182054189965
+    },
+    {
+      "index": 53,
+      "auxiliary_mod_T_hex": "0x15106fc396777515b2e4bd8657f953637eda40bd899006b2e707c48b0",
+      "final_dimension": 30,
+      "status": "EXACT_CLOSED_BEFORE_AES",
+      "left_forms": 268435455,
+      "command_wall_seconds": 442.88820866681635
+    }
+  ],
+  "exact_total_left_forms": 536870909,
+  "exact_matrix_entries_verified": 2324,
+  "large_product_scans_independently_repeated": false,
+  "proof_notes": [
+    "Any9gate completion after W27 must fit within S=T+q of dimension36, where q is the first outsideT direction.",
+    "For fixed f,h,alpha,beta, the relation h*v+(alpha*h+beta)*f*g inT is linear in g,v. Feasibility requires both qmodT and relationmodW maps nonzero on its kernel.",
+    "Two different kernel generators can carry the two nonzero maps; their sum supplies a feasible witness when no individual generator does.",
+    "A useful operand2plane modulo constants meets every codimension1 hyperplane. GL2 changes its product only by current-span functions, so a left hyperplane scan covers all useful quotient products.",
+    "Every selected q,p and warm extension is constructively realizable inside fixedS. Complete absence of another product inS implies the resulting space is the least S-constrained product closure of W, excluding every completion within that envelope."
+  ],
+  "controls": {
+    "root_fixed_factor_bruteforce": 64,
+    "independent_fixed_factor_bruteforce": 2940,
+    "independent_kernel_extraction": 256,
+    "actual_encoder_vs_independent_cases": 2940,
+    "hyperplane_full_quotient_controls": 32,
+    "hyperplane_binary_controls": 12
+  },
+  "reproduction_tool": "workspace/aes-256-gcm/tools/search_two_and_prefix.py",
+  "prior_art": [
+    {
+      "url": "https://raw.githubusercontent.com/usnistgov/Circuits/master/data/slp/aes/aes-sbox/README.md",
+      "claim": "The current table still lists a minimum of28ANDs and credits theA28contributions toMiladNasr,communicated2026-09-24. The table is not a proof of optimality.",
+      "retrieval": {
+        "argv": [
+          "curl",
+          "--fail",
+          "--location",
+          "--max-time",
+          "45",
+          "https://raw.githubusercontent.com/usnistgov/Circuits/master/data/slp/aes/aes-sbox/README.md",
+          "-o",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-two-prefix-prior-art-20261004/nist-current-readme.txt"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.5682346660178155
+      }
+    },
+    {
+      "url": "https://www.nist.gov/publications/number-boolean-functions-multiplicative-complexity-2",
+      "claim": "Find,Smith-Tone,Turan study and characterize two-AND Boolean functions; preprint2015,journal2017. Primarywebrecord inspected.",
+      "local_pdf_retrieval": {
+        "argv": [
+          "curl",
+          "--fail",
+          "--location",
+          "--max-time",
+          "45",
+          "https://eprint.iacr.org/2015/1041.pdf",
+          "-o",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-two-prefix-prior-art-20261004/mc2.pdf"
+        ],
+        "exit_code": 56,
+        "wall_seconds": 1.575110208010301
+      },
+      "local_text_extraction": null
+    },
+    {
+      "url": "https://arxiv.org/abs/2005.01778",
+      "claim": "Soeken2020 presents SAT-based multiplicative-complexity synthesis with symmetry-breaking. Primaryabstract inspected."
+    }
+  ],
+  "world_first_established": false,
+  "correct_27_AND_AES_found": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "evidence": {
+    "runs/aes-two-gate-auxiliary-20261004": {
+      "report_sha256": "4b7f9ef9380acab589afbb0cb31bee4a9573a96797ebcde500e06b7dbc24abdc",
+      "run_sha256": "98ee3dda6ba2be3b8a8c4ea80467ced28ce7c3b7030998ba205fb665f0649898"
+    },
+    "runs/aes-two-gate-auxiliary-review-20261004": {
+      "report_sha256": "d9be5ef4e52655a3abbbeab519213e438cdde801ce2c02fab94d5405919425a4",
+      "run_sha256": "d86dd53b1032f686a1e63b9203780a7743df0098d12f1f4a208132bd1ebc1391"
+    },
+    "runs/aes-linear-two-prefix-20261004": {
+      "report_sha256": "37b6774c03843c999271b902955f500e1f1f636125c85ccade26506788358336",
+      "run_sha256": "6c67b9ee3cd035b6a644b55524d1719cc131ab6508a7fdba13c5e98522f6cce0"
+    },
+    "runs/aes-linear-two-prefix-review-20261004": {
+      "report_sha256": "3df5bb9062876cc00e6a6fe21610ae41d09fc37f290dfda07d9fecd7bae2adfb",
+      "run_sha256": "539bf77531f8e09726e211026941b3b4bcc6e6418c80b17059bc486df3e64022"
+    },
+    "runs/aes-two-prefix-prior-art-20261004": {
+      "report_sha256": "1f4e46201e204d897ebe6944abf419399d668ee68511420dfeb5477f4ec9173c",
+      "run_sha256": "eff32b7402b4a46be466adf90962b1a299341bc260fc018b838f1e65df13db76"
+    }
+  },
+  "closeout_sha256": "7a85239217f9b30d714fec531ca134c833a832ccb0a25798a5183d8c6609aee7",
+  "next_open_search": "The remaining55witnessed envelopes, larger factor pools, unrestricted full completion, or changing the fixed18retained gates."
+}
