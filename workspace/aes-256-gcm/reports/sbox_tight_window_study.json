@@ -1,0 +1,294 @@
+{
+  "status": "verified-scoped-exclusions",
+  "base_commit": "5e318550ce6df2d44a56872751aab23ddd3eb4ea",
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "inventory": {
+    "source_circuits": 9,
+    "root_sets": 32886,
+    "distinct_windows_per_source_sum": 5075,
+    "eligible_windows_smaller_than_ten": 29,
+    "eligible_size_counts": {
+      "2": 2,
+      "3": 24,
+      "9": 3
+    },
+    "note": "Necessary rank eligibility only; the nine-gate a15 cones also have a single-root representation and were omitted by the previous root-depth filter."
+  },
+  "pairs": [
+    {
+      "source": "aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+      "source_sha256": "dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac",
+      "removed": [
+        "a18",
+        "a27"
+      ],
+      "retained_ands": 26,
+      "pre_tail_dimension": 24,
+      "retained_dimension": 35,
+      "aes_quotient_dimension": 1,
+      "exact_left_forms": 8388607,
+      "exact_status": "no-P-times-W-repair",
+      "independent_complete_replay": true,
+      "full_W_CMS": "INDETERMINATE",
+      "full_W_CP": "UNKNOWN"
+    },
+    {
+      "source": "aes-sbox-a28-ad5-g128-gd20-xx100-27.circ.txt",
+      "source_sha256": "e00a6c5f5c7a216904f15e78b74c292170c86bbe185543a2b6f80b04e1ed0de1",
+      "removed": [
+        "a21",
+        "a28"
+      ],
+      "retained_ands": 26,
+      "pre_tail_dimension": 24,
+      "retained_dimension": 35,
+      "aes_quotient_dimension": 1,
+      "exact_left_forms": 8388607,
+      "exact_status": "no-P-times-W-repair",
+      "independent_complete_replay": true,
+      "full_W_CMS": "INDETERMINATE",
+      "full_W_CP": "UNKNOWN"
+    }
+  ],
+  "nine_gate_cones": [
+    {
+      "source": "aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+      "source_sha256": "dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac",
+      "removed": [
+        "a15",
+        "a17",
+        "a19",
+        "a21",
+        "a22",
+        "a25",
+        "a26",
+        "a27",
+        "a28"
+      ],
+      "retained_ands": 19,
+      "replacement_budget": 8,
+      "W_dimension": 28,
+      "T_dimension": 36,
+      "exact_left_forms": 134217727,
+      "status": "no-first-useful-AND",
+      "command_wall_seconds": 143.16280808392912,
+      "independent_full_replay": false,
+      "source_and_all_matrix_entries_independently_verified": true,
+      "original_products_outside_T": [
+        "a15",
+        "a17",
+        "a19",
+        "a21"
+      ]
+    },
+    {
+      "source": "aes-sbox-a28-ad5-g128-gd20-xx100-27.circ.txt",
+      "source_sha256": "e00a6c5f5c7a216904f15e78b74c292170c86bbe185543a2b6f80b04e1ed0de1",
+      "removed": [
+        "a15",
+        "a17",
+        "a18",
+        "a19",
+        "a22",
+        "a25",
+        "a26",
+        "a27",
+        "a28"
+      ],
+      "retained_ands": 19,
+      "replacement_budget": 8,
+      "W_dimension": 28,
+      "T_dimension": 36,
+      "exact_left_forms": 134217727,
+      "status": "no-first-useful-AND",
+      "command_wall_seconds": 142.2291766249109,
+      "independent_full_replay": false,
+      "source_and_all_matrix_entries_independently_verified": true,
+      "original_products_outside_T": [
+        "a15"
+      ]
+    },
+    {
+      "source": "aes-sbox-a28-ad5-g150-gd15-xx122-23.circ.txt",
+      "source_sha256": "ce8e394bf1e34f6126f071f04c9c5fa80860f5d901bc4576367ed5de21728a08",
+      "removed": [
+        "a15",
+        "a18",
+        "a19",
+        "a20",
+        "a24",
+        "a25",
+        "a26",
+        "a27",
+        "a28"
+      ],
+      "retained_ands": 19,
+      "replacement_budget": 8,
+      "W_dimension": 28,
+      "T_dimension": 36,
+      "exact_left_forms": 134217727,
+      "status": "no-first-useful-AND",
+      "command_wall_seconds": 141.42563333315775,
+      "independent_full_replay": false,
+      "source_and_all_matrix_entries_independently_verified": true,
+      "original_products_outside_T": [
+        "a15",
+        "a20",
+        "a24",
+        "a27"
+      ]
+    }
+  ],
+  "terminal_triples": {
+    "directly_searched": [
+      {
+        "source": "aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+        "source_sha256": "dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac",
+        "removed": [
+          "a17",
+          "a23",
+          "a25"
+        ],
+        "closure_dimensions": [
+          34,
+          35,
+          36
+        ],
+        "stages": [
+          {
+            "status": "SAT",
+            "left_forms_checked": 1048390
+          },
+          {
+            "status": "EXHAUSTED_NO_EXTENSION",
+            "left_forms_checked": 8388607
+          }
+        ],
+        "first_witness_independently_verified": true,
+        "complete_final_stage_independently_repeated": true
+      },
+      {
+        "source": "aes-sbox-a28-ad5-g150-gd15-xx122-23.circ.txt",
+        "source_sha256": "ce8e394bf1e34f6126f071f04c9c5fa80860f5d901bc4576367ed5de21728a08",
+        "removed": [
+          "a19",
+          "a23",
+          "a25"
+        ],
+        "closure_dimensions": [
+          34,
+          35,
+          36
+        ],
+        "stages": [
+          {
+            "status": "SAT",
+            "left_forms_checked": 2232061
+          },
+          {
+            "status": "EXHAUSTED_NO_EXTENSION",
+            "left_forms_checked": 8388607
+          }
+        ],
+        "first_witness_independently_verified": true,
+        "complete_final_stage_independently_repeated": true
+      }
+    ],
+    "nested_pair_exclusions": 22,
+    "total_restricted_exclusions": 24,
+    "scope": "Each replacement gate has one factor in the fixed pre-tail space P (constant, raw inputs, first15 retained products), and the other in the current span of retained plus earlier replacement products. A free affine output decoder is allowed. Not arbitrary two-factor W-times-W synthesis.",
+    "root_review_proof": "For22nested triples, W\u2282V\u2282T, P\u2282W, and dim(T/V)=1. Pair exclusion says (P\u00b7V)\u2229T\u2282V. Every T-constrained sequence from W stays in V by induction, while AES is outside V. For2remaining triples, greedy closure reaches a35-dimensional fixed point below36. T-constrained fixed-P product closure is monotone and all choices have the same least closed extension, verified by exhaustive BFS controls."
+  },
+  "full_pair_derived_cut": {
+    "scope": "Full W\u00d7W pair repair with sound learned cut derived from complete P\u00d7W exclusion. Existing highest-pivot canonicalization ensures the left non-P clause excludes exactly operand planes meeting P. A product in such a plane is impossible for this target by the earlier enumeration.",
+    "canonical_cut_controls": 59988,
+    "searches": [
+      {
+        "source": "aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "command_wall_seconds": 121.88270579185337
+      },
+      {
+        "source": "aes-sbox-a28-ad5-g128-gd20-xx100-27.circ.txt",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "command_wall_seconds": 121.68866674997844
+      }
+    ]
+  },
+  "rank_tight_argument": [
+    "W has dimension28 and T=span(W,AES) has dimension36.",
+    "Eight ANDs add at most8 independent truth functions, so successful final span must equal T.",
+    "Every intermediate product must therefore belong to T, with the first useful product in T minus W.",
+    "Complete enumeration finds no f,g in W with fg in T minus W. At least9 extra ANDs are needed for each fixed retained family; the original9-gate witness attains9."
+  ],
+  "controls": {
+    "root_tight_cone_random": 24,
+    "root_tight_cone_named": 3,
+    "independent_tight_cone_small": 48,
+    "independent_matrix_entries": 2187,
+    "pair_small_original": 16,
+    "pair_small_replay": 12
+  },
+  "evidence": {
+    "runs/aes-multiroot-windows-20261003": {
+      "report_sha256": "41cf50baf0b08d190ef354541fb58e34d34e9073573e35f324ccd644eabda92d",
+      "run_record_sha256": "587dc3da2a971a87d04ee95d0a08fe49c20641e4c5e1471ab389794b56add220"
+    },
+    "runs/aes-terminal-pair-repair-20261003": {
+      "report_sha256": "25598fbab20d218434f1c9573befe8d030d29a139796bf46d5cea254c5fefc65",
+      "run_record_sha256": "a46fb2951a0f2f745870de7ba63ef15ab36ef2b18a5297010c66bfcdbc27e146"
+    },
+    "runs/aes-pair-repair-audit-20261003": {
+      "report_sha256": "32d0e6fa9614f61260628908a95b50e829dd422cb6ca942ebc4bd6e43ca9a65a",
+      "run_record_sha256": "b53cd6dd75db9f8ed2b250e6df088905458cb0f28c2acaab9f457ac00f40cbb2"
+    },
+    "runs/aes-terminal-pair-repair-20261003/review": {
+      "report_sha256": "e1bf90476fd831fca6e28493c02fee7733a9dc791dbd6581f69c20b79fe4b768",
+      "run_record_sha256": "4227d5efece5a6f3f7b5346488e6730e0afa1a0a98771c1cdd65d8026f7ba7d9"
+    },
+    "runs/aes-tight-cone-closure-20261004": {
+      "report_sha256": "c0a8ec9ce97c0e0b94bda5cd5c4c28d817c8fe568c975f2f7abe3e314df11dd8",
+      "run_record_sha256": "cfc48ff118cda95266154f9895ee5b512c8100576af70dd7c446f7b33936e19e"
+    },
+    "runs/aes-tight-cone-review-20261004": {
+      "report_sha256": "abd918804d580b93694c383f4a3b74105b42ed37331bcb9bb8900d5d1e9c1abf",
+      "run_record_sha256": "8a702e5a00053b2dba2725fb2a8f4bc72dbf6e5a4e158f627a4ed8ed5bc946d9"
+    },
+    "runs/aes-terminal-triple-repair-20261004": {
+      "report_sha256": "56ab5514a0a1e25b53d3bbdc5f4ac40643834c81c10a58b5748fc74866041d4e",
+      "run_record_sha256": "cdb5d88c1f54c100a672aa9c71354fc79a80d2f5f9d0944ac2f1e2b380a865c4"
+    },
+    "runs/aes-triple-closure-review-20261004": {
+      "report_sha256": "419ff174e873059910c7bf820b4c527523e11355c4ffd63bd6719203637e058b",
+      "run_record_sha256": "755ea3f63c3b2e73eac11431a9ad13b50ad1086fa50775402f03ae2ab9a0082d"
+    },
+    "runs/aes-full-pair-cut-20261004": {
+      "report_sha256": "e9d3db448456955b377da731a5cbf018013f16e6654c0ac7dd2cffb2b19a75ed",
+      "run_record_sha256": "238f20df92e71161483ccd80717045833c0228405fed26bb6babc6a08d0f3a31"
+    }
+  },
+  "prior_art_checked_utc_date": "2026-10-03",
+  "prior_art": [
+    {
+      "url": "https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md",
+      "fact": "Public28-AND AES designs predate this attempt; contributors are attributed by the source, not claimed as ours."
+    },
+    {
+      "url": "https://arxiv.org/abs/2005.01778",
+      "fact": "SAT-based multiplicative-complexity synthesis and symmetry breaking are established techniques."
+    }
+  ],
+  "world_first_established": false,
+  "correct_27_and_candidate_found": false,
+  "global_AES_lower_bound_established": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "open_questions": [
+    "Both factors outside P for the terminal-pair repairs.",
+    "Changed retained functions, larger joint windows, or a different nonlinear construction.",
+    "Terminal3-to2 windows with unrestricted operands outside the fixed P-factor family."
+  ]
+}

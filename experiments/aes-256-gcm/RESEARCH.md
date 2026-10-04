@@ -8,6 +8,134 @@ profile.
 
 Research date: 2026-08-29
 
+## Rank-tight replacement windows — 2026-10-04
+
+No correct 27-AND AES S-box or world-first result was obtained. This study
+establishes exact lower bounds for three fixed retained-circuit families and
+restricted exclusions for terminal replacements. It does not establish the
+global multiplicative complexity of AES.
+
+An inventory of nine public 28-AND sources examines all 32,886 sets of exactly
+two or three roots and their forward dependency cones. Deduplication within
+each source leaves 5,075 windows. The necessary output-rank test admits 29
+windows removing fewer than ten gates: two pairs, 24 triples, and three
+nine-gate cones. These are rank-eligible windows, not synthesized reductions.
+The nine-gate cases are also single-root cones rooted at depth-four a15;
+the earlier search's root-depth filter omitted them. They are not newly
+discovered multi-root structures. Evidence:
+`runs/aes-multiroot-windows-20261003/`.
+
+### Three exact nine-to-eight exclusions
+
+The 124-, 128-, and 150-total-gate public sources each contain a nine-AND a15
+cone with nineteen dependency-closed retained ANDs. Let W contain constant,
+the eight raw inputs, and those retained functions, and let T additionally
+contain the eight AES outputs. Exact 256-row truth-space ranks are
+dim(W)=28 and dim(T)=36 in all three cases.
+
+Eight new ANDs can add at most eight independent functions. If they implement
+AES with an arbitrary affine decoder, the final available span must therefore
+equal T. Every intermediate product must lie in T, and the first useful
+product must lie outside W. This reduces an arbitrary sequential eight-gate
+replacement to the necessary first step: find f,g in W with fg in T but not W.
+Both factors are unrestricted within W; no pre-tail-factor restriction is
+imposed here.
+
+An exact Gray-code/kernel enumeration finds no such first step in any case.
+It exhausts 134,217,727 nonconstant left forms per source, or 402,653,181
+across the three problems, solving for every right form by linear elimination.
+Operand constants may be omitted because their contributions are in W.
+Consequently these fixed nineteen-retained families require at least nine
+additional ANDs; each original nine-gate witness attains that bound. The
+original a15 product is outside T, so the known nine-gate implementation does
+not contradict the obstruction. Other original products can also lie outside
+T; the exact lists are retained rather than assumed identical across sources.
+
+The root enumerator passes 24 brute-force random controls and three named
+negative/sequential controls. Independent review reconstructs all three
+sources on all 256 inputs, verifies every one of the 2,187 serialized product
+matrix entries, and tests the actual executable against 48 further exhaustive
+small cases. The three full AES enumerations were not independently repeated.
+The relaxed linear product closure reaches dimensions 28→32→36, so a mere
+linear-span relaxation does not prove this result; the absence of an actual
+factorable first product is essential. Evidence:
+`runs/aes-tight-cone-closure-20261004/` and
+`runs/aes-tight-cone-review-20261004/`.
+
+### Terminal pair and triple replacements
+
+Removing a18/a27 from the 124-gate source or a21/a28 from the 128-gate source
+leaves 26 ANDs and a 35-dimensional retained space W. The AES outputs require
+one additional function. In both cases, exhaustive enumeration excludes a
+replacement product with one factor in the 24-dimensional pre-tail space P
+and the other anywhere in W: 8,388,607 nonconstant left forms per case.
+An independent quotient/kernel construction repeats both complete searches
+and agrees, including the full rank histograms. Source/constant/symmetry
+audits pass; the original and replay engines have 16 and 12 small brute-force
+controls respectively. Unrestricted W×W searches using two solvers remain
+INDETERMINATE/UNKNOWN after their 90-second budgets. Those outcomes are not
+proofs of impossibility.
+
+An initial known-positive solver probe also timed out and triggered an
+incorrect completion-time assertion. That failed attempt is retained. The
+corrected control fixes a known witness in the full-space CNF and checks every
+serialized constraint; a separate CP control uses the known three-dimensional
+operand span. Neither is misrepresented as a freely solved full-space control.
+Evidence: `runs/aes-terminal-pair-repair-20261003/`, including `review/`, and
+`runs/aes-pair-repair-audit-20261003/`.
+
+The two triples not containing either excluded pair are a17/a23/a25 in the
+124-gate source and a19/a23/a25 in the 150-gate source. Each has retained
+dimension34 and target dimension36. With one factor per replacement fixed to
+P, exact sequential closure finds a first useful product but stops at
+dimension35: each final stage exhausts all 8,388,607 left forms. Root verifies
+both first witnesses and independently repeats both full final-stage searches
+using exact-image membership rather than the original kernel test. Exhaustive
+BFS controls on 32 small spaces check that choosing another first product
+does not evade the fixed point.
+
+For the other 22 triples, exact containment checks give W⊂V⊂T, where V is
+the corresponding pair's retained space, with dimensions34,35,36 and P⊂W.
+The pair exclusion implies (P·V)∩T⊂V. Any T-constrained replacement sequence
+therefore stays in V by induction, while AES requires a function outside V.
+Rank tightness forces every successful two-gate sequence to stay in T, so this
+excludes those 22 cases under the same fixed-P-factor restriction. It does not
+exclude replacements with both operands outside P. Evidence:
+`runs/aes-terminal-triple-repair-20261004/` and
+`runs/aes-triple-closure-review-20261004/`.
+
+The exhaustive pair exclusions also supply a sound cut for the unrestricted
+W×W solver: a feasible two-dimensional operand plane cannot intersect P in a
+nonzero function. In the existing highest-pivot canonical basis, this means
+the smaller-pivot operand must have a non-P component. All 59,988 small
+coefficient-plane controls verify that equivalence, and two planted tail×tail
+SAT controls pass full serialized-model/truth checks. Both new full-space
+searches still return INDETERMINATE, exit15, after approximately122 seconds
+each. Thus the cut is verified, but it has not resolved the unrestricted
+problem or demonstrated a performance advantage. Evidence:
+`runs/aes-full-pair-cut-20261004/`.
+
+The [pinned NIST circuit listing](https://raw.githubusercontent.com/usnistgov/Circuits/b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc/data/slp/aes/aes-sbox/README.md)
+and [Soeken's SAT synthesis paper](https://arxiv.org/abs/2005.01778) were checked
+again on October3 UTC. The public28-AND circuits are prior work, and SAT
+synthesis/symmetry breaking are established methods. No novelty claim follows
+from these local exclusions or an unsuccessful literature search. No physical
+area, timing, power, or leakage measurement is produced by this study. The
+compact record is `workspace/aes-256-gcm/reports/sbox_tight_window_study.json`.
+
+Primary-source follow-up located the authors'
+[implem-sbox code](https://github.com/seduval/implem-sbox), inspected at commit
+`6500beee71bd1ee246434b17811d423002a233ba`. Its README lists precomputation for
+four through seven input bits, but its CLI text says 16–64 LUT entries; it
+does not document full eight-bit AES support. This documentation discrepancy
+and the lack of a full-AES claim must be resolved before treating the tool as
+a drop-in search backend. No external code was executed and no precomputation
+dataset was downloaded. The pinned README and fetch status are retained in
+`runs/aes-tight-window-closeout-20261004/`. The related TCHES2026 paper's
+[author listing](https://seduval.github.io/research/) verifies its title,
+authors and publication date; the publisher's DOI page was unavailable during
+this check, so no technical conclusion is attributed to unread paper text.
+
 ## Auditing the local-search barrier — 2026-10-03
 
 No correct 27-AND circuit or world-first result was obtained. The current
