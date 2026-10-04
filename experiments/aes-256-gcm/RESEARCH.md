@@ -8,6 +8,101 @@ profile.
 
 Research date: 2026-08-29
 
+## One-auxiliary envelopes and four-terminal windows — 2026-10-04
+
+The next search permits a coordinated change to the depth-four public
+131-total-gate source: replace the ten-AND a13 cone using nine ANDs after
+eighteen retained products. This is the earlier full-joint SAT problem, now
+analyzed through its truth-function spaces. W has dimension27; adding the
+eight AES outputs gives T of dimension35. A successful nine-gate replacement
+can have at most one independent function direction outside T.
+
+First, an exact unrestricted first-product test exhausts all 67,108,863
+nonconstant left forms in W and finds no useful product inside T. This proves
+that any successful nine-gate replacement from this fixed W must begin with
+an outside-T auxiliary, after discarding any redundant gates. It does not
+identify the auxiliary or prove nine gates impossible.
+
+The general rank-slack-one reduction is to saturate W using products inside
+T, then consider realizable products q outside T and compute exact closure
+inside S=T+q. Saturation is necessary in general: restricting the first
+auxiliary's operands to the original W can otherwise miss solutions. Here the
+initial exact exclusion proves the saturation is W itself. For a fixed S,
+adding any realizable useful product inside S is safe: all available functions
+remain available, and monotone product closure reaches a unique least closed
+space regardless of choice order. The independent review checks this
+reduction against 35 target spaces from a complete three-input, three-gate
+space enumeration. An additional unreachable-input negative control passes.
+
+A finite heuristic proposal set contains the original a13 factor pair, its
+52 single nonconstant-selector-bit changes, and 32 seeded random factor
+pairs. Deduplicating the resulting S spaces leaves 79 outside-T envelopes.
+All79 pass a relaxed linear-span closure test, demonstrating that this
+relaxation does not discriminate the proposals. It is not evidence that the
+envelopes contain realizable AES circuits.
+
+Three envelopes receive constructive checks. The first selector mutation
+and first random proposal each fail an unrestricted first-product test after
+q is introduced: 134,217,727 left forms per envelope. These two exact closure
+dead ends exclude those particular envelopes, not all79 proposals or all
+possible auxiliaries. The original a13 envelope allows six original products
+including a13 to be replayed inside S, reaching dimension33. The missing
+original functions are four terminal products: a18,a22,a23,a28. A fixed
+pre-tail-factor search cannot add another useful product, exhausting
+8,388,607 left forms. A three-gate unrestricted joint solve remains
+INDETERMINATE after122.040 seconds; no impossibility claim follows.
+A smaller native-XOR SAT formulation asks only for any first useful product,
+with both operands unrestricted and a nonzero selector over the three target
+quotient directions. Twelve brute-force SAT/UNSAT controls pass, but the AES
+instance also returns INDETERMINATE under its120-second budget. Reducing the
+question to one product has therefore not yet resolved this envelope.
+
+Root independently reconstructs the source and checks all 2,870 serialized
+matrix entries from these four enumeration problems and every warm-start
+witness. The large scans themselves are not independently repeated. The
+square search executable is byte-identical to the previously independently
+tested engine. Evidence: `runs/aes-auxiliary-first-20261004/` and
+`runs/aes-auxiliary-review-20261004/`.
+
+The auxiliary warm start also exposes a terminal four-to-three family absent
+from the earlier two/three-root inventory. Across nine public sources, an
+inventory checks all 6,435 four-element subsets of the thirteen terminal
+ANDs per source. Exactly170 are rank-eligible; all have retained dimension33
+and AES target dimension36. Of these,130 contain a previously excluded pair
+or triple. Exact space-containment checks lift those earlier fixed-P closure
+exclusions to the larger windows. The other40 source windows reduce to22
+distinct canonical(P,W,T) truth-space problems. This deduplication checks
+actual equality, not a conjectured affine input equivalence.
+
+One of the22 problems exactly matches the already completed original-a13
+warm-start search and is reused. The other21 run new exact fixed-P closures.
+There are189,278,567 new left-form evaluations, including six successful
+intermediate stages and176,160,747 forms across the21 final exhaustive
+negative stages. Eighteen of22 problems stop at dimension33, two at34, and
+two at35; none reaches36. Every positive witness, every source-space grouping,
+and all20,056 new product-matrix entries pass a separate review. The full new
+scans are not independently repeated. Thus all170 rank-eligible terminal
+four-to-three windows are excluded **only when every replacement product has
+one factor in the fixed pre-tail space P**. Arbitrary both-non-P factors,
+changed retained functions, and larger replacements remain open. Evidence:
+`runs/aes-four-terminal-20261004/`.
+
+A further exact symmetry observation can reduce future unrestricted product
+enumeration: after omitting constants, any useful product has two independent
+operand vectors. Their plane intersects every codimension-one coordinate
+hyperplane. A change of basis within the operand plane changes the product
+only by already available functions, so restricting the left factor to one
+such hyperplane and leaving the right unrestricted preserves every product
+modulo W. All32 small exhaustive quotient-product controls agree. This is a
+proved enumeration reduction, not a measured runtime gain or a novelty claim;
+it does not justify restricting the left factor to a higher-codimension P.
+
+No correct27-AND AES circuit, world-first result, global AES lower bound, or
+physical implementation result has been obtained. The compact result is
+`workspace/aes-256-gcm/reports/sbox_auxiliary_window_study.json`. Future work
+must leave the excluded fixed-P families or choose a different auxiliary
+envelope; repeating their closure searches cannot yield a reduction.
+
 ## Rank-tight replacement windows — 2026-10-04
 
 No correct 27-AND AES S-box or world-first result was obtained. This study

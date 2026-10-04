@@ -1,0 +1,101 @@
+{
+  "status": "verified-scoped-auxiliary-and-terminal-results",
+  "base_commit": "024239468b89fde2fb8847a54af387db6ad9e4e1",
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "first_step": {
+    "source": "aes-sbox-a28-ad4-g131-gd32-xx103-47.circ.txt",
+    "source_sha256": "9e6c8dbed90aab60b19587c9a281f7962813b8557aac6c3a7498bc454a8c48bb",
+    "retained_ANDs": 18,
+    "W_dimension": 27,
+    "T_dimension": 35,
+    "replacement_budget": 9,
+    "status": "no-useful-product-inside-T",
+    "exact_left_forms": 67108863,
+    "consequence": "Any successful9gate replacement must introduce an outsideT auxiliary first; otherwise no useful gate is available."
+  },
+  "auxiliary_sampling": {
+    "factor_pairs_proposed": 85,
+    "distinct_envelopes": 79,
+    "linear_relaxation_survivors": 79,
+    "actual_envelopes_tested": [
+      0,
+      1,
+      53
+    ],
+    "unrestricted_first_product_exclusions": [
+      {
+        "proposal": 1,
+        "forms": 134217727
+      },
+      {
+        "proposal": 53,
+        "forms": 134217727
+      }
+    ],
+    "original_auxiliary": {
+      "warm_added_products": 6,
+      "warm_dimension": 33,
+      "remaining_budget": 3,
+      "restricted_P_factor_closure": "no-extension",
+      "restricted_left_forms": 8388607,
+      "unrestricted_joint_status": "INDETERMINATE",
+      "unrestricted_any_first_product_status": "INDETERMINATE"
+    },
+    "scope": "Finite heuristic sample, not exhaustive auxiliary enumeration.79linear-relaxation survivors are not79functional circuit constructions."
+  },
+  "four_terminal": {
+    "source_circuits": 9,
+    "all_four_terminal_subsets": 6435,
+    "rank_eligible": 170,
+    "nested_in_prior_pair_or_triple": 130,
+    "new_source_windows": 40,
+    "new_distinct_exact_truth_spaces": 22,
+    "reused_previous_exact_problem": 1,
+    "new_negative_final_stages": 21,
+    "new_complete_negative_left_forms": 176160747,
+    "new_forms_including_positive_prefixes": 189278567,
+    "positive_stages_verified": 6,
+    "final_dimensions_histogram": {
+      "33": 18,
+      "34": 2,
+      "35": 2
+    },
+    "restricted_exclusions": 170,
+    "scope": "All170rank-eligible terminal4-to3 windows among6435tested windows. Each new product must have one factor in fixed pre-tail P. No unrestricted27AND exclusion or smaller candidate follows."
+  },
+  "controls": {
+    "rank_slack_one_target_spaces": 35,
+    "hyperplane_exact_product_controls": 32,
+    "unreachable_input_negative": true,
+    "auxiliary_matrix_entries": 2870,
+    "four_window_matrix_entries": 20056,
+    "free_product_SAT_bruteforce_controls": 12
+  },
+  "proof_notes": [
+    "For rank slack one, saturate W with useful products insideT, then enumerate realizable outsideT products from the saturation and close in T+q. The tested initial saturation is W itself.",
+    "For a fixedS=T+q, any sequence of valid useful products reaches the same least S-constrained product-closed space. Adding original realizable products insideS is a sound warm start.",
+    "Every nonzero quotient product has an operand2plane modulo constants. Any coordinate hyperplane meets that plane, and GL2basis changes alter the product only by available functions. Restricting just the left operand to a codimension1 hyperplane therefore preserves all quotient products.",
+    "For130nested four-terminal windows, an already verified35-dimensional P-factor closed space contains their retained33-dimensional space but not AES. Ranktightness restricts all3newproducts to the same36-dimensionalT, so induction excludes the P-factor family."
+  ],
+  "evidence": {
+    "runs/aes-auxiliary-first-20261004": {
+      "run_sha256": "f6ae72f6961f3f3ecb3c72679d1752c03e03fa5fe63244bada243d26bc7023aa",
+      "report_sha256": "fcb215f9bea1ae3b676e584ddf03acb6e487b10f396f83e15a0eb4db2e2e9580"
+    },
+    "runs/aes-auxiliary-review-20261004": {
+      "run_sha256": "fc4341d25afd44e0de2ee1176ee3bea7ec7b5a7b83210ab3260bcfd10e435adc",
+      "report_sha256": "3ed51499190562f7268aac37dd850379ba156242f63c35b23b03ce44a22f234d"
+    },
+    "runs/aes-four-terminal-20261004": {
+      "run_sha256": "f91ec16ec36ea38d95cebe2f8cfabc18640e0f283f31a1528f54275dfa3d12af",
+      "report_sha256": "67a400c12a5105cd2215e2e7064de0708c70f65aca833f41cc117176a23d83eb"
+    }
+  },
+  "large_enumerations_independently_repeated": false,
+  "world_first_established": false,
+  "correct_27_AND_AES_found": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "next_open_search": "Unrestricted both-non-P products or other outsideT auxiliary envelopes; fixed-P closures cannot improve these selected terminal windows."
+}
