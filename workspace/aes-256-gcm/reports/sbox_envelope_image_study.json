@@ -1,0 +1,169 @@
+{
+  "status": "verified-fixed-family-images-and-timeout",
+  "correct_27_AND_AES_found": false,
+  "world_first_established": false,
+  "global_AES_lower_bound_established": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "scope": "Finite fixed-factor pools with complete auxiliary quotient images; extensions heuristic and family SAT timeout inconclusive.",
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "base_commit": "4461c2aad706ee6242fe4fe10251db3ffa06d9b8",
+  "W_dimension": 27,
+  "T_dimension": 35,
+  "retained_ANDs": 18,
+  "replacement_budget": 9,
+  "base_pool": {
+    "first_factors": 161,
+    "second_factors": 161,
+    "systems": 103684,
+    "feasible_systems": 38,
+    "distinct_envelopes": 111,
+    "previous_sample": 58,
+    "new_vs_sample": 53,
+    "per_system_image_counts_sum": 154,
+    "A_rank_histogram": {
+      "2": 31,
+      "3": 5,
+      "4": 1,
+      "7": 1
+    },
+    "run_algorithm_seconds": 40.66336862486787,
+    "first_tool_repeat_algorithm_seconds": 41.22116974997334,
+    "validated_tool_repeat_algorithm_seconds": 49.221320832846686,
+    "independent_full_sweep_this_campaign": false,
+    "independent_all_positive_images": true
+  },
+  "second_radius_two": {
+    "center_mask": 2097416,
+    "new_factors": 320,
+    "systems": 206080,
+    "feasible_systems": 0,
+    "independent_complete_replay": true,
+    "independent_algorithm_seconds": 28.243997832993045,
+    "absent_map_histogram": {
+      "A_zero_only": 0,
+      "C_zero_only": 206078,
+      "both_zero": 2
+    }
+  },
+  "first_radius_two": {
+    "center_mask": 11776,
+    "new_factors": 322,
+    "systems": 207368,
+    "feasible_systems": 21,
+    "distinct_envelopes": 51,
+    "new_vs_base": 37,
+    "independent_complete_replay": true,
+    "independent_algorithm_seconds": 28.78229008289054
+  },
+  "distinct_auxiliary_envelopes_union": 148,
+  "heuristic_continuations": {
+    "new_base_cases": 53,
+    "new_first_cases": 37,
+    "all_final_dimensions": 29,
+    "AES_reached": false,
+    "unrestricted_exclusion": false
+  },
+  "family_third_product": {
+    "envelopes": 64,
+    "parameter_rank": 7,
+    "argv": [
+      "cryptominisat5",
+      "--verb",
+      "1",
+      "--threads",
+      "1",
+      "--random",
+      "20261004",
+      "--maxtime",
+      "120",
+      "--autodisablegauss",
+      "0",
+      "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-envelope-image-20261004/aes-family-third-product.cnf"
+    ],
+    "status": "INDETERMINATE",
+    "exit_code": 15,
+    "wall_seconds": 121.06145554105751,
+    "variables": 978,
+    "clauses": 2780,
+    "xors": 229,
+    "cnf_sha256": "8164e60b0ec1feab0e3b5d3489e65d0ac939b60d3c06a60c00e17319b18a0392",
+    "independent_controls": {
+      "family_cases": 32,
+      "fixed_parameter_cases": 26,
+      "SATISFIABLE": 22,
+      "UNSATISFIABLE": 36
+    },
+    "independent_preparation": {
+      "parameter_vectors_verified": 128,
+      "useful_envelopes_verified": 64,
+      "truth_rows_per_vector": 256,
+      "kernel_dimension": 11,
+      "zero_image_generators_verified": 4,
+      "zero_image_q_and_r_differences_in_W": true,
+      "prepared_sha256": "b12ddbc532fb18e29af56eadb5c2758097f123140494d24e970139c611f3ed83",
+      "base_report_sha256": "c71fbbbd94536a4bdaaae62ed8365c41c3f8a8f52607521479ea863b0166adbe"
+    },
+    "exclusion_established": false
+  },
+  "controls": {
+    "root_abstract_maps": 128,
+    "independent_complete_abstract_map_pairs": 80357,
+    "independent_truth_systems": 10240,
+    "new_tool_tests": 4,
+    "new_tool_exhaustive_maps": 4369,
+    "new_tool_exhaustive_affine_systems": 2940,
+    "retained_prefix_tests": 4,
+    "retained_stage_tests": 5
+  },
+  "prior_art_checked_date": "2026-10-04",
+  "prior_art": [
+    {
+      "url": "https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits",
+      "fact": "Selected examples include28AND,AD4,G131. Not a comprehensive optimum claim."
+    },
+    {
+      "url": "https://www.nist.gov/publications/number-boolean-functions-multiplicative-complexity-2",
+      "fact": "Two-AND structure research predates this attempt."
+    },
+    {
+      "url": "https://arxiv.org/abs/2005.01778",
+      "fact": "SAT-based multiplicative-complexity synthesis predates this attempt."
+    }
+  ],
+  "evidence": {
+    "runs/aes-envelope-image-20261004": {
+      "report_sha256": "c71fbbbd94536a4bdaaae62ed8365c41c3f8a8f52607521479ea863b0166adbe",
+      "run_record_sha256": "5489e0072ec2ccb9c4e4494bcbc495127f179e970d42d0a5389932016664683b"
+    },
+    "runs/aes-envelope-image-review-20261004": {
+      "report_sha256": "94a09fec60975ac63fa2a45cb8eeeb09e8b4bddc0b79bde762c1768c9340656c",
+      "run_record_sha256": "7f4dc2147f62393dd8bac895e552058eff5e34f7d2f46f50f04ad10abffcd541"
+    }
+  },
+  "additional_reports_sha256": {
+    "runs/aes-envelope-image-20261004/base-continuation-report.json": "4fda7f5f1f571c95c168be72841f6add308341225ad8d7fbb15908dc25e7a49f",
+    "runs/aes-envelope-image-20261004/expanded-continuation-report.json": "7c365a02ba7b89e6aa62c1e96bf13aa43f4e8640dba093d8935f99e245b146fd",
+    "runs/aes-envelope-image-20261004/expanded-report.json": "577bad76ea6c051fb4e82ca6dde2996f6312529b8bebbdf3e1d34ed343f6b8f0",
+    "runs/aes-envelope-image-20261004/family-report.json": "918683d6f4fbb666c808d0e23a99439b79848439bf6487a7160a7e706b5bcc0c",
+    "runs/aes-envelope-image-20261004/first-expanded-report.json": "13889fe091e71850d304bb2f23dcf9913e82ca172854aec12b45aa3c27bd5fc2",
+    "runs/aes-envelope-image-20261004/promoted-first-report.json": "a0c8fe1be0547e5b598d5297e1cdbeed8c2659fe6e248e60ef3c2adaf53bd7e2",
+    "runs/aes-envelope-image-20261004/promoted-image-report.json": "fadcf50e4ba29a44f4344bfc3a5693da9842df9f2c541d4f36e70b31c0b7c211",
+    "runs/aes-envelope-image-20261004/promoted-second-report.json": "ccbe44d84b4cfaca9bec9b3f8dd04b2fb0dde2d75f1cf7ac8bbcfadbd254db75",
+    "runs/aes-envelope-image-20261004/report.json": "c71fbbbd94536a4bdaaae62ed8365c41c3f8a8f52607521479ea863b0166adbe",
+    "runs/aes-envelope-image-20261004/validated-first-report.json": "afc2d96e0aaf8badc56107c1f003b5dd7538ba03032bcfc3c2c62f98f09fb07f",
+    "runs/aes-envelope-image-20261004/validated-image-report.json": "d32a67d1ab4b60d79567e99dd27259efaec7c6ae26dd13e08e7a2c82d75287f5",
+    "runs/aes-envelope-image-20261004/validated-second-report.json": "d62638f32e231459cd566c959ba944c7f22e7a6d41e96c469450fc327ad59984",
+    "runs/aes-envelope-image-review-20261004/expanded-review-report.json": "0d6bc88e0e63733e329704d1a05e4c0f981668b8ae43f64946d3c0e9a2c75bb7",
+    "runs/aes-envelope-image-review-20261004/family-review-report.json": "c7c7580bc0a3d076ac0cf789e077f599d6aac4d23ca1b4ce398e146d070ac847",
+    "runs/aes-envelope-image-review-20261004/first-review-report.json": "5d9d6f7f2229f8c668a37e2866158f9666a074e88c5798745e254dd9241b59e9",
+    "runs/aes-envelope-image-review-20261004/promoted-review-report.json": "a0a2d843790f916f6dc0dd191bd23a5f842f6723d058f19ac3f618e9951e88a3",
+    "runs/aes-envelope-image-review-20261004/report.json": "94a09fec60975ac63fa2a45cb8eeeb09e8b4bddc0b79bde762c1768c9340656c"
+  },
+  "open_questions": [
+    "Unrestricted third products in the64parameter-family or other envelopes.",
+    "Unsearched fixed-factor masks and changed retained-function families.",
+    "A complete verified27AND construction and any actual novelty/physical improvement."
+  ]
+}

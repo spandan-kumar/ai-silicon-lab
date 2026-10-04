@@ -8,6 +8,101 @@ profile.
 
 Research date: 2026-08-29
 
+## Complete two-product envelope images — 2026-10-04
+
+There is still no complete 27-AND AES construction or established world first.
+The new result is a complete enumeration of attainable auxiliary quotients
+inside several finite fixed-factor families, replacing the preceding witness
+sample. It is not an enumeration of arbitrary AES circuits or all prefix
+spans inside each envelope.
+
+For a fixed f,h,alpha,beta, let K be the coefficient kernel enforcing
+r=h*v+(alpha*h+beta)*f*g in T. On K define A=q modulo T and C=r modulo W.
+Eliminate A while retaining coefficient lifts and their C tags. If C is
+nonzero on ker(A), every nonzero A image has a useful lift: add a zero-image
+kernel vector whenever the chosen lift has C=0. Otherwise C descends to the
+A image, so exactly the images outside its kernel are useful. If the A image
+has rank a and the descended C map has rank c, the two respective counts are
+2^a-1 and 2^a-2^(a-c). Gray enumeration supplies one actual two-product
+witness per useful image. This is elementary linear algebra, not a claimed
+new general method.
+
+The retained tool is
+`workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py`. It accepts
+separate first/second factor pools, checks input dimensions and constant-free
+masks, hashes dependencies, and refuses to overwrite existing evidence.
+Above the configurable image-rank limit it marks the report incomplete;
+skipped enumeration never becomes a negative result. All current image
+ranks are at most seven, below the default limit of eighteen.
+
+The measured finite families are:
+
+- Original 161-by-161 pool: 103,684 systems, 38 feasible systems, 111 distinct
+  auxiliary envelopes. The old 58-envelope sample is contained in this set,
+  leaving 53 previously missed envelopes. The original run took 40.66 seconds;
+  the initial promoted-tool repeat took 41.22 seconds. After input-guard fixes,
+  the retained tool repeated all three families with identical results; its
+  base repeat took 49.22 seconds while the two other repeats ran concurrently.
+  These host algorithm wall times are not a controlled speed comparison.
+- Change the second fixed factor by exactly two nonconstant coefficient bits
+  around mask 2,097,416, excluding the original pool: 320 new second factors,
+  206,080 systems, no feasible prefix. An independent low-pivot implementation
+  repeats every system and finds C identically zero on every kernel. This is
+  an exact exclusion of this finite factor family only.
+- Change the first fixed factor by exactly two such bits around mask 11,776,
+  excluding the original pool: 322 new first factors, 207,368 systems, 21
+  feasible systems, 51 envelopes. Of these, 37 are absent from the complete
+  original pool. Independent full replay matches every feasible-system key,
+  image count, envelope and retained witness. The combined inventory is 148
+  distinct auxiliary envelopes, not 148 complete AES implementations.
+
+The 53 newly enumerated original-pool envelopes and 37 new first-factor
+envelopes were constructively tested with the previous source-gate warm
+starts and finite dynamic left-factor pools. All 90 stalled at dimension 29
+without reaching AES. These heuristic failures do not exclude unrestricted
+extensions. The preceding three exact envelope exclusions remain valid;
+this campaign adds no unrestricted closure exclusion.
+
+One original-pool fixed system has A-image rank seven and descended C rank
+one, yielding 64 useful envelopes. Its prepared family writes the available
+space after two products as U=B+q, B=W+d, with q a seven-parameter linear
+combination and one parity constraint selecting the useful half. A joint
+SAT instance tests any third useful product in T+q across all 64 choices.
+The operand plane can be normalized so its left factor lies in B; diagonal
+products vanish modulo B. The remaining exact coefficients are quadratic
+for B-times-B products and cubic for the variable-q term. The actual AES
+instance has 978 variables, 2,780 clauses and 229 XOR constraints. It returned
+`INDETERMINATE`, exit 15, after 121.06 seconds command wall under a 120-second
+solver budget. No exclusion or circuit follows from that timeout.
+
+Independent verification includes 80,357 complete small abstract-map pairs,
+10,240 fixed-factor truth systems, every image in all 38 reported positive
+original-pool systems, and both complete radius-two sweeps. The base pool's
+full feasibility classification was independently replayed in the preceding
+campaign; this campaign does not repeat that independent full base sweep.
+The family SAT audit compares 32 whole small families and 26 fixed parameter
+fibers against exhaustive unrestricted operands: 22 SAT and 36 UNSAT. All
+128 AES preparation parameter vectors pass truth checks, with 64 useful
+envelopes. The four zero-image kernel generators have both q and r differences
+inside W, so alternative lifts define the same available spaces. Four new
+tool tests also cover exhaustive images, affine operands, incompleteness and
+evidence preservation.
+
+Primary web sources were checked again on 2026-10-04. The
+[NIST circuit table](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits)
+lists selected 28-AND AES examples, including the depth-four 131-gate source;
+the table is neither comprehensive nor an optimality proof. Established
+[two-AND structure research](https://www.nist.gov/publications/number-boolean-functions-multiplicative-complexity-2)
+and [SAT synthesis](https://arxiv.org/abs/2005.01778) predate this attempt.
+No new novelty claim is supported. No candidate RTL or protected evaluator
+changed, and physical/security metrics remain unavailable.
+
+Detailed immutable run evidence is in `runs/aes-envelope-image-20261004/`,
+`runs/aes-envelope-image-review-20261004/` and
+`runs/aes-envelope-closeout-20261004/`. The compact committed record is
+`workspace/aes-256-gcm/reports/sbox_envelope_image_study.json`. Run records
+retain unavailable per-attempt model/usage/time/cost telemetry as null.
+
 ## Constructive two-AND prefixes and exact auxiliary closures — 2026-10-04
 
 The current fixed eighteen-product family still has no complete 27-AND AES
