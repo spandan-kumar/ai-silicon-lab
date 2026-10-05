@@ -1,0 +1,640 @@
+{
+  "status": "verified-scoped-exclusions-and-known-envelope-rediscovery",
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "base_commit": "638c8f654bac8a2ed9fa8d6dc6357ef110f8bd2b",
+  "shared_family": {
+    "fixed_retained_ANDs": 18,
+    "W_dimension": 27,
+    "B_dimension": 28,
+    "T_dimension": 35,
+    "Q_dimension": 7,
+    "R_dimension": 42,
+    "constructively_prepared_two_product_envelopes": 64,
+    "nonzero_Q_envelopes_proved_closed": 127,
+    "rho0_left_forms": 67108863,
+    "rho1_left_forms": 134217727,
+    "rho0_command_wall_seconds": 71.94248670898378,
+    "rho1_command_wall_seconds": 377.79960841685534,
+    "rho1_nonzero_target_kernel_maps": 0,
+    "large_scan_independently_repeated": false,
+    "input": {
+      "B_hex": [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0xffffffffffffffffffffffffffffffff00000000000000000000000000000000",
+        "0xffffffffffffffff0000000000000000ffffffffffffffff0000000000000000",
+        "0xffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000",
+        "0xffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000",
+        "0xff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00",
+        "0xf0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+        "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "0x2222222211111111111111112222222288888888444444444444444488888888",
+        "0xaa0a00a05505005a00a0aa050050550a00a0aa0500505500aa0a00a05505005",
+        "0xcc003300cc0033003300cc003300cc003300cc003300cc00cc003300cc003300",
+        "0xc33c0000c33c00003cc300003cc300000000c33c0000c33c00003cc300003cc3",
+        "0x660066090099009099009906006600606600660900990090990099060066006",
+        "0xc03030c030c0c03030c0c030c03030c0030c0c030c03030c0c03030c030c0c03",
+        "0x1482148228412841148214822841284114821482284128411482148228412841",
+        "0xf0f00f0f00000000f0f00f0f0000000000000000f0f00f0f00000000f0f00f0f",
+        "0x1441144182288228288228824114411428822882411441141441144182288228",
+        "0xec0028190d1121109a02c21106a2ec0c1590000202880002d11c02211e108090",
+        "0x1060e6788060014c14c4a00848088453024220ac1aca4001170788010080e8",
+        "0xe04210088000821083a2130d5121900004888081032000008080200600bc1801",
+        "0x101a100080838662808e8408010080731053558400c24a107748200e001e186",
+        "0x4210404000da61218014208111000120065400e50028000400048e018d080d",
+        "0x205d7a0448053000600420010489380274a066270080020f1400001230800201",
+        "0x420028b09821110111ce8ad20018040040211384014030088012002250c0803d",
+        "0x470460a2074caa408200500002000000003316001604824078a8030454608825",
+        "0x889a206a003389430284818001004449130008ac5a0840320600003488004021",
+        "0xe22516beeb4b0027e08f4de827689bbb4d5aadd1ef08f37aaf3e3722e7"
+      ],
+      "Q_hex": [
+        "0x101010008082822000040408000080211051550000820a005540000a000a082",
+        "0x551541520808a2a55151050aa8a22aa405515100882a2aa540151558a8a2a20",
+        "0x11154004a2a208a24454014488080082400515150822a2a00401010080202020",
+        "0x44411140a2288820141040052a228002050050010aa0a00a50051555a88000a0",
+        "0x404015400808a2080101540120208a2015404040a208080801545454208a8a8a",
+        "0x5155500422a28aa24554104188288082440515140a02a2a00401010480882820",
+        "0x11040454a882228a4141104482802aa81055455508aa00a255504500000aaa22"
+      ],
+      "targets_hex": [
+        "0x52379de7b844e3e14cb3770196ca0329e7bac28f866aac825caa2ec7bf977090",
+        "0x21e0b833255917823f6bcb91b30db559e4851b3bf3ab2560980a3cc2c2fdb4ff",
+        "0x54b248130b4f256f7d8dcc4706319e086bc2aa4e0d787aa4f8045f7b6d98dd7f",
+        "0xf210a3aece472e532624b286bc48ecb4f7f17a494ce30f58c2b0f97752b8b11e",
+        "0x4e9ddb76c892fb1be9da849cf6ac6c1b2568ea2effa8527d109020a2193d586a",
+        "0xac39b6c0d6ce2efc577d64e03b0c3ffb23a869a2a428c424a16387fb3b48b4c6",
+        "0xc870974094ead8a96a450b2ef33486b4e61a4c5e97816f7a7bae007d4c53fc7d",
+        "0x4f1ead396f247a0410bdb210c006eab568ab4bfa8acb7a13b14ede67096c6eed"
+      ],
+      "parity_bits": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    "proof": [
+      "Every f in B and v in V=B+Q with fv in R=T+Q has fv in V, by the complete zero-D scan.",
+      "For nonzero q in Q, independence modulo T gives V intersect (T+q) = B+q.",
+      "Every useful operand plane of U=B+q meets B; Boolean basis changes change its product only by U functions.",
+      "Therefore every U product lying in S=T+q already lies in U: U is S-constrained closed.",
+      "W is contained in U but AES targets are not. No S-constrained completion from this fixed W exists.",
+      "The nine-product replacement budget permits only one independent direction outside T; this proves conditional 27-AND exclusions, not a global AES bound."
+    ],
+    "scope": "One fixed retained eighteen-AND space and one Q7 span; other auxiliaries and changed retained spaces remain open."
+  },
+  "AD3_fixed_source_windows": {
+    "source_file": "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+    "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+    "removed_triples": [
+      [
+        "a24",
+        "a30",
+        "a32"
+      ],
+      [
+        "a25",
+        "a26",
+        "a35"
+      ],
+      [
+        "a27",
+        "a28",
+        "a34"
+      ],
+      [
+        "a29",
+        "a31",
+        "a33"
+      ]
+    ],
+    "statuses": [
+      "UNSATISFIABLE",
+      "UNSATISFIABLE",
+      "UNSATISFIABLE",
+      "UNSATISFIABLE"
+    ],
+    "command_wall_seconds": [
+      39.57550379191525,
+      44.200623666867614,
+      44.42338804202154,
+      39.81076945899986
+    ],
+    "independent_projection_checks": 1860,
+    "formal_UNSAT_certificate_checked": false,
+    "scope": "All four rank-eligible terminal triples in firstg139/gd27 source only; unchangedfull32D affinepre-tail factor space; two newparallel products; no retained/newAD3signal can feed operands."
+  },
+  "larger_Q_relaxations": {
+    "Q_dimensions": [
+      17,
+      8,
+      9
+    ],
+    "statuses": [
+      "SAT",
+      "SAT",
+      "SAT"
+    ],
+    "same_known_original_a13_envelope": [
+      true,
+      true,
+      true
+    ],
+    "new_envelopes_found": 0,
+    "note": "Positive relaxed witnesses all rediscover the original auxiliary direction; no new full AES circuit follows."
+  },
+  "prior_art_checked_date": "2026-10-05",
+  "prior_art": [
+    {
+      "url": "https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits",
+      "fact": "Selected examples include 28-AND AES and 35-AND AND-depth3 circuits; the table is not an optimum proof."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/usnistgov/Circuits/master/data/slp/aes/aes-sbox/README.md",
+      "fact": "The current selected table credits the A28 and A35/AD3 contributions to Milad Nasr; these are prior art."
+    },
+    {
+      "url": "https://arxiv.org/abs/2005.01778",
+      "fact": "SAT multiplicative-complexity synthesis predates this attempt."
+    },
+    {
+      "url": "https://umizame.github.io/S-box_29-AND/",
+      "fact": "The explicit 29-AND construction is public prior art."
+    }
+  ],
+  "evidence": {
+    "runs/aes-family-third-split-20261005/report.json": "03e9f4f538a79a4e494e937a2e23ebbb93b57765e3eaba4e167d478a5e4a4ab0",
+    "runs/aes-third-family-structure-20261004/shared-report.json": "0b0d131b23fbd59281cd96c5db717cf041bf08544eb6e1403a26aecdffa6a9b8",
+    "runs/aes-third-family-structure-20261004/shared-controls-report.json": "8f504d45cb04838c3871cca0102ceef41025664d55d8170ccef0eb30fd520ec0",
+    "runs/aes-third-tag-review-20261005/report.json": "3c4c1c09204a1b0201e6750f2814d74c0e9ea7df834902036aeaf0d76de56dc4",
+    "runs/aes-third-tag-review-20261005/rho-one-report.json": "05af7437c807ed293268ed7d1baa430e94c5ad024174be8dc88fc5d748a73e7e",
+    "runs/aes-third-tag-review-20261005/terminal-report.json": "8690d8cb801e3c1be1cb07cd0438c7533c94343ef4da11f399432bdd1a33b857",
+    "runs/aes-alternative-route-20261004/remaining-summary.json": "8225df73658dc98e1fcacdfc1cc67076dfdb04a1f3ae535d4f8d1ec4131663a3",
+    "runs/aes-third-tag-review-20261005/extension-report.json": "8110473801b0b44963927199b6057ee63afed38de8704892d21004b8d7389512",
+    "runs/aes-third-tag-review-20261005/original-comparison-report.json": "d548d73f4ff8771fa2f50bebf5f833d697a99b42589076511da6bc7b13489ed4",
+    "runs/aes-family-third-split-20261005/relaxed-report.json": "75cc4bd515a9ea90e7b265eb8b0890f99cf6c546624725049e9dc1aea5571236"
+  },
+  "dependency_hashes_verified": 91,
+  "world_first_established": false,
+  "correct_27_AND_AES_candidate_found": false,
+  "correct_34_AND_AD3_AES_candidate_found": false,
+  "global_AES_lower_bound_established": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "open_searches": [
+    "Larger auxiliary spans excluding the original-q line.",
+    "Other public AD3 prefix spaces and larger/middle-tail replacement windows.",
+    "Changed retained functions or a different nonlinear construction."
+  ],
+  "followup": {
+    "enlarged_original_excluded": {
+      "Q_dimensions": [
+        17,
+        8,
+        9
+      ],
+      "rho1_statuses": [
+        "SAT",
+        "EXHAUSTED",
+        "SAT"
+      ],
+      "rho1_left_forms": [
+        2983530,
+        134217727,
+        2096903
+      ],
+      "rho1_command_wall_seconds": [
+        28.409526499919593,
+        430.2690964171197,
+        17.210383916972205
+      ],
+      "rho0_statuses": [
+        "EXHAUSTED",
+        "EXHAUSTED",
+        "EXHAUSTED"
+      ],
+      "rho0_left_forms_each": 67108863,
+      "rho0_command_wall_seconds": [
+        116.7417184158694,
+        109.83562695793808,
+        109.33767449995503
+      ],
+      "Q8_non_original_envelopes_closed": 254,
+      "scope": "Each Q8 direction except zero and the original class is closed in T+q for the fixed W; overlaps with prior Q7 exclusions are not counted here.",
+      "positive_three_gate_prefixes_rediscover_exact_closed_index": 53,
+      "independent_rho0_matrix_entries": 2106,
+      "independent_rho0_actual_binary_controls": 5892,
+      "large_scans_independently_repeated": false
+    },
+    "non_original_continuation": {
+      "trials": 8,
+      "finite_random_factors_each": 2048,
+      "final_dimension_each": 30,
+      "same_old_exact_closed_span": true,
+      "new_viable_envelope_found": false,
+      "initial_operand_field_interpretation_failure_preserved": true
+    },
+    "original_warm_SAT": {
+      "initial_dimension": 33,
+      "target_envelope_dimension": 36,
+      "status": "INDETERMINATE",
+      "exit_status": 15,
+      "command_wall_seconds": 123.70472191716544,
+      "small_actual_solver_controls": 18,
+      "known_source_product_positive": "SATISFIABLE",
+      "note": "No exclusion from this timeout; sharded complete enumeration is a separate active run."
+    },
+    "AD3_other_sources": {
+      "new_UNSAT_probes": 12,
+      "historical_first_source_UNSAT_probes": 4,
+      "new_actual_source_positive_controls": 12,
+      "independent_new_projection_checks": 5580,
+      "independent_negative_and_positive_CNF_byte_reconstructions": 24,
+      "equal_T_size_four_windows_each_source": 36,
+      "equal_T_size_five_windows_each_source": 144,
+      "total_rank_tight_terminal_windows_size_three_through_five_excluded": 736,
+      "AD2_filters_UNSAT": 16,
+      "AD2_actual_original_product_positive_controls": 16,
+      "independent_AD2_span_intersections": 16,
+      "span_of_prefix_and_L_products_dimensions_by_source": [
+        127,
+        127,
+        138,
+        138
+      ],
+      "low_degree_envelope_dimension": 35,
+      "intersection_is_P_dimension": 32,
+      "scope": "Unchanged original depth-one/two prefix and rank-tight terminal replacement windows through size five. Surplus-rank larger windows and changed prefixes remain open.",
+      "formal_UNSAT_certificate_checked": false
+    },
+    "evidence": {
+      "runs/aes-original-excluded-family-full-20261005/full-report.json": "f75d1de20cd42e849df8171a6160c152c842bc68f0d8e1bbae5f99637ddbee02",
+      "runs/aes-original-excluded-family-full-20261005/prepared-report.json": "ea15fa7abff62750ba1b439652bc4c227c320944afb57ad355c73f37bc43e25a",
+      "runs/aes-original-excluded-rho-zero-20261005/report.json": "00ea57b48ee3be0cc3d4c51bb742d5f85c586c8a40bb95b97a9132f38ace18d1",
+      "runs/aes-third-tag-review-20261005/rho-zero-excluded-report.json": "9ffcacca989386eaf4f317a246e6390c38169aae615240967a461f21c26c95d2",
+      "runs/aes-third-tag-review-20261005/original-excluded/full-prefix-report.json": "c7bf65bf2f18d49fead7f4b5e4980ff2118c049c7abc6b030c9fb2325a7401f4",
+      "runs/aes-nonoriginal-prefix-continuation-20261005/report.json": "f80e2016916023aebda0a292fcc55a581ac40c185912258b1acb424bfc0a1cb7",
+      "runs/aes-original-warm-SAT-20261005/report.json": "3f08582931af4fa3164254ee0f5934b23ba8d3fc79e62c59033cc546eda00f53",
+      "runs/aes-ad3-other-sources-20261005/summary.json": "bbb8b7b383b30397a2a4ac6f29c6edc4261eeadc5c21ed78b31ca0b2008e98e2",
+      "runs/aes-third-tag-review-20261005/other-AD3-report.json": "46eaa5518444f6481287d2662bb7a2d3d9129f373caa5bc959be2f22a99fbd3b",
+      "runs/aes-ad3-depth-refactor-20261005/linear-audit.json": "66e099468e9ba012c1ab889e2adfbdac412c2a48663500454419c18e8b7104b3",
+      "runs/aes-ad3-depth-refactor-20261005/run.json": "8a24214b03148a8ed8062164329f369964953921587fcb9dcd07965303ff3691"
+    },
+    "ongoing_searches": []
+  },
+  "terminal_followup": {
+    "publication_date": "2026-10-05",
+    "status": "verified-scoped-results-no-breakthrough",
+    "original_warm_exact": {
+      "status": "EXHAUSTED",
+      "left_forms": 2147483647,
+      "disjoint_shards": 32,
+      "initial_dimension": 33,
+      "target_envelope_dimension": 36,
+      "missed_AES_dimensions": 3,
+      "all_process_exit_codes": 0,
+      "large_scan_independently_repeated": false,
+      "independent_actual_binary_engine_cases": 3672,
+      "scope": "S-constrained closed superspace containing fixed W27; conditionally excludes original auxiliary S envelope, not arbitrary AES circuits."
+    },
+    "finite_excluded_rho1": {
+      "group_indices": [
+        0,
+        2
+      ],
+      "left_forms_each": 134217727,
+      "statuses": [
+        "EXHAUSTED",
+        "EXHAUSTED"
+      ],
+      "command_wall_seconds": [
+        651.3458003748674,
+        438.86019641603343
+      ],
+      "independent_actual_binary_cases": 7432,
+      "independent_full_matrix_entries": 2160,
+      "finite_F_values_not_span_F": true
+    },
+    "combined_one_auxiliary_closure": {
+      "Q_dimensions": [
+        17,
+        8,
+        9
+      ],
+      "pair_nonzero_intersection_counts": [
+        1,
+        3,
+        1
+      ],
+      "triple_nonzero_intersection_count": 1,
+      "distinct_final_S_envelopes": 131833,
+      "distinct_initial_Bq_envelopes": 131837,
+      "stored_two_product_prefixes_replayed_and_covered": 148,
+      "root_independent_small_space_enumeration_count_check": true,
+      "scope": "Fixed retained W and one outside-T auxiliary class from the union of three quotientQ spans. Every permitted gate stays in S=T+q. This excludes arbitrary-length S-constrained completion from W, not circuits using other auxiliary classes or two independent outside-T directions, a changed retained prefix, or a global AES lower bound."
+    },
+    "six_terminal_AD3": {
+      "source_index": 0,
+      "source_file": "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+      "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+      "source_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+      "scalar_AES_source_rows_verified": 256,
+      "six_terminal_deficit_histogram": {
+        "6": 594,
+        "5": 324,
+        "4": 6
+      },
+      "one_surplus_windows": [
+        {
+          "removed": [
+            "a24",
+            "a25",
+            "a26",
+            "a30",
+            "a32",
+            "a35"
+          ],
+          "W_dimension": 38,
+          "T_dimension": 42,
+          "AES_deficit": 4,
+          "replacement_budget": 5,
+          "surplus_slots": 1
+        },
+        {
+          "removed": [
+            "a24",
+            "a27",
+            "a28",
+            "a30",
+            "a32",
+            "a34"
+          ],
+          "W_dimension": 38,
+          "T_dimension": 42,
+          "AES_deficit": 4,
+          "replacement_budget": 5,
+          "surplus_slots": 1
+        },
+        {
+          "removed": [
+            "a24",
+            "a29",
+            "a30",
+            "a31",
+            "a32",
+            "a33"
+          ],
+          "W_dimension": 38,
+          "T_dimension": 42,
+          "AES_deficit": 4,
+          "replacement_budget": 5,
+          "surplus_slots": 1
+        },
+        {
+          "removed": [
+            "a25",
+            "a26",
+            "a27",
+            "a28",
+            "a34",
+            "a35"
+          ],
+          "W_dimension": 38,
+          "T_dimension": 42,
+          "AES_deficit": 4,
+          "replacement_budget": 5,
+          "surplus_slots": 1
+        },
+        {
+          "removed": [
+            "a25",
+            "a26",
+            "a29",
+            "a31",
+            "a33",
+            "a35"
+          ],
+          "W_dimension": 38,
+          "T_dimension": 42,
+          "AES_deficit": 4,
+          "replacement_budget": 5,
+          "surplus_slots": 1
+        },
+        {
+          "removed": [
+            "a27",
+            "a28",
+            "a29",
+            "a31",
+            "a33",
+            "a34"
+          ],
+          "W_dimension": 38,
+          "T_dimension": 42,
+          "AES_deficit": 4,
+          "replacement_budget": 5,
+          "surplus_slots": 1
+        }
+      ],
+      "actual_q_raw_implementations": 435,
+      "q_in_P_discarded": 3,
+      "q_unique_mod_F": 424,
+      "q_windows_completed": 2544,
+      "left_forms_completed": 5207568,
+      "maximum_attainable_direction_rank": 0,
+      "original_product_positive_rectangles": 6,
+      "original_reconstruction_AES256_controls": 6,
+      "original_reconstruction_AND_count": 36,
+      "bounded_unrestricted_first_product_probes": 3,
+      "bounded_unrestricted_UNSAT": 3,
+      "bounded_unrestricted_original_positive_SAT": 3,
+      "timeouts": 0,
+      "independent_audit": {
+        "scope": "Independent source parser and high-pivot ranks reproduce the inventory, all q implementations, exact F-coset finite-family coverage and all completed result shapes. A separate Gray-code/rank-difference algorithm reruns ten sampled complete rectangles, not all 2544 rectangles.",
+        "small_controls": {
+          "exact_small_controls": 34,
+          "positive": 1,
+          "negative": 33
+        },
+        "raw_q_implementations_covered": 435,
+        "unique_q_mod_F": 424,
+        "completed_q_window_reports_checked": 2544,
+        "independent_exact_rectangle_samples": [
+          {
+            "window": 0,
+            "family": "initial",
+            "q_index": 0,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 0,
+            "family": "initial",
+            "q_index": 154,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 0,
+            "family": "expanded",
+            "q_index": 0,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 0,
+            "family": "expanded",
+            "q_index": 5,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 0,
+            "family": "expanded",
+            "q_index": 268,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 5,
+            "family": "initial",
+            "q_index": 0,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 5,
+            "family": "initial",
+            "q_index": 154,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 5,
+            "family": "expanded",
+            "q_index": 0,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 5,
+            "family": "expanded",
+            "q_index": 5,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          },
+          {
+            "window": 5,
+            "family": "expanded",
+            "q_index": 268,
+            "result": {
+              "left_forms_checked": 2047,
+              "maximum_useful_product_subspace_dimension": 0
+            }
+          }
+        ],
+        "six_terminal_histogram": {
+          "6": 594,
+          "5": 324,
+          "4": 6
+        },
+        "complete_34_AND_AD3_AES": false,
+        "world_first_established": false,
+        "algorithm_seconds": 7.737762457923964,
+        "hashes": {
+          "runs/aes-ad3-six-terminal-20261005/audit.py": "9b9984857c9fb6e5f7103de0434dd36960725701852ca8770e39ab0d5a1623d9",
+          "runs/aes-ad3-depth-refactor-20261005/linear_audit.py": "77cb2a57527b04581b16fdcc8204f9b619096d52398818f08576e58c44953f86",
+          "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+          "runs/aes-ad3-six-terminal-20261005/source-0-inventory.json": "c72463803a886c7f41680c4b1d258f8e25261bfa286a259cd656de3ade8a66e7",
+          "runs/aes-ad3-six-terminal-20261005/source-0-expanded-pool.json": "881fa68c59af32c32c4a815c8291ca86ee940afbcbf02912e58e5209ec85e915"
+        }
+      },
+      "complete_34_AND_AD3_AES": false,
+      "world_first_established": false,
+      "scope": "Source 0 only. Six slack-one terminal windows. Actual depth-two q products from all nonconstant L20 basis pairs and all original middle-factor nonlinear radius-one perturbations, modulo F11-equivalent factor spaces. Final products are F11+q times unrestricted P32+q. Three selected q/window pairs additionally have unrestricted P33 times P33 first-product UNSAT.",
+      "open_branches": [
+        "Arbitrary L20 auxiliary factors beyond this finite q family.",
+        "Unrestricted both-factor final products for the other q/window pairs.",
+        "Five parallel AD3 replacement products with an outside-target auxiliary direction and no new AD2 q.",
+        "Changed original AD1/AD2 prefix, other public sources, or larger terminal windows."
+      ]
+    },
+    "joint_unrestricted_AD2_auxiliary": {
+      "statuses": [
+        "INDETERMINATE",
+        "INDETERMINATE",
+        "INDETERMINATE"
+      ],
+      "exit_statuses": [
+        15,
+        15,
+        15
+      ],
+      "windows": [
+        0,
+        3,
+        5
+      ],
+      "command_wall_seconds": [
+        126.30392975010909,
+        126.09876804193482,
+        125.96559629193507
+      ],
+      "small_full_affine_brute_solver_controls": 24,
+      "source_product_positive_controls": 3,
+      "independent_encoding_review_completed": false,
+      "scope": "Necessary first useful AD3 product after one unrestricted L20-times-L20 AD2 auxiliary outsideT. Both first-product factors arbitrary P32+q; one normalized into P32. Fixed source0 and terminal six-to-five windows0,3,5. No five-parallel-AD3 exclusion and no complete34AND circuit follows from a first witness.",
+      "negative_result_established": false
+    },
+    "raw_run_archives_in_GitHub_push": false,
+    "candidate_RTL_changed": false,
+    "world_first_established": false,
+    "correct_27_AND_AES_found": false,
+    "correct_34_AND_AD3_AES_found": false,
+    "global_AES_lower_bound_established": false,
+    "evidence_sha256": {
+      "runs/aes-original-warm-exact-20261005/report.json": "8e9b90dade52b6e0b344e6fc852f3123d7be5b5a00291b393ff4ced8892e902c",
+      "runs/aes-original-warm-exact-20261005/prepared-report.json": "40a62a6462cb441eca350bedf54bf367e7cbc2700b8832bdcc78e92aefe9a59f",
+      "runs/aes-third-tag-review-20261005/warm-shards/terminal-report.json": "3a2236d54a4646c3a881e7674aff142d823d2b3b9f8de2a85db42b1b4cace389",
+      "runs/aes-third-tag-review-20261005/warm-shards/report.json": "7c6de4c558223a92b145cf9d146788176711d966dfdb97d2f982c7c21599f398",
+      "runs/aes-finite-excluded-family-full-20261005/full-report.json": "1083da02b29c8c2ccab53ea2b0a47cb18fd8473fcfbc7b52257d45da6c9f1983",
+      "runs/aes-third-tag-review-20261005/finite-F/report.json": "982c0e29b4043f0f8b4d8d9f3c3e0ff57a01f649323191bfc4259939221f0d1f",
+      "runs/aes-family-closure-union-review-20261005/report.json": "68124db4eb6ea95a781f18f559022d3237d1d4c158f779024a8f87fb4163b9ca",
+      "runs/aes-family-third-split-20261005/relaxed-prepared-report.json": "392ed83ecfb133409d3e74ee130050e9da06314a38aeb0f94a70192f0119ad1f",
+      "runs/aes-ad3-six-terminal-20261005/summary.json": "d77d6799e41c67b4084a4ab7bac55c80c9171418369c8c4689ce385831656fe7",
+      "runs/aes-ad3-six-terminal-20261005/audit.json": "24f856ef0dc79f3631a4840d4235fbec8621ff8513e5d249a3c2ca77ff67f9d5",
+      "runs/aes-ad3-joint-aux-20261005/report.json": "5479e6312fedcdbfb9e395de9722d3b17b084299b4b6140b777bad4957a3410e",
+      "runs/aes-ad3-joint-aux-20261005/controls-report.json": "bc57e1ad7138727f18f691c8554bf72796a70436c6631c38566038f01c49918a",
+      "runs/aes-shared-family-closeout-20261005/checkpoint-integrity-report.json": "8ece189158a9412152645c20408d3de8891a18b5ef7b16ac3fecb0f6d129ef02"
+    },
+    "open_questions": [
+      "Arbitrary L20 auxiliary factors beyond this finite q family.",
+      "Unrestricted both-factor final products for the other q/window pairs.",
+      "Five parallel AD3 replacement products with an outside-target auxiliary direction and no new AD2 q.",
+      "Changed original AD1/AD2 prefix, other public sources, or larger terminal windows."
+    ]
+  }
+}

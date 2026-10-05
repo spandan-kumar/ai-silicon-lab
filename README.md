@@ -12,6 +12,10 @@ The first experiment is a verified Doom-capable computer. The lab also now
 contains the specification and research plan for an AES-256-GCM accelerator;
 future experiments can use the same registry, evidence, and provenance model.
 
+Experiment 002's implementation, attempted optimizations, current research
+results and open questions are summarized in the
+[AES-256-GCM progress document](experiments/aes-256-gcm/PROGRESS.md).
+
 Start with:
 
 ```sh

@@ -8,6 +8,168 @@ profile.
 
 Research date: 2026-08-29
 
+## Shared auxiliary-family closure and depth-three probes — 2026-10-05
+
+No correct 27-AND AES circuit, 34-AND AND-depth-three AES circuit, global AES
+lower bound, or world first has been established. The preceding shared-family
+SAT timeout is now superseded by an exact finite scan, not by a timeout being
+treated as an exclusion.
+
+Fix the same eighteen retained products, whose affine truth span W has
+dimension 27. The prepared family has B=W+d of dimension 28, T=span(W,AES)
+of dimension 35, and seven auxiliary columns Q independent modulo T. Of its
+127 nonzero combinations, 64 have constructive two-product prefixes from
+the earlier fixed system. Write V=B+span(Q), R=T+span(Q). A single complete
+scan covers every nonzero constant-free left factor in B and solves exactly
+for every right factor in V. It exhausts 134,217,727 left forms, exit zero,
+in 377.80 seconds command wall. On every multiplication kernel modulo R,
+the entire target-complement tag D is zero, before imposing the auxiliary
+parity or output/operand-coefficient relation.
+
+That stronger observed condition excludes all 127 nonzero Q envelopes,
+including the 63 algebraically granted cases not asserted to have the same
+constructive two-product prefix. For q nonzero in span(Q), independence gives
+V intersect (T+q)=B+q. Every useful operand plane in U=B+q meets B modulo
+constants. A Boolean change of basis changes its product only by U terms.
+Normalize one factor into B: if the product lies in S=T+q, the complete
+zero-D scan places it in V and hence U. Thus U is closed under S-constrained
+products. Starting from W cannot reach AES inside S. With nine replacement
+products, a successful span containing W, the AES targets and an outside-T
+auxiliary would have to equal S, so these are conditional 27-AND exclusions.
+They do not cover changed retained gates, other auxiliary directions, or
+arbitrary AES circuits.
+
+A separate scan for the branch with both factors in B exhausts 67,108,863
+left forms, exit zero, in 71.94 seconds command wall. Its codimension-one
+left cut preserves every useful operand plane. It is consistent with, but
+not needed for, the stronger zero-D conclusion above. Independent review
+reconstructs all 702 and 918 matrix entries respectively and checks 5,827
+and 8,643 actual-binary small instances. The large scans were observed,
+not independently repeated. The retained input columns, proof and artifact
+hashes are in `workspace/aes-256-gcm/reports/sbox_shared_family_study.json`.
+
+For the public 35-AND, AND-depth-three g139/gd27 source, all four rank-eligible
+terminal-three-to-two windows were also tested with unrestricted affine
+factors in the full depth-at-most-two span P of dimension 32. Retained W has
+dimension 41 and T=span(W,AES) dimension 43, so both new products would have
+to lie in T and remain parallel to preserve AND depth three. The necessary
+first-product searches all return UNSAT, exit 20, in 39.58, 44.20, 44.42 and
+39.81 seconds command wall. Each original removed product passes a relaxed
+positive control. Independent review reconstructs all four negative and
+positive CNFs byte-for-byte and checks 1,860 projected products. It also
+tests 288 tiny actual SAT instances against brute force. No formal UNSAT
+certificate was checked; the other public prefix spaces and larger windows
+were then tested separately. All twelve corresponding probes in the three
+other pinned depth-three sources return UNSAT, exit 20, with twelve actual
+source-product positive controls. Independent review reconstructs their
+24 negative/positive CNFs and checks 5,580 more product projections. This
+brings the directly tested terminal-three-to-two windows to sixteen.
+
+Each source also has 36 rank-eligible four-terminal windows and 144
+five-terminal windows. Every one contains a uniquely selected excluded
+triple and has exactly the same target envelope T. This initially excludes
+parallel replacements only. To check whether new depth-two gates could feed
+new depth-three gates, take L to be the original depth-at-most-one span of
+dimension 20 and P the original depth-at-most-two span of dimension 32.
+The degree-at-most-four slice of each T has dimension 35, so degree alone
+does not identify it with P. Instead, the span M of P and every pairwise
+L-basis product has dimension 127 or 138 by source. All sixteen separately
+reconstructed intersections M intersect T_low equal P, dimension 32.
+Therefore the earliest new depth-at-most-two gate inside T cannot add rank;
+the rank-tight budget forbids such a gate. All useful replacements must be
+parallel depth-three products. Together with the solver results and exact
+equal-envelope diagnostics, this excludes 736 rank-eligible terminal
+windows of sizes three through five across the four fixed-prefix sources.
+It does not exclude changed prefixes or surplus-rank six-terminal windows.
+
+Three broader auxiliary spans, of quotient dimensions 17, 8 and 9, cover the
+148 stored envelopes. A stronger necessary-condition relaxation finds a
+positive product in each after 1,410,699 left forms. All three inferred q
+directions independently match the original a13 auxiliary modulo T. They
+rediscover the known envelope, not a new circuit. Original-direction-excluded
+scans then exhaust the branch with both operands in B for all three spans:
+67,108,863 left forms each, exit zero, in 116.74, 109.84 and 109.34 seconds
+command wall. Independent review reconstructs all 2,106 entries and checks
+5,892 actual-binary instances. In the auxiliary-bearing-input branch, the
+eight-dimensional family exhausts 134,217,727 left forms, exit zero, in
+430.27 seconds command wall. Both branches together close its 254 nonzero,
+non-original auxiliary envelopes for the same fixed W. Overlap with the
+earlier seven-dimensional family is not counted as additional exclusions.
+
+The other two auxiliary-bearing-input searches return positive products
+after 2,983,530 and 2,096,903 left forms. The first has a constructively
+verified three-gate prefix. Independent comparison nevertheless finds its
+30-dimensional available span exactly equal to the old index-53 closure,
+already excluded by the preceding 268,435,455-form scan. Eight finite warm
+continuations also stall in that same space. Thus this is another
+rediscovery, not a new viable envelope. The search now excludes each known
+auxiliary separately; excluding their entire linear span would incorrectly
+discard directions not actually searched.
+
+An unrestricted product SAT probe from the original warm span of dimension
+33 was inconclusive: exit 15 after 123.70 seconds command wall, with
+18 small solver controls and a fixed source-product positive control.
+A separate exact search partitions its complete left-factor hyperplane
+into disjoint affine cosets. All 32 batches now exhaust, exit zero, covering
+2,147,483,647 nonzero left forms. Independent review checks the full matrix,
+3,672 actual-binary small cases and the complete terminal partition; the
+large scan is not independently repeated. The resulting dimension-33 space
+is closed inside the original dimension-36 envelope and contains W. Thus no
+completion starting from W and staying in that envelope can reach all AES
+targets, regardless of how the original auxiliary is represented.
+
+The finite-exclusion scans also finish: Q17 and Q9 each exhaust 134,217,727
+left forms, exit zero, in 651.35 and 438.86 seconds command wall. They exclude
+only individually listed known classes, not their linear span. Independent
+review reconstructs all 2,160 full matrix entries and checks 7,432 actual
+small binary/brute cases. Combining both operand branches with the known
+closed superspaces for indices 0/1/53 and the original auxiliary closes all
+three quotient families. Their pair intersection dimensions are 1, 2 and 1;
+the triple intersection dimension is 1. Inclusion-exclusion gives 131,833
+distinct final envelopes, with no double-counting. All 148 stored two-product
+prefixes have their actual gates independently replayed and are covered.
+This is a fixed-W, single-outside-T envelope exclusion, not global AES
+optimality; changed prefixes and other auxiliary classes remain open.
+
+Six terminal gates in the first public depth-three source admit six
+rank-slack-one windows. A finite constructive campaign tests 424 distinct
+restricted-factor auxiliary implementations per window: 2,544 rectangles
+and 5,207,568 left forms, all with zero useful target-direction rank. The
+pool covers actual depth-one basis pairs and source-middle-factor nonlinear
+radius-one perturbations; deduplication modulo the original terminal-factor
+span preserves both operand spaces. Three unrestricted fixed-auxiliary
+first-product probes return UNSAT with source-product positive controls.
+These finite restrictions do not close the general six-terminal route.
+
+A separate joint solver allows arbitrary depth-one factor combinations for
+the new depth-two auxiliary and arbitrary depth-two combinations for its
+first useful depth-three product. Three 120-second probes return
+INDETERMINATE, exit 15, after 125.97--126.30 seconds command wall. Twenty-four
+full-affine small brute/solver controls and three source-product positive
+controls pass. Independent review of this latest encoding was not completed
+at publication, and no exclusion follows from its timeouts. Five parallel
+depth-three replacements without a new depth-two auxiliary are a separate
+open branch. See [the progress handoff](PROGRESS.md) for the current state.
+
+Primary sources were checked again on 2026-10-05. The current
+[NIST table](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits)
+and its [AES source inventory](https://raw.githubusercontent.com/usnistgov/Circuits/master/data/slp/aes/aes-sbox/README.md)
+list selected 28-AND and 35-AND depth-three examples and attribute those
+contributions to Milad Nasr. Neither table is an optimality proof. Published
+[SAT synthesis](https://arxiv.org/abs/2005.01778) and the
+[explicit 29-AND construction](https://umizame.github.io/S-box_29-AND/) are
+prior art. Elementary linear-algebra reductions here are not claimed as a
+new general synthesis method.
+
+Detailed evidence is retained under `runs/aes-family-third-split-20261005/`,
+`runs/aes-third-family-structure-20261004/`,
+`runs/aes-third-tag-review-20261005/`, `runs/aes-alternative-route-20261004/`
+and `runs/aes-shared-family-closeout-20261005/`. Run records validate with
+`./tools/experiment`. No RTL or protected evaluator changed; physical and
+security metrics remain unavailable. The coding-guidelines skill led to
+keeping experimental search changes separate from the working accelerator
+and to verifying that positive witnesses were not known constructions.
+
 ## Complete two-product envelope images — 2026-10-04
 
 There is still no complete 27-AND AES construction or established world first.
