@@ -12,6 +12,17 @@ The first experiment is a verified Doom-capable computer. The lab also now
 contains the specification and research plan for an AES-256-GCM accelerator;
 future experiments can use the same registry, evidence, and provenance model.
 
+## Experiment 002: AES-256-GCM
+
+The accelerator implementation and ongoing chip-design research live on
+[`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
+Read the [progress and research handoff](https://github.com/spandan-kumar/ai-silicon-lab/blob/codex/experiment-2-crypto-algo/experiments/aes-256-gcm/PROGRESS.md)
+for what we tried, verified results, limitations and the current open questions.
+The verified accelerator baseline is separate from the still-unmet
+world-first research goal.
+
+## Getting started
+
 Start with:
 
 ```sh
