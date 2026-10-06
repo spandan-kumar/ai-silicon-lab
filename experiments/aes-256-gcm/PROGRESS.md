@@ -1,6 +1,6 @@
 # Experiment 002: AES-256-GCM — progress and research handoff
 
-Last updated: **2026-10-05**. Work is on
+Last updated: **2026-10-06**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
@@ -23,6 +23,11 @@ constructive searches, **not a new record-setting AES circuit**.
 - **Latest depth-three result:** 736 rank-eligible terminal replacement windows
   of sizes three through five are excluded across four pinned public sources.
   Six larger, surplus-rank windows remain only partially investigated.
+- **Newest follow-up:** three of those larger windows have solver-reported
+  exclusions of useful parallel products inside the target envelope. A
+  46-factor constructive search completes across all six windows without a
+  candidate; a larger 105-factor search completes for one window. Unrestricted
+  five-product and auxiliary searches remain unresolved.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -46,6 +51,8 @@ terminal; no future result is assumed.
 | Two-product prefixes | Enumerated attainable envelopes in finite factor families, then tested their continuations. | 148 distinct stored envelopes were found. The latest closure campaign conditionally excludes every one, including apparent positives that were independently identified as known constructions. |
 | Minimum-AND-depth-three replacements | Replace terminal gates of four public 35-AND sources while preserving their earlier nonlinear gates. | Sixteen direct necessary-product probes return UNSAT; exact envelope and depth-refactoring analysis extends the result to 736 rank-eligible size-3/4/5 windows. |
 | Six-terminal escape | Allow one surplus signal: one new depth-two auxiliary followed by four depth-three products. | A finite family of 2,544 auxiliary/window rectangles, covering 5,207,568 left forms, finds no useful target direction. Three unrestricted fixed-auxiliary probes return UNSAT. Three joint unrestricted-auxiliary probes time out and remain inconclusive. |
+| Five parallel replacement products | Preserve all early gates and replace six terminal gates with five products, with no new depth-two auxiliary. | Three useful-inside-target product probes return UNSAT. Finite 46-factor and 105-factor searches find no complete circuit; broader full-truth and coefficient solver probes time out. |
+| Tensor and top-degree relaxations | Project the five-product problem onto alternating tensors or degree-seven/eight output coefficients. | An arbitrary tensor representative is not a minimum-rank bound. The top-degree relaxation admits witnesses that fail the full AES truth table, so neither diagnostic establishes a lower bound. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -112,8 +119,58 @@ The broader joint solver chooses an unrestricted depth-two auxiliary and a
 first useful depth-three product simultaneously. All three 120-second probes
 returned `INDETERMINATE`, with exit status 15. Their 24 small exhaustive
 solver controls and three source-product positive controls pass; those
-timeouts establish no negative result. Independent review of this newest
-joint encoding was not completed at this checkpoint.
+timeouts establish no negative result. Independent review is now complete:
+40 small full-affine exhaustive cases agree with 240 production/independent
+solver runs; all original serialized instances and AES input spaces were
+checked. No encoding defect was found, but no expensive AES search was
+repeated and no timeout became an exclusion.
+
+### New parallel-product follow-up — 2026-10-06
+
+This route keeps the first public 35-AND, depth-three source's 23 early ANDs
+and six retained terminal ANDs. Its factor space `P` has dimension 32, retained
+space `W` dimension 38, and `T = W + AES` dimension 42. Replacement operands
+must be in `P`; neither new nor retained depth-three outputs may be factors.
+
+For three of its six windows (indices 0, 3 and 5), exact coefficient encodings
+report no product in `T` outside `W`: `UNSAT`, exit 20, in 45.85, 47.97 and
+49.60 seconds command wall time. An independent reconstruction reproduces
+all 24 control/search CNFs byte-for-byte and checks 6,144 full-affine product
+projections. No formal UNSAT certificate was replayed. These results exclude
+the all-inside-`T` branch for those fixed windows, subject to solver correctness.
+
+Consequently, a successful five-product replacement there would need five
+actual products in one common nonzero outside-`T` class, with four independent
+pairwise differences spanning `T/W`. This is a necessary and sufficient
+condition for that fixed parallel architecture, not for arbitrary AES circuits.
+Nine broader full-truth probes time out. A compressed complete coefficient
+model for window 0 also times out (exit 15, 183.26 seconds); it establishes no
+negative result, and windows 3 and 5 were not attempted with that model.
+Independent reconstruction matches that compressed model's serialized AES
+CNF and all 465 product-coordinate entries, with 256 full-affine projection
+checks. Seven nontrivial negative controls and three positive decoder checks
+finish, while a fourth positive probe and an earlier decoder probe time out.
+The control campaign is not an all-passing audit, and no AES exclusion follows.
+
+A separate constructive method intersects exact product images for chosen
+left factors while allowing every right factor in `P`. For the 46-factor pool
+of source terminal operands plus the `P` basis, all **8,224,524** five-left
+combinations across six windows are accounted for by exact pruning. All
+294 surviving nonzero common-q form evaluations finish; the maximum target
+difference rank is two, below the required four. Independent high-pivot
+reconstruction verifies that finite campaign.
+
+The expanded 105-factor source-operand/XOR-pair pool completes for window 0:
+**96,560,646** combinations accounted for, 45,987 common-q form evaluations,
+maximum target difference rank two, no candidate. This expanded campaign
+was not independently repeated. A 1,023-factor pilot processes only part of
+one selected root before its 60-second enumeration limit; it is explicitly
+partial and cannot exclude the full pool. The finite left-factor choices do
+not cover arbitrary `P` operands. Repeated-left cases cannot complete these
+tested common-class searches because their exact maps have no useful
+inside-`T` product.
+These evaluation counts are summed over factor combinations/windows; they
+are not counts of globally distinct outside classes.
 
 Promising unclosed questions are:
 
@@ -121,7 +178,7 @@ Promising unclosed questions are:
    windows, with stronger exact reasoning or a better solver encoding.
 2. Five parallel new depth-three products whose span has an outside-target
    direction, **without** adding a new depth-two auxiliary. This is a separate
-   branch and is not excluded by the joint-auxiliary architecture.
+   branch: finite factor pools are tested, but arbitrary factors remain open.
 3. Changed early/middle gates or a materially different nonlinear
    construction, rather than another variation of an already closed prefix.
 4. Target-specific implementation and physical measurements if a genuinely
@@ -163,6 +220,9 @@ Committed evidence and entry points include:
   and [complete envelope enumeration](../../workspace/aes-256-gcm/reports/sbox_envelope_image_study.json).
 - [Latest shared-family/depth-three evidence summary](../../workspace/aes-256-gcm/reports/sbox_shared_family_study.json),
   including input columns, artifact hashes, exact scope and terminal outcomes.
+- [Parallel-product follow-up summary](../../workspace/aes-256-gcm/reports/sbox_parallel_replacement_study.json),
+  including the new exclusions, finite campaigns, encoding reviews and
+  unresolved solver probes.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

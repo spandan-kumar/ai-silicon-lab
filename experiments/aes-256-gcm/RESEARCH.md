@@ -8,6 +8,69 @@ profile.
 
 Research date: 2026-08-29
 
+## Parallel depth-three replacements and publication handoff — 2026-10-06
+
+The branch progress handoff is [PROGRESS.md](PROGRESS.md). This checkpoint
+preserves the working accelerator and separates completed finite searches,
+solver-reported exclusions, inconclusive timeouts and untested families.
+It still establishes no correct 27-AND AES circuit, 34-AND depth-three AES
+circuit, global AES lower bound or world first.
+
+The fixed source is NIST's `aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt`,
+revision `b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc`, SHA-256
+`8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d`.
+Six terminal six-to-five windows have factor-space dimension 32, retained
+dimension 38 and AES target-envelope dimension 42. Operands of all five new
+parallel products must be in the unchanged depth-at-most-two factor space.
+
+For windows 0, 3 and 5, the useful-inside-target coefficient search reports
+UNSAT/20 in 45.8463, 47.9666 and 49.6031 seconds command wall. Independent
+byte-identical reconstruction of 24 CNFs, 18 exhaustive controls and 6,144
+full-affine projection checks finds no defect; no formal UNSAT certificate
+was replayed. These scoped results force any successful five-product
+parallel replacement in those windows into a common outside-target class.
+They do not restrict newly introduced depth-two auxiliaries or changed
+earlier functions.
+
+All nine full-truth single/pair/complete probes time out (exit 15). Their
+parallel encoding has an independent direct-output-decoder audit, including
+positive mixed inside/outside-product cases. The compressed complete
+coefficient model for window 0 also times out (exit 15, 183.2588 seconds).
+No other window was attempted with that complete coefficient model.
+Independent reconstruction matches its serialized AES CNF, all 465 pair
+coordinates and 256 full-affine projection checks. Seven nontrivial negative
+controls and three positive decoder checks complete; a fourth positive
+decoder probe and an earlier decoder probe time out. The failed audit-wrapper
+assertions and both bounded timeouts are retained. A projection-helper
+precondition was repaired in the audit, not in production. The control
+campaign is not all-passing and no AES exclusion follows.
+
+Constructive image intersections complete the explicitly listed 46-left-
+factor pool across all six windows: 8,224,524 combinations accounted for,
+294 nonzero common-q form evaluations, maximum useful difference rank two,
+no candidate. A separate high-pivot implementation independently rebuilds
+the source, maps and complete pruning counts. The expanded 105-factor
+operand/XOR-pair pool completes only window 0, accounting for 96,560,646
+combinations and checking 45,987 common-q forms, also at maximum rank two.
+These are evaluation counts, not globally distinct outside-class counts.
+It was not independently repeated. The larger 1,023-factor first-root pilot
+is partial at its 60-second limit and provides no full-pool exclusion.
+
+Structural diagnostics deliberately reject two tempting overclaims. The
+off-diagonal product tensor map has dimension 465 and ranks 202 modulo W
+and 198 modulo T, but a high-rank arbitrary section is not a minimum-rank
+certificate. The exact degree-seven/eight projection attains all 512 forms
+and admits projected five-product witnesses that fail full-truth coverage.
+Neither diagnostic proves a six-product lower bound.
+
+The auxiliary-plus-first-product encoding's independent audit is complete:
+40 full-affine exhaustive cases, 240 bounded solver comparisons and all
+original serialized instances agree. Its three AES timeouts remain
+inconclusive. The machine-readable follow-up is
+`workspace/aes-256-gcm/reports/sbox_parallel_replacement_study.json`; it
+identifies run-local evidence, hashes, attribution and limitations. Raw
+ignored runs are retained locally, not silently treated as GitHub artifacts.
+
 ## Shared auxiliary-family closure and depth-three probes — 2026-10-05
 
 No correct 27-AND AES circuit, 34-AND AND-depth-three AES circuit, global AES

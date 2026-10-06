@@ -1,0 +1,640 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "publication_date": "2026-10-06",
+  "base_commit": "2ddcfd1685bffbb86ab94e31df7188ded20c9db5",
+  "status": "verified-scoped-results-no-breakthrough",
+  "source_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+  "source_file": "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+  "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+  "architecture": {
+    "factor_space_dimension": 32,
+    "retained_space_dimension": 38,
+    "target_envelope_dimension": 42,
+    "retained_ANDs": 29,
+    "replacement_AND_budget": 5,
+    "new_depth_two_auxiliary": false,
+    "scope": "Fixed early functions and retained terminal gates; all new operands in original P32."
+  },
+  "inside_target_single_products": {
+    "searches": [
+      {
+        "window": 0,
+        "removed": [
+          "a24",
+          "a25",
+          "a26",
+          "a30",
+          "a32",
+          "a35"
+        ],
+        "status": "UNSATISFIABLE",
+        "exit_status": 20,
+        "command_wall_seconds": 45.84630308300257,
+        "cnf_sha256": "ca8508c5ee4abf33f0eec7f44754ca6da98c47fd75315956218a03727f160529"
+      },
+      {
+        "window": 3,
+        "removed": [
+          "a25",
+          "a26",
+          "a27",
+          "a28",
+          "a34",
+          "a35"
+        ],
+        "status": "UNSATISFIABLE",
+        "exit_status": 20,
+        "command_wall_seconds": 47.966649499954656,
+        "cnf_sha256": "fe79c14b1b8b39f60677e3ceac8c4a06d912c345e7452121a4b8bf843590792c"
+      },
+      {
+        "window": 5,
+        "removed": [
+          "a27",
+          "a28",
+          "a29",
+          "a31",
+          "a33",
+          "a34"
+        ],
+        "status": "UNSATISFIABLE",
+        "exit_status": 20,
+        "command_wall_seconds": 49.60314745805226,
+        "cnf_sha256": "f3ab1ec8bdd56f90b15e7af469fd3b9694d4732876cfdef9a35dfa32c665c049"
+      }
+    ],
+    "independent_CNF_reconstruction_count": 24,
+    "full_affine_projection_checks": 6144,
+    "formal_UNSAT_certificate_replayed": false,
+    "AES_solver_independently_repeated": false,
+    "scope": "No useful P-product in T outside W for these three windows, conditional on solver correctness. Not an exclusion of common outside-T classes or changed prefixes."
+  },
+  "full_truth_probes": {
+    "results": [
+      {
+        "window": 0,
+        "mode": "single",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86248,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-0-single.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.56672354205512
+        },
+        "cnf_sha256": "a156eb04a9be541037e07d05dbdbb05a7341fbefa2341bd149b06fac6e16d0b4"
+      },
+      {
+        "window": 0,
+        "mode": "pair",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86323,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-0-pair.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.23297320795245
+        },
+        "cnf_sha256": "a1e8508ca7764e26e82a0148c82d7b7cf7a0aa1a538d36da42dc58562643befe"
+      },
+      {
+        "window": 0,
+        "mode": "complete",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86506,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-0-complete.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.23811791697517
+        },
+        "cnf_sha256": "caea888f1f357b019b9850043974268b8de6d7f0de3cefc8fb95e93f50fa1309"
+      },
+      {
+        "window": 3,
+        "mode": "single",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86247,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-3-single.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.45294062513858
+        },
+        "cnf_sha256": "7a9ed9802f22fdbe48d164b89984b95343797da5957096decc05ed5edcca6f68"
+      },
+      {
+        "window": 3,
+        "mode": "pair",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86322,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-3-pair.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.04862600006163
+        },
+        "cnf_sha256": "9c8594494bf6536c8f46ade07dedb9362b1875a2dee3102b69e604072f7847d0"
+      },
+      {
+        "window": 3,
+        "mode": "complete",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86504,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-3-complete.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.34344345796853
+        },
+        "cnf_sha256": "b52ec1aa1dee72af3efba6425fa2bbdc85e94ed4b22e2f0e50e1a584f1a304ed"
+      },
+      {
+        "window": 5,
+        "mode": "single",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86249,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-5-single.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.56723425001837
+        },
+        "cnf_sha256": "ebc3b0e3de4f680bb5eab22aadbc6080aa0ba8edfb18772cc9d680988d6cde2e"
+      },
+      {
+        "window": 5,
+        "mode": "pair",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86324,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-5-pair.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.05553849996068
+        },
+        "cnf_sha256": "ff8573c7b3f3cd33312b8b6d4c74718c646c84473440a59b3dad0e5bb1ed0bbb"
+      },
+      {
+        "window": 5,
+        "mode": "complete",
+        "status": "INDETERMINATE",
+        "process": {
+          "pid": 86505,
+          "argv": [
+            "cryptominisat5",
+            "--verb",
+            "1",
+            "--threads",
+            "1",
+            "--random",
+            "20261005",
+            "--maxtime",
+            "120",
+            "--autodisablegauss",
+            "0",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-parallel-two-product-20261005/window-5-complete.cnf"
+          ],
+          "exit_code": 15,
+          "wall_seconds": 122.48473975015804
+        },
+        "cnf_sha256": "34f4572bf9a036f3198832b4312e6c33309e143ea441817a67d9bb7e2d69343e"
+      }
+    ],
+    "independent_encoding_review_status": "pass",
+    "independent_CNF_runs": 77,
+    "negative_result_established": false
+  },
+  "complete_common_class_coefficient_probe": {
+    "status": "INDETERMINATE",
+    "process": {
+      "pid": 87087,
+      "argv": [
+        "cryptominisat5",
+        "--verb",
+        "1",
+        "--threads",
+        "1",
+        "--random",
+        "20261005",
+        "--maxtime",
+        "180",
+        "--autodisablegauss",
+        "0",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-ad3-common-class-coefficient-20261005/window-0-complete.cnf"
+      ],
+      "exit_code": 15,
+      "wall_seconds": 183.25878387503326
+    },
+    "variables": 5204,
+    "clauses": 14191,
+    "xor_constraints": 1066,
+    "multiplication_quotient_dimension": 202,
+    "outside_dimension": 198,
+    "cnf_sha256": "73290f7bbe9935ef837100936f2e1834758e9d746ddb39828c957207fab21e01"
+  },
+  "finite_image_intersection": {
+    "source_file": "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+    "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+    "source_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+    "source_scalar_AES_rows_verified": 256,
+    "windows": 6,
+    "retained_rank": 38,
+    "AES_target_envelope_rank": 42,
+    "five_product_budget": 5,
+    "actual_tail_factor_pool": 15,
+    "actual_tail_five_combinations_tested": 18018,
+    "actual_tail_q_forms_tested": 288,
+    "tail_plus_P_basis_factor_pool": 46,
+    "five_combinations_accounted": 8224524,
+    "common_q_forms_tested": 294,
+    "maximum_tag_difference_rank": 2,
+    "all_common_q_enumerations_complete": true,
+    "timeouts": 0,
+    "complete_34_AND_AD3_AES": false,
+    "world_first_established": false,
+    "controls": {
+      "exhaustive_small_intersections": 64,
+      "exhaustive_synthetic_right_forms": 2560,
+      "positive_five_product_control": {
+        "common_outside_dimension": 1,
+        "q_forms_tested": 1,
+        "complete_common_q_enumeration": false,
+        "maximum_tag_difference_rank": 4,
+        "witness": {
+          "outside_truth": "0xffff000000000000ffff000000000000",
+          "target_tags": [
+            8,
+            9,
+            10,
+            12,
+            0
+          ],
+          "tag_difference_rank": 4,
+          "products": [
+            {
+              "left_truth": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "right_truth": "0xffffffff00000000ffffffff00000000",
+              "right_mask": 64,
+              "product_truth": "0xaaaaaaaa00000000aaaaaaaa00000000",
+              "target_direction": 8
+            },
+            {
+              "left_truth": "0xcccccccccccccccccccccccccccccccc",
+              "right_truth": "0xffffffff00000000ffffffff00000000",
+              "right_mask": 64,
+              "product_truth": "0xcccccccc00000000cccccccc00000000",
+              "target_direction": 9
+            },
+            {
+              "left_truth": "0xf0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+              "right_truth": "0xffffffff00000000ffffffff00000000",
+              "right_mask": 64,
+              "product_truth": "0xf0f0f0f000000000f0f0f0f000000000",
+              "target_direction": 10
+            },
+            {
+              "left_truth": "0xff00ff00ff00ff00ff00ff00ff00ff00",
+              "right_truth": "0xffffffff00000000ffffffff00000000",
+              "right_mask": 64,
+              "product_truth": "0xff00ff0000000000ff00ff0000000000",
+              "target_direction": 12
+            },
+            {
+              "left_truth": "0xffff0000ffff0000ffff0000ffff0000",
+              "right_truth": "0xffffffff00000000ffffffff00000000",
+              "right_mask": 64,
+              "product_truth": "0xffff000000000000ffff000000000000",
+              "target_direction": 0
+            }
+          ]
+        }
+      },
+      "negative_five_product_control": {
+        "common_outside_dimension": 0,
+        "q_forms_tested": 0,
+        "complete_common_q_enumeration": true,
+        "maximum_tag_difference_rank": 0,
+        "witness": null
+      },
+      "inside_useful_product_flag_control": {
+        "has_inside_useful_product": true,
+        "inside_witness": {
+          "left_truth": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "right_truth": "0xffffffff00000000ffffffff00000000",
+          "product_truth": "0xaaaaaaaa00000000aaaaaaaa00000000",
+          "target_direction": 1
+        }
+      }
+    },
+    "independent_high_pivot_audit": {
+      "scope": "Separate source parser and independent high-pivot coefficient/image/intersection routines rebuild all46 finite factor maps and every nonzero common class, with exact zero-prefix subtree accounting. Target coordinates and outside representatives differ from production; ranks and actual products agree.",
+      "controls": {
+        "independent_exhaustive_small_intersections": 64
+      },
+      "source_scalar_AES_rows_verified": 256,
+      "windows": [
+        {
+          "window": 0,
+          "five_combinations_accounted": 1370754,
+          "q_forms_verified": 49,
+          "histogram": {
+            "0": 1370729,
+            "2": 12,
+            "1": 13
+          },
+          "maximum_tag_difference_rank": 2,
+          "production_report_sha256": "c24efeeccaa661c77907cde2ac9d4fb9a84962862d0bcd255c45b6a954ed3b49"
+        },
+        {
+          "window": 1,
+          "five_combinations_accounted": 1370754,
+          "q_forms_verified": 49,
+          "histogram": {
+            "0": 1370729,
+            "2": 12,
+            "1": 13
+          },
+          "maximum_tag_difference_rank": 2,
+          "production_report_sha256": "7aecbccf44a3d52a517af2e99ad73caced88383341127d5672ff9fa94be0e7c9"
+        },
+        {
+          "window": 2,
+          "five_combinations_accounted": 1370754,
+          "q_forms_verified": 49,
+          "histogram": {
+            "0": 1370729,
+            "2": 12,
+            "1": 13
+          },
+          "maximum_tag_difference_rank": 2,
+          "production_report_sha256": "f81ab6135d2ed991d41323f35a5052006d03e4376458f7c8cfd715fd7eb1957b"
+        },
+        {
+          "window": 3,
+          "five_combinations_accounted": 1370754,
+          "q_forms_verified": 49,
+          "histogram": {
+            "0": 1370729,
+            "1": 13,
+            "2": 12
+          },
+          "maximum_tag_difference_rank": 2,
+          "production_report_sha256": "38471bca754e0ce4341f1a6e5ad57679a5a95b4baf5e3a5881ba06f1aa54ebe7"
+        },
+        {
+          "window": 4,
+          "five_combinations_accounted": 1370754,
+          "q_forms_verified": 49,
+          "histogram": {
+            "0": 1370729,
+            "1": 13,
+            "2": 12
+          },
+          "maximum_tag_difference_rank": 2,
+          "production_report_sha256": "23cfc7962e9978ec6231054ba5a271af955d18e8feea87d8f425005e43710c9e"
+        },
+        {
+          "window": 5,
+          "five_combinations_accounted": 1370754,
+          "q_forms_verified": 49,
+          "histogram": {
+            "0": 1370729,
+            "1": 13,
+            "2": 12
+          },
+          "maximum_tag_difference_rank": 2,
+          "production_report_sha256": "4c7ab3b6fc6b0bbf42329d61fc8b1d9f3ceae2cfec78c190984941a79223283c"
+        }
+      ],
+      "five_combinations_accounted": 8224524,
+      "q_forms_verified": 294,
+      "complete_34_AND_AD3_AES": false,
+      "world_first_established": false,
+      "algorithm_seconds": 1.5035705000627786,
+      "hashes": {
+        "runs/aes-ad3-parallel-intersection-20261005/audit.py": "8a8efbd1261a369caba5b6c7448fa6f9f9956322be2bea81911bcf47d2373afa",
+        "runs/aes-ad3-depth-refactor-20261005/linear_audit.py": "77cb2a57527b04581b16fdcc8204f9b619096d52398818f08576e58c44953f86",
+        "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d"
+      }
+    },
+    "scope": "Source0 six slack-one terminal windows. Exactly five distinct left factors from the explicitly listed46-factor tail-operand/P-basis pool; each right factor arbitrary in original P32. Five products share one nonzero outside-T class and their four tag differences must span AES quotient. Complete finite coverage with exact zero-prefix pruning. No arbitrary left-factor or global AES lower bound."
+  },
+  "expanded_finite_pilots": {
+    "source_file": "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+    "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+    "source_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+    "pilots": [
+      {
+        "factor_mode": "xor-pairs",
+        "factor_count": 105,
+        "window_index": 0,
+        "five_factor_combinations_total": 96560646,
+        "selected_five_combinations_total": 96560646,
+        "five_combinations_accounted": 96560646,
+        "selected_roots_complete": true,
+        "whole_pool_complete": true,
+        "incomplete_due_to_timeout": false,
+        "q_forms_tested": 45987,
+        "maximum_tag_difference_rank": 2,
+        "map_seconds": 0.05587233300320804,
+        "enumeration_seconds": 42.36401908285916,
+        "algorithm_seconds": 42.69105233391747
+      },
+      {
+        "factor_mode": "F-full",
+        "factor_count": 1023,
+        "window_index": 0,
+        "five_factor_combinations_total": 9245818873599,
+        "selected_five_combinations_total": 45189730565,
+        "five_combinations_accounted": 532525597,
+        "selected_roots_complete": false,
+        "whole_pool_complete": false,
+        "incomplete_due_to_timeout": true,
+        "q_forms_tested": 47947,
+        "maximum_tag_difference_rank": 2,
+        "map_seconds": 0.5200797079596668,
+        "enumeration_seconds": 60.000019082799554,
+        "algorithm_seconds": 60.82529354095459
+      }
+    ],
+    "complete_34_AND_AD3_AES": false,
+    "world_first_established": false,
+    "prior_controls": "Inherited unchanged exact multiplication/lift/common-image methods from schema-valid aes-ad3-parallel-intersection-20261005, including64 exhaustive intersection controls,2560 synthetic right forms and independent complete high-pivot six-window audit.",
+    "independently_replayed_expanded_campaign": false,
+    "scope": "Source0 window0 only. Exact finite XOR-pair left pool105 has complete factor-combination and common-q coverage. The full1023 constant-free F11 factor pilot checks only a partial first-root prefix and times out at its60s enumeration limit. No candidate; no exclusion of arbitrary P32 left factors, the complete F11 pool, other windows or global AES complexity.",
+    "publication_boundary": "No further research jobs launched after user requested publication. Only completed-pilot retention/schema validation remained."
+  },
+  "auxiliary_first_product_review": {
+    "status": "pass",
+    "small_cases": 40,
+    "bounded_production_and_independent_solver_runs": 240,
+    "original_serialized_instances_checked": 30,
+    "findings": [],
+    "expensive_AES_solvers_repeated": false,
+    "AES_probes_remain": "INDETERMINATE; no negative result from timeouts"
+  },
+  "top_degree_diagnostic": {
+    "status": "exact-top-degree-relaxation-passes",
+    "nonzero_left_forms_checked": 4095,
+    "lifted_right_image_forms_checked": 1576947,
+    "attainable_top_product_count": 512,
+    "scope": "Degree>=7 projection only. Five actualPproducts can fit a common projected outsideT class and cover all four projected target directions, but their lower-degree components remain unchecked for synthesis. Thus this projection cannot certify sixproducts are needed."
+  },
+  "evidence_sha256": {
+    "runs/aes-ad3-parallel-coefficient-20261005/report.json": "93a16ca62c1cf74d911c61747a2dfb7aa79a1916dec495830b1e485172ca05b3",
+    "runs/aes-parallel-coefficient-review-20261005/report.json": "272dffe957c650fce053fd10854ac6eb566b8ac933c67bf4f46a89888eaa1908",
+    "runs/aes-ad3-parallel-two-product-20261005/report.json": "d473c8fea7dc1a7c71ef806ab0ae842166d7dd558dd8e884042feb9e04a629b6",
+    "runs/aes-parallel-encoding-review-20261005/report.json": "4313cec9a63fbc4ffa650c908772e4ebd6004a33696b7feb739c032442959684",
+    "runs/aes-ad3-common-class-coefficient-20261005/report.json": "9b2ed64b818549eeef67f9d7c3a29ab8b8550712019bc5e0fd709e4dd757aa1c",
+    "runs/aes-ad3-common-class-coefficient-20261005/controls-report.json": "e8004c5a59a61517380a4c983067b09d8fd90cb5b48a014628ae90f16fabe181",
+    "runs/aes-ad3-parallel-intersection-20261005/summary.json": "264193f31b2d0731a5cec18f9d5e2832165de133179839272ad7ea823f324e4e",
+    "runs/aes-ad3-parallel-intersection-20261005/audit.json": "2b8b92c1c339455e55283241a4ae694f30b1772fb78f3914d5ded3964314c2c9",
+    "runs/aes-ad3-parallel-expansion-20261006/summary.json": "6a4c357e949c521e842de289a5435ba1d061a839a635dc95eec7c898ecdceed5",
+    "runs/aes-joint-encoding-review-20261005/report.json": "c8165d1d21ab7a9079aeca0fd3f774665a6185afbf29ae0baf1d09044ec79149",
+    "runs/aes-ad3-five-parallel-structure-20261005/top-degree-report.json": "35e8a6b240be3f899689db2f66e3546eabe4419260de6c340a6ff212f04402ff",
+    "runs/aes-common-class-encoding-review-20261006/report.json": "cb01a7a9f329a81ed450941556e25c26b94a8e2b287c790a460a926f3915ba28"
+  },
+  "world_first_established": false,
+  "correct_27_AND_AES_found": false,
+  "correct_34_AND_AD3_AES_found": false,
+  "global_AES_lower_bound_established": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "candidate_RTL_changed": false,
+  "raw_run_archives_in_GitHub_push": false,
+  "telemetry_note": "Canonical model ID, per-attempt tokens, reasoning settings, agent wall time and cost unavailable; null in local schema records.",
+  "open_questions": [
+    "Arbitrary P32 factors for complete five parallel products.",
+    "Unrestricted depth-two auxiliaries and complete downstream products.",
+    "Changed early/middle functions or another nonlinear organization."
+  ],
+  "complete_coefficient_independent_review": {
+    "status": "completed-with-control-timeouts-retained",
+    "production_findings": [],
+    "AES_byte_coordinate_audit": {
+      "status": "INDETERMINATE",
+      "dimensions": [
+        32,
+        38,
+        4,
+        202,
+        198
+      ],
+      "byte_identical_CNF_rebuild": true,
+      "all_pair_coordinates_rebuilt": 465,
+      "random_full_affine_coordinate_checks": 256,
+      "serialized": {
+        "path": "runs/aes-ad3-common-class-coefficient-20261005/window-0-complete.cnf",
+        "status": "INDETERMINATE",
+        "header_and_hash_match": true,
+        "sat_model_checked": false
+      }
+    },
+    "nontrivial_negative_controls": 7,
+    "terminal_independent_positive_controls": 3,
+    "independent_table_decoder_timeout_runs": 1,
+    "independent_free_decoder_timeout_runs": 1,
+    "all_controls_passed": false,
+    "AES_solver_runs_in_review": 0,
+    "negative_AES_result_established": false,
+    "scope": "Exact common-outside-class encoding; full architecture completeness conditional on separately verified single-product absence. No world-first/global AES bound."
+  }
+}
