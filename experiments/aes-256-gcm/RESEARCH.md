@@ -8,6 +8,43 @@ profile.
 
 Research date: 2026-08-29
 
+## Changed-prefix pilot and publication checkpoint — 2026-10-18
+
+The [progress handoff](PROGRESS.md) now includes all completed research through
+this checkpoint. No improved AES circuit, global lower bound, world first or
+new physical result has been established. The existing accelerator is not
+replaced by an unsuccessful research candidate.
+
+An independently authored data-only interpreter compares eleven
+forward-normalized cases from the refreshed public release with nine pinned
+28-AND and four pinned 35-AND/depth-three sources. Scalar and bit-sliced
+execution agree on all 256 inputs per case; 24 first-AND mutation controls
+fail as required. Rank/canonical-space and exact degree-slice controls pass.
+The eleven forward cases form seven exact full-space classes. Each has six
+directions outside the combined 79-dimensional old-source span, with combined
+new residual rank 16. These are fixed-coordinate function-space differences,
+not affine-inequivalence or novelty claims. The converted `invsbox109_d30`
+has six degree-seven gate witnesses outside the combined old span; its
+degree-at-most-six slice is contained in that span. Thus the overlap result
+alone does not establish a different low-degree prefix.
+
+A constructive pilot targets 10+12+12 ANDs at depth three rather than fixing
+the old 11+12 early gates. It permits one-selector changes in both early
+layers but retains the exact final tail operand functions. All eleven initial
+first-layer deletions pass a relaxed necessary product-span test. The actual
+finite search evaluates 26,488 states, reaches a smallest tail-function rank
+deficit of three and finds no candidate. The materialized original 35-AND
+positive control agrees with all 256 AES outputs. This is an unsuccessful
+bounded search, not a lower bound on changed prefixes. Publication replays
+the completed overlap computation and constructive pilot and independently
+checks the serialized positive control and saved state scores.
+
+An eight-AND quadratic norm-stage search remains only a proposed follow-up;
+it has not been encoded or run, and no complete AES improvement follows
+from considering it. See
+`workspace/aes-256-gcm/reports/sbox_changed_prefix_study.json` for the
+completed diagnostics, attribution, raw-artifact hashes and boundaries.
+
 ## Exact rank-four charts and refreshed public seeds — 2026-10-18
 
 The novelty goal remains unmet. This checkpoint adds a different exact

@@ -31,8 +31,10 @@ constructive searches, **not a new record-setting AES circuit**.
 - **Current research step:** an exact two-product tensor-chart formulation
   passes exhaustive small controls and rules out 16 fixed-block cases in
   one chart by explicit linear contradictions. One remaining case times out;
-  this is not a complete two-product or AES exclusion. New public circuit
-  sources have also been independently checked to broaden future seeds.
+  this is not a complete two-product or AES exclusion. Eleven forward-normalized
+  public seeds form seven distinct exact function spaces in the tested input
+  coordinates. A changed-prefix pilot tests 26,488 candidate states without
+  finding a smaller circuit; neither result settles arbitrary new prefixes.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -58,6 +60,8 @@ terminal; no future result is assumed.
 | Six-terminal escape | Allow one surplus signal: one new depth-two auxiliary followed by four depth-three products. | A finite family of 2,544 auxiliary/window rectangles, covering 5,207,568 left forms, finds no useful target direction. Three unrestricted fixed-auxiliary probes return UNSAT. Three joint unrestricted-auxiliary probes time out and remain inconclusive. |
 | Five parallel replacement products | Preserve all early gates and replace six terminal gates with five products, with no new depth-two auxiliary. | Three useful-inside-target product probes return UNSAT. Finite 46-factor and 105-factor searches find no complete circuit; broader full-truth and coefficient solver probes time out. |
 | Tensor and top-degree relaxations | Project the five-product problem onto alternating tensors or degree-seven/eight output coefficients. | An arbitrary tensor representative is not a minimum-rank bound. The top-degree relaxation admits witnesses that fail the full AES truth table, so neither diagnostic establishes a lower bound. |
+| Exact two-product charts | Search actual rank-four alternating tensors for one chosen four-coordinate principal block. | Explicit XOR-polynomial certificates exclude 16 fixed-block cases. Twelve cases and the other coordinate quartets remain open; the attempted nonlinear case times out. |
+| New public seeds and changed prefixes | Compare refreshed circuits' exact truth spaces, then pilot a 10+12+12-AND organization with mutable first and second layers and fixed final tail functions. | Seven distinct forward-normalized public seed spaces are identified. The finite 26,488-evaluation constructive pilot finds no candidate, not an impossibility proof. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -216,6 +220,37 @@ that search. Its affine space has dimension 11 including the constant,
 not the full 32-dimensional factor space. This motivates structured tensor
 search and changed prefixes instead of another unqualified finite-pool sweep.
 
+### Changed-prefix handoff — 2026-10-18
+
+A separate interpreter checks the eleven released public JSON circuits and
+compares eleven forward-normalized cases (nine forward circuits plus two
+affine conversions of inverse circuits) against nine older 28-AND and four
+older 35-AND/depth-three sources. The eleven forward cases form seven exact
+full-space classes. Each supplies six directions outside even the combined
+79-dimensional older-source span; together their residual rank is 16.
+These are differences in the fixed input coordinates, not affine-inequivalence
+or novelty proofs. For the converted `invsbox109_d30`, the six new witness
+directions occur in degree-seven gates, so this is not automatically a new
+low-degree prefix.
+
+The constructive pilot changes both earlier nonlinear layers of the public
+11+12+12 source, aiming for 10+12+12 ANDs at depth three while preserving
+the exact final tail operand functions. All eleven first-layer deletions
+pass a necessary relaxed product-span test, but the actual bounded search
+evaluates 26,488 candidate states and never spans all required tail functions;
+the smallest remaining rank deficit is three. The original 35-AND source is
+materialized as a positive control and checked on all 256 AES inputs.
+This unsuccessful finite neighborhood search is not a changed-prefix
+exclusion. The completed search and overlap computations are replayed at
+publication; no improved AES candidate results.
+
+The next open step is a genuinely constructive search over changed early
+functions or another nonlinear organization. An eight-AND quadratic norm
+stage was considered as a possible subproblem, but no such solver experiment
+or complete AES construction has been run at this checkpoint. The
+[changed-prefix study](../../workspace/aes-256-gcm/reports/sbox_changed_prefix_study.json)
+records exact scope, controls, source revisions and limitations.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -233,8 +268,9 @@ Primary web sources were checked again on 2026-10-18:
   These are inventory minima, not global lower bounds.
 - [Swapnil Jain's released circuits](https://github.com/Swapnil-jain/gf2m-circuits/tree/9daf883e529ab4b9c80c66632683b403f0c69e89/sbox)
   provide newer prior art: all 11 released JSON circuits pass our separate
-  256-input check and mutation controls. The 106-gate forward circuit has
-  34 ANDs, AND depth four and gate depth 24; the 109-gate inverse has 32 ANDs
+  256-input check and mutation controls. Forward `sbox106_d24` has 34 ANDs,
+  AND depth four and gate depth 24; forward `sbox106_d34` has 32 ANDs,
+  AND depth six and gate depth 34. Inverse `invsbox109_d30` has 32 ANDs
   and AND depth six. These circuits are not ours. We did not rerun Lean or
   execute downloaded search/verifier programs.
 
@@ -264,6 +300,8 @@ Committed evidence and entry points include:
 - [Tensor-chart study](../../workspace/aes-256-gcm/reports/sbox_tensor_chart_study.json)
   and [refreshed prior-art/seed inventory](../../workspace/aes-256-gcm/reports/sbox_frontier_refresh_study.json)
   retain the latest narrow results and unresolved cases.
+- [Changed-prefix and seed-overlap study](../../workspace/aes-256-gcm/reports/sbox_changed_prefix_study.json)
+  records the completed constructive pilot and fixed-coordinate source diversity.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

@@ -1,0 +1,324 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-18",
+  "base_commit": "408a6a7ae589bf1fd059a81ff2f811c8e2a7c874",
+  "status": "completed-seed-comparison-and-unsuccessful-bounded-constructive-pilot",
+  "seed_overlap": {
+    "experiment_id": "aes-256-gcm",
+    "experiment_revision": 1,
+    "date": "2026-10-18",
+    "base_commit": "408a6a7ae589bf1fd059a81ff2f811c8e2a7c874",
+    "status": "completed-data-only-exact-space-comparison",
+    "old_28_AND_sources": 9,
+    "old_35_AND_depth3_sources": 4,
+    "new_public_JSON_files": 11,
+    "forward_native_public_sources": 9,
+    "native_inverse_sources": 2,
+    "inverse_to_forward_normalizations": 2,
+    "forward_normalized_sources_compared": 11,
+    "old_new_comparisons_including_native_inverse": 169,
+    "forward_new_full_space_classes": [
+      [
+        "new:invsbox109_d30:forward-affine"
+      ],
+      [
+        "new:invsbox109_d31:forward-affine"
+      ],
+      [
+        "new:sbox106_d24"
+      ],
+      [
+        "new:sbox106_d34"
+      ],
+      [
+        "new:sbox110_d38"
+      ],
+      [
+        "new:sbox111_d21",
+        "new:sbox112_d20",
+        "new:sbox113_d18",
+        "new:sbox116_d17",
+        "new:sbox121_d16"
+      ],
+      [
+        "new:sbox112_d18"
+      ]
+    ],
+    "every_forward_seed_differs_from_every_old_full_space": true,
+    "each_forward_seed_directions_outside_combined_old_union": 6,
+    "combined_old_union_rank": 79,
+    "combined_forward_new_residual_rank": 16,
+    "forward_invsbox109_d30": {
+      "id": "new:invsbox109_d30:forward-affine",
+      "AND_count": 32,
+      "AND_depth": 6,
+      "full_rank": 41,
+      "degree_slice_ranks": {
+        "0": 1,
+        "1": 9,
+        "2": 18,
+        "3": 18,
+        "4": 19,
+        "5": 23,
+        "6": 33,
+        "7": 41,
+        "8": 41
+      },
+      "equal_to_old_sources": [],
+      "maximum_full_intersection_with_any_old": 25,
+      "max_intersection_old_source": "old:aes-sbox-a28-ad4-g131-gd32-xx103-47.circ",
+      "directions_outside_combined_old_union": 6
+    },
+    "forward_conversion_checks": [
+      {
+        "source": "invsbox109_d30",
+        "identity": "S=A o S_inverse o A, where A is the AES affine byte map including0x63",
+        "forward_scalar_rows_verified": 256,
+        "preserves_AND_count": true,
+        "preserves_AND_depth": true,
+        "saved_forward_seed": "runs/aes-frontier-refresh-20261018/invsbox109_d30-forward-affine-seed.json",
+        "saved_forward_seed_sha256": "3d94e71a7b5554f714a1917857ff9d397aa91266b732bdbf519e627a37e72a95",
+        "saved_seed_nonlinear_truth_sequence_and_depths_match": true
+      },
+      {
+        "source": "invsbox109_d31",
+        "identity": "S=A o S_inverse o A, where A is the AES affine byte map including0x63",
+        "forward_scalar_rows_verified": 256,
+        "preserves_AND_count": true,
+        "preserves_AND_depth": true
+      }
+    ],
+    "controls": {
+      "canonical_and_independent_pivot_controls": 64,
+      "exact_ANF_monomials": 9,
+      "exhaustive_small_degree_slices": 160
+    },
+    "first_AND_must_fail_mutations_rejected": 24,
+    "scalar_rows_per_interpretation": 256,
+    "bitsliced_and_scalar_gate_interpreters_agree": true,
+    "downloaded_code_executed": false,
+    "new_candidate_constructed": false,
+    "novel_ours": false,
+    "source_revisions": {
+      "new_public_release": "9daf883e529ab4b9c80c66632683b403f0c69e89",
+      "old_NIST": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc"
+    },
+    "limitations": [
+      "Canonical equalities/inequalities are in one fixed MSB-first AES input coordinate system, not an affine-inequivalence theorem.",
+      "The combined old span is only the13 selected pinned sources, not all public AES circuits.",
+      "Native inverse spaces are recorded separately; forward conclusions use A composed with inverse-S-box composed with A.",
+      "Exact degree slices are S intersect degree<=d, including cancellations; AND-depth prefixes are a separate circuit-availability metric.",
+      "No replacement search, physical/security measurement or independent full secondary replay was performed."
+    ],
+    "physical_metrics": null,
+    "security_metrics": null,
+    "world_first_established": false,
+    "scope": "Exact truth-space overlaps in a fixed MSB-first AES input coordinate system. Nine forward released circuits and two inverse circuits converted forward are compared against nine pinned28-AND and four35-AND/AD3 circuits. Native inverse spaces are also recorded but are not directly forward-equivalent comparisons. Equality or inequality here is not an affine-inequivalence or novelty theorem."
+  },
+  "changed_prefix_pilot": {
+    "source": "aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+    "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+    "source_revision": "b402f09ee22fd26cc58a2904bf5bd524fcd0cbcc",
+    "base_commit": "408a6a7ae589bf1fd059a81ff2f811c8e2a7c874",
+    "source_scalar_AES_rows_verified": 256,
+    "positive_control_AND_count": 35,
+    "target_tail_factor_dimension": 11,
+    "replacement_layers": [
+      10,
+      12,
+      12
+    ],
+    "seed_deficits": [
+      9,
+      9,
+      8,
+      8,
+      9,
+      9,
+      9,
+      8,
+      3,
+      9,
+      3
+    ],
+    "evaluations": 26488,
+    "minimum_observed_deficit": 3,
+    "changed_first_stage_walk_steps": 1,
+    "candidate_found": false,
+    "world_first_established": false,
+    "algorithm_seconds": 2.6132450830191374,
+    "scope": "Finite seed deletion, one-selector neighborhoods and32 greedy/neutral sweeps with arbitrary one-bit mutations in both10 parallel first-layer and12 parallel second-layer products. Fixed exact final tail operand functions; not exhaustive over changed prefixes or completions.",
+    "hashes": {
+      "runs/aes-changed-prefix-route-20261018/search.py": "754de8ad67adc95e00ac16422daee3dd7ea4f06e0b040ed44f51e6f7feeb28cf",
+      "runs/aes-stage-splice-20261002/search.py": "c2c5b3fc0e3826666ddf3f5f810927a6b21c88d5d571459d5adef874b455aa54"
+    }
+  },
+  "deletion_relaxations": [
+    {
+      "removed_original": "a1",
+      "L_dimension": 19,
+      "product_span_dimension": 125,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a2",
+      "L_dimension": 19,
+      "product_span_dimension": 125,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a3",
+      "L_dimension": 19,
+      "product_span_dimension": 124,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a4",
+      "L_dimension": 19,
+      "product_span_dimension": 124,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a5",
+      "L_dimension": 19,
+      "product_span_dimension": 124,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a6",
+      "L_dimension": 19,
+      "product_span_dimension": 125,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a7",
+      "L_dimension": 19,
+      "product_span_dimension": 124,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a8",
+      "L_dimension": 19,
+      "product_span_dimension": 124,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a9",
+      "L_dimension": 19,
+      "product_span_dimension": 126,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a10",
+      "L_dimension": 19,
+      "product_span_dimension": 124,
+      "target_deficit_in_product_span": 0
+    },
+    {
+      "removed_original": "a11",
+      "L_dimension": 19,
+      "product_span_dimension": 125,
+      "target_deficit_in_product_span": 0
+    }
+  ],
+  "positive_control": {
+    "positive_control_AES_rows": 256,
+    "positive_control_AND_count": 35,
+    "positive_control_AND_depth_upper_bound": 3,
+    "saved_seed_and_walk_scores_checked": 43,
+    "deletion_relaxations_checked": 11
+  },
+  "publication_verification": {
+    "serialized_state_audit": {
+      "positive_control_AES_rows": 256,
+      "positive_control_AND_count": 35,
+      "positive_control_AND_depth_upper_bound": 3,
+      "saved_seed_and_walk_scores_checked": 43,
+      "deletion_relaxations_checked": 11
+    },
+    "overlap_rank_audit": {
+      "old_spaces": 13,
+      "forward_normalized_new_spaces": 11,
+      "exact_new_classes": 7,
+      "old_union_rank": 79,
+      "each_new_outside_old_union_rank": 6,
+      "combined_new_residual_rank": 16,
+      "independent_low_pivot_rank_checks": true,
+      "affine_inequivalence_proved": false
+    },
+    "complete_original_algorithm_replays_match": [
+      "overlap",
+      "search"
+    ],
+    "raw_artifact_and_source_hashes_verified": 60,
+    "algorithm_replay_is_independent_reimplementation": false
+  },
+  "attribution": {
+    "primary_agent": "/root",
+    "overlap_agent": "/root/aes_alternative_route",
+    "pilot_agent": "/root/auxiliary_strategy",
+    "model_canonical_id": null,
+    "model_alias": "Codex",
+    "harness": "Codex desktop",
+    "harness_version": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "agent_wall_seconds": null,
+    "cost": null,
+    "unavailable_note": "Not exposed per attempt. Observed command wall times and exits are retained separately."
+  },
+  "raw_evidence_in_git": false,
+  "world_first_established": false,
+  "new_smaller_AES_candidate": false,
+  "global_AES_lower_bound": false,
+  "physical_metrics": null,
+  "security_metrics": null,
+  "proposed_unexecuted_follow_up": "Exact eight-AND quadratic norm-stage search; no encoding or solver result yet.",
+  "evidence_sha256": {
+    "runs/aes-new-seed-overlap-20261018/schema-validation.command.json": "507bb788faf4ab4ce17775c7615cbe5eeb698409628cd33ff21917d450d9897d",
+    "runs/aes-new-seed-overlap-20261018/summary.json": "dd3d8827adfdb9d6b50d0e9d66a2a714e1f366e9f799294e5c3d5e599e50e59b",
+    "runs/aes-new-seed-overlap-20261018/witnesses.py": "f51968163d8bf32ab253ca0625e720796cfe652c37b8747c25fcea772e6a30de",
+    "runs/aes-new-seed-overlap-20261018/hash-repair-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-new-seed-overlap-20261018/retention-closeout.stdout.log": "619bd2c6c30729fd8d567a942018d4aaca02767cb186274ec40616dc7047eb12",
+    "runs/aes-new-seed-overlap-20261018/run_command.py": "ca56f41bbe75269212ab38820a226c2cece0edb660d51e8f545deace0ad0c754",
+    "runs/aes-new-seed-overlap-20261018/retain.py": "4217fa50dfd97ccdc2bcd61dd7a9207b1657b47e3a6412955dc21ca8c68d9139",
+    "runs/aes-new-seed-overlap-20261018/RESULT.md": "3496d2723fefd1e15a9e09d640591101097088633e2c3c343478d47af583618b",
+    "runs/aes-new-seed-overlap-20261018/witnesses.json": "4176b5a2006a7b18530f781dd88ec5321240f8db8c6557c870bdafe3ecb4170a",
+    "runs/aes-new-seed-overlap-20261018/report.json": "aec1d19f6feb21e3d794cefba98fc7a17c25382fdda7c5fdd722540e91313ecf",
+    "runs/aes-new-seed-overlap-20261018/retention-closeout.command.json": "b18037ceb30e53fa9b8334974dc09350e0ec9b1c8f8b2b1cf6f4ba7e7f1f17a1",
+    "runs/aes-new-seed-overlap-20261018/overlap.stdout.log": "bb8b5897f7e41c5c69a2cb9db91332f9af5d2a8e73a557923023cd4f537a5562",
+    "runs/aes-new-seed-overlap-20261018/witnesses.command.json": "52e961b111e0205f900e0f21d607e6c55d94f501e54f24240eed3c1b6b7c1939",
+    "runs/aes-new-seed-overlap-20261018/schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-new-seed-overlap-20261018/witnesses.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-new-seed-overlap-20261018/hash-repair-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-new-seed-overlap-20261018/repair_hash_inventory.py": "b39b06e7e910d8baff8377d1464b403d8216ebbe22e4d79a2cbbd2fe9aefb91d",
+    "runs/aes-new-seed-overlap-20261018/retention-closeout.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-new-seed-overlap-20261018/overlap.py": "b465f03059b1dfe3dd2424b1bc03ad7a51761224c1bfba172c7c9001af2281a9",
+    "runs/aes-new-seed-overlap-20261018/overlap.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-new-seed-overlap-20261018/run-failed-before-final-log-close.json": "9ac7401945fa91b86ccf7f2fbbc3f418ed071fbe7177fba1a1fd55a45af25f00",
+    "runs/aes-new-seed-overlap-20261018/overlap.command.json": "bd8f3659786451b4aedbfa3ca97fdf0f38a91a1fecc8c0555624d4c7ad71d5a1",
+    "runs/aes-new-seed-overlap-20261018/run.json": "755913523065d37dea8cc4f37f9d5f13e29dbc1b122369ad96efd856fe017e20",
+    "runs/aes-new-seed-overlap-20261018/schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-new-seed-overlap-20261018/witnesses.stdout.log": "20558eaff90c95c9f312625fc537183c0e6e859de82a36223500ee01c8caafc3",
+    "runs/aes-new-seed-overlap-20261018/hash-inventory-repair.json": "a1b48577f8896b4dc128f4dea30975abbe1dad9cb13e8dafcb06c62631713b59",
+    "runs/aes-new-seed-overlap-20261018/hash-repair-validation.command.json": "332a6f83622c8553e797e760e356cb6d057b697b25ea04ec4dce4fe897e0cb87",
+    "runs/aes-changed-prefix-route-20261018/schema-validation.command.json": "be69b5b158ec1a9cfd09947cf1ec8d2304ee92613c0bef8e19a36872ae7395dd",
+    "runs/aes-changed-prefix-route-20261018/run_command.py": "c4919fe17b2b0502bd28fa80377036968780c2ae23d9697409d84ff37ee30df3",
+    "runs/aes-changed-prefix-route-20261018/retain.py": "35e6b66c7eedd101173c267d5e14064948a00534c65466f344ad9ceedb00b6a0",
+    "runs/aes-changed-prefix-route-20261018/report.json": "13ada0227735acde356014a76b4323df998fd8e55985beb29cebf75762745246",
+    "runs/aes-changed-prefix-route-20261018/schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-changed-prefix-route-20261018/positive-control.json": "391d5311f5674cfd6764d37feba766010041c4f8912308e516f98ba48b2d826c",
+    "runs/aes-changed-prefix-route-20261018/search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-changed-prefix-route-20261018/walk-states.json": "4f735af403eb7474a1abc5d29895545f9607dd2a01e00b41773d5e28a05313da",
+    "runs/aes-changed-prefix-route-20261018/search.command.json": "97f190cc1c87011c6d85f1941d2b18fb9eb39840591e24151bd54f390b27b6e6",
+    "runs/aes-changed-prefix-route-20261018/first-sweep.json": "6c3dc5e7b8cc518e0c0f4e53f16b8b8569aa7375e8c5b385dfc1b967dec19b85",
+    "runs/aes-changed-prefix-route-20261018/research.json": "8dacf22f847397b161b0634ccc3ec0d57298422e0d8c64f474fa2c09534dd48f",
+    "runs/aes-changed-prefix-route-20261018/search.py": "754de8ad67adc95e00ac16422daee3dd7ea4f06e0b040ed44f51e6f7feeb28cf",
+    "runs/aes-changed-prefix-route-20261018/run.json": "0703f8528fdee067db6443d389fb249524df25e600cbb0f8bf26ba9e96e29a1e",
+    "runs/aes-changed-prefix-route-20261018/schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-changed-prefix-route-20261018/search.stdout.log": "bfdad41a0fa88ad4e88155b4bb2f51fa5dfe76ce9cdd563099d8087d93f6b2e8",
+    "runs/aes-changed-prefix-route-20261018/seeds.json": "ddd630bce25ea2a9f0a885e43bf423ab1dbf7a3faec225b5eda42cc8b305a029"
+  }
+}
