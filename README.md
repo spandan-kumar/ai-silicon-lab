@@ -18,8 +18,10 @@ The accelerator implementation and ongoing chip-design research live on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 Read the [progress and research handoff](https://github.com/spandan-kumar/ai-silicon-lab/blob/codex/experiment-2-crypto-algo/experiments/aes-256-gcm/PROGRESS.md)
 for what we tried, verified results, limitations and the current open questions.
+The latest published checkpoint is **2026-10-18**: exact restricted S-box
+searches, refreshed public-circuit comparisons and a changed-prefix pilot.
 The verified accelerator baseline is separate from the still-unmet
-world-first research goal.
+world-first research goal; no improved record-setting AES circuit is claimed.
 
 ## Getting started
 
