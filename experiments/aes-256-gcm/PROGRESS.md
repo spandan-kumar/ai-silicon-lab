@@ -1,6 +1,6 @@
 # Experiment 002: AES-256-GCM — progress and research handoff
 
-Last updated: **2026-10-06**. Work is on
+Last updated: **2026-10-18**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
@@ -28,6 +28,11 @@ constructive searches, **not a new record-setting AES circuit**.
   46-factor constructive search completes across all six windows without a
   candidate; a larger 105-factor search completes for one window. Unrestricted
   five-product and auxiliary searches remain unresolved.
+- **Current research step:** an exact two-product tensor-chart formulation
+  passes exhaustive small controls and rules out 16 fixed-block cases in
+  one chart by explicit linear contradictions. One remaining case times out;
+  this is not a complete two-product or AES exclusion. New public circuit
+  sources have also been independently checked to broaden future seeds.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -188,9 +193,32 @@ Any prospective candidate must be materialized as actual gates, checked on
 all 256 S-box inputs, recounted for AND number/depth and compared with current
 primary-source prior art before a novelty claim is made.
 
+### Tensor-chart follow-up — 2026-10-18
+
+The new pair formulation searches rank-four alternating tensors that can be
+decomposed into two actual products. It does not use the rank of an arbitrary
+tensor representative as a lower bound. Fixed invertible four-coordinate
+blocks yield exact quadratic equations; linear elimination reduces a tested
+case from 108 to 88 free coefficient bits. Its 90-second solver probe remains
+`INDETERMINATE` (exit 15). No search-speed advantage is established.
+
+The controls cover all 19,124 rank-four alternating matrices of sizes four
+through six, 960 symbolic/direct comparisons and 26,112 exhaustive small
+chart assignments. Three additional nonlinear negative controls survive
+linear simplification and actually return UNSAT. Separate exact XOR-polynomial
+certificates rule out 16 of 28 fixed-block cases for one chosen AES chart.
+The other 12 cases and all other index quartets remain open; there are
+31,465 possible quartets, so this is narrow coverage.
+
+The earlier 1,023-factor pool has 1,023 distinct exact multiplication-image
+maps in every window; merely deduplicating identical maps cannot compress
+that search. Its affine space has dimension 11 including the constant,
+not the full 32-dimensional factor space. This motivates structured tensor
+search and changed prefixes instead of another unqualified finite-pool sweep.
+
 ## Sources and novelty checks
 
-Primary web sources were checked again on 2026-10-05:
+Primary web sources were checked again on 2026-10-18:
 
 - [NIST circuit table](https://csrc.nist.gov/projects/circuit-complexity/list-of-circuits)
   and [AES source inventory](https://raw.githubusercontent.com/usnistgov/Circuits/master/data/slp/aes/aes-sbox/README.md).
@@ -199,6 +227,16 @@ Primary web sources were checked again on 2026-10-05:
 - [SAT-based multiplicative-complexity synthesis](https://arxiv.org/abs/2005.01778)
   and [the explicit 29-AND construction](https://umizame.github.io/S-box_29-AND/)
   establish relevant prior work.
+- The [current NIST source snapshot](https://github.com/usnistgov/Circuits/tree/8366158a4324ef902ce740f29ddc9f7ebb1018b2/data/slp/aes/aes-sbox)
+  contains 37 forward S-box files, all checked on 256 inputs and recounted
+  locally. Their minimum counts remain 28 ANDs, and 35 ANDs at AND depth three.
+  These are inventory minima, not global lower bounds.
+- [Swapnil Jain's released circuits](https://github.com/Swapnil-jain/gf2m-circuits/tree/9daf883e529ab4b9c80c66632683b403f0c69e89/sbox)
+  provide newer prior art: all 11 released JSON circuits pass our separate
+  256-input check and mutation controls. The 106-gate forward circuit has
+  34 ANDs, AND depth four and gate depth 24; the 109-gate inverse has 32 ANDs
+  and AND depth six. These circuits are not ours. We did not rerun Lean or
+  execute downloaded search/verifier programs.
 
 The NIST table is a selected inventory, not an exhaustive literature survey
 or an optimality proof. Failing to find a competing result on the web does not
@@ -223,6 +261,9 @@ Committed evidence and entry points include:
 - [Parallel-product follow-up summary](../../workspace/aes-256-gcm/reports/sbox_parallel_replacement_study.json),
   including the new exclusions, finite campaigns, encoding reviews and
   unresolved solver probes.
+- [Tensor-chart study](../../workspace/aes-256-gcm/reports/sbox_tensor_chart_study.json)
+  and [refreshed prior-art/seed inventory](../../workspace/aes-256-gcm/reports/sbox_frontier_refresh_study.json)
+  retain the latest narrow results and unresolved cases.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

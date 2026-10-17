@@ -1,0 +1,1015 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-18",
+  "base_commit": "a29da5f96d61f87f7fa25b90ec3aabd61ce9de54",
+  "status": "exact-narrow-chart-exclusions-full-pair-unresolved",
+  "scope": "Exact certificates exclude16 fixed-A subcharts of this one chosen4-index principal chart. Other charts and12 remaining A subcharts are not excluded.",
+  "method_is_claimed_unprecedented": false,
+  "controls": {
+    "exhaustive_chart_coverage": {
+      "4": {
+        "rank_four_matrices": 28,
+        "covered_by_actual_principal_chart": 28
+      },
+      "5": {
+        "rank_four_matrices": 868,
+        "covered_by_actual_principal_chart": 868
+      },
+      "6": {
+        "rank_four_matrices": 18228,
+        "covered_by_actual_principal_chart": 18228
+      }
+    },
+    "symbolic_truth_checks": 960,
+    "direct_correlated_small_assignments": 26112,
+    "nonlinear_negative_actual_solver_controls": 3,
+    "nonlinear_negative_direct_assignments": 768
+  },
+  "chart": {
+    "factor_dimension_without_constant": 31,
+    "principal_quartet": [
+      27,
+      28,
+      29,
+      30
+    ],
+    "total_possible_principal_quartets": 31465,
+    "fixed_A_cases": [
+      {
+        "A_mask": 12,
+        "A": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.8999383330810815
+      },
+      {
+        "A_mask": 13,
+        "A": [
+          10,
+          5,
+          2,
+          1
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 2.9901468749158084
+      },
+      {
+        "A_mask": 14,
+        "A": [
+          12,
+          4,
+          3,
+          1
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 2.760245833080262
+      },
+      {
+        "A_mask": 15,
+        "A": [
+          14,
+          5,
+          3,
+          1
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9367062088567764
+      },
+      {
+        "A_mask": 18,
+        "A": [
+          4,
+          8,
+          1,
+          2
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9153906248975545
+      },
+      {
+        "A_mask": 19,
+        "A": [
+          6,
+          9,
+          1,
+          2
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 2.8255437910556793
+      },
+      {
+        "A_mask": 22,
+        "A": [
+          12,
+          8,
+          1,
+          3
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9217027497943491
+      },
+      {
+        "A_mask": 23,
+        "A": [
+          14,
+          9,
+          1,
+          3
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 3.656628666911274
+      },
+      {
+        "A_mask": 26,
+        "A": [
+          4,
+          12,
+          3,
+          2
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 2.4947782908566296
+      },
+      {
+        "A_mask": 27,
+        "A": [
+          6,
+          13,
+          3,
+          2
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9449505000375211
+      },
+      {
+        "A_mask": 28,
+        "A": [
+          8,
+          12,
+          2,
+          3
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9316616249270737
+      },
+      {
+        "A_mask": 29,
+        "A": [
+          10,
+          13,
+          2,
+          3
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 3.4698043749667704
+      },
+      {
+        "A_mask": 33,
+        "A": [
+          2,
+          1,
+          8,
+          4
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9146515000611544
+      },
+      {
+        "A_mask": 35,
+        "A": [
+          6,
+          1,
+          9,
+          4
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 2.7719551660120487
+      },
+      {
+        "A_mask": 37,
+        "A": [
+          10,
+          1,
+          8,
+          5
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9388228328898549
+      },
+      {
+        "A_mask": 39,
+        "A": [
+          14,
+          1,
+          9,
+          5
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 3.4411412910558283
+      },
+      {
+        "A_mask": 41,
+        "A": [
+          2,
+          5,
+          10,
+          4
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 2.531045665964484
+      },
+      {
+        "A_mask": 43,
+        "A": [
+          6,
+          5,
+          11,
+          4
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9802110828459263
+      },
+      {
+        "A_mask": 44,
+        "A": [
+          8,
+          4,
+          10,
+          5
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 0.9405350829474628
+      },
+      {
+        "A_mask": 46,
+        "A": [
+          12,
+          4,
+          11,
+          5
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 3.4690032079815865
+      },
+      {
+        "A_mask": 49,
+        "A": [
+          2,
+          9,
+          8,
+          6
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 1.2880776671227068
+      },
+      {
+        "A_mask": 50,
+        "A": [
+          4,
+          8,
+          9,
+          6
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 1.0632088331039995
+      },
+      {
+        "A_mask": 53,
+        "A": [
+          10,
+          9,
+          8,
+          7
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 1.072664582869038
+      },
+      {
+        "A_mask": 54,
+        "A": [
+          12,
+          8,
+          9,
+          7
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 1.0058669578284025
+      },
+      {
+        "A_mask": 57,
+        "A": [
+          2,
+          13,
+          10,
+          6
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 3.5833789580501616
+      },
+      {
+        "A_mask": 58,
+        "A": [
+          4,
+          12,
+          11,
+          6
+        ],
+        "linear_conflict": false,
+        "no_nonzero_target_tag": false,
+        "rounds": 1,
+        "eliminated": 20,
+        "remaining_equations": 196,
+        "wall_seconds": 3.497785124927759
+      },
+      {
+        "A_mask": 60,
+        "A": [
+          8,
+          12,
+          10,
+          7
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 1.0338431249838322
+      },
+      {
+        "A_mask": 63,
+        "A": [
+          14,
+          13,
+          11,
+          7
+        ],
+        "linear_conflict": true,
+        "no_nonzero_target_tag": false,
+        "rounds": 0,
+        "eliminated": 0,
+        "remaining_equations": 198,
+        "wall_seconds": 1.123414000030607
+      }
+    ],
+    "linear_conflict_certificates": [
+      {
+        "A_mask": 12,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 15,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 18,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 22,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 27,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 28,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 33,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 37,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 43,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 44,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 49,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 50,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 53,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 54,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 60,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 63,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      }
+    ]
+  },
+  "source_and_map_review": {
+    "status": "pass",
+    "source_sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+    "independent_source_spaces_rebuilt": true,
+    "all_original_target_outputs_match": true,
+    "verified_linear_conflict_certificates": [
+      {
+        "A_mask": 12,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 15,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 18,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 22,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 27,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 28,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 33,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 37,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 43,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 44,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 49,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 50,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 53,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 54,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 60,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      },
+      {
+        "A_mask": 63,
+        "equation_indices": [
+          197
+        ],
+        "exact_XOR_polynomial": "1",
+        "verified": true
+      }
+    ],
+    "AES_full_chart_tensor_truth_coordinate_checks": 448,
+    "all_pair_coordinates_per_chart": 465,
+    "solver_independently_repeated": false,
+    "scope": "Exact certificates exclude16 fixed-A subcharts of this one chosen4-index principal chart. Other charts and12 remaining A subcharts are not excluded.",
+    "hashes": {
+      "runs/aes-two-product-method-20261018/chart.py": "66b888440a3f4e41c7ee09163f03c287cd225934b20e6f494c2c2fa5280518c6",
+      "runs/aes-two-product-method-20261018/quartic-chart-profiles.json": "6a17c5e639e19fb1da891bd9f56e6ebbcef04c82f16c65654a3eaa9e6773c230",
+      "runs/aes-frontier-inventory-20261002/upstream/data/slp/aes/aes-sbox/aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d"
+    },
+    "algorithm_seconds": 435.9353320838418
+  },
+  "AES_probe": {
+    "n": 31,
+    "d": 4,
+    "image_dimension": 202,
+    "core_variables_before_elimination": 108,
+    "D_hex": [
+      "0x10c635cd2125f4aa704c5dad62c5b18c9ad81f2d28685d616404db4c8",
+      "0x1284b17a8530b5187a2f3b12f4d7034b97ec776dbd3c239715da4c5f4",
+      "0x1647348a15f2a713e8e564dc0f0b39195dc3bf322d558d0df3ebbf25",
+      "0x11c41fd00047492c4e693d46066bfa2aa677587d5da2b576f19daff7e"
+    ],
+    "pivot": [
+      27,
+      28,
+      29,
+      30
+    ],
+    "A": [
+      10,
+      5,
+      2,
+      1
+    ],
+    "linear_elimination_rounds": 1,
+    "eliminated_variables": 20,
+    "core_variables_remaining": 88,
+    "status": "INDETERMINATE",
+    "solver_called": true,
+    "process": {
+      "argv": [
+        "cryptominisat5",
+        "--verb",
+        "1",
+        "--threads",
+        "1",
+        "--random",
+        "20261018",
+        "--maxtime",
+        "90",
+        "--autodisablegauss",
+        "0",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-two-product-method-20261018/aes-0-A-1.cnf"
+      ],
+      "exit_code": 15,
+      "wall_seconds": 91.92134170792997
+    },
+    "cnf_sha256": "bec0b108addc01c53a56d2486f3e9a1014768472ef0ae8320135face9f8027f8",
+    "variables": 2938,
+    "clauses": 8539,
+    "xor_constraints": 200,
+    "encoding_seconds": 4.242126791970804,
+    "wall_seconds": 96.1653481668327
+  },
+  "input_truth_vectors": {
+    "P": [
+      "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "0xf0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+      "0xff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00",
+      "0xffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000",
+      "0xffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000",
+      "0xc0c0c0cc0c0c0c00c0c0c0cc0c0c0c00c0c0c0cc0c0c0c00c0c0c0cc0c0c0c0",
+      "0xfa5f500aaf0afaa0fa5f500aaf0afaa0fa5f500aaf0afaa0fa5f500aaf0afaa0",
+      "0xffffffffffffffff0000000000000000ffffffffffffffff0000000000000000",
+      "0xdeb88b128b12deb82e487be27be22e48deb88b128b12deb82e487be27be22e48",
+      "0x71b271b271b271b2d4e8d4e8d4e8d4e871b271b271b271b2d4e8d4e8d4e8d4e8",
+      "0xf0f0f0ff0f0f0f000000000000000000f0f0f0ff0f0f0f00000000000000000",
+      "0x22b836903990442e3c30d718be7e3cc022b836903990442e3c30d718be7e3cc0",
+      "0xf4b5c84a9480a8803d1a54b0f88a6e20f4b5c84a9480a8803d1a54b0f88a6e20",
+      "0xffffffffffffffffffffffffffffffff00000000000000000000000000000000",
+      "0x87dd88d22278d288e1bbeeb4441eb4eee1bbeeb4441eb4ee87dd88d22278d288",
+      "0x9a3095c095c09a309a3095c095c09a306ac0653065306ac06ac0653065306ac0",
+      "0x9900990099009900990099009900990066006600660066006600660066006600",
+      "0x5cac3aca5cac3acaa3533acaa3533aca09f9906009f99060f6069060f6069060",
+      "0xf5a5a0ff05a5af055000055aa0000aa5a0f0f5a5af0f05a0055550000aaaa00",
+      "0x5003c0ab178d228d744114efa5a660ad744114efa5a660a05003c0ab178d228",
+      "0xb373da4054a8c2640751916279ec10207adc46ba38a204c4cefe0d9815e6d680",
+      "0xbd81bd81bd81bd81d4e8d4e8d4e8d4e8427e427e427e427ed4e8d4e8d4e8d4e8",
+      "0x23f1581ca7e3dc0e6240d59ed59e6240b597a7ec58134a6892404c084c089240",
+      "0x62f2258685293da2232557625d98d620bf85c432fdfb864c67342fb0bc2cf4a8",
+      "0xb1b4a30cb2485ff01d17cc6c11e4c0606a602d72a5afe2429c66e7485ca6d888",
+      "0x6bfefdab2f8946dceae9734c37f8aea2980d326410b6ba208f8cd5ea61aec4c8",
+      "0xf233a71e1e01ca08718c1b525e4edc22750f3b6c59c15a4a0940dd8a4cd4bc60",
+      "0x605becbeb46164bec8309a381f3a44a2df3530daeae156c4ffea94b25f9832a0",
+      "0xf600189c654490ccb5769b16dff88cea7652797a86b6f4ec9f24f5aa99fae860",
+      "0xdb6bdbbacf13c33e5de20dfa85a68ce811ecc3104b435680b0e89888bfe2f2e8"
+    ],
+    "W": [
+      "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "0xffffffffffffffffffffffffffffffff00000000000000000000000000000000",
+      "0xffffffffffffffff0000000000000000ffffffffffffffff0000000000000000",
+      "0xffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000",
+      "0xffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000",
+      "0xff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00",
+      "0xf0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+      "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "0xf0f0f0ff0f0f0f000000000000000000f0f0f0ff0f0f0f00000000000000000",
+      "0xc0c0c0cc0c0c0c003030303303030300c0c0c0cc0c0c0c00303030330303030",
+      "0x4281428142814281182418241824182442814281428142811824182418241824",
+      "0x6600660066006600660066006600660099009900990099009900990099009900",
+      "0xaaaa0000555500aa0000aa55000055aa0000aa5500005500aaaa0000555500",
+      "0x3cc33cc3c33cc33c0000000000000000c33cc33c3cc33cc30000000000000000",
+      "0x3003c00cc00c30033003c00cc00c3003c00c30033003c00cc00c30033003c00c",
+      "0x5a0500a500a05a0500a05a005a0500a05a0500a500a05a0500a05a005a0500a",
+      "0x3c003c00c300c300c300c3003c003c00003c003c00c300c300c300c3003c003c",
+      "0x9900006600996600660000990066990066000099006699009900006600996600",
+      "0x1818242442428181424281811818242481814242242418182424181881814242",
+      "0x902060012102222080c02028022104600002220e000812c4c890100062c020c5",
+      "0x2c0910d8d6ac1981420121e912012840d641048151004c000952d10142d000e9",
+      "0x13005400b00304008401a00482a8000401500214138420008210480453080389",
+      "0x4000344498481040001042381431003098486b603228010200809008001005",
+      "0x40043000203b60000042401060884a40244010023061082b854724000805001",
+      "0x820406042801a002b050020040005406844044040904068008005441468880a3",
+      "0x8048388b0b05403a356b4407284000850b42083a31270260008a600835103007",
+      "0x1180280190c800100800c412102120c00010822ac080282002212022c241208d",
+      "0x7256a630c0820045941080294901d04a4002201952d34000031106008e0a60",
+      "0x4825800b65370448801487909130654b6280444107404b18440008388460079",
+      "0x12ce10008226868801e1110e51051220802888850121001c2880685600ec1c00",
+      "0x42b1000808a2040988d80001010804110000480108040103748206208c8983",
+      "0x1e8e28950f14240450a8c0800ac81c801320828109a88007405bea0636280192",
+      "0x2901402a64010352c5123451060365cb0ac5312061d61082c40a158485840210",
+      "0x12d4d0209c9a838841459000138562a850088a01099286012131687704689500",
+      "0x89620e5f21418a2283820031244224186a455002c5c4d2a00403100e8c8c2244",
+      "0x50252148c206282088236f6990349b5630ad444d30450cb5ad30b098a043b50c",
+      "0x32ada500006a5c39a8224a06c034117609acd094e66510358d409498e170b182"
+    ],
+    "targets": [
+      "0x52379de7b844e3e14cb3770196ca0329e7bac28f866aac825caa2ec7bf977090",
+      "0x21e0b833255917823f6bcb91b30db559e4851b3bf3ab2560980a3cc2c2fdb4ff",
+      "0x54b248130b4f256f7d8dcc4706319e086bc2aa4e0d787aa4f8045f7b6d98dd7f",
+      "0xf210a3aece472e532624b286bc48ecb4f7f17a494ce30f58c2b0f97752b8b11e",
+      "0x4e9ddb76c892fb1be9da849cf6ac6c1b2568ea2effa8527d109020a2193d586a",
+      "0xac39b6c0d6ce2efc577d64e03b0c3ffb23a869a2a428c424a16387fb3b48b4c6",
+      "0xc870974094ead8a96a450b2ef33486b4e61a4c5e97816f7a7bae007d4c53fc7d",
+      "0x4f1ead396f247a0410bdb210c006eab568ab4bfa8acb7a13b14ede67096c6eed"
+    ],
+    "prior_sha256": "93a16ca62c1cf74d911c61747a2dfb7aa79a1916dec495830b1e485172ca05b3",
+    "scope": "One fixed four-quartic-coordinate principal chart and fixed invertible4x4 block. Not all rank4 tensors or arbitrary AES circuits."
+  },
+  "performance_advantage_established": false,
+  "complete_two_product_exclusion": false,
+  "new_smaller_AES_candidate": false,
+  "world_first_established": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "raw_evidence_in_git": false,
+  "evidence_sha256": {
+    "runs/aes-two-product-method-20261018/correlated-6.json": "50559085a10d36d0b9f578d94b45f25933ad7a627304fdfe1603c72bae95ea5f",
+    "runs/aes-two-product-method-20261018/control-v2-0.cnf": "612e1b70c41a001aca4c88df70e88513f59dc185313861d5f134103ff9b8f5a1",
+    "runs/aes-two-product-method-20261018/correlated-14.json": "bb787b9fb993a6d8f4bea37f3e8649b86cde734743af8363c34a3a263219621c",
+    "runs/aes-two-product-method-20261018/correlated-10.running.json": "f41885becf9dc8ef9b40f95043fe2ac8523a6bd50bd5fd3bed92c3133729eafb",
+    "runs/aes-two-product-method-20261018/chart-review.command.json": "23bb8b82a6f39b1c21669f75d00980fde5a9e35b1c2ebe1e01b62b66235966de",
+    "runs/aes-two-product-method-20261018/nonlinear-negatives.stdout.log": "cf2c52a16821a5a961c5aaf6d497fb4d1907b021b10c559af8bf89e291f3a202",
+    "runs/aes-two-product-method-20261018/correlated-13.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nist-verification-v3.stderr.log": "caa3b5beaf101a0a81353a2ab81f2ba9068a87f0c16513b82a42ca5a179cd72b",
+    "runs/aes-two-product-method-20261018/correlated-2.stdout.log": "b1ef75031dc97267e751add00f4f1f05e79fc3981f2721cdd6c5abbc6ff70108",
+    "runs/aes-two-product-method-20261018/correlated-6.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/PROOF.md": "7e5aa6b7cc2d9aca7f0fc7a23df96bf49b91eb737a2891ad6f82a1e183d980a9",
+    "runs/aes-two-product-method-20261018/correlated-2.running.json": "6d4c8e44f6e229d64567349c274e7bd3836490c019f775419a1615bc4da2b32b",
+    "runs/aes-two-product-method-20261018/nist-verification-v2.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/run_command.py": "7a2f756fc933479f8d0c86e203d0a9c2e626ede3081a66f9198c74144b7a23e7",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-1.stdout.log": "f42e7bd8c5bd1bf360fab5c79bcb56224fc5e1dcad81fb93cd086f5c4982ef1c",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-2.cnf": "77613129b2ef1aa4c768c630babd39bed1437b1650830149dd97835f0e544ea4",
+    "runs/aes-two-product-method-20261018/aes-0-A-1.cnf": "bec0b108addc01c53a56d2486f3e9a1014768472ef0ae8320135face9f8027f8",
+    "runs/aes-two-product-method-20261018/profiles.stdout.log": "c4e5bb01204cbcf36cf50893ca482989c9b30a47f28af091e2455c5ab7770c9c",
+    "runs/aes-two-product-method-20261018/correlated-8.cnf": "aed76003e4b193b7eb2051b988d9edc772d8ab0aa58214667b6bdd73b6a13a67",
+    "runs/aes-two-product-method-20261018/correlated-4.running.json": "d90ec2a6503384c6d03408d2636b8e0b815fe3ceb02e0c5782bc19f28a820189",
+    "runs/aes-two-product-method-20261018/frontier-verification.stdout.log": "977e47de14b49ca56439430bb3c21d9f5131650364eb6a7e1ed2778f513fe5c6",
+    "runs/aes-two-product-method-20261018/quartic-chart-profiles.json": "6a17c5e639e19fb1da891bd9f56e6ebbcef04c82f16c65654a3eaa9e6773c230",
+    "runs/aes-two-product-method-20261018/aes-A1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-0.cnf": "088f7fbbc875792a9f03d5ee847ca8f665f4c1bff87740d7ea3770dbb32139ec",
+    "runs/aes-two-product-method-20261018/correlated-15.json": "e7b69c1f2b2e24ece91d4aa75198a7822449cd05f0cf58d9562f84b385f9907a",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-1.cnf": "733399ae980f8cc60bcff8976c24017ba8b42a088c65647967a73a0fd5ddd2e9",
+    "runs/aes-two-product-method-20261018/extra-controls.stdout.log": "d3779c01e82fe9bb789656f6c1840a0fcfa23685ba5a46d75e26da7eb5ff2269",
+    "runs/aes-two-product-method-20261018/correlated-12.stdout.log": "8e6de92681d28c095780393ee72217333afc3856d249ec98699401a0a34f9257",
+    "runs/aes-two-product-method-20261018/nist-verification.command.json": "171ef148e006ee7e7d1bd58b39280b0abe8b83be8192a31b0073f43885bc0a88",
+    "runs/aes-two-product-method-20261018/control-v2-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-15.stdout.log": "be68ac895fb4f720c0bcd630fd47c61e69d3908c304164d292a3cfc9df0c42cf",
+    "runs/aes-two-product-method-20261018/aes-0-A-0-inputs.json": "39dc176b2ec2457bf409ac4f16458224dbb7fa3b646aaffb6aab5db3288b2e8e",
+    "runs/aes-two-product-method-20261018/new-prefix-inventory.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/controls-report.json": "a864b713bd5d5cc5bcf961aa346e7418365b2e7e1a190edec1154f0fa212c4d7",
+    "runs/aes-two-product-method-20261018/extra-controls-report.json": "9ae23d22ef76cbf180516d9ad1bdaaf5350a8d07635be1b56df32a3741f69166",
+    "runs/aes-two-product-method-20261018/nist-verification.stderr.log": "3e3aafeed099335ff22d25a009795b42ff41f48233a11212c072b6805822e5ec",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-1.json": "68c6da6f36cc061764639dbd6b1de19d24af94e53058f2c3333695076f101b1e",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-controls.json": "6bf5a574347b5067c1e523254a8799db2feee66c8b7479a3be98ff1dd2e28f08",
+    "runs/aes-two-product-method-20261018/correlated-0.json": "d10abe7b7fe50f9620f9d9d7e09faf04f60210b575a27ffd125904e839ec11c5",
+    "runs/aes-two-product-method-20261018/review-report.json": "9b53857d12b79e5e9a6561bf64bba514bdea9615055fa23e6c9dd105123d85d2",
+    "runs/aes-two-product-method-20261018/correlated-12.json": "08e6c10560a0ec6b5da5f424b608b2bf9d5e0948942ee24ab4717d958121140d",
+    "runs/aes-two-product-method-20261018/correlated-0.stdout.log": "efef7104ff997f081fa56c58c3c13d53562b56ae4539d76f0d515e72bde8cb19",
+    "runs/aes-two-product-method-20261018/correlated-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-8.running.json": "04212dcd0a1dd22042e1018d7e27c4aa38cf63e4ee4c4045cd4694f4bb4d7e16",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-2.running.json": "0919f86ac240a42bccf4cfa8a264287c67608d2c928071bc56fb7e4769cf915b",
+    "runs/aes-two-product-method-20261018/correlated-13.json": "7edc886ecdda88bc55c8858d9dc14b43336e8c7988b2423dc4c0795df2ebc73e",
+    "runs/aes-two-product-method-20261018/nist-verification-v4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/chart.py": "66b888440a3f4e41c7ee09163f03c287cd225934b20e6f494c2c2fa5280518c6",
+    "runs/aes-two-product-method-20261018/correlated-14.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-0.json": "0155b9a69d7be4671eafd4fd0bbeffce95955ba5b5b6f244fb838902e68b406f",
+    "runs/aes-two-product-method-20261018/correlated-10.stdout.log": "c291048a6a33f33edcbba7d22ff3d7791c71caaaff75962029b20987b81a06b2",
+    "runs/aes-two-product-method-20261018/chart-review.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-8.stdout.log": "c307d9c02a6663ae46ab134f61279c6a9f5fd34091ef1d02c93e08655f892f5a",
+    "runs/aes-two-product-method-20261018/aes-0-A-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/review.py": "a8952eb3477ce4cddbb4ab9c0e3f678e09f8a59ef03831d730fb3afb48671bdb",
+    "runs/aes-two-product-method-20261018/new-prefix-inventory.command.json": "16a30424e7759f73643a925d01b2fa4fd038c9f53e7d018875b0629c056c0212",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-0.stdout.log": "f8681a67f75a2b4cf6d92c1fee21e8369cddc2f503c862c959efc9fa4737f6a9",
+    "runs/aes-two-product-method-20261018/correlated-6.stdout.log": "4956604f18135cffc4ac64e7fd2fac211c890137723a525a4065607ecdd98006",
+    "runs/aes-two-product-method-20261018/nist-verification-v3.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-0.running.json": "29254ad4c1bdf97a4b491d78263ba5ea03b2a6d845bc21073cf4f67a96029231",
+    "runs/aes-two-product-method-20261018/correlated-12.cnf": "c15220f20bcce3ecce8ad73702f97211fd1e2d673a54db224b7623df12554971",
+    "runs/aes-two-product-method-20261018/correlated-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-13.cnf": "ee134566ef25c40182fa1507820a1dc82358e137e6b149d0f5663273c4dba27e",
+    "runs/aes-two-product-method-20261018/aes-0-A-1.json": "eaf3f9788db0f4613ced6a589943bab1592fe6f3dc1829b7a43a9c29a99d7752",
+    "runs/aes-two-product-method-20261018/profiles.command.json": "107a07e54926f4883a6a0829d0a77e37b2428ccae74f489f0986b28ea7683049",
+    "runs/aes-two-product-method-20261018/correlated-10.json": "fe8a323d8f425d8635622bf65210525eda0f1f6f109dc5693d08b120c440cc93",
+    "runs/aes-two-product-method-20261018/correlated-13.stdout.log": "7a18d3d1cac647fb306cc509e8e5f74f05ac5b3dd064e2e7cfceb29cfb3ef4fa",
+    "runs/aes-two-product-method-20261018/correlated-10.cnf": "689408b145f8863bb82458d38750fe7f880a0a033ab1523d502d1f2a0b1c6da9",
+    "runs/aes-two-product-method-20261018/nonlinear-negatives.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nist-verification-v2.command.json": "ef11486ca859400ed640d65abd8c2e9771d77572b8fcfc38b21b1f27dabcb812",
+    "runs/aes-two-product-method-20261018/correlated-2.json": "acda1883a5d6422d535a0cab40d5237562350404662a3c6524dbaf57a0540fdb",
+    "runs/aes-two-product-method-20261018/aes-A1.stdout.log": "2e494c232c506557ce995f71244ceb88ed209dc3591e70986aa7a1949a9df7dd",
+    "runs/aes-two-product-method-20261018/frontier-verification.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-3.json": "10ede3d09058dd24acb5521208b3b61d8d8e478d7b97f72458c65eca012b3a57",
+    "runs/aes-two-product-method-20261018/correlated-14.cnf": "ec0f150c1289b71770ec1e70e86c7da3c811cf69df9654a63639057393aae17c",
+    "runs/aes-two-product-method-20261018/control-v2-0.stdout.log": "2d509b169f71e6c5b69ca0ae7d06803c0e1ea1fdd251903e7c85784edee2edc2",
+    "runs/aes-two-product-method-20261018/correlated-15.cnf": "037c51ce850eb57e47210f4334d5c478198109677c35587fe1ec24736b059c6e",
+    "runs/aes-two-product-method-20261018/correlated-12.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/aes-0-A-0.json": "cb8c52a8091724251c7d729641182b322cb4d29cbaaae31d8af2db52592cee1c",
+    "runs/aes-two-product-method-20261018/extra-controls.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-1.running.json": "d4c63213fd3dbae323d176ac7df434911a0c15a1aa966cdf7b1e2a894ff31be2",
+    "runs/aes-two-product-method-20261018/control-0.json": "a8e0bd7bfb0fc6491e8573e8688978907ffbec15c8917a9be63252c81a9561dc",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/nist-verification-v4.command.json": "aa63ade2e3e1feb824de2a9b3c7996388de03a0aec866ca3e4ff85a8d136146b",
+    "runs/aes-two-product-method-20261018/nist-verification-v2.stderr.log": "7393d582af5188c8e885238a470b43d2f5e268878700c4204e790362e5565580",
+    "runs/aes-two-product-method-20261018/nist-verification-v3.command.json": "8d1c3298fb0c58164a4fde15b95c3c45b813700ad22ea981ad89d9da84291ca6",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-2.json": "6762306599bf4e68a59a5915669272618c9ae04f46a5037905bd137d07a97b2c",
+    "runs/aes-two-product-method-20261018/profiles.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-6.cnf": "44af1c73d37fed157b50941282f31d05d5fa81895cc02d0dd735a856dc97fb14",
+    "runs/aes-two-product-method-20261018/extra_controls.py": "7d6c26a661c0372c4ac2809af6d12ebeec81ad61d795cf68d463c385c9f6d47f",
+    "runs/aes-two-product-method-20261018/nonlinear_negative_controls.py": "d14d2e4f413ff0074964885e1f0e7c4ce6179b4718533b99f38fcadcef77e0ef",
+    "runs/aes-two-product-method-20261018/correlated-14.running.json": "2108341812f185749a6698ec6bee4db5f6ccf543632a6f859a0a46767d2c0a05",
+    "runs/aes-two-product-method-20261018/nonlinear-negative-2.stdout.log": "f6d1bfe26b50fd69f3b92c7d45bbe127d359bb21bdda1036a6567ce7dc267bb6",
+    "runs/aes-two-product-method-20261018/correlated-4.stdout.log": "91ec53d0529b5c14827c76bdb28a5444bc662321bd0e518524a4cf36ed066443",
+    "runs/aes-two-product-method-20261018/correlated-13.running.json": "820e42fec439a50926a964254c3be54e7328f8def0921fa41cad63f017a01c25",
+    "runs/aes-two-product-method-20261018/correlated-4.json": "ee93bed2b5a15d576d0c08075a71c974b2e597a93b09d5a6d2f25bfebd89400f",
+    "runs/aes-two-product-method-20261018/correlated-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/aes-0-A-1.running.json": "327069dbb27fa2244fd87613e41f68e87f47cb52047190bfd2772af4aff5e75b",
+    "runs/aes-two-product-method-20261018/correlated-6.running.json": "cabf81291f56da641c4f305f96f7968a3244992c1d27f5ddf08eda3f09d015e5",
+    "runs/aes-two-product-method-20261018/control-v2-0.json": "ffb50164d3a67efde1aa2ec7351263a5a9cf9035ae3321f80e3826cecd7c5bda",
+    "runs/aes-two-product-method-20261018/correlated-15.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-8.json": "39b5fde7e7c79a98006bd8254a4852b493000b48e5acb9db24d2ee4b9b5a75bc",
+    "runs/aes-two-product-method-20261018/new-prefix-inventory.stdout.log": "73cef53281deacf1f44ad086450439c9558795b66acad00f38b0324e12a90b3e",
+    "runs/aes-two-product-method-20261018/correlated-4.cnf": "055257323ff4a83f43810e01550b657c1a85cd9f7b5b636de65584ac43af59ef",
+    "runs/aes-two-product-method-20261018/nist-verification.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/correlated-12.running.json": "24dcda1165aa1f9cb696ac68b1dbfd11834bcf658f785142991173e0d51be7c2",
+    "runs/aes-two-product-method-20261018/correlated-0.cnf": "6189c21c49b46dcd6eebdbd15a6c6491b4bdd4975605772d76c4ad9d64124a3c",
+    "runs/aes-two-product-method-20261018/correlated-15.running.json": "b58f664dad8b88dba58db344f42f904d3d68723ff292c7f3a546650cddc174ad",
+    "runs/aes-two-product-method-20261018/chart-review.stdout.log": "bd1aacb4d82007deb3d6da3fdc0bdadb696ee2c5c0cfff9b4a3c72f46029055b",
+    "runs/aes-two-product-method-20261018/correlated-10.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/initial-fixture-failure.json": "85a42a89df3c4d6b2741b959c99f97f67c34c8a8f50be5de88602a32da5907e0",
+    "runs/aes-two-product-method-20261018/extra-controls.command.json": "1ce1ca815e5b207ee9ada4cb86e9050bc0e147b1d5a53316cfba9cc405187a07",
+    "runs/aes-two-product-method-20261018/correlated-14.stdout.log": "b10520ed32424840dba120fae6270f1f1a38808d4960ac6f617ebf43eb52a6b7",
+    "runs/aes-two-product-method-20261018/control-v2-0.running.json": "8423a828c87c4907a4c903736ccfb497b25e8848bdf324d5c2787a847ec5ce79",
+    "runs/aes-two-product-method-20261018/aes-A1.command.json": "62356d4521f7cf0199e0bb852096355bcc76a74411cd4d279c3cfe45ec7f14d8",
+    "runs/aes-two-product-method-20261018/nonlinear-negatives.command.json": "1eb86d2b747491c50a6c97ffa61a4f0f3e267cac31196769cbe24363bf52c35c",
+    "runs/aes-two-product-method-20261018/control-v2-1.json": "c7561ac588df0e36b84e5310fe824dc9f1b3b283fc3ee3e5b0095e21a2a55432",
+    "runs/aes-two-product-method-20261018/profiles.py": "164d34c7eccefef7b6c89cf4a74e7bbd9a7e5fb91baa886f100b9c427d9402da",
+    "runs/aes-two-product-method-20261018/correlated-8.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-two-product-method-20261018/aes-0-A-1.stdout.log": "30a14b5a81852c5086f55754c3d41c341feb6fc4dad2ebc13a1cc3751c873fee",
+    "runs/aes-two-product-method-20261018/correlated-5.json": "59ee831231953b210612ddc9a23cf0b6619193b4621ddae1a2dd9aee5537280d",
+    "runs/aes-two-product-method-20261018/frontier-verification.command.json": "33f09cf6e943254eb1e00b53a038bc4218701891d9332c21df69137df47df656",
+    "runs/aes-two-product-method-20261018/nist-verification-v4.stdout.log": "689e60f861591095cf4bcc28fcd7b7285e01fb1d5c5443040f6dafd48fdcc2e6",
+    "runs/aes-two-product-method-20261018/correlated-0.running.json": "4fd8bf692b4889d8c9ea2f837beaf0905d3b5514cef41170574628107c975fa7",
+    "runs/aes-two-product-method-20261018/aes-0-A-1-inputs.json": "39dc176b2ec2457bf409ac4f16458224dbb7fa3b646aaffb6aab5db3288b2e8e",
+    "runs/aes-two-product-method-20261018/correlated-2.cnf": "612e1b70c41a001aca4c88df70e88513f59dc185313861d5f134103ff9b8f5a1"
+  }
+}

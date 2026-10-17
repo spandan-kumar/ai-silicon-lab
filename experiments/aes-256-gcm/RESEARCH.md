@@ -8,6 +8,76 @@ profile.
 
 Research date: 2026-08-29
 
+## Exact rank-four charts and refreshed public seeds — 2026-10-18
+
+The novelty goal remains unmet. This checkpoint adds a different exact
+two-product formulation, records its narrow exclusions and inconclusive AES
+pilot, and refreshes prior art before changing the starting circuits.
+
+Modulo retained W, Boolean constant and diagonal terms vanish. Two products
+therefore correspond to the image of an alternating tensor of rank at most
+four. For an invertible four-coordinate principal block A, rank-four tensors
+are exactly `[A,C; C^t,C^t A^-1 C]`. Enumerating all28 invertible A blocks for
+one chosen quartet is complete for that quartet only, not all31465 quartets
+of the31-dimensional constant-free factor space. Unlike the earlier arbitrary
+section diagnostics, actual low-rank representatives are searched and any
+SAT tensor is decomposed back into two real product operands.
+
+The source0/window0 P32/W38/T42 multiplication image has202 coordinates.
+Choosing its four quartic directions as the principal quartet leaves108 C
+bits per fixed A. Exact combinations of the quadratic constraints reveal
+constant contradictions for16 A cases. Separate sparse elimination retains
+explicit XOR-polynomial certificates. The other12 cases eliminate20 C bits
+and leave88. A90-CPU-second probe on the first remaining case reports
+INDETERMINATE/15 in91.9213 seconds solver command wall (96.1653 seconds
+including construction). Other cases remain unsolved; no speedup over the
+older unrestricted pair solver has been established.
+
+Finite controls cover all19124 rank-four alternating matrices for sizes4–6,
+960 symbolic/direct checks,26112 exhaustive direct small-chart assignments,
+and three additional nontrivial negatives that survive linear simplification
+and actually return solver UNSAT. A separate source parser reconstructs
+P/W/targets and direct multiplication checks448 full-chart assignments.
+The initial positive control fixed the wrong A block; its failed assertion
+and result are retained, and the fixture is corrected rather than reusing
+its failure as an AES exclusion. The derivation and linear algebra are not
+claimed as a new general synthesis technique. The retained summary is
+`workspace/aes-256-gcm/reports/sbox_tensor_chart_study.json`.
+
+The F11 pool diagnostic also completes. Its constant-free1023 factor cosets
+have distinct exact multiplication-image maps in each of six windows, so
+identity-map deduplication supplies no compression. Its degree-at-most3/4
+space dimensions are9/11, while the full P32 space has dimensions28/32.
+Thus it is not a proxy for arbitrary P32 factors. These diagnostics do not
+complete the previously partial five-factor enumeration.
+
+Primary-source prior-art checks are refreshed:
+
+- The [NIST source snapshot](https://github.com/usnistgov/Circuits/tree/8366158a4324ef902ce740f29ddc9f7ebb1018b2/data/slp/aes/aes-sbox),
+  revision `8366158a4324ef902ce740f29ddc9f7ebb1018b2`, contains37 forward
+  S-box files. Our separate data-only parser verifies all256 inputs and
+  recounts gates/depth. Minimum AND count is28; minimum at AND depth3 is35.
+  These are minima in that directory, not global optimality claims. The
+  parser's initial input-name, regular-expression and constant-wire failures
+  are retained; the final parser supports the declared wire prefixes and
+  constant0/1 operands.
+- [Swapnil Jain's circuit release](https://github.com/Swapnil-jain/gf2m-circuits/tree/9daf883e529ab4b9c80c66632683b403f0c69e89/sbox),
+  revision `9daf883e529ab4b9c80c66632683b403f0c69e89`, supplies11 circuits
+  independently verified here on all256 inputs with must-fail mutations.
+  Its forward106/gate-depth24 point has34 ANDs at AND depth4; its109-gate
+  inverse/gate-depth30 point has32 ANDs at AND depth6. No downloaded code or
+  Lean checker was executed; these are our own exhaustive truth/count checks.
+  These circuits remain prior art, not ours. The release explicitly does not
+  include a runnable version of its representation-search dependencies.
+
+Three public starting function sets, including an explicitly materialized
+affine conversion of the inverse to the forward S-box, yield42 small
+rank-eligible dependency-closed windows (16/13/13 per source). This is a
+necessary-rank inventory, not a smaller replacement or proof that these
+functions are inequivalent to every earlier seed. They supply concrete
+follow-up inputs beyond repeatedly sweeping the same finite factor pool.
+See `workspace/aes-256-gcm/reports/sbox_frontier_refresh_study.json`.
+
 ## Parallel depth-three replacements and publication handoff — 2026-10-06
 
 The branch progress handoff is [PROGRESS.md](PROGRESS.md). This checkpoint

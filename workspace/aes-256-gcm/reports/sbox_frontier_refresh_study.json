@@ -1,0 +1,2239 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-18",
+  "base_commit": "a29da5f96d61f87f7fa25b90ec3aabd61ce9de54",
+  "status": "primary-sources-refreshed-and-independent-truth-checks-pass",
+  "Jain_public_release": {
+    "status": "pass",
+    "upstream_revision": "9daf883e529ab4b9c80c66632683b403f0c69e89",
+    "upstream_url": "https://github.com/Swapnil-jain/gf2m-circuits",
+    "public_circuits": [
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/invsbox109_d30.json",
+        "sha256": "0c0fdb0a17bf1efec561cf3f91899c5cd676eb8ae4da9f7512c3de651e8df2b7",
+        "match": "AES-inverse-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 32,
+          "XOR": 71,
+          "XNOR": 6
+        },
+        "gates": 109,
+        "gate_depth": 30,
+        "AND_depth": 6,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 1,
+          "4": 4,
+          "5": 9,
+          "6": 8
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 20,
+          "4": 24,
+          "5": 33,
+          "6": 41
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/invsbox109_d31.json",
+        "sha256": "d97216648dfac94ab1ab102b6f06b79cb146cd6bdc9fea6b0aee578721a548fc",
+        "match": "AES-inverse-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 32,
+          "XOR": 70,
+          "XNOR": 7
+        },
+        "gates": 109,
+        "gate_depth": 31,
+        "AND_depth": 6,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 5,
+          "5": 7,
+          "6": 8
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 26,
+          "5": 33,
+          "6": 41
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox106_d24.json",
+        "sha256": "b189eca69c8e55659f750488e6225337298c7b7b818f7003f67690d0afbe9496",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 69,
+          "XNOR": 3
+        },
+        "gates": 106,
+        "gate_depth": 24,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox106_d34.json",
+        "sha256": "dc9c01a32842ac0260336bfc6caef9bcd411d787a1eba2fb890217d20399034b",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 32,
+          "XOR": 71,
+          "XNOR": 3
+        },
+        "gates": 106,
+        "gate_depth": 34,
+        "AND_depth": 6,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 5,
+          "5": 5,
+          "6": 10
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 26,
+          "5": 31,
+          "6": 41
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox110_d38.json",
+        "sha256": "bcb9239523918a6081338f78c225cb6bf8d89e09af422b8642043d6ef6a2c774",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 32,
+          "XOR": 73,
+          "XNOR": 5
+        },
+        "gates": 110,
+        "gate_depth": 38,
+        "AND_depth": 6,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 1,
+          "4": 4,
+          "5": 9,
+          "6": 8
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 20,
+          "4": 24,
+          "5": 33,
+          "6": 41
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox111_d21.json",
+        "sha256": "edb16a1872c86d792429326efc5f83a7e94b79d59c34c2c46bbb78533f162be9",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 74,
+          "XNOR": 3
+        },
+        "gates": 111,
+        "gate_depth": 21,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox112_d18.json",
+        "sha256": "7c4ab111baa7ae9c2840e5eb9e973b3b09dc974bc5994a53313609463fc810be",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 75,
+          "XNOR": 3
+        },
+        "gates": 112,
+        "gate_depth": 18,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox112_d20.json",
+        "sha256": "03d7c644009cc979b50be50aa8cd88b07bca700524db2f0fa82c6c3667670ec1",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 75,
+          "XNOR": 3
+        },
+        "gates": 112,
+        "gate_depth": 20,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox113_d18.json",
+        "sha256": "81f32010dc70320f37c7c8a4af5049f72def6f4a32dd82151a7936735f150dc8",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 76,
+          "XNOR": 3
+        },
+        "gates": 113,
+        "gate_depth": 18,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox116_d17.json",
+        "sha256": "342739572efee6fce2e35488d72ac5aa2b6d7038521a77be192cc0870f7df47b",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 78,
+          "XNOR": 4
+        },
+        "gates": 116,
+        "gate_depth": 17,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "runs/aes-frontier-refresh-20261018/upstream/sbox/circuits/sbox121_d16.json",
+        "sha256": "cf7ae6668603758804613e8161590068d038dc2b67de25ba06ee719a9c23f286",
+        "match": "AES-S-box",
+        "scalar_rows": 256,
+        "must_fail_mutation_rejected": true,
+        "counts": {
+          "AND": 34,
+          "XOR": 83,
+          "XNOR": 4
+        },
+        "gates": 121,
+        "gate_depth": 16,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      }
+    ],
+    "downloaded_code_executed": false,
+    "Lean_checks_run": false,
+    "source_licenses": "Upstream code/circuits Apache-2.0; papers CC BY4.0; third-party files retain their own terms.",
+    "novel_ours": false,
+    "algorithm_seconds": 0.0288696251809597,
+    "scope": "Independent exhaustive functional/count/depth checks of the11 released JSON circuits, not a literature completeness or record/optimality proof.",
+    "next_constructive_direction": "New nonlinear function sets and representation/layout search can seed experiments outside our closed fixed-prefix families; upstream says search code is not runnable from the release."
+  },
+  "NIST_public_inventory": {
+    "status": "pass",
+    "revision": "8366158a4324ef902ce740f29ddc9f7ebb1018b2",
+    "sources_checked": 37,
+    "cases": [
+      {
+        "file": "aes-sbox-a28-ad4-g131-gd32-xx103-47.circ.txt",
+        "sha256": "9e6c8dbed90aab60b19587c9a281f7962813b8557aac6c3a7498bc454a8c48bb",
+        "counts": {
+          "AND": 28,
+          "XOR": 56,
+          "XNOR": 47
+        },
+        "gates": 131,
+        "gate_depth": 32,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad4-g131-gd36-xx103-28.circ.txt",
+        "sha256": "00081b94e742619ab513b69fc5acc2f8a4b7856cd6996373a5694870d0101186",
+        "counts": {
+          "AND": 28,
+          "XOR": 75,
+          "XNOR": 28
+        },
+        "gates": 131,
+        "gate_depth": 36,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad4-g132-gd23-xx104-27.circ.txt",
+        "sha256": "5eff7e4e244558febb35b140b0cda1dbd05c5eb8224f41d0958d09da94bd64f2",
+        "counts": {
+          "AND": 28,
+          "XOR": 77,
+          "XNOR": 27
+        },
+        "gates": 132,
+        "gate_depth": 23,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad4-g141-gd16-xx113-27.circ.txt",
+        "sha256": "2539f43e53e7326eaddc021c734aaea429fcd4f837f4f9d8bc6eaad77e5f31f8",
+        "counts": {
+          "AND": 28,
+          "XOR": 86,
+          "XNOR": 27
+        },
+        "gates": 141,
+        "gate_depth": 16,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad4-g154-gd15-xx126-28.circ.txt",
+        "sha256": "4ddc9b2a12a33e67c5c323e25c9889eef5c9d9a080c284cec2e7e0cdb43e88e2",
+        "counts": {
+          "AND": 28,
+          "XOR": 98,
+          "XNOR": 28
+        },
+        "gates": 154,
+        "gate_depth": 15,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad4-g177-gd14-xx149-24.circ.txt",
+        "sha256": "7bc3b4fd1cef2bdae4bdbe12b582efdec3447e7abbe7aa224b8d0594af4d9746",
+        "counts": {
+          "AND": 28,
+          "XOR": 125,
+          "XNOR": 24
+        },
+        "gates": 177,
+        "gate_depth": 14,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad5-g124-gd27-xx96-26.circ.txt",
+        "sha256": "dcae5252bc89603aca763a0af914ffbea0026e4a0d59d0a3caff408e19e502ac",
+        "counts": {
+          "AND": 28,
+          "XOR": 70,
+          "XNOR": 26
+        },
+        "gates": 124,
+        "gate_depth": 27,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 10,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 19,
+          "2": 20,
+          "3": 22,
+          "4": 24,
+          "5": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad5-g128-gd20-xx100-27.circ.txt",
+        "sha256": "e00a6c5f5c7a216904f15e78b74c292170c86bbe185543a2b6f80b04e1ed0de1",
+        "counts": {
+          "AND": 28,
+          "XOR": 73,
+          "XNOR": 27
+        },
+        "gates": 128,
+        "gate_depth": 20,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 10,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 19,
+          "2": 20,
+          "3": 22,
+          "4": 24,
+          "5": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a28-ad5-g150-gd15-xx122-23.circ.txt",
+        "sha256": "ce8e394bf1e34f6126f071f04c9c5fa80860f5d901bc4576367ed5de21728a08",
+        "counts": {
+          "AND": 28,
+          "XOR": 99,
+          "XNOR": 23
+        },
+        "gates": 150,
+        "gate_depth": 15,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 10,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 13
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 19,
+          "2": 20,
+          "3": 22,
+          "4": 24,
+          "5": 37
+        }
+      },
+      {
+        "file": "aes-sbox-a29-ad5-g137-gd32-xx108-22.circ.txt",
+        "sha256": "76b18ad86c324a5a32eb7155cf8fc3df0b3cfa3387081a96b76cf8b51feb7e91",
+        "counts": {
+          "AND": 29,
+          "XOR": 86,
+          "XNOR": 22
+        },
+        "gates": 137,
+        "gate_depth": 32,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 15
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 23,
+          "5": 38
+        }
+      },
+      {
+        "file": "aes-sbox-a29-ad5-g139-gd35-xx110-20.circ.txt",
+        "sha256": "b27a250267df733800f8771069e815c55c8fa9e4a06c2fd7196af0a5ea3b0de7",
+        "counts": {
+          "AND": 29,
+          "XOR": 90,
+          "XNOR": 20
+        },
+        "gates": 139,
+        "gate_depth": 35,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 15
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 23,
+          "5": 38
+        }
+      },
+      {
+        "file": "aes-sbox-a29-ad5-g182-gd16-xx153-29.circ.txt",
+        "sha256": "6951bc1e092e8aadada35512dd8e1fae5bfc30f092753485f84b6067771dd2ad",
+        "counts": {
+          "AND": 29,
+          "XOR": 124,
+          "XNOR": 29
+        },
+        "gates": 182,
+        "gate_depth": 16,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 15
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 23,
+          "5": 38
+        }
+      },
+      {
+        "file": "aes-sbox-a29-ad5-g184-gd16-xx155-26.circ.txt",
+        "sha256": "5fb7426765ab7d26077a89243aab23c1c62441a14c31b5a4a8b2d1b48d478f5f",
+        "counts": {
+          "AND": 29,
+          "XOR": 129,
+          "XNOR": 26
+        },
+        "gates": 184,
+        "gate_depth": 16,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 15
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 23,
+          "5": 38
+        }
+      },
+      {
+        "file": "aes-sbox-a30-ad4-g147-gd36-xx117-13.circ.txt",
+        "sha256": "9ec38b0d304369573294458784824133bca5936ec29a1ec5a3fb72f04a4782b9",
+        "counts": {
+          "AND": 30,
+          "XOR": 104,
+          "XNOR": 13
+        },
+        "gates": 147,
+        "gate_depth": 36,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 15
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 39
+        }
+      },
+      {
+        "file": "aes-sbox-a30-ad4-g205-gd15-xx175-54.circ.txt",
+        "sha256": "3e8a5ecf8cee4fff7315fcaae72cb872784703bbe3fe55f59257486f0e75c6f9",
+        "counts": {
+          "AND": 30,
+          "XOR": 121,
+          "XNOR": 54
+        },
+        "gates": 205,
+        "gate_depth": 15,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 15
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 39
+        }
+      },
+      {
+        "file": "aes-sbox-a32-ad5-g110-gd22-xx78-3.circ.txt",
+        "sha256": "cba5389b47e607be9f45a140f3f7cc83f5110aa85dbdd6534fd10576ebc2e677",
+        "counts": {
+          "AND": 32,
+          "XOR": 75,
+          "XNOR": 3
+        },
+        "gates": 110,
+        "gate_depth": 22,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 8,
+          "5": 12
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 29,
+          "5": 41
+        }
+      },
+      {
+        "file": "aes-sbox-a32-ad5-g110-gd23-xx78-3.circ.txt",
+        "sha256": "f660b910a2f464882334849c5807b4f27345978139ac7894484ab419393167c9",
+        "counts": {
+          "AND": 32,
+          "XOR": 75,
+          "XNOR": 3
+        },
+        "gates": 110,
+        "gate_depth": 23,
+        "AND_depth": 5,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 8,
+          "5": 12
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 29,
+          "5": 41
+        }
+      },
+      {
+        "file": "aes-sbox-a33-ad4-g110-gd20-xx77-4.circ.txt",
+        "sha256": "a3010d46df1bd5abbcd99f87302be0d3e7d5c8f621008d5b625ea68494f40d6f",
+        "counts": {
+          "AND": 33,
+          "XOR": 73,
+          "XNOR": 4
+        },
+        "gates": 110,
+        "gate_depth": 20,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 2,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 20,
+          "3": 24,
+          "4": 42
+        }
+      },
+      {
+        "file": "aes-sbox-a34-ad4-g110-gd22-xx76-3.circ.txt",
+        "sha256": "f4bb54511cba5f0bfe6fb42b87b27a4cedea0d3f33c8c468e6f8094b94d64613",
+        "counts": {
+          "AND": 34,
+          "XOR": 73,
+          "XNOR": 3
+        },
+        "gates": 110,
+        "gate_depth": 22,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "aes-sbox-a34-ad4-g124-gd15-xx90-4.circ.txt",
+        "sha256": "229d1e43c9d5d5b1cf969bf4088f203a94925a98d6b12b591677f77211b86577",
+        "counts": {
+          "AND": 34,
+          "XOR": 86,
+          "XNOR": 4
+        },
+        "gates": 124,
+        "gate_depth": 15,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "aes-sbox-a34-ad4-g125-gd15-xx91-4.circ.txt",
+        "sha256": "358d61f060c97617c5d701193990e157e5e9d711e74c5cd8d8d07f4250995dec",
+        "counts": {
+          "AND": 34,
+          "XOR": 87,
+          "XNOR": 4
+        },
+        "gates": 125,
+        "gate_depth": 15,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "aes-sbox-a34-ad4-g128-gd15-xx94-4.circ.txt",
+        "sha256": "66472db45c9c627e45a8b86a4303e5105ccc47fc1c562bbebac9fb362c769fc2",
+        "counts": {
+          "AND": 34,
+          "XOR": 90,
+          "XNOR": 4
+        },
+        "gates": 128,
+        "gate_depth": 15,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        }
+      },
+      {
+        "file": "aes-sbox-a35-ad3-g139-gd27-xx104-38.circ.txt",
+        "sha256": "8d1591a33c113b220df1298b0dbd68f9e661ac81b460ab694696ac9b3f8f985d",
+        "counts": {
+          "AND": 35,
+          "XOR": 66,
+          "XNOR": 38
+        },
+        "gates": 139,
+        "gate_depth": 27,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 12,
+          "3": 12
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 32,
+          "3": 44
+        }
+      },
+      {
+        "file": "aes-sbox-a35-ad3-g139-gd31-xx104-25.circ.txt",
+        "sha256": "af6e3693caa819ec4e4131ac8614ef1ccbfec757d9fc3cda1f1acfebecdadd4a",
+        "counts": {
+          "AND": 35,
+          "XOR": 79,
+          "XNOR": 25
+        },
+        "gates": 139,
+        "gate_depth": 31,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 12,
+          "3": 12
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 32,
+          "3": 44
+        }
+      },
+      {
+        "file": "aes-sbox-a35-ad3-g157-gd15-xx122-31.circ.txt",
+        "sha256": "d0307dc3e73dbee1ec5de1429fc1ef8e74bd9001d83ea24f6ea2e4a26c1449e4",
+        "counts": {
+          "AND": 35,
+          "XOR": 91,
+          "XNOR": 31
+        },
+        "gates": 157,
+        "gate_depth": 15,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 12,
+          "3": 12
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 32,
+          "3": 44
+        }
+      },
+      {
+        "file": "aes-sbox-a35-ad3-g183-gd13-xx148-29.circ.txt",
+        "sha256": "750098884b30b17b8af90fba0b10e7bab00cca4d11a22494a21ce929488058ad",
+        "counts": {
+          "AND": 35,
+          "XOR": 119,
+          "XNOR": 29
+        },
+        "gates": 183,
+        "gate_depth": 13,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 12,
+          "3": 12
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 32,
+          "3": 44
+        }
+      },
+      {
+        "file": "aes-sbox-a36-ad4-g137-gd14-xx101-22.circ.txt",
+        "sha256": "45df511d91543de2add537d952af5276f386f253f8be4c8af978fa6d0ce46769",
+        "counts": {
+          "AND": 36,
+          "XOR": 79,
+          "XNOR": 22
+        },
+        "gates": 137,
+        "gate_depth": 14,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 23,
+          "3": 27,
+          "4": 45
+        }
+      },
+      {
+        "file": "aes-sbox-a36-ad4-g138-gd14-xx102-22.circ.txt",
+        "sha256": "4a01f36064a4e85d2abdab421f91a4fa72db97cb7d76f58d7cb23204b34959f6",
+        "counts": {
+          "AND": 36,
+          "XOR": 80,
+          "XNOR": 22
+        },
+        "gates": 138,
+        "gate_depth": 14,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 23,
+          "3": 27,
+          "4": 45
+        }
+      },
+      {
+        "file": "aes-sbox-a38-ad4-g148-gd13-xx110-24.circ.txt",
+        "sha256": "1f952d76742582daddab20ac469d31bd8747d94de3c180227c0fd90c782b15e2",
+        "counts": {
+          "AND": 38,
+          "XOR": 86,
+          "XNOR": 24
+        },
+        "gates": 148,
+        "gate_depth": 13,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 5,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 25,
+          "3": 29,
+          "4": 47
+        }
+      },
+      {
+        "file": "aes-sbox-a39-ad4-g148-gd13-xx109-24.circ.txt",
+        "sha256": "096c28d615d090ae85ebd6db9acf5d86eb9b8123bce8b4ebba29e19f77e6d05e",
+        "counts": {
+          "AND": 39,
+          "XOR": 85,
+          "XNOR": 24
+        },
+        "gates": 148,
+        "gate_depth": 13,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 6,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 26,
+          "3": 30,
+          "4": 48
+        }
+      },
+      {
+        "file": "aes-sbox-a45-ad4-g151-gd12-xx106-26.circ.txt",
+        "sha256": "04f4618321e32934e9ced06cc624788cf773aeeab73491dc494b1f6824415203",
+        "counts": {
+          "AND": 45,
+          "XOR": 80,
+          "XNOR": 26
+        },
+        "gates": 151,
+        "gate_depth": 12,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 3,
+          "3": 4,
+          "4": 27
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 23,
+          "3": 27,
+          "4": 54
+        }
+      },
+      {
+        "file": "aes-sbox-a46-ad3-g250-gd15-xx204-4.circ.txt",
+        "sha256": "e5f710299f97d0a8e2cdc16a5d230c7273bc962ace8c09eb28e11b8eb73142d5",
+        "counts": {
+          "AND": 46,
+          "XOR": 200,
+          "XNOR": 4
+        },
+        "gates": 250,
+        "gate_depth": 15,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 21,
+          "3": 16
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 39,
+          "3": 55
+        }
+      },
+      {
+        "file": "aes-sbox-a47-ad3-g186-gd22-xx139-7.circ.txt",
+        "sha256": "e5296abe7974dfeeaf89c531009e7a0d9b1dd9ff5c9488f0ff4a38c41ca47ea7",
+        "counts": {
+          "AND": 47,
+          "XOR": 132,
+          "XNOR": 7
+        },
+        "gates": 186,
+        "gate_depth": 22,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 22,
+          "3": 16
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 40,
+          "3": 56
+        }
+      },
+      {
+        "file": "aes-sbox-a47-ad3-g225-gd15-xx178-4.circ.txt",
+        "sha256": "1c9a8046a40077afcb8de845cf581d53e20b2878b711f8e7ca7b0658a48e0b3e",
+        "counts": {
+          "AND": 47,
+          "XOR": 174,
+          "XNOR": 4
+        },
+        "gates": 225,
+        "gate_depth": 15,
+        "AND_depth": 3,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 22,
+          "3": 16
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 40,
+          "3": 56
+        }
+      },
+      {
+        "file": "aes-sbox-a49-ad4-g164-gd11-xx115-32.circ.txt",
+        "sha256": "d446f7f09e4d2cca2b266be9a3750d50aa63aa59ff50e71650aa35b28365d74f",
+        "counts": {
+          "AND": 49,
+          "XOR": 83,
+          "XNOR": 32
+        },
+        "gates": 164,
+        "gate_depth": 11,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 10,
+          "2": 3,
+          "3": 4,
+          "4": 32
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 19,
+          "2": 22,
+          "3": 26,
+          "4": 58
+        }
+      },
+      {
+        "file": "aes-sbox-a51-ad4-g157-gd11-xx106-28.circ.txt",
+        "sha256": "6c4a5c6af794cca39a9a4dc934c028504c617eb17b23ba364023ce9f5fc7f037",
+        "counts": {
+          "AND": 51,
+          "XOR": 78,
+          "XNOR": 28
+        },
+        "gates": 157,
+        "gate_depth": 11,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 4,
+          "3": 4,
+          "4": 32
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 24,
+          "3": 28,
+          "4": 60
+        }
+      },
+      {
+        "file": "aes-sbox-a53-ad4-g157-gd11-xx104-31.circ.txt",
+        "sha256": "af7a3a55a026d889488390382106e326fa79c7184be23f42082afacad66d4b00",
+        "counts": {
+          "AND": 53,
+          "XOR": 73,
+          "XNOR": 31
+        },
+        "gates": 157,
+        "gate_depth": 11,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 11,
+          "2": 6,
+          "3": 4,
+          "4": 32
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 20,
+          "2": 26,
+          "3": 30,
+          "4": 62
+        }
+      }
+    ],
+    "minimum_AND_count_in_inventory": 28,
+    "minimum_AND_count_at_AD3_in_inventory": 35,
+    "source_url": "https://github.com/usnistgov/Circuits/tree/8366158a4324ef902ce740f29ddc9f7ebb1018b2/data/slp/aes/aes-sbox",
+    "scope": "All forwardS-box circuit files present in this pinned directory, not all literature and not an optimality proof."
+  },
+  "new_to_lab_prefix_inventory": {
+    "status": "complete-inventory-not-synthesis",
+    "sources": [
+      {
+        "source": "sbox106_d24",
+        "upstream_sha256": "b189eca69c8e55659f750488e6225337298c7b7b818f7003f67690d0afbe9496",
+        "affine_equivalent_forward_conversion": false,
+        "new_ours": false,
+        "counts": {
+          "AND": 34,
+          "XOR": 69,
+          "XNOR": 3
+        },
+        "gates": 106,
+        "gate_depth": 24,
+        "AND_depth": 4,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 3,
+          "3": 4,
+          "4": 18
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 21,
+          "3": 25,
+          "4": 43
+        },
+        "root_sets_accounted": 6579,
+        "distinct_dependency_closed_windows": 1455,
+        "rank_eligible_windows_smaller_than_ten": [
+          {
+            "removed_AND_indices": [
+              13,
+              15,
+              17
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              13,
+              22,
+              28
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              14,
+              16,
+              18
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              14,
+              23,
+              29
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              15,
+              26,
+              30
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              16,
+              27,
+              31
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              17,
+              24,
+              32
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              18,
+              25,
+              33
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              22,
+              24,
+              26
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              23,
+              25,
+              27
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              28,
+              30,
+              32
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              29,
+              31,
+              33
+            ],
+            "removed_count": 3,
+            "retained_rank": 40,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              11,
+              13,
+              14,
+              17,
+              18,
+              28,
+              29,
+              30,
+              31
+            ],
+            "removed_count": 9,
+            "retained_rank": 34,
+            "AES_deficit": 8,
+            "replacement_budget": 8,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              12,
+              15,
+              16,
+              17,
+              18,
+              28,
+              29,
+              32,
+              33
+            ],
+            "removed_count": 9,
+            "retained_rank": 34,
+            "AES_deficit": 8,
+            "replacement_budget": 8,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              20,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              32,
+              33
+            ],
+            "removed_count": 9,
+            "retained_rank": 34,
+            "AES_deficit": 8,
+            "replacement_budget": 8,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              21,
+              22,
+              23,
+              26,
+              27,
+              30,
+              31,
+              32,
+              33
+            ],
+            "removed_count": 9,
+            "retained_rank": 34,
+            "AES_deficit": 8,
+            "replacement_budget": 8,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          }
+        ],
+        "size_deficit_histogram": [
+          {
+            "removed": 1,
+            "deficit": 1,
+            "windows": 18
+          },
+          {
+            "removed": 2,
+            "deficit": 2,
+            "windows": 153
+          },
+          {
+            "removed": 3,
+            "deficit": 2,
+            "windows": 12
+          },
+          {
+            "removed": 3,
+            "deficit": 3,
+            "windows": 804
+          },
+          {
+            "removed": 9,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 10,
+            "deficit": 8,
+            "windows": 40
+          },
+          {
+            "removed": 11,
+            "deficit": 8,
+            "windows": 180
+          },
+          {
+            "removed": 14,
+            "deficit": 8,
+            "windows": 3
+          },
+          {
+            "removed": 15,
+            "deficit": 8,
+            "windows": 20
+          },
+          {
+            "removed": 16,
+            "deficit": 8,
+            "windows": 15
+          },
+          {
+            "removed": 17,
+            "deficit": 8,
+            "windows": 42
+          },
+          {
+            "removed": 19,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 20,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 21,
+            "deficit": 8,
+            "windows": 8
+          },
+          {
+            "removed": 23,
+            "deficit": 8,
+            "windows": 3
+          },
+          {
+            "removed": 24,
+            "deficit": 8,
+            "windows": 3
+          },
+          {
+            "removed": 25,
+            "deficit": 8,
+            "windows": 8
+          },
+          {
+            "removed": 26,
+            "deficit": 8,
+            "windows": 14
+          },
+          {
+            "removed": 27,
+            "deficit": 8,
+            "windows": 37
+          },
+          {
+            "removed": 28,
+            "deficit": 8,
+            "windows": 83
+          }
+        ],
+        "source_AES_rows_verified": 256
+      },
+      {
+        "source": "sbox106_d34",
+        "upstream_sha256": "dc9c01a32842ac0260336bfc6caef9bcd411d787a1eba2fb890217d20399034b",
+        "affine_equivalent_forward_conversion": false,
+        "new_ours": false,
+        "counts": {
+          "AND": 32,
+          "XOR": 71,
+          "XNOR": 3
+        },
+        "gates": 106,
+        "gate_depth": 34,
+        "AND_depth": 6,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 2,
+          "4": 5,
+          "5": 5,
+          "6": 10
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 21,
+          "4": 26,
+          "5": 31,
+          "6": 41
+        },
+        "root_sets_accounted": 5488,
+        "distinct_dependency_closed_windows": 1231,
+        "rank_eligible_windows_smaller_than_ten": [
+          {
+            "removed_AND_indices": [
+              14,
+              16,
+              28
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              14,
+              18,
+              20
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              15,
+              17,
+              29
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              15,
+              19,
+              21
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              16,
+              22,
+              26
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              17,
+              23,
+              27
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              18,
+              24,
+              26
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              19,
+              25,
+              27
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              20,
+              22,
+              30
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              21,
+              23,
+              31
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              24,
+              28,
+              30
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              25,
+              29,
+              31
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              13,
+              18,
+              19,
+              20,
+              21,
+              24,
+              25,
+              28,
+              29
+            ],
+            "removed_count": 9,
+            "retained_rank": 32,
+            "AES_deficit": 8,
+            "replacement_budget": 8,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          }
+        ],
+        "size_deficit_histogram": [
+          {
+            "removed": 1,
+            "deficit": 1,
+            "windows": 18
+          },
+          {
+            "removed": 2,
+            "deficit": 2,
+            "windows": 153
+          },
+          {
+            "removed": 3,
+            "deficit": 2,
+            "windows": 12
+          },
+          {
+            "removed": 3,
+            "deficit": 3,
+            "windows": 804
+          },
+          {
+            "removed": 9,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 10,
+            "deficit": 8,
+            "windows": 10
+          },
+          {
+            "removed": 11,
+            "deficit": 8,
+            "windows": 45
+          },
+          {
+            "removed": 14,
+            "deficit": 8,
+            "windows": 2
+          },
+          {
+            "removed": 15,
+            "deficit": 8,
+            "windows": 12
+          },
+          {
+            "removed": 16,
+            "deficit": 8,
+            "windows": 30
+          },
+          {
+            "removed": 19,
+            "deficit": 8,
+            "windows": 2
+          },
+          {
+            "removed": 20,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 21,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 22,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 23,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 24,
+            "deficit": 8,
+            "windows": 12
+          },
+          {
+            "removed": 25,
+            "deficit": 8,
+            "windows": 37
+          },
+          {
+            "removed": 26,
+            "deficit": 8,
+            "windows": 83
+          }
+        ],
+        "source_AES_rows_verified": 256
+      },
+      {
+        "source": "invsbox109_d30",
+        "upstream_sha256": "0c0fdb0a17bf1efec561cf3f91899c5cd676eb8ae4da9f7512c3de651e8df2b7",
+        "affine_equivalent_forward_conversion": true,
+        "new_ours": false,
+        "counts": {
+          "AND": 32,
+          "XOR": 127,
+          "XNOR": 14
+        },
+        "gates": 173,
+        "gate_depth": 38,
+        "AND_depth": 6,
+        "AND_layer_counts": {
+          "1": 9,
+          "2": 1,
+          "3": 1,
+          "4": 4,
+          "5": 9,
+          "6": 8
+        },
+        "affine_plus_nonlinear_rank_by_depth": {
+          "1": 18,
+          "2": 19,
+          "3": 20,
+          "4": 24,
+          "5": 33,
+          "6": 41
+        },
+        "root_sets_accounted": 5488,
+        "distinct_dependency_closed_windows": 1217,
+        "rank_eligible_windows_smaller_than_ten": [
+          {
+            "removed_AND_indices": [
+              12,
+              14,
+              20
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              12,
+              18,
+              24
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              13,
+              15,
+              21
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              13,
+              19,
+              25
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              14,
+              26,
+              30
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              15,
+              27,
+              31
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              18,
+              22,
+              26
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              19,
+              23,
+              27
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              20,
+              22,
+              28
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              21,
+              23,
+              29
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              24,
+              28,
+              30
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              25,
+              29,
+              31
+            ],
+            "removed_count": 3,
+            "retained_rank": 38,
+            "AES_deficit": 2,
+            "replacement_budget": 2,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          },
+          {
+            "removed_AND_indices": [
+              17,
+              22,
+              23,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31
+            ],
+            "removed_count": 9,
+            "retained_rank": 32,
+            "AES_deficit": 8,
+            "replacement_budget": 8,
+            "fixed_retained_functions": true,
+            "candidate_replacement_found": false
+          }
+        ],
+        "size_deficit_histogram": [
+          {
+            "removed": 1,
+            "deficit": 1,
+            "windows": 18
+          },
+          {
+            "removed": 2,
+            "deficit": 2,
+            "windows": 153
+          },
+          {
+            "removed": 3,
+            "deficit": 2,
+            "windows": 12
+          },
+          {
+            "removed": 3,
+            "deficit": 3,
+            "windows": 804
+          },
+          {
+            "removed": 9,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 10,
+            "deficit": 8,
+            "windows": 10
+          },
+          {
+            "removed": 11,
+            "deficit": 8,
+            "windows": 45
+          },
+          {
+            "removed": 14,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 15,
+            "deficit": 8,
+            "windows": 6
+          },
+          {
+            "removed": 16,
+            "deficit": 8,
+            "windows": 16
+          },
+          {
+            "removed": 17,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 18,
+            "deficit": 8,
+            "windows": 6
+          },
+          {
+            "removed": 19,
+            "deficit": 8,
+            "windows": 2
+          },
+          {
+            "removed": 20,
+            "deficit": 8,
+            "windows": 4
+          },
+          {
+            "removed": 21,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 22,
+            "deficit": 8,
+            "windows": 1
+          },
+          {
+            "removed": 23,
+            "deficit": 8,
+            "windows": 3
+          },
+          {
+            "removed": 24,
+            "deficit": 8,
+            "windows": 10
+          },
+          {
+            "removed": 25,
+            "deficit": 8,
+            "windows": 36
+          },
+          {
+            "removed": 26,
+            "deficit": 8,
+            "windows": 84
+          }
+        ],
+        "source_AES_rows_verified": 256
+      }
+    ],
+    "algorithm_seconds": 1.1416242078412324,
+    "scope": "Three new-to-this-lab public function sets; dependency-closed unions of up to3 AND-root cones. Rank eligibility is necessary only; no smaller replacement, novelty, or affine-inequivalence theorem established."
+  },
+  "public_source_is_our_discovery": false,
+  "world_first_established": false,
+  "novelty_proved_by_absence_of_search_results": false,
+  "literature_search_complete": false,
+  "downloaded_code_executed": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "evidence_sha256": {
+    "runs/aes-frontier-refresh-20261018/nist_check.py": "075869832d414a5291e35cf156d343219d543e179e5246cd0e31291f86826527",
+    "runs/aes-frontier-refresh-20261018/report.json": "539d832c60594c9660f9e4c85649aa4ee6f5ccac5dd06bd149e657bc90552239",
+    "runs/aes-frontier-refresh-20261018/prefix-inventory.json": "600bddaaceaa42b5b9164ddf6ae2c587cf5d5e7ad4fde0e6d5fcd3e4f6c92332",
+    "runs/aes-frontier-refresh-20261018/prefix_inventory.py": "334ebab6882460e793850e75b97ddd94d9b45181aafae932386ae73a8238c337",
+    "runs/aes-frontier-refresh-20261018/invsbox109_d30-forward-affine-seed.json": "3d94e71a7b5554f714a1917857ff9d397aa91266b732bdbf519e627a37e72a95",
+    "runs/aes-frontier-refresh-20261018/verify.py": "c5d8977830c843ce04b46869deb934c56c91cffd9b12dce607ae235dd09d4b87",
+    "runs/aes-frontier-refresh-20261018/nist-report.json": "8548fb26a5bc572e33f9ccd704200224204cba3ff7e263fe1314d4aff5867fa5"
+  }
+}
