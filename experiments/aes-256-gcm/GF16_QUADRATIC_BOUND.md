@@ -114,6 +114,15 @@ operand planes into three orbits of sizes 510, 85 and 10,200. Each of their
 representative eight-AND probes times out, exit 15, at approximately
 61.4–61.5 seconds wall. These timeouts exclude nothing.
 
+A different solver subsequently tests all three full-truth representatives
+after a separately reconstructed plain-CNF translation. Each reaches its
+90-second real-time limit and explicitly reports `c UNKNOWN`, exit 0.
+The original wrapper's result field remains null because it parsed only
+`s`-prefixed status lines; the retained summary interprets the explicit
+UNKNOWN line without rewriting that original record. Exit zero here is not
+SAT, UNSAT or a completed exclusion. Two positive models and the negative
+quartic control pass; all six translated instances match independent bytes.
+
 Five actual sequential controls pass, including a two-AND cubic that really
 uses a nonlinear operand and the nine-AND field multiplier. Separate review
 reconstructs all eight sequential control/search CNFs byte for byte,
@@ -137,6 +146,8 @@ bound, not a claim of priority.
 
 The machine-readable retained summary is
 [sbox_norm_stage_study.json](../../workspace/aes-256-gcm/reports/sbox_norm_stage_study.json).
+The [second-solver follow-up](../../workspace/aes-256-gcm/reports/sbox_dependent_norm_solver_study.json)
+retains its separate terminal UNKNOWN outcomes.
 Raw scripts, CNFs, proofs, stdout/stderr and provenance remain in the local
 ignored directories `runs/aes-eight-and-norm-20261018/`,
 `runs/aes-eight-norm-code-audit-20261018/` and

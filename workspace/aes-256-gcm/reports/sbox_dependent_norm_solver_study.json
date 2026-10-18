@@ -1,0 +1,383 @@
+{
+  "status": "three-90-second-UNKNOWN-outcomes-no-exclusion",
+  "controls": [
+    {
+      "source_case": "sequential-control-1",
+      "source_sha256": "86ad8b9c25df050639ac7903bb279f9712285ebbcdf8fd7ca70edaf29924aecf",
+      "plain_CNF_sha256": "df1666a293a93ddfdcdf8b8dce846a28203c01a3fdf3da994da85006b506c472",
+      "status": "SATISFIABLE",
+      "process": {
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018/plain-sequential-control-1.cnf"
+        ],
+        "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018",
+        "exit_code": 10,
+        "wall_seconds": 0.02367900009267032
+      },
+      "input_bits": 4,
+      "topological_AND_budget": 2,
+      "first_factors": null,
+      "all_prior_ANDs_allowed_as_operands": true,
+      "target_truth_hex": [
+        "0x8080"
+      ],
+      "UNSAT_certificate_checked": false,
+      "witness": {
+        "factor_masks": [
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            17
+          ]
+        ],
+        "output_masks": [
+          49
+        ],
+        "all_truth_rows": 16,
+        "source_CNF_XOR_and_translated_CNF_model_verified": true,
+        "uses_prior_nonlinear_operands": true
+      }
+    },
+    {
+      "source_case": "sequential-control-2",
+      "source_sha256": "e361142e86013568c3e3267984daa3eb4244cccc40a3b60eedf62582265dfe27",
+      "plain_CNF_sha256": "9fab6106c327ceb9b0d599fb093334c768f751f84c6074bf8d6a36d17cf74bcd",
+      "status": "UNSATISFIABLE",
+      "process": {
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018/plain-sequential-control-2.cnf"
+        ],
+        "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018",
+        "exit_code": 20,
+        "wall_seconds": 0.013500875094905496
+      },
+      "input_bits": 4,
+      "topological_AND_budget": 2,
+      "first_factors": null,
+      "all_prior_ANDs_allowed_as_operands": true,
+      "target_truth_hex": [
+        "0x8000"
+      ],
+      "UNSAT_certificate_checked": false
+    },
+    {
+      "source_case": "sequential-known-nine",
+      "source_sha256": "042e0504fb8204843fb2eb4907a58b97ccca33f422db80ab8cf901c566b99197",
+      "plain_CNF_sha256": "203a3bf040c81e2806e7a0452542a9eff210c9f29fbc2880a82bafdf8b6aadb1",
+      "status": "SATISFIABLE",
+      "process": {
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018/plain-sequential-known-nine.cnf"
+        ],
+        "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018",
+        "exit_code": 10,
+        "wall_seconds": 0.08132654195651412
+      },
+      "input_bits": 8,
+      "topological_AND_budget": 9,
+      "first_factors": null,
+      "all_prior_ANDs_allowed_as_operands": true,
+      "target_truth_hex": [
+        "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+        "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+        "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+      ],
+      "UNSAT_certificate_checked": false,
+      "witness": {
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            12,
+            192
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            15,
+            240
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            11,
+            176
+          ]
+        ],
+        "output_masks": [
+          11008,
+          62976,
+          94208,
+          83200
+        ],
+        "all_truth_rows": 256,
+        "source_CNF_XOR_and_translated_CNF_model_verified": true,
+        "uses_prior_nonlinear_operands": false
+      }
+    }
+  ],
+  "searches": [
+    {
+      "source_case": "GF16-eight-sequential-orbit-0",
+      "source_sha256": "cdf22ccec84b458124ff39edf03b037c4a16ff8b048ec9fb5aeb8a5468aaa189",
+      "plain_CNF_sha256": "d6c449b426ae5c1e1d6318e73a49d4e5de0a52da6f3da9acb71188d826e80da0",
+      "status": null,
+      "process": {
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "90",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-0.cnf"
+        ],
+        "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018",
+        "exit_code": 0,
+        "wall_seconds": 90.01970750000328
+      },
+      "input_bits": 8,
+      "topological_AND_budget": 8,
+      "first_factors": [
+        1,
+        2
+      ],
+      "all_prior_ANDs_allowed_as_operands": true,
+      "target_truth_hex": [
+        "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+        "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+        "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+      ],
+      "UNSAT_certificate_checked": false,
+      "effective_status": "UNKNOWN",
+      "effective_status_source": "Explicit c UNKNOWN line in retained solver stdout.",
+      "no_s_status_line_note": "Original wrapper only parsed s-prefixed result lines and retained null. It is preserved unchanged; explicit commented UNKNOWN is interpreted here.",
+      "stdout_sha256": "79edfe35bcc98e1cae8677a54a307c0361401528afa53149606807df0bfd65cc"
+    },
+    {
+      "source_case": "GF16-eight-sequential-orbit-1",
+      "source_sha256": "4352da18aba24ed5367cce2153b8fdc66cc053f55a761d85016d9e306727e9e8",
+      "plain_CNF_sha256": "ae3b6ba07e1d56319eeebc2393bc754feeb6e17aa3f263e89b0f6e5ed0d9dabb",
+      "status": null,
+      "process": {
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "90",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-1.cnf"
+        ],
+        "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018",
+        "exit_code": 0,
+        "wall_seconds": 90.01941483304836
+      },
+      "input_bits": 8,
+      "topological_AND_budget": 8,
+      "first_factors": [
+        1,
+        12
+      ],
+      "all_prior_ANDs_allowed_as_operands": true,
+      "target_truth_hex": [
+        "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+        "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+        "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+      ],
+      "UNSAT_certificate_checked": false,
+      "effective_status": "UNKNOWN",
+      "effective_status_source": "Explicit c UNKNOWN line in retained solver stdout.",
+      "no_s_status_line_note": "Original wrapper only parsed s-prefixed result lines and retained null. It is preserved unchanged; explicit commented UNKNOWN is interpreted here.",
+      "stdout_sha256": "44a46e69ff3f04a85bd4138333b4a8ae4341303ec510c693f54502fe7b932926"
+    },
+    {
+      "source_case": "GF16-eight-sequential-orbit-2",
+      "source_sha256": "15fed105af183601d86da5bb5d01bdc101867bc7b6b9490e6ca2582b23f94ffd",
+      "plain_CNF_sha256": "7ecda9e53d377ef3af76081dd6c8024d0a9d075a0026232cf4dd23b624eab145",
+      "status": null,
+      "process": {
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "90",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-2.cnf"
+        ],
+        "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-dependent-norm-cadical-20261018",
+        "exit_code": 0,
+        "wall_seconds": 90.0174611248076
+      },
+      "input_bits": 8,
+      "topological_AND_budget": 8,
+      "first_factors": [
+        1,
+        16
+      ],
+      "all_prior_ANDs_allowed_as_operands": true,
+      "target_truth_hex": [
+        "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+        "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+        "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+      ],
+      "UNSAT_certificate_checked": false,
+      "effective_status": "UNKNOWN",
+      "effective_status_source": "Explicit c UNKNOWN line in retained solver stdout.",
+      "no_s_status_line_note": "Original wrapper only parsed s-prefixed result lines and retained null. It is preserved unchanged; explicit commented UNKNOWN is interpreted here.",
+      "stdout_sha256": "49836eae02fcabe9b139f237d5fe7f609543c7bb27c26b19d6bb3cb48170a9a0"
+    }
+  ],
+  "base_commit": "f451bda8e075d38e37086e06a18f007f5d1d77cc",
+  "world_first_established": false,
+  "full_AES_candidate": false,
+  "unrestricted_eight_AND_resolved": false,
+  "source_model_audit": "runs/aes-eight-norm-code-audit-20261018/sequential-audit.json",
+  "scope": "Same complete full-truth at-most-eight dependent-AND models and three verified first-plane representatives, expanded to plain CNF and tested in a different solver. Timeouts exclude nothing. UNSAT needs certificate replay; SAT needs actual field and AES integration verification.",
+  "independent_CNF_conversion_audit": {
+    "status": "pass",
+    "independent_plain_CNF_reconstructions": [
+      {
+        "case": "sequential-control-1",
+        "source_sha256": "86ad8b9c25df050639ac7903bb279f9712285ebbcdf8fd7ca70edaf29924aecf",
+        "target_sha256": "df1666a293a93ddfdcdf8b8dce846a28203c01a3fdf3da994da85006b506c472",
+        "byte_identical": true,
+        "variables": 379,
+        "clauses": 1183,
+        "native_XOR_rows": 75
+      },
+      {
+        "case": "sequential-control-2",
+        "source_sha256": "e361142e86013568c3e3267984daa3eb4244cccc40a3b60eedf62582265dfe27",
+        "target_sha256": "9fab6106c327ceb9b0d599fb093334c768f751f84c6074bf8d6a36d17cf74bcd",
+        "byte_identical": true,
+        "variables": 379,
+        "clauses": 1183,
+        "native_XOR_rows": 75
+      },
+      {
+        "case": "sequential-known-nine",
+        "source_sha256": "042e0504fb8204843fb2eb4907a58b97ccca33f422db80ab8cf901c566b99197",
+        "target_sha256": "203a3bf040c81e2806e7a0452542a9eff210c9f29fbc2880a82bafdf8b6aadb1",
+        "byte_identical": true,
+        "variables": 83757,
+        "clauses": 291739,
+        "native_XOR_rows": 5610
+      },
+      {
+        "case": "GF16-eight-sequential-orbit-0",
+        "source_sha256": "cdf22ccec84b458124ff39edf03b037c4a16ff8b048ec9fb5aeb8a5468aaa189",
+        "target_sha256": "d6c449b426ae5c1e1d6318e73a49d4e5de0a52da6f3da9acb71188d826e80da0",
+        "byte_identical": true,
+        "variables": 70708,
+        "clauses": 246340,
+        "native_XOR_rows": 5100
+      },
+      {
+        "case": "GF16-eight-sequential-orbit-1",
+        "source_sha256": "4352da18aba24ed5367cce2153b8fdc66cc053f55a761d85016d9e306727e9e8",
+        "target_sha256": "ae3b6ba07e1d56319eeebc2393bc754feeb6e17aa3f263e89b0f6e5ed0d9dabb",
+        "byte_identical": true,
+        "variables": 70708,
+        "clauses": 246340,
+        "native_XOR_rows": 5100
+      },
+      {
+        "case": "GF16-eight-sequential-orbit-2",
+        "source_sha256": "15fed105af183601d86da5bb5d01bdc101867bc7b6b9490e6ca2582b23f94ffd",
+        "target_sha256": "7ecda9e53d377ef3af76081dd6c8024d0a9d075a0026232cf4dd23b624eab145",
+        "byte_identical": true,
+        "variables": 70708,
+        "clauses": 246340,
+        "native_XOR_rows": 5100
+      }
+    ],
+    "source_conversion_audit": "runs/aes-eight-norm-code-audit-20261018/xor-conversion-audit.json",
+    "source_converter_sha256": "238bdc7c903da82288bd1e21fcbf1b8abbd933a3e9aea88b05d90b051f3ca2eb",
+    "script_sha256": "f220513a34913d624eb9e133f7a24428ce290c21935104774b94397314a09583",
+    "scope": "Byte reconstruction/equisatisfiability of existing full-truth model instances only; not an unrestricted bound or candidate."
+  },
+  "root_norm_checkpoint_commit": "f451bda8e075d38e37086e06a18f007f5d1d77cc",
+  "raw_evidence_in_git": false,
+  "unrestricted_eight_AND_excluded": false,
+  "bound_scope_unchanged": "Only the separately checked parallel affine-input model has a nine-AND bound.",
+  "previous_goal_turn_classification": "progress: certified parallel norm-stage boundary with independent semantic and proof checks.",
+  "new_progress": "A second solver tests the arbitrary-prior-gate full-truth model with independently reconstructed plain CNFs; all three bounded probes remain UNKNOWN.",
+  "model_canonical_id": null,
+  "model_alias": "Codex",
+  "reasoning_effort": null,
+  "reasoning_mode": null,
+  "tokens": null,
+  "agent_wall_seconds": null,
+  "cost": null,
+  "telemetry_note": "No per-attempt canonical model/settings/token/cost telemetry exposed. Solver command durations/exit statuses are measured separately.",
+  "evidence_sha256": {
+    "runs/aes-dependent-norm-cadical-20261018/sequential-control-2-cadical.json": "53b894cba0cb5c20d73f6179f5613f0f37e91807f17121906ad5aea22eb3dbf8",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-control-1.command.json": "a8cdbd0bb3e5dcf299b57e96aa0fceafb4f4293fd7622e605c5712feff3b6f88",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-2.command.json": "39989971d7921c5b7a2496a8909167a632d4a1598d95aeec30b08d5398f08706",
+    "runs/aes-dependent-norm-cadical-20261018/plain-sequential-known-nine.cnf": "203a3bf040c81e2806e7a0452542a9eff210c9f29fbc2880a82bafdf8b6aadb1",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-control-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-dependent-norm-cadical-20261018/plain-sequential-control-1-conversion.json": "808c91a8942eb8e5b78e865f589e514f567fc95af917040b4a2e68d36bb99a86",
+    "runs/aes-dependent-norm-cadical-20261018/retain.py": "2f87e683e982d58e277fb00ef7678a80a79c914db19b6a5fd465e26c46bc5ac7",
+    "runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-1-conversion.json": "301007b7c841b95f5fc71edb1063e6a50628305b02b25149235ec7a30b16fbc3",
+    "runs/aes-dependent-norm-cadical-20261018/report.json": "aa30162494165edaff1e730bb6270c544ff0aac3267ec1f0296addf4362ed4dd",
+    "runs/aes-dependent-norm-cadical-20261018/plain-sequential-control-1.cnf": "df1666a293a93ddfdcdf8b8dce846a28203c01a3fdf3da994da85006b506c472",
+    "runs/aes-dependent-norm-cadical-20261018/audit.py": "f220513a34913d624eb9e133f7a24428ce290c21935104774b94397314a09583",
+    "runs/aes-dependent-norm-cadical-20261018/plain-sequential-control-2.cnf": "9fab6106c327ceb9b0d599fb093334c768f751f84c6074bf8d6a36d17cf74bcd",
+    "runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-0-conversion.json": "9586ff1a9c7036d591724c2f14474106bbd8414504431e33ee6c84744f88f0cc",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-dependent-norm-cadical-20261018/plain-sequential-known-nine-conversion.json": "1482a4cabbee689e490c1fe6538796e17fe9095a3a706d3d0b187c4e5ef78c50",
+    "runs/aes-dependent-norm-cadical-20261018/GF16-eight-sequential-orbit-1-cadical.json": "7e36dafb6c8639eda5811400e838e6fbc8dc1ea0bb17252223aa025cc0ea052c",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-1.stdout.log": "44a46e69ff3f04a85bd4138333b4a8ae4341303ec510c693f54502fe7b932926",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-control-2.stdout.log": "d416142f8a7f437974295c9793d46ff5144a73b49932a81ab0cbb65bf97fbb8a",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-known-nine.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-dependent-norm-cadical-20261018/GF16-eight-sequential-orbit-0-cadical.json": "61028298065eb1b40ac330aad5e5ef556cb6cacac0dec4952cfd10aca12dcc13",
+    "runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-2-conversion.json": "a47191e0e6d0220b07345ad71b7997c9db955a85394fe731d8f4d0e8c9911e6d",
+    "runs/aes-dependent-norm-cadical-20261018/plain-sequential-control-2-conversion.json": "ffb3a4a92600fcc8a602a9e80710649d681cddcfed10346cfd135e9ee9ca4cb7",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-2.stdout.log": "49836eae02fcabe9b139f237d5fe7f609543c7bb27c26b19d6bb3cb48170a9a0",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-control-1.stdout.log": "37b8ed36b8f71629af5301c7f65ff7e743a5b3ad9d016e60f72a16f0e7cffd48",
+    "runs/aes-dependent-norm-cadical-20261018/GF16-eight-sequential-orbit-2-cadical.json": "86ec8d433686475ac57dc9d5acab81b3ebdf7a203297f05ddbc3f950a126f8b6",
+    "runs/aes-dependent-norm-cadical-20261018/sequential-known-nine-cadical.json": "ed7c91feaf06dd92b028259a631928e0fcda7eac763dba93de04583873ecd9ef",
+    "runs/aes-dependent-norm-cadical-20261018/probe.py": "ad41e30f120de175706ec40d35e8ff3b164915bb871a11d82a192899156a8fef",
+    "runs/aes-dependent-norm-cadical-20261018/audit-report.json": "ed3817c646f98017ef407a47c0fde67814ab810af3df21a97fd4f57e49befde8",
+    "runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-2.cnf": "7ecda9e53d377ef3af76081dd6c8024d0a9d075a0026232cf4dd23b624eab145",
+    "runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-0.cnf": "d6c449b426ae5c1e1d6318e73a49d4e5de0a52da6f3da9acb71188d826e80da0",
+    "runs/aes-dependent-norm-cadical-20261018/plain-GF16-eight-sequential-orbit-1.cnf": "ae3b6ba07e1d56319eeebc2393bc754feeb6e17aa3f263e89b0f6e5ed0d9dabb",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-0.stdout.log": "79edfe35bcc98e1cae8677a54a307c0361401528afa53149606807df0bfd65cc",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-control-2.command.json": "b9dc34e08dbe7abc00c9945fc79c627f465e09f94a9c0107c16b98260dc2cda0",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-1.command.json": "eb39374f5e16addd9a7f56bc897cfd09a21bfb09434c634c791f877d0f615470",
+    "runs/aes-dependent-norm-cadical-20261018/sequential-control-1-cadical.json": "19d5befdaaf4de0555ea38801daed12703c5f83ffe100726adb2ae9eeb367c30",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-0.command.json": "0faa95b51a0e05865fb5ce6094c7b0a971e30f49138f8250484acd5d5c37054a",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-GF16-eight-sequential-orbit-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-control-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-known-nine.command.json": "c7619504d56d10ea60db823655131329dd65fced32e036e96847e7276489f4a7",
+    "runs/aes-dependent-norm-cadical-20261018/cadical-sequential-known-nine.stdout.log": "86c4fdfa8953f3ee6fa3e1a37cae5e85d4032b63f3a0700af21da063d3ecb984"
+  }
+}

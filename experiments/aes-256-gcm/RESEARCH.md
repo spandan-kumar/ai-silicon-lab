@@ -30,6 +30,12 @@ as operands. All three first-plane orbit probes time out and remain
 inconclusive. Their control and serialization audits pass, but no smaller
 field multiplier or complete AES circuit has been found. The retained
 summary is `workspace/aes-256-gcm/reports/sbox_norm_stage_study.json`.
+The same three cases also reach a different solver's 90-second limits,
+explicit `c UNKNOWN`, exit 0. Six plain-CNF instances independently
+reconstruct exactly, and the two positive models replay through all clauses
+and truth rows. The original null `s`-status fields are preserved; the
+separate `sbox_dependent_norm_solver_study.json` interprets the actual
+UNKNOWN stdout lines. No unrestricted lower bound follows.
 
 ## Changed-prefix pilot and publication checkpoint — 2026-10-18
 

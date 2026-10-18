@@ -271,6 +271,11 @@ operands. Verified symmetries reduce the first gate to three representatives
 covering 10,795 planes. All three bounded eight-AND probes time out; none
 establishes an exclusion. The next constructive route must allow such
 nonlinear dependencies or change the surrounding AES organization.
+The same three full-truth cases also reach a second solver's 90-second
+limits with explicit UNKNOWN outcomes. Their six translated control/search
+instances independently reconstruct exactly, but the broader answer remains
+unresolved. The [second-solver study](../../workspace/aes-256-gcm/reports/sbox_dependent_norm_solver_study.json)
+keeps those outcomes separate from the checked quadratic certificate.
 
 ## Sources and novelty checks
 
