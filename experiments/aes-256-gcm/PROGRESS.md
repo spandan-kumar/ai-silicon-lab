@@ -40,12 +40,20 @@ constructive searches, **not a new record-setting AES circuit**.
   The matching nine-AND construction is verified. An earlier public claim
   exists; this is not a novelty claim. Dependent-AND eight-gate probes remain
   inconclusive, and no complete AES improvement follows.
-- **Constructive follow-up:** counterexample-guided dependent-AND searches
+- **Unrestricted norm search:** counterexample-guided dependent-AND searches
   reject every partial fit on the full input table. The latest models enforce
   nested target witnesses after gates five, six and seven, two distinct
   dependent gates, and an exact higher-degree escape condition. All nine
   bounded solver probes remain inconclusive. No search speedup or complete
   eight-AND circuit is established.
+- **Latest concrete-prefix result:** exact product closure excludes a
+  three-AND continuation for all 150 generated nonlinear five-gate prefix
+  spaces. Two complete scans were independently repeated; every input space
+  was independently checked. Other five-gate structures remain open.
+- **Next safe normalization:** fixing the first target direction requires
+  seven jointly verified first-gate cases. The earlier three cases remain
+  valid when that target direction is free. No normalized seven-case solver
+  campaign or measured speedup is claimed yet.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,

@@ -228,6 +228,57 @@ dispatch it by input/budget/rank shape and must not be reused for arbitrary
 targets of that shape. Canonical reductions remain reviewed mathematics,
 not an end-to-end proof-assistant formalization.
 
+### Concrete nonlinear prefixes and exact continuation
+
+The preceding scalar counterexample supplies a constructive family:
+`g1=L1*L2`, `g2=(g1+L3)*L4`, `g3=g1*L4`, `g4=L5*L6`, `g5=L7*L8`.
+Their XOR is the sum of four independent pair products, chosen here to be
+GF16 output bit zero. Gates two and three carry the same cubic high part.
+Canonical factors, all 120 single orthogonal transvections and 32 seeded
+four-step words yield 153 actual prefixes and 150 distinct available spaces.
+This is a generated finite family, not all decompositions or all prefixes.
+
+Without the constant-one function, each available space P has dimension 13;
+adding the four field outputs gives an envelope T of dimension 16. Three
+ANDs remain in an eight-AND implementation, exactly the target deficit.
+Every new gate must therefore lie in T and add one independent direction.
+An outside-T or redundant gate would consume the rank-tight budget.
+
+For each nonzero left operand L in P, the map `R -> L*R modulo T` is linear.
+Its complete kernel gives every eligible right operand. It suffices to test
+the products of a kernel basis for a direction outside P. Enumerating all
+8,191 nonzero left forms finds no useful product for any of the 150 spaces:
+P is already closed inside T. Affine constants add only terms already in the
+available affine span, so their omission does not restrict this conclusion.
+This exactly excludes three-AND completion of those fixed prefixes only.
+
+Independent review replays all 150 input spaces and their ranks, target
+decoder and actual degrees. It completely repeats the canonical and one
+mixed scan using different row-equation nullspaces, and compares the root
+engine against brute force on 512 small nested spaces, including 58 real
+extension steps. It does not claim to repeat all 150 full scans. Three
+selected solver continuations also return UNSAT, without certificate checks;
+the separate finite closure evidence is not dependent on those verdicts.
+See the [retained concrete study](../../workspace/aes-256-gcm/reports/sbox_norm_concrete_prefix_study.json).
+
+### Joint target/first-plane normalization
+
+A first-five-gate target witness may be normalized to output coefficient bit
+zero using field input scalings, but the first factor plane must transform
+at the same time. Complete enumeration of all 15 nonzero target covectors
+and 10,795 binary input planes gives 161,925 joint states and seven orbits.
+The fixed-target fiber has representatives `(1,2)`, `(1,12)`, `(1,16)`,
+`(1,32)`, `(1,96)`, `(1,112)`, `(1,128)`, with sizes 510, 85, 2720, 2720,
+1360, 2720 and 680. Later target directions remain free and independent.
+
+Root separately rebuilds every primal/dual action using polynomial long
+division, checks 34,560 scalar target truth rows, and reconstructs the joint
+orbits with union-find. The original three first-plane cases are still
+complete with a free first target direction; fixing that direction while
+keeping only those three would omit four classes. These seven normalized
+cases have not yet been used in a solver campaign, and no speedup or new
+circuit follows from the symmetry audit.
+
 ## Prior art and availability
 
 The [Find–Boyar paper](https://arxiv.org/abs/1407.6169) is prior work on the

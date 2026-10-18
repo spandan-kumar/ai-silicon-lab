@@ -8,6 +8,50 @@ profile.
 
 Research date: 2026-08-29
 
+## Concrete nonlinear prefixes and joint normalization — 2026-10-18
+
+A constructive follow-up turns the scalar high-degree counterexample into
+five actual gates whose XOR computes one GF16 output. It shares a cubic
+between `(L1*L2+L3)*L4` and `(L1*L2)*L4`. The canonical decomposition, all
+120 single Q-preserving orthogonal transvections, and 32 seeded four-step
+words generate 153 prefixes spanning 150 distinct available truth spaces.
+Their gate degrees are `[2,3,3,2,2]`, with target deficit three.
+
+The remaining three-gate problem is rank-tight. All suffix truths must stay
+in the fixed prefix-plus-target envelope. An exact product-closure method
+enumerates every nonzero left form and computes the complete right kernel
+for multiplication modulo that envelope. All 150 available spaces are
+already closed: none permits even the first useful suffix gate. The expanded
+enumeration checks 1,228,650 left forms in 34.57 seconds command wall time.
+This excludes those 150 fixed-prefix continuations, not every decomposition
+or the unrestricted eight-AND field problem.
+
+Independent review checks every prefix against a separate field oracle,
+actual ranks 13/16, scalar truth rows, target decoder and distinct span.
+It completely repeats two full scans (canonical and one four-transvection
+mixed case), each with 8,191 left operands and 8,409 kernel-basis products.
+Root-engine comparisons against brute force pass on 512 small spaces with
+58 actual monotone extension steps. Three separately encoded mixed-prefix
+continuations return solver-UNSAT; no certificates were checked for them.
+A planted nine-AND control and smaller positive/negative controls pass.
+The first nine-AND setup selected a non-rank-tight six-product subset and
+failed its explicit precondition; that exit-one attempt is preserved, and a
+separate eligible-subset control passes without overwriting earlier checks.
+
+A parallel finite-algebra study normalizes the first target covector jointly
+with the first input-factor plane. The full 161,925-state enumeration gives
+seven safe fixed-target cases; a separate trace/determinant argument and
+root polynomial-arithmetic/union-find implementation agree. Keeping only the
+old three first-plane representatives after fixing the target would be
+incomplete. The prior models left that target free and are not invalidated.
+No normalized seven-case solver campaign or measured speedup is claimed.
+
+The [derivation](GF16_QUADRATIC_BOUND.md) and
+[retained study](../../workspace/aes-256-gcm/reports/sbox_norm_concrete_prefix_study.json)
+preserve exact scope, failures, command evidence and independent checks.
+No complete smaller field multiplier, improved AES design, global lower
+bound, world-first result or new physical measurement has been obtained.
+
 ## Nested prefix ladder and exact higher-degree escape — 2026-10-18
 
 The structural requirement from the preceding checkpoint is now imposed in
