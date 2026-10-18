@@ -8,6 +8,55 @@ profile.
 
 Research date: 2026-08-29
 
+## Six AND output pairs and early rank budget — 2026-10-19
+
+All 35 two-dimensional field-output covector spaces have actual six-AND
+parallel circuits. Subsets of the existing nine-product circuit, combined
+with field scaling and Frobenius input substitutions, supply every one.
+Independent arithmetic and gate interpretation check all 8,960 output rows,
+53,760 transformed individual product rows and 15,360 semilinear multiplication
+identities; corrupted-factor and decoder controls are rejected.
+
+Scalar-only output actions have orbits 15, 15 and 5. Adding Frobenius merges
+the two 15-orbits, leaving 30 and 5. The special planes correspond to scalar
+copies of GF(4); this distinction does not change their complexity. All 651
+rank-two length-six decoder spaces are checked; 15 have distance four and
+form one coordinate-permutation orbit. The elementary weight bound establishes
+the matching parallel lower bound six.
+
+The original Mirwald–Schnorr 1992 theorem's full proof remains inaccessible
+in this run. Its one- and two-output quadratic-circuit optimality statement
+is explicit in the primary
+[Boyar–Find paper, section 4](https://arxiv.org/html/1407.6169v3#S4).
+Invoking that published theorem transfers the pair bound to unrestricted
+circuits. It does not preserve auxiliary signals when replacing a nonlinear
+optimal pair circuit and gives no unrestricted four-output lower bound.
+
+For an eight-gate selector domain, let `D` be the four-dimensional output
+decoder section and `H` project gate combinations onto higher-degree terms.
+Writing `s_i=dim(D intersect E_i)` and `r_i=rank(H on E_i)` gives
+`r_8-r_i <= 4-i+s_i`. Scalar complexity four implies `s_3=0`; the first
+gate is quadratic, so `r_8<=3` and `r_8-r_3<=1`. The published pair bound
+gives `s_5<=1`, hence `r_8=r_5`. The algebra works in selector space and does
+not assume independent gate functions or minimality. Separate abstract
+controls enumerate all 417,199 eight-dimensional kernel subspaces; their
+test configurations illustrate these inequalities, not the Boolean
+lower-bound premises or a classification of actual circuits.
+
+The joint first-scalar/output-plane flag has 105 states and three orbits
+of sizes 15, 30 and 60. For first covector one, the plane fibers have sizes
+one, two and four; representatives use second covectors 12, 4 and 2.
+No old first-plane representative set is combined with this normalization.
+Three bounded six-prefix probes fix only the first left factor via the
+separately verified determinant-one group, require a nonquadratic first-five
+prefix, and return UNKNOWN at 30 seconds. Their controls use a separately
+repaired import after an initial pre-solver failure; no main job is rerun.
+
+See the [pair frontier study](../../workspace/aes-256-gcm/reports/sbox_norm_pair_frontier_study.json)
+and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_pairs.py).
+No new full field multiplier, improved AES candidate, measured solver speedup,
+physical result or world-first claim follows.
+
 ## Linear family barriers and six gate prefix search — 2026-10-18
 
 All three new scalar counterexample spaces are closed in their actual

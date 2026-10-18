@@ -364,6 +364,60 @@ records scope, controls, source hashes and the subsequent unresolved
 six-gate constructive probes. The semantic argument is reviewed mathematics,
 not a proof-assistant formalization or a novelty claim.
 
+### Output pairs and the global higher degree budget
+
+Every independent two-output projection has quadratic/parallel complexity
+six. All 35 explicit upper circuits are independently checked. The three
+nonzero decoder words require weight at least four, but their sum is at
+most `2k`, giving `k>=6`. At equality each nonzero column type occurs twice.
+Field scaling alone gives plane orbits 15, 15 and 5; simultaneous Frobenius
+merges the generic two, leaving 30 and 5. Neither class needs seven products.
+
+The published Mirwald–Schnorr two-output optimality theorem, explicitly
+reported in [Boyar–Find section 4](https://arxiv.org/html/1407.6169v3#S4),
+transfers this bound to unrestricted pair circuits. This is an invoked
+literature theorem, not a reproof from decoder weights or a locally checked
+formalization. Replacing an arbitrary optimal pair prefix by a quadratic
+one need not preserve its extra wires or extension cost.
+
+Here is a useful selector-space consequence. Let `H:F2^8 -> higher-degree
+ANF` map coefficient vectors to the degree-above-two part of their gate
+combination. Let `E_i` be the first `i` coordinate space, `r_i=rank(H|E_i)`,
+and choose the four output decoder rows as a section `D` of the target space
+modulo affine functions. This section has dimension four and lies in
+`ker(H)`, even if gate functions are redundant. For
+`s_i=dim(D intersect E_i)`, the subspace sum with `ker(H|E_i)` gives
+
+```text
+8-r_8 >= 4+i-r_i-s_i
+r_8-r_i <= 4-i+s_i
+```
+
+A full-rank scalar quadratic needs four ANDs, so `s_1=s_3=0`; since the
+first gate is quadratic, `r_1=0`. Therefore `r_8<=3` and `r_8-r_3<=1`.
+These conclusions do not need the two-output transfer theorem. Invoking
+that theorem gives `s_5<=1`, hence `r_8=r_5` by monotonicity. In particular,
+any higher-degree direction must appear by gate five. The already verified
+all-quadratic eight-gate exclusion makes `r_5>0` necessary under this theorem.
+
+Even without the pair theorem, a higher-degree gate must occur by gate six:
+if the first six were quadratic, their target intersection would be exactly
+two. It is at least two by the suffix budget, and cannot be three because
+seven nonzero distance-four decoder words need total weight at least 28,
+above the length-six total of 24. The remaining two target directions are
+then rank-tight, forcing both suffix gate truths into the quadratic
+prefix-plus-target envelope, contradicting the quadratic eight-gate bound.
+
+Jointly normalizing a first scalar direction and its two-output plane gives
+three flags, not two pair classes: 105 states have orbits 15, 30 and 60.
+With first covector one, second covectors 12, 4 and 2 represent the three.
+An independently justified determinant-one input change can also fix the
+first left operand to raw bit zero without fixing its whole factor plane.
+All three new nonquadratic six-prefix probes remain UNKNOWN. No unrestricted
+eight-gate exclusion or measured speedup follows. See the
+[pair study](../../workspace/aes-256-gcm/reports/sbox_norm_pair_frontier_study.json)
+and [standalone pair verifier](../../workspace/aes-256-gcm/tools/verify_norm_pairs.py).
+
 ## Prior art and availability
 
 The [Find–Boyar paper](https://arxiv.org/abs/1407.6169) is prior work on the

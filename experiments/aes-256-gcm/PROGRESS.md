@@ -1,6 +1,6 @@
 # Experiment 002: AES-256-GCM — progress and research handoff
 
-Last updated: **2026-10-18**. Work is on
+Last updated: **2026-10-19**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
@@ -68,6 +68,12 @@ constructive searches, **not a new record-setting AES circuit**.
   does not classify all five-gate circuits. A new six-gate search seeks a
   second independent output direction with higher-degree rank at least two
   in its first five gates; all seven bounded cases remain UNKNOWN.
+- **Output-pair frontier:** all 35 independent two-output subspaces have
+  actual six-AND parallel constructions, replayed independently. Their
+  semilinear classes have sizes five and thirty, but the costs are the same.
+  A joint scalar-direction/pair classification gives three safe search
+  cases, not just two. The newer nonquadratic six-gate probes in those three
+  cases all return UNKNOWN; no smaller full multiplier is obtained.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -383,6 +389,44 @@ All seven ten-second probes return UNKNOWN. Nine independently reconstructed
 formulas and the positive model pass, but no new field prefix or exclusion
 is obtained from those probes.
 
+### Output pairs and earlier higher degree escape
+
+Every independent pair of GF(16) output combinations can be computed with
+six parallel ANDs. The 35 explicit circuits come from subsets of the known
+nine-AND multiplier and linear input changes; independent verification checks
+8,960 output rows and 53,760 individual gate rows. Six is also the parallel
+lower bound: three nonzero decoder words each need weight at least four,
+whereas their total weight is at most twice the number of products.
+There is no harder seven-AND pair class to exploit.
+
+For unrestricted circuits, equality with the quadratic pair complexity uses
+the published Mirwald–Schnorr theorem, as stated by
+[Boyar and Find](https://arxiv.org/html/1407.6169v3#S4). The original full proof
+was not replayed here. This theorem does not permit replacing an optimal
+nonlinear prefix while preserving auxiliary signals needed later.
+
+Let `r_i` be the rank of degree-above-two parts among the first `i` gates.
+Selector-space dimension counting gives `r_8 <= 3` and `r_8-r_3 <= 1` for
+any hypothetical eight-gate field multiplier, including padded circuits.
+Invoking the published pair theorem gives the stronger `r_8=r_5`: all
+higher-degree directions must already be present by gate five. The complete
+quadratic eight-gate exclusion then requires at least one such direction.
+These are necessary conditions, not a complete lower bound.
+
+Keeping the first scalar target direction with its two-output plane yields
+105 flags and three semilinear orbits of sizes 15, 30 and 60. The first
+direction can be bit zero, with second covector 2, 4 or 12. A separate
+determinant-one input symmetry fixes the first left factor without fixing its
+whole plane. New six-gate probes use these cases and permit higher-degree
+rank one as well as larger ranks in the first five gates. All three reach
+30-second limits with UNKNOWN. The corrected positive and negative controls
+pass; the original control import failure is retained separately.
+
+The [output-pair study](../../workspace/aes-256-gcm/reports/sbox_norm_pair_frontier_study.json)
+separates independently executed constructions, published theorem dependencies,
+finite rank checks and solver outcomes. Its committed replay is
+`python3 workspace/aes-256-gcm/tools/verify_norm_pairs.py`.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -454,6 +498,9 @@ Committed evidence and entry points include:
 - [Linear prefix-family study](../../workspace/aes-256-gcm/reports/sbox_norm_linear_family_study.json)
   and [standalone family replay](../../workspace/aes-256-gcm/tools/verify_norm_family.py)
   retain the three broader obstructions and unresolved six-gate search.
+- [Output-pair frontier and rank-budget study](../../workspace/aes-256-gcm/reports/sbox_norm_pair_frontier_study.json)
+  and [standalone pair replay](../../workspace/aes-256-gcm/tools/verify_norm_pairs.py)
+  retain all 35 six-AND pair constructions and the three unresolved flag cases.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

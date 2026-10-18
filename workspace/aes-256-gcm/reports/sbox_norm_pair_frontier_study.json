@@ -1,0 +1,8068 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-19",
+  "run_label_note": "Original20261018labels preserved over midnight.",
+  "result": {
+    "status": "audited-pair-frontier-and-three-flag-search",
+    "pair_planes_with_verified_six_AND_upper": 35,
+    "parallel_pair_complexity": 6,
+    "unrestricted_pair_complexity": 6,
+    "unrestricted_pair_bound_dependency": "Published Mirwald-Schnorr two-output quadratic optimality theorem, explicitly stated in Boyar-Find section4; original full proof not replayed here.",
+    "selector_conditions_without_pair_theorem": [
+      "r8<=3",
+      "r8-r3<=1"
+    ],
+    "selector_condition_with_pair_theorem": "r8=r5",
+    "flag_cases": 3,
+    "main_UNKNOWN": 3,
+    "world_first_established": false,
+    "unrestricted_eight_AND_excluded": false,
+    "full_GF16_eight_AND_candidate": false,
+    "improved_AES_candidate": false,
+    "physical_metrics": null,
+    "measured_solver_speedup": false,
+    "previous_goal_turn_classification": "progress: three whole linear prefix families excluded and finite replays retained.",
+    "current_progress": "Verified exact output-pair frontier and105jointflags; derived earlier high-degree budget; executed/reconstructed3complete flag models, allUNKNOWN.",
+    "next_action": "Encode late high-degree parts in the first-five high-part span using the reviewed rankbudget, with controls and independent encoding replay; do not treat pair circuit replacement as preserving suffix cost.",
+    "goal_remains_active": true,
+    "new_push_performed": false
+  },
+  "pair_frontier": {
+    "status": "pass",
+    "field_modulus": "t^4+t+1",
+    "output_planes": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        0,
+        1,
+        4,
+        5
+      ],
+      [
+        0,
+        1,
+        6,
+        7
+      ],
+      [
+        0,
+        1,
+        8,
+        9
+      ],
+      [
+        0,
+        1,
+        10,
+        11
+      ],
+      [
+        0,
+        1,
+        12,
+        13
+      ],
+      [
+        0,
+        1,
+        14,
+        15
+      ],
+      [
+        0,
+        2,
+        4,
+        6
+      ],
+      [
+        0,
+        2,
+        5,
+        7
+      ],
+      [
+        0,
+        2,
+        8,
+        10
+      ],
+      [
+        0,
+        2,
+        9,
+        11
+      ],
+      [
+        0,
+        2,
+        12,
+        14
+      ],
+      [
+        0,
+        2,
+        13,
+        15
+      ],
+      [
+        0,
+        3,
+        4,
+        7
+      ],
+      [
+        0,
+        3,
+        5,
+        6
+      ],
+      [
+        0,
+        3,
+        8,
+        11
+      ],
+      [
+        0,
+        3,
+        9,
+        10
+      ],
+      [
+        0,
+        3,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        13,
+        14
+      ],
+      [
+        0,
+        4,
+        8,
+        12
+      ],
+      [
+        0,
+        4,
+        9,
+        13
+      ],
+      [
+        0,
+        4,
+        10,
+        14
+      ],
+      [
+        0,
+        4,
+        11,
+        15
+      ],
+      [
+        0,
+        5,
+        8,
+        13
+      ],
+      [
+        0,
+        5,
+        9,
+        12
+      ],
+      [
+        0,
+        5,
+        10,
+        15
+      ],
+      [
+        0,
+        5,
+        11,
+        14
+      ],
+      [
+        0,
+        6,
+        8,
+        14
+      ],
+      [
+        0,
+        6,
+        9,
+        15
+      ],
+      [
+        0,
+        6,
+        10,
+        12
+      ],
+      [
+        0,
+        6,
+        11,
+        13
+      ],
+      [
+        0,
+        7,
+        8,
+        15
+      ],
+      [
+        0,
+        7,
+        9,
+        14
+      ],
+      [
+        0,
+        7,
+        10,
+        13
+      ],
+      [
+        0,
+        7,
+        11,
+        12
+      ]
+    ],
+    "orbits": [
+      {
+        "representative": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "size": 30,
+        "planes": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            4,
+            5
+          ],
+          [
+            0,
+            1,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            8,
+            9
+          ],
+          [
+            0,
+            1,
+            10,
+            11
+          ],
+          [
+            0,
+            1,
+            14,
+            15
+          ],
+          [
+            0,
+            2,
+            4,
+            6
+          ],
+          [
+            0,
+            2,
+            8,
+            10
+          ],
+          [
+            0,
+            2,
+            9,
+            11
+          ],
+          [
+            0,
+            2,
+            12,
+            14
+          ],
+          [
+            0,
+            2,
+            13,
+            15
+          ],
+          [
+            0,
+            3,
+            4,
+            7
+          ],
+          [
+            0,
+            3,
+            5,
+            6
+          ],
+          [
+            0,
+            3,
+            8,
+            11
+          ],
+          [
+            0,
+            3,
+            12,
+            15
+          ],
+          [
+            0,
+            3,
+            13,
+            14
+          ],
+          [
+            0,
+            4,
+            8,
+            12
+          ],
+          [
+            0,
+            4,
+            9,
+            13
+          ],
+          [
+            0,
+            4,
+            10,
+            14
+          ],
+          [
+            0,
+            5,
+            8,
+            13
+          ],
+          [
+            0,
+            5,
+            9,
+            12
+          ],
+          [
+            0,
+            5,
+            10,
+            15
+          ],
+          [
+            0,
+            5,
+            11,
+            14
+          ],
+          [
+            0,
+            6,
+            9,
+            15
+          ],
+          [
+            0,
+            6,
+            10,
+            12
+          ],
+          [
+            0,
+            6,
+            11,
+            13
+          ],
+          [
+            0,
+            7,
+            8,
+            15
+          ],
+          [
+            0,
+            7,
+            9,
+            14
+          ],
+          [
+            0,
+            7,
+            10,
+            13
+          ],
+          [
+            0,
+            7,
+            11,
+            12
+          ]
+        ]
+      },
+      {
+        "representative": [
+          0,
+          1,
+          12,
+          13
+        ],
+        "size": 5,
+        "planes": [
+          [
+            0,
+            1,
+            12,
+            13
+          ],
+          [
+            0,
+            2,
+            5,
+            7
+          ],
+          [
+            0,
+            3,
+            9,
+            10
+          ],
+          [
+            0,
+            4,
+            11,
+            15
+          ],
+          [
+            0,
+            6,
+            8,
+            14
+          ]
+        ]
+      }
+    ],
+    "orbit_sizes": [
+      5,
+      30
+    ],
+    "known_nine_factors": [
+      [
+        1,
+        16
+      ],
+      [
+        12,
+        192
+      ],
+      [
+        13,
+        208
+      ],
+      [
+        14,
+        224
+      ],
+      [
+        8,
+        128
+      ],
+      [
+        6,
+        96
+      ],
+      [
+        15,
+        240
+      ],
+      [
+        4,
+        64
+      ],
+      [
+        11,
+        176
+      ]
+    ],
+    "known_nine_decoder": [
+      43,
+      246,
+      368,
+      325
+    ],
+    "known_nine_direct_supports": [
+      {
+        "plane": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "support": 255,
+        "ANDs": 8,
+        "decoder": [
+          43,
+          246
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "support": 379,
+        "ANDs": 7,
+        "decoder": [
+          43,
+          368
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          6,
+          7
+        ],
+        "support": 431,
+        "ANDs": 7,
+        "decoder": [
+          43,
+          390
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          8,
+          9
+        ],
+        "support": 367,
+        "ANDs": 7,
+        "decoder": [
+          43,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          10,
+          11
+        ],
+        "support": 443,
+        "ANDs": 7,
+        "decoder": [
+          43,
+          435
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          12,
+          13
+        ],
+        "support": 63,
+        "ANDs": 6,
+        "decoder": [
+          43,
+          53
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "support": 235,
+        "ANDs": 6,
+        "decoder": [
+          43,
+          195
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "support": 502,
+        "ANDs": 7,
+        "decoder": [
+          246,
+          368
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          5,
+          7
+        ],
+        "support": 511,
+        "ANDs": 9,
+        "decoder": [
+          246,
+          347
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          8,
+          10
+        ],
+        "support": 503,
+        "ANDs": 8,
+        "decoder": [
+          246,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          9,
+          11
+        ],
+        "support": 510,
+        "ANDs": 8,
+        "decoder": [
+          246,
+          366
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          12,
+          14
+        ],
+        "support": 247,
+        "ANDs": 7,
+        "decoder": [
+          246,
+          53
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          13,
+          15
+        ],
+        "support": 254,
+        "ANDs": 7,
+        "decoder": [
+          246,
+          30
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "support": 509,
+        "ANDs": 8,
+        "decoder": [
+          221,
+          368
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          5,
+          6
+        ],
+        "support": 479,
+        "ANDs": 8,
+        "decoder": [
+          221,
+          347
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          8,
+          11
+        ],
+        "support": 477,
+        "ANDs": 7,
+        "decoder": [
+          221,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          9,
+          10
+        ],
+        "support": 511,
+        "ANDs": 9,
+        "decoder": [
+          221,
+          366
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          12,
+          15
+        ],
+        "support": 253,
+        "ANDs": 7,
+        "decoder": [
+          221,
+          53
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          13,
+          14
+        ],
+        "support": 223,
+        "ANDs": 7,
+        "decoder": [
+          221,
+          30
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "support": 373,
+        "ANDs": 6,
+        "decoder": [
+          368,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          9,
+          13
+        ],
+        "support": 382,
+        "ANDs": 7,
+        "decoder": [
+          368,
+          366
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          10,
+          14
+        ],
+        "support": 499,
+        "ANDs": 7,
+        "decoder": [
+          368,
+          435
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          11,
+          15
+        ],
+        "support": 504,
+        "ANDs": 6,
+        "decoder": [
+          368,
+          408
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          8,
+          13
+        ],
+        "support": 351,
+        "ANDs": 7,
+        "decoder": [
+          347,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          9,
+          12
+        ],
+        "support": 383,
+        "ANDs": 8,
+        "decoder": [
+          347,
+          366
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "support": 507,
+        "ANDs": 8,
+        "decoder": [
+          347,
+          435
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          11,
+          14
+        ],
+        "support": 475,
+        "ANDs": 7,
+        "decoder": [
+          347,
+          408
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          8,
+          14
+        ],
+        "support": 455,
+        "ANDs": 6,
+        "decoder": [
+          390,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          9,
+          15
+        ],
+        "support": 494,
+        "ANDs": 7,
+        "decoder": [
+          390,
+          366
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          10,
+          12
+        ],
+        "support": 439,
+        "ANDs": 7,
+        "decoder": [
+          390,
+          435
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "support": 414,
+        "ANDs": 6,
+        "decoder": [
+          390,
+          408
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          8,
+          15
+        ],
+        "support": 493,
+        "ANDs": 7,
+        "decoder": [
+          429,
+          325
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          9,
+          14
+        ],
+        "support": 495,
+        "ANDs": 8,
+        "decoder": [
+          429,
+          366
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          10,
+          13
+        ],
+        "support": 447,
+        "ANDs": 8,
+        "decoder": [
+          429,
+          435
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          11,
+          12
+        ],
+        "support": 445,
+        "ANDs": 7,
+        "decoder": [
+          429,
+          408
+        ]
+      }
+    ],
+    "derived_pair_upper_circuits": [
+      {
+        "plane": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "basis": [
+          1,
+          2
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            13,
+            64
+          ],
+          [
+            1,
+            176
+          ],
+          [
+            9,
+            224
+          ],
+          [
+            10,
+            128
+          ],
+          [
+            7,
+            192
+          ],
+          [
+            2,
+            208
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 4,
+        "input_frobenius": 2
+      },
+      {
+        "plane": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "basis": [
+          1,
+          4
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            7,
+            160
+          ],
+          [
+            5,
+            144
+          ],
+          [
+            13,
+            96
+          ],
+          [
+            12,
+            128
+          ],
+          [
+            11,
+            32
+          ],
+          [
+            4,
+            112
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 4,
+        "input_frobenius": 3
+      },
+      {
+        "plane": [
+          0,
+          1,
+          6,
+          7
+        ],
+        "basis": [
+          1,
+          6
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            14,
+            160
+          ],
+          [
+            6,
+            144
+          ],
+          [
+            5,
+            96
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            12,
+            32
+          ],
+          [
+            1,
+            112
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 2,
+        "input_frobenius": 3
+      },
+      {
+        "plane": [
+          0,
+          1,
+          8,
+          9
+        ],
+        "basis": [
+          1,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            240
+          ],
+          [
+            6,
+            64
+          ],
+          [
+            1,
+            224
+          ],
+          [
+            13,
+            96
+          ],
+          [
+            9,
+            16
+          ],
+          [
+            10,
+            192
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 2,
+        "input_frobenius": 2
+      },
+      {
+        "plane": [
+          0,
+          1,
+          10,
+          11
+        ],
+        "basis": [
+          1,
+          10
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            10,
+            80
+          ],
+          [
+            9,
+            32
+          ],
+          [
+            11,
+            96
+          ],
+          [
+            15,
+            224
+          ],
+          [
+            1,
+            48
+          ],
+          [
+            13,
+            160
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 4,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          1,
+          12,
+          13
+        ],
+        "basis": [
+          1,
+          12
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            12,
+            192
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            6,
+            96
+          ]
+        ],
+        "decoder_rows": [
+          43,
+          53
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          12,
+          13
+        ],
+        "input_scale": 1,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "basis": [
+          1,
+          14
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            12,
+            192
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            15,
+            240
+          ],
+          [
+            4,
+            64
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 1,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "basis": [
+          2,
+          4
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            16
+          ],
+          [
+            14,
+            208
+          ],
+          [
+            4,
+            128
+          ],
+          [
+            11,
+            96
+          ],
+          [
+            7,
+            240
+          ],
+          [
+            5,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 2,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          2,
+          5,
+          7
+        ],
+        "basis": [
+          2,
+          5
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            5,
+            80
+          ],
+          [
+            2,
+            32
+          ],
+          [
+            7,
+            112
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            14,
+            224
+          ]
+        ],
+        "decoder_rows": [
+          53,
+          43
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          12,
+          13
+        ],
+        "input_scale": 1,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          2,
+          8,
+          10
+        ],
+        "basis": [
+          2,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            5,
+            80
+          ],
+          [
+            7,
+            112
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            3,
+            48
+          ],
+          [
+            9,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 1,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          2,
+          9,
+          11
+        ],
+        "basis": [
+          2,
+          9
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            4,
+            16
+          ],
+          [
+            15,
+            208
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            5,
+            96
+          ],
+          [
+            3,
+            240
+          ],
+          [
+            10,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 4,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          2,
+          12,
+          14
+        ],
+        "basis": [
+          2,
+          12
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            48
+          ],
+          [
+            6,
+            144
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            7,
+            224
+          ],
+          [
+            13,
+            80
+          ],
+          [
+            1,
+            112
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 2,
+        "input_frobenius": 3
+      },
+      {
+        "plane": [
+          0,
+          2,
+          13,
+          15
+        ],
+        "basis": [
+          2,
+          13
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            2,
+            48
+          ],
+          [
+            7,
+            160
+          ],
+          [
+            13,
+            96
+          ],
+          [
+            1,
+            224
+          ],
+          [
+            15,
+            80
+          ],
+          [
+            11,
+            32
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 4,
+        "input_frobenius": 3
+      },
+      {
+        "plane": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "basis": [
+          3,
+          4
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            4,
+            16
+          ],
+          [
+            11,
+            192
+          ],
+          [
+            7,
+            224
+          ],
+          [
+            5,
+            96
+          ],
+          [
+            3,
+            240
+          ],
+          [
+            9,
+            64
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 4,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          3,
+          5,
+          6
+        ],
+        "basis": [
+          3,
+          5
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            5,
+            80
+          ],
+          [
+            2,
+            32
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            3,
+            48
+          ],
+          [
+            10,
+            160
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 1,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          3,
+          8,
+          11
+        ],
+        "basis": [
+          3,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            80
+          ],
+          [
+            14,
+            32
+          ],
+          [
+            3,
+            96
+          ],
+          [
+            9,
+            224
+          ],
+          [
+            11,
+            48
+          ],
+          [
+            4,
+            160
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 2,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          3,
+          9,
+          10
+        ],
+        "basis": [
+          3,
+          9
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            6,
+            96
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            3,
+            48
+          ],
+          [
+            10,
+            160
+          ],
+          [
+            9,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          29,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          11,
+          15
+        ],
+        "input_scale": 1,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          3,
+          12,
+          15
+        ],
+        "basis": [
+          3,
+          12
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            9,
+            32
+          ],
+          [
+            3,
+            112
+          ],
+          [
+            11,
+            96
+          ],
+          [
+            4,
+            128
+          ],
+          [
+            13,
+            160
+          ],
+          [
+            12,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 4,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          3,
+          13,
+          14
+        ],
+        "basis": [
+          3,
+          13
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            6,
+            64
+          ],
+          [
+            14,
+            176
+          ],
+          [
+            1,
+            224
+          ],
+          [
+            12,
+            128
+          ],
+          [
+            10,
+            192
+          ],
+          [
+            3,
+            208
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 2,
+        "input_frobenius": 2
+      },
+      {
+        "plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "basis": [
+          4,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            15,
+            240
+          ],
+          [
+            11,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 1,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          4,
+          9,
+          13
+        ],
+        "basis": [
+          4,
+          9
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            10,
+            80
+          ],
+          [
+            3,
+            112
+          ],
+          [
+            4,
+            128
+          ],
+          [
+            15,
+            224
+          ],
+          [
+            1,
+            48
+          ],
+          [
+            12,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 4,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          4,
+          10,
+          14
+        ],
+        "basis": [
+          4,
+          10
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            80
+          ],
+          [
+            6,
+            112
+          ],
+          [
+            10,
+            128
+          ],
+          [
+            9,
+            224
+          ],
+          [
+            11,
+            48
+          ],
+          [
+            15,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 2,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          4,
+          11,
+          15
+        ],
+        "basis": [
+          4,
+          11
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            14,
+            224
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            15,
+            240
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            11,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          46,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          11,
+          15
+        ],
+        "input_scale": 1,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          5,
+          8,
+          13
+        ],
+        "basis": [
+          5,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            160
+          ],
+          [
+            5,
+            96
+          ],
+          [
+            7,
+            224
+          ],
+          [
+            13,
+            80
+          ],
+          [
+            12,
+            32
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 2,
+        "input_frobenius": 3
+      },
+      {
+        "plane": [
+          0,
+          5,
+          9,
+          12
+        ],
+        "basis": [
+          5,
+          9
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            12,
+            240
+          ],
+          [
+            13,
+            64
+          ],
+          [
+            9,
+            224
+          ],
+          [
+            3,
+            96
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            7,
+            192
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 4,
+        "input_frobenius": 2
+      },
+      {
+        "plane": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "basis": [
+          5,
+          10
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            11,
+            192
+          ],
+          [
+            15,
+            208
+          ],
+          [
+            7,
+            224
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            9,
+            64
+          ],
+          [
+            10,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 4,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          5,
+          11,
+          14
+        ],
+        "basis": [
+          5,
+          11
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            6,
+            192
+          ],
+          [
+            14,
+            208
+          ],
+          [
+            15,
+            224
+          ],
+          [
+            4,
+            128
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            5,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 2,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          6,
+          8,
+          14
+        ],
+        "basis": [
+          6,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            12,
+            192
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            15,
+            240
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            11,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          54,
+          45
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          8,
+          14
+        ],
+        "input_scale": 1,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          6,
+          9,
+          15
+        ],
+        "basis": [
+          6,
+          9
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            14,
+            32
+          ],
+          [
+            6,
+            112
+          ],
+          [
+            3,
+            96
+          ],
+          [
+            10,
+            128
+          ],
+          [
+            4,
+            160
+          ],
+          [
+            15,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 2,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          6,
+          10,
+          12
+        ],
+        "basis": [
+          6,
+          10
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            240
+          ],
+          [
+            14,
+            176
+          ],
+          [
+            12,
+            128
+          ],
+          [
+            13,
+            96
+          ],
+          [
+            9,
+            16
+          ],
+          [
+            3,
+            208
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 2,
+        "input_frobenius": 2
+      },
+      {
+        "plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "basis": [
+          6,
+          11
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            12,
+            192
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            11,
+            176
+          ]
+        ],
+        "decoder_rows": [
+          51,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 1,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          7,
+          8,
+          15
+        ],
+        "basis": [
+          7,
+          8
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            8,
+            16
+          ],
+          [
+            6,
+            192
+          ],
+          [
+            15,
+            224
+          ],
+          [
+            11,
+            96
+          ],
+          [
+            7,
+            240
+          ],
+          [
+            2,
+            64
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          15
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "input_scale": 2,
+        "input_frobenius": 0
+      },
+      {
+        "plane": [
+          0,
+          7,
+          9,
+          14
+        ],
+        "basis": [
+          7,
+          9
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            2,
+            32
+          ],
+          [
+            7,
+            112
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            10,
+            160
+          ],
+          [
+            9,
+            144
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "input_scale": 1,
+        "input_frobenius": 1
+      },
+      {
+        "plane": [
+          0,
+          7,
+          10,
+          13
+        ],
+        "basis": [
+          7,
+          10
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            12,
+            240
+          ],
+          [
+            1,
+            176
+          ],
+          [
+            10,
+            128
+          ],
+          [
+            3,
+            96
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            2,
+            208
+          ]
+        ],
+        "decoder_rows": [
+          60,
+          51
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 4,
+        "input_frobenius": 2
+      },
+      {
+        "plane": [
+          0,
+          7,
+          11,
+          12
+        ],
+        "basis": [
+          7,
+          11
+        ],
+        "ANDs": 6,
+        "factor_masks": [
+          [
+            2,
+            48
+          ],
+          [
+            5,
+            144
+          ],
+          [
+            12,
+            128
+          ],
+          [
+            1,
+            224
+          ],
+          [
+            15,
+            80
+          ],
+          [
+            4,
+            112
+          ]
+        ],
+        "decoder_rows": [
+          15,
+          60
+        ],
+        "scalar_truth_rows_verified": 256,
+        "source_plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "input_scale": 4,
+        "input_frobenius": 3
+      }
+    ],
+    "derived_upper_histogram": {
+      "6": 35
+    },
+    "length6_dimension2_codes_enumerated": 651,
+    "distance4_eligible_codes": 15,
+    "fixed_decoder_rows": [
+      15,
+      51
+    ],
+    "eligible_codes_single_coordinate_permutation_orbit": true,
+    "parallel_lower_bound": 6,
+    "lower_bound_argument": "Three nonzero target combinations have polar rank8, so every decoder word selects>=4 products. A rank2 lengthk code has total nonzero weight<=2k; therefore k>=6. At6 all three words have weight4 and each nonzero column type occurs twice.",
+    "unrestricted_lower_bound_proved_here": false,
+    "world_first_established": false,
+    "algorithm_seconds": 0.14733129180967808
+  },
+  "independent_pair_audit": {
+    "experiment_id": "aes-256-gcm",
+    "experiment_revision": 1,
+    "closeout_date": "2026-10-19",
+    "run_label_date": "2026-10-18",
+    "date_note": "Assigned run label preserved across user environment midnight boundary.",
+    "status": "pass-independent-output-pair-frontier-audit",
+    "output_planes_enumerated": 35,
+    "scalar_dual_orbit_sizes": [
+      15,
+      15,
+      5
+    ],
+    "semilinear_scalar_plus_frobenius_orbit_sizes": [
+      30,
+      5
+    ],
+    "all15_nonzero_target_polar_ranks": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "decoder_code_counts": {
+      "4": {
+        "all_dimension2_codes": 35,
+        "minimum_distance_at_least4": 0,
+        "distance_histogram": {
+          "1": 22,
+          "2": 13
+        }
+      },
+      "5": {
+        "all_dimension2_codes": 155,
+        "minimum_distance_at_least4": 0,
+        "distance_histogram": {
+          "1": 65,
+          "2": 75,
+          "3": 15
+        }
+      },
+      "6": {
+        "all_dimension2_codes": 651,
+        "minimum_distance_at_least4": 15,
+        "distance_histogram": {
+          "1": 171,
+          "2": 305,
+          "3": 160,
+          "4": 15
+        }
+      },
+      "7": {
+        "all_dimension2_codes": 2667,
+        "minimum_distance_at_least4": 280,
+        "distance_histogram": {
+          "1": 420,
+          "2": 1022,
+          "3": 945,
+          "4": 280
+        }
+      }
+    },
+    "eligible_length6_code_orbit_size": 15,
+    "parallel_raw_affine_AND_complexity_all35_planes": 6,
+    "actual_six_product_circuits_checked": 35,
+    "scalar_and_bitslice_output_rows_verified": 8960,
+    "transformed_individual_product_truth_rows_verified": 53760,
+    "semilinear_field_product_identity_rows_verified": 15360,
+    "scalar_dual_functional_checks": 3840,
+    "known_nine_reference_rows_verified": 256,
+    "first5_scalar_target_orderings_rank_only": 140,
+    "first5_ordering_W13_T16_count": 140,
+    "rank_only_orderings_continuation_checked": false,
+    "negative_controls": {
+      "corrupted_gate_rejected": true,
+      "corrupted_decoder_rejected": true
+    },
+    "arbitrary_circuit_safe_normalizations": "Invertible linear raw-input substitutions, invertible basis of the same output pair, fieldscale and Frobenius realized on inputs preserve arbitrary dependent AND count. This alone does not turn the parallel decoder bound into an unrestricted lower bound.",
+    "parallel_lower_bound_argument": "Each nonzero decoder word has weight>=4 because polar rank8<=2*weight. The three nonzero words total weight at most2k, so k>=6. All35 actual6product circuits give equality in the parallel raw-affine model.",
+    "unrestricted_dependent_pair_complexity_proved": false,
+    "quadratic_truth_extension_requires_prior_flattening_lemma": true,
+    "complete_GF16_multiplier_constructed": false,
+    "new_AES_design": false,
+    "world_first_established": false,
+    "solver_executed": false,
+    "production_code_executed": false,
+    "old_or_tracked_files_modified": false,
+    "physical_metrics": null,
+    "security_metrics": null
+  },
+  "independent_pair_theory": {
+    "status": "pass",
+    "source": "runs/aes-norm-pair-frontier-20261018/report.json",
+    "source_sha256": "d918bb0257d6b839b15fc21510726aa8fc8873b7b2420ba66e2a04df44a2b81e",
+    "covector_to_trace_coefficient": {
+      "0": 0,
+      "1": 9,
+      "2": 4,
+      "3": 13,
+      "4": 2,
+      "5": 11,
+      "6": 6,
+      "7": 15,
+      "8": 1,
+      "9": 8,
+      "10": 5,
+      "11": 12,
+      "12": 3,
+      "13": 10,
+      "14": 7,
+      "15": 14
+    },
+    "nonzero_bilinear_matrix_ranks": {
+      "1": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 4,
+      "8": 4,
+      "9": 4,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 4,
+      "14": 4,
+      "15": 4
+    },
+    "nonzero_scalar_polar_ranks": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "ratio_basis_change_classes": [
+      [
+        2,
+        3,
+        8,
+        9,
+        14,
+        15
+      ],
+      [
+        4,
+        5,
+        10,
+        11,
+        12,
+        13
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "generic_classes_exchanged_by_squaring": true,
+    "subfield_ratios": [
+      6,
+      7
+    ],
+    "class_counts": {
+      "subfield": 5,
+      "generic": 30
+    },
+    "circuits_replayed": 35,
+    "rows_per_circuit": 256,
+    "output_bits_per_row": 2,
+    "decoder_group_checks": [
+      {
+        "plane": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "kind": "generic",
+        "trace_ratio": 8,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          14,
+          8,
+          0,
+          6
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "kind": "generic",
+        "trace_ratio": 4,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          2,
+          2,
+          7,
+          2
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          6,
+          7
+        ],
+        "kind": "generic",
+        "trace_ratio": 12,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          6,
+          8,
+          6,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          8,
+          9
+        ],
+        "kind": "generic",
+        "trace_ratio": 2,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          4,
+          4,
+          15
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          10,
+          11
+        ],
+        "kind": "generic",
+        "trace_ratio": 10,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          8,
+          8,
+          14,
+          8
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          12,
+          13
+        ],
+        "kind": "subfield",
+        "trace_ratio": 6,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          1,
+          6,
+          6,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          1,
+          14,
+          15
+        ],
+        "kind": "generic",
+        "trace_ratio": 14,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          1,
+          0,
+          12,
+          12
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "kind": "generic",
+        "trace_ratio": 9,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          4,
+          15,
+          4,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          5,
+          7
+        ],
+        "kind": "subfield",
+        "trace_ratio": 6,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          5,
+          14,
+          11,
+          14
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          8,
+          10
+        ],
+        "kind": "generic",
+        "trace_ratio": 13,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          2,
+          7,
+          2,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          9,
+          11
+        ],
+        "kind": "generic",
+        "trace_ratio": 2,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          15,
+          4,
+          0,
+          11
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          12,
+          14
+        ],
+        "kind": "generic",
+        "trace_ratio": 4,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          2,
+          0,
+          5,
+          5
+        ]
+      },
+      {
+        "plane": [
+          0,
+          2,
+          13,
+          15
+        ],
+        "kind": "generic",
+        "trace_ratio": 11,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          10,
+          9,
+          10,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "kind": "generic",
+        "trace_ratio": 8,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          8,
+          14,
+          8,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          5,
+          6
+        ],
+        "kind": "generic",
+        "trace_ratio": 10,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          8,
+          8,
+          14
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          8,
+          11
+        ],
+        "kind": "generic",
+        "trace_ratio": 4,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          2,
+          2,
+          7
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          9,
+          10
+        ],
+        "kind": "subfield",
+        "trace_ratio": 6,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          12,
+          6,
+          10
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          12,
+          15
+        ],
+        "kind": "generic",
+        "trace_ratio": 12,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          6,
+          6,
+          8,
+          6
+        ]
+      },
+      {
+        "plane": [
+          0,
+          3,
+          13,
+          14
+        ],
+        "kind": "generic",
+        "trace_ratio": 14,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          13,
+          1,
+          0,
+          12
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "kind": "generic",
+        "trace_ratio": 9,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          4,
+          4,
+          15,
+          4
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          9,
+          13
+        ],
+        "kind": "generic",
+        "trace_ratio": 4,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          7,
+          2,
+          0,
+          5
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          10,
+          14
+        ],
+        "kind": "generic",
+        "trace_ratio": 11,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          10,
+          10,
+          9,
+          10
+        ]
+      },
+      {
+        "plane": [
+          0,
+          4,
+          11,
+          15
+        ],
+        "kind": "subfield",
+        "trace_ratio": 6,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          11,
+          11,
+          0,
+          3
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          8,
+          13
+        ],
+        "kind": "generic",
+        "trace_ratio": 5,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          10,
+          10,
+          9
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          9,
+          12
+        ],
+        "kind": "generic",
+        "trace_ratio": 14,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          13,
+          12,
+          13,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "kind": "generic",
+        "trace_ratio": 2,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          4,
+          11,
+          0,
+          15
+        ]
+      },
+      {
+        "plane": [
+          0,
+          5,
+          11,
+          14
+        ],
+        "kind": "generic",
+        "trace_ratio": 9,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          11,
+          4,
+          11,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          8,
+          14
+        ],
+        "kind": "subfield",
+        "trace_ratio": 7,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          6,
+          11,
+          13,
+          6
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          9,
+          15
+        ],
+        "kind": "generic",
+        "trace_ratio": 13,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          5,
+          5,
+          2
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          10,
+          12
+        ],
+        "kind": "generic",
+        "trace_ratio": 8,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          6,
+          0,
+          14,
+          14
+        ]
+      },
+      {
+        "plane": [
+          0,
+          6,
+          11,
+          13
+        ],
+        "kind": "generic",
+        "trace_ratio": 2,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          11,
+          11,
+          4,
+          11
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          8,
+          15
+        ],
+        "kind": "generic",
+        "trace_ratio": 8,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          8,
+          8,
+          14,
+          8
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          9,
+          14
+        ],
+        "kind": "generic",
+        "trace_ratio": 12,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          0,
+          6,
+          6,
+          8
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          10,
+          13
+        ],
+        "kind": "generic",
+        "trace_ratio": 14,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          1,
+          13,
+          1,
+          0
+        ]
+      },
+      {
+        "plane": [
+          0,
+          7,
+          11,
+          12
+        ],
+        "kind": "generic",
+        "trace_ratio": 10,
+        "group_matrix_ranks": [
+          2,
+          2,
+          2
+        ],
+        "shared_group_matrix": [
+          14,
+          0,
+          8,
+          8
+        ]
+      }
+    ],
+    "quadratic_pair_lower_bound": 6,
+    "unrestricted_pair_lower_bound": 6,
+    "unrestricted_bound_dependency": "Mirwald-Schnorr two-output optimality theorem, as explicitly reported in Boyar-Find 2018 and Bilgin et al. 2020; not independently reproved here.",
+    "independent_proofs": "Finite ratio checks, nonsingular trace forms, code lower bound, scalar replay, rank2 matrix-group witnesses; see proof.md.",
+    "solver_executions": 0,
+    "global_eight_AND_excluded": false,
+    "world_first_established": false,
+    "algorithm_seconds": 0.0284725409001112
+  },
+  "reviewed_pair_and_rank_proof": "# GF16 output pairs and eight-gate high-degree rank budget\n\nThis is a bounded mathematical review and independent replay, not a new SAT\nsearch or an eight-AND exclusion. Field arithmetic uses F16 = F2[t]/(t^4+t+1).\nAll affine corrections, including constants, are free. Gate counts count binary\nANDs; XORs are free.\n\n## Pair classes: five plus thirty, not six versus seven\n\nThe nondegenerate trace pairing identifies an output covector with a unique\nfield element a by lambda_a(z)=Tr(a z). A 2D output space is therefore a plane\nL=<a,b>. Scaling one input scales L by a nonzero field element; applying the\nsame Frobenius to both inputs induces an inverse Frobenius on the trace\ncoefficients. Inverses generate the same cyclic group, so this distinction does\nnot change the orbit classification.\n\nAfter scaling a to 1, write r=b/a, r not 0 or 1. Changing the ordered basis of\nL replaces r by one of r, 1/r, 1+r, 1/(1+r), r/(1+r), (1+r)/r. These six maps\nare the GL(2,2) action. The two roots of r^2+r+1 form the special ratio class;\nthe other twelve ratios form two classes of size six, exchanged by squaring.\nThe audit checks these fourteen ratios directly, independently of the parent's\n35-plane enumeration.\n\nThe special planes are the five multiplicative cosets a F4 in F16. Their\nscaling stabilizer has size three. A generic plane has trivial scaling\nstabilizer: a nonidentity stabilizing multiplier would generate a field that\nacts on the binary 2D plane, so it must generate F4, forcing the plane to be\na F4. There are consequently two generic scaling orbits of fifteen, merged\nby Frobenius. Thus the complete semilinear orbit sizes are five and thirty.\n\nThis classification is structural, not a complexity gap. The parent produced\nsix-AND bilinear circuits for all 35 planes from its known nine-AND multiplier\nand semilinear input changes. This audit independently replays every circuit\non all 256 input assignments, with two checked output bits per assignment.\nThe parent source is hash-pinned in report.json. No parent synthesis module\nis imported by audit.py.\n\n## Elementary quadratic lower bound: six\n\nFor any nonzero a, the bilinear matrix of Tr(a xy) is nonsingular of rank four:\nfor x nonzero, choose y so that Tr(a xy)=1. The alternating polar matrix is\ntherefore nonsingular of rank eight. This is also checked for all fifteen\nnonzero output masks by the independent arithmetic implementation.\n\nFor k parallel affine-input ANDs, every nonzero target combination has a\ndecoder word of weight at least four, since one product has polar rank at\nmost two. For two outputs there are three nonzero decoder words. Their weight\nsum is at least twelve and at most 2k: each nonzero decoder column contributes\nexactly two. Therefore k>=6. At equality, all three weights are four, every\ncolumn is nonzero, and each column type 10, 01, 11 occurs exactly twice.\n\nThe all-quadratic-gate version follows either from the level-one circuit\ndefinition used in the literature or from the separately retained Boolean\nquadratic-flattening lemma for eight inputs. No assertion that an arbitrary\nnonlinear circuit's decoder has this weight bound is being made.\n\nThe verified upper circuits and this lower bound establish quadratic and\nbilinear pair complexity exactly six for both orbit classes.\n\n## Published two-output theorem and its limits\n\nMirwald and Schnorr, Theoretical Computer Science 102 (1992), 307\u2013328,\nDOI 10.1016/0304-3975(92)90235-8, are explicitly credited with equality of\nunrestricted and level-one multiplicative complexity for one or two quadratic\nBoolean outputs in Boyar\u2013Find (2018), page 8, and Bilgin et al. (2020),\nsection 2.2 / printed page 148. The original publisher's abstract was available,\nbut its full proof was not inspected in this run. This is an attributed theorem\ndependency, not a theorem reproved or formally certified here.\n\nInvoking that theorem transfers the independent quadratic lower bound to\nunrestricted Boolean AND/XOR circuits. Together with the explicit upper bounds,\nevery independent pair of GF16 multiplication output combinations has MC=6.\nThis justifies a global constraint that five gates cannot already linearly\ndecode two independent target combinations, even if the five gates themselves\nare nonlinear.\n\nIt does NOT justify replacing a useful nonlinear six-gate prefix by a quadratic\none when searching for an eight-gate full multiplier: an alternative optimal\npair circuit may lose auxiliary signals required by a cheap extension. It also\ndoes not transfer three- or four-output quadratic lower bounds to unrestricted\ncircuits. A generic-pair lower bound of seven is false.\n\nThe primary 1990 Mirwald conference abstract additionally describes matrix-pair\nrank via Kronecker invariants and reports a maximum of ceil(3n/2) for square\nbinary matrix pairs. This is corroborating context, not a dependency of the\nexplicit six-AND witnesses or the local lower-bound proof. Its exceptional\nblocks were not classified or used here.\n\n## Useful matrix-pencil synthesis family\n\nFor output trace coefficients a,b, the matrix pair is (M_a,M_b). After an\ninvertible change on one input it becomes (I,M_a^{-1}M_b); the latter operator\nis multiplication by r=b/a. For the special class its characteristic polynomial\nis (z^2+z+1)^2; for the generic class it is an irreducible quartic. This does\nnot imply different gate counts.\n\nFor a bilinear six-AND realization, group the products by their decoder columns.\nThe three two-product groups have matrices X, Y, Z of rank exactly two, with\nM_a=X+Y and M_b=X+Z after naming the common group X. Thus bilinear six synthesis\ncan equivalently seek a matrix X with rank(X)=rank(X+M_a)=rank(X+M_b)=2 and\nthen factor the three matrices into two rank-one terms each. Necessity follows\nfrom the decoder equality case and rank(M_a)=rank(M_b)=rank(M_a+M_b)=4;\nsufficiency follows by those rank factorizations. The audit checks the three\nrank-two groups for every supplied circuit.\n\nFor general parallel mixed-input quadratic gates, the analogous parameter uses\nalternating polar matrices A with ranks(A)=ranks(A+F)=ranks(A+G)=4. Each rank-four\nquadratic is a sum of two affine-input products modulo affine terms. This\nparameterizes parallel six-AND pair circuits, not all unrestricted six-gate\nprefixes. Neither family is imposed as a global search constraint here.\n\n## Selector-space high-degree budget for any eight-gate candidate\n\nLet g1,...,g8 be gate truth functions in topological order. Padding a smaller\ncircuit with affine or zero gates is allowed. Let E_i be the first i coordinate\nsubspace of F2^8. Define H:F2^8 -> (Boolean ANF terms of degree at least three)\nby H(c)=high(sum c_j g_j), and write r_i=rank(H restricted to E_i).\n\nChoose the actual four output-decoder rows; their span D has dimension four\nbecause the four target classes are independent modulo affine functions.\nEvery element of D lies in ker H. Set s_i=dim(D intersection E_i) and\nK_i=ker(H restricted to E_i). Then D intersection K_i=D intersection E_i, so\n\n    8-r_8 >= dim(D+K_i) = 4+i-r_i-s_i,\n    hence r_8-r_i <= 4-i+s_i.\n\nThis argument is in selector space and does not require independent gate\nfunctions modulo affine terms or a minimal circuit. Constants and other\naffine terms disappear from H and cannot cancel a rank-eight target.\n\nEvery nonzero target scalar has MC=4 (rank-eight scalar quadratic theorem).\nTherefore s_1=s_3=0. Since the first AND has affine operands, r_1=0. The\nfollowing independent-of-pair-theorem conditions follow:\n\n* r_8<=3.\n* r_8-r_3<=1.\n\nThe published unrestricted pair lower bound of six implies s_5<=1. Consequently\nr_8-r_5<=0; monotonicity gives r_8=r_5. This is the stronger condition that\nall high-degree directions occur within the first five gates. Its published\ntwo-output-theorem dependency must remain explicit. If r_8=3, the first three\ngates already have high-degree rank two, so g2 and g3 supply independent\nhigh-degree parts.\n\n## Escape timing without and with the pair theorem\n\nSuppose the first six gates are all quadratic, and let P6 be their truth span\ntogether with all affine functions A. Because only two gates remain and the\ntarget space T has dimension four modulo A, dim((P6 intersection (A+T))/A)>=2.\nIt cannot be at least three: six quadratic gates can be flattened, but a\nthree-output decoder has seven nonzero words of weight at least four, whereas\ntheir total weight is at most 4*6=24<28. Thus the intersection is exactly two.\n\nThe missing target quotient (P6+T)/P6 has dimension two. Two remaining gate\ndirections must span it exactly. Hence both remaining gates belong to P6+T,\nwhich is quadratic, and the entire circuit has only quadratic gate functions.\nThat contradicts the separately certified eight-gate quadratic exclusion.\nThis proves a necessary high-degree gate within the first six without invoking\nthe unrestricted two-output theorem. No prefix gate independence is required.\n\nWith the theorem-dependent equality r_8=r_5 and the same certified quadratic\nexclusion (r_8>0), a high-degree gate must occur within the first five.\n\n## Limits\n\nNo solver was run, no new full multiplier or AES circuit was obtained, no\nperformance improvement was measured, and no unrestricted eight-AND exclusion\nor novelty claim is made. The parent is independently checking abstract rank\nbudget controls before changing search constraints. This run changes no search\nencoder or tracked repository file.\n",
+  "primary_sources": {
+    "review_date": "2026-10-19",
+    "source_policy": "Primary research papers or author conference abstracts only; no foreign code execution.",
+    "sources": [
+      {
+        "title": "The multiplicative complexity of quadratic boolean forms",
+        "authors": "Roland Mirwald and Claus-Peter Schnorr",
+        "year": 1992,
+        "url": "https://www.sciencedirect.com/science/article/pii/0304397592902358",
+        "doi": "10.1016/0304-3975(92)90235-8",
+        "access": "Publisher abstract retrieved through search; direct open unavailable. Original full proof not read.",
+        "observed": "Abstract defines unrestricted AND/XOR/1 complexity, gives scalar quadratic complexity as half associated matrix rank, and characterizes independence of two quadratic forms.",
+        "limit": "The explicit level-one equality statement used here was checked in the later primary research papers below, not established from this abstract alone."
+      },
+      {
+        "title": "Multiplicative Complexity of Vector Valued Boolean Functions",
+        "authors": "Joan Boyar and Magnus Gausdal Find",
+        "version": "arXiv:1407.6169v3, 22 February 2018",
+        "url": "https://arxiv.org/pdf/1407.6169",
+        "access": "PDF text opened with web tool; circuit definitions on PDF pages 4-5 and related-results statement on page 8 inspected.",
+        "observed": "Authors explicitly attribute optimality of quadratic circuits for one and two quadratic Boolean outputs to Mirwald-Schnorr; they distinguish the general multi-output open problem. Their quadratic class is a three-layer XOR/AND/XOR circuit with binary ANDs.",
+        "limit": "This is a cited published theorem dependency, not an independent reproof in this run."
+      },
+      {
+        "title": "Low AND Depth and Efficient Inverses: a Guide on S-boxes for Low-latency Masking",
+        "authors": "Begul Bilgin, Lauren De Meyer, Sebastien Duval, Itamar Levi and Francois-Xavier Standaert",
+        "year": 2020,
+        "doi": "10.46586/tosc.v2020.i1.144-184",
+        "url": "https://www.researchgate.net/publication/346703496_Low_AND_Depth_and_Efficient_Inverses_a_Guide_on_S-boxes_for_Low-latency_Masking",
+        "access": "Author-uploaded full paper text returned by web search; section 2.2 / printed page 148 inspected. Official ToSC access was blocked by robots.",
+        "observed": "Defines MC_D as complexity restricted to D AND layers and explicitly attributes MC=MC_1 for quadratic Boolean functions and pairs to Mirwald-Schnorr.",
+        "limit": "Corroborates the exact circuit model; does not imply optimal nonlinear prefixes can be replaced while preserving extendability."
+      },
+      {
+        "title": "The Rank of a Pair of Matrices over Z2 and the Multiplicative Complexity of a Pair of Boolean Quadratic Forms",
+        "authors": "R. Mirwald, joint work with C.-P. Schnorr",
+        "year": 1990,
+        "url": "https://www.wisdom.weizmann.ac.il/~/oded/PS/owr-cc90.pdf",
+        "access": "Author conference abstract on printed page 11 returned by web search; direct URL intermittently unavailable.",
+        "observed": "Abstract reports a binary matrix-pair tensor-rank lower bound involving the ranks of A, B and A+B, tightness outside five exceptional Kronecker types, and a maximal square-pair rank ceil(3n/2).",
+        "limit": "No exceptional-block classification or proof imported. Explicit local constructions make this unnecessary for the upper bound."
+      }
+    ],
+    "no_new_prior_art_priority_claim": true,
+    "search_errors_retained": [
+      "Original ScienceDirect direct open failed; its indexed publisher abstract was available.",
+      "The /~/oded conference-PDF URL intermittently timed out; indexed author-abstract text was available.",
+      "Official ToSC domain robots restriction; author-uploaded paper text used instead."
+    ]
+  },
+  "root_web_review": {
+    "url": "https://arxiv.org/html/1407.6169v3#S4",
+    "date": "2026-10-19",
+    "fact": "Root read the explicit one/two-output quadratic optimality attribution and general multi-output distinction. Original publisher direct open unavailable. No unpublished/general multi-output theorem adopted."
+  },
+  "joint_flags_and_kernel_controls": {
+    "status": "pass",
+    "joint_Q_plane_flags": 105,
+    "semilinear_orbits": [
+      {
+        "representative": [
+          1,
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "size": 60,
+        "fixed_Q1_fiber": [
+          [
+            1,
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              6,
+              7
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              10,
+              11
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              14,
+              15
+            ]
+          ]
+        ],
+        "normalized_Q": 1,
+        "normalized_second_covector": 2,
+        "normalized_plane": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "representative": [
+          1,
+          [
+            0,
+            1,
+            4,
+            5
+          ]
+        ],
+        "size": 30,
+        "fixed_Q1_fiber": [
+          [
+            1,
+            [
+              0,
+              1,
+              4,
+              5
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              8,
+              9
+            ]
+          ]
+        ],
+        "normalized_Q": 1,
+        "normalized_second_covector": 4,
+        "normalized_plane": [
+          0,
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "representative": [
+          1,
+          [
+            0,
+            1,
+            12,
+            13
+          ]
+        ],
+        "size": 15,
+        "fixed_Q1_fiber": [
+          [
+            1,
+            [
+              0,
+              1,
+              12,
+              13
+            ]
+          ]
+        ],
+        "normalized_Q": 1,
+        "normalized_second_covector": 12,
+        "normalized_plane": [
+          0,
+          1,
+          12,
+          13
+        ]
+      }
+    ],
+    "semilinear_orbit_sizes": [
+      15,
+      30,
+      60
+    ],
+    "fixed_Q1_plane_fiber_sizes": [
+      1,
+      2,
+      4
+    ],
+    "all_eight_selector_kernel_spaces_enumerated": 417199,
+    "early_three_conditions_verified": 16,
+    "early_five_conditions_verified": 67,
+    "rank_budget_proof": "For the selector-domain high-part map H, a4D decoder section D lies in kerH. No nonzero field component is computed in first3ANDs, so D\u2229E3=0; E3\u2229kerH has dimension3\u2212r3 and is disjointD. Therefore8\u2212r8>=4+3\u2212r3. Alsoe1 lieskerH and notD, so r8<=3. These proofs allow zero/affine/redundant gates and padded budgets.",
+    "pair_theorem_dependent_strengthening": "Published one/two-output quadratic optimality plus the verified pair complexity6 means dim(D\u2229E5)<=1. Since E5\u2229kerH has dimension5\u2212r5, 8\u2212r8>=4+5\u2212r5\u22121; monotonicity gives r8=r5. Every high-degree direction is already present by gate5. This step invokes Mirwald-Schnorr as reported in Boyar-Find; not independently proved by the finite kernel controls or the parallel decoder argument.",
+    "first_six_escape_proof": "If first6gates are quadratic, target intersection is>=2 but<3: flattening and seven nonzero rank8 words would require total codeweight>=28, whereas length6 dimension3 has totalweight<=24. Hence target deficit2 is rank-tight; last2truths must be in the all-quadratic prefix+target space, contradicting all-quadratic8 bound.",
+    "scope": "Finite symmetries and abstract kernel algebra, not a full circuit search. No first-plane representatives are combined with these flag normalizations without a separate joint audit.",
+    "new_search_cut_executed": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "algorithm_seconds": 4.497017875080928
+  },
+  "independent_flag_audit": {
+    "status": "pass",
+    "modulus": "t^4+t+1",
+    "source": "runs/aes-norm-pair-flags-20261019/report.json",
+    "source_sha256": "d55111239b2e8d92d831d80927c7c112e885d1be877c81c074c38d19736165d5",
+    "source_module_imported_or_executed": false,
+    "planes": 35,
+    "flags": 105,
+    "distinct_semilinear_actions": 60,
+    "group_composition_checks": 3600,
+    "dual_pairing_checks": 15360,
+    "GF16_input_equivariance_checks": 15360,
+    "trace_covector_checks": 960,
+    "negative_control_wrong_primal_as_dual_mismatches": 6096,
+    "Q1_stabilizer_size": 4,
+    "orbit_sizes": [
+      15,
+      30,
+      60
+    ],
+    "Q1_fiber_sizes": [
+      1,
+      2,
+      4
+    ],
+    "normalized_second_covectors": [
+      2,
+      4,
+      12
+    ],
+    "orbits": [
+      {
+        "representative": [
+          1,
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "size": 60,
+        "members": [
+          [
+            1,
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              6,
+              7
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              10,
+              11
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              14,
+              15
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              2,
+              4,
+              6
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              2,
+              8,
+              10
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              2,
+              13,
+              15
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              3,
+              4,
+              7
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              3,
+              5,
+              6
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              3,
+              12,
+              15
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              3,
+              13,
+              14
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              1,
+              4,
+              5
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              3,
+              4,
+              7
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              4,
+              8,
+              12
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              4,
+              10,
+              14
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              1,
+              4,
+              5
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              3,
+              5,
+              6
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              5,
+              9,
+              12
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              5,
+              11,
+              14
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              1,
+              6,
+              7
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              2,
+              4,
+              6
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              6,
+              9,
+              15
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              6,
+              10,
+              12
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              7,
+              8,
+              15
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              7,
+              9,
+              14
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              7,
+              10,
+              13
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              7,
+              11,
+              12
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              1,
+              8,
+              9
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              3,
+              8,
+              11
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              5,
+              8,
+              13
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              7,
+              8,
+              15
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              1,
+              8,
+              9
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              2,
+              9,
+              11
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              4,
+              9,
+              13
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              7,
+              9,
+              14
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              1,
+              10,
+              11
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              2,
+              8,
+              10
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              5,
+              10,
+              15
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              6,
+              10,
+              12
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              2,
+              9,
+              11
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              3,
+              8,
+              11
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              6,
+              11,
+              13
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              7,
+              11,
+              12
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              2,
+              12,
+              14
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              3,
+              12,
+              15
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              4,
+              8,
+              12
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              5,
+              9,
+              12
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              4,
+              9,
+              13
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              5,
+              8,
+              13
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              6,
+              11,
+              13
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              7,
+              10,
+              13
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              2,
+              12,
+              14
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              3,
+              13,
+              14
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              4,
+              10,
+              14
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              5,
+              11,
+              14
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              1,
+              14,
+              15
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              2,
+              13,
+              15
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              5,
+              10,
+              15
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              6,
+              9,
+              15
+            ]
+          ]
+        ],
+        "fixed_Q1_fiber": [
+          [
+            1,
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              6,
+              7
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              10,
+              11
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              14,
+              15
+            ]
+          ]
+        ],
+        "normalized_second_covector": 2,
+        "fixed_Q1_flag_stabilizer_size": 1
+      },
+      {
+        "representative": [
+          1,
+          [
+            0,
+            1,
+            4,
+            5
+          ]
+        ],
+        "size": 30,
+        "members": [
+          [
+            1,
+            [
+              0,
+              1,
+              4,
+              5
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              8,
+              9
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              2,
+              9,
+              11
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              2,
+              12,
+              14
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              3,
+              8,
+              11
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              2,
+              4,
+              6
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              4,
+              9,
+              13
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              5,
+              8,
+              13
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              5,
+              10,
+              15
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              3,
+              5,
+              6
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              6,
+              11,
+              13
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              1,
+              6,
+              7
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              3,
+              4,
+              7
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              2,
+              8,
+              10
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              4,
+              8,
+              12
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              5,
+              9,
+              12
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              6,
+              9,
+              15
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              4,
+              10,
+              14
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              7,
+              10,
+              13
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              1,
+              10,
+              11
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              5,
+              11,
+              14
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              6,
+              10,
+              12
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              7,
+              11,
+              12
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              2,
+              13,
+              15
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              3,
+              13,
+              14
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              1,
+              14,
+              15
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              7,
+              9,
+              14
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              3,
+              12,
+              15
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              7,
+              8,
+              15
+            ]
+          ]
+        ],
+        "fixed_Q1_fiber": [
+          [
+            1,
+            [
+              0,
+              1,
+              4,
+              5
+            ]
+          ],
+          [
+            1,
+            [
+              0,
+              1,
+              8,
+              9
+            ]
+          ]
+        ],
+        "normalized_second_covector": 4,
+        "fixed_Q1_flag_stabilizer_size": 2
+      },
+      {
+        "representative": [
+          1,
+          [
+            0,
+            1,
+            12,
+            13
+          ]
+        ],
+        "size": 15,
+        "members": [
+          [
+            1,
+            [
+              0,
+              1,
+              12,
+              13
+            ]
+          ],
+          [
+            2,
+            [
+              0,
+              2,
+              5,
+              7
+            ]
+          ],
+          [
+            3,
+            [
+              0,
+              3,
+              9,
+              10
+            ]
+          ],
+          [
+            4,
+            [
+              0,
+              4,
+              11,
+              15
+            ]
+          ],
+          [
+            5,
+            [
+              0,
+              2,
+              5,
+              7
+            ]
+          ],
+          [
+            6,
+            [
+              0,
+              6,
+              8,
+              14
+            ]
+          ],
+          [
+            7,
+            [
+              0,
+              2,
+              5,
+              7
+            ]
+          ],
+          [
+            8,
+            [
+              0,
+              6,
+              8,
+              14
+            ]
+          ],
+          [
+            9,
+            [
+              0,
+              3,
+              9,
+              10
+            ]
+          ],
+          [
+            10,
+            [
+              0,
+              3,
+              9,
+              10
+            ]
+          ],
+          [
+            11,
+            [
+              0,
+              4,
+              11,
+              15
+            ]
+          ],
+          [
+            12,
+            [
+              0,
+              1,
+              12,
+              13
+            ]
+          ],
+          [
+            13,
+            [
+              0,
+              1,
+              12,
+              13
+            ]
+          ],
+          [
+            14,
+            [
+              0,
+              6,
+              8,
+              14
+            ]
+          ],
+          [
+            15,
+            [
+              0,
+              4,
+              11,
+              15
+            ]
+          ]
+        ],
+        "fixed_Q1_fiber": [
+          [
+            1,
+            [
+              0,
+              1,
+              12,
+              13
+            ]
+          ]
+        ],
+        "normalized_second_covector": 12,
+        "fixed_Q1_flag_stabilizer_size": 4
+      }
+    ],
+    "actions": [
+      {
+        "scale": 1,
+        "frobenius": 0,
+        "primal": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "dual": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "scale": 1,
+        "frobenius": 1,
+        "primal": [
+          0,
+          1,
+          4,
+          5,
+          3,
+          2,
+          7,
+          6,
+          12,
+          13,
+          8,
+          9,
+          15,
+          14,
+          11,
+          10
+        ],
+        "dual": [
+          0,
+          5,
+          4,
+          1,
+          10,
+          15,
+          14,
+          11,
+          8,
+          13,
+          12,
+          9,
+          2,
+          7,
+          6,
+          3
+        ]
+      },
+      {
+        "scale": 1,
+        "frobenius": 2,
+        "primal": [
+          0,
+          1,
+          3,
+          2,
+          5,
+          4,
+          6,
+          7,
+          15,
+          14,
+          12,
+          13,
+          10,
+          11,
+          9,
+          8
+        ],
+        "dual": [
+          0,
+          15,
+          10,
+          5,
+          12,
+          3,
+          6,
+          9,
+          8,
+          7,
+          2,
+          13,
+          4,
+          11,
+          14,
+          1
+        ]
+      },
+      {
+        "scale": 1,
+        "frobenius": 3,
+        "primal": [
+          0,
+          1,
+          5,
+          4,
+          2,
+          3,
+          7,
+          6,
+          10,
+          11,
+          15,
+          14,
+          8,
+          9,
+          13,
+          12
+        ],
+        "dual": [
+          0,
+          3,
+          12,
+          15,
+          2,
+          1,
+          14,
+          13,
+          8,
+          11,
+          4,
+          7,
+          10,
+          9,
+          6,
+          5
+        ]
+      },
+      {
+        "scale": 2,
+        "frobenius": 0,
+        "primal": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          3,
+          1,
+          7,
+          5,
+          11,
+          9,
+          15,
+          13
+        ],
+        "dual": [
+          0,
+          8,
+          9,
+          1,
+          2,
+          10,
+          11,
+          3,
+          4,
+          12,
+          13,
+          5,
+          6,
+          14,
+          15,
+          7
+        ]
+      },
+      {
+        "scale": 2,
+        "frobenius": 1,
+        "primal": [
+          0,
+          2,
+          8,
+          10,
+          6,
+          4,
+          14,
+          12,
+          11,
+          9,
+          3,
+          1,
+          13,
+          15,
+          5,
+          7
+        ],
+        "dual": [
+          0,
+          8,
+          13,
+          5,
+          4,
+          12,
+          9,
+          1,
+          10,
+          2,
+          7,
+          15,
+          14,
+          6,
+          3,
+          11
+        ]
+      },
+      {
+        "scale": 2,
+        "frobenius": 2,
+        "primal": [
+          0,
+          2,
+          6,
+          4,
+          10,
+          8,
+          12,
+          14,
+          13,
+          15,
+          11,
+          9,
+          7,
+          5,
+          1,
+          3
+        ],
+        "dual": [
+          0,
+          8,
+          7,
+          15,
+          10,
+          2,
+          13,
+          5,
+          12,
+          4,
+          11,
+          3,
+          6,
+          14,
+          1,
+          9
+        ]
+      },
+      {
+        "scale": 2,
+        "frobenius": 3,
+        "primal": [
+          0,
+          2,
+          10,
+          8,
+          4,
+          6,
+          14,
+          12,
+          7,
+          5,
+          13,
+          15,
+          3,
+          1,
+          9,
+          11
+        ],
+        "dual": [
+          0,
+          8,
+          11,
+          3,
+          12,
+          4,
+          7,
+          15,
+          2,
+          10,
+          9,
+          1,
+          14,
+          6,
+          5,
+          13
+        ]
+      },
+      {
+        "scale": 3,
+        "frobenius": 0,
+        "primal": [
+          0,
+          3,
+          6,
+          5,
+          12,
+          15,
+          10,
+          9,
+          11,
+          8,
+          13,
+          14,
+          7,
+          4,
+          1,
+          2
+        ],
+        "dual": [
+          0,
+          9,
+          11,
+          2,
+          6,
+          15,
+          13,
+          4,
+          12,
+          5,
+          7,
+          14,
+          10,
+          3,
+          1,
+          8
+        ]
+      },
+      {
+        "scale": 3,
+        "frobenius": 1,
+        "primal": [
+          0,
+          3,
+          12,
+          15,
+          5,
+          6,
+          9,
+          10,
+          7,
+          4,
+          11,
+          8,
+          2,
+          1,
+          14,
+          13
+        ],
+        "dual": [
+          0,
+          13,
+          9,
+          4,
+          14,
+          3,
+          7,
+          10,
+          2,
+          15,
+          11,
+          6,
+          12,
+          1,
+          5,
+          8
+        ]
+      },
+      {
+        "scale": 3,
+        "frobenius": 2,
+        "primal": [
+          0,
+          3,
+          5,
+          6,
+          15,
+          12,
+          10,
+          9,
+          2,
+          1,
+          7,
+          4,
+          13,
+          14,
+          8,
+          11
+        ],
+        "dual": [
+          0,
+          7,
+          13,
+          10,
+          6,
+          1,
+          11,
+          12,
+          4,
+          3,
+          9,
+          14,
+          2,
+          5,
+          15,
+          8
+        ]
+      },
+      {
+        "scale": 3,
+        "frobenius": 3,
+        "primal": [
+          0,
+          3,
+          15,
+          12,
+          6,
+          5,
+          9,
+          10,
+          13,
+          14,
+          2,
+          1,
+          11,
+          8,
+          4,
+          7
+        ],
+        "dual": [
+          0,
+          11,
+          7,
+          12,
+          14,
+          5,
+          9,
+          2,
+          10,
+          1,
+          13,
+          6,
+          4,
+          15,
+          3,
+          8
+        ]
+      },
+      {
+        "scale": 4,
+        "frobenius": 0,
+        "primal": [
+          0,
+          4,
+          8,
+          12,
+          3,
+          7,
+          11,
+          15,
+          6,
+          2,
+          14,
+          10,
+          5,
+          1,
+          13,
+          9
+        ],
+        "dual": [
+          0,
+          4,
+          12,
+          8,
+          9,
+          13,
+          5,
+          1,
+          2,
+          6,
+          14,
+          10,
+          11,
+          15,
+          7,
+          3
+        ]
+      },
+      {
+        "scale": 4,
+        "frobenius": 1,
+        "primal": [
+          0,
+          4,
+          3,
+          7,
+          12,
+          8,
+          15,
+          11,
+          5,
+          1,
+          6,
+          2,
+          9,
+          13,
+          10,
+          14
+        ],
+        "dual": [
+          0,
+          10,
+          2,
+          8,
+          13,
+          7,
+          15,
+          5,
+          4,
+          14,
+          6,
+          12,
+          9,
+          3,
+          11,
+          1
+        ]
+      },
+      {
+        "scale": 4,
+        "frobenius": 2,
+        "primal": [
+          0,
+          4,
+          12,
+          8,
+          7,
+          3,
+          11,
+          15,
+          9,
+          13,
+          5,
+          1,
+          14,
+          10,
+          2,
+          6
+        ],
+        "dual": [
+          0,
+          12,
+          4,
+          8,
+          7,
+          11,
+          3,
+          15,
+          10,
+          6,
+          14,
+          2,
+          13,
+          1,
+          9,
+          5
+        ]
+      },
+      {
+        "scale": 4,
+        "frobenius": 3,
+        "primal": [
+          0,
+          4,
+          7,
+          3,
+          8,
+          12,
+          15,
+          11,
+          14,
+          10,
+          9,
+          13,
+          6,
+          2,
+          1,
+          5
+        ],
+        "dual": [
+          0,
+          2,
+          10,
+          8,
+          11,
+          9,
+          1,
+          3,
+          12,
+          14,
+          6,
+          4,
+          7,
+          5,
+          13,
+          15
+        ]
+      },
+      {
+        "scale": 5,
+        "frobenius": 0,
+        "primal": [
+          0,
+          5,
+          10,
+          15,
+          7,
+          2,
+          13,
+          8,
+          14,
+          11,
+          4,
+          1,
+          9,
+          12,
+          3,
+          6
+        ],
+        "dual": [
+          0,
+          5,
+          14,
+          11,
+          13,
+          8,
+          3,
+          6,
+          10,
+          15,
+          4,
+          1,
+          7,
+          2,
+          9,
+          12
+        ]
+      },
+      {
+        "scale": 5,
+        "frobenius": 1,
+        "primal": [
+          0,
+          5,
+          7,
+          2,
+          15,
+          10,
+          8,
+          13,
+          9,
+          12,
+          14,
+          11,
+          6,
+          3,
+          1,
+          4
+        ],
+        "dual": [
+          0,
+          15,
+          6,
+          9,
+          7,
+          8,
+          1,
+          14,
+          12,
+          3,
+          10,
+          5,
+          11,
+          4,
+          13,
+          2
+        ]
+      },
+      {
+        "scale": 5,
+        "frobenius": 2,
+        "primal": [
+          0,
+          5,
+          15,
+          10,
+          2,
+          7,
+          13,
+          8,
+          6,
+          3,
+          9,
+          12,
+          4,
+          1,
+          11,
+          14
+        ],
+        "dual": [
+          0,
+          3,
+          14,
+          13,
+          11,
+          8,
+          5,
+          6,
+          2,
+          1,
+          12,
+          15,
+          9,
+          10,
+          7,
+          4
+        ]
+      },
+      {
+        "scale": 5,
+        "frobenius": 3,
+        "primal": [
+          0,
+          5,
+          2,
+          7,
+          10,
+          15,
+          8,
+          13,
+          4,
+          1,
+          6,
+          3,
+          14,
+          11,
+          12,
+          9
+        ],
+        "dual": [
+          0,
+          1,
+          6,
+          7,
+          9,
+          8,
+          15,
+          14,
+          4,
+          5,
+          2,
+          3,
+          13,
+          12,
+          11,
+          10
+        ]
+      },
+      {
+        "scale": 6,
+        "frobenius": 0,
+        "primal": [
+          0,
+          6,
+          12,
+          10,
+          11,
+          13,
+          7,
+          1,
+          5,
+          3,
+          9,
+          15,
+          14,
+          8,
+          2,
+          4
+        ],
+        "dual": [
+          0,
+          12,
+          5,
+          9,
+          11,
+          7,
+          14,
+          2,
+          6,
+          10,
+          3,
+          15,
+          13,
+          1,
+          8,
+          4
+        ]
+      },
+      {
+        "scale": 6,
+        "frobenius": 1,
+        "primal": [
+          0,
+          6,
+          11,
+          13,
+          10,
+          12,
+          1,
+          7,
+          14,
+          8,
+          5,
+          3,
+          4,
+          2,
+          15,
+          9
+        ],
+        "dual": [
+          0,
+          2,
+          15,
+          13,
+          9,
+          11,
+          6,
+          4,
+          14,
+          12,
+          1,
+          3,
+          7,
+          5,
+          8,
+          10
+        ]
+      },
+      {
+        "scale": 6,
+        "frobenius": 2,
+        "primal": [
+          0,
+          6,
+          10,
+          12,
+          13,
+          11,
+          7,
+          1,
+          4,
+          2,
+          14,
+          8,
+          9,
+          15,
+          3,
+          5
+        ],
+        "dual": [
+          0,
+          4,
+          3,
+          7,
+          13,
+          9,
+          14,
+          10,
+          6,
+          2,
+          5,
+          1,
+          11,
+          15,
+          8,
+          12
+        ]
+      },
+      {
+        "scale": 6,
+        "frobenius": 3,
+        "primal": [
+          0,
+          6,
+          13,
+          11,
+          12,
+          10,
+          1,
+          7,
+          9,
+          15,
+          4,
+          2,
+          5,
+          3,
+          8,
+          14
+        ],
+        "dual": [
+          0,
+          10,
+          1,
+          11,
+          7,
+          13,
+          6,
+          12,
+          14,
+          4,
+          15,
+          5,
+          9,
+          3,
+          8,
+          2
+        ]
+      },
+      {
+        "scale": 7,
+        "frobenius": 0,
+        "primal": [
+          0,
+          7,
+          14,
+          9,
+          15,
+          8,
+          1,
+          6,
+          13,
+          10,
+          3,
+          4,
+          2,
+          5,
+          12,
+          11
+        ],
+        "dual": [
+          0,
+          13,
+          7,
+          10,
+          15,
+          2,
+          8,
+          5,
+          14,
+          3,
+          9,
+          4,
+          1,
+          12,
+          6,
+          11
+        ]
+      },
+      {
+        "scale": 7,
+        "frobenius": 1,
+        "primal": [
+          0,
+          7,
+          15,
+          8,
+          9,
+          14,
+          6,
+          1,
+          2,
+          5,
+          13,
+          10,
+          11,
+          12,
+          4,
+          3
+        ],
+        "dual": [
+          0,
+          7,
+          11,
+          12,
+          3,
+          4,
+          8,
+          15,
+          6,
+          1,
+          13,
+          10,
+          5,
+          2,
+          14,
+          9
+        ]
+      },
+      {
+        "scale": 7,
+        "frobenius": 2,
+        "primal": [
+          0,
+          7,
+          9,
+          14,
+          8,
+          15,
+          1,
+          6,
+          11,
+          12,
+          2,
+          5,
+          3,
+          4,
+          10,
+          13
+        ],
+        "dual": [
+          0,
+          11,
+          9,
+          2,
+          1,
+          10,
+          8,
+          3,
+          14,
+          5,
+          7,
+          12,
+          15,
+          4,
+          6,
+          13
+        ]
+      },
+      {
+        "scale": 7,
+        "frobenius": 3,
+        "primal": [
+          0,
+          7,
+          8,
+          15,
+          14,
+          9,
+          6,
+          1,
+          3,
+          4,
+          11,
+          12,
+          13,
+          10,
+          5,
+          2
+        ],
+        "dual": [
+          0,
+          9,
+          13,
+          4,
+          5,
+          12,
+          8,
+          1,
+          6,
+          15,
+          11,
+          2,
+          3,
+          10,
+          14,
+          7
+        ]
+      },
+      {
+        "scale": 8,
+        "frobenius": 0,
+        "primal": [
+          0,
+          8,
+          3,
+          11,
+          6,
+          14,
+          5,
+          13,
+          12,
+          4,
+          15,
+          7,
+          10,
+          2,
+          9,
+          1
+        ],
+        "dual": [
+          0,
+          2,
+          6,
+          4,
+          12,
+          14,
+          10,
+          8,
+          9,
+          11,
+          15,
+          13,
+          5,
+          7,
+          3,
+          1
+        ]
+      },
+      {
+        "scale": 8,
+        "frobenius": 1,
+        "primal": [
+          0,
+          8,
+          6,
+          14,
+          11,
+          3,
+          13,
+          5,
+          10,
+          2,
+          12,
+          4,
+          1,
+          9,
+          7,
+          15
+        ],
+        "dual": [
+          0,
+          4,
+          14,
+          10,
+          2,
+          6,
+          12,
+          8,
+          13,
+          9,
+          3,
+          7,
+          15,
+          11,
+          1,
+          5
+        ]
+      },
+      {
+        "scale": 8,
+        "frobenius": 2,
+        "primal": [
+          0,
+          8,
+          11,
+          3,
+          14,
+          6,
+          5,
+          13,
+          1,
+          9,
+          10,
+          2,
+          15,
+          7,
+          4,
+          12
+        ],
+        "dual": [
+          0,
+          10,
+          6,
+          12,
+          4,
+          14,
+          2,
+          8,
+          7,
+          13,
+          1,
+          11,
+          3,
+          9,
+          5,
+          15
+        ]
+      },
+      {
+        "scale": 8,
+        "frobenius": 3,
+        "primal": [
+          0,
+          8,
+          14,
+          6,
+          3,
+          11,
+          13,
+          5,
+          15,
+          7,
+          1,
+          9,
+          12,
+          4,
+          2,
+          10
+        ],
+        "dual": [
+          0,
+          12,
+          14,
+          2,
+          10,
+          6,
+          4,
+          8,
+          11,
+          7,
+          5,
+          9,
+          1,
+          13,
+          15,
+          3
+        ]
+      },
+      {
+        "scale": 9,
+        "frobenius": 0,
+        "primal": [
+          0,
+          9,
+          1,
+          8,
+          2,
+          11,
+          3,
+          10,
+          4,
+          13,
+          5,
+          12,
+          6,
+          15,
+          7,
+          14
+        ],
+        "dual": [
+          0,
+          3,
+          4,
+          7,
+          8,
+          11,
+          12,
+          15,
+          1,
+          2,
+          5,
+          6,
+          9,
+          10,
+          13,
+          14
+        ]
+      },
+      {
+        "scale": 9,
+        "frobenius": 1,
+        "primal": [
+          0,
+          9,
+          2,
+          11,
+          8,
+          1,
+          10,
+          3,
+          6,
+          15,
+          4,
+          13,
+          14,
+          7,
+          12,
+          5
+        ],
+        "dual": [
+          0,
+          1,
+          10,
+          11,
+          8,
+          9,
+          2,
+          3,
+          5,
+          4,
+          15,
+          14,
+          13,
+          12,
+          7,
+          6
+        ]
+      },
+      {
+        "scale": 9,
+        "frobenius": 2,
+        "primal": [
+          0,
+          9,
+          8,
+          1,
+          11,
+          2,
+          3,
+          10,
+          14,
+          7,
+          6,
+          15,
+          5,
+          12,
+          13,
+          4
+        ],
+        "dual": [
+          0,
+          5,
+          12,
+          9,
+          8,
+          13,
+          4,
+          1,
+          15,
+          10,
+          3,
+          6,
+          7,
+          2,
+          11,
+          14
+        ]
+      },
+      {
+        "scale": 9,
+        "frobenius": 3,
+        "primal": [
+          0,
+          9,
+          11,
+          2,
+          1,
+          8,
+          10,
+          3,
+          5,
+          12,
+          14,
+          7,
+          4,
+          13,
+          15,
+          6
+        ],
+        "dual": [
+          0,
+          15,
+          2,
+          13,
+          8,
+          7,
+          10,
+          5,
+          3,
+          12,
+          1,
+          14,
+          11,
+          4,
+          9,
+          6
+        ]
+      },
+      {
+        "scale": 10,
+        "frobenius": 0,
+        "primal": [
+          0,
+          10,
+          7,
+          13,
+          14,
+          4,
+          9,
+          3,
+          15,
+          5,
+          8,
+          2,
+          1,
+          11,
+          6,
+          12
+        ],
+        "dual": [
+          0,
+          10,
+          15,
+          5,
+          14,
+          4,
+          1,
+          11,
+          13,
+          7,
+          2,
+          8,
+          3,
+          9,
+          12,
+          6
+        ]
+      },
+      {
+        "scale": 10,
+        "frobenius": 1,
+        "primal": [
+          0,
+          10,
+          14,
+          4,
+          13,
+          7,
+          3,
+          9,
+          1,
+          11,
+          15,
+          5,
+          12,
+          6,
+          2,
+          8
+        ],
+        "dual": [
+          0,
+          12,
+          3,
+          15,
+          6,
+          10,
+          5,
+          9,
+          7,
+          11,
+          4,
+          8,
+          1,
+          13,
+          2,
+          14
+        ]
+      },
+      {
+        "scale": 10,
+        "frobenius": 2,
+        "primal": [
+          0,
+          10,
+          13,
+          7,
+          4,
+          14,
+          9,
+          3,
+          12,
+          6,
+          1,
+          11,
+          8,
+          2,
+          5,
+          15
+        ],
+        "dual": [
+          0,
+          2,
+          1,
+          3,
+          14,
+          12,
+          15,
+          13,
+          11,
+          9,
+          10,
+          8,
+          5,
+          7,
+          4,
+          6
+        ]
+      },
+      {
+        "scale": 10,
+        "frobenius": 3,
+        "primal": [
+          0,
+          10,
+          4,
+          14,
+          7,
+          13,
+          3,
+          9,
+          8,
+          2,
+          12,
+          6,
+          15,
+          5,
+          11,
+          1
+        ],
+        "dual": [
+          0,
+          4,
+          5,
+          1,
+          6,
+          2,
+          3,
+          7,
+          9,
+          13,
+          12,
+          8,
+          15,
+          11,
+          10,
+          14
+        ]
+      },
+      {
+        "scale": 11,
+        "frobenius": 0,
+        "primal": [
+          0,
+          11,
+          5,
+          14,
+          10,
+          1,
+          15,
+          4,
+          7,
+          12,
+          2,
+          9,
+          13,
+          6,
+          8,
+          3
+        ],
+        "dual": [
+          0,
+          11,
+          13,
+          6,
+          10,
+          1,
+          7,
+          12,
+          5,
+          14,
+          8,
+          3,
+          15,
+          4,
+          2,
+          9
+        ]
+      },
+      {
+        "scale": 11,
+        "frobenius": 1,
+        "primal": [
+          0,
+          11,
+          10,
+          1,
+          14,
+          5,
+          4,
+          15,
+          13,
+          6,
+          7,
+          12,
+          3,
+          8,
+          9,
+          2
+        ],
+        "dual": [
+          0,
+          9,
+          7,
+          14,
+          12,
+          5,
+          11,
+          2,
+          15,
+          6,
+          8,
+          1,
+          3,
+          10,
+          4,
+          13
+        ]
+      },
+      {
+        "scale": 11,
+        "frobenius": 2,
+        "primal": [
+          0,
+          11,
+          14,
+          5,
+          1,
+          10,
+          15,
+          4,
+          3,
+          8,
+          13,
+          6,
+          2,
+          9,
+          12,
+          7
+        ],
+        "dual": [
+          0,
+          13,
+          11,
+          6,
+          2,
+          15,
+          9,
+          4,
+          3,
+          14,
+          8,
+          5,
+          1,
+          12,
+          10,
+          7
+        ]
+      },
+      {
+        "scale": 11,
+        "frobenius": 3,
+        "primal": [
+          0,
+          11,
+          1,
+          10,
+          5,
+          14,
+          4,
+          15,
+          2,
+          9,
+          3,
+          8,
+          7,
+          12,
+          6,
+          13
+        ],
+        "dual": [
+          0,
+          7,
+          9,
+          14,
+          4,
+          3,
+          13,
+          10,
+          1,
+          6,
+          8,
+          15,
+          5,
+          2,
+          12,
+          11
+        ]
+      },
+      {
+        "scale": 12,
+        "frobenius": 0,
+        "primal": [
+          0,
+          12,
+          11,
+          7,
+          5,
+          9,
+          14,
+          2,
+          10,
+          6,
+          1,
+          13,
+          15,
+          3,
+          4,
+          8
+        ],
+        "dual": [
+          0,
+          6,
+          10,
+          12,
+          5,
+          3,
+          15,
+          9,
+          11,
+          13,
+          1,
+          7,
+          14,
+          8,
+          4,
+          2
+        ]
+      },
+      {
+        "scale": 12,
+        "frobenius": 1,
+        "primal": [
+          0,
+          12,
+          5,
+          9,
+          7,
+          11,
+          2,
+          14,
+          15,
+          3,
+          10,
+          6,
+          8,
+          4,
+          13,
+          1
+        ],
+        "dual": [
+          0,
+          14,
+          12,
+          2,
+          15,
+          1,
+          3,
+          13,
+          9,
+          7,
+          5,
+          11,
+          6,
+          8,
+          10,
+          4
+        ]
+      },
+      {
+        "scale": 12,
+        "frobenius": 2,
+        "primal": [
+          0,
+          12,
+          7,
+          11,
+          9,
+          5,
+          14,
+          2,
+          8,
+          4,
+          15,
+          3,
+          1,
+          13,
+          6,
+          10
+        ],
+        "dual": [
+          0,
+          6,
+          2,
+          4,
+          3,
+          5,
+          1,
+          7,
+          13,
+          11,
+          15,
+          9,
+          14,
+          8,
+          12,
+          10
+        ]
+      },
+      {
+        "scale": 12,
+        "frobenius": 3,
+        "primal": [
+          0,
+          12,
+          9,
+          5,
+          11,
+          7,
+          2,
+          14,
+          1,
+          13,
+          8,
+          4,
+          10,
+          6,
+          3,
+          15
+        ],
+        "dual": [
+          0,
+          14,
+          4,
+          10,
+          1,
+          15,
+          5,
+          11,
+          7,
+          9,
+          3,
+          13,
+          6,
+          8,
+          2,
+          12
+        ]
+      },
+      {
+        "scale": 13,
+        "frobenius": 0,
+        "primal": [
+          0,
+          13,
+          9,
+          4,
+          1,
+          12,
+          8,
+          5,
+          2,
+          15,
+          11,
+          6,
+          3,
+          14,
+          10,
+          7
+        ],
+        "dual": [
+          0,
+          7,
+          8,
+          15,
+          1,
+          6,
+          9,
+          14,
+          3,
+          4,
+          11,
+          12,
+          2,
+          5,
+          10,
+          13
+        ]
+      },
+      {
+        "scale": 13,
+        "frobenius": 1,
+        "primal": [
+          0,
+          13,
+          1,
+          12,
+          4,
+          9,
+          5,
+          8,
+          3,
+          14,
+          2,
+          15,
+          7,
+          10,
+          6,
+          11
+        ],
+        "dual": [
+          0,
+          11,
+          8,
+          3,
+          5,
+          14,
+          13,
+          6,
+          1,
+          10,
+          9,
+          2,
+          4,
+          15,
+          12,
+          7
+        ]
+      },
+      {
+        "scale": 13,
+        "frobenius": 2,
+        "primal": [
+          0,
+          13,
+          4,
+          9,
+          12,
+          1,
+          8,
+          5,
+          7,
+          10,
+          3,
+          14,
+          11,
+          6,
+          15,
+          2
+        ],
+        "dual": [
+          0,
+          9,
+          8,
+          1,
+          15,
+          6,
+          7,
+          14,
+          5,
+          12,
+          13,
+          4,
+          10,
+          3,
+          2,
+          11
+        ]
+      },
+      {
+        "scale": 13,
+        "frobenius": 3,
+        "primal": [
+          0,
+          13,
+          12,
+          1,
+          9,
+          4,
+          5,
+          8,
+          11,
+          6,
+          7,
+          10,
+          2,
+          15,
+          14,
+          3
+        ],
+        "dual": [
+          0,
+          13,
+          8,
+          5,
+          3,
+          14,
+          11,
+          6,
+          15,
+          2,
+          7,
+          10,
+          12,
+          1,
+          4,
+          9
+        ]
+      },
+      {
+        "scale": 14,
+        "frobenius": 0,
+        "primal": [
+          0,
+          14,
+          15,
+          1,
+          13,
+          3,
+          2,
+          12,
+          9,
+          7,
+          6,
+          8,
+          4,
+          10,
+          11,
+          5
+        ],
+        "dual": [
+          0,
+          14,
+          3,
+          13,
+          7,
+          9,
+          4,
+          10,
+          15,
+          1,
+          12,
+          2,
+          8,
+          6,
+          11,
+          5
+        ]
+      },
+      {
+        "scale": 14,
+        "frobenius": 1,
+        "primal": [
+          0,
+          14,
+          13,
+          3,
+          1,
+          15,
+          12,
+          2,
+          4,
+          10,
+          9,
+          7,
+          5,
+          11,
+          8,
+          6
+        ],
+        "dual": [
+          0,
+          6,
+          1,
+          7,
+          11,
+          13,
+          10,
+          12,
+          3,
+          5,
+          2,
+          4,
+          8,
+          14,
+          9,
+          15
+        ]
+      },
+      {
+        "scale": 14,
+        "frobenius": 2,
+        "primal": [
+          0,
+          14,
+          1,
+          15,
+          3,
+          13,
+          2,
+          12,
+          5,
+          11,
+          4,
+          10,
+          6,
+          8,
+          7,
+          9
+        ],
+        "dual": [
+          0,
+          14,
+          5,
+          11,
+          9,
+          7,
+          12,
+          2,
+          1,
+          15,
+          4,
+          10,
+          8,
+          6,
+          13,
+          3
+        ]
+      },
+      {
+        "scale": 14,
+        "frobenius": 3,
+        "primal": [
+          0,
+          14,
+          3,
+          13,
+          15,
+          1,
+          12,
+          2,
+          6,
+          8,
+          5,
+          11,
+          9,
+          7,
+          10,
+          4
+        ],
+        "dual": [
+          0,
+          6,
+          15,
+          9,
+          13,
+          11,
+          2,
+          4,
+          5,
+          3,
+          10,
+          12,
+          8,
+          14,
+          7,
+          1
+        ]
+      },
+      {
+        "scale": 15,
+        "frobenius": 0,
+        "primal": [
+          0,
+          15,
+          13,
+          2,
+          9,
+          6,
+          4,
+          11,
+          1,
+          14,
+          12,
+          3,
+          8,
+          7,
+          5,
+          10
+        ],
+        "dual": [
+          0,
+          15,
+          1,
+          14,
+          3,
+          12,
+          2,
+          13,
+          7,
+          8,
+          6,
+          9,
+          4,
+          11,
+          5,
+          10
+        ]
+      },
+      {
+        "scale": 15,
+        "frobenius": 1,
+        "primal": [
+          0,
+          15,
+          9,
+          6,
+          2,
+          13,
+          11,
+          4,
+          8,
+          7,
+          1,
+          14,
+          10,
+          5,
+          3,
+          12
+        ],
+        "dual": [
+          0,
+          3,
+          5,
+          6,
+          1,
+          2,
+          4,
+          7,
+          11,
+          8,
+          14,
+          13,
+          10,
+          9,
+          15,
+          12
+        ]
+      },
+      {
+        "scale": 15,
+        "frobenius": 2,
+        "primal": [
+          0,
+          15,
+          2,
+          13,
+          6,
+          9,
+          4,
+          11,
+          10,
+          5,
+          8,
+          7,
+          12,
+          3,
+          14,
+          1
+        ],
+        "dual": [
+          0,
+          1,
+          15,
+          14,
+          5,
+          4,
+          10,
+          11,
+          9,
+          8,
+          6,
+          7,
+          12,
+          13,
+          3,
+          2
+        ]
+      },
+      {
+        "scale": 15,
+        "frobenius": 3,
+        "primal": [
+          0,
+          15,
+          6,
+          9,
+          13,
+          2,
+          11,
+          4,
+          12,
+          3,
+          10,
+          5,
+          1,
+          14,
+          7,
+          8
+        ],
+        "dual": [
+          0,
+          5,
+          3,
+          6,
+          15,
+          10,
+          12,
+          9,
+          13,
+          8,
+          14,
+          11,
+          2,
+          7,
+          1,
+          4
+        ]
+      }
+    ],
+    "covector_to_trace_coefficient": {
+      "0": 0,
+      "1": 9,
+      "2": 4,
+      "3": 13,
+      "4": 2,
+      "5": 11,
+      "6": 6,
+      "7": 15,
+      "8": 1,
+      "9": 8,
+      "10": 5,
+      "11": 12,
+      "12": 3,
+      "13": 10,
+      "14": 7,
+      "15": 14
+    },
+    "direct_group_and_generator_BFS_agree": true,
+    "reverse_enumeration_order_partition_agrees": true,
+    "all_frozen_report_classification_fields_match": true,
+    "selector_kernel_enumeration_performed": false,
+    "first_input_factor_plane_joint_normalization_proved": false,
+    "solver_executions": 0,
+    "production_or_old_run_changes": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "algorithm_seconds": 0.06887754192575812
+  },
+  "three_flag_prefix_search": {
+    "status": "bounded-three-flag-prefix-search-complete",
+    "searches": [
+      {
+        "label": "flag-2",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-pair-flag-search-20261019/flag-2.cnf"
+        ],
+        "wall_seconds": 30.0521792920772,
+        "CNF_sha256": "b51be6804301d3828855dc2be6d7b40715131818c791da6dafcb494a1f56de3d",
+        "variables": 54751,
+        "clauses": 193439,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "first_Q_covector": 1,
+        "second_covector": 2,
+        "first_left_factor": 1,
+        "first_plane_fixed": false,
+        "minimum_first_five_high_degree_rank": 1,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "flag-4",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-pair-flag-search-20261019/flag-4.cnf"
+        ],
+        "wall_seconds": 30.060287040891126,
+        "CNF_sha256": "1c3b9fcda16d10e24e4518b607d5c5f3c3837d335f79fb89da3eda35b011b7b1",
+        "variables": 54751,
+        "clauses": 193439,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "first_Q_covector": 1,
+        "second_covector": 4,
+        "first_left_factor": 1,
+        "first_plane_fixed": false,
+        "minimum_first_five_high_degree_rank": 1,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "flag-12",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-pair-flag-search-20261019/flag-12.cnf"
+        ],
+        "wall_seconds": 30.051977957831696,
+        "CNF_sha256": "ac373c923f9d603a1abdce18682609748fad07df8059785a3e252a69e43702cd",
+        "variables": 54751,
+        "clauses": 193439,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "first_Q_covector": 1,
+        "second_covector": 12,
+        "first_left_factor": 1,
+        "first_plane_fixed": false,
+        "minimum_first_five_high_degree_rank": 1,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "flag_orbit_source_sha256": "d55111239b2e8d92d831d80927c7c112e885d1be877c81c074c38d19736165d5",
+    "scope": "Q in first5, second independent field target by6, some degree>2 amongfirst5. All105 target flags covered by3 representatives, firstleft normalized separately by SL2. First-five nonquadratic necessity for every8gate solution invokes the published two-output theorem; no global lower bound follows from UNKNOWN.",
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "complete_GF16_candidate": false
+  },
+  "controls": {
+    "status": "pass",
+    "cases": [
+      {
+        "label": "generic-positive",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-pair-flag-search-20261019/controls-v2/generic-positive.cnf"
+        ],
+        "CNF_sha256": "a187a1235f122ca921b26f73ac8824ce5dcd2ffa79da15540e2321b5b2a6017e",
+        "variables": 54583,
+        "clauses": 192885,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 0.06664120778441429,
+        "first_factors": null,
+        "target_truth_hex": [
+          "0x7888877787778777877778887888788887777888788878888777788878887888",
+          "0xa0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "0xaa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00",
+          "0xc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+        ],
+        "fixed_prefix": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            272
+          ],
+          [
+            40,
+            256
+          ],
+          [
+            64,
+            128
+          ]
+        ],
+        "fixed_last": [
+          1,
+          4
+        ],
+        "fixed_lambda": 2,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              260
+            ],
+            [
+              32,
+              272
+            ],
+            [
+              40,
+              256
+            ],
+            [
+              64,
+              128
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "Q_output_mask": 7936,
+          "second_covector": 2,
+          "second_output_mask": 8192,
+          "all256_rows_verified": true,
+          "first_five_high_degree_rank": 2
+        }
+      },
+      {
+        "label": "fixed-closed-negative",
+        "status": "UNSATISFIABLE",
+        "exit_code": 20,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-pair-flag-search-20261019/controls-v2/fixed-closed-negative.cnf"
+        ],
+        "CNF_sha256": "0d45376b14ea7030aa78dc9f028dc5d30910fe25ce29e04f3cb4e47f915ff2c7",
+        "variables": 54751,
+        "clauses": 193527,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 0.07022762484848499,
+        "first_factors": null,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": [
+          [
+            1,
+            16
+          ],
+          [
+            128,
+            258
+          ],
+          [
+            64,
+            260
+          ],
+          [
+            32,
+            264
+          ],
+          [
+            224,
+            256
+          ]
+        ],
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "original_control_import_failure_retained": true,
+    "main_search_rerun": false
+  },
+  "independent_formula_audit": {
+    "status": "pass",
+    "cases": [
+      {
+        "label": "flag-2",
+        "main_search": true,
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "CNF_byte_identical": true,
+        "CNF_sha256": "b51be6804301d3828855dc2be6d7b40715131818c791da6dafcb494a1f56de3d",
+        "variables": 54751,
+        "source_variables": 17414,
+        "plain_clauses": 193439,
+        "native_XORs": 5760,
+        "normalized_first_left": true
+      },
+      {
+        "label": "flag-4",
+        "main_search": true,
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "CNF_byte_identical": true,
+        "CNF_sha256": "1c3b9fcda16d10e24e4518b607d5c5f3c3837d335f79fb89da3eda35b011b7b1",
+        "variables": 54751,
+        "source_variables": 17414,
+        "plain_clauses": 193439,
+        "native_XORs": 5760,
+        "normalized_first_left": true
+      },
+      {
+        "label": "flag-12",
+        "main_search": true,
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "CNF_byte_identical": true,
+        "CNF_sha256": "ac373c923f9d603a1abdce18682609748fad07df8059785a3e252a69e43702cd",
+        "variables": 54751,
+        "source_variables": 17414,
+        "plain_clauses": 193439,
+        "native_XORs": 5760,
+        "normalized_first_left": true
+      },
+      {
+        "label": "generic-positive",
+        "main_search": false,
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "CNF_byte_identical": true,
+        "CNF_sha256": "a187a1235f122ca921b26f73ac8824ce5dcd2ffa79da15540e2321b5b2a6017e",
+        "variables": 54583,
+        "source_variables": 17414,
+        "plain_clauses": 192885,
+        "native_XORs": 5760,
+        "normalized_first_left": false,
+        "model_replay": {
+          "all_plain_clauses_replayed": 192885,
+          "all_native_XORs_replayed": 5760,
+          "full_scalar_and_bitslice_input_rows": 256,
+          "gate_truth_variables_replayed": 1530,
+          "first5_residual_variables_replayed": 876,
+          "legacy_pair_difference_variables_replayed": 1314,
+          "all_nonzero_unequal_pair_helpers_replayed": true,
+          "Q_output_mask": 7936,
+          "second_covector": 2,
+          "second_output_mask": 8192,
+          "first_five_high_degree_rank": 2,
+          "actual_factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              260
+            ],
+            [
+              32,
+              272
+            ],
+            [
+              40,
+              256
+            ],
+            [
+              64,
+              128
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        "label": "fixed-closed-negative",
+        "main_search": false,
+        "status": "UNSATISFIABLE",
+        "exit_code": 20,
+        "CNF_byte_identical": true,
+        "CNF_sha256": "0d45376b14ea7030aa78dc9f028dc5d30910fe25ce29e04f3cb4e47f915ff2c7",
+        "variables": 54751,
+        "source_variables": 17414,
+        "plain_clauses": 193527,
+        "native_XORs": 5760,
+        "normalized_first_left": false
+      }
+    ],
+    "CNFs_byte_reconstructed": 5,
+    "SAT_models_full_replayed": 1,
+    "main_statuses": [
+      "UNKNOWN",
+      "UNKNOWN",
+      "UNKNOWN"
+    ],
+    "control_statuses": [
+      "SATISFIABLE",
+      "UNSATISFIABLE"
+    ],
+    "escape_predicate_finite_controls": {
+      "all_cases": 69904,
+      "width_cases": [
+        {
+          "bit_width": 1,
+          "four_vector_arrays": 16,
+          "weak_rank_ge1": 15,
+          "old_rank_ge2": 0,
+          "rank1_arrays_newly_admitted": 15
+        },
+        {
+          "bit_width": 2,
+          "four_vector_arrays": 256,
+          "weak_rank_ge1": 255,
+          "old_rank_ge2": 210,
+          "rank1_arrays_newly_admitted": 45
+        },
+        {
+          "bit_width": 3,
+          "four_vector_arrays": 4096,
+          "weak_rank_ge1": 4095,
+          "old_rank_ge2": 3990,
+          "rank1_arrays_newly_admitted": 105
+        },
+        {
+          "bit_width": 4,
+          "four_vector_arrays": 65536,
+          "weak_rank_ge1": 65535,
+          "old_rank_ge2": 65310,
+          "rank1_arrays_newly_admitted": 225
+        }
+      ],
+      "only_final_constraint_weakened": true,
+      "unconstrained_legacy_helpers_do_not_enforce_old_cut": true
+    },
+    "original_failed_control_produced_no_CNF": true,
+    "original_control_failure_solver_rerun": false,
+    "source_reused_only_independent_audit_emitter": true,
+    "five_emitter_sha256": "76d8bd9de70f3d4b059f2161ff78611510aaea2a5352884b16934c043c8ac6fd",
+    "reviewed_six_emitter_sha256": "be0039c19eb9f095e8ff5817ae387b700ad2ff7d2735ad010100b2851d317e4f",
+    "compiled_independent_reconstruction_source_sha256": "5e078ffa77f01a711c2ce31b1e9631b8821f596db631f9faf38fe68a44ae5d62",
+    "solver_executed": false,
+    "production_code_executed": false,
+    "UNSAT_certificates_checked": false,
+    "main_negative_bound_established": false,
+    "necessity_boundary": "First5 nonquadratic cut for every potential8gate field circuit depends on the separately reviewed published two-output theorem plus selector-kernel argument. These finite encodings/controls do not prove that theorem. All3 main timeouts exclude nothing.",
+    "algorithm_seconds": 0.9870653750840575
+  },
+  "retained_failure": {
+    "command": {
+      "argv": [
+        "python3",
+        "runs/aes-norm-pair-flag-search-20261019/controls.py"
+      ],
+      "exit_code": 1,
+      "wall_seconds": 0.08580308291129768
+    },
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-pair-flag-search-20261019/controls.py\", line 11, in <module>\n    X = s.a.inputs(8)\n        ^^^^^^^^^^\nAttributeError: module 'search' has no attribute 'inputs'\n",
+    "repair": "Unique importlib module name in separate controls_v2.py; no solver/main rerun."
+  },
+  "closed_hashes_verified": 35,
+  "raw_solver_archive_in_git": false,
+  "reproduction": "python3 workspace/aes-256-gcm/tools/verify_norm_pairs.py",
+  "replay_source_sha256": "3101c1069fa9abac2441891fe24f32b66d62b1465ab63af5ca405e73531709af",
+  "telemetry": {
+    "model_alias": "Codex",
+    "canonical_model_id": null,
+    "harness_version": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "cost": null,
+    "agent_wall_seconds": null,
+    "source": "unavailable; actual algorithm/solver command durations retained separately."
+  },
+  "evidence_sha256": {
+    "runs/aes-norm-pair-frontier-20261018/finite-pair-study.stdout.log": "5199fbb211c68ef0f123e2bead930e9fec92828c16acece3ac5c2d4706c2f400",
+    "runs/aes-norm-pair-frontier-20261018/pair-flags-and-kernel-controls.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-controls.stderr.log": "c3bfda80fcf459550c6f2ea1849a141011f7e43d9097060f31e43e6815c987f0",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-controls-v2.command.json": "9954d01939bec39afee9ae2115f12fe08fc464c21a5a8dc1c3a4ee35671c64f7",
+    "runs/aes-norm-pair-frontier-20261018/report.json": "d918bb0257d6b839b15fc21510726aa8fc8873b7b2420ba66e2a04df44a2b81e",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-search.stdout.log": "8ea90547770931a8dca49977f0b38d8bc75458d9c9912f580599f5690fc28352",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-controls-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-20261018/finite-pair-study.command.json": "02e7ca147c1ecc0fa53ec031ec293c8168e74fd960a0206cdedc3d6b04aaade2",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-search.command.json": "b879f3deb8d495ddb5c867ad818cc2aa3deb02345c708e25e0296c570b603509",
+    "runs/aes-norm-pair-frontier-20261018/pair-flags-and-kernel-controls.command.json": "67b2a8e956ae984bf6d8089827a3d6a65d091a4a223f2aac314609b952105410",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-controls.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-20261018/capture.py": "727ba1f40b3fc9c464df478658892394d97db6de9d83176c1e6da9e5096bb708",
+    "runs/aes-norm-pair-frontier-20261018/finite-pair-study.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-20261018/pair-flags-and-kernel-controls.stdout.log": "f6670d02f95e53892856892efc1d7987e8c806a31a9ee355f1e5e40191be0d74",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-controls.command.json": "4076f5842a3d5303451f8d280530923c7200ee297ebf4bb232bb89b02b150e04",
+    "runs/aes-norm-pair-frontier-20261018/three-flag-controls-v2.stdout.log": "811f948b93d56731c85d55137927f6f8f25a92eea613895ba6081e77f5e67563",
+    "runs/aes-norm-pair-frontier-20261018/run.json": "1d0f06d3ed9423b4f647355f2423b45c26b875857dc3bb9f75c1bcee0005b697",
+    "runs/aes-norm-pair-frontier-20261018/study.py": "3ece7d9edf12b981826082f3aac81889ae9f765469863f34bdf7963e537d21b9",
+    "runs/aes-norm-pair-theory-20261018/sources.json": "b722daf4c3d12a3976db5563992f58f98b9731ab910bb0f0f4aaaf63011bf51e",
+    "runs/aes-norm-pair-theory-20261018/proof.md": "5f8cb0d3d1ad5fa651546ea550bacf4a85cf24957af0a4624782543e7adbbc28",
+    "runs/aes-norm-pair-theory-20261018/validation.command.json": "ee6b62cd3d47ae4297e5133a17eb9330a6c6cdf6eb502a63c04905f57bb6289d",
+    "runs/aes-norm-pair-theory-20261018/retain.py": "47bfd861269aa3bceb3f7d964d251a8bb32ce993c374179e61c08959a455ae39",
+    "runs/aes-norm-pair-theory-20261018/report.json": "7675d455e1c0e0fe6c49a67bbc9b48e033a8d98987b942a1de90222aa37adb1c",
+    "runs/aes-norm-pair-theory-20261018/audit.py": "fe8cf09fad9eee2425da90a9981282af1ba4245d86f3796d847d1c6b25fd3a95",
+    "runs/aes-norm-pair-theory-20261018/validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-theory-20261018/base-commit.command.json": "91834f6c2f794c5b25198edc51055d13720442a447b1b232deddecbd1734a03b",
+    "runs/aes-norm-pair-theory-20261018/base-commit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-theory-20261018/audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-theory-20261018/capture.py": "531347fc26952abddd45c68dc4cb3dbcf092f9bd15adf92f04d757dd4417bace",
+    "runs/aes-norm-pair-theory-20261018/validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-norm-pair-theory-20261018/manifest.json": "26da0d7e5c581d7af2101925fbef4bc0a31aa4fcf2de982afa47c9bffdb3b13c",
+    "runs/aes-norm-pair-theory-20261018/run.json": "1c9897a8e7b3f6dc077f35ad15200a89818a8de0f95c09e3a8262114566eadc9",
+    "runs/aes-norm-pair-theory-20261018/audit.command.json": "57b2c01cc523def2ece24301be62a64c115a5a2867567608373afe1b49cf94e6",
+    "runs/aes-norm-pair-theory-20261018/base-commit.stdout.log": "33e6749dc0413ab83505a781e7d38ea2155ca8a9d2abfc5f9d0680f254a99752",
+    "runs/aes-norm-pair-theory-20261018/audit.stdout.log": "fcf8eb668f8044e0818cfba17ae68de13d48f00fba241a5c630e52ed9654fcfa",
+    "runs/aes-norm-pair-frontier-audit-20261018/schema-validation.command.json": "b44876c7298f5470009ce4f9e1396e03184ddf5086a01aef48afc837715f562b",
+    "runs/aes-norm-pair-frontier-audit-20261018/independent-circuit-verification.stdout.log": "f4ea9ad2ec35fb0cb599b54f786597277313444dfb83f1e72a8a52e4aa8f10f7",
+    "runs/aes-norm-pair-frontier-audit-20261018/summary.json": "4873c82c02fecc347954670821458af1b21d0149a9f182d613aacba51e7e9eb5",
+    "runs/aes-norm-pair-frontier-audit-20261018/retention-closeout.stdout.log": "1a8330393e6719d2e43f6a66f4d55075029258a5d7729fce094d12687e7d473c",
+    "runs/aes-norm-pair-frontier-audit-20261018/run_command.py": "d5ce6c75e7cb3e27a8ad042d39b960511cd9b98d8d80b5af94b2c4abb630ca8e",
+    "runs/aes-norm-pair-frontier-audit-20261018/retain.py": "c98b2d32e78b54343c2d94103e45d95d759983c98b335ab07915444e1debcd55",
+    "runs/aes-norm-pair-frontier-audit-20261018/RESULT.md": "9684a8c5a86d318e1daba601a772a9fd39b693e735f5ae87fa18c8e9eb804939",
+    "runs/aes-norm-pair-frontier-audit-20261018/retention-closeout.command.json": "630eae77773f63d9476dbe1ecbdfe14b72cc569bda91dc9c901cae81dae21a2d",
+    "runs/aes-norm-pair-frontier-audit-20261018/classify.py": "179da6044b3743457972e2f879f095c5a0cb598f9a8fbe81f264e9eed188dcae",
+    "runs/aes-norm-pair-frontier-audit-20261018/GOAL.md": "c3884cfef5d02a191951669f1d5caabe5bafcc53e3b2ce011a48d2f4611eda7e",
+    "runs/aes-norm-pair-frontier-audit-20261018/schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-audit-20261018/independent-classification.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-audit-20261018/retention-closeout.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-audit-20261018/independent-circuit-verification.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-frontier-audit-20261018/independent-circuit-verification.command.json": "e322c4ae01b218b1306562724537a8de52d26d7a36e1d782d7a6da98449ef1f9",
+    "runs/aes-norm-pair-frontier-audit-20261018/independent-classification.command.json": "e24473ec09b14eecea891c719a8b33eafce0d80392411257be88616922c7aa0a",
+    "runs/aes-norm-pair-frontier-audit-20261018/verification.json": "593a01282589492b2056c99a12e8ea5fe2153443643279382647dc8dd8289cca",
+    "runs/aes-norm-pair-frontier-audit-20261018/verify.py": "f6116ad76fa969ea59dd42c844fee719b323fcc4f378dc6498a0e24085fbaaa0",
+    "runs/aes-norm-pair-frontier-audit-20261018/classification.json": "530805f396c6e702c4dab27db6f47ad8c800df99fa5ebf7818d5d1713a5be66c",
+    "runs/aes-norm-pair-frontier-audit-20261018/run.json": "c79fcae022d1cea7706e5249a78e34fef7d9e56fcec199bd4fc99e5bad902f82",
+    "runs/aes-norm-pair-frontier-audit-20261018/schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-norm-pair-frontier-audit-20261018/independent-classification.stdout.log": "d9202435e1ff55758f6536a6b52391dc9a233efeebf2d96237a0b34ba1b15324",
+    "runs/aes-norm-pair-flags-20261019/report.json": "d55111239b2e8d92d831d80927c7c112e885d1be877c81c074c38d19736165d5",
+    "runs/aes-norm-pair-flags-20261019/run.json": "007c9e9b799275b424690e587cf2b9bedf1198acf5831db803cf5e38d1da2c19",
+    "runs/aes-norm-pair-flags-20261019/study.py": "63362fc480d05fa34759cfc383c1568814029167df6d2ef4b103567b845907fc",
+    "runs/aes-norm-pair-flags-audit-20261019/report.json": "533913b1e8300b1ed23626ac18bddbff04dcc4823d49344bf4f945b7b9a54745",
+    "runs/aes-norm-pair-flags-audit-20261019/audit.py": "7b12072fb5f443a192c0a6317ded5685036fa92275be10832d01a0da600b5736",
+    "runs/aes-norm-pair-flags-audit-20261019/audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flags-audit-20261019/capture.py": "e320d35ee001768635d16c1a464d844741d7c42c3a74da4630397bdcb41e3b99",
+    "runs/aes-norm-pair-flags-audit-20261019/review.md": "6ea1e4889f6cb4b3d151ac47f495a6f699c20fddadc1ea6c495ee3a4c6520cb0",
+    "runs/aes-norm-pair-flags-audit-20261019/run.json": "f9476c10f4f1d0154a4058559791745176d76b78508712feb53aed331ad3e5ec",
+    "runs/aes-norm-pair-flags-audit-20261019/audit.command.json": "2d6a9c57a6582732e469b4e4b7e7f3d174f0460feb9810bc58311f385b59250c",
+    "runs/aes-norm-pair-flags-audit-20261019/audit.stdout.log": "4f3ab2d71e5640112e5a4e3a982f539ff5bfc888e3da2d7dccef6b139cb6d5a5",
+    "runs/aes-norm-pair-flag-search-20261019/controls_v2.py": "deab0de03bbd5b67cea515b48711c9cf93bb208ce9b29bc97cd887fac696eeea",
+    "runs/aes-norm-pair-flag-search-20261019/controls.py": "df64a0ea75422a228f698da860adee017c43033beb88a04111aeb2aba1fafa43",
+    "runs/aes-norm-pair-flag-search-20261019/report.json": "339b559704017622738da7bb9348886a24543b356aec25095e158f9e98669e9e",
+    "runs/aes-norm-pair-flag-search-20261019/flag-12.json": "0256ea90792cec30b4f45f4f80316ff6d5b729c2ab9d264e6c8aeebb214f56de",
+    "runs/aes-norm-pair-flag-search-20261019/flag-2.stdout.log": "5fc71e5bba9b9a172c34ae1452ca9cebcd877905a451021030490edee636cdfd",
+    "runs/aes-norm-pair-flag-search-20261019/flag-12.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flag-search-20261019/flag-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flag-search-20261019/flag-4.cnf": "1c3b9fcda16d10e24e4518b607d5c5f3c3837d335f79fb89da3eda35b011b7b1",
+    "runs/aes-norm-pair-flag-search-20261019/flag-2.cnf": "b51be6804301d3828855dc2be6d7b40715131818c791da6dafcb494a1f56de3d",
+    "runs/aes-norm-pair-flag-search-20261019/flag-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flag-search-20261019/flag-4.json": "e415c77bb2d5e7a04a8a0cf204df47d40a526d72fdfbea524fd0b4b170000524",
+    "runs/aes-norm-pair-flag-search-20261019/search.py": "6f541d7d31f4f8aeba7d2c19726ada02c032a4bb20152759eeb347a2de45ded1",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2.json": "ee410b84c62d46d9ae72aefb38a82dbfbcf2261d5ae687e7fdb5a84921517e5b",
+    "runs/aes-norm-pair-flag-search-20261019/flag-12.stdout.log": "11188c2dd3196f2fa68d126715d9a3b2fd68072bd6321116464ade37e1c82569",
+    "runs/aes-norm-pair-flag-search-20261019/flag-4.stdout.log": "50ee57c976125cd9c34339c8f73d25054d26cc7e457d27695b500ada18c78084",
+    "runs/aes-norm-pair-flag-search-20261019/run.json": "c3a260f73ce1c584518904e780bde8d340b4d30ee8dd9a9ed0c36ee4a1ca9128",
+    "runs/aes-norm-pair-flag-search-20261019/flag-2.json": "1a60852082affa5a586032f8d0dab316dd1242fb2fa348891b2225a2a36b8bc4",
+    "runs/aes-norm-pair-flag-search-20261019/flag-12.cnf": "ac373c923f9d603a1abdce18682609748fad07df8059785a3e252a69e43702cd",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/generic-positive.cnf": "a187a1235f122ca921b26f73ac8824ce5dcd2ffa79da15540e2321b5b2a6017e",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/fixed-closed-negative.json": "156b4b44885143accb33cc0bc1a08c42447a5bd19c1b966291ce7cbef29e73e1",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/fixed-closed-negative.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/generic-positive.json": "27323781249b70af03065c3cb3fb6fcdfcc4be415f8805aa34e1042fa5e7950a",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/generic-positive.stdout.log": "06a5d8482ad81d8bcd49416686b82451ba53bd5a5d7222df62c9a24e152a0f56",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/fixed-closed-negative.cnf": "0d45376b14ea7030aa78dc9f028dc5d30910fe25ce29e04f3cb4e47f915ff2c7",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/fixed-closed-negative.stdout.log": "d20a031d43eb4a308ba779e884afc80ab05f7d0c5ab9018a07d97adcfd09bbce",
+    "runs/aes-norm-pair-flag-search-20261019/controls-v2/generic-positive.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flag-search-audit-20261019/run_command.py": "d5ce6c75e7cb3e27a8ad042d39b960511cd9b98d8d80b5af94b2c4abb630ca8e",
+    "runs/aes-norm-pair-flag-search-audit-20261019/audit.py": "b3347b44a91301f0a6ecb15dd2c08bf6c45b8bb43ee58d05cf29d18ab94c3584",
+    "runs/aes-norm-pair-flag-search-audit-20261019/independent-five-formula-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-pair-flag-search-audit-20261019/independent-five-formula-audit.command.json": "5dc9afb254db4c0cd19caa878de5650fea0a2ecafe0c4f9f33706f75587cf4d2",
+    "runs/aes-norm-pair-flag-search-audit-20261019/audit-report.json": "164e9a87eea1d5a2153049f1dd3e478d1d874327dc3cdf7649f2880d93d8186c",
+    "runs/aes-norm-pair-flag-search-audit-20261019/independent-five-formula-audit.stdout.log": "a5e74c054357f87a330aa85b6e5b10ea083f06c7d1dbc57c33382bab1851dae5",
+    "runs/aes-norm-pair-flag-search-audit-20261019/run.json": "f7602ffe971f0bd5124df23b192d2011541d013e5a8812cf029c52a1a462c4c1"
+  }
+}
