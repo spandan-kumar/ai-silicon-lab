@@ -311,6 +311,59 @@ projected problem and claims the stronger lower bound; no priority is claimed.
 The [retained normalized/pilot study](../../workspace/aes-256-gcm/reports/sbox_norm_normalized_search_study.json)
 separates these outcomes and verification limits.
 
+### New counterexamples and linear family barriers
+
+The later five-gate scalar-Q counterexamples have higher-degree ranks two
+and three. All three actual spaces have rank 13 and field envelope rank 16;
+complete independent scans show each is already closed. Together with the
+previous 157 spaces this yields 160 fixed-space exclusions.
+
+There is also a family-wide statement. Write `A` for affine functions, `H`
+for projection modulo degree at most two, and `K` for the quadratic part of
+the prefix space modulo `A`. To enumerate products eligible for any quadratic
+target, fix every nonzero left operand and compute the complete right kernel
+of `R -> H(LR) mod H(P)`. Enumerating every kernel vector covers every actual
+eligible product. Subtract a prefix function with the same high part to get
+a quadratic residue `q`; its class modulo `K` is independent of that choice.
+
+For the explicit construction
+`p=ab; (p+c)d; (p+e)f; (p+g)h; p(d+f+h)`, their sum is
+`Q=ab+cd+ef+gh`. Here `K=span(p,Q)` modulo affine terms. The complete inventory
+contains 61,504 unordered nonzero pairs and 13,081 polar residue cosets.
+Every coset has a representative of polar rank at most four. If a product
+were useful inside `P+T`, with `T` a four-dimensional quadratic target space
+whose every nonzero polar has rank eight and containing `Q`, its residue
+would equal `t+k`, where `t` is outside `span(Q)` and `k` is in `K`.
+Every representative then has polar rank at least `8-rank(p)=6`, a
+contradiction. Thus `P` is closed inside `P+T`.
+
+For each of the two synthesized rank-two spaces, the available quadratic
+polar space `K` has dimension three. Exact inventories contain 54,976 and
+50,080 eligible pairs, with 11,111 and 11,482 residue cosets. No coset has
+any representative `t` for which both `rank(t)=8` and `rank(t+Q)=8`.
+This also checks the zero coset, so `K` intersects such a target space only
+in `span(Q)`. Any useful target product would require exactly such a pair;
+hence these spaces are likewise closed inside every such `P+T`.
+
+Invertible linear input substitutions preserve Boolean multiplication,
+degree filtration, affine terms and quadratic polar rank. These obstructions
+therefore cover every linear input version of the three specified spaces
+whose `Q` maps into the target modulo affine functions. Target intersection
+dimension is one, so three remaining ANDs are rank-tight and cannot escape
+the envelope. This does not classify all five-gate scalar circuits or prove
+an unrestricted eight-AND field lower bound. No orbit cardinality is claimed.
+
+Root independently recomputes the complete rank-three inventory using
+symbolic Boolean-ANF multiplication and different nullspaces; separate
+truth-table products, Mobius transforms and high-pivot kernels reproduce
+the two rank-two inventories. The rank-three calculation is reproducible
+without ignored runs using
+`python3 workspace/aes-256-gcm/tools/verify_norm_family.py`.
+The [retained family study](../../workspace/aes-256-gcm/reports/sbox_norm_linear_family_study.json)
+records scope, controls, source hashes and the subsequent unresolved
+six-gate constructive probes. The semantic argument is reviewed mathematics,
+not a proof-assistant formalization or a novelty claim.
+
 ## Prior art and availability
 
 The [Find–Boyar paper](https://arxiv.org/abs/1407.6169) is prior work on the

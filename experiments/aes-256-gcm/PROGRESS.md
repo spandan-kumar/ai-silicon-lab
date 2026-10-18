@@ -47,9 +47,10 @@ constructive searches, **not a new record-setting AES circuit**.
   pre-normalization bounded solver probes remain inconclusive. No search speedup or complete
   eight-AND circuit is established.
 - **Latest concrete-prefix result:** exact product closure excludes a
-  three-AND continuation for 157 distinct tested prefix spaces: the earlier
-  150-space family plus seven newly synthesized spaces. All seven new scans
-  were separately replayed by root; other five-gate structures remain open.
+  three-AND continuation for 160 distinct tested prefix spaces: the earlier
+  157 plus the two rank-two counterexamples and explicit rank-three prefix.
+  All three newest spaces receive complete independent nullspace rescans;
+  other five-gate structures remain open.
 - **Normalized free-prefix search:** fixing the first target direction requires
   seven jointly verified first-gate cases. The earlier three cases remain
   valid when that target direction is free. All seven normalized probes now
@@ -59,8 +60,14 @@ constructive searches, **not a new record-setting AES circuit**.
   quadratic is false. Two actual
   solver witnesses have rank two; a simple explicit construction reaches the
   maximum rank three and computes GF(16) output bit zero on all 256 inputs.
-  It does not compute all four outputs. The next open step is to test whether
-  different such prefixes can complete the multiplier within eight ANDs.
+  It does not compute all four outputs.
+- **Latest family obstruction:** complete product inventories rule out every
+  invertible linear input version of those three new prefixes, provided
+  their scalar output maps to a field-output combination modulo affine
+  terms. This is broader than testing individual coordinate changes, but
+  does not classify all five-gate circuits. A new six-gate search seeks a
+  second independent output direction with higher-degree rank at least two
+  in its first five gates; all seven bounded cases remain UNKNOWN.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -89,7 +96,7 @@ terminal; no future result is assumed.
 | Exact two-product charts | Search actual rank-four alternating tensors for one chosen four-coordinate principal block. | Explicit XOR-polynomial certificates exclude 16 fixed-block cases. Twelve cases and the other coordinate quartets remain open; the attempted nonlinear case times out. |
 | New public seeds and changed prefixes | Compare refreshed circuits' exact truth spaces, then pilot a 10+12+12-AND organization with mutable first and second layers and fixed final tail functions. | Seven distinct forward-normalized public seed spaces are identified. The finite 26,488-evaluation constructive pilot finds no candidate, not an impossibility proof. |
 | Quadratic norm stage | Allow arbitrary affine raw-input factors, including mixed input halves. | Nine ANDs are necessary and sufficient in this restricted model; the eight-AND refutation has checked DRAT/LRAT evidence. The result has prior precedent. |
-| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. Exact closure excludes only 157 tested fixed prefix spaces. |
+| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. Exact closure excludes 160 tested fixed prefix spaces; newer product inventories also exclude all invertible linear images of three specified prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
@@ -344,6 +351,38 @@ retains explicit gates, terminal results and audit scope. The small committed
 `python3 workspace/aes-256-gcm/tools/verify_norm_prefix.py`, without a solver
 or the ignored raw archive. Completion to all four field outputs remains open.
 
+### Linear families of the new prefixes
+
+The three new scalar prefixes themselves are closed inside their
+prefix-plus-field-output envelopes. Independent code repeats all 24,573
+nonzero-left scans and checks 24,887 right-kernel basis products. None adds
+a useful direction, and all three spaces differ from the previous 157.
+
+A stronger calculation relaxes the target to arbitrary quadratic functions.
+For the rank-three construction it enumerates all 61,504 eligible unordered
+nonzero operand pairs. After cancelling the available cubic parts, every
+quadratic residue has a representative of polar rank at most four modulo
+the available quadratic span. A new field direction would instead have
+minimum rank at least six. This contradiction survives every invertible
+linear input substitution mapping its scalar output to a field component.
+
+For the two rank-two prefixes, separate inventories cover 54,976 and 50,080
+eligible pairs. No residue coset contains both `t` and `t+Q` of polar rank
+eight, as a second independent field direction would require. A separate
+truth-table implementation reproduces both inventories and their obstruction.
+These are three specified linear families, not all rank-two/rank-three
+prefixes or an unrestricted eight-AND lower bound.
+
+The [family study](../../workspace/aes-256-gcm/reports/sbox_norm_linear_family_study.json)
+gives the precise argument and evidence. The rank-three inventory has a
+standalone replay:
+`python3 workspace/aes-256-gcm/tools/verify_norm_family.py`.
+A follow-up six-gate model requires `Q` after five gates, higher-degree rank
+at least two there, and a second independent field direction after six.
+All seven ten-second probes return UNKNOWN. Nine independently reconstructed
+formulas and the positive model pass, but no new field prefix or exclusion
+is obtained from those probes.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -412,6 +451,9 @@ Committed evidence and entry points include:
 - [Latest scalar-prefix counterexamples](../../workspace/aes-256-gcm/reports/sbox_norm_prefix_counterexample_study.json)
   and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_prefix.py)
   preserve the refuted assumption and explicit rank-three construction.
+- [Linear prefix-family study](../../workspace/aes-256-gcm/reports/sbox_norm_linear_family_study.json)
+  and [standalone family replay](../../workspace/aes-256-gcm/tools/verify_norm_family.py)
+  retain the three broader obstructions and unresolved six-gate search.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

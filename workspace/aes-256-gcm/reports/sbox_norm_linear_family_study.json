@@ -1,0 +1,1616 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-18",
+  "result": {
+    "status": "verified-linear-family-barriers-and-unresolved-six-prefix-search",
+    "previous_distinct_fixed_prefix_spaces": 157,
+    "new_distinct_fixed_prefix_spaces": 3,
+    "combined_distinct_fixed_prefix_spaces": 160,
+    "linear_families_excluded": 3,
+    "all_five_gate_prefixes_classified": false,
+    "six_prefix_main_UNKNOWN": 7,
+    "world_first_established": false,
+    "unrestricted_eight_AND_excluded": false,
+    "complete_GF16_eight_AND_candidate": false,
+    "improved_AES_candidate": false,
+    "physical_metrics": null,
+    "measured_solver_speedup": false,
+    "previous_goal_turn_classification": "progress: verified scalar counterexamples invalidated a search shortcut and were published.",
+    "current_progress": "Complete independent scans close three actual prefixes; target-independent inventories exclude their whole linear input families and motivate the six-prefix escape model.",
+    "next_action": "Seek different scalar-prefix linear families or investigate the two-output six-gate structure; do not retry the three closed families via input basis changes.",
+    "goal_remains_active": true,
+    "new_push_performed": false
+  },
+  "three_actual_prefix_closures": {
+    "status": "new-defect-prefix-closures-complete",
+    "controls": [
+      {
+        "label": "control-product",
+        "input_bits": 4,
+        "fixed_prefix_factor_masks": [],
+        "target_truth_hex": [
+          "0x8888"
+        ],
+        "initial_zero_preserving_rank": 4,
+        "fixed_envelope_zero_preserving_rank": 5,
+        "remaining_ANDs_in_rank_tight_problem": 1,
+        "closure_final_rank": 5,
+        "steps": [
+          {
+            "left": 1,
+            "right": 2,
+            "truth_hex": "0x8888",
+            "left_forms_checked": 1,
+            "right_kernel_vectors_checked": 2,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "2": 1
+            },
+            "transcript_sha256": "6262c97b9d5012bb62acb236d2f7bc008e5a44085b357d45671b93dc7d573670"
+          }
+        ],
+        "targets_reached": true,
+        "factor_masks": [
+          [
+            1,
+            2
+          ]
+        ],
+        "output_masks": [
+          16
+        ],
+        "fixed_prefix_rank_tight_completion_excluded": false,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 8.212495595216751e-05,
+        "world_first_established": false
+      },
+      {
+        "label": "control-rank4",
+        "input_bits": 4,
+        "fixed_prefix_factor_masks": [],
+        "target_truth_hex": [
+          "0x7888"
+        ],
+        "initial_zero_preserving_rank": 4,
+        "fixed_envelope_zero_preserving_rank": 5,
+        "remaining_ANDs_in_rank_tight_problem": 1,
+        "closure_final_rank": 4,
+        "steps": [
+          {
+            "left_forms_checked": 15,
+            "right_kernel_vectors_checked": 15,
+            "complete_no_extension_scan": true,
+            "kernel_dimension_histogram": {
+              "1": 15
+            },
+            "transcript_sha256": "128298f049df4df051bda21be8fed5b0835ef8b0cc81a43b509c38fb20523854"
+          }
+        ],
+        "targets_reached": false,
+        "factor_masks": null,
+        "output_masks": null,
+        "fixed_prefix_rank_tight_completion_excluded": true,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.00011699995957314968,
+        "world_first_established": false
+      },
+      {
+        "label": "control-cubic",
+        "input_bits": 4,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            2
+          ]
+        ],
+        "target_truth_hex": [
+          "0x8080"
+        ],
+        "initial_zero_preserving_rank": 5,
+        "fixed_envelope_zero_preserving_rank": 6,
+        "remaining_ANDs_in_rank_tight_problem": 1,
+        "closure_final_rank": 6,
+        "steps": [
+          {
+            "left": 6,
+            "right": 16,
+            "truth_hex": "0x808",
+            "left_forms_checked": 4,
+            "right_kernel_vectors_checked": 11,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "3": 3,
+              "2": 1
+            },
+            "transcript_sha256": "5c7b14f74698450c4a8f30818c83fd3c5f272c140cb4450ed63e1f7c0f4c784d"
+          }
+        ],
+        "targets_reached": true,
+        "factor_masks": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            16
+          ]
+        ],
+        "output_masks": [
+          48
+        ],
+        "fixed_prefix_rank_tight_completion_excluded": false,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 7.995893247425556e-05,
+        "world_first_established": false
+      },
+      {
+        "label": "control-quartic",
+        "input_bits": 4,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            2
+          ]
+        ],
+        "target_truth_hex": [
+          "0x8000"
+        ],
+        "initial_zero_preserving_rank": 5,
+        "fixed_envelope_zero_preserving_rank": 6,
+        "remaining_ANDs_in_rank_tight_problem": 1,
+        "closure_final_rank": 5,
+        "steps": [
+          {
+            "left_forms_checked": 31,
+            "right_kernel_vectors_checked": 45,
+            "complete_no_extension_scan": true,
+            "kernel_dimension_histogram": {
+              "3": 7,
+              "1": 24
+            },
+            "transcript_sha256": "d170c058f82b6019565fbd7a692c4f5a81bd494178bb9968a1ddb20bd3f5ee55"
+          }
+        ],
+        "targets_reached": false,
+        "factor_masks": null,
+        "output_masks": null,
+        "fixed_prefix_rank_tight_completion_excluded": true,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.00020999996922910213,
+        "world_first_established": false
+      },
+      {
+        "label": "control-GF4",
+        "input_bits": 4,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            4
+          ]
+        ],
+        "target_truth_hex": [
+          "0x6ca0",
+          "0xa6c0"
+        ],
+        "initial_zero_preserving_rank": 5,
+        "fixed_envelope_zero_preserving_rank": 7,
+        "remaining_ANDs_in_rank_tight_problem": 2,
+        "closure_final_rank": 7,
+        "steps": [
+          {
+            "left": 3,
+            "right": 12,
+            "truth_hex": "0x660",
+            "left_forms_checked": 2,
+            "right_kernel_vectors_checked": 5,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "3": 1,
+              "2": 1
+            },
+            "transcript_sha256": "09f597a7050e4e19f975d7f7434d408b40e91aee0edd123e670f99e3f48bcba5"
+          },
+          {
+            "left": 2,
+            "right": 8,
+            "truth_hex": "0xcc00",
+            "left_forms_checked": 3,
+            "right_kernel_vectors_checked": 8,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "3": 2,
+              "2": 1
+            },
+            "transcript_sha256": "0f8de425241fdfc9a96152d76f742f278271ae52e4a56d61ac362824c21c06ca"
+          }
+        ],
+        "targets_reached": true,
+        "factor_masks": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "output_masks": [
+          80,
+          48
+        ],
+        "fixed_prefix_rank_tight_completion_excluded": false,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.00011024996638298035,
+        "world_first_established": false
+      },
+      {
+        "label": "control-known-nine",
+        "input_bits": 8,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            12,
+            192
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            15,
+            240
+          ]
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "initial_zero_preserving_rank": 14,
+        "fixed_envelope_zero_preserving_rank": 17,
+        "remaining_ANDs_in_rank_tight_problem": 3,
+        "closure_final_rank": 17,
+        "steps": [
+          {
+            "left": 6,
+            "right": 96,
+            "truth_hex": "0x3c3c3c3c3c3c3c3c00000000000000003c3c3c3c3c3c3c3c00000000",
+            "left_forms_checked": 4,
+            "right_kernel_vectors_checked": 7,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "3": 1,
+              "1": 2,
+              "2": 1
+            },
+            "transcript_sha256": "43d3e516c45ba409e8fbe3dcdcc341ef00b3aefd1e42791b78e171a0f5e594cf"
+          },
+          {
+            "left": 4,
+            "right": 64,
+            "truth_hex": "0xf0f0f0f0f0f0f0f00000000000000000f0f0f0f0f0f0f0f00000000000000000",
+            "left_forms_checked": 7,
+            "right_kernel_vectors_checked": 12,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "3": 2,
+              "1": 4,
+              "2": 1
+            },
+            "transcript_sha256": "845a93fd11dae9c95463b2bea8f2d453ceba97e7af02b41c1a26373a5d9c0332"
+          },
+          {
+            "left": 11,
+            "right": 176,
+            "truth_hex": "0x9966000000009966996600000000996600009966996600000000996699660000",
+            "left_forms_checked": 13,
+            "right_kernel_vectors_checked": 28,
+            "complete_no_extension_scan": false,
+            "kernel_dimension_histogram": {
+              "3": 7,
+              "1": 5,
+              "2": 1
+            },
+            "transcript_sha256": "9a65d5c6d82ec31a4fdb154c4882698c3ac57901a128bb48c57714366e82180a"
+          }
+        ],
+        "targets_reached": true,
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            12,
+            192
+          ],
+          [
+            13,
+            208
+          ],
+          [
+            14,
+            224
+          ],
+          [
+            8,
+            128
+          ],
+          [
+            15,
+            240
+          ],
+          [
+            6,
+            96
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            11,
+            176
+          ]
+        ],
+        "output_masks": [
+          19200,
+          62976,
+          94208,
+          75008
+        ],
+        "fixed_prefix_rank_tight_completion_excluded": false,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.0014033329207450151,
+        "world_first_established": false
+      }
+    ],
+    "cases": [
+      {
+        "label": "orbit-2",
+        "input_bits": 8,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            64,
+            134
+          ],
+          [
+            234,
+            620
+          ],
+          [
+            200,
+            1582
+          ],
+          [
+            98,
+            1542
+          ]
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "initial_zero_preserving_rank": 13,
+        "fixed_envelope_zero_preserving_rank": 16,
+        "remaining_ANDs_in_rank_tight_problem": 3,
+        "closure_final_rank": 13,
+        "steps": [
+          {
+            "left_forms_checked": 8191,
+            "right_kernel_vectors_checked": 8313,
+            "complete_no_extension_scan": true,
+            "kernel_dimension_histogram": {
+              "3": 37,
+              "1": 8139,
+              "4": 12,
+              "5": 3
+            },
+            "transcript_sha256": "72140ea9f1e3300fb82b1141fa4c3ea734e6787f2692c1d708e07d45b54f3703"
+          }
+        ],
+        "targets_reached": false,
+        "factor_masks": null,
+        "output_masks": null,
+        "fixed_prefix_rank_tight_completion_excluded": true,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.22894191602244973,
+        "world_first_established": false,
+        "high_degree_projection_rank": 2,
+        "gate_degrees": [
+          2,
+          2,
+          3,
+          4,
+          4
+        ],
+        "Q_output_mask": 6946,
+        "all256_Q_rows_verified": true,
+        "prefix_span_signature_sha256": "ddbed7053d37034af8671b130ec96f8e4c97c271adb92f26b88c172ad3180995",
+        "distinct_from_previous157": true,
+        "distinct_from_earlier_new_cases": true
+      },
+      {
+        "label": "orbit-4",
+        "input_bits": 8,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            96
+          ],
+          [
+            117,
+            294
+          ],
+          [
+            32,
+            330
+          ],
+          [
+            2,
+            225
+          ],
+          [
+            52,
+            275
+          ]
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "initial_zero_preserving_rank": 13,
+        "fixed_envelope_zero_preserving_rank": 16,
+        "remaining_ANDs_in_rank_tight_problem": 3,
+        "closure_final_rank": 13,
+        "steps": [
+          {
+            "left_forms_checked": 8191,
+            "right_kernel_vectors_checked": 8261,
+            "complete_no_extension_scan": true,
+            "kernel_dimension_histogram": {
+              "3": 35,
+              "1": 8156
+            },
+            "transcript_sha256": "9db64f9133c817d3889d25e00f7e20b01e9ba86eef5a81359bd65c7189f140ed"
+          }
+        ],
+        "targets_reached": false,
+        "factor_masks": null,
+        "output_masks": null,
+        "fixed_prefix_rank_tight_completion_excluded": true,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.21728741680271924,
+        "world_first_established": false,
+        "high_degree_projection_rank": 2,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          2,
+          3
+        ],
+        "Q_output_mask": 7732,
+        "all256_Q_rows_verified": true,
+        "prefix_span_signature_sha256": "26ec043f39bc9248ad0ff47ba5b803fa4615acb85affab6e9745705277ae1b81",
+        "distinct_from_previous157": true,
+        "distinct_from_earlier_new_cases": true
+      },
+      {
+        "label": "explicit-rank3",
+        "input_bits": 8,
+        "fixed_prefix_factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            128,
+            258
+          ],
+          [
+            64,
+            260
+          ],
+          [
+            32,
+            264
+          ],
+          [
+            224,
+            256
+          ]
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "initial_zero_preserving_rank": 13,
+        "fixed_envelope_zero_preserving_rank": 16,
+        "remaining_ANDs_in_rank_tight_problem": 3,
+        "closure_final_rank": 13,
+        "steps": [
+          {
+            "left_forms_checked": 8191,
+            "right_kernel_vectors_checked": 8313,
+            "complete_no_extension_scan": true,
+            "kernel_dimension_histogram": {
+              "4": 12,
+              "1": 8139,
+              "3": 37,
+              "5": 3
+            },
+            "transcript_sha256": "b84503ce2cfafede622d4fc70791385c88c51a6ae859c20767c1c8938d44fcbb"
+          }
+        ],
+        "targets_reached": false,
+        "factor_masks": null,
+        "output_masks": null,
+        "fixed_prefix_rank_tight_completion_excluded": true,
+        "scope": "Exact closure in the fixed P+target envelope. Rank-tight completion only; not arbitrary prefixes or larger gate budgets.",
+        "algorithm_seconds": 0.23812762508168817,
+        "world_first_established": false,
+        "high_degree_projection_rank": 3,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "Q_output_mask": 7936,
+        "all256_Q_rows_verified": true,
+        "prefix_span_signature_sha256": "cdf160ee34dd2bba516e985f8c47f85c39cbabcdb304a7708c8fea3c496d958d",
+        "distinct_from_previous157": true,
+        "distinct_from_earlier_new_cases": true
+      }
+    ],
+    "previous_distinct_spaces": 157,
+    "new_distinct_spaces_not_in_previous": 3,
+    "combined_distinct_spaces": 160,
+    "full_GF16_eight_AND_candidate": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "scope": "Exact continuation of these actual fixed prefixes with three remaining ANDs; not all rank-two/rank-three or arbitrary scalar prefixes."
+  },
+  "separate_closure_audit": {
+    "status": "pass",
+    "all3_full_nullspace_rescans_independent": true,
+    "cases": [
+      {
+        "label": "orbit-2",
+        "high_degree_projection_rank": 2,
+        "gate_degrees": [
+          2,
+          2,
+          3,
+          4,
+          4
+        ],
+        "low_pivot_canonical_space_truth_hex": [
+          "0xaaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa",
+          "0xfffffffffffffffffc3ffc3f3ffc3ffc00000000000000000c300c30300c300c",
+          "0xc003c00303c003c00000000000000000300c300c0c300c30",
+          "0xffccffccffccffcc303c303cf33cf33c33003300330033003cfc3cfc3cc03cc0",
+          "0x33003300cc00cc00cc03cc0333c033c033003300cc00cc00fc00fc003f003f00",
+          "0xf3c0f3c0f3c0f3c00cf00cf000c000cc3f0c3f0c3f0c3f0fc00fc00c000c000",
+          "0x5555000055550000555500005555000055550000555500005555000055550000",
+          "0xaaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000",
+          "0x3cc33cc33c3c3c3ccc33cc33ccccccccf00ff00ff0f0f0f000ff00ff00000000",
+          "0xc33cc33c3c3c3c3c33cc33cccccccccc0ff00ff0f0f0f0f0ff00ff0000000000",
+          "0x3c3c3c3c3c3c3c3c0000000000000000c3c3c3c3c3c3c3c30000000000000000",
+          "0xc3c3c3c3c3c3c3c300000000000000003c3c3c3c3c3c3c3c0000000000000000",
+          "0xffffffffffffffffffffffffffffffff00000000000000000000000000000000"
+        ],
+        "prefix_Q_scalar_and_bitslice_rows_verified": 256,
+        "distinct_from_previous157": true,
+        "rank_tight_W_rank": 13,
+        "target_envelope_rank": 16,
+        "target_deficit": 3,
+        "scan": {
+          "nonzero_left_truths_scanned": 8191,
+          "right_kernel_basis_products_checked": 8313,
+          "kernel_dimension_histogram": {
+            "3": 37,
+            "1": 8139,
+            "4": 12,
+            "5": 3
+          },
+          "product_image_mod_W_rank_histogram": {
+            "0": 8191
+          },
+          "useful_products": [],
+          "independently_closed_at_initial_rank": true,
+          "algorithm_seconds": 2.983441999880597
+        }
+      },
+      {
+        "label": "orbit-4",
+        "high_degree_projection_rank": 2,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          2,
+          3
+        ],
+        "low_pivot_canonical_space_truth_hex": [
+          "0x8181e8e8747448484747848418188e8e4d4d2424b8b884848b8b4848d4d44242",
+          "0x8888888844444444444444448888888844444444888888888888888844444444",
+          "0x8877887722222222bb44bb444444444444bb44bbeeeeeeee7788778888888888",
+          "0x3a3af9f93030a6a69595fcfc60605c5cf6f63535fcfc6a6a59593030acac9090",
+          "0xcaca0909c0c0565665650c0c9090acac0606c5c50c0c9a9aa9a9c0c05c5c6060",
+          "0xff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00",
+          "0x9669c33c69693c3c669933cc9999cccc5aa50ff0a5a5f0f0aa55ff0055550000",
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0x33cc33cc00000000669966990000000033cc33cc000000006699669900000000",
+          "0xaaaaaaaaaaaaaaaa0000000000000000aaaaaaaaaaaaaaaa00000000",
+          "0xcc33cc33aaaaaaaa33cc33cc00000000cc33cc33aaaaaaaa33cc33cc00000000",
+          "0xffffffffffffffff0000000000000000ffffffffffffffff0000000000000000",
+          "0xffffffffffffffffffffffffffffffff00000000000000000000000000000000"
+        ],
+        "prefix_Q_scalar_and_bitslice_rows_verified": 256,
+        "distinct_from_previous157": true,
+        "rank_tight_W_rank": 13,
+        "target_envelope_rank": 16,
+        "target_deficit": 3,
+        "scan": {
+          "nonzero_left_truths_scanned": 8191,
+          "right_kernel_basis_products_checked": 8261,
+          "kernel_dimension_histogram": {
+            "3": 35,
+            "1": 8156
+          },
+          "product_image_mod_W_rank_histogram": {
+            "0": 8191
+          },
+          "useful_products": [],
+          "independently_closed_at_initial_rank": true,
+          "algorithm_seconds": 3.056072333129123
+        }
+      },
+      {
+        "label": "explicit-rank3",
+        "high_degree_projection_rank": 3,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "low_pivot_canonical_space_truth_hex": [
+          "0xaaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa",
+          "0xaaaa0000aaaa0000aaaa0000aaaa0000cccccccccccccccccccccccccccccccc",
+          "0xaaaa0000aaaa0000f0f0f0f0f0f0f0f0aaaa0000aaaa0000f0f0f0f0f0f0f0f0",
+          "0xff00ff00aaaa000055aaff00aaaa000055aaff0000000000ff00ff00",
+          "0x5555000055550000555500005555000055550000555500005555000055550000",
+          "0xaaaa0000aaaa000000000000aaaa00000000000000000000aaaa0000",
+          "0xaa5500ff00000000aa5500ff00000000aa5500ff00000000aa5500ff00000000",
+          "0xff00ff000000000055aaff00aaaa000055aaff00aaaa0000ff00ff0000000000",
+          "0xaaaa00000000000000000000aaaa000000000000aaaa0000aaaa000000000000",
+          "0xa5a50f0fa5a50f0f0000000000000000a5a50f0fa5a50f0f0000000000000000",
+          "0x5a5af0f05a5af0f000000000000000005a5af0f05a5af0f00000000000000000",
+          "0x9999333399993333999933339999333300000000000000000000000000000000",
+          "0x6666cccc6666cccc6666cccc6666cccc00000000000000000000000000000000"
+        ],
+        "prefix_Q_scalar_and_bitslice_rows_verified": 256,
+        "distinct_from_previous157": true,
+        "rank_tight_W_rank": 13,
+        "target_envelope_rank": 16,
+        "target_deficit": 3,
+        "scan": {
+          "nonzero_left_truths_scanned": 8191,
+          "right_kernel_basis_products_checked": 8313,
+          "kernel_dimension_histogram": {
+            "4": 12,
+            "1": 8139,
+            "3": 37,
+            "5": 3
+          },
+          "product_image_mod_W_rank_histogram": {
+            "0": 8191
+          },
+          "useful_products": [],
+          "independently_closed_at_initial_rank": true,
+          "algorithm_seconds": 2.42350949998945
+        }
+      }
+    ],
+    "old_spaces_independently_compared": 157,
+    "new_distinct_spaces": 3,
+    "combined_distinct_spaces": 160,
+    "all_baseline153_generated_and7_pilot_prefixes_scalar_replayed": true,
+    "nonzero_left_truths_independently_scanned": 24573,
+    "right_kernel_basis_products_independently_checked": 24887,
+    "controls": [
+      {
+        "label": "control-product",
+        "targets_reached": true,
+        "recovered_AND_count": 1,
+        "all_scalar_and_bitslice_rows_verified": 16,
+        "independent_bruteforce_closure_checked": true
+      },
+      {
+        "label": "control-rank4",
+        "targets_reached": false,
+        "recovered_AND_count": null,
+        "all_scalar_and_bitslice_rows_verified": null,
+        "independent_bruteforce_closure_checked": true
+      },
+      {
+        "label": "control-cubic",
+        "targets_reached": true,
+        "recovered_AND_count": 2,
+        "all_scalar_and_bitslice_rows_verified": 16,
+        "independent_bruteforce_closure_checked": true
+      },
+      {
+        "label": "control-quartic",
+        "targets_reached": false,
+        "recovered_AND_count": null,
+        "all_scalar_and_bitslice_rows_verified": null,
+        "independent_bruteforce_closure_checked": true
+      },
+      {
+        "label": "control-GF4",
+        "targets_reached": true,
+        "recovered_AND_count": 3,
+        "all_scalar_and_bitslice_rows_verified": 16,
+        "independent_bruteforce_closure_checked": true
+      },
+      {
+        "label": "control-known-nine",
+        "targets_reached": true,
+        "recovered_AND_count": 9,
+        "all_scalar_and_bitslice_rows_verified": 256,
+        "independent_bruteforce_closure_checked": false
+      }
+    ],
+    "production_code_executed": false,
+    "solver_executed": false,
+    "scope": "All three actual fixed five-gate spaces and exactly three further ANDs. Exact closure exclusions only; not all rank2/rank3 prefixes or unrestricted8-AND GF16/AES.",
+    "first_product_kernel_completeness": "For each fixed left, multiplication followed by reduction outside S is linear in right coefficients. A full row-equation nullspace basis spans every right giving a product in S. Its image modulo W is zero iff every eligible right product is already in W.",
+    "rank_tight_applicability": "A valid three-product completion must enlarge W13 to S16, so every suffix truth lies in S and contributes an independent quotient direction. With no first useful product, no such completion exists. Zero-preserving normalization removes affine constants without losing a representative.",
+    "unrestricted_eight_AND_excluded": false,
+    "complete_GF16_candidate": false,
+    "world_first_established": false,
+    "algorithm_seconds": 8.872416333993897
+  },
+  "separate_closure_controls": {
+    "status": "pass",
+    "all_linear_maps_to_F2_3_with_domain_dimension_0_through_4": 4681,
+    "all_right_coefficient_masks_checked": 69905,
+    "explicit_controls": [
+      {
+        "label": "raw-product-positive",
+        "targets_reached": true,
+        "closure_rank": 5
+      },
+      {
+        "label": "rank-four-negative",
+        "targets_reached": false,
+        "closure_rank": 4
+      },
+      {
+        "label": "cubic-positive",
+        "targets_reached": true,
+        "closure_rank": 6
+      },
+      {
+        "label": "quartic-negative",
+        "targets_reached": false,
+        "closure_rank": 5
+      }
+    ],
+    "new_seeded_nested_space_controls": 128,
+    "seed": 202610180935,
+    "helper_sha256": "4801e8ce9cfdfc6260cc9b2b9b302c93d1c9ffc7e7914b021b23a6592f9d5f8b",
+    "production_code_executed": false,
+    "algorithm_seconds": 0.11125779198482633
+  },
+  "rank_three_family_inventory": {
+    "status": "pass",
+    "available_dimension_without_constant": 13,
+    "left_forms_exhausted": 8191,
+    "unordered_nonzero_operand_pairs_eligible": 61504,
+    "maximum_right_kernel_dimension": 10,
+    "right_kernel_dimension_histogram": {
+      "10": 10,
+      "8": 224,
+      "9": 21,
+      "6": 242,
+      "7": 14,
+      "2": 1344,
+      "3": 192,
+      "1": 5632,
+      "5": 64,
+      "4": 448
+    },
+    "minimum_polar_rank_mod_p_Q_histogram": {
+      "0": 8431,
+      "2": 44811,
+      "4": 8262
+    },
+    "maximum_minimum_polar_rank_mod_p_Q": 4,
+    "distinct_quadratic_residue_polar_cosets": 13081,
+    "first_counterexample_to_rank4_obstruction": null,
+    "canonical_gate_masks": [
+      [
+        1,
+        2
+      ],
+      [
+        8,
+        260
+      ],
+      [
+        32,
+        272
+      ],
+      [
+        128,
+        320
+      ],
+      [
+        168,
+        256
+      ]
+    ],
+    "canonical_target": "ab+cd+ef+gh",
+    "all_prefix_inputs_verified": 256,
+    "algorithm_seconds": 0.7553442500066012,
+    "script_sha256": "a66707965da21ddf581c7a392dddca6ac30a966204c9bece511ba8d1b580bfb2",
+    "scope": "Complete products from canonical shared-product P whose high-degree parts lie in H(P), modulo the available quadratic span. Interpretation as a family-wide obstruction requires the separate rank argument.",
+    "world_first_established": false
+  },
+  "separate_rank_three_family_replay": {
+    "status": "pass",
+    "full_nonzero_left_forms": 8191,
+    "full_unordered_eligible_pairs": 61504,
+    "rank_histogram": {
+      "0": 8431,
+      "2": 44811,
+      "4": 8262
+    },
+    "quadratic_polar_cosets": 13081,
+    "independent_right_kernel_controls": 448,
+    "rank_inequality_controls": 16384,
+    "symbolic_truth_product_checks": 43264,
+    "quadratic_gate_selector_kernel": [
+      0,
+      1,
+      30,
+      31
+    ],
+    "family_argument": "For any invertible linear input substitution mapping Q modulo affine into a four-dimensional quadratic target space whose every nonzero polar has rank8, a useful in-envelope product would give a quadratic residue outside span(p,Q). Its entire coset modulo(p,Q) has polar rank>=6 because target combinations outside Q have rank8 and p has rank2. The complete canonical product inventory gives a representative of rank<=4 for every eligible product. Contradiction. Thus P is product-closed within P+target and cannot complete in three ANDs.",
+    "all_five_gate_prefixes_classified": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "algorithm_seconds": 6.777718917001039,
+    "source_report_sha256": "b2aa28752ff904302bf015b76a4c97acb5c0341cf63eb6b73fa6c4d7208dce12"
+  },
+  "standalone_rank_three_replay": {
+    "status": "pass",
+    "full_nonzero_left_forms": 8191,
+    "full_unordered_eligible_pairs": 61504,
+    "rank_histogram": {
+      "0": 8431,
+      "2": 44811,
+      "4": 8262
+    },
+    "quadratic_polar_cosets": 13081,
+    "independent_right_kernel_controls": 448,
+    "rank_inequality_controls": 16384,
+    "symbolic_truth_product_checks": 43264,
+    "quadratic_gate_selector_kernel": [
+      0,
+      1,
+      30,
+      31
+    ],
+    "family_argument": "For any invertible linear input substitution mapping Q modulo affine into a four-dimensional quadratic target space whose every nonzero polar has rank8, a useful in-envelope product would give a quadratic residue outside span(p,Q). Its entire coset modulo(p,Q) has polar rank>=6 because target combinations outside Q have rank8 and p has rank2. The complete canonical product inventory gives a representative of rank<=4 for every eligible product. Contradiction. Thus P is product-closed within P+target and cannot complete in three ANDs.",
+    "all_five_gate_prefixes_classified": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "algorithm_seconds": 6.984096208121628
+  },
+  "rank_two_family_inventory": {
+    "status": "complete-bounded-family-diagnostic",
+    "cases": [
+      {
+        "label": "orbit-2",
+        "all_nonzero_lefts": 8191,
+        "eligible_unordered_pairs": 54976,
+        "quadratic_kernel_dimension_mod_affine": 3,
+        "quadratic_residue_polar_cosets": 11111,
+        "cosets_admitting_rank8_pair_with_Q": 0,
+        "bent_pair_obstruction_passes_for_whole_linear_family": true,
+        "first_obstruction_escape": null,
+        "classification": "necessary-condition diagnostic, not a complete field circuit",
+        "algorithm_seconds": 4.537876249989495
+      },
+      {
+        "label": "orbit-4",
+        "all_nonzero_lefts": 8191,
+        "eligible_unordered_pairs": 50080,
+        "quadratic_kernel_dimension_mod_affine": 3,
+        "quadratic_residue_polar_cosets": 11482,
+        "cosets_admitting_rank8_pair_with_Q": 0,
+        "bent_pair_obstruction_passes_for_whole_linear_family": true,
+        "first_obstruction_escape": null,
+        "classification": "necessary-condition diagnostic, not a complete field circuit",
+        "algorithm_seconds": 4.234333791071549
+      }
+    ],
+    "scope": "All products from each actual fixed rank-two prefix, relaxing its target to arbitrary quadratics. A surviving rank8 pair is only a necessary condition and not a multiplier.",
+    "new_full_GF16_candidate": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false
+  },
+  "separate_rank_two_family_replay": {
+    "status": "pass",
+    "cases": [
+      {
+        "label": "orbit-2",
+        "eligible_unordered_pairs": 54976,
+        "quadratic_polar_cosets": 11111,
+        "bent_pair_escape_cosets": 0,
+        "quadratic_kernel_polar_values": [
+          0,
+          8,
+          593920,
+          593928,
+          134285312,
+          134285320,
+          134748160,
+          134748168
+        ],
+        "all_nonzero_lefts": 8191,
+        "algorithm_seconds": 1.0909526660107076
+      },
+      {
+        "label": "orbit-4",
+        "eligible_unordered_pairs": 50080,
+        "quadratic_polar_cosets": 11482,
+        "bent_pair_escape_cosets": 0,
+        "quadratic_kernel_polar_values": [
+          0,
+          48,
+          7169,
+          7217,
+          592905,
+          592953,
+          593928,
+          593976
+        ],
+        "all_nonzero_lefts": 8191,
+        "algorithm_seconds": 1.0372708751820028
+      }
+    ],
+    "bent_pair_positive_negative_controls": 3,
+    "independent_method": "Truth-table products and Mobius transform; high-pivot column kernels and compressed28bit polars, independently of symbolic OR-monomial production.",
+    "family_scope": "Every invertible linear input substitution of each actual prefix with Q mapped modulo affine into a four-dimensional quadratic target space whose nonzero polars all have rank8. No eligible quadratic residue coset can contain t,t+Q of rank8; hence no first useful product and no three-AND completion. Does not classify all five-gate prefixes.",
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "algorithm_seconds": 2.1316116671077907
+  },
+  "six_prefix_probe": {
+    "status": "bounded-six-prefix-probes-complete",
+    "controls": [
+      {
+        "label": "control-generic-positive",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/control-generic-positive.cnf"
+        ],
+        "CNF_sha256": "1094f8e9f8e5fb83e9fd53bdadfc3b3dcab29174a6c2d48c107c9fe46b92fb5b",
+        "variables": 54583,
+        "clauses": 192885,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 0.061314832884818316,
+        "first_factors": null,
+        "target_truth_hex": [
+          "0x7888877787778777877778887888788887777888788878888777788878887888",
+          "0xa0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "0xaa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00",
+          "0xc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+        ],
+        "fixed_prefix": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            272
+          ],
+          [
+            40,
+            256
+          ],
+          [
+            64,
+            128
+          ]
+        ],
+        "fixed_last": [
+          1,
+          4
+        ],
+        "fixed_lambda": 2,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              260
+            ],
+            [
+              32,
+              272
+            ],
+            [
+              40,
+              256
+            ],
+            [
+              64,
+              128
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "Q_output_mask": 7936,
+          "second_covector": 2,
+          "second_output_mask": 8192,
+          "all256_rows_verified": true,
+          "first_five_high_degree_rank": 2
+        }
+      },
+      {
+        "label": "control-fixed-closed-negative",
+        "status": "UNSATISFIABLE",
+        "exit_code": 20,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/control-fixed-closed-negative.cnf"
+        ],
+        "CNF_sha256": "1b2c7426eea542c2d524a0baf61a9a32b20899a63f55ead1255831720f1159e0",
+        "variables": 54751,
+        "clauses": 193527,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 0.05983970803208649,
+        "first_factors": null,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": [
+          [
+            1,
+            16
+          ],
+          [
+            128,
+            258
+          ],
+          [
+            64,
+            260
+          ],
+          [
+            32,
+            264
+          ],
+          [
+            224,
+            256
+          ]
+        ],
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "searches": [
+      {
+        "label": "orbit-0",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-0.cnf"
+        ],
+        "CNF_sha256": "63fd38e87f407b44f36798179bf1634ba5785dfc79b6f5730e0aeec930fc70d3",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.018506958149374,
+        "first_factors": [
+          1,
+          2
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-1",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-1.cnf"
+        ],
+        "CNF_sha256": "b9da6edcc1c060a9bb79fef8c748ad9413df8ac221c3f30d8631afc06bde45e0",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.046462124912068,
+        "first_factors": [
+          1,
+          12
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-2",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-2.cnf"
+        ],
+        "CNF_sha256": "0bc8cf5380bab3944453fdfe08909d188fd176967da8f47b10bdb0e9817cd75a",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.02044237521477,
+        "first_factors": [
+          1,
+          16
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-3",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-3.cnf"
+        ],
+        "CNF_sha256": "27874ffe60cb072019414299756ebad35fa64fbf641157c84555525d29af666b",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.020153624936938,
+        "first_factors": [
+          1,
+          32
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-4",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-4.cnf"
+        ],
+        "CNF_sha256": "512e3b2110385c76aeeda1d032f7967b8280836316129cd0348a610cf76d2f24",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.030809292104095,
+        "first_factors": [
+          1,
+          96
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-5",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-5.cnf"
+        ],
+        "CNF_sha256": "937a3c79bc8676858c1656853ca1237915ca85f87ddcb1c6cbfa8b770b3ad129",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.027456291951239,
+        "first_factors": [
+          1,
+          112
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-6",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-six-prefix-20261018/orbit-6.cnf"
+        ],
+        "CNF_sha256": "3b410077f557e9c401f143801e7a9b08e2243012a94a2b455bdfbe957257912c",
+        "variables": 54751,
+        "clauses": 193443,
+        "source_variables": 17414,
+        "native_XORs": 5760,
+        "solver_wall_seconds": 10.034920250065625,
+        "first_factors": [
+          1,
+          128
+        ],
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_prefix": null,
+        "fixed_last": null,
+        "fixed_lambda": null,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "scope": "Q in first5gates, high-degree rank>=2 there, a second independent GF16 target combination in first6. Rank>=2 restricts a subsearch and is not a global necessary condition.",
+    "complete_GF16_candidate": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false
+  },
+  "separate_six_prefix_replay": {
+    "status": "pass",
+    "CNFs_independently_rebuilt": 9,
+    "SAT_models_replayed": 1,
+    "cases": [
+      {
+        "label": "control-generic-positive",
+        "status": "SATISFIABLE",
+        "CNF_byte_identical": true,
+        "all_plain_and_native_constraints_replayed": true,
+        "scalar_rows_verified": 256,
+        "gate_truth_variables_verified": 1530,
+        "second_covector": 2
+      },
+      {
+        "label": "control-fixed-closed-negative",
+        "status": "UNSATISFIABLE",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-0",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-1",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-2",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-3",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-4",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-5",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      },
+      {
+        "label": "orbit-6",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true
+      }
+    ],
+    "main_UNSAT_claims": false,
+    "UNSAT_certificates_checked": false,
+    "scope": "Reuses the independent five-prefix emitter; all new sixth-gate/covector/decoder rows are separately emitted and byte-compared. Does not turn UNKNOWN into an exclusion."
+  },
+  "primary_sources": {
+    "status": "partial-primary-source-review",
+    "root_checked_date": "2026-10-18",
+    "sources": [
+      {
+        "url": "https://arxiv.org/html/1407.6169v3#S4",
+        "fact": "Section4 attributes quadratic-circuit optimality for one/two-output quadratic functions to Mirwald-Schnorr; no four-output GF16 theorem follows."
+      },
+      {
+        "url": "https://arxiv.org/html/2608.30238v1",
+        "fact": "Root reopened scope: seven unreduced polynomial coefficients and one non-useful-dimension budget, not reduced four-output GF16. Lean not locally executed."
+      }
+    ],
+    "failed_access": {
+      "Mirwald_1990_PDF_curl_exit": 56,
+      "publisher_HTTP_status": "403"
+    },
+    "delegation_interrupted": true,
+    "full_1992_proof_read": false,
+    "new_unrestricted_GF16_theorem_adopted": false,
+    "pair_lower_bound_speculation_adopted": false,
+    "note": "An exploratory suggestion that generic output pairs might need seven was withdrawn before any such cut/search. No complete pair classification performed."
+  },
+  "reproduction": "python3 workspace/aes-256-gcm/tools/verify_norm_family.py",
+  "raw_run_archive_in_git": false,
+  "verification_limit": "All three actual scans independently repeated. Rank3 family source is delegated; root independently recomputed full inventory. Rank2 family and six-prefix glue have separate root implementations, not a second-agent review after provider limits. Semantic family arguments not proof-assistant formalized.",
+  "telemetry": {
+    "model_alias": "Codex",
+    "canonical_model_id": null,
+    "harness_version": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "cost": null,
+    "agent_wall_seconds": null,
+    "source": "unavailable; observed command durations are separate retained fields"
+  },
+  "evidence_sha256": {
+    "runs/aes-norm-new-defect-closure-20261018/closure.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/rank2-family-probe.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/family-root-replay.command.json": "6cfdac339e04add91f64ae8a9ebb36158b31e5d41eeb6c389a8bacce26a3e9b2",
+    "runs/aes-norm-new-defect-closure-20261018/control-cubic.json": "762305844f4ada2128e186d70bae20f86b3f22dc8ec238f3e19ca02c4dadb796",
+    "runs/aes-norm-new-defect-closure-20261018/orbit-2.json": "562ec8a4bfe18c03e2d241d96741fcbb92f9a091b5ab0e0030a8ced6382c5cfe",
+    "runs/aes-norm-new-defect-closure-20261018/closure.command.json": "226b983b945207ee6da944944dbd2ad4c1862cb75d44ee63d4e409c1f4d5362b",
+    "runs/aes-norm-new-defect-closure-20261018/control-product.json": "dba60ec234bfc82a6598a30c2e60aa16d6bd3a552a8b5ff7220fe83dfafa8d7e",
+    "runs/aes-norm-new-defect-closure-20261018/family-probe.json": "b51dce9b5a8b289d902435a04ba53dd29861f4e5572d0c7eb27512fd268ef24d",
+    "runs/aes-norm-new-defect-closure-20261018/six-prefix-search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/report.json": "1db671a406d4cd46362fb2fb6b6fda47a5fe807e501a22df4c04eec2e8bf673a",
+    "runs/aes-norm-new-defect-closure-20261018/six-prefix-search.command.json": "991837dfc950b5809cd90ab319bfd5bd66999bbe62ee497c9057b2e3150ababd",
+    "runs/aes-norm-new-defect-closure-20261018/orbit-4.json": "b317f3949ec7ca5d97a87475d8050949a090091f4836f696e9239d9e021f09dd",
+    "runs/aes-norm-new-defect-closure-20261018/explicit-rank3.json": "d899c9dc0aff6949ae23926cca4cfab8695e13dc92c30e5c40df7992215ae0cd",
+    "runs/aes-norm-new-defect-closure-20261018/orbit-2-annotated.json": "5fdab808dc1c7e818c36446433b8d42814d33fdbe9e8ab916a56bdc4e2e83e7a",
+    "runs/aes-norm-new-defect-closure-20261018/family-root-replay.stdout.log": "318a172623f49e8e548c298607073b699d76db2bbcd562567f35a4f6154b7b0c",
+    "runs/aes-norm-new-defect-closure-20261018/six-prefix-independent-replay.command.json": "bec7e8a110cae1560d9384f3678d4721497190d09d4e6e7c2c0303941f8ff7f7",
+    "runs/aes-norm-new-defect-closure-20261018/standalone-family-replay.stdout.log": "7a174b458d21d10f815defce9822c21c54b75ccaa489d2365b3e5849f46e52e5",
+    "runs/aes-norm-new-defect-closure-20261018/family_probe.py": "25c67fbf738704b647a9be2114a23bdee6cb2d4ec179a76da196e2d365721558",
+    "runs/aes-norm-new-defect-closure-20261018/six-prefix-independent-replay.stdout.log": "a881179a20b19d2bdef1a4ec796424339eb14fa676643b1a521e4ffb393cf42c",
+    "runs/aes-norm-new-defect-closure-20261018/orbit-4-annotated.json": "40421b045d5ac457695775a7d8c96bec090f0793674f02015c243cbddc1c8900",
+    "runs/aes-norm-new-defect-closure-20261018/rank2-family-root-replay.command.json": "413e75dce01395a256ee2a088d0ea335bdc65835b7bd9798d907d3801b265c64",
+    "runs/aes-norm-new-defect-closure-20261018/rank2-family-root-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/explicit-rank3-annotated.json": "2152a85d54a4631e569f8328b9b0a088e6a0a05b486ea91b0b99d6715d54fd59",
+    "runs/aes-norm-new-defect-closure-20261018/standalone-family-replay.command.json": "78cc24946f1779cad21ab3d69fd76e4a87659de01805865bb944bcd510b5a20d",
+    "runs/aes-norm-new-defect-closure-20261018/capture.py": "770975dc510b30179caa42564f73403646e7f318b911ac81db0603c7f3c2fcfd",
+    "runs/aes-norm-new-defect-closure-20261018/closure.stdout.log": "853daa2b70cd56cfa08cadde4729bcc80e4cef8cb85e87b2e886c4bd544dc0bc",
+    "runs/aes-norm-new-defect-closure-20261018/rank2-family-probe.stdout.log": "28bde98215169afc54806327a568ac8d006082396c591f8f0e3f5b636d3489ce",
+    "runs/aes-norm-new-defect-closure-20261018/control-GF4.json": "843d663515bb5ed070fe57d86ea12b6026a3e1be7a86d0608dd10b5218d82d89",
+    "runs/aes-norm-new-defect-closure-20261018/search.py": "8931f1ef2485a6aa9c36b56701ee6b65c2fc15a4cdb30b09b97d3310352627c9",
+    "runs/aes-norm-new-defect-closure-20261018/six-prefix-search.stdout.log": "3ad33f88fb2f1fdd59d04c19fbabce42b19cf4fc567225b866c2ccb09fa84839",
+    "runs/aes-norm-new-defect-closure-20261018/family-root-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/control-rank4.json": "8904c6d4480100722f9967cf534d86d45b344c94618559ba7aa1b685d03421e8",
+    "runs/aes-norm-new-defect-closure-20261018/run.json": "97a01a497fcd461152ff6513f10ef555911889775d9858b42fcb3973d1cc4da1",
+    "runs/aes-norm-new-defect-closure-20261018/six-prefix-independent-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/rank2-family-root-replay.stdout.log": "11b738a8b6948ac6c8d62b9d296b3fc4da79e9a02aaf2c0c364d3ad680222f4c",
+    "runs/aes-norm-new-defect-closure-20261018/control-known-nine.json": "e5398a220bfaef69136b46fb80990f9b6f8b313b859b2b0353dce1f3ac10235d",
+    "runs/aes-norm-new-defect-closure-20261018/rank2-family-probe.command.json": "587268ff90544dc8a9d5367fb8d735542d170af654e7b729d216696706f4498c",
+    "runs/aes-norm-new-defect-closure-20261018/standalone-family-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-20261018/control-quartic.json": "683727353ce7eaa51378deb0fb700352558f673e53493753666487320f4af283",
+    "runs/aes-norm-new-defect-closure-audit-20261018/controls.py": "0c5bae012b7f73dae5a31b937691c35686f2952e4adb31d66a1c433ac03f2226",
+    "runs/aes-norm-new-defect-closure-audit-20261018/separate-controls.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-audit-20261018/run_command.py": "d5ce6c75e7cb3e27a8ad042d39b960511cd9b98d8d80b5af94b2c4abb630ca8e",
+    "runs/aes-norm-new-defect-closure-audit-20261018/independent-three-space-audit.stdout.log": "a8d221e795d4635b2ede20f50a3ebe8a311e6ab2b31f267c7511bb65f35a66c5",
+    "runs/aes-norm-new-defect-closure-audit-20261018/audit.py": "d9b34a7e5823aab322a7c3c23be946709dbeaeae97110bacf4f3984b925d5c07",
+    "runs/aes-norm-new-defect-closure-audit-20261018/controls-report.json": "c00ae59c4ddd48422b6df59d3ef43e740009917dcec189b8395b9ee7a3bace26",
+    "runs/aes-norm-new-defect-closure-audit-20261018/independent-three-space-audit.command.json": "cdf286139915243f0c713a22060c0c043b413507e24a7cad23336777fa77b5b1",
+    "runs/aes-norm-new-defect-closure-audit-20261018/separate-controls.stdout.log": "2f64adc85fcbbd21825d78637e2d09ac0ad51c2dfea863a98b8f44b5df8b976d",
+    "runs/aes-norm-new-defect-closure-audit-20261018/audit-report.json": "3e9bb31ac571bfa82de86ff338baa72a4b13c02bc8595a7a8c7c6bb0069c8991",
+    "runs/aes-norm-new-defect-closure-audit-20261018/independent-three-space-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-new-defect-closure-audit-20261018/separate-controls.command.json": "368c95821c745afdd01a9b54d3e9bc55726b3fdfa46de2598b08202bffdacdfd",
+    "runs/aes-norm-new-defect-closure-audit-20261018/run.json": "23dbad719eb9dd8581337827cb281e5c1667f6f9049571a3f562cd6dbf6be991",
+    "runs/aes-norm-rank3-family-theory-20261018/run_family.py": "0d0de91e23384f6ab53c40ce485d2ee1a64ce71f28c406b7bcb765ee48ce433c",
+    "runs/aes-norm-rank3-family-theory-20261018/family.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rank3-family-theory-20261018/family-report.json": "b2aa28752ff904302bf015b76a4c97acb5c0341cf63eb6b73fa6c4d7208dce12",
+    "runs/aes-norm-rank3-family-theory-20261018/family.command.json": "1290f09e7f973442529aa1dc07a74950336173b7d21e79961c6c3ac5c6d33158",
+    "runs/aes-norm-rank3-family-theory-20261018/family.py": "a66707965da21ddf581c7a392dddca6ac30a966204c9bece511ba8d1b580bfb2",
+    "runs/aes-norm-rank3-family-theory-20261018/family.stdout.log": "7eb236e30ba4bec1a8f9bda3bddd276f3e91efbe8941c1a1e76ca4edbe1c6939",
+    "runs/aes-norm-rank3-family-theory-20261018/run.json": "7346dd75bf009a88de3f0093c27d456cb26c5096c24b121a330da64131671819",
+    "runs/aes-norm-rank3-family-review-20261018/review.py": "6fce03e51f460d359484ede5e79293acd99d5cc8cf7f05b8511afb4cd19bc2ea",
+    "runs/aes-norm-rank3-family-review-20261018/review.json": "6b318a3ef3f180d6115935b8e81fdc7f3a88540a61acbb75190e6dc65d634508",
+    "runs/aes-norm-rank3-family-review-20261018/run.json": "4c3ea3c030db27af4fb9110a353ed06ba3ed1a41ced1f0b6c1455527dafe3650",
+    "runs/aes-norm-rank2-family-review-20261018/review.py": "cc753b572cd161662a4a6f6bd9a3eb5dc4039de7c7a88c776b1d7ace214c5244",
+    "runs/aes-norm-rank2-family-review-20261018/review.json": "a3612a59d3d97b1ac0adbb7ef9a97a760a7e1eab76ba4d7e31a109338bd86989",
+    "runs/aes-norm-rank2-family-review-20261018/run.json": "3be543e212919ff772767a6cdb7c0a7b9bfa4b76df0e2d7ecf1c6963e9710eec",
+    "runs/aes-norm-six-prefix-20261018/control-generic-positive.stdout.log": "ddd5d2533f84b46746e9ca1273038ee67de653f81bde904b8287b93c321acf9a",
+    "runs/aes-norm-six-prefix-20261018/orbit-2.json": "e684b9e73ff2c3a62c44a0a045891a3439e3bfe6f74b27d1bedd73a7fc10134f",
+    "runs/aes-norm-six-prefix-20261018/orbit-0.stdout.log": "69ff9209bbcc633c95558991e7393fc928e2e679023c9de72ad1e18a0920ffe8",
+    "runs/aes-norm-six-prefix-20261018/orbit-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/control-generic-positive.json": "b5580fc5d51a6c45129ab31aef97dbe2b082dda2adf6c55f9313c42340be0e50",
+    "runs/aes-norm-six-prefix-20261018/orbit-3.json": "ec6a138c05a9f1c75533e7a67ba56c9e252faa4958d3b9f2fbe464609ecda51c",
+    "runs/aes-norm-six-prefix-20261018/orbit-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/report.json": "a151e7c3f538a0aa46024a274efa248a8524c45a903763cd117ac11bece703b6",
+    "runs/aes-norm-six-prefix-20261018/orbit-5.stdout.log": "39e2b310fd553a5f52b644505e8f1ac09f4182b4b0a6002badc92ec1381f4de2",
+    "runs/aes-norm-six-prefix-20261018/control-fixed-closed-negative.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/orbit-4.json": "c76057ab6868c415cd5cbfa12b42fc8d2d131eda79df81988af76272457d3a3d",
+    "runs/aes-norm-six-prefix-20261018/orbit-2.stdout.log": "e2299199832a2f120337971cace63651730bfe5f7b3a7ee9252e57e27e081b5a",
+    "runs/aes-norm-six-prefix-20261018/orbit-6.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/orbit-3.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/orbit-5.json": "dad008385a05cfb0575d73baf82a773a7d9e5fafe636d625d8facd301b7bc2db",
+    "runs/aes-norm-six-prefix-20261018/orbit-3.cnf": "27874ffe60cb072019414299756ebad35fa64fbf641157c84555525d29af666b",
+    "runs/aes-norm-six-prefix-20261018/orbit-6.json": "a1b92447c5e795d8aa8f17e2529dda74bf977495bf029ba9626ad4568742ad53",
+    "runs/aes-norm-six-prefix-20261018/orbit-4.stdout.log": "ac75f2c6ec28dee1843796ec83a453e21cc5dae3e6b78316960e2db5ef72c158",
+    "runs/aes-norm-six-prefix-20261018/orbit-2.cnf": "0bc8cf5380bab3944453fdfe08909d188fd176967da8f47b10bdb0e9817cd75a",
+    "runs/aes-norm-six-prefix-20261018/orbit-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/orbit-0.cnf": "63fd38e87f407b44f36798179bf1634ba5785dfc79b6f5730e0aeec930fc70d3",
+    "runs/aes-norm-six-prefix-20261018/control-generic-positive.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/orbit-1.cnf": "b9da6edcc1c060a9bb79fef8c748ad9413df8ac221c3f30d8631afc06bde45e0",
+    "runs/aes-norm-six-prefix-20261018/orbit-5.cnf": "937a3c79bc8676858c1656853ca1237915ca85f87ddcb1c6cbfa8b770b3ad129",
+    "runs/aes-norm-six-prefix-20261018/orbit-4.cnf": "512e3b2110385c76aeeda1d032f7967b8280836316129cd0348a610cf76d2f24",
+    "runs/aes-norm-six-prefix-20261018/orbit-6.cnf": "3b410077f557e9c401f143801e7a9b08e2243012a94a2b455bdfbe957257912c",
+    "runs/aes-norm-six-prefix-20261018/search.py": "ccbe3deedced9c950a5cf1dbfc1ea4581494166327ed8de6f6b7c55380e0fc89",
+    "runs/aes-norm-six-prefix-20261018/orbit-5.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/orbit-1.stdout.log": "30933c714d028a100a367a0f77df159c0200190dc07d5d3a28180c61161bff25",
+    "runs/aes-norm-six-prefix-20261018/control-fixed-closed-negative.cnf": "1b2c7426eea542c2d524a0baf61a9a32b20899a63f55ead1255831720f1159e0",
+    "runs/aes-norm-six-prefix-20261018/orbit-6.stdout.log": "992474fde347fa1d69dfef20ba35bbe613139f4084cb986b36ed7d4b50a166cd",
+    "runs/aes-norm-six-prefix-20261018/orbit-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-six-prefix-20261018/control-fixed-closed-negative.stdout.log": "888792039bbefc36acf0a054a11dcd2013f8d5f5d1848c618ce4a20b6402e556",
+    "runs/aes-norm-six-prefix-20261018/orbit-0.json": "92c264dbf3e8dc79e373532308ff614c687c69fe313485ddfd244a65d38ce651",
+    "runs/aes-norm-six-prefix-20261018/run.json": "289cce61d82585c28a047eae80aab307e3f9dd32be5a179f842f12f41badb489",
+    "runs/aes-norm-six-prefix-20261018/orbit-1.json": "d7cc79ee91946b83f5ee632b814ab4acfc1dcff4c628e82c465aaa6a41f6b81b",
+    "runs/aes-norm-six-prefix-20261018/control-generic-positive.cnf": "1094f8e9f8e5fb83e9fd53bdadfc3b3dcab29174a6c2d48c107c9fe46b92fb5b",
+    "runs/aes-norm-six-prefix-20261018/orbit-3.stdout.log": "7a308082a59029f7472d055cff25c2cb96098d0e1ef85c88d69418134ce25763",
+    "runs/aes-norm-six-prefix-20261018/control-fixed-closed-negative.json": "f4f58b5cba9d240d305c555058b191fb9749786897dfb6ccf361f4e1c0201663",
+    "runs/aes-norm-six-prefix-audit-20261018/audit.py": "be0039c19eb9f095e8ff5817ae387b700ad2ff7d2735ad010100b2851d317e4f",
+    "runs/aes-norm-six-prefix-audit-20261018/review.json": "562aa43cfde8eedc52ca0e0b4df30695b1702c17e6e89fabbae95684daa30c0e",
+    "runs/aes-norm-six-prefix-audit-20261018/run.json": "6c090e32606acb5526fc7469d3faf0751c85e1c50410cf95cbd78e33817a1e19",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch.py": "53c196d0a72d16aa4dc95fb692272c120247a47170992fb20b91144cca2fa7d2",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-0.command.json": "39d841d081cdd96f4d4a5aea2f013ac79e12f0d04b164630e0ff71a954d8f205",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-3.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-quadratic-mc-frontier-20261018/mirwald-schnorr-1992-publisher.html": "5838f2ba8ebf7790d3e39f7c69aa202f8e30ce9e74ec3965954caaee1fae0d67",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-1.command.json": "d1869972d64d1714fe312ed318f440fa8da61e23269c7d902630bebfd61df6cf",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-2.stdout.log": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-quadratic-mc-frontier-20261018/root-source-review.json": "7bb0acdbffcc96b4e2149ef2ed4c4ec9abe92eb9c5f267eea82371f17c35de4d",
+    "runs/aes-quadratic-mc-frontier-20261018/boyar-find-2018.html": "31397d635c62a4d56d17dde642cb1bac24568e601e97252f368bb196a609415c",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-0.stdout.log": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-3.stdout.log": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-2.stderr.log": "4fbeb3b068dfd0a00fd3fcd95b81af2190310bf9d119abbd0a75dfe1725b0c16",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-3.command.json": "f18da2960f39ee2a199ed1ba9b2e371d588630412c7d176d7b1c86998698ba77",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-4.command.json": "0666bdc5b58f3ca00241df5468b528e635c72b85aec8b5f6f7120df67b85cf24",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-1.stdout.log": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+    "runs/aes-quadratic-mc-frontier-20261018/morse-2026.html": "88645843dbfefe3272add119b3efc603e20f2321edf113f48a881a2fb447dee7",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-4.stdout.log": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+    "runs/aes-quadratic-mc-frontier-20261018/run.json": "113ee8c546b684fa7eb139094171c6470bb16c0e65edc2de219baa73687b8be5",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-quadratic-mc-frontier-20261018/fetch-2.command.json": "0b7f1b1dcc569f1cda679009ff85c67eb1ecec775382adb928c8db476e3efd84",
+    "runs/aes-quadratic-mc-frontier-20261018/morse-github.html": "1f74dcd53dcab0fa1411210b86916f4824615e3fcb5539ffb2f28b083db87181"
+  },
+  "replay_tool_sha256": "7870e7814a35cad4673a1dc5b0071af80870f0a45244f74c4d93dabbe0207a6c"
+}

@@ -8,6 +8,56 @@ profile.
 
 Research date: 2026-08-29
 
+## Linear family barriers and six gate prefix search — 2026-10-18
+
+All three new scalar counterexample spaces are closed in their actual
+rank-tight field envelopes. A separate row-equation implementation fully
+repeats their 24,573 nonzero-left scans and 24,887 right-kernel products,
+confirms all six controls, and compares the three spaces against the earlier
+157. The fixed-space union is now 160, not a global lower bound.
+
+A target-independent calculation covers every invertible linear input
+version of these three prefixes whose `Q` maps to a field component modulo
+affine terms. For the explicit shared-product rank-three construction,
+61,504 eligible operand pairs have quadratic residues with a representative
+of polar rank at most four modulo the available `p,Q` span; a new field
+direction would force minimum rank at least six. An independent symbolic
+ANF replay agrees, including all 13,081 residue cosets. The committed
+standalone verifier reproduces the full finite calculation.
+
+For the two synthesized rank-two prefixes, inventories contain 54,976 and
+50,080 eligible pairs and 11,111 and 11,482 quadratic polar cosets. Neither
+has any coset containing both `t` and `t+Q` of rank eight. A separate
+truth-product/Mobius implementation confirms every coset and includes
+positive and negative bent-pair controls. The conclusion covers these
+linear families, not every scalar-Q prefix.
+
+A new model searches directly for a second field direction after six gates,
+with `Q` in the first five and higher-degree rank at least two there.
+All seven normalized first-plane cases reach ten-second limits with UNKNOWN.
+The explicit fixed rank-three negative control is solver-UNSAT and a generic
+non-field positive control is SAT; no UNSAT certificates are checked. Nine
+complete formulas independently reconstruct exactly and the SAT model is
+replayed on all 256 inputs. This is a restricted constructive probe, not a
+necessary condition covering every eight-AND circuit.
+
+Primary-source review revisits Boyar and Find's
+[open-problems section](https://arxiv.org/html/1407.6169v3#S4), which attributes
+quadratic-circuit optimality for one- and two-output quadratic maps to
+Mirwald and Schnorr. It does not settle four-output GF16. The reopened
+[Morse manuscript](https://arxiv.org/html/2608.30238v1) concerns seven
+unreduced polynomial-product coefficients, not the four reduced field
+outputs; its stated formalization is not locally executed here. Neither
+source supplies a new unrestricted field bound. A delegated PDF retrieval
+fails and publisher access returns 403; those failures are retained.
+
+See the [family study](../../workspace/aes-256-gcm/reports/sbox_norm_linear_family_study.json)
+and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_family.py).
+No full smaller multiplier, improved AES candidate, world first, physical
+result or measured synthesis speedup follows. Delegated work stops after a
+provider credit error; root retains completed terminal artifacts and performs
+the separate family and six-prefix replays locally.
+
 ## Scalar prefix rank assumption refuted — 2026-10-18
 
 The observed rank-one higher-degree parts in earlier five-AND scalar prefixes
