@@ -187,8 +187,46 @@ two gates must use earlier nonlinear results: with only one such gate it
 would be the only possible higher-degree truth, could not appear in a
 quadratic output without cancellation, and could not be used by a later
 gate. Removing it would leave a forbidden parallel implementation. This
-condition is not yet applied as a search cut and does not exclude general
+condition did not apply to the earlier campaigns. The later ladder/escape
+campaigns impose it but remain inconclusive; it does not exclude general
 eight-AND circuits with multiple nonlinear dependencies.
+
+### Nested prefix and higher-degree escape follow-up
+
+The necessary target intersections at prefixes five, six and seven have
+dimensions at least one, two and three. Because the intersections are nested,
+three jointly independent, otherwise free target combinations can witness
+them. The encoding uses full truth tables for the first seven gates and
+keeps the final output fitting counterexample-guided. It imposes at least
+two distinct gates with prior-AND operand coefficients, not merely two
+selected coefficients in one gate.
+
+Some gate among gates two through seven must have degree above two. If only
+the last gate were nonquadratic, every quadratic output would omit it,
+leaving an excluded all-quadratic seven-gate implementation. For each
+zero-preserving gate truth g, the unique quadratic interpolant is determined
+by singleton and pair inputs. At input support S it is
+`(|S| mod 2) * XOR_{i in S} g(e_i) XOR XOR_{i<j; i,j in S} g(e_i+e_j)`.
+A mismatch on any higher-weight input exactly witnesses degree above two.
+This does not require two nonquadratic truths or a quadratic final gate.
+
+The ladder-only and ladder-plus-escape campaigns each test all three
+first-plane cases with 30-second real-time CNF-solver budgets; all six
+return UNKNOWN. A native-XOR second solver also reaches its 30-CPU-second
+limits in all three escape cases. Positive controls include an actual
+dependent quartic and the nine-AND field multiplier. These bounded probes
+prove no exclusion and establish no speedup. The
+[retained follow-up](../../workspace/aes-256-gcm/reports/sbox_norm_escape_study.json)
+records independent reconstruction and replay checks.
+
+The algebra review exhausts 200,787 abstract target subspaces and all 32,768
+zero-preserving four-input truths. Root separately checks equality of the
+eight-input interpolation and high-degree-projection linear maps on all
+255 truth-basis vectors and 256 inputs, plus all 4,096 rectangular 3-by-4
+rank instances. The dependency cut is GF16-specific; the current scripts
+dispatch it by input/budget/rank shape and must not be reused for arbitrary
+targets of that shape. Canonical reductions remain reviewed mathematics,
+not an end-to-end proof-assistant formalization.
 
 ## Prior art and availability
 

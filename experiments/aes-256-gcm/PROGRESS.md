@@ -41,9 +41,11 @@ constructive searches, **not a new record-setting AES circuit**.
   exists; this is not a novelty claim. Dependent-AND eight-gate probes remain
   inconclusive, and no complete AES improvement follows.
 - **Constructive follow-up:** counterexample-guided dependent-AND searches
-  reject every partial fit on the full input table. A necessary full-table
-  first-five-gate target witness strengthens the model; all three search
-  cases still end UNKNOWN. No partial fit is counted as a correct circuit.
+  reject every partial fit on the full input table. The latest models enforce
+  nested target witnesses after gates five, six and seven, two distinct
+  dependent gates, and an exact higher-degree escape condition. All nine
+  bounded solver probes remain inconclusive. No search speedup or complete
+  eight-AND circuit is established.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,

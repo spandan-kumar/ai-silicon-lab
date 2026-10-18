@@ -8,6 +8,59 @@ profile.
 
 Research date: 2026-08-29
 
+## Nested prefix ladder and exact higher-degree escape — 2026-10-18
+
+The structural requirement from the preceding checkpoint is now imposed in
+new, separately retained solver campaigns. At prefixes five, six and seven,
+free nested target combinations span at least one, two and three directions.
+The model also requires two distinct gates to select prior-AND signals.
+An additional variant requires an actual degree-above-two gate truth before
+the final gate, using its exact quadratic interpolant rather than checking
+only cubic coefficients. A pure quartic would evade a cubic-only test.
+
+Both CNF campaigns return UNKNOWN for all three first-plane cases after
+30-second real-time limits. Native-XOR probes of the escape model return
+INDETERMINATE for all three 30-CPU-second runs. No complete field candidate
+or unrestricted exclusion results. The positive controls still recover
+the known nine-AND multiplier and a genuine dependent three-AND quartic.
+The quartic control deliberately selects a chain; two dependent gates are
+not a necessary property of every quartic implementation.
+
+Independent algebra checks cover all 200,787 abstract rank-four target
+subspaces in eight gate coordinates and all 32,768 zero-preserving four-bit
+truths. A separate root check compares the interpolation residual with an
+independent Mobius/high-degree/zeta transform on all 255 eight-input truth
+basis vectors, totaling 65,280 basis/input checks; linearity extends this
+identity to every zero-preserving eight-input Boolean function. All 4,096
+3-by-4 lambda matrices and 256 dependency-count assignments are checked.
+These checks validate constraints, not the existence or impossibility of a
+complete field circuit. Countercontrols retain valid higher-degree
+cancellation, including a nonquadratic final gate and high-degree rank four;
+those possibilities cannot be silently removed.
+
+See [the scoped derivation](GF16_QUADRATIC_BOUND.md) and
+[retained study](../../workspace/aes-256-gcm/reports/sbox_norm_escape_study.json).
+No new general algorithm, novelty, measured speedup, improved AES circuit,
+PPA result or physical claim is made. The stronger model has not yet yielded
+useful GF16 partial fits, so simply adding more constraints has not been
+demonstrated to improve this search.
+
+A proposed stronger shortcut was rejected before implementation: a scalar
+rank-eight quadratic need not cost six ANDs merely because useful
+nonquadratic intermediates occur. The five gates
+`ab, (ab+c)d, abd, ef, gh` sum to `ab+cd+ef+gh`; all 256 inputs and polar
+rank eight are checked independently. This is not a GF16 multiplier, but it
+invalidates that proposed generic prefix restriction.
+
+Primary-source checks on this date revisit
+[Soeken's SAT synthesis paper](https://arxiv.org/abs/2005.01778) and the
+[NIST MC-three/four classification record](https://www.nist.gov/publications/boolean-functions-multiplicative-complexity-3-and-4).
+Their abstracts confirm that SAT-based multiplicative-complexity synthesis
+and small-complexity classification are prior art; neither is treated as
+proof of the rejected stronger shortcut. A 1992 scalar-quadratic paper's
+publisher page returns HTTP 403 on direct opening; only its indexed abstract
+was available, not its complete proof.
+
 ## Counterexample feedback and full-truth prefix witnesses — 2026-10-18
 
 The dependent-AND question is still unresolved. A new counterexample-guided
