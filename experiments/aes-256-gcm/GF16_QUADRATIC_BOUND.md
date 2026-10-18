@@ -129,6 +129,67 @@ reconstructs all eight sequential control/search CNFs byte for byte,
 replays all three SAT models, and exhausts 5,616 tiny two-gate topologies.
 This verifies the broader search mechanism, not its unresolved main answer.
 
+### Counterexample and prefix-witness follow-up
+
+A complete model need not impose all ordinary output rows immediately.
+The new search fits a selected input set, then evaluates the actual masks
+on all 256 inputs and adds failures. No subset SAT result is a correct field
+multiplier. All nine base-campaign partial field fits fail the full table;
+their first five gates also have target deficit four with only three gates
+remaining, so none can extend.
+
+For target rank m modulo affine functions, k total ANDs and i prefix ANDs,
+the target/prefix intersection has dimension at least m-(k-i). At k=8,
+m=4,i=5 this forces a nonzero target combination into the prefix span.
+A hybrid implementation enforces that witness on every input, with its
+target direction free, while ordinary outputs still use counterexample
+feedback. Its six partial field fits satisfy the prefix requirement but
+still fail complete multiplication. All three searches remain UNKNOWN.
+The [retained study](../../workspace/aes-256-gcm/reports/sbox_norm_cegis_study.json)
+includes independent byte-level CNF, model, feedback and witness checks.
+
+### Extending the boundary to quadratic intermediate gate truths
+
+An auxiliary reduction checks the case where AND operands may themselves
+be quadratic but every produced gate truth remains degree at most two.
+For quadratic P,Q whose product H=PQ is quadratic, H can be expressed as
+a combination of P,Q, an affine function and at most one product of two
+raw-input affine forms. The compact finite certificate handles every
+non-affine P up to affine input change:
+
+- Symplectic coordinates reduce P to a sum q_r of r disjoint products,
+  plus a linear part and a constant. Translations remove paired linear
+  terms. A nonzero radical linear term becomes one extra coordinate z
+  and can absorb the constant. This leaves eleven cases for 1<=r<=4.
+- For P=q_r, the complete quadratic-product kernel has H in span(P).
+  For P=q_r+1, H+Q lies in span(q_r). For P=q_r+z with r>=2,
+  H lies in span(P). For P=x0*x1+x2, H is quadratic in only those
+  three coordinates, hence has polar rank at most two.
+- An affine P is a separate elementary case. After taking P=x0,
+  absence of cubic terms forces Q=x0*L+l with affine L,l, and
+  H=x0*(L+l) is one raw-input affine product. Constant P is immediate.
+
+Multiplication by fixed P is linear in Q. An independent implementation
+recomputes all 407 high-degree map columns, checks rank/nullity and all
+62 kernel-basis truth witnesses, so these image-space conclusions hold for
+every admissible Q, not only sampled ones. The earlier full diagnostic also
+enumerates 131,288 Q choices. Canonical coverage and the following induction
+are reviewed mathematics, not machine-formalized theorem statements.
+
+Inductively, each all-quadratic gate can be replaced by at most one parallel
+raw-input product plus already available affine combinations. This preserves
+the available truth span and never raises the AND count. Therefore the
+certificate-backed parallel nine-AND bound also prevents an eight-AND
+implementation whose every intermediate remains quadratic.
+
+Any eight-AND escape must consequently generate degree above two. At least
+two gates must use earlier nonlinear results: with only one such gate it
+would be the only possible higher-degree truth, could not appear in a
+quadratic output without cancellation, and could not be used by a later
+gate. Removing it would leave a forbidden parallel implementation. This
+condition is not yet applied as a search cut and does not exclude general
+eight-AND circuits with multiple nonlinear dependencies.
+
 ## Prior art and availability
 
 The [Find–Boyar paper](https://arxiv.org/abs/1407.6169) is prior work on the

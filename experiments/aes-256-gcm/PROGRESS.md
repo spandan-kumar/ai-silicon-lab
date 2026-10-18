@@ -40,6 +40,10 @@ constructive searches, **not a new record-setting AES circuit**.
   The matching nine-AND construction is verified. An earlier public claim
   exists; this is not a novelty claim. Dependent-AND eight-gate probes remain
   inconclusive, and no complete AES improvement follows.
+- **Constructive follow-up:** counterexample-guided dependent-AND searches
+  reject every partial fit on the full input table. A necessary full-table
+  first-five-gate target witness strengthens the model; all three search
+  cases still end UNKNOWN. No partial fit is counted as a correct circuit.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -276,6 +280,18 @@ limits with explicit UNKNOWN outcomes. Their six translated control/search
 instances independently reconstruct exactly, but the broader answer remains
 unresolved. The [second-solver study](../../workspace/aes-256-gcm/reports/sbox_dependent_norm_solver_study.json)
 keeps those outcomes separate from the checked quadratic certificate.
+
+The subsequent [counterexample/prefix-witness study](../../workspace/aes-256-gcm/reports/sbox_norm_cegis_study.json)
+replays all proposed circuits on 256 inputs. Its base campaign rejects nine
+partial field fits; exact ranks show all nine prefixes are already
+uncompletable. The stronger campaign enforces a free nonzero target
+combination in the first five gates on every input, a necessary dimension
+condition rather than a fixed construction. Its six partial fits have valid
+prefix witnesses but still fail the complete multiplier. All main cases
+remain UNKNOWN. Independent CNF/model/feedback audits pass for both methods.
+An additional quadratic-product reduction supports requiring higher-degree
+intermediates in any eight-AND escape; it has not yet been used to exclude
+any search case.
 
 ## Sources and novelty checks
 

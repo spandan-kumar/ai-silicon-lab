@@ -8,6 +8,57 @@ profile.
 
 Research date: 2026-08-29
 
+## Counterexample feedback and full-truth prefix witnesses — 2026-10-18
+
+The dependent-AND question is still unresolved. A new counterexample-guided
+implementation solves a selected input set, replays every proposed gate and
+output mask on all 256 inputs, then adds failing bytes. Four controls finish
+correctly, including an actual dependent two-AND cubic and the known
+nine-AND field multiplier. The base field searches produce nine partial fits,
+all rejected by full-table replay; all three cases then reach UNKNOWN at
+33 training inputs. Independent review reconstructs 29 CNFs and replays
+25 SAT models and 22 counterexample transitions. No partial fit is a circuit
+candidate for the complete field function.
+
+Exact prefix ranks explain a weakness: all nine partial field fits already
+have target deficit four after five gates, with only three gates left.
+They cannot extend regardless of the output decoder. A stronger encoding
+therefore requires a free nonzero target combination to lie in the actual
+first-five-gate span on all 256 inputs. This follows from dimension, not an
+assumption about the correct circuit's architecture: for target rank m,
+budget k and prefix i, the intersection rank is at least m-(k-i).
+The target combination remains free, preserving the earlier first-plane
+symmetry cases. For the nine-AND positive control, the corresponding prefix
+is six, not five.
+
+The hybrid campaign's six partial field fits have genuine full-table prefix
+witnesses but still fail complete field multiplication. All three cases
+remain UNKNOWN, at 25, 9 and 41 training points respectively. Independent
+review reconstructs 17 CNFs and checks 13 SAT models, 13 full-table prefix
+witnesses and ten counterexample transitions. These are exact modeling and
+control results, not a speedup claim or unrestricted lower bound.
+
+A separate finite-algebra diagnostic supports a further necessary condition.
+For quadratic operands P,Q with PQ still quadratic, compact kernel/image
+certificates show that PQ differs from a combination of P,Q and affine
+functions by at most one raw-input product. Eleven non-affine canonical
+P cases and the elementary affine-P case cover eight variables. Root
+independently recomputes all 407 columns and checks 62 complete kernel-basis
+witnesses. The canonical-form argument and gate-by-gate flattening induction
+are reviewed mathematics, not a proof-assistant formalization. Together with
+the checked parallel nine-AND bound, this means an eight-AND field solution
+must create a higher-degree intermediate and must have at least two gates
+with prior nonlinear dependencies. This new condition was not imposed in
+the completed search campaigns.
+
+The new [primary-source check](https://arxiv.org/abs/2608.30238) identifies
+Morse's 2026 unrestricted nine-AND result for the seven unreduced polynomial
+product coefficients. The abstract is checked; its Lean artifact was not
+executed. GF(16) multiplication is a four-output linear projection of that
+function, so the polynomial lower bound does not transfer in reverse.
+No novelty claim is inferred from either source or from these diagnostics.
+See `workspace/aes-256-gcm/reports/sbox_norm_cegis_study.json`.
+
 ## Certificate-backed quadratic norm-stage boundary — 2026-10-18
 
 The proposed norm-stage route now has a completed exact result: multiplication
