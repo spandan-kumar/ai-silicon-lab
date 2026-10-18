@@ -8,6 +8,29 @@ profile.
 
 Research date: 2026-08-29
 
+## Scalar prefix rank assumption refuted — 2026-10-18
+
+The observed rank-one higher-degree parts in earlier five-AND scalar prefixes
+are not a general restriction. Two full-truth solver witnesses compute GF16
+output bit zero with higher-degree projection rank two, including a witness
+with quartic intermediates. All ten control/search CNFs independently
+reconstruct byte for byte; all three SAT models replay, and 69,904 small
+rank-predicate controls pass. The other five bounded main probes are UNKNOWN.
+
+An explicit five-gate circuit reaches rank three:
+`ab, (ab+c)d, (ab+e)f, (ab+g)h, ab(d+f+h)`.
+Their XOR is `ab+cd+ef+gh`, a rank-eight quadratic. On five gate-selector
+coordinates the higher-degree projection kills the first gate and an
+independent target selector, so rank-nullity gives the matching upper bound
+three. The exact GF16-output-zero realization and all 256 inputs pass a
+separate root replay using the committed standalone verifier.
+
+This refutes the proposed rank-at-most-one shortcut before it becomes a
+global search constraint. No continuation to all four field outputs, improved
+AES circuit, physical result or world-first claim follows. See the
+[counterexample study](../../workspace/aes-256-gcm/reports/sbox_norm_prefix_counterexample_study.json)
+and [replay tool](../../workspace/aes-256-gcm/tools/verify_norm_prefix.py).
+
 ## Normalized free-prefix search and constructive lookahead — 2026-10-18
 
 All seven joint target/plane cases are now run with the first target covector
@@ -93,7 +116,8 @@ seven safe fixed-target cases; a separate trace/determinant argument and
 root polynomial-arithmetic/union-find implementation agree. Keeping only the
 old three first-plane representatives after fixing the target would be
 incomplete. The prior models left that target free and are not invalidated.
-No normalized seven-case solver campaign or measured speedup is claimed.
+At that preceding snapshot no normalized seven-case solver campaign had run.
+The later campaign is recorded above; no measured speedup is claimed.
 
 The [derivation](GF16_QUADRATIC_BOUND.md) and
 [retained study](../../workspace/aes-256-gcm/reports/sbox_norm_concrete_prefix_study.json)

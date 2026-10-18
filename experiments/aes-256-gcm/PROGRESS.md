@@ -28,7 +28,7 @@ constructive searches, **not a new record-setting AES circuit**.
   46-factor constructive search completes across all six windows without a
   candidate; a larger 105-factor search completes for one window. Unrestricted
   five-product and auxiliary searches remain unresolved.
-- **Current research step:** an exact two-product tensor-chart formulation
+- **Earlier tensor-chart route:** an exact two-product formulation
   passes exhaustive small controls and rules out 16 fixed-block cases in
   one chart by explicit linear contradictions. One remaining case times out;
   this is not a complete two-product or AES exclusion. Eleven forward-normalized
@@ -44,7 +44,7 @@ constructive searches, **not a new record-setting AES circuit**.
   reject every partial fit on the full input table. The latest models enforce
   nested target witnesses after gates five, six and seven, two distinct
   dependent gates, and an exact higher-degree escape condition. All nine
-  bounded solver probes remain inconclusive. No search speedup or complete
+  pre-normalization bounded solver probes remain inconclusive. No search speedup or complete
   eight-AND circuit is established.
 - **Latest concrete-prefix result:** exact product closure excludes a
   three-AND continuation for 157 distinct tested prefix spaces: the earlier
@@ -54,6 +54,13 @@ constructive searches, **not a new record-setting AES circuit**.
   seven jointly verified first-gate cases. The earlier three cases remain
   valid when that target direction is free. All seven normalized probes now
   finish UNKNOWN; no speedup or unrestricted exclusion is established.
+- **Latest hypothesis check:** a proposed limit of one independent
+  higher-degree component in a five-AND prefix computing a rank-eight
+  quadratic is false. Two actual
+  solver witnesses have rank two; a simple explicit construction reaches the
+  maximum rank three and computes GF(16) output bit zero on all 256 inputs.
+  It does not compute all four outputs. The next open step is to test whether
+  different such prefixes can complete the multiplier within eight ANDs.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -81,6 +88,9 @@ terminal; no future result is assumed.
 | Tensor and top-degree relaxations | Project the five-product problem onto alternating tensors or degree-seven/eight output coefficients. | An arbitrary tensor representative is not a minimum-rank bound. The top-degree relaxation admits witnesses that fail the full AES truth table, so neither diagnostic establishes a lower bound. |
 | Exact two-product charts | Search actual rank-four alternating tensors for one chosen four-coordinate principal block. | Explicit XOR-polynomial certificates exclude 16 fixed-block cases. Twelve cases and the other coordinate quartets remain open; the attempted nonlinear case times out. |
 | New public seeds and changed prefixes | Compare refreshed circuits' exact truth spaces, then pilot a 10+12+12-AND organization with mutable first and second layers and fixed final tail functions. | Seven distinct forward-normalized public seed spaces are identified. The finite 26,488-evaluation constructive pilot finds no candidate, not an impossibility proof. |
+| Quadratic norm stage | Allow arbitrary affine raw-input factors, including mixed input halves. | Nine ANDs are necessary and sufficient in this restricted model; the eight-AND refutation has checked DRAT/LRAT evidence. The result has prior precedent. |
+| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. Exact closure excludes only 157 tested fixed prefix spaces. |
+| Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -303,6 +313,37 @@ An additional quadratic-product reduction supports requiring higher-degree
 intermediates in any eight-AND escape; it has not yet been used to exclude
 any search case.
 
+### Latest scalar prefix counterexamples
+
+Let addition mean XOR and multiplication mean AND. Five actual gates can
+compute a rank-eight quadratic while their degree-above-two parts span three
+independent directions:
+
+```text
+g1 = ab
+g2 = (g1+c)d
+g3 = (g1+e)f
+g4 = (g1+g)h
+g5 = g1(d+f+h)
+g1+g2+g3+g4+g5 = ab+cd+ef+gh
+```
+
+Three is the maximum for this five-gate scalar problem: the higher-degree
+projection kills both the first, quadratic gate and an independent selector
+computing the rank-eight quadratic, leaving rank at most `5-2=3`.
+The construction also maps exactly to output bit zero of multiplication in
+GF(16) with polynomial `t^4+t+1`. All 256 inputs pass a separate replay.
+This invalidates a proposed search shortcut; it is not a new full multiplier
+or a novelty claim. Two separately synthesized rank-two examples also pass
+independent formula and truth-table checks; the other five bounded probes
+remain UNKNOWN.
+
+The [counterexample study](../../workspace/aes-256-gcm/reports/sbox_norm_prefix_counterexample_study.json)
+retains explicit gates, terminal results and audit scope. The small committed
+[replay tool](../../workspace/aes-256-gcm/tools/verify_norm_prefix.py) runs with
+`python3 workspace/aes-256-gcm/tools/verify_norm_prefix.py`, without a solver
+or the ignored raw archive. Completion to all four field outputs remains open.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -314,6 +355,11 @@ Primary web sources were checked again on 2026-10-18:
 - [SAT-based multiplicative-complexity synthesis](https://arxiv.org/abs/2005.01778)
   and [the explicit 29-AND construction](https://umizame.github.io/S-box_29-AND/)
   establish relevant prior work.
+- The [MF-167 author entry](https://slopdealer.com/research/papers/mf-167/)
+  already claims the nine-product mixed-affine GF(16) bound and an
+  eight-product bound for its three-output projection. Our checked
+  certificate covers the former restricted model; our projected
+  seven-product probe times out and does not verify the latter claim.
 - The [current NIST source snapshot](https://github.com/usnistgov/Circuits/tree/8366158a4324ef902ce740f29ddc9f7ebb1018b2/data/slp/aes/aes-sbox)
   contains 37 forward S-box files, all checked on 256 inputs and recounted
   locally. Their minimum counts remain 28 ANDs, and 35 ANDs at AND depth three.
@@ -357,6 +403,15 @@ Committed evidence and entry points include:
 - [Norm-stage study](../../workspace/aes-256-gcm/reports/sbox_norm_stage_study.json)
   and [bound note](GF16_QUADRATIC_BOUND.md) record the checked quadratic
   certificate and unresolved dependent-gate probes.
+- [Dependent second-solver study](../../workspace/aes-256-gcm/reports/sbox_dependent_norm_solver_study.json),
+  [prefix and counterexample-guided study](../../workspace/aes-256-gcm/reports/sbox_norm_cegis_study.json),
+  [higher-degree escape study](../../workspace/aes-256-gcm/reports/sbox_norm_escape_study.json),
+  [concrete-prefix study](../../workspace/aes-256-gcm/reports/sbox_norm_concrete_prefix_study.json)
+  and [normalized search study](../../workspace/aes-256-gcm/reports/sbox_norm_normalized_search_study.json)
+  distinguish verified restricted results from inconclusive unrestricted probes.
+- [Latest scalar-prefix counterexamples](../../workspace/aes-256-gcm/reports/sbox_norm_prefix_counterexample_study.json)
+  and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_prefix.py)
+  preserve the refuted assumption and explicit rank-three construction.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

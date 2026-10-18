@@ -1,0 +1,1146 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-18",
+  "result": {
+    "status": "evidence-pass",
+    "hypothesized_high_degree_rank_at_most_one": "refuted",
+    "scalar_main_SAT": 2,
+    "scalar_main_UNKNOWN": 5,
+    "sharp_five_gate_rank8_scalar_high_degree_rank_maximum": 3,
+    "full_GF16_candidate": false,
+    "improved_AES_candidate": false,
+    "world_first_established": false,
+    "unrestricted_eight_AND_excluded": false
+  },
+  "bounded_search": {
+    "status": "bounded-two-defect-prefix-probes-finished",
+    "controls": [
+      {
+        "label": "control-rank6-two-defects",
+        "target_truth_hex": "0x8778778878788888877877887878888887787788787888888778778878788888",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": null,
+        "fixed_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            256
+          ],
+          [
+            8,
+            256
+          ],
+          [
+            4,
+            272
+          ],
+          [
+            8,
+            288
+          ]
+        ],
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/control-rank6-two-defects.cnf"
+        ],
+        "exit_code": 10,
+        "status": "SATISFIABLE",
+        "solver_wall_seconds": 0.0434430839959532,
+        "CNF_sha256": "427bdc8dcb3da21ae7fb83a97b5a0a81a8316ae37b3b18ad814723ff87ef6677",
+        "variables": 42485,
+        "clauses": 150222,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              256
+            ],
+            [
+              8,
+              256
+            ],
+            [
+              4,
+              272
+            ],
+            [
+              8,
+              288
+            ]
+          ],
+          "output_mask": 7936,
+          "prefix_truth_hex": [
+            "0x8888888888888888888888888888888888888888888888888888888888888888",
+            "0x8080808080808080808080808080808080808080808080808080808080808080",
+            "0x8800880088008800880088008800880088008800880088008800880088008800",
+            "0x7070808070708080707080807070808070708080707080807070808070708080",
+            "0x7700770088008800770077008800880077007700880088007700770088008800"
+          ],
+          "high_degree_projection_rank": 2,
+          "high_ANF_hex": [
+            "0x0",
+            "0x80",
+            "0x800",
+            "0x80",
+            "0x800"
+          ],
+          "all256_inputs_verified": true,
+          "all_native_and_plain_model_constraints_replayed": true
+        }
+      },
+      {
+        "label": "control-rank8-one-defect",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": null,
+        "fixed_factors": [
+          [
+            1,
+            16
+          ],
+          [
+            128,
+            258
+          ],
+          [
+            128,
+            256
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            8,
+            32
+          ]
+        ],
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/control-rank8-one-defect.cnf"
+        ],
+        "exit_code": 20,
+        "status": "UNSATISFIABLE",
+        "solver_wall_seconds": 0.035727957962080836,
+        "CNF_sha256": "559d26ef18d7af2983cbedba30c434db13be4990b49b89f709eebbc5631dc908",
+        "variables": 42485,
+        "clauses": 150222,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "control-rank8-quadratic",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": null,
+        "fixed_factors": [
+          [
+            1,
+            16
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            8,
+            32
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/control-rank8-quadratic.cnf"
+        ],
+        "exit_code": 20,
+        "status": "UNSATISFIABLE",
+        "solver_wall_seconds": 0.03502429183572531,
+        "CNF_sha256": "98be391061c0e035a24563a552f06fe3e47fc58a0f21784c026f378a7607100e",
+        "variables": 42485,
+        "clauses": 150222,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "searches": [
+      {
+        "label": "orbit-0",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          2
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-0.cnf"
+        ],
+        "exit_code": 0,
+        "status": "UNKNOWN",
+        "solver_wall_seconds": 10.018656417028978,
+        "CNF_sha256": "dc923d8b9c5dea4b603a49ab66cab994a93c62ec9190ea32e8ae1aad87ce5cc8",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-1",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          12
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-1.cnf"
+        ],
+        "exit_code": 0,
+        "status": "UNKNOWN",
+        "solver_wall_seconds": 10.013047416927293,
+        "CNF_sha256": "99e1679c3ac1c215637b98d4bd07849570fc394557bde72e16f8bc635cf2538d",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-2",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          16
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-2.cnf"
+        ],
+        "exit_code": 10,
+        "status": "SATISFIABLE",
+        "solver_wall_seconds": 7.448587708873674,
+        "CNF_sha256": "234431adbd0ad0bfe69361799fc02581806fbb242d07d82b9ba71d01e72ed59d",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              16
+            ],
+            [
+              64,
+              134
+            ],
+            [
+              234,
+              620
+            ],
+            [
+              200,
+              1582
+            ],
+            [
+              98,
+              1542
+            ]
+          ],
+          "output_mask": 6946,
+          "prefix_truth_hex": [
+            "0xaaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000aaaa0000",
+            "0xc3c3c3c3c3c3c3c300000000000000003c3c3c3c3c3c3c3c0000000000000000",
+            "0xcc33cc3333cc33cc300c300c0c300c3033cc33cccc33cc33c003c00303c003c0",
+            "0x330033003300330000cf00cf000c000c0033003300330033fc00fc00c000c000",
+            "0xcc00cc0033003300300030000c000c00cc00cc00330033303330330ccc0ccc"
+          ],
+          "high_degree_projection_rank": 2,
+          "high_ANF_hex": [
+            "0x0",
+            "0x0",
+            "0x100000110000000000000000000000014000014400000000000000000",
+            "0x11500000440000001140000044000001400000044000000140000004000",
+            "0x11500000440000001140000044000001400000044000000140000004000"
+          ],
+          "all256_inputs_verified": true,
+          "all_native_and_plain_model_constraints_replayed": true
+        }
+      },
+      {
+        "label": "orbit-3",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          32
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-3.cnf"
+        ],
+        "exit_code": 0,
+        "status": "UNKNOWN",
+        "solver_wall_seconds": 10.01115791592747,
+        "CNF_sha256": "0e74c7c76024ccd738b6b800459517c3e1ace3da68beb41b8bf4c1c4b9d7dd0a",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-4",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          96
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-4.cnf"
+        ],
+        "exit_code": 10,
+        "status": "SATISFIABLE",
+        "solver_wall_seconds": 8.00559945916757,
+        "CNF_sha256": "158fde617570a6dc14ed035aa376347c339645b974302fa4f53ef2e8fc1e29c8",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              96
+            ],
+            [
+              117,
+              294
+            ],
+            [
+              32,
+              330
+            ],
+            [
+              2,
+              225
+            ],
+            [
+              52,
+              275
+            ]
+          ],
+          "output_mask": 7732,
+          "prefix_truth_hex": [
+            "0xaaaaaaaaaaaaaaaa0000000000000000aaaaaaaaaaaaaaaa00000000",
+            "0x8181424212128484484821212424181881814242121284844848212124241818",
+            "0xcc33cc33000000009966996600000000cc33cc33000000009966996600000000",
+            "0x4444444488888888888888884444444488888888444444444444444488888888",
+            "0x909006060303c0c030300c0c09096060909006060303c0c030300c0c09096060"
+          ],
+          "high_degree_projection_rank": 2,
+          "high_ANF_hex": [
+            "0x0",
+            "0x200200002002000000000",
+            "0x2000000000000000000000000",
+            "0x0",
+            "0x2000200200002002000000000"
+          ],
+          "all256_inputs_verified": true,
+          "all_native_and_plain_model_constraints_replayed": true
+        }
+      },
+      {
+        "label": "orbit-5",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          112
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-5.cnf"
+        ],
+        "exit_code": 0,
+        "status": "UNKNOWN",
+        "solver_wall_seconds": 10.009433958912268,
+        "CNF_sha256": "bdac3b12539e3a6a999857f0cc33442cf03ec40722c210b71b6ef7779c5e916d",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "orbit-6",
+        "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "input_bits": 8,
+        "AND_budget": 5,
+        "first_factors": [
+          1,
+          128
+        ],
+        "fixed_factors": null,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "10",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-prefix-two-defects-20261018/orbit-6.cnf"
+        ],
+        "exit_code": 0,
+        "status": "UNKNOWN",
+        "solver_wall_seconds": 10.01300716609694,
+        "CNF_sha256": "69e36e2a6d90334a3d20a6ae9bd4b445fe64bbea51595f0051af9c93a621df89",
+        "variables": 42485,
+        "clauses": 150138,
+        "source_variables": 12525,
+        "native_XORs": 4995,
+        "required_high_degree_projection_rank_at_least": 2,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "hypothesis": "Every<=5AND circuit for this rank8scalarquadratic has high-degree projection rank<=1; NOT established by timeouts.",
+    "rank_two_restricted_prefix_found": true,
+    "world_first_established": false,
+    "unrestricted_eight_AND_excluded": false,
+    "full_AES_candidate": false,
+    "scope": "This tests a possible property of scalar-Q prefixes. Rank>=2 is NOT assumed necessary for an eight-AND field circuit. No timeout proves the hypothesis."
+  },
+  "independent_search_audit": {
+    "status": "pass",
+    "CNFs_byte_reconstructed": 10,
+    "SAT_models_replayed": 3,
+    "controls": {
+      "four_vector_rank_predicate_exhaustive_cases": 69904,
+      "vector_widths": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "eight_input_residual_map_rank": 219,
+      "zero_preserving_kernel_dimension": 36,
+      "residual_rank_equals_high_ANF_rank": true
+    },
+    "cases": [
+      {
+        "label": "control-rank6-two-defects",
+        "status": "SATISFIABLE",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "427bdc8dcb3da21ae7fb83a97b5a0a81a8316ae37b3b18ad814723ff87ef6677",
+        "model_replay": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              256
+            ],
+            [
+              8,
+              256
+            ],
+            [
+              4,
+              272
+            ],
+            [
+              8,
+              288
+            ]
+          ],
+          "output_mask": 7936,
+          "scalar_and_bitslice_rows_verified": 256,
+          "full_truth_variables_replayed": 1275,
+          "residual_variables_replayed": 876,
+          "difference_variables_replayed": 1314,
+          "all_nonzero_unequal_and_pair_flags_replayed": true,
+          "high_degree_projection_rank": 2,
+          "gate_degrees": [
+            2,
+            3,
+            3,
+            3,
+            3
+          ],
+          "all_plain_clauses_and_native_XORs_replayed": true
+        }
+      },
+      {
+        "label": "control-rank8-one-defect",
+        "status": "UNSATISFIABLE",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "559d26ef18d7af2983cbedba30c434db13be4990b49b89f709eebbc5631dc908",
+        "fixed_negative_prefix_computes_target_but_has_high_rank": 1
+      },
+      {
+        "label": "control-rank8-quadratic",
+        "status": "UNSATISFIABLE",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "98be391061c0e035a24563a552f06fe3e47fc58a0f21784c026f378a7607100e",
+        "fixed_negative_prefix_computes_target_but_has_high_rank": 0
+      },
+      {
+        "label": "orbit-0",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "dc923d8b9c5dea4b603a49ab66cab994a93c62ec9190ea32e8ae1aad87ce5cc8"
+      },
+      {
+        "label": "orbit-1",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "99e1679c3ac1c215637b98d4bd07849570fc394557bde72e16f8bc635cf2538d"
+      },
+      {
+        "label": "orbit-2",
+        "status": "SATISFIABLE",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "234431adbd0ad0bfe69361799fc02581806fbb242d07d82b9ba71d01e72ed59d",
+        "model_replay": {
+          "factor_masks": [
+            [
+              1,
+              16
+            ],
+            [
+              64,
+              134
+            ],
+            [
+              234,
+              620
+            ],
+            [
+              200,
+              1582
+            ],
+            [
+              98,
+              1542
+            ]
+          ],
+          "output_mask": 6946,
+          "scalar_and_bitslice_rows_verified": 256,
+          "full_truth_variables_replayed": 1275,
+          "residual_variables_replayed": 876,
+          "difference_variables_replayed": 1314,
+          "all_nonzero_unequal_and_pair_flags_replayed": true,
+          "high_degree_projection_rank": 2,
+          "gate_degrees": [
+            2,
+            2,
+            3,
+            4,
+            4
+          ],
+          "all_plain_clauses_and_native_XORs_replayed": true
+        }
+      },
+      {
+        "label": "orbit-3",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "0e74c7c76024ccd738b6b800459517c3e1ace3da68beb41b8bf4c1c4b9d7dd0a"
+      },
+      {
+        "label": "orbit-4",
+        "status": "SATISFIABLE",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "158fde617570a6dc14ed035aa376347c339645b974302fa4f53ef2e8fc1e29c8",
+        "model_replay": {
+          "factor_masks": [
+            [
+              1,
+              96
+            ],
+            [
+              117,
+              294
+            ],
+            [
+              32,
+              330
+            ],
+            [
+              2,
+              225
+            ],
+            [
+              52,
+              275
+            ]
+          ],
+          "output_mask": 7732,
+          "scalar_and_bitslice_rows_verified": 256,
+          "full_truth_variables_replayed": 1275,
+          "residual_variables_replayed": 876,
+          "difference_variables_replayed": 1314,
+          "all_nonzero_unequal_and_pair_flags_replayed": true,
+          "high_degree_projection_rank": 2,
+          "gate_degrees": [
+            2,
+            3,
+            3,
+            2,
+            3
+          ],
+          "all_plain_clauses_and_native_XORs_replayed": true
+        }
+      },
+      {
+        "label": "orbit-5",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "bdac3b12539e3a6a999857f0cc33442cf03ec40722c210b71b6ef7779c5e916d"
+      },
+      {
+        "label": "orbit-6",
+        "status": "UNKNOWN",
+        "CNF_byte_identical": true,
+        "CNF_sha256": "69e36e2a6d90334a3d20a6ae9bd4b445fe64bbea51595f0051af9c93a621df89"
+      }
+    ],
+    "rank_at_most_one_five_gate_scalar_hypothesis": "FALSIFIED by two independently replayed full-rank8 scalar-Q prefixes.",
+    "unrestricted_eight_AND_field_exclusion": false,
+    "complete_GF16_candidate": false,
+    "model_scope": "All-input zero-preserving5gate scalar-target model restricted by exact high-degree projection rank>=2. The restriction was a tested hypothesis, not a necessary condition for a full8gate field circuit.",
+    "first_plane_orbit_coverage_reproved": false,
+    "solver_reruns": 0,
+    "UNSAT_certificates_checked": false,
+    "algorithm_seconds": 1.630607625003904
+  },
+  "explicit_rank_two_construction": {
+    "status": "counterexample_verified",
+    "hypothesis_refuted": "Five ANDs computing a rank-eight scalar quadratic necessarily have high-degree projection rank at most one.",
+    "counterexample": {
+      "factor_masks": [
+        [
+          1,
+          2
+        ],
+        [
+          8,
+          260
+        ],
+        [
+          32,
+          272
+        ],
+        [
+          40,
+          256
+        ],
+        [
+          64,
+          128
+        ]
+      ],
+      "output_mask": 7936,
+      "output_polar_rank": 8,
+      "gate_degrees": [
+        2,
+        3,
+        3,
+        3,
+        2
+      ],
+      "high_part_rank": 2,
+      "high_parts_ANF_hex": [
+        "0x0",
+        "0x800",
+        "0x800000000",
+        "0x800000800",
+        "0x0"
+      ],
+      "gate_span_rank_mod_affine": 5,
+      "full_inputs_verified": 256,
+      "target_truth_hex": "0x7888877787778777877778887888788887777888788878888777788878887888"
+    },
+    "supplied_rank6_positive_control": {
+      "factor_masks": [
+        [
+          1,
+          2
+        ],
+        [
+          4,
+          256
+        ],
+        [
+          8,
+          256
+        ],
+        [
+          4,
+          272
+        ],
+        [
+          8,
+          288
+        ]
+      ],
+      "output_mask": 7936,
+      "output_polar_rank": 6,
+      "gate_degrees": [
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "high_part_rank": 2,
+      "high_parts_ANF_hex": [
+        "0x0",
+        "0x80",
+        "0x800",
+        "0x80",
+        "0x800"
+      ],
+      "gate_span_rank_mod_affine": 5,
+      "full_inputs_verified": 256,
+      "target_truth_hex": "0x8778778878788888877877887878888887787788787888888778778878788888"
+    },
+    "equations_one_based": [
+      "g1=a*b",
+      "g2=(g1+c)*d",
+      "g3=(g1+e)*f",
+      "g4=g1*(d+f)",
+      "g5=g*h",
+      "Q=g1+g2+g3+g4+g5=ab+cd+ef+gh"
+    ],
+    "high_part_relation": "H(g2)=abd, H(g3)=abf, H(g4)=abd+abf; these span dimension2.",
+    "scope": "Counterexample to the proposed scalar-rank/high-projection-rank restriction, not an improved GF16 multiplier or AES circuit.",
+    "world_first_established": false,
+    "solver_used": false
+  },
+  "explicit_maximal_rank_three_construction": {
+    "status": "maximal_counterexample_verified",
+    "generic_rank8_highrank3": {
+      "factor_masks": [
+        [
+          1,
+          2
+        ],
+        [
+          8,
+          260
+        ],
+        [
+          32,
+          272
+        ],
+        [
+          128,
+          320
+        ],
+        [
+          168,
+          256
+        ]
+      ],
+      "output_mask": 7936,
+      "output_polar_rank": 8,
+      "gate_degrees": [
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "high_part_rank": 3,
+      "high_parts_ANF_hex": [
+        "0x0",
+        "0x800",
+        "0x800000000",
+        "0x800000000000000000000000000000000",
+        "0x800000000000000000000000800000800"
+      ],
+      "gate_span_rank_mod_affine": 5,
+      "full_inputs_verified": 256,
+      "target_truth_hex": "0x7888877787778777877778887888788887777888788878888777788878887888"
+    },
+    "exact_GF16_output_bit0": {
+      "factor_masks": [
+        [
+          1,
+          16
+        ],
+        [
+          128,
+          258
+        ],
+        [
+          64,
+          260
+        ],
+        [
+          32,
+          264
+        ],
+        [
+          224,
+          256
+        ]
+      ],
+      "output_mask": 7936,
+      "output_polar_rank": 8,
+      "gate_degrees": [
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "high_part_rank": 3,
+      "high_parts_ANF_hex": [
+        "0x0",
+        "0x2000000000000000000000000000000000000",
+        "0x200000000000000000000",
+        "0x2000000000000",
+        "0x2000000000000000200000002000000000000"
+      ],
+      "gate_span_rank_mod_affine": 5,
+      "full_inputs_verified": 256,
+      "target_truth_hex": "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000"
+    },
+    "quadratic_gate_combination_masks": [
+      0,
+      1,
+      30,
+      31
+    ],
+    "GF16_target_combinations_in_prefix5": [
+      1
+    ],
+    "exact_prefix_equations_one_based": [
+      "g1=x0*y0",
+      "g2=(g1+x1)*y3",
+      "g3=(g1+x2)*y2",
+      "g4=(g1+x3)*y1",
+      "g5=g1*(y1+y2+y3)",
+      "GF16_product_bit0=g1+g2+g3+g4+g5"
+    ],
+    "maximality_proof": "On the five-dimensional gate-selector coefficient space, the higher-degree projection has e1 in its kernel because g1 is a raw-affine product of degree at most2. Any selector computing a rank8 target modulo affine is independent of e1, since g1 has polar rank at most2. Rank-nullity therefore gives high-part rank at most3. The exhibited circuit attains3.",
+    "joint_orbit": "Fixed lambda1=raw bit0 and first factors(1,16), the third of seven audited joint cases.",
+    "all_rows_verified": 256,
+    "solver_used": false,
+    "new_GF16_multiplier": false,
+    "new_AES_circuit": false,
+    "world_first_established": false,
+    "scope": "An exact scalar-prefix control and refutation of the hypothesized high-part rank\u22641 restriction; completion to all four GF16 outputs remains unproved."
+  },
+  "separate_root_replay": {
+    "status": "pass",
+    "circuits": [
+      {
+        "label": "generic-rank-two",
+        "factor_masks": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            272
+          ],
+          [
+            40,
+            256
+          ],
+          [
+            64,
+            128
+          ]
+        ],
+        "output_mask": 7936,
+        "verified_inputs": 256,
+        "target_polar_rank": 8,
+        "high_degree_projection_rank": 2,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          3,
+          2
+        ],
+        "quadratic_gate_selectors": [
+          0,
+          1,
+          14,
+          15,
+          16,
+          17,
+          30,
+          31
+        ]
+      },
+      {
+        "label": "generic-rank-three",
+        "factor_masks": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            272
+          ],
+          [
+            128,
+            320
+          ],
+          [
+            168,
+            256
+          ]
+        ],
+        "output_mask": 7936,
+        "verified_inputs": 256,
+        "target_polar_rank": 8,
+        "high_degree_projection_rank": 3,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "quadratic_gate_selectors": [
+          0,
+          1,
+          30,
+          31
+        ]
+      },
+      {
+        "label": "GF16-output-bit-zero",
+        "factor_masks": [
+          [
+            1,
+            16
+          ],
+          [
+            128,
+            258
+          ],
+          [
+            64,
+            260
+          ],
+          [
+            32,
+            264
+          ],
+          [
+            224,
+            256
+          ]
+        ],
+        "output_mask": 7936,
+        "verified_inputs": 256,
+        "target_polar_rank": 8,
+        "high_degree_projection_rank": 3,
+        "gate_degrees": [
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "quadratic_gate_selectors": [
+          0,
+          1,
+          30,
+          31
+        ]
+      }
+    ],
+    "GF16_target_combinations_in_prefix": [
+      1
+    ],
+    "complete_GF16_multiplier": false,
+    "world_first_established": false
+  },
+  "reproduction": "python3 workspace/aes-256-gcm/tools/verify_norm_prefix.py",
+  "replay_source_sha256": "5ad023bd89c2fb72cc4e5c431b215720b2abe07925dae842f3c6bfad6678dee9",
+  "closed_artifact_hashes_checked": 73,
+  "scope": "Scalar-Q prefix counterexamples, not complete four-output GF16 circuits. The rank>=2 search restriction was a hypothesis test, not a necessary full-field condition. No new completion or closure scan was run for these witnesses.",
+  "raw_archive_in_git": false,
+  "UNSAT_certificates_checked_for_this_study": false,
+  "telemetry": {
+    "canonical_model_id": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "cost": null,
+    "agent_wall_seconds": null,
+    "source": "unavailable; actual command durations retained in run artifacts"
+  },
+  "evidence_sha256": {
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank6-two-defects.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-2.json": "acb579ee29e39ef747572694484eef02af72116ac81a382965244128ee160bac",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-0.stdout.log": "6d78fc72bd45de068170886c1148fc212907aa226cc22686d0179b5c795da18e",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-one-defect.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-3.json": "72a9d4eeaaa6b109ae26c24afd1e5275bcab6bd88ab6d74a320afc8cb23972ed",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/report.json": "c1c8b34bf18491714a4ddc31c434fb50b0e41d8e27101f301c5c18786621caeb",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-5.stdout.log": "76d99b6177b91015b2c169bff55d88c9130b3ea70d293d79c1c56d0eac3ce978",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-4.json": "6df65c813877828c9142301030cc5053b005629db06bb2290bd223a1980eba0b",
+    "runs/aes-norm-prefix-two-defects-20261018/run_search.py": "90d548e0b054fd14cf88bb0b13c28b4cebba7a6acb457416f34fb62e559b8815",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank6-two-defects.cnf": "427bdc8dcb3da21ae7fb83a97b5a0a81a8316ae37b3b18ad814723ff87ef6677",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-2.stdout.log": "bbf5aeb0697d5a878807827154975bd8f1040516478a07707dd2819eb0240d64",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-6.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-quadratic.stdout.log": "c8f4fec81ed1ded7f5c4052a1528cb773138c2a20f7095729665a1e3ad848732",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-3.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-5.json": "fb5129b84b515ecff3b9825776db00594280e86a7f97aa61072a34bd5d2d5599",
+    "runs/aes-norm-prefix-two-defects-20261018/search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-3.cnf": "0e74c7c76024ccd738b6b800459517c3e1ace3da68beb41b8bf4c1c4b9d7dd0a",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank6-two-defects.stdout.log": "47f5f4d271aeb08295fecc50839d47cb0c01aac5fc6afee26d6cd23e821f3e96",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-6.json": "ae5dbd04f4005c0c7c8eb4f30a64c0c79693722fd0285ea6abf5a69071e46329",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-4.stdout.log": "866abb1623fd43e9809d1576d8af66b6b620e60abd21f04c5c9b02ee033c95c8",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-2.cnf": "234431adbd0ad0bfe69361799fc02581806fbb242d07d82b9ba71d01e72ed59d",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-quadratic.json": "b017b3fb20c35a2479fdaa3feb4586c04c4423b5d9657581954f026251dc1e49",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-0.cnf": "dc923d8b9c5dea4b603a49ab66cab994a93c62ec9190ea32e8ae1aad87ce5cc8",
+    "runs/aes-norm-prefix-two-defects-20261018/search.command.json": "e1827cce0fcc425ff035a91aa001fb2b56108033a389d9b660f087c83687dd51",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-one-defect.cnf": "559d26ef18d7af2983cbedba30c434db13be4990b49b89f709eebbc5631dc908",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-1.cnf": "99e1679c3ac1c215637b98d4bd07849570fc394557bde72e16f8bc635cf2538d",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-quadratic.cnf": "98be391061c0e035a24563a552f06fe3e47fc58a0f21784c026f378a7607100e",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-5.cnf": "bdac3b12539e3a6a999857f0cc33442cf03ec40722c210b71b6ef7779c5e916d",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-4.cnf": "158fde617570a6dc14ed035aa376347c339645b974302fa4f53ef2e8fc1e29c8",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-one-defect.stdout.log": "27dbd1bafac889a3f8a7f219550b789c62a1fa262dfc54f3f4cb733e6034ec0c",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-6.cnf": "69e36e2a6d90334a3d20a6ae9bd4b445fe64bbea51595f0051af9c93a621df89",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank6-two-defects.json": "a67cf60d8623e5d9f3859d83af6e4d23e9ec6d1b22fb52dca10e54d07849c055",
+    "runs/aes-norm-prefix-two-defects-20261018/search.py": "19f4e068bb5421d2ec3760de0dbe7aea276ceaf42ea71f89e4dc667cc0a15be6",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-5.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-1.stdout.log": "02595bf7e05eca5f56c58a844d0e29d0ad495f9ea56948dcbf087555bb970f27",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-6.stdout.log": "9e97eb5a81eff78f9db7a20e342ca46fb4267bb0693b575e88de45bdd617fa99",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-0.json": "39b626c388fa3609469c15f9807a0faf16b44234d3e0d89ffc6f52875e21bdb3",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-one-defect.json": "b6ec0f800b942c179079ef2b81693114ab0347da1f9aa9f499ce3d1c088f5f94",
+    "runs/aes-norm-prefix-two-defects-20261018/run.json": "090b544396d627d230f966fd7e658bed0991deb2dbe6d2fa847b2a0daf8e7ac5",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-1.json": "04cd7f55685a15086414d85e1faf7ee968131f42f65bdf4fb221fcb999784b25",
+    "runs/aes-norm-prefix-two-defects-20261018/search.stdout.log": "6eeb38a55ad057d5b781707c94cc50858cb934c401379291da5f9cb7314d689f",
+    "runs/aes-norm-prefix-two-defects-20261018/orbit-3.stdout.log": "635a075a782ab9e912830109966380829cb0ab109a02b377f4d89d93a464e227",
+    "runs/aes-norm-prefix-two-defects-20261018/control-rank8-quadratic.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/schema-validation.command.json": "52a51836e57b654384ebec063b920c9da9982332ab5fc7f0492dcc1b90dd787c",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/summary.json": "7efe59f247a65f0f037f9a975250a5d79ebd874f99c1ef557622938a42def4b2",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/audit.json": "d797b81a5850653f093627e4e9f07a005cc5153096e4a29c5e3c987efee4ab2f",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/retention-closeout.stdout.log": "e03835fc4945a29e8fb2d55593d827ab8b47c3cd4c40d8174d22e6d0997ffebe",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/run_command.py": "d5ce6c75e7cb3e27a8ad042d39b960511cd9b98d8d80b5af94b2c4abb630ca8e",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/retain.py": "1f2a01ec927512b50f78adbb44034638f1f7aff4f6034b625b4e8d2de5af191e",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/RESULT.md": "772a133900ded1213e513088e66b0c900bfcf401d7a5227ba09b9bd05c61fcd5",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/audit.py": "76d8bd9de70f3d4b059f2161ff78611510aaea2a5352884b16934c043c8ac6fd",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/retention-closeout.command.json": "77d1793a853103c01c29244cc0c0c248bdb276e1194a4ffe6054850c7f9cae5f",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/GOAL.md": "a64d2869a7b6e6c8e34f2763f154c7c0abbf0ba28fdb25edee926f45afb63254",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/independent-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/retention-closeout.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/independent-audit.command.json": "cea051e458632db72aaf1510b0c2abd641adafecb479e9f5c3853dac3569c25d",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/run.json": "b825e51d0d83fd6c66cf5e8f44a87ee61522a9a6ee6f07080dd76ac735ae25ae",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/independent-audit.stdout.log": "eb127f26ff0f4d35051c89c9e82dba3df666c2da413e8ea209a7f2a47c25bb4f",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-norm-two-defect-theory-20261018/schema-validation.command.json": "61ea4dea95daa7d4167d9dab8e2c8576e3f04b965220654b53ffefa284ade88e",
+    "runs/aes-norm-two-defect-theory-20261018/run_counterexample.py": "ad67bea1bae040a2ceda616fdf8c1d18e424a498f97e54a690d6356d6453a9cb",
+    "runs/aes-norm-two-defect-theory-20261018/sources.json": "e4cd60799a56481ea465f91f54566f3cb8486daf36a67a19b1fee21b7ca08ab9",
+    "runs/aes-norm-two-defect-theory-20261018/retain.py": "29ad9f80f2dcbf72fcffc8d3b8859e4ab48a4a3d00d016d99861d538d20425eb",
+    "runs/aes-norm-two-defect-theory-20261018/maximal.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-two-defect-theory-20261018/counterexample.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-two-defect-theory-20261018/maximal-report.json": "6674b1cf904f2991a9e75ca40c9a0d8db669475e8663289639ce69ffde65243f",
+    "runs/aes-norm-two-defect-theory-20261018/schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-two-defect-theory-20261018/counterexample-report.json": "c44128710bd6d13d16da23048ca1995b71a8413d09f03b80792b9d8eac63fd2e",
+    "runs/aes-norm-two-defect-theory-20261018/counterexample.command.json": "b6102fa80d73ce8fd1f0a44a91ea3e1c2a85fd135b9a520b5bf19aa7f20755c1",
+    "runs/aes-norm-two-defect-theory-20261018/maximal.py": "95273f33e1a2b34e0f0d44d9ce6cfffb55c82e82b49e6bc7fb133a1be03a0810",
+    "runs/aes-norm-two-defect-theory-20261018/maximal.stdout.log": "6674b1cf904f2991a9e75ca40c9a0d8db669475e8663289639ce69ffde65243f",
+    "runs/aes-norm-two-defect-theory-20261018/run_maximal.py": "a2089389af8ab0afe3f0ebeec33570ae3984747b52a0e415d0eac7feedaf0d2c",
+    "runs/aes-norm-two-defect-theory-20261018/manifest.json": "7fba14896433b3aea4987c0135995586fc46a82beb4b650b20ce16ed852bc147",
+    "runs/aes-norm-two-defect-theory-20261018/review.json": "9bf564f91c9fa4a3ffd175f51b07cd28fb3c5b6f14cef14e45f7ea6a9ec210bb",
+    "runs/aes-norm-two-defect-theory-20261018/counterexample.stdout.log": "c44128710bd6d13d16da23048ca1995b71a8413d09f03b80792b9d8eac63fd2e",
+    "runs/aes-norm-two-defect-theory-20261018/run.json": "895221602e0047cedb92fbb99462f7e8508df0cdf9b7ca4be11dab5a468f77a1",
+    "runs/aes-norm-two-defect-theory-20261018/counterexample.py": "a98673436df66d2f949446f9ae8b6231dd6b36ffeb325fbd688928302943d2e5",
+    "runs/aes-norm-two-defect-theory-20261018/schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-norm-two-defect-theory-20261018/maximal.command.json": "254418b09ecb15647179d06d11fc69703a4f597b341a29908da5f7107c1d990d"
+  }
+}
