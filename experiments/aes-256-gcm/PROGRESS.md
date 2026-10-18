@@ -35,6 +35,11 @@ constructive searches, **not a new record-setting AES circuit**.
   public seeds form seven distinct exact function spaces in the tested input
   coordinates. A changed-prefix pilot tests 26,488 candidate states without
   finding a smaller circuit; neither result settles arbitrary new prefixes.
+- **Norm-stage boundary:** a certificate-backed search excludes an eight-AND
+  GF(16) multiplier when every AND operand is affine in the original inputs.
+  The matching nine-AND construction is verified. An earlier public claim
+  exists; this is not a novelty claim. Dependent-AND eight-gate probes remain
+  inconclusive, and no complete AES improvement follows.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -244,12 +249,28 @@ This unsuccessful finite neighborhood search is not a changed-prefix
 exclusion. The completed search and overlap computations are replayed at
 publication; no improved AES candidate results.
 
-The next open step is a genuinely constructive search over changed early
-functions or another nonlinear organization. An eight-AND quadratic norm
-stage was considered as a possible subproblem, but no such solver experiment
-or complete AES construction has been run at this checkpoint. The
+At the preceding publication snapshot, the eight-AND norm stage was only
+proposed. Its completed follow-up is described below. The
 [changed-prefix study](../../workspace/aes-256-gcm/reports/sbox_changed_prefix_study.json)
 records exact scope, controls, source revisions and limitations.
+
+### Certificate-backed norm-stage follow-up — 2026-10-18
+
+GF(16) multiplication and the affine-equivalent GF(256) norm need nine ANDs
+in the parallel affine-input model, including factors that mix input halves.
+The normalized eight-product instance has independently reconstructed
+coefficients and a verified DRAT/LRAT refutation. An actual nine-product
+construction passes all 256 input pairs. This closes that particular
+eight-product stage, not arbitrary AES circuits or dependent-gate designs.
+The [bound note](GF16_QUADRATIC_BOUND.md) gives the model and proof chain.
+An earlier public author entry already claims the same quadratic bound;
+no priority or world-first claim is made here.
+
+A separate full-truth search allows arbitrary earlier AND results as
+operands. Verified symmetries reduce the first gate to three representatives
+covering 10,795 planes. All three bounded eight-AND probes time out; none
+establishes an exclusion. The next constructive route must allow such
+nonlinear dependencies or change the surrounding AES organization.
 
 ## Sources and novelty checks
 
@@ -302,6 +323,9 @@ Committed evidence and entry points include:
   retain the latest narrow results and unresolved cases.
 - [Changed-prefix and seed-overlap study](../../workspace/aes-256-gcm/reports/sbox_changed_prefix_study.json)
   records the completed constructive pilot and fixed-coordinate source diversity.
+- [Norm-stage study](../../workspace/aes-256-gcm/reports/sbox_norm_stage_study.json)
+  and [bound note](GF16_QUADRATIC_BOUND.md) record the checked quadratic
+  certificate and unresolved dependent-gate probes.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

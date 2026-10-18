@@ -1,0 +1,897 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-18",
+  "base_commit": "01d532084f37ee939811bbc7206931fc1c07b47a",
+  "status": "certificate-backed-parallel-affine-input-bound-dependent-route-open",
+  "result": {
+    "GF16_modulus": "t^4+t+1",
+    "parallel_affine_input_AND_complexity": 9,
+    "mixed_operand_factors_allowed": true,
+    "affine_input_and_output_operations_free": true,
+    "quadratic_norm_x17_same_bound": true,
+    "nonlinear_intermediate_operands_covered_by_bound": false,
+    "proof_assistant_formalization": false,
+    "CNF_certificate_checked": true,
+    "unrestricted_eight_AND_excluded": false,
+    "improved_AES_circuit_found": false
+  },
+  "classification": {
+    "status": "pass",
+    "all_dimension4_subspaces_enumerated": {
+      "7": 11811,
+      "8": 200787
+    },
+    "minimum_distance_at_least4_counts": {
+      "7": 0,
+      "8": 30
+    },
+    "RM13_generator": [
+      255,
+      170,
+      204,
+      240
+    ],
+    "all40320_coordinate_permutations_orbit_size": 30,
+    "all_length8_eligible_codes_equal_RM_orbit": true,
+    "GF16_modulus": "t^4+t+1",
+    "nonzero_output_polar_ranks": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "scope": "All parallel products of affine forms, modulo free affine output terms. Not arbitrary sequential AND circuits or AES.",
+    "algorithm_seconds": 2.3725720830261707,
+    "script_sha256": "7987674689f26701fa72c1661f3008cbe3c1eeea790ff966c1ac9ffe6b78f326"
+  },
+  "target_basis_audit": {
+    "checked_invertible_output_bases": 20160,
+    "field_scalings": 15,
+    "distinct_RM_decoder_automorphisms_used": 1344,
+    "scale_histogram": {
+      "1": 1344,
+      "15": 1344,
+      "2": 1344,
+      "13": 1344,
+      "11": 1344,
+      "10": 1344,
+      "4": 1344,
+      "9": 1344,
+      "14": 1344,
+      "12": 1344,
+      "5": 1344,
+      "7": 1344,
+      "6": 1344,
+      "3": 1344,
+      "8": 1344
+    },
+    "fixed_identity_target_basis_complete": true,
+    "scope": "Specific GF16 multiplication target with arbitrary mixed affine input factors and fixed RM(1,3) decoder. Uses actual field scaling on first operand, then decoder coordinate automorphism. Does not authorize arbitrary gate sorting or arbitrary target-space input symmetry.",
+    "identity": "C p = B f; input scaling gives C p_prime = D f with D first row e0; D_inverse C = C P; thus C(P p_prime)=f.",
+    "proof_note": "Every nonzero output covector is normalized by a unique field scaling because field multiplication gives a regular action on the15nonzero dual vectors. The eight decoder columns are exactly all four-bit columns with first coordinate1; any invertible D whose first row is e0 permutes that set.",
+    "algorithm_seconds": 0.5393375421408564,
+    "script_sha256": "8e04d756ad6378392b7c793b59ad11a20cd1299e41e05aca67708f50d4405223",
+    "world_first_established": false,
+    "eight_AND_feasibility": "not solved by this audit"
+  },
+  "theory_proof_chain": [
+    {
+      "step": "Norm equivalence",
+      "argument": "With GF256 = GF16[z], z^16+z=1 and nu=z^2+z, N(a+bz)=a^2+ab+nu*b^2. Squaring is GF2-linear. The input tower basis and output subfield basis are invertible linear changes, so quadratic AND complexity of the four norm coordinates equals that of GF16 multiplication.",
+      "evidence": "report.json:norm_multiplier_identities; all 256 norm inputs and 256 embedding products checked."
+    },
+    {
+      "step": "Decoder minimum distance and seven-gate exclusion",
+      "argument": "All 15 nonzero output polar matrices have rank 8. A product of two affine forms has polar rank at most 2, so every nonzero decoder word has weight at least 4. Decoder dimension is four. In a binary dimension-four code each nonzero column contributes weight eight across all 16 words. With at most seven columns, total nonzero-word weight is at most 56, but 15 words of weight at least four require at least 60. Thus at least eight products are necessary in the parallel quadratic model. An eight-product solution cannot contain an affine or linearly redundant product, since it could then be shortened to seven."
+    },
+    {
+      "step": "Fixed decoder code",
+      "argument": "Exhaustive unique-RREF enumeration finds exactly 30 dimension-four length-eight codes of minimum distance at least four. They are exactly the coordinate-permutation orbit of C rows (255,170,204,240). Thus after gate permutation any solution has C*p = B*f modulo affine terms with B invertible.",
+      "evidence": "report.json:code_classification; 200787 subspaces and 40320 coordinate permutations checked."
+    },
+    {
+      "step": "Output basis can be identity for this target",
+      "argument": "Substituting x by alpha*x sends the multiplication output vector f to M(alpha)*f. For any nonzero first row beta of B, there is a unique nonzero alpha with beta*M(alpha)=e0, since field scalings act regularly on nonzero dual vectors. Therefore D=B*M(alpha) has first row e0. The eight columns of C are exactly the four-bit vectors with first coordinate one. D inverse permutes this set, so D inverse*C=C*P for a coordinate permutation P. From C*p'=D*f obtain C*P*p'=f. This uses parallel-gate permutation and target-specific field input symmetry, not an arbitrary output-basis assumption.",
+      "evidence": "target-basis-report.json; all 20160 invertible B verified, using 15 scalings and 1344 decoder automorphisms."
+    },
+    {
+      "step": "First factor can be raw bit zero while retaining identity target basis",
+      "argument": "A determinant-one field matrix sends (x,y) to (a*x+b*y,c*x+d*y). Their product differs from x*y by a*c*x^2+b*d*y^2, which is GF2-linear. Hence every individual output polar is unchanged. SL2(F16) acts transitively on the 255 nonzero binary linear forms, represented as trace(u*x+v*y), so gate zero's first nonzero factor can be raw bit zero. Adding that factor to the other factor clears its bit zero and changes only an affine term. Thus this normalization preserves both B=I and the fixed C decoder modulo affine terms.",
+      "evidence": "symmetry-report.json:SL2_normalization; all 4080 group matrices, 255 covectors, 65280 truth rows and 64770 independent operand pairs checked."
+    },
+    {
+      "step": "Per-gate plane canonicalization",
+      "argument": "The six GL2(F2) bases of a nondegenerate operand plane yield products differing only by a linear form because h squared equals h for Boolean signals. Constants also alter a product only by an affine function. Each plane has a unique basis whose left highest set bit is below the right highest set bit and whose right coefficient at the left pivot is zero. Canonicalizing each gate therefore preserves all 28 quadratic coefficient equations. No arbitrary global gate ordering is justified after fixing C."
+    },
+    {
+      "step": "Sequential first-plane reduction",
+      "argument": "Independent primal swap, field scales, shear and Frobenius transformations preserve the four-dimensional target quadratic space modulo affine terms. Their pullback action partitions all 10795 binary two-planes into three orbits of sizes 510, 85 and 10200, represented by factors (1,2), (1,12), (1,16). Input substitution and free affine output correction carry any sequential circuit between equivalent first-plane cases. Affine changes of an earlier gate can be propagated through later unrestricted linear operand masks. This reduction therefore also covers unrestricted sequential circuits when their later masks and output affine decoder remain free.",
+      "evidence": "symmetry-report.json:first_plane_orbits; independent BFS exactly matches the parent's orbit receipt, and all five generator substitutions checked on 256 inputs."
+    }
+  ],
+  "native_initial_probe": {
+    "label": "GF16-eight-quadratic",
+    "status": "INDETERMINATE",
+    "exit_code": 15,
+    "argv": [
+      "cryptominisat5",
+      "--verb",
+      "1",
+      "--threads",
+      "1",
+      "--random",
+      "20261018",
+      "--maxtime",
+      "90",
+      "--autodisablegauss",
+      "0",
+      "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-quadratic.cnf"
+    ],
+    "solver_wall_seconds": 93.0397749999538,
+    "CNF_sha256": "1af129719bc1cb62d268cc7981d98cfad8a20224e6832d41c94992bf855f2956",
+    "variables": 652,
+    "clauses": 1495,
+    "xor_constraints": 172,
+    "input_bits": 8,
+    "parallel_ANDs": 8,
+    "decoder_rows": [
+      255,
+      170,
+      204,
+      240
+    ],
+    "target_truth_hex": [
+      "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+      "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+      "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+      "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+    ],
+    "fixed_factors": null
+  },
+  "normalized_probe": {
+    "result": {
+      "label": "GF16-eight-quadratic-normalized",
+      "status": "UNSATISFIABLE",
+      "exit_code": 20,
+      "argv": [
+        "cryptominisat5",
+        "--verb",
+        "1",
+        "--threads",
+        "1",
+        "--random",
+        "20261018",
+        "--maxtime",
+        "90",
+        "--autodisablegauss",
+        "0",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.cnf"
+      ],
+      "solver_wall_seconds": 8.265841708984226,
+      "CNF_sha256": "b68fb7934669d38a10419d02ee83b3acf8919d1c4bf2b53231ec49ed567552b8",
+      "variables": 652,
+      "clauses": 1519,
+      "xor_constraints": 172,
+      "input_bits": 8,
+      "parallel_ANDs": 8,
+      "decoder_rows": [
+        255,
+        170,
+        204,
+        240
+      ],
+      "target_truth_hex": [
+        "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+        "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+        "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+        "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+      ],
+      "fixed_factors": null
+    },
+    "target_basis_fixed_to_identity": true,
+    "first_left_factor_fixed_to_raw_bit0": true,
+    "justification": "GF16 input field scaling normalizes the all-eight-product decoder output row; RM decoder automorphisms normalize remaining invertible target basis. Determinant-one GF16 input transforms preserve all multiplication output polars and are transitive on nonzero input covectors, permitting first-left factor bit0. Affine output corrections remain free.",
+    "theory_evidence": "runs/aes-eight-norm-theory-20261018/target-basis-report.json",
+    "scope": "Parallel quadratic-AND GF16 multiplication only, not unrestricted dependent gates or AES.",
+    "world_first_established": false
+  },
+  "certificate": {
+    "status": "finished",
+    "signed_XOR_translation_controls": 5460,
+    "cases": [
+      {
+        "case": "control-0",
+        "status": "SATISFIABLE",
+        "solver": {
+          "argv": [
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+            "-t",
+            "120",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-control-0.cnf",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-control-0.drat"
+          ],
+          "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+          "exit_code": 10,
+          "wall_seconds": 0.007153916172683239
+        },
+        "DRAT_check": null,
+        "CNF_sha256": "11db79cbcba391991777d6d29bf097605a568b6fe60a275fb4c50b88a642843a",
+        "proof_sha256": "fdfa77aede35cdf93f965b01c98edeeb3004a7149ddca8cdc5abe032dd7025ee",
+        "formal_certificate_verified": false
+      },
+      {
+        "case": "control-1",
+        "status": "UNSATISFIABLE",
+        "solver": {
+          "argv": [
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+            "-t",
+            "120",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-control-1.cnf",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-control-1.drat"
+          ],
+          "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+          "exit_code": 20,
+          "wall_seconds": 0.007125332951545715
+        },
+        "DRAT_check": {
+          "argv": [
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/drat-trim-upstream/drat-trim",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-control-1.cnf",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-control-1.drat",
+            "-t",
+            "120"
+          ],
+          "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+          "exit_code": 0,
+          "wall_seconds": 0.04404420801438391
+        },
+        "CNF_sha256": "b95cb57adb6ea74c176461e52dc923601e7f67961504c7a57d43546517367aa2",
+        "proof_sha256": "6346f3374db46e27258efce0f8a72e41e62b58832a35f16d5647e004e27cd39d",
+        "formal_certificate_verified": true
+      },
+      {
+        "case": "GF16-eight-quadratic-normalized",
+        "status": "UNSATISFIABLE",
+        "solver": {
+          "argv": [
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+            "-t",
+            "120",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.cnf",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.drat"
+          ],
+          "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+          "exit_code": 20,
+          "wall_seconds": 0.5575010420288891
+        },
+        "DRAT_check": {
+          "argv": [
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/drat-trim-upstream/drat-trim",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.cnf",
+            "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.drat",
+            "-t",
+            "120"
+          ],
+          "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+          "exit_code": 0,
+          "wall_seconds": 0.449848165968433
+        },
+        "CNF_sha256": "0ca93bf55d3bdbca7a6c893b93ef4b6924731e52bce0bbaa7f2027b12d712887",
+        "proof_sha256": "0f1ffd1333cf58f2e92d55655570129204647ff1bc5ab41d12859a9e2d2b9895",
+        "formal_certificate_verified": true
+      }
+    ],
+    "world_first_established": false,
+    "scope": "Clausal proof of the exact normalized quadratic instance; semantic completeness still depends on separately audited code/field symmetries. No dependent-gate or AES bound."
+  },
+  "LRAT": {
+    "status": "pass",
+    "DRAT_to_LRAT": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/drat-trim-upstream/drat-trim",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.cnf",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.drat",
+        "-L",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.lrat",
+        "-t",
+        "120"
+      ],
+      "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+      "exit_code": 0,
+      "wall_seconds": 0.5657632499933243
+    },
+    "separate_LRAT_checker": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/drat-trim-upstream/lrat-check",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.cnf",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.lrat"
+      ],
+      "cwd": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018",
+      "exit_code": 0,
+      "wall_seconds": 0.7592514590360224
+    },
+    "CNF_sha256": "0ca93bf55d3bdbca7a6c893b93ef4b6924731e52bce0bbaa7f2027b12d712887",
+    "DRAT_sha256": "0f1ffd1333cf58f2e92d55655570129204647ff1bc5ab41d12859a9e2d2b9895",
+    "LRAT_sha256": "2739a510b3af4da92b142565b20635e132605d090daba141ebcfa551a0481549",
+    "LRAT_bytes": 5121734,
+    "all_proof_checks_pass": true,
+    "scope": "Normalized quadratic GF16 instance only. Human/finite-audited input symmetries connect it to all quadratic8-AND implementations; no arbitrary dependent-gate or AES bound.",
+    "world_first_established": false
+  },
+  "XOR_conversion_audit": {
+    "status": "pass",
+    "controls": {
+      "local_XOR_gate_truth_assignments": 8,
+      "signed_XOR_input_assignments_through_arity6": 5460,
+      "all_existential_auxiliary_extensions_enumerated": 149796,
+      "every_true_signed_XOR_has_exactly_one_extension": true,
+      "every_false_signed_XOR_has_zero_extensions": true
+    },
+    "CNFs_rebuilt_byte_identically": 3,
+    "logical_contract": "Signed native rows assert odd parity of signed literal truth values. Negations change the unsigned rhs by their parity; fresh gate clauses enforce each running XOR exactly, and final unit enforces that rhs. Auxiliaries are fresh and each signed row has a unique extension iff satisfied. All preexisting clauses are retained unchanged.",
+    "root_conversion_script_sha256": "f08eff12a0f205e0b8d4e4b4f97a9eccd9b537050a3a20803c46aaee3ecc0eab",
+    "script_sha256": "238bdc7c903da82288bd1e21fcbf1b8abbd933a3e9aea88b05d90b051f3ca2eb",
+    "proof_checker_or_solver_executed": false,
+    "proof_certificate_checked_by_this_audit": false,
+    "scope": "Equisatisfiability and exact bytes of native-to-plain clausal conversion only. No symmetry proof, DRAT/LRAT proof replay, sequential lower bound or AES result is implied."
+  },
+  "conversion_case_summaries": [
+    {
+      "label": "control-0",
+      "source_sha256": "d5c3d17c741949b6188fd953413e5494966978faa8328c976cd1f6ba73476e5a",
+      "plain_CNF_sha256": "11db79cbcba391991777d6d29bf097605a568b6fe60a275fb4c50b88a642843a",
+      "plain_CNF_reconstructed_byte_identically": true,
+      "variables": 30,
+      "clauses": 85,
+      "source_clauses_preserved": 46,
+      "native_XOR_rows": 7,
+      "fresh_auxiliaries": 8
+    },
+    {
+      "label": "control-1",
+      "source_sha256": "b82daabd2cd93968b57859dd152b64df54def2c81c378783c4f15a3d48c3d19e",
+      "plain_CNF_sha256": "b95cb57adb6ea74c176461e52dc923601e7f67961504c7a57d43546517367aa2",
+      "plain_CNF_reconstructed_byte_identically": true,
+      "variables": 31,
+      "clauses": 89,
+      "source_clauses_preserved": 46,
+      "native_XOR_rows": 7,
+      "fresh_auxiliaries": 9
+    },
+    {
+      "label": "GF16-eight-quadratic-normalized",
+      "source_sha256": "b68fb7934669d38a10419d02ee83b3acf8919d1c4bf2b53231ec49ed567552b8",
+      "plain_CNF_sha256": "0ca93bf55d3bdbca7a6c893b93ef4b6924731e52bce0bbaa7f2027b12d712887",
+      "plain_CNF_reconstructed_byte_identically": true,
+      "variables": 1876,
+      "clauses": 6587,
+      "source_clauses_preserved": 1519,
+      "native_XOR_rows": 172,
+      "fresh_auxiliaries": 1224
+    }
+  ],
+  "controls": {
+    "quadratic_solver_cases": 5,
+    "sequential_solver_cases": 5,
+    "nine_AND_upper_bound": {
+      "factor_masks": [
+        [
+          1,
+          16
+        ],
+        [
+          12,
+          192
+        ],
+        [
+          13,
+          208
+        ],
+        [
+          14,
+          224
+        ],
+        [
+          8,
+          128
+        ],
+        [
+          6,
+          96
+        ],
+        [
+          15,
+          240
+        ],
+        [
+          4,
+          64
+        ],
+        [
+          11,
+          176
+        ]
+      ],
+      "target_basis_rows": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "output_masks": [
+        22016,
+        125952,
+        188416,
+        166400
+      ],
+      "all_assignments_verified": 256,
+      "CNF_and_XOR_model_replayed": true,
+      "gate_depth_for_ANDs": 1,
+      "affine_output_corrections_allowed": true
+    },
+    "native_control_and_main_CNF_audit": "pass",
+    "sequential_CNF_audit": "pass",
+    "orbit_audit": "pass"
+  },
+  "sequential_search": {
+    "status": "bounded-full-truth-probes-finished",
+    "results": [
+      {
+        "label": "GF16-eight-sequential-orbit-0",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "argv": [
+          "cryptominisat5",
+          "--verb",
+          "1",
+          "--threads",
+          "1",
+          "--random",
+          "20261018",
+          "--maxtime",
+          "60",
+          "--autodisablegauss",
+          "0",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-0.cnf"
+        ],
+        "construction_wall_seconds": 0.043810416013002396,
+        "solver_wall_seconds": 61.40534441592172,
+        "CNF_sha256": "cdf22ccec84b458124ff39edf03b037c4a16ff8b048ec9fb5aeb8a5468aaa189",
+        "variables": 28808,
+        "clauses": 73640,
+        "xor_constraints": 5100,
+        "input_bits": 8,
+        "topological_AND_budget": 8,
+        "first_factors": [
+          1,
+          2
+        ],
+        "all_prior_ANDs_allowed_as_operands": true,
+        "padding_zero_ANDs_allowed": true,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_factors": null
+      },
+      {
+        "label": "GF16-eight-sequential-orbit-1",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "argv": [
+          "cryptominisat5",
+          "--verb",
+          "1",
+          "--threads",
+          "1",
+          "--random",
+          "20261018",
+          "--maxtime",
+          "60",
+          "--autodisablegauss",
+          "0",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-1.cnf"
+        ],
+        "construction_wall_seconds": 0.07456191605888307,
+        "solver_wall_seconds": 61.41600154200569,
+        "CNF_sha256": "4352da18aba24ed5367cce2153b8fdc66cc053f55a761d85016d9e306727e9e8",
+        "variables": 28808,
+        "clauses": 73640,
+        "xor_constraints": 5100,
+        "input_bits": 8,
+        "topological_AND_budget": 8,
+        "first_factors": [
+          1,
+          12
+        ],
+        "all_prior_ANDs_allowed_as_operands": true,
+        "padding_zero_ANDs_allowed": true,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_factors": null
+      },
+      {
+        "label": "GF16-eight-sequential-orbit-2",
+        "status": "INDETERMINATE",
+        "exit_code": 15,
+        "argv": [
+          "cryptominisat5",
+          "--verb",
+          "1",
+          "--threads",
+          "1",
+          "--random",
+          "20261018",
+          "--maxtime",
+          "60",
+          "--autodisablegauss",
+          "0",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-2.cnf"
+        ],
+        "construction_wall_seconds": 0.06414008396677673,
+        "solver_wall_seconds": 61.53210770897567,
+        "CNF_sha256": "15fed105af183601d86da5bb5d01bdc101867bc7b6b9490e6ca2582b23f94ffd",
+        "variables": 28808,
+        "clauses": 73640,
+        "xor_constraints": 5100,
+        "input_bits": 8,
+        "topological_AND_budget": 8,
+        "first_factors": [
+          1,
+          16
+        ],
+        "all_prior_ANDs_allowed_as_operands": true,
+        "padding_zero_ANDs_allowed": true,
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "fixed_factors": null
+      }
+    ],
+    "first_plane_orbit_sizes": [
+      510,
+      85,
+      10200
+    ],
+    "all_orbits_resolved": false,
+    "world_first_established": false,
+    "full_AES_circuit_constructed": false,
+    "scope": "At most8 topologically ordered ANDs for GF16 multiplication with arbitrary affine combinations of previous signals and free affine output decoding. Three first-plane representative cases cover all first non-affine gates under the separately verified input symmetries. A timeout is not an exclusion. No complete AES result."
+  },
+  "tool_sources": {
+    "cadical-upstream": {
+      "revision": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+      "license_sha256": "9caaed67d8cd9d1c0744ad533b3ed95af756aa54c0402e38746be1f85a4e176c",
+      "repository_url": "ssh://git@appointy/arminbiere/cadical.git"
+    },
+    "drat-trim-upstream": {
+      "revision": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+      "license_sha256": "71ab2a9dc5a294ad8fba4ccb8c45aaa8a439596d314a2a046ac9b62266872a18",
+      "repository_url": "ssh://git@appointy/marijnheule/drat-trim.git"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=919080",
+      "title": "Multiplicative Complexity of Vector Valued Boolean Functions",
+      "authors": "Joan Boyar and Magnus Gausdal Find",
+      "publication_year": 2015,
+      "checked_fact": "Theorem 3.1 and Corollary 3.3 connect quadratic circuits and binary codes. For this bent (8,4) target the coding obstruction alone excludes seven ANDs, not eight.",
+      "status": "Primary research source opened and relevant argument inspected."
+    },
+    {
+      "url": "https://slopdealer.com/research/papers/mf-167/",
+      "title": "Exact quadratic multiplicative complexity of GF(2^4) multiplication and polymul_4",
+      "publication_date": "2026-09-04",
+      "checked_fact": "An earlier author-posted entry explicitly claims nine ANDs are necessary in the quadratic model including mixed-input factors, and leaves unrestricted complexity in [8,9]. It describes a three-dimensional hyperplane/simplex reduction and finite enumeration.",
+      "status": "Prior claim identified; independent verification is not supplied by the downloaded archive. No novelty claim is justified for reproducing its stated conclusion.",
+      "evidence_pack_url": "https://slopdealer.com/research/papers/mf-167/evidence.zip",
+      "local_audit": "symmetry-report.json:prior_evidence_pack",
+      "reproducibility_gap": "The archive lacks the main enumeration program, full claimed geometric proof and named planted controls. REPORT.md is an unrelated carry-tile orbit-scan report. Manifest hashes of bundled files match; matching verdict receipts do not validate the mathematical claim. Downloaded code was not executed."
+    },
+    {
+      "url": "https://slopdealer.com/research/papers/ml-076/",
+      "title": "Multiplicative complexity bracket for GF(2^4) multiplication",
+      "publication_date": "2026-09-04",
+      "checked_fact": "Companion author entry distinguishes parallel quadratic circuits from arbitrary dependent AND circuits and presents unrestricted eight versus nine as open.",
+      "status": "Author-posted state-of-research claim, not independently certified here."
+    },
+    {
+      "url": "https://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=rm&paperid=9928&option_lang=rus",
+      "title": "On the tensor rank of multiplication in finite extensions of finite fields and related issues in algebraic geometry",
+      "publication_year": 2021,
+      "doi": "10.1070/RM9928",
+      "checked_fact": "The survey reports bilinear complexity mu_2(4)=9 and distinguishes bilinear factors depending separately on the two inputs. This bilinear statement alone does not exclude general mixed-input quadratic factors.",
+      "status": "Research survey opened; primary historical proof not separately reproduced in this audit."
+    }
+  ],
+  "prior_claim_of_same_quadratic_bound": true,
+  "world_first_established": false,
+  "physical_metrics": null,
+  "security_claim": null,
+  "literature_review_exhaustive": false,
+  "previous_goal_turn_classification": "progress: completed publication plus new exact finite and constructive diagnostics; not goal completion",
+  "this_checkpoint_progress": "Checked normalized quadratic refutation and independent semantic/translation audits; all broader sequential probes remain inconclusive.",
+  "raw_evidence_in_git": false,
+  "previous_manifest_hashes_verified": 85,
+  "attribution": {
+    "primary": "/root",
+    "model_alias": "Codex",
+    "canonical_model_id": null,
+    "harness": "Codex desktop",
+    "harness_version": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "agent_wall_seconds": null,
+    "cost": null,
+    "unavailable_source_note": "No per-attempt model/settings/token/cost telemetry exposed. Command wall times are observed separately."
+  },
+  "raw_artifact_sha256": {
+    "runs/aes-eight-and-norm-20261018/plain-control-0.drat": "fdfa77aede35cdf93f965b01c98edeeb3004a7149ddca8cdc5abe032dd7025ee",
+    "runs/aes-eight-and-norm-20261018/sequential-control-1.cnf": "86ad8b9c25df050639ac7903bb279f9712285ebbcdf8fd7ca70edaf29924aecf",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.stdout.log": "3ab582a90093c552e981bb8e615badc572450f9a892395fe709f6109ed6d7e1f",
+    "runs/aes-eight-and-norm-20261018/control-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/cadical-control-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/sequential-control-0.cnf": "0eac62be44733008b8e2902dd393bb6147ba3033cd11b43abdbb0959772e3aad",
+    "runs/aes-eight-and-norm-20261018/cadical-build.command.json": "ef0a3bad9a5c337d91294b574bee008b7d674f9a646ee45847fe32e42c50bae0",
+    "runs/aes-eight-and-norm-20261018/sequential-control-3.json": "69e2207d791932d40c29a02d18c637470617c65333368ef12dd75d1e9b88e937",
+    "runs/aes-eight-and-norm-20261018/sequential-control-2.cnf": "e361142e86013568c3e3267984daa3eb4244cccc40a3b60eedf62582265dfe27",
+    "runs/aes-eight-and-norm-20261018/proof-checkers-build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.cnf": "b68fb7934669d38a10419d02ee83b3acf8919d1c4bf2b53231ec49ed567552b8",
+    "runs/aes-eight-and-norm-20261018/sequential-control-3.cnf": "c1d1823117b60da670ffb70dab0526027f8239882ad317509d3312004892f35b",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-code-audit-20261018-run-schema.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/controls.json": "57f7a1cb847a7e2c16def057ef70f70b2af3da90765bd7980f9542f526c77506",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-code-audit-20261018-encoder-audit-run-schema.command.json": "2564a6c823cf5aacbf5d2c375277fa6b91a6ea8a7bc5715471268daf85d4af7e",
+    "runs/aes-eight-and-norm-20261018/sequential-control-3.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-theory-20261018-run-schema.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-and-norm-20261018/cadical-version.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-0.cnf": "cdf22ccec84b458124ff39edf03b037c4a16ff8b048ec9fb5aeb8a5468aaa189",
+    "runs/aes-eight-and-norm-20261018/retain.py": "069023dabe105a4d082a15562183d64287ec20d9acbc68eaa364d1e8ceeba2d1",
+    "runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized-conversion.json": "6c30f2d809d53dc7cfe69a2926107ecaa01edf7db25911986f86437123db3db5",
+    "runs/aes-eight-and-norm-20261018/control-eight-mixed-planted.json": "f232fd41465b570a3df5fd95a3b46e309fd323a3aaeab00aacc74fd87bfb9ec2",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-1.cnf": "4352da18aba24ed5367cce2153b8fdc66cc053f55a761d85016d9e306727e9e8",
+    "runs/aes-eight-and-norm-20261018/sequential-known-nine.json": "481bac4ade2f640c10804af75d349515ef134450067a9d24a0469a90fa64c5e8",
+    "runs/aes-eight-and-norm-20261018/sequential-control-2.json": "b11c9e73a50a2fff0ee13d3f7fb39776083d841b366653eebe73fc471d913ad9",
+    "runs/aes-eight-and-norm-20261018/sequential-control-2.stdout.log": "dab8a2d88110354576fdb1bd4004722a87ff02e62f5839b025b116f0b69a6f2c",
+    "runs/aes-eight-and-norm-20261018/certificate-GF16-eight-quadratic-normalized.json": "3d5a3f1f5fd1a47161f82ba1199cbd472dd33fce36a5f7ee9680829600f5b1c6",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic.stdout.log": "e89562d674cff00b2e0179e6efc4d31a25411e51d7268f98f54bb2591a743af2",
+    "runs/aes-eight-and-norm-20261018/cadical-configure.command.json": "48e2a9f97f2e33b3d9333c752406ce31c2f3325c1bf80aff63efbfe7b6492c48",
+    "runs/aes-eight-and-norm-20261018/check-lrat.command.json": "b60be8e5b814da1c18bc9a2683f4bd8d9e8bf7d77719b1b42ddc79afdc547dbe",
+    "runs/aes-eight-and-norm-20261018/certificate.py": "f08eff12a0f205e0b8d4e4b4f97a9eccd9b537050a3a20803c46aaee3ecc0eab",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.json": "76ef6430e7224f8c14e25e7596c7f3bb650412d2cd204cd2e827d5dd0f18b8e6",
+    "runs/aes-eight-and-norm-20261018/control-1.stdout.log": "be387d0cea1d52188abb189446df187604b789502fa047166c43cf23891fd8d2",
+    "runs/aes-eight-and-norm-20261018/drat-help.stdout.log": "0fb0bbb58764ef4e622b31dce9a6f91c2539f75e8b34743a6ee9a778e21bb36c",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-2.cnf": "15fed105af183601d86da5bb5d01bdc101867bc7b6b9490e6ca2582b23f94ffd",
+    "runs/aes-eight-and-norm-20261018/cadical-control-1.stdout.log": "b01a65714703ef3cbbe08e193a8f5c7920814642f037e185b0327605b66441e7",
+    "runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.drat": "0f1ffd1333cf58f2e92d55655570129204647ff1bc5ab41d12859a9e2d2b9895",
+    "runs/aes-eight-and-norm-20261018/plain-control-1.drat": "6346f3374db46e27258efce0f8a72e41e62b58832a35f16d5647e004e27cd39d",
+    "runs/aes-eight-and-norm-20261018/cadical-build.stdout.log": "8363b2a4085c3a2c29d68063cc648979bd1b0621579b9bf7bd17079651abcc7a",
+    "runs/aes-eight-and-norm-20261018/check-lrat.stdout.log": "c784afee9aab780a3f838dbc438c596e9e46b2272f1f954849ac6cff26f46be2",
+    "runs/aes-eight-and-norm-20261018/lrat_verify.py": "585b4abd07650ae0495055d46652adbd7c0db77fd63a78cb79c703d880f0d1f0",
+    "runs/aes-eight-and-norm-20261018/control-1.cnf": "b82daabd2cd93968b57859dd152b64df54def2c81c378783c4f15a3d48c3d19e",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic.json": "a83520abeeba3cbb6b0c3f72c41b74dff4b359d3d5e42021616b5f6d544adeff",
+    "runs/aes-eight-and-norm-20261018/control-0.cnf": "d5c3d17c741949b6188fd953413e5494966978faa8328c976cd1f6ba73476e5a",
+    "runs/aes-eight-and-norm-20261018/control-eight-mixed-planted.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/completion-extension-run-schema.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/control-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-code-audit-20261018-encoder-audit-run-schema.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-and-norm-20261018/control-2.cnf": "992887c986b6677aee985ba60f7a1071ce7e296936b5baf529f71114a1fdea58",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-0.json": "238ec60eaae6ba3fc482bf2c2e59f989a41ad336ba35365fdf6c4a67e97c7828",
+    "runs/aes-eight-and-norm-20261018/drat-check-control-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.lrat": "2739a510b3af4da92b142565b20635e132605d090daba141ebcfa551a0481549",
+    "runs/aes-eight-and-norm-20261018/sequential-control-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/drat-help.command.json": "8247c279fceaa0100c5049c73878532b85b4bd5c055764806822b43d91705ac6",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-1.stdout.log": "da2c0044f58f1f1ca9e99322b2e0f5c58de9e451fc851f2420b79b8e8adc098e",
+    "runs/aes-eight-and-norm-20261018/sequential-controls.json": "bb12e2fe61d195ce538ad6ac1b700cdc4018676d9dfb66573427bb6e561734d6",
+    "runs/aes-eight-and-norm-20261018/cadical-GF16-eight-quadratic-normalized.stdout.log": "c29b003fb97ba5c1fcb291dd129d068fdee609b76e357516a0bd6d0708a01fe4",
+    "runs/aes-eight-and-norm-20261018/certificate-report.json": "f2162447ab885566df7afe7748e1b1c3bf7ad2fc2380aa78b329df09d3835226",
+    "runs/aes-eight-and-norm-20261018/sequential-control-0.stdout.log": "58a6a9bbbb2bc529cf443b39ce046491a4eab65e5e5005317a4f39a1dccee1d6",
+    "runs/aes-eight-and-norm-20261018/cadical-help.stdout.log": "936d1f518c3a413c64bf5b99c641c4526d6bc1a8fbaacdc73a7c844af33590e7",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-1.json": "2bda2c2951974d06d37b731b51762c77a79177adc88bbbecc68cff4fad5b26e4",
+    "runs/aes-eight-and-norm-20261018/control-known-nine.stdout.log": "51ff32ff8107ff75db38332cd7c8147c0923e2d6230c33f97232bb5502398e2a",
+    "runs/aes-eight-and-norm-20261018/drat-check-GF16-eight-quadratic-normalized.stdout.log": "8b1a76b395e9118f2b333f47cd131dc1ea75b6d4255758bcebca2789c161142f",
+    "runs/aes-eight-and-norm-20261018/orbits.py": "811f0ba7552d5df972c613ee86b2d8049402b18792888612105ff5152353e6d1",
+    "runs/aes-eight-and-norm-20261018/derive-lrat.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/sequential-known-nine.stdout.log": "73a6c775d46372a79d4e5e8efb67effc99bbcd7ea850d73ebb9116ebea5739ff",
+    "runs/aes-eight-and-norm-20261018/cadical-configure.stderr.log": "219147ee4cf703939ff6f62e2f731c27bffae2b509fa6f7aa9627f2a48d9f36b",
+    "runs/aes-eight-and-norm-20261018/control-2.json": "da6292ad0e184e0340ea5a78508901c82e4369c3716e7ba9e367bee74c48e998",
+    "runs/aes-eight-and-norm-20261018/proof-checkers-build.stdout.log": "c7203e84c0489c0f449131edb8b1f8f0a49ce3cf2d5e93ed0a006240eb57165a",
+    "runs/aes-eight-and-norm-20261018/control-eight-mixed-planted.cnf": "0be9bea83c4a05c18d3159c181a3b51572258adf6d2f5c76a62c7e0bf195bd37",
+    "runs/aes-eight-and-norm-20261018/drat-check-control-1.command.json": "467ce7b89216a6b2bfb5204b2466b61d8ba241f54618169df89949fd38a3016a",
+    "runs/aes-eight-and-norm-20261018/lrat-report.json": "5c95db3c449930fdf45d47efbf88022c3161f39dd5ce6224cb6ae0f8194174e2",
+    "runs/aes-eight-and-norm-20261018/sequential-report.json": "aa91a3b943221798733cfffff4b636185bee4afa9fc8d1ebb59373f16fed7fe3",
+    "runs/aes-eight-and-norm-20261018/certificate-control-1.json": "bf83ce76195777decaf52c82f427656c952d1f3b7826d74809f76ac35e1627ff",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-code-audit-20261018-run-schema.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-and-norm-20261018/sequential-control-3.stdout.log": "a144f594a7de2598e3c18f85deebf85ef662b492cac201c4645d9e29e25ee4a1",
+    "runs/aes-eight-and-norm-20261018/sequential.py": "c02f26c08703f82be3f4376ca32d97835dcaaa8b04db9d5b3e331e630b779780",
+    "runs/aes-eight-and-norm-20261018/plain-control-1-conversion.json": "c3d7dc50d0c2d6f0a3a2c896c2b5e7d97c189258823025c9c19b097212bb324a",
+    "runs/aes-eight-and-norm-20261018/control-1.json": "8427ea94e6cce029bb5fc067d9d3187e540444fd0798ca0d55fec8c8d3cf07f6",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic-normalized.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/control-0.stdout.log": "878a9fd88cf424c5ffa1188dafa645b36c6586a8b6389d84ff1d6b0abc8700d2",
+    "runs/aes-eight-and-norm-20261018/derive-lrat.command.json": "393509718d4f8244d8fa415f4aa32fc795899f3f006731b01a91f0d5843917c4",
+    "runs/aes-eight-and-norm-20261018/normalized.py": "cb85624eea4f111cafe86689a97f9ac09e66271bc34eef9de2141d48995d0fe2",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-2.json": "c26056bcc507ea12b4181e9b3b81f63083a561fe7642da5c9d6f96dde69e867f",
+    "runs/aes-eight-and-norm-20261018/cadical-control-0.stdout.log": "320f665a6cab4850e04a3f67ee8ce991454d4b5f44e45c13ac61becab0111ed6",
+    "runs/aes-eight-and-norm-20261018/control-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-quadratic.cnf": "1af129719bc1cb62d268cc7981d98cfad8a20224e6832d41c94992bf855f2956",
+    "runs/aes-eight-and-norm-20261018/cadical-version.command.json": "346304e5305814b8ff04a3353d133d0454be5e2f5f2a14cf3fc787136690a2ad",
+    "runs/aes-eight-and-norm-20261018/check-lrat.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-code-audit-20261018-run-schema.command.json": "3566fba3d8bf01d5c7b51f887e02d6afb5e0ef919d8cdae2e86559a0a94fdc78",
+    "runs/aes-eight-and-norm-20261018/cadical-build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/drat-help.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/proof-checkers-build.command.json": "97be7798dbc23a5cc32a15cb8278dbb728d637dc3e838eaa8c0b91a64625f1f0",
+    "runs/aes-eight-and-norm-20261018/cadical-control-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/drat-check-GF16-eight-quadratic-normalized.command.json": "c56ea79b25b295df3a52cac89f85c3cd7b0227e6078dd8474e300a6b3a28cd35",
+    "runs/aes-eight-and-norm-20261018/control-0.json": "4d968540678fe6ad20b2a859eb83626cb0335c9047567c8998cfa67bb02bfb08",
+    "runs/aes-eight-and-norm-20261018/cadical-GF16-eight-quadratic-normalized.command.json": "5b8ca243c5e316dad99a90f2069b3172546218fa64a7bfcfe36747cbc695f947",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-theory-20261018-run-schema.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/cadical-version.stdout.log": "06e3fe4a7a1884d20d81cc7065ca8cfd4c394ec602c4d180ddc39bbd4f7da521",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-2.stdout.log": "1f93ff148629daa32a3b21bf3e1bdee92f7d375e8ca9d3d79bd4097090669f77",
+    "runs/aes-eight-and-norm-20261018/certificate-control-0.json": "b888b47ff2a776e84fa338dd7bdc929085c2f57edfd98b9e6763ca009bf873e2",
+    "runs/aes-eight-and-norm-20261018/search.py": "7987674689f26701fa72c1661f3008cbe3c1eeea790ff966c1ac9ffe6b78f326",
+    "runs/aes-eight-and-norm-20261018/sequential-control-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/first-plane-orbits.json": "aaacd07e52e7144b810b1b87b3e7f120c0b88c051d7bc2f58ac7132545bea95e",
+    "runs/aes-eight-and-norm-20261018/drat-check-control-1.stdout.log": "1e7a6818b762c47aa81e10092843ceb5b22fc241e97053137239e5376dff3069",
+    "runs/aes-eight-and-norm-20261018/sequential-control-1.stdout.log": "5f6ffb66e80711fe65ae7f18d5ca8dfd6be7a205fd855db3ad3a42338be5f1d1",
+    "runs/aes-eight-and-norm-20261018/control-known-nine.cnf": "8687b8a11837e27624dc94d0344ba20ca5b20e21127b6214bf3a5817de0dbaf1",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-code-audit-20261018-encoder-audit-run-schema.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/sequential-known-nine.cnf": "042e0504fb8204843fb2eb4907a58b97ccca33f422db80ab8cf901c566b99197",
+    "runs/aes-eight-and-norm-20261018/cadical-GF16-eight-quadratic-normalized.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/aes-eight-norm-theory-20261018-run-schema.command.json": "73adbc2c893e15ecf7122e3cbdf17acd4b6c12e402c889f36db18ded58696f0d",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/completion-extension-run-schema.command.json": "0691d6f1eda3f5b82d3a10227bf8d9c11848da793e0b6cac718780f688f2d60b",
+    "runs/aes-eight-and-norm-20261018/normalized-report.json": "b49bc13d2de6fca2711690a556578b638dc139f798493230d7a230d038816b4c",
+    "runs/aes-eight-and-norm-20261018/cadical-help.command.json": "2bd408d2d19dcb55c052f49701fa0ab43c6e7c0a63d4eed8541d4f3793b7a133",
+    "runs/aes-eight-and-norm-20261018/classification.json": "ad812f2b88cc095b57b751c40048cac9f46bd1f4d42fe8546efcfcf5143f0046",
+    "runs/aes-eight-and-norm-20261018/completion-extension-run-schema.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-and-norm-20261018/cadical-control-1.command.json": "842a9d7350b9388fee1c485be1e6af5804645a96c9e684248f73d6a04b941fca",
+    "runs/aes-eight-and-norm-20261018/control-2.stdout.log": "0fada58c7ee929b1697d66cf2b5bff7310cce359b706c83d10616447492ff313",
+    "runs/aes-eight-and-norm-20261018/sequential-control-1.json": "056750aa2c048c87db9bcae6c1902c585d09bf73382eee1ed66aee90310a37ee",
+    "runs/aes-eight-and-norm-20261018/control-eight-mixed-planted.stdout.log": "c61509561911ad5b86bfd6726565493aaa1d737506c89f98f1f2b5b77bd0bd34",
+    "runs/aes-eight-and-norm-20261018/sequential-control-0.json": "bb428095884fe481e54862f47d2b02e542f85b778fa39881060eebc1b427301f",
+    "runs/aes-eight-and-norm-20261018/cadical-configure.stdout.log": "63cfd59f98454044f77d10bdb208631b9df0bde43656a8b8d77c86a5fa451b00",
+    "runs/aes-eight-and-norm-20261018/plain-control-0-conversion.json": "9f58ea9c93039f17114dc301d5102cfa047ca22e1830507cb24b582da3540b30",
+    "runs/aes-eight-and-norm-20261018/derive-lrat.stdout.log": "b191256126c4f006020935083b7608c97f1819d482f6b1742135ca0ca21ed940",
+    "runs/aes-eight-and-norm-20261018/sequential-known-nine.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/plain-GF16-eight-quadratic-normalized.cnf": "0ca93bf55d3bdbca7a6c893b93ef4b6924731e52bce0bbaa7f2027b12d712887",
+    "runs/aes-eight-and-norm-20261018/control-known-nine.json": "bf297553c476df995e1609669fede1b88df64bfee051b1ba3788f62f8f848797",
+    "runs/aes-eight-and-norm-20261018/cadical-control-0.command.json": "7ccf112d988c46e79d2b245edd9c3ae8bab9ff96fd47e84c5bde3e70a7f3c4e7",
+    "runs/aes-eight-and-norm-20261018/sequential-control-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/plain-control-0.cnf": "11db79cbcba391991777d6d29bf097605a568b6fe60a275fb4c50b88a642843a",
+    "runs/aes-eight-and-norm-20261018/plain-control-1.cnf": "b95cb57adb6ea74c176461e52dc923601e7f67961504c7a57d43546517367aa2",
+    "runs/aes-eight-and-norm-20261018/control-known-nine.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/drat-check-GF16-eight-quadratic-normalized.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/cadical-help.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-and-norm-20261018/GF16-eight-sequential-orbit-0.stdout.log": "7960afd411a9e44404696396dc78a27df90952b62a41258c639ca7540d6cf4ef",
+    "runs/aes-eight-norm-code-audit-20261018/sequential-audit.json": "f20c010d46888b1a5101d75381f9eaff29a5633d6743a69874c3152a75d1f33c",
+    "runs/aes-eight-norm-code-audit-20261018/schema-validation.command.json": "50abb030c9a25f97aa73f27c459338dec7af2bf314896b53163007c38efa86db",
+    "runs/aes-eight-norm-code-audit-20261018/audit_v2.py": "473cc2d076feb85f575b56504c173e57a007f2fa5a4cf1368a6da27987cc9132",
+    "runs/aes-eight-norm-code-audit-20261018/predicate-controls.json": "552ae1cf6720e620b9c531bb8d0369f575cfd467186513faf944537ca2c9ce02",
+    "runs/aes-eight-norm-code-audit-20261018/summary.json": "1f7818f11bc8d539cb9e44957d89f624d6ac80e8eb8b105dbfd268f23b5c6f95",
+    "runs/aes-eight-norm-code-audit-20261018/schema-validation-v2.command.json": "69c631947880262951662c06c6fb30bae87107f7d64278ba238a06464170665a",
+    "runs/aes-eight-norm-code-audit-20261018/sequential-audit.stdout.log": "24fbc88893696ca617a3749edbf5a3ee470c758214424a1a222f7dfbb5a602ae",
+    "runs/aes-eight-norm-code-audit-20261018/retention-closeout.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/crosscheck.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/predicate_controls.py": "29edb7307fdb4e6889784de186d0bd1c07e36a054bea9e5d943c327b49ec414f",
+    "runs/aes-eight-norm-code-audit-20261018/completion-extension-run.json": "534dcdcb844c3cc77a7ffd198aa6ce6756dbb782ea53475774d21f055d33a288",
+    "runs/aes-eight-norm-code-audit-20261018/xor-conversion-audit.stdout.log": "69ae88c6be526d9c3233efd900bbb1e98221e87a86fc063f7005227215db5851",
+    "runs/aes-eight-norm-code-audit-20261018/run_command.py": "b60fc76e045c935ff6a9bb32728c79d651d7b4d57427d668070b714bdb6941e1",
+    "runs/aes-eight-norm-code-audit-20261018/retain.py": "471b427ea721e74246f59d4eb821cebaf1708fd62022e05fe8f9bfb64b608cf6",
+    "runs/aes-eight-norm-code-audit-20261018/RESULT.md": "a0771a811cf8be45d503da1840a01b5195b3fa7bb45544f80e64e64ecef5d646",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-audit.json": "06eca0e5d1c2f083c6b1f636a54f051400bb58d28516c97f7111d3fb8cb96f68",
+    "runs/aes-eight-norm-code-audit-20261018/report.json": "2e9acecc9cb06c12f76d7c4d3c3cc9e1871c208584e9f78441c66cd59629b4b2",
+    "runs/aes-eight-norm-code-audit-20261018/audit.py": "ac825513d6052013a9e6c724afb90cfbea41496be3cdbd78422d2fb2a3cd5ef6",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-audit.stdout.log": "6c6707000dabd9bdf8fb03b2d67f8edd2f7051c2d065f4aae740b12929568ce5",
+    "runs/aes-eight-norm-code-audit-20261018/retention-closeout.command.json": "dbd5f7fe3b0b15675b8419aa6301c994e3bb7fa5962cee22f8c0f6e72d8cc1f2",
+    "runs/aes-eight-norm-code-audit-20261018/audit-v2.stdout.log": "dfefb56b97836e3ca1ba9d3e29dc8aece61750bfc19214d0eaf5ec73f70ab776",
+    "runs/aes-eight-norm-code-audit-20261018/sequential-audit.command.json": "fc8c38d838c1a996e6b7f34e38238a659e3e9b5bda4045dfa1c00bfb545256f7",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-retention-closeout.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-audit.command.json": "93c33cbce39722d2157a38e40060843b6e004a2a3365b0a96db0619556703668",
+    "runs/aes-eight-norm-code-audit-20261018/crosscheck.py": "d855b6c02cbc1082f6106342e8448326a25de978aa136617272f49be5f2b29be",
+    "runs/aes-eight-norm-code-audit-20261018/orbit_audit.py": "3da845e43058b68bfb2311e1971c8f6ee75ce3487d727380aeb20502092a3821",
+    "runs/aes-eight-norm-code-audit-20261018/retain_encoder.py": "95256055dfe2ccc6a260b1513e1e07cfa831fb4cb27376978dcc13a53a19081d",
+    "runs/aes-eight-norm-code-audit-20261018/normalized-cnf-audit.command.json": "338c4c1792ce154dc349009e6f63bdbca514ce266839dd798a9a3327e263cb3d",
+    "runs/aes-eight-norm-code-audit-20261018/orbit-audit.command.json": "bea830ce99c3b6722d7e7e15d354c93d6bed8489e4237f156a325207a8e4ca54",
+    "runs/aes-eight-norm-code-audit-20261018/crosscheck.json": "ed591b6f96a061512a4a89b0cd37f5712014cf6db30876eccd70b2b95164746b",
+    "runs/aes-eight-norm-code-audit-20261018/audit.stderr.log": "41efa94fcf53615bc224c9667e0c240ecce9cae09ac8fb03414b722a94ff6650",
+    "runs/aes-eight-norm-code-audit-20261018/schema-validation-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/orbit-audit.stdout.log": "22416c16271e23d71a857eded454479817e2da180425849ca412bd5c90d70310",
+    "runs/aes-eight-norm-code-audit-20261018/schema-validation.stderr.log": "dd5527eec5ccaea8dad55b014c674ee5f6134f06af56c564932413345f3db3a8",
+    "runs/aes-eight-norm-code-audit-20261018/normalized-cnf-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-schema-validation.command.json": "81a6d2b758c34dca1db070593d55fa05c5b1c6a36c8e422bc010b79e16af8788",
+    "runs/aes-eight-norm-code-audit-20261018/predicate-controls.stdout.log": "f9da67294053c01930d31dea60c0bf1ca596b7b681c9e696374f5f357236d67d",
+    "runs/aes-eight-norm-code-audit-20261018/predicate-controls.command.json": "25d6f39bea13f0d13d921e5e5f9d29ba2be0c40e6665d8de641b7cc47c2f811f",
+    "runs/aes-eight-norm-code-audit-20261018/retain_v2.py": "e75b469081c73bd2c43781284d3e8b89eaf8b54f5b5badbac19490788d2b230d",
+    "runs/aes-eight-norm-code-audit-20261018/sequential-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/retention-closeout.stderr.log": "4db21b5a83146189a74f5e86af4d5fe1914f7277e0445c576f434a6268dddecc",
+    "runs/aes-eight-norm-code-audit-20261018/crosscheck.stdout.log": "33c7590cb4a0e6cd4d8ec43285e012f01b73845b16deb7ed2affab7f0481f3ef",
+    "runs/aes-eight-norm-code-audit-20261018/audit-v2.command.json": "9927e3bd709b955c74b171c52875c0cc73107d3e0dcbc3ab765ccc12e502ddf2",
+    "runs/aes-eight-norm-code-audit-20261018/orbit-audit.json": "f7e18c3c9b05aeb8c4fc5dde71f97b0e3e7cfb47014ffb54e6ad6f58376af259",
+    "runs/aes-eight-norm-code-audit-20261018/xor-conversion-audit.json": "bfc0abf905a5e67333739299f20411aa2704cb1d383f0c5e6328c95800414e9f",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/audit-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/xor-conversion-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/normalized-cnf-audit.json": "b5b0b950e4ee9d7fce375acd0504968974705f07167950d8b7b4f4e606cf4422",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-retention-closeout.command.json": "9ae71787d26b378eedf02262583c075506848660e5ee55596fa9a2fa4f538403",
+    "runs/aes-eight-norm-code-audit-20261018/normalized_cnf_audit.py": "1738e02125639b764473f61b11a4f56d1b146341e06667e71fa855c5ce039cef",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-audit-run.json": "f5194846385387bb4108767af21deabbc5e909fb37930cdbcc9f385ac529efa2",
+    "runs/aes-eight-norm-code-audit-20261018/xor_conversion_audit.py": "238bdc7c903da82288bd1e21fcbf1b8abbd933a3e9aea88b05d90b051f3ca2eb",
+    "runs/aes-eight-norm-code-audit-20261018/CLOSEOUT_FAILURES.md": "046f712de2fc9cd90b642d686a17b7e6a7393fb2e1f714495b46a9f83e370391",
+    "runs/aes-eight-norm-code-audit-20261018/sequential_audit.py": "41b37d0ea8d9bc761d491cb239c948f468feda9ef78ff0fc18e4287e6df09e71",
+    "runs/aes-eight-norm-code-audit-20261018/xor-conversion-audit.command.json": "e779ef6332a11f0b390543f5e61bc78f4ffd92b86137d75e261815f53bb47144",
+    "runs/aes-eight-norm-code-audit-20261018/encoder-retention-closeout.stdout.log": "5248a9fbffd71d96a4b5554ced413068bdd85927c06dd57361836b06995d85ec",
+    "runs/aes-eight-norm-code-audit-20261018/crosscheck.command.json": "c13b550b87d4c51ce05b57691d252f2202f99358acaa52df22e1d59fd8ef5f55",
+    "runs/aes-eight-norm-code-audit-20261018/run.json": "147b7abd2f53effef7831030309702b60bc1b2db1b4376c5e4e241a05a20a5d4",
+    "runs/aes-eight-norm-code-audit-20261018/schema-validation.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/predicate-controls.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/normalized-cnf-audit.stdout.log": "4dcea9211f7590f8fa7f6974f899686adaef95dd4c11f67e7a43df99ff28a453",
+    "runs/aes-eight-norm-code-audit-20261018/cnf_audit.py": "d378eeca1b8a1ac5c311866c5cd3313a4a84cba9a1645532d0e2b58dc73b44cc",
+    "runs/aes-eight-norm-code-audit-20261018/audit.command.json": "6aafb8493744343763bb49b23b872b02af7df7b0a7ac6855fdcce2a5189f78d6",
+    "runs/aes-eight-norm-code-audit-20261018/orbit-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-code-audit-20261018/schema-validation-v2.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-norm-code-audit-20261018/audit.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-theory-20261018/schema-validation.command.json": "219252d90deb1c50b8df135aa85b3707fe83d8353d0ac5966ab5f4f3619db109",
+    "runs/aes-eight-norm-theory-20261018/target-basis-report.json": "d13b55c697f9814affa918c89655bb91cf31e4b53c35e3ae2280f263792aaad8",
+    "runs/aes-eight-norm-theory-20261018/symmetry-audit.stdout.log": "0a6a9c7627a40d0fff56d0629770951af35acd744d6fc484c0c926af24191d7f",
+    "runs/aes-eight-norm-theory-20261018/audit-recheck.command.json": "2718fb7492123632c99ecc680991dacc96bd3c00489381e4e3d1b0743ac811c5",
+    "runs/aes-eight-norm-theory-20261018/initial-report.json": "8843d8883a9e4e993a80620e923be85bacfa9201812c66ef0012370263581c9b",
+    "runs/aes-eight-norm-theory-20261018/run_command.py": "3c0a0a30b82ea70c365f7814a5b8402a80c29390a8f3c3c970eac629b919344b",
+    "runs/aes-eight-norm-theory-20261018/retain.py": "6155de1bd9028d9f1e027d44b3b18d0734e2d8dfd798310334a31cacc9fb02af",
+    "runs/aes-eight-norm-theory-20261018/audit-recheck.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-theory-20261018/report.json": "3a8b533a424d1ec651342ceb04bdddb4edbd11905f9e50b1f9320147fd383d7a",
+    "runs/aes-eight-norm-theory-20261018/audit.py": "14b90adea187353a10f527e8c70fbddadf0803ca3d5f6f43c890cffe2712b4f1",
+    "runs/aes-eight-norm-theory-20261018/verify_commands.py": "a84347179c3dddf9c978323b4999c5251992cdcfa392e0fcbe460f5a29b0b272",
+    "runs/aes-eight-norm-theory-20261018/target-basis.stdout.log": "0a717578c1b71ab1ae314aa1995e69380f8ee3e66d4535a4bcd8688d1e2a94ae",
+    "runs/aes-eight-norm-theory-20261018/target-basis.command.json": "a269270a57d45badbbb251dab5fd029b4f465a66a5c6ef421498c58e69e16bf8",
+    "runs/aes-eight-norm-theory-20261018/audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-theory-20261018/schema-validation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-theory-20261018/symmetry-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-theory-20261018/research.json": "d2da90dfa0b3cd920e2118cf180fccfd618f263bff77f1ef0e37e7d7c97343e2",
+    "runs/aes-eight-norm-theory-20261018/symmetry_audit.py": "f2d78f94e27b6a55be35f1bb3e02735775b6db054f4015f709541131706ff0a6",
+    "runs/aes-eight-norm-theory-20261018/audit-recheck.stdout.log": "230f01633f658d33d0c0caedacb771c1da17bba7ac6cd9d881428c23967b1695",
+    "runs/aes-eight-norm-theory-20261018/target-basis.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-eight-norm-theory-20261018/target_basis.py": "8e04d756ad6378392b7c793b59ad11a20cd1299e41e05aca67708f50d4405223",
+    "runs/aes-eight-norm-theory-20261018/run.json": "0a6079049af5ffcec88c1c6c038527a839fef73d47f68f4181f5bd2d098f136d",
+    "runs/aes-eight-norm-theory-20261018/prior-evidence.zip": "b54fe9192ae156a71b8d76aa9f6bdbff9db8f77823f8d6173f784ad1bd96c986",
+    "runs/aes-eight-norm-theory-20261018/symmetry-report.json": "1031bb2f68f2a5a8c857a731616285a20dfd407884a852b8c30b4ec306557bd2",
+    "runs/aes-eight-norm-theory-20261018/schema-validation.stdout.log": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+    "runs/aes-eight-norm-theory-20261018/audit.command.json": "dc4163056cc46a70ae7fc72468d2b632a0fa2e2923bc19fa2e4f98f93099c847",
+    "runs/aes-eight-norm-theory-20261018/symmetry-audit.command.json": "f4dbd4002065631a4b0957c240261505d19accf4db21e2ad6f2cbd5ce56e5cb0",
+    "runs/aes-eight-norm-theory-20261018/audit.stdout.log": "3d4abcc869367292c3debc6055035e8d4ed56b99b10b742d180796c76bfc636f"
+  },
+  "limitations": [
+    "The semantic reduction is audited mathematics/finite computation, not a proof-assistant theorem.",
+    "DRAT/LRAT certify the exact normalized clausal formula, connected to the model by the separately audited reductions.",
+    "The previous public MF-167 claim prevents a world-first assertion; missing details in its archive do not establish our priority.",
+    "Three arbitrary-dependent eight-gate timeouts do not imply an unrestricted lower bound.",
+    "No new complete AES design, RTL/PPA, power, physical timing or security result."
+  ]
+}

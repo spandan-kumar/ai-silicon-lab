@@ -8,6 +8,29 @@ profile.
 
 Research date: 2026-08-29
 
+## Certificate-backed quadratic norm-stage boundary — 2026-10-18
+
+The proposed norm-stage route now has a completed exact result: multiplication
+in GF(16), and its affine-equivalent GF(256)-to-GF(16) norm, require nine
+parallel ANDs when all operands are affine forms of the original input bits.
+Mixed factors are allowed. This is a model-specific boundary, not an
+unrestricted eight-AND or AES lower bound and not a world-first claim.
+
+The [derivation and evidence](GF16_QUADRATIC_BOUND.md) explain the complete
+decoder classification, target-specific normalization and first-factor
+symmetry. The normalized instance returns UNSAT in two solvers; DRAT and
+derived LRAT certificates pass their checkers. A separate implementation
+reconstructs the normalized instance and its XOR-to-CNF expansion exactly.
+A nine-AND Karatsuba construction is evaluated on all 256 input pairs.
+An earlier public author entry already claims the same quadratic bound, so
+the scoped result is not presented as a new discovery.
+
+The broader, full-truth encoding allows arbitrary prior nonlinear signals
+as operands. All three first-plane orbit probes time out and remain
+inconclusive. Their control and serialization audits pass, but no smaller
+field multiplier or complete AES circuit has been found. The retained
+summary is `workspace/aes-256-gcm/reports/sbox_norm_stage_study.json`.
+
 ## Changed-prefix pilot and publication checkpoint — 2026-10-18
 
 The [progress handoff](PROGRESS.md) now includes all completed research through
