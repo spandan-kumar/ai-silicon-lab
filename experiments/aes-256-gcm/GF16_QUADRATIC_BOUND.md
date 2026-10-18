@@ -276,8 +276,40 @@ division, checks 34,560 scalar target truth rows, and reconstructs the joint
 orbits with union-find. The original three first-plane cases are still
 complete with a free first target direction; fixing that direction while
 keeping only those three would omit four classes. These seven normalized
-cases have not yet been used in a solver campaign, and no speedup or new
-circuit follows from the symmetry audit.
+cases are subsequently tested with free prefix gates and the first target
+fixed. All seven return UNKNOWN at their 30-second real-time limits.
+Independent review rebuilds 29 control/search CNFs and replays 21 SAT control
+models, including the correctly normalized nine-AND construction. No speedup,
+new full circuit or unrestricted exclusion follows.
+
+### Synthesized-prefix lookahead and projected outputs
+
+A smaller pilot synthesizes actual five-slot prefixes computing output bit
+zero on all 256 inputs, then applies exact closure lookahead. Seven distinct
+spaces outside the preceding 150-space family are found and excluded for
+eight-AND completion. Five have genuinely nonquadratic intermediate truths;
+one is all-quadratic, and one has a zero fifth gate. The actual available
+ranks are used: six spaces have rank 13 and the padded space rank 12. All
+have target deficit three, so the three-slot continuation remains rank-tight.
+Five other bounded prefix probes end UNKNOWN and exclude nothing.
+
+Root separately rebuilds all 13 pilot formulas and verifies all eight SAT
+models including the known control, exact factor-model blocking and scalar
+output truth. A different row-equation nullspace implementation completely
+rescans every obtained prefix. This extends the tested fixed-space union to
+157, not to every possible prefix. No separate agent audits this new glue
+after delegated work reaches a provider credit limit.
+
+The same follow-up verifies an eight-product circuit for the first three
+GF16 output bits. Every three-dimensional output hyperplane is field-scale
+equivalent. A complete code audit finds 30 qualifying length-seven,
+dimension-three decoder spaces, all one simplex orbit; no length-six code
+qualifies. A free-basis seven-product realization probe remains INDETERMINATE,
+so the projected complexity is locally bounded between seven and eight, not
+proved equal to eight. The author-posted MF-167 entry already addresses this
+projected problem and claims the stronger lower bound; no priority is claimed.
+The [retained normalized/pilot study](../../workspace/aes-256-gcm/reports/sbox_norm_normalized_search_study.json)
+separates these outcomes and verification limits.
 
 ## Prior art and availability
 

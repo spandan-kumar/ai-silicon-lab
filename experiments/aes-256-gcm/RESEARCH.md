@@ -8,6 +8,55 @@ profile.
 
 Research date: 2026-08-29
 
+## Normalized free-prefix search and constructive lookahead — 2026-10-18
+
+All seven joint target/plane cases are now run with the first target covector
+fixed to output bit zero, later target covectors free, and no fixed main
+prefix gates. Each reaches its 30-second real-time limit and reports UNKNOWN.
+The completed independent audit reconstructs 29 CNFs byte for byte and
+replays 21 SAT control models, 11 full-prefix witnesses and 17 counterexample
+transitions. Normalization is exactly four extra unit clauses for the actual
+GF16 target, not an unjustified generic shape-based restriction.
+
+A new pilot instead synthesizes five-slot prefixes computing that scalar
+output exactly, then checks continuation by the completed product-closure
+method. Seven obtained spaces are distinct from the earlier 150 and from
+each other. Five contain higher-degree intermediates. One prefix has a zero
+fifth gate, so its actual available rank is 12 rather than 13; its deficit
+is nevertheless three. All seven are closed inside their rank-tight target
+envelopes, excluding their three-slot suffixes. Five other prefix probes
+remain UNKNOWN. This gives 157 tested fixed-space exclusions, not a global
+eight-AND field lower bound.
+
+After delegated agents report a workspace credit limit, root verifies the
+new pilot with separate code: 13 exact formula reconstructions, eight SAT
+model replays including the existing positive control, five factor-block
+transitions and eight complete independent nullspace scans. No separate
+agent review of the new pilot glue is claimed. Completed normalized audit,
+simplex-code audit and all terminal local processes are retained; none is
+restarted merely because an agent stops.
+
+The projected three-output route has an actual eight-product upper circuit,
+verified on all 256 inputs, and a seven-product probe that reaches its
+60-CPU-second limit with INDETERMINATE. Root independently reconstructs all
+four native control/probe formulas and replays both positive models. The
+code classification covers all 11,811 rank-three length-seven spaces and
+1,395 length-six spaces, finding one 30-code simplex orbit only at length
+seven. Local evidence therefore leaves the projected quadratic complexity
+between seven and eight.
+
+The primary [MF-167 page](https://slopdealer.com/research/papers/mf-167/),
+reopened on this date, explicitly defines the projected quantity m3(V),
+claims its eight-product lower bound, and discusses Fano rigidity and a
+single field-scaling hyperplane orbit. This is direct prior precedent, not a
+newly discovered problem. Its earlier evidence-availability limitations
+remain; neither a missing receipt nor our timed-out probe establishes or
+refutes that published claim.
+
+See [the retained follow-up](../../workspace/aes-256-gcm/reports/sbox_norm_normalized_search_study.json).
+There is still no smaller complete field multiplier, improved AES circuit,
+verified world first, new physical result or measured solver speedup.
+
 ## Concrete nonlinear prefixes and joint normalization — 2026-10-18
 
 A constructive follow-up turns the scalar high-degree counterexample into
