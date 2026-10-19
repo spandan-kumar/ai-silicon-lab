@@ -18,11 +18,13 @@ The accelerator implementation and ongoing chip-design research live on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 Read the [progress and research handoff](https://github.com/spandan-kumar/ai-silicon-lab/blob/codex/experiment-2-crypto-algo/experiments/aes-256-gcm/PROGRESS.md)
 for what we tried, verified results, limitations and the current open questions.
-The latest published checkpoint is **2026-10-18**: exact restricted S-box
-searches, a certificate-backed quadratic GF(16) bound, 157 fixed-prefix
-exclusions and explicit counterexamples to a proposed scalar-prefix limit.
-Unrestricted eight-AND multiplication remains unresolved; the progress
-document links the evidence summaries and a standalone counterexample replay.
+The latest published checkpoint is **2026-10-19**: exact restricted S-box
+searches, a certificate-backed quadratic GF(16) bound, 160 fixed-prefix
+exclusions, three whole linear-family obstructions and verified six-AND
+constructions for all 35 output pairs. The latest full-eight-gate searches
+remain inconclusive. Unrestricted eight-AND multiplication is unresolved;
+the progress document records what we tried, current status, theorem
+dependencies, evidence links and standalone replays.
 The verified accelerator baseline is separate from the still-unmet
 world-first research goal; no improved record-setting AES circuit is claimed.
 
