@@ -74,6 +74,12 @@ constructive searches, **not a new record-setting AES circuit**.
   A joint scalar-direction/pair classification gives three safe search
   cases, not just two. The newer nonquadratic six-gate probes in those three
   cases all return UNKNOWN; no smaller full multiplier is obtained.
+- **Latest full-eight-gate search:** the earlier higher-degree rank budget is
+  now encoded for all eight gates on all 256 inputs. All three normalized
+  cases return UNKNOWN at their 20-second limits. An independent audit
+  reconstructs all five control/search formulas and replays the generic
+  positive control, including its cubic final gate. No full GF(16) candidate
+  or unrestricted exclusion results.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -427,6 +433,39 @@ separates independently executed constructions, published theorem dependencies,
 finite rank checks and solver outcomes. Its committed replay is
 `python3 workspace/aes-256-gcm/tools/verify_norm_pairs.py`.
 
+### Full-eight-gate checkpoint — 2026-10-19
+
+The newest model constrains every gate on the complete input table, rather
+than searching only a six-gate prefix. It permits arbitrary dependencies on
+earlier gates, requires a nonzero higher-degree component by gate five, and
+expresses the higher-degree parts of gates six through eight in the span of
+those already present. The necessary-condition argument uses the published
+two-output theorem and the separately reviewed rank budget above; the audit
+does not prove those dependencies anew. The last gate is not forced to be
+quadratic.
+
+The three cases, with second covectors 2, 4 and 12, each reach a 20-second
+solver limit with UNKNOWN. This is neither a lower bound nor evidence of a
+search speedup. Independent code reconstructs all five CNFs byte-for-byte.
+It checks the generic positive witness on all 256 inputs, including a cubic
+last gate with `r_5=r_8=3`; this witness is a control, not a field multiplier.
+The negative control adds a new late higher-degree direction (`r_5=3`,
+`r_8=4`) and has a directly checked span contradiction. No UNSAT certificate
+was checked for these controls.
+
+The [full-eight-gate checkpoint](../../workspace/aes-256-gcm/reports/sbox_norm_early_high_study.json)
+retains the terminal outcomes, exact scope, audit and artifact hashes. It
+supersedes the earlier pair study's proposed next action of building this
+encoder. The remaining question is still whether any unrestricted eight-AND
+GF(16) multiplier exists; no improved complete AES circuit has been found.
+
+Two exploratory notes are not promoted to new global results: a rank-one
+shared-cubic family probe reports no surviving rank-eight output pair, but
+has not received an independent full-inventory replay at this checkpoint;
+a proposed general rank-one flattening argument remains unproved. Neither
+changes the independently checked total of 160 concrete prefix spaces or
+the three verified whole linear families above.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -501,6 +540,9 @@ Committed evidence and entry points include:
 - [Output-pair frontier and rank-budget study](../../workspace/aes-256-gcm/reports/sbox_norm_pair_frontier_study.json)
   and [standalone pair replay](../../workspace/aes-256-gcm/tools/verify_norm_pairs.py)
   retain all 35 six-AND pair constructions and the three unresolved flag cases.
+- [Full-eight-gate early-higher-degree study](../../workspace/aes-256-gcm/reports/sbox_norm_early_high_study.json)
+  retains the latest three UNKNOWN probes, independent formula/model audit
+  and explicitly provisional rank-one diagnostic.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

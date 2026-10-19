@@ -1,0 +1,447 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-19",
+  "base_commit": "3883e0baf79b14faae656174f159ad93665e58f1",
+  "status": "audited-bounded-full-eight-gate-probes-all-UNKNOWN",
+  "complete_GF16_candidate": false,
+  "unrestricted_eight_AND_excluded": false,
+  "improved_AES_candidate": false,
+  "world_first_established": false,
+  "measured_solver_speedup": false,
+  "physical_metrics": null,
+  "search": {
+    "status": "bounded-full8-early-high-search-complete",
+    "controls": [
+      {
+        "label": "control-positive-nonquadratic-last",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-early-high-search-20261019/control-positive-nonquadratic-last.cnf"
+        ],
+        "solver_wall_seconds": 0.13910304103046656,
+        "variables": 106763,
+        "source_variables": 37617,
+        "clauses": 380106,
+        "native_XORs": 8055,
+        "CNF_sha256": "7280484ced6daa516e768b3524f7caf9ddcbc19ae159c9bdeb4d5cbf1aae2900",
+        "target_truth_hex": [
+          "0x7888877787778777877778887888788887777888788878888777788878887888",
+          "0x8888888888888888888888888888888888888888888888888888888888888888",
+          "0xa0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "0xaa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00"
+        ],
+        "second_covector": 2,
+        "fixed_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            272
+          ],
+          [
+            128,
+            320
+          ],
+          [
+            168,
+            256
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            8,
+            256
+          ]
+        ],
+        "all8_gates_all256_rows_constrained": true,
+        "late_high_parts_in_first5_span": true,
+        "last_gate_forced_quadratic": false,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              260
+            ],
+            [
+              32,
+              272
+            ],
+            [
+              128,
+              320
+            ],
+            [
+              168,
+              256
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              8,
+              256
+            ]
+          ],
+          "output_masks": [
+            7936,
+            256,
+            8192,
+            16384
+          ],
+          "prefix_decoder_masks": [
+            7936,
+            256,
+            16384
+          ],
+          "third_covector": 8,
+          "late_high_part_decoder_masks": [
+            0,
+            0,
+            14
+          ],
+          "all256_rows_verified": true,
+          "first5_residual_rank": 3,
+          "all8_residual_rank": 3
+        }
+      },
+      {
+        "label": "control-negative-new-late-high",
+        "status": "UNSATISFIABLE",
+        "exit_code": 20,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-early-high-search-20261019/control-negative-new-late-high.cnf"
+        ],
+        "solver_wall_seconds": 0.08394575002603233,
+        "variables": 106763,
+        "source_variables": 37617,
+        "clauses": 380106,
+        "native_XORs": 8055,
+        "CNF_sha256": "c5d6b301d866bd3ff5af0f844ad8090c006229ef445a60c793324e2b65122897",
+        "target_truth_hex": [
+          "0x7888877787778777877778887888788887777888788878888777788878887888",
+          "0x8888888888888888888888888888888888888888888888888888888888888888",
+          "0xa0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "0xaa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00aa00"
+        ],
+        "second_covector": 2,
+        "fixed_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            272
+          ],
+          [
+            128,
+            320
+          ],
+          [
+            168,
+            256
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            16,
+            256
+          ]
+        ],
+        "all8_gates_all256_rows_constrained": true,
+        "late_high_parts_in_first5_span": true,
+        "last_gate_forced_quadratic": false,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "searches": [
+      {
+        "label": "flag-2",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "20",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-early-high-search-20261019/flag-2.cnf"
+        ],
+        "solver_wall_seconds": 20.028567166998982,
+        "variables": 106931,
+        "source_variables": 37617,
+        "clauses": 380602,
+        "native_XORs": 8055,
+        "CNF_sha256": "ab57118b8bd65b4a2563ea0119f1e1831c2933738171b8fc69954e07af04bf60",
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "second_covector": 2,
+        "fixed_factors": null,
+        "all8_gates_all256_rows_constrained": true,
+        "late_high_parts_in_first5_span": true,
+        "last_gate_forced_quadratic": false,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "flag-4",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "20",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-early-high-search-20261019/flag-4.cnf"
+        ],
+        "solver_wall_seconds": 20.020333665888757,
+        "variables": 106931,
+        "source_variables": 37617,
+        "clauses": 380602,
+        "native_XORs": 8055,
+        "CNF_sha256": "61f41a7f0b2c160415a6c1f03f37c7ecf0fa2f26570ed957e15a654da170f536",
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "second_covector": 4,
+        "fixed_factors": null,
+        "all8_gates_all256_rows_constrained": true,
+        "late_high_parts_in_first5_span": true,
+        "last_gate_forced_quadratic": false,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "flag-12",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "20",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-early-high-search-20261019/flag-12.cnf"
+        ],
+        "solver_wall_seconds": 20.020217374898493,
+        "variables": 106931,
+        "source_variables": 37617,
+        "clauses": 380602,
+        "native_XORs": 8055,
+        "CNF_sha256": "9dfd1636a9e14bf1a07b7772003a311b016ced7505aacab0f57617ed39c35da4",
+        "target_truth_hex": [
+          "0x6996c33c96963c3c996633cc6666cccca55a0ff05a5af0f055aaff00aaaa0000",
+          "0xaaaa6666ff0033cca55a6996f0f03c3c96965a5ac33c0ff0996655aacccc0000",
+          "0x66669696aaaa5a5a33ccc33cff000ff069969966a55a55aa3c3cccccf0f00000",
+          "0x96966996666699665a5aa55aaaaa55aac33c3c3c33cccccc0ff0f0f0ff000000"
+        ],
+        "second_covector": 12,
+        "fixed_factors": null,
+        "all8_gates_all256_rows_constrained": true,
+        "late_high_parts_in_first5_span": true,
+        "last_gate_forced_quadratic": false,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "new_complete_GF16_candidate": false,
+    "scope": "All8truths constrained. Late high-part span is necessary condition only with published pair theorem and reviewed selector-rank argument. Third target covector free. No last-quadratic restriction.",
+    "world_first_established": false,
+    "unrestricted_eight_AND_excluded": false
+  },
+  "independent_audit": {
+    "status": "pass",
+    "public_objective": "Independently review the conditional full-eight-GF16 early-high-span model, reconstruct all five completed CNFs, and replay the positive full-table model without executing production code or rerunning any solver.",
+    "report_path": "runs/aes-norm-early-high-search-audit-20261019/audit-report.json",
+    "model_contract_path": "runs/aes-norm-early-high-search-audit-20261019/model-review.md",
+    "CNFs_byte_identical": 5,
+    "SAT_models_full_replayed": 1,
+    "main_statuses": [
+      "UNKNOWN",
+      "UNKNOWN",
+      "UNKNOWN"
+    ],
+    "control_statuses": [
+      "SATISFIABLE",
+      "UNSATISFIABLE"
+    ],
+    "audit_command_exit": 0,
+    "audit_command_wall_seconds": 2.6937432498671114,
+    "positive_final_gate_degree": 3,
+    "positive_first5_and_all8_high_rank": 3,
+    "negative_first5_high_rank": 3,
+    "negative_all8_high_rank": 4,
+    "finite_selector_membership_cases": 32768,
+    "third_covector_checks": 48,
+    "complete_GF16_candidate": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "solver_reruns": 0,
+    "scope": "Late-high-span and early nonzero cuts rely on separately reviewed published two-output theorem, selector-kernel argument, and quadratic flattening plus certified raw-parallel lower bound. This audit does not prove those external dependencies.",
+    "old_or_production_file_mutations": false,
+    "skill_used": "karpathy-guidelines: isolated review, explicit conditional assumptions, exact positive and negative controls.",
+    "model_review_peer_challenge": "Peer auxiliary_strategy agreed; stressed triangular nonlinear GL2 corrections and quotient rather than coordinate invariance.",
+    "limitations": [
+      "Published two-output theorem and prior flattening/parallel bound are dependencies, not proved by this audit.",
+      "No UNSAT solver certificate checked; negative control has independently replayed algebraic span contradiction.",
+      "All three field probes timed out; no negative field bound or circuit candidate.",
+      "Not a complete AES implementation, timing, security, masking, physical implementation or power measurement."
+    ]
+  },
+  "independent_model_contract": "# Conditional full-eight early-high model review\n\nThis is a review of a necessary-condition encoding, not a new GF16 circuit,\nan unrestricted lower bound, or an independent proof of the published\ntwo-output theorem. No solver was run by this audit.\n\n## Exact quotient represented by the residual variables\n\nWork with zero-preserving Boolean functions on eight raw bits. Let H(f) be\nthe ANF part of degree at least three. Let I2(f) be the unique zero-constant\ndegree-at-most-two function agreeing with f on singleton and pair inputs.\nThe 219 coordinates of R(f)=f+I2(f) on inputs of weight at least three form a\nlinear map with kernel the 36-dimensional zero-preserving quadratic space.\nHence linear dependencies among residual vectors are exactly dependencies\namong H(f), even though their coordinate representations differ.\n\nAt a support S of size at least three, the encoded residual is\n\n    f(S) + (|S| mod 2) sum_{i in S} f({i})\n         + sum_{{i,j} subset S} f({i,j}).\n\nThe support restriction on both sums is essential. The formula assumes\nf(0)=0. The encoder uses only zero-constant linear operands, so every gate\nhas value zero at input zero and constraining the other 255 rows is exact.\n\nWrite r_i=rank(H(g1),...,H(gi)). The first gate is quadratic, so H(g1)=0.\nConditional on r8=r5, precisely the following equations are needed:\n\n    R(gj) = sum_{i=2..5} c[j,i] R(gi), for j=6,7,8.\n\nThere are four unrestricted GLOBAL selector bits per late gate and 219\ncoordinate equations per gate. Early residuals need not be independent;\ncoefficients need not be unique. No full-rank, pivot, rank-two, or\nlast-quadratic restriction is justified. Equality of full gate truths would\nbe too strong: the difference is allowed to be an arbitrary quadratic.\nThe first-five nonzero condition is one OR over all 4*219 residual bits.\n\nThe executed finite controls check all 32,768 width-three four-vector/target\nmembership cases, including dependent representations, and identify the\nresidual map's rank 219 and kernel dimension 36. These are encoding controls,\nnot substitutes for the theorem dependency below.\n\n## Why r8=r5 is conditional on the two-output theorem\n\nLet E_i be the first i selector coordinates, and let H be the high-part map\non eight gate selectors. Choose a four-dimensional decoder section D\nmapping injectively onto the target space modulo raw affine functions.\nSince all four targets are quadratic, D is in ker H. Set\nK_i=ker(H restricted to E_i) and s_i=dim(D intersect E_i). Then\n\n    8-r8 >= dim(D+K_i) = 4+i-r_i-s_i,\n    r8-r_i <= 4-i+s_i.\n\nThe published unrestricted two-quadratic-output theorem, together with the\nmeasured pair lower bound, implies s5<=1: otherwise a five-gate prefix\ncomputes two independent field components. At i=5 the inequality gives\nr8-r5<=0; monotonicity gives equality. This argument does not require gate\ntruths to be independent. The separately reviewed quadratic-flattening\nlemma and certified raw-parallel eight-gate exclusion imply r8>0, hence\nr5>0. A raw-parallel pair lower bound alone does NOT establish s5<=1 for\nnonquadratic prefixes.\n\nDependency: runs/aes-norm-pair-theory-20261018/proof.md records the\nMirwald--Schnorr theorem attribution via Boyar--Find and Bilgin. This audit\nhas not inspected the original theorem's full proof and does not replace\nthat explicit literature-dependency boundary with a local proof claim.\n\n## Nested target flags and free affine corrections\n\nIf four target classes are available after eight gates, a prefix of i gates\ncontains at least i-4 independent target classes: the suffix can add at most\n8-i dimensions. Choose nested Q by gate five, a second independent target\nR by six, and a third independent S by seven. The measured semilinear action\non the JOINT flag (Q,span(Q,R)) permits Q=1 and R in {2,4,12}. R and R+Q are\ninterchangeable using the already available Q decoder. The third covector\nmust remain free outside {0,1,R,R+1}; all twelve remaining values are legal.\nThe production four forbidden assignments implement exactly this test.\nAll four original target outputs and all three prefix witnesses retain\nunrestricted coefficients on the raw eight input signals.\n\nFor a determinant-one field matrix, inputs transform by\n\n    a'=alpha*a+beta*b, b'=gamma*a+delta*b,\n    a'b'=ab + alpha*gamma*a^2 + beta*delta*b^2.\n\nField squaring is binary-linear, so SL2 fixes all four field-output polars\npointwise and changes each exact output only by a raw-linear correction.\nIt is transitive on nonzero raw covectors and therefore permits fixing the\nfirst useful left factor to mask one without fixing its right factor or\nits plane. Raw-linear decoder terms must remain available to absorb those\ncorrections. This normalization can be applied after the joint flag\nreduction because every target covector is fixed modulo raw-linear terms.\n\nInput substitution preserves the degree-at-most-two space. Residual span\nrelations are therefore invariant, but the 219 coordinate vectors do not\nliterally remain unchanged or commute with substitution. Their quotient\nclasses transform invertibly.\n\n## Gate-plane canonicalization and constants\n\nChanging a Boolean operand-plane basis can add an operand to its product:\nu(u+v)=uv+u. A dependent gate's operand may contain earlier NONLINEAR gate\ntruths, so this correction is not in general raw affine. Completeness uses\ntriangular rewrites of every downstream operand and every decoder in the\nentire earlier-signal span. Then each transformed g_j equals g_j plus an\navailable earlier-signal combination, preserving every prefix span and its\nhigh-part image. The late-span equations remain satisfiable with possibly\ndifferent coefficients. It would be unsound to permit only raw-affine\ncorrections at dependent gates or to freeze the late selectors in advance.\n\nAffine operand constants can likewise be removed by triangular rewriting:\n(A+c)(B+d)=AB+cB+dA+cd. Redundant/affine gates can be removed and zero gates\npadded at the end; a nonaffine computation has a first useful gate with\nnonzero raw operand plane. The source permits zero-left padding. No\nintergate ordering, fixed first right factor, or fixed first plane is added.\n\n## Executed source/model audit\n\nAn independent emitter reconstructs all five plain CNFs byte-identically,\nincluding signed-native-XOR chain translation. The only imported code is\nour immutable independent algebra helper, not production code.\n\nThe positive generic control replays all 380,106 clauses, 8,055 native XORs,\n31,698 AND helpers, 2,040 gate truth variables, 1,533 residual variables,\n12 late selectors, and 657 residual-coordinate equalities. Independent\nscalar and bit-sliced replay agrees for all 256 inputs, all four outputs,\nand all three prefix witnesses. Its final gate is cubic and r5=r8=3, so\nthis is an actual positive control for a nonquadratic last gate.\n\nThe fixed negative still computes all four generic targets but has r5=3\nand r8=4, with the new direction introduced only at the last gate. Its\nspan contradiction is verified algebraically, independently of the\nsolver's uncertified UNSAT answer. All three main field probes are UNKNOWN\nand exclude nothing. No complete GF16/AES candidate results from this run.\n\nKarpathy guidelines influenced this review by keeping the change isolated,\nmaking the conditional scope explicit, and checking both admitted and\nrejected controls rather than treating an intended encoding as evidence.\n",
+  "separate_span_controls": {
+    "status": "pass",
+    "finite_late_span_membership_cases": 33824,
+    "coefficient_assignments_checked": 541184,
+    "counts": [
+      {
+        "coordinate_width": 1,
+        "membership_cases": 32,
+        "admissible": 31,
+        "dependent_early_arrays": 16
+      },
+      {
+        "coordinate_width": 2,
+        "membership_cases": 1024,
+        "admissible": 931,
+        "dependent_early_arrays": 256
+      },
+      {
+        "coordinate_width": 3,
+        "membership_cases": 32768,
+        "admissible": 26251,
+        "dependent_early_arrays": 4096
+      }
+    ],
+    "positive_nonquadratic_last_retained": true,
+    "positive_high_rank_first5_and_total": [
+      3,
+      3
+    ],
+    "negative_high_rank_first5_and_total": [
+      3,
+      4
+    ],
+    "scope": "Exact finite predicate checks and actual planted controls. Does not establish the published pair theorem or solve the field multiplier search."
+  },
+  "provisional_rank_one_family_diagnostic": {
+    "label": "canonical-rank1",
+    "all_nonzero_lefts": 8191,
+    "eligible_unordered_pairs": 53776,
+    "quadratic_kernel_dimension_mod_affine": 4,
+    "quadratic_residue_polar_cosets": 10036,
+    "cosets_admitting_rank8_pair_with_Q": 0,
+    "bent_pair_obstruction_passes_for_whole_linear_family": true,
+    "first_obstruction_escape": null,
+    "classification": "necessary-condition diagnostic, not a complete field circuit",
+    "algorithm_seconds": 5.880835291929543,
+    "scope": "All eligible products of the earlier canonical shared-cubic five-gate prefix, allowing arbitrary quadratic target directions. A surviving bent-pair coset would invalidate this particular family-wide obstruction, not give a complete multiplier.",
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false
+  },
+  "provisional_note": "The rank-one inventory has not received independent full replay; not counted as a fourth verified family or an unrestricted rank-one exclusion. General rank-one flattening remains unproved.",
+  "supersedes": "The historical pair-frontier study next_action proposing this encoder; the old frozen study is unchanged.",
+  "raw_archive_in_git": false,
+  "reproduction_limit": "The full-eight encoder, solver CNFs, stdout/stderr and audit programs are in ignored local runs/. This committed summary is not a complete raw archive or standalone solver reproduction package.",
+  "audit_run_sha256": "f441f3d29e4cf1c428c08d381ab2b81147d0df19f5e6cab2f551395e5dbbf5b5",
+  "verified_frozen_artifact_count": 47,
+  "evidence_sha256": {
+    "runs/aes-norm-early-high-search-audit-20261019/audit-report.json": "33652b1321ac592b1756b1fe949dbe0df1e8ebb86caf9eeb0e45640717836ff7",
+    "runs/aes-norm-early-high-search-audit-20261019/audit.py": "317984c8581ffba24d4d99fc8046bf254663e77019aa0309aa77d32f0f5ae03a",
+    "runs/aes-norm-early-high-search-audit-20261019/base-commit.command.json": "7ad9226d90b6318ff054a65817096d8e1ca44a0d166b1cebd0e013cb9d8d0837",
+    "runs/aes-norm-early-high-search-audit-20261019/base-commit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-audit-20261019/base-commit.stdout.log": "e04b193bf94ce8216000a58593e934aae0b511c3af9c417bfcfcf59796cb818c",
+    "runs/aes-norm-early-high-search-audit-20261019/independent-five-formula-audit.command.json": "371b322991441dc5bf6f7d416a3d3ad897fb95cf1200ea0f10660e29d2a47970",
+    "runs/aes-norm-early-high-search-audit-20261019/independent-five-formula-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-audit-20261019/independent-five-formula-audit.stdout.log": "74a31f9ed74cd659724a335480088efd54e0d34d82514c396f89f54203361259",
+    "runs/aes-norm-early-high-search-audit-20261019/model-review.md": "cbdf828df45ee819e4219fcea8f7268aff215a1695d856d1601783531fbf2fc7",
+    "runs/aes-norm-early-high-search-audit-20261019/python-version.command.json": "f5a712e80fbc0de8b6ab8a63487028c18a07b08080442c60d9e9775665a21c33",
+    "runs/aes-norm-early-high-search-audit-20261019/python-version.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-audit-20261019/python-version.stdout.log": "0366d77cc1f1ac88ea458231ba4f639323d5caf34de0d50b7618277fd4395f1f",
+    "runs/aes-norm-early-high-search-audit-20261019/retain.py": "4412355baa35fef167b7b0f08e8db05ef5945d15f7b91ce94f83efe7661ec237",
+    "runs/aes-norm-early-high-search-audit-20261019/run_command.py": "d5ce6c75e7cb3e27a8ad042d39b960511cd9b98d8d80b5af94b2c4abb630ca8e",
+    "runs/aes-norm-early-high-search-audit-20261019/summary.json": "ffecf532abbb06da2163529de3f2991569cd707025414ad5f2b910bf675b4f3a",
+    "runs/aes-eight-and-norm-20261018/search.py": "7987674689f26701fa72c1661f3008cbe3c1eeea790ff966c1ac9ffe6b78f326",
+    "runs/aes-norm-cegis-20261018/search.py": "b32a6b23715c9539e73dcf9fc2cda2ffac6c975997b542c0490f326ecb061849",
+    "runs/aes-norm-early-high-search-20261019/control-negative-new-late-high.cnf": "c5d6b301d866bd3ff5af0f844ad8090c006229ef445a60c793324e2b65122897",
+    "runs/aes-norm-early-high-search-20261019/control-negative-new-late-high.json": "61bbdd92b225a92575c5c166b95923c63a8e678e54bd9fa7bd8b19b158d87b7e",
+    "runs/aes-norm-early-high-search-20261019/control-negative-new-late-high.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-20261019/control-negative-new-late-high.stdout.log": "5d719d9c34f01e3f60df32c6357d2b2b7c5399d07adc4d55dd86abb8c64ad575",
+    "runs/aes-norm-early-high-search-20261019/control-positive-nonquadratic-last.cnf": "7280484ced6daa516e768b3524f7caf9ddcbc19ae159c9bdeb4d5cbf1aae2900",
+    "runs/aes-norm-early-high-search-20261019/control-positive-nonquadratic-last.json": "f7a218dc8a88e822e4e93ee0cc248d7cb83c7243a77ecb59afaee7ee1cf2df87",
+    "runs/aes-norm-early-high-search-20261019/control-positive-nonquadratic-last.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-20261019/control-positive-nonquadratic-last.stdout.log": "8b34955b523aa568ad81fcf0aa4fa63aba629b4d0de5b2466ba4bfef24be0fc8",
+    "runs/aes-norm-early-high-search-20261019/flag-12.cnf": "9dfd1636a9e14bf1a07b7772003a311b016ced7505aacab0f57617ed39c35da4",
+    "runs/aes-norm-early-high-search-20261019/flag-12.json": "8ac68bef77210e6e24274066780bfef4397333f789b657b5f4b15597461920db",
+    "runs/aes-norm-early-high-search-20261019/flag-12.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-20261019/flag-12.stdout.log": "60049c21d12d156a4c56e88370883f2c7422b8fc42a3f9854250d15b9a37efbb",
+    "runs/aes-norm-early-high-search-20261019/flag-2.cnf": "ab57118b8bd65b4a2563ea0119f1e1831c2933738171b8fc69954e07af04bf60",
+    "runs/aes-norm-early-high-search-20261019/flag-2.json": "77506b1c60f983682023e64e1b14ad9185a865e6748ffbb289f2a986ae08229f",
+    "runs/aes-norm-early-high-search-20261019/flag-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-20261019/flag-2.stdout.log": "615b99411e11df2507e46960a200a872fb414779605a585fb9ee978fe2927953",
+    "runs/aes-norm-early-high-search-20261019/flag-4.cnf": "61f41a7f0b2c160415a6c1f03f37c7ecf0fa2f26570ed957e15a654da170f536",
+    "runs/aes-norm-early-high-search-20261019/flag-4.json": "278534740ace147d0034a8a7686304ff8ad104d30f6de579fbcc2f0f80dfb809",
+    "runs/aes-norm-early-high-search-20261019/flag-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-early-high-search-20261019/flag-4.stdout.log": "ad8ad6c96da8fb39e5acb0928743eabbc2f74f50be3951aef61f46214c346db2",
+    "runs/aes-norm-early-high-search-20261019/report.json": "e1d9860c0e596aa4636ed973199094d6b403968d6d64e3c89d05efff7c09033c",
+    "runs/aes-norm-early-high-search-20261019/search.py": "077cecb8602eed48509b5f06408f07f7ffe1f76e288a1bb1d586835eec464c4d",
+    "runs/aes-norm-pair-flag-search-audit-20261019/audit-report.json": "164e9a87eea1d5a2153049f1dd3e478d1d874327dc3cdf7649f2880d93d8186c",
+    "runs/aes-norm-pair-flag-search-audit-20261019/audit.py": "b3347b44a91301f0a6ecb15dd2c08bf6c45b8bb43ee58d05cf29d18ab94c3584",
+    "runs/aes-norm-pair-flag-search-audit-20261019/run.json": "f7602ffe971f0bd5124df23b192d2011541d013e5a8812cf029c52a1a462c4c1",
+    "runs/aes-norm-pair-flags-audit-20261019/report.json": "533913b1e8300b1ed23626ac18bddbff04dcc4823d49344bf4f945b7b9a54745",
+    "runs/aes-norm-pair-flags-audit-20261019/run.json": "f9476c10f4f1d0154a4058559791745176d76b78508712feb53aed331ad3e5ec",
+    "runs/aes-norm-pair-theory-20261018/proof.md": "5f8cb0d3d1ad5fa651546ea550bacf4a85cf24957af0a4624782543e7adbbc28",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/audit.py": "76d8bd9de70f3d4b059f2161ff78611510aaea2a5352884b16934c043c8ac6fd",
+    "runs/aes-norm-early-high-search-audit-20261019/manifest.json": "b1c7b960ab86c81421c6587bae690e2e90fc4acc46fdf50ad6c97bb420a93589",
+    "runs/aes-norm-early-high-search-audit-20261019/run.json": "f441f3d29e4cf1c428c08d381ab2b81147d0df19f5e6cab2f551395e5dbbf5b5",
+    "runs/aes-norm-rankone-family-20261019/report.json": "02e916620f4a79a41bb7289d66edb8a4d31b97fd34cb69eaa25cb75345d3b3ff"
+  },
+  "telemetry": {
+    "canonical_model_id": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "cost": null,
+    "agent_wall_seconds": null,
+    "source": "unavailable; actual command durations retained separately"
+  }
+}
