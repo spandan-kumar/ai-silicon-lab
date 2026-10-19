@@ -2057,6 +2057,32 @@ theorem. No external Lean development or downloaded code was executed in
 this check. The self-contained scalar bound and local rank argument are not
 claimed as new mathematics; general flattening remains unresolved.
 
+### Near-optimal scalar structure: two failed shortcuts — 2026-10-19
+
+Actual five-gate rank-one prefixes refute the proposed claim that a
+four-dimensional quadratic kernel must have a rank-two basis. The explicit
+example and a separately synthesized example have inequivalent polar-rank
+distributions. Both still have five-product parallel realizations. Complete
+independent product inventories exclude their specified linear-input
+families, increasing that scoped total to six; no global rank-one or
+eight-AND exclusion follows. A separate exact six-variable challenge refutes
+the proposed local rank-two-correction lemma for arbitrary quadratic
+precursors, without imposing a cost budget on those precursors. See the
+[kernel-shortcut study](../../workspace/aes-256-gcm/reports/sbox_norm_kernel_shortcut_study.json)
+and its standalone replay.
+
+A primary-source check on 2026-10-19 read
+[Jukna, ECCC TR05-021, Section 2, Theorem 1](https://eccc.weizmann.ac.il/report/2005/021/download/).
+It attributes scalar single-level optimality to Mirwald–Schnorr, including a
+statement about optimal circuits. It does not justify preserving a whole
+auxiliary quadratic space with one extra AND; the two counterexamples above
+make that attempted extension concretely invalid. The original 1992 full
+proof and survey remained unavailable in the bounded literature check.
+[Boyar–Find, Sections 1.2 and 4](https://arxiv.org/html/1407.6169v3)
+was checked for the one/two-output versus general multi-output boundary.
+None of these sources is cited as a new result of this laboratory, a
+complete near-optimal-prefix classification, or proof of novelty.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or

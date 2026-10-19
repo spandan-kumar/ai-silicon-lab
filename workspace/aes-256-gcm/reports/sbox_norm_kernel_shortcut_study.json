@@ -1,0 +1,1147 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-19",
+  "base_commit": "a9d010bedb30e6ee5decb95e0ab2b024ab691c9b",
+  "result": {
+    "status": "two-shortcuts-refuted-and-two-further-families-excluded",
+    "kernel_rank2_basis_conjecture_refuted": true,
+    "local_rank2_correction_lemma_refuted": true,
+    "specified_whole_linear_prefix_families_excluded": 6,
+    "previously_tabulated_fixed_prefix_spaces": 160,
+    "new_fixed_space_dedup_not_performed": true,
+    "general_rankone_flattening_refuted": false,
+    "general_rankone_flattening_proved": false,
+    "unrestricted_eight_AND_excluded": false,
+    "complete_GF16_candidate": false,
+    "improved_AES_candidate": false,
+    "world_first_established": false,
+    "physical_metrics": null,
+    "new_push_performed": false,
+    "previous_goal_turn_classification": "progress: fourth linear family and scalar-only rank cut verified at a9d010b.",
+    "next_action": "Investigate structure with an explicit precursor-cost contract, or classify more five-gate prefixes; neither refuted shortcut is a sound search cut. The scalar-optimal four-gate/Q-by-four branch may admit a separate cost-preserving argument."
+  },
+  "standalone_counterexample_replay": {
+    "status": "pass",
+    "prefixes": [
+      {
+        "label": "explicit",
+        "factor_masks": [
+          [
+            1,
+            2
+          ],
+          [
+            128,
+            272
+          ],
+          [
+            129,
+            274
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            8,
+            32
+          ]
+        ],
+        "scalar_decoder": 7680,
+        "verified_inputs": 256,
+        "scalar_polar_rank": 8,
+        "higher_degree_rank": 1,
+        "K_dimension": 4,
+        "K_polar_rank_histogram_including_zero": {
+          "0": 1,
+          "2": 3,
+          "4": 5,
+          "6": 5,
+          "8": 2
+        },
+        "rank2_member_span_dimension": 3,
+        "K_parallel_AND_complexity": 5,
+        "lower_bound_reason": "A4-product parallel cover of dimension4 must equalK, but rank2members spanonly3.",
+        "parallel_upper_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            8,
+            32
+          ]
+        ],
+        "parallel_K_selectors": [
+          1,
+          6,
+          8,
+          16
+        ],
+        "parallel_K_decoders": [
+          256,
+          1536,
+          2048,
+          4096
+        ],
+        "parallel_Q_decoder": 7680
+      },
+      {
+        "label": "solver",
+        "factor_masks": [
+          [
+            1,
+            112
+          ],
+          [
+            12,
+            434
+          ],
+          [
+            13,
+            498
+          ],
+          [
+            106,
+            130
+          ],
+          [
+            105,
+            139
+          ]
+        ],
+        "scalar_decoder": 7947,
+        "verified_inputs": 256,
+        "scalar_polar_rank": 8,
+        "higher_degree_rank": 1,
+        "K_dimension": 4,
+        "K_polar_rank_histogram_including_zero": {
+          "0": 1,
+          "2": 3,
+          "4": 6,
+          "6": 5,
+          "8": 1
+        },
+        "rank2_member_span_dimension": 3,
+        "K_parallel_AND_complexity": 5,
+        "lower_bound_reason": "A4-product parallel cover of dimension4 must equalK, but rank2members spanonly3.",
+        "parallel_upper_factors": [
+          [
+            1,
+            112
+          ],
+          [
+            130,
+            232
+          ],
+          [
+            105,
+            226
+          ],
+          [
+            1,
+            130
+          ],
+          [
+            12,
+            64
+          ]
+        ],
+        "parallel_K_selectors": [
+          1,
+          8,
+          16,
+          6
+        ],
+        "parallel_K_decoders": [
+          256,
+          642,
+          1129,
+          6144
+        ],
+        "parallel_Q_decoder": 8160
+      }
+    ],
+    "kernel_basis_conjecture_refuted": true,
+    "local_lemma_counterexample": {
+      "P_Q_A_B_ANF_hex": [
+        "0x11501120061",
+        "0x1010c",
+        "0x1000400030010",
+        "0x101110117067e"
+      ],
+      "h_ANF_hex": "0x11518c01eb361cc",
+      "q_ANF_hex": "0x110015c",
+      "all16_corrected_polar_ranks": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "distinct_input_rows": 64,
+      "quadratic_precursor_cost_constrained": false
+    },
+    "general_rankone_flattening_refuted": false,
+    "complete_GF16_candidate": false,
+    "world_first_established": false
+  },
+  "standalone_command": "python3 workspace/aes-256-gcm/tools/verify_norm_kernel_counterexamples.py",
+  "standalone_source_sha256": "215459c5d5d91648c0a6d05b06748d9c4b4a3ee773111b10c395c12717a2ca67",
+  "bounded_scalar_search_outcomes": [
+    {
+      "label": "orbit-0-sample-0",
+      "status": "UNKNOWN",
+      "exit_code": 0,
+      "solver_wall_seconds": 10.086743874941021,
+      "CNF_sha256": "2cb682e943a7d779eb882925ebf85ed3c4264804a0f8dcc57db068f10917afcb"
+    },
+    {
+      "label": "orbit-1-sample-0",
+      "status": "UNKNOWN",
+      "exit_code": 0,
+      "solver_wall_seconds": 10.019354165997356,
+      "CNF_sha256": "cb747de094750943ccafb24463d8dcca54f76a49483f0c3f64043c44f091f50c"
+    },
+    {
+      "label": "orbit-2-sample-0",
+      "status": "SATISFIABLE",
+      "exit_code": 10,
+      "solver_wall_seconds": 1.84202745789662,
+      "CNF_sha256": "55c85ce9740e9477c8456102e238cdb932653fda7448a4505fc3490d770269d6"
+    },
+    {
+      "label": "orbit-2-sample-1",
+      "status": "SATISFIABLE",
+      "exit_code": 10,
+      "solver_wall_seconds": 1.6795454998500645,
+      "CNF_sha256": "2accf7ab262e68f71ef818ba4e0bc1e6668e273a61bb66a3c238fa420f973d0c"
+    },
+    {
+      "label": "orbit-2-sample-2",
+      "status": "SATISFIABLE",
+      "exit_code": 10,
+      "solver_wall_seconds": 1.6072917089331895,
+      "CNF_sha256": "aa92e1b96bfc2c839bb9270de609d37e1e9954e4497a3f8b0e1135f5922ad7fe"
+    },
+    {
+      "label": "orbit-3-sample-0",
+      "status": "UNKNOWN",
+      "exit_code": 0,
+      "solver_wall_seconds": 10.02040333300829,
+      "CNF_sha256": "712a01ebd86a5cbeae600d22f506feba7e1630f91ad4475c88438aa883578017"
+    },
+    {
+      "label": "orbit-4-sample-0",
+      "status": "UNKNOWN",
+      "exit_code": 0,
+      "solver_wall_seconds": 10.014828333863989,
+      "CNF_sha256": "586a297ea7c9e4aa624f2c2212d24ce0370e09d6019b023fd76230042b0bf510"
+    },
+    {
+      "label": "orbit-5-sample-0",
+      "status": "SATISFIABLE",
+      "exit_code": 10,
+      "solver_wall_seconds": 4.572436792077497,
+      "CNF_sha256": "fb6d22f0bb5d523f11daad45cf5bace1a52704c2b51f2197f09107354ca6751a"
+    },
+    {
+      "label": "orbit-5-sample-1",
+      "status": "SATISFIABLE",
+      "exit_code": 10,
+      "solver_wall_seconds": 2.2601188339758664,
+      "CNF_sha256": "f8aa367c0b722a0f688277bafa398f756ed262793c645f49c1620857aedc0e65"
+    },
+    {
+      "label": "orbit-6-sample-0",
+      "status": "UNKNOWN",
+      "exit_code": 0,
+      "solver_wall_seconds": 10.01862808316946,
+      "CNF_sha256": "e22728d605c06d456fa4420bfabe7627ae3b60102ff45ca9cd28cde7678b5aa4"
+    }
+  ],
+  "scalar_search_scope": "Exact5AND rank1higherdegree scalarQ prefixes, with all256 truth rows. Seven previously verified joint firstplane representatives apply only with this fixed rank8Q. Bounded factor assignment enumeration; no claim allprefixes or allrank1circuits covered. A Kdim4 witness is a counterexample only if rank2polar members span less than4.",
+  "scalar_search_independent_replay": {
+    "status": "pass",
+    "cases": [
+      {
+        "label": "control-rank1-known-prefix",
+        "status": "SATISFIABLE",
+        "all_plain_clauses_replayed": 143169,
+        "all256_scalar_and_bitslice_rows": true,
+        "high_rank": 1,
+        "Kdim": 4,
+        "rank2span": 4,
+        "K_polar_rank_histogram": {
+          "0": 1,
+          "2": 4,
+          "4": 6,
+          "6": 4,
+          "8": 1
+        }
+      },
+      {
+        "label": "control-rank0-rejected",
+        "status": "UNSATISFIABLE",
+        "fixed_high_rank_incompatible_with_exact1": 0
+      },
+      {
+        "label": "control-rank2-rejected",
+        "status": "UNSATISFIABLE",
+        "fixed_high_rank_incompatible_with_exact1": 2
+      },
+      {
+        "label": "orbit-0-sample-0",
+        "status": "UNKNOWN"
+      },
+      {
+        "label": "orbit-1-sample-0",
+        "status": "UNKNOWN"
+      },
+      {
+        "label": "orbit-2-sample-0",
+        "status": "SATISFIABLE",
+        "all_plain_clauses_replayed": 143085,
+        "all256_scalar_and_bitslice_rows": true,
+        "high_rank": 1,
+        "Kdim": 4,
+        "rank2span": 4,
+        "K_polar_rank_histogram": {
+          "0": 1,
+          "2": 4,
+          "4": 6,
+          "6": 4,
+          "8": 1
+        }
+      },
+      {
+        "label": "orbit-2-sample-1",
+        "status": "SATISFIABLE",
+        "all_plain_clauses_replayed": 143086,
+        "all256_scalar_and_bitslice_rows": true,
+        "high_rank": 1,
+        "Kdim": 4,
+        "rank2span": 4,
+        "K_polar_rank_histogram": {
+          "0": 1,
+          "2": 4,
+          "4": 6,
+          "6": 4,
+          "8": 1
+        }
+      },
+      {
+        "label": "orbit-2-sample-2",
+        "status": "SATISFIABLE",
+        "all_plain_clauses_replayed": 143087,
+        "all256_scalar_and_bitslice_rows": true,
+        "high_rank": 1,
+        "Kdim": 4,
+        "rank2span": 4,
+        "K_polar_rank_histogram": {
+          "0": 1,
+          "2": 4,
+          "4": 6,
+          "6": 4,
+          "8": 1
+        }
+      },
+      {
+        "label": "orbit-3-sample-0",
+        "status": "UNKNOWN"
+      },
+      {
+        "label": "orbit-4-sample-0",
+        "status": "UNKNOWN"
+      },
+      {
+        "label": "orbit-5-sample-0",
+        "status": "SATISFIABLE",
+        "all_plain_clauses_replayed": 143085,
+        "all256_scalar_and_bitslice_rows": true,
+        "high_rank": 1,
+        "Kdim": 4,
+        "rank2span": 4,
+        "K_polar_rank_histogram": {
+          "0": 1,
+          "2": 4,
+          "4": 6,
+          "6": 4,
+          "8": 1
+        }
+      },
+      {
+        "label": "orbit-5-sample-1",
+        "status": "SATISFIABLE",
+        "all_plain_clauses_replayed": 143086,
+        "all256_scalar_and_bitslice_rows": true,
+        "high_rank": 1,
+        "Kdim": 4,
+        "rank2span": 3,
+        "K_polar_rank_histogram": {
+          "0": 1,
+          "2": 3,
+          "4": 6,
+          "6": 5,
+          "8": 1
+        },
+        "counterexample": true,
+        "parallel_K_upper": {
+          "ANDs": 5,
+          "raw_input_factor_masks": [
+            [
+              1,
+              112
+            ],
+            [
+              130,
+              232
+            ],
+            [
+              105,
+              226
+            ],
+            [
+              1,
+              130
+            ],
+            [
+              12,
+              64
+            ]
+          ],
+          "K_basis_polars": [
+            56,
+            203431168,
+            205000049,
+            1114177
+          ],
+          "K_basis_original_gate_selectors": [
+            1,
+            8,
+            16,
+            6
+          ],
+          "K_basis_output_masks": [
+            256,
+            642,
+            1129,
+            6144
+          ],
+          "scalar_Q_output_mask": 8160,
+          "all256_rows_four_K_basis_functions_and_Q_verified": true,
+          "parallel_K_complexity_exactly5": true,
+          "lower_bound_reason": "Kdim4 forces any4-product parallel cover to equalK moduloaffine, but its rank2members spanonly3."
+        }
+      },
+      {
+        "label": "orbit-6-sample-0",
+        "status": "UNKNOWN"
+      }
+    ],
+    "all_SAT_models_independently_replayed": 6,
+    "all_plain_clauses_independently_replayed": 858598,
+    "all256_scalar_rows_per_SAT_model": true,
+    "K_members_independently_recomputed_for_every_SAT_model": true,
+    "negative_fixed_controls_independent_high_rank_checked": true,
+    "theory_counterexample_rank_histogram_including0": {
+      "0": 1,
+      "2": 3,
+      "4": 5,
+      "6": 5,
+      "8": 2
+    },
+    "SAT_counterexample_rank_histogram_including0": {
+      "0": 1,
+      "2": 3,
+      "4": 6,
+      "6": 5,
+      "8": 1
+    },
+    "different_histograms_rule_out_invertible_linear_equivalence_of_K_spaces": true,
+    "rank2_span_conjecture_refuted": true,
+    "rank1_flattening_refuted": false,
+    "counterexample_K_parallel_complexity_exactly5": true,
+    "new_complete_GF16_or_AES_candidate": false,
+    "world_first_established": false,
+    "production_or_solver_code_imported_or_executed": false,
+    "helper_sha256": "6e40492b381313555e410db23dfccf4df8d27f608ac5706acac8cefebfb4bb03",
+    "algorithm_seconds": 1.7104514590464532
+  },
+  "two_family_independent_audit": {
+    "status": "pass",
+    "source": "runs/aes-norm-kernel-counterexample-family-20261019/report.json",
+    "source_sha256": "15f5bb96dd5e5b3cad9adfe5456acc0c3661dc84745a5d55f604a6d26cb35569",
+    "cases": [
+      {
+        "label": "explicit-kernel-counterexample",
+        "factor_masks": [
+          [
+            1,
+            2
+          ],
+          [
+            128,
+            272
+          ],
+          [
+            129,
+            274
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            8,
+            32
+          ]
+        ],
+        "output_decoder_mask": 7680,
+        "all256_prefix_rows_replayed": true,
+        "W_dimension_zero_preserving": 13,
+        "W_plus_target_dimension_zero_preserving": 16,
+        "target_deficit": 3,
+        "high_part_rank": 1,
+        "K_dimension": 4,
+        "K_nonzero_polar_rank_histogram": {
+          "2": 3,
+          "4": 5,
+          "6": 5,
+          "8": 2
+        },
+        "rank2_span_dimension": 3,
+        "nonzero_left_forms": 8191,
+        "eligible_unordered_pairs": 48256,
+        "quadratic_polar_cosets": 10516,
+        "cosets_admitting_rank8_pair_with_Q": 0,
+        "zero_K_coset_explicitly_checked": true,
+        "zero_K_coset_rank8_pair_possible": false,
+        "kernel_nullity_histogram": {
+          "10": 3,
+          "9": 10,
+          "8": 242,
+          "4": 280,
+          "5": 8,
+          "3": 576,
+          "2": 1440,
+          "1": 5632
+        },
+        "actual_13_column_kernels_directly_exhausted": 32,
+        "direct_kernel_coefficients_per_check": 8192,
+        "inventory_path": "explicit-kernel-counterexample-inventory.json",
+        "inventory_sha256": "a9e45cdbccd9c03cd81e697cfd0854ddeae1752034f105fc476f4e69751b703f",
+        "production_counts_match": true,
+        "algorithm_seconds": 2.6861755419522524
+      },
+      {
+        "label": "SAT-kernel-counterexample",
+        "factor_masks": [
+          [
+            1,
+            112
+          ],
+          [
+            12,
+            434
+          ],
+          [
+            13,
+            498
+          ],
+          [
+            106,
+            130
+          ],
+          [
+            105,
+            139
+          ]
+        ],
+        "output_decoder_mask": 7947,
+        "all256_prefix_rows_replayed": true,
+        "W_dimension_zero_preserving": 13,
+        "W_plus_target_dimension_zero_preserving": 16,
+        "target_deficit": 3,
+        "high_part_rank": 1,
+        "K_dimension": 4,
+        "K_nonzero_polar_rank_histogram": {
+          "2": 3,
+          "8": 1,
+          "6": 5,
+          "4": 6
+        },
+        "rank2_span_dimension": 3,
+        "nonzero_left_forms": 8191,
+        "eligible_unordered_pairs": 47200,
+        "quadratic_polar_cosets": 10440,
+        "cosets_admitting_rank8_pair_with_Q": 0,
+        "zero_K_coset_explicitly_checked": true,
+        "zero_K_coset_rank8_pair_possible": false,
+        "kernel_nullity_histogram": {
+          "9": 11,
+          "8": 242,
+          "10": 2,
+          "4": 252,
+          "5": 4,
+          "2": 992,
+          "3": 544,
+          "1": 6144
+        },
+        "actual_13_column_kernels_directly_exhausted": 32,
+        "direct_kernel_coefficients_per_check": 8192,
+        "inventory_path": "SAT-kernel-counterexample-inventory.json",
+        "inventory_sha256": "c4aaf6bab6f35200d8232de1b30e516fdbcb47daa721103ca8fddeacbe5ccbf6",
+        "production_counts_match": true,
+        "algorithm_seconds": 2.7785765000153333
+      }
+    ],
+    "all15_nonzero_GF16_scalar_polar_ranks": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "controls": {
+      "bent_pair_controls": 3,
+      "exhaustive_3x3_kernel_controls": 512,
+      "Boolean_ring_truth_product_controls": 65536
+    },
+    "production_code_imported_or_executed": false,
+    "independent_method": "Scalar and bit-sliced truth evaluation; Mobius ANF; high-pivot column kernels; compressed 28-bit polar matrices and Gray-code traversal.",
+    "scope": "Two specified invertible-linear-input prefix families only, with Q mapping modulo affine to a field scalar. Complete zero-K-inclusive bent-pair obstruction; not all rank-one prefixes.",
+    "new_solver_runs": 0,
+    "all_rankone_prefixes_excluded": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false
+  },
+  "two_family_argument": {
+    "status": "specified-family-obstruction-reviewed",
+    "definitions": {
+      "A": "All affine Boolean functions of the eight raw inputs; constants and XORs are free.",
+      "W": "Span of the eight raw input functions and the five actual prefix gates; these two prefixes have zero-preserving dimension 13.",
+      "Q": "The decoded rank-eight scalar quadratic, exactly GF16 multiplication bit 0 in the supplied normalization.",
+      "K": "Polar matrices of quadratic functions in W+A, modulo affine functions. For each supplied prefix K has dimension four, with sixteen matrices including zero.",
+      "T": "The four-dimensional GF16 output space modulo affine functions. Each of its fifteen nonzero elements has polar rank eight, independently checked from the field oracle."
+    },
+    "complete_product_inventory": [
+      "For each of the 8191 nonzero coefficient vectors l, form L as that combination of W's thirteen basis functions. Product L*R is linear in the thirteen coefficients of R.",
+      "Take the degree-at-least-three ANF part of each product column and reduce it modulo H(W). The resulting thirteen columns define a linear map. Its exact nullspace consists of all right operands for which L*R can become quadratic after adding a W function.",
+      "Every nonzero vector in that nullspace is enumerated. Keeping right>=left retains each eligible unordered nonzero operand pair exactly once; symmetry of Boolean multiplication justifies this reduction. Zero operands only give zero and cannot introduce a missing target direction.",
+      "For each eligible product, cancel its high part using a W function. The result is quadratic. Different cancellation choices differ by a quadratic W function, so the resulting polar coset modulo K is well-defined.",
+      "Every resulting polar coset is retained. The audit checks all sixteen shifts by K, not just one representative, for the simultaneous conditions rank(t)=rank(t+Q)=8. The zero coset is included explicitly, rather than discarded as an unhelpful product.",
+      "Free constants in operands do not create new relevant classes: (L+c)(R+d)=LR+cR+dL+cd, whose correction is in W+A. This is why zero-preserving operands suffice for this product-coset obstruction."
+    ],
+    "zero_coset_argument": "If K contained an independent field-output direction R in addition to Q, then R and R+Q would both be nonzero field outputs and hence both have polar rank eight. The explicit zero-coset test rejects every such pair. Therefore (W+A) intersects the target space modulo A in exactly span(Q). This argument remains valid for any linear-input image under which Q maps modulo affine to a field-output combination.",
+    "three_gate_rank_tight_argument": "Exactly three independent target directions are missing modulo W+A. If three further AND gates computed the complete multiplier, their three function classes modulo W+A would have to span exactly that three-dimensional target quotient. Thus each new gate must lie in W+A+T, and the first new gate cannot already lie in W+A. Its high part is cancellable by W; after cancellation its quadratic polar must lie in a coset K+R for an output R independent of Q. Consequently some shift t of that product's residue would satisfy t=R and t+Q=R+Q modulo affine, both rank eight. The complete inventory shows no such shift in any eligible product coset. Hence no rank-tight three-AND continuation exists for the specified prefix family.",
+    "linear_family_invariance": "An invertible raw linear input substitution sends W, all of its products and its quadratic kernel to their substituted spaces. It preserves the degree-at-most-two subspace, and polar matrices transform by congruence, preserving rank. It therefore sends the complete eligible product-coset collection bijectively to the corresponding collection of the image prefix and preserves the no-rank-eight-pair condition. The obstruction applies to every invertible-linear-input image of each supplied prefix for which Q maps modulo affine to a GF16 scalar output. This does not count the images, classify all rank-one prefixes, or identify all possible five-gate prefix spaces.",
+    "verified_families": [
+      {
+        "label": "explicit-kernel-counterexample",
+        "factor_masks": [
+          [
+            1,
+            2
+          ],
+          [
+            128,
+            272
+          ],
+          [
+            129,
+            274
+          ],
+          [
+            4,
+            64
+          ],
+          [
+            8,
+            32
+          ]
+        ],
+        "Q_decoder_mask": 7680,
+        "eligible_unordered_pairs": 48256,
+        "polar_cosets": 10516,
+        "zero_coset_included": true,
+        "cosets_admitting_rank8_pair": 0
+      },
+      {
+        "label": "SAT-kernel-counterexample",
+        "factor_masks": [
+          [
+            1,
+            112
+          ],
+          [
+            12,
+            434
+          ],
+          [
+            13,
+            498
+          ],
+          [
+            106,
+            130
+          ],
+          [
+            105,
+            139
+          ]
+        ],
+        "Q_decoder_mask": 7947,
+        "eligible_unordered_pairs": 47200,
+        "polar_cosets": 10440,
+        "zero_coset_included": true,
+        "cosets_admitting_rank8_pair": 0
+      }
+    ],
+    "dependency_scope": {
+      "published_two_output_optimality_theorem_required_for_this_fixed_family_obstruction": false,
+      "claim_that_K_is_spanned_by_rank2_elements_required": false,
+      "all_rankone_prefixes_classified_or_excluded": false,
+      "unrestricted_eight_AND_excluded": false,
+      "new_complete_GF16_or_AES_candidate": false,
+      "new_solver_runs": 0,
+      "novelty_or_world_first_established": false,
+      "formal_proof_assistant_checked": false,
+      "physical_chip_result": false
+    }
+  },
+  "local_lemma_search": {
+    "status": "bounded-local-lemma-challenge-complete",
+    "controls": [
+      {
+        "label": "control-contraction-expression",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-local-flattening-search-20261019/control-contraction-expression.cnf"
+        ],
+        "solver_wall_seconds": 0.012033874867483974,
+        "variables": 4227,
+        "source_variables": 657,
+        "clauses": 15236,
+        "native_XORs": 483,
+        "CNF_sha256": "32bc37440324605677e23ab45f6e51dc2160924e97359f5184bef38f5a2f9a3e",
+        "use_h_in_left_operand": 1,
+        "colour": 1,
+        "fixed_ANF_hex": [
+          "0x8",
+          "0x20",
+          "0xc",
+          "0x3c"
+        ],
+        "require_all16_corrections_polar_rank_at_least4": false,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "P_Q_A_B_ANF_hex": [
+            "0x8",
+            "0x20",
+            "0xc",
+            "0x3c"
+          ],
+          "h_ANF_hex": "0x80",
+          "q_ANF_hex": "0x4c",
+          "all16_corrected_polar_ranks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "all64_truth_rows_verified": true,
+          "plain_and_native_model_constraints_replayed": true
+        }
+      },
+      {
+        "label": "control-contraction-not-a-separation",
+        "status": "UNSATISFIABLE",
+        "exit_code": 20,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-local-flattening-search-20261019/control-contraction-not-a-separation.cnf"
+        ],
+        "solver_wall_seconds": 0.013579291058704257,
+        "variables": 6867,
+        "source_variables": 1857,
+        "clauses": 23652,
+        "native_XORs": 963,
+        "CNF_sha256": "2d33ca7033f746c5eb49f9b996b74184e1c6f96c850936f153e391f8f6464bd7",
+        "use_h_in_left_operand": 1,
+        "colour": 1,
+        "fixed_ANF_hex": [
+          "0x8",
+          "0x20",
+          "0xc",
+          "0x3c"
+        ],
+        "require_all16_corrections_polar_rank_at_least4": true,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "exhaustive_Pfaffian_matrix_controls": 33856,
+    "searches": [
+      {
+        "label": "mode-0-0",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-local-flattening-search-20261019/mode-0-0.cnf"
+        ],
+        "solver_wall_seconds": 30.01167945796624,
+        "variables": 6483,
+        "source_variables": 1729,
+        "clauses": 22412,
+        "native_XORs": 835,
+        "CNF_sha256": "552efe11def097c1e9a9e89276a0d9d4f0efb8ee033652321e1d3a9072350687",
+        "use_h_in_left_operand": 0,
+        "colour": 0,
+        "fixed_ANF_hex": null,
+        "require_all16_corrections_polar_rank_at_least4": true,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "mode-0-1",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-local-flattening-search-20261019/mode-0-1.cnf"
+        ],
+        "solver_wall_seconds": 1.730808624997735,
+        "variables": 6675,
+        "source_variables": 1793,
+        "clauses": 22988,
+        "native_XORs": 899,
+        "CNF_sha256": "40a0fde4aa7e53fd2b6b99c6af60328c6bb97b484c7b86091254aa97bb6c854d",
+        "use_h_in_left_operand": 0,
+        "colour": 1,
+        "fixed_ANF_hex": null,
+        "require_all16_corrections_polar_rank_at_least4": true,
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "P_Q_A_B_ANF_hex": [
+            "0x11501120061",
+            "0x1010c",
+            "0x1000400030010",
+            "0x101110117067e"
+          ],
+          "h_ANF_hex": "0x11518c01eb361cc",
+          "q_ANF_hex": "0x110015c",
+          "all16_corrected_polar_ranks": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "all64_truth_rows_verified": true,
+          "plain_and_native_model_constraints_replayed": true
+        }
+      },
+      {
+        "label": "mode-1-0",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-local-flattening-search-20261019/mode-1-0.cnf"
+        ],
+        "solver_wall_seconds": 30.01455624983646,
+        "variables": 6675,
+        "source_variables": 1793,
+        "clauses": 22988,
+        "native_XORs": 899,
+        "CNF_sha256": "90005a8287f19b6fd5226098e9ceccf78cd893fdaa4f288982baca06e34127c5",
+        "use_h_in_left_operand": 1,
+        "colour": 0,
+        "fixed_ANF_hex": null,
+        "require_all16_corrections_polar_rank_at_least4": true,
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "mode-1-1",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-local-flattening-search-20261019/mode-1-1.cnf"
+        ],
+        "solver_wall_seconds": 30.013569250004366,
+        "variables": 6867,
+        "source_variables": 1857,
+        "clauses": 23564,
+        "native_XORs": 963,
+        "CNF_sha256": "568ee7a265f4e0f2b7443832f1f7f59154bea48bb6228fa86ef4dca1e438fe82",
+        "use_h_in_left_operand": 1,
+        "colour": 1,
+        "fixed_ANF_hex": null,
+        "require_all16_corrections_polar_rank_at_least4": true,
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "input_bits": 6,
+    "quadratic_parameter_bits": 88,
+    "scope": "All six-variable quadratic P,Q,A,B including constants; h=PQ nonquadratic, q=((h+A) if use_h else A)B+colour*h quadratic. Seek every q+span(P,Q,A,B) polar rank>=4. No gate-cost budget is imposed on P,Q,A,B.",
+    "local_sufficient_lemma_refuted": true,
+    "general_rankone_flattening_proved": false,
+    "general_rankone_flattening_refuted": false,
+    "new_GF16_candidate": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false
+  },
+  "local_lemma_independent_audit": "# Independent local-flattening challenge audit\n\nThe saved `mode-0-1` witness is valid. Bit `mask` of an ANF hexadecimal\ninteger is the coefficient of the squarefree monomial indexed by the six-bit\nvariable mask; bit zero is the constant coefficient.\n\nThe four quadratic forms are\n`[0x11501120061, 0x1010c, 0x1000400030010, 0x101110117067e]`.\nTheir product `h=P*Q` has ANF `0x11518c01eb361cc`, of degree four. The\nexpression `q=A*B+h` has ANF `0x110015c`, of degree two. An independent\n64-row evaluator and in-place subset M\u00f6bius transform reproduce both values.\nEach of the sixteen forms `q+alpha*P+beta*Q+gamma*A+delta*B` has alternating\npolar rank exactly four. Thus none is affine plus a single product of affine\nforms, which would have polar rank at most two.\n\n## Encoder/model coverage\n\nThe standalone audit imports no production code and executes no solver.\nIt reconstructs all six formulas (two controls and four search modes) from\nthe mathematical contract, using the inspected allocation convention, and\ncompares their complete DIMACS byte strings with the original files. All six\nmatch. Matching allocation is a serialization audit, not an independent\nsolver proof; independent direct semantics are checked separately.\n\nThe original `mode-0-1` SAT model satisfies all 22,988 CNF clauses, 899 native\nparity equations and 848 source AND helper definitions. All parameter,\nquadratic-table, h-table and q-table values are independently replayed.\nThe planted positive-control SAT model also passes, including all 15,236 CNF\nclauses, 483 native parities and 128 AND helpers.\n\nThe quadraticity constraint is exactly vanishing of all degree-above-two\nANF coefficients of q. The nonquadraticity clause requires at least one such\ncoefficient of h. For each correction, the fifteen principal four-index\nPfaffians certify polar rank at least four. An independent high-pivot binary\nmatrix-rank implementation agrees with this predicate for all 33,856\nalternating matrices of sizes four, five and six.\n\nThe fixed negative control has a rank-two correction at selector zero,\ncontradicting the demanded minimum four. This direct algebraic rejection is\nnot an audit of a solver UNSAT certificate. The three `UNKNOWN` searches are\nnot exclusions.\n\n## Claim boundary\n\nThis refutes only the proposed sufficient local rank-two-correction lemma\nfor arbitrary quadratic P,Q,A,B. Their construction has no gate-cost budget\nin this challenge. It neither proves nor refutes general rank-one flattening,\nnor supplies a multiplicative-complexity separation, a low-cost scalar-prefix\ncounterexample, a GF(16) multiplier, a new AES design, or a world-first result.\nAdditional restrictions on the precursor quadratic space require a separate\nproof or counterexample. The earlier literature review remains preserved;\nthe original Mirwald\u2013Schnorr proof was not retrieved there.\n\nKarpathy guidelines influenced this audit by keeping it standalone, defining\nscope before implementation, and checking concrete witnesses and controls\ninstead of transferring a broader unproved theorem.\n",
+  "local_lemma_CNFs_reconstructed": 6,
+  "local_lemma_SAT_models_replayed": 2,
+  "local_lemma_Pfaffian_matrix_controls": 33856,
+  "literature_review": {
+    "path": "runs/aes-norm-nearoptimal-literature-20261019/review.md",
+    "sha256": "d3556cd99e27e3766b3f59b5b0e0fc7dc5264dd04d7c885920fb4a5fdbbd0c7a",
+    "retrieval_date": "2026-10-19",
+    "original_1992_full_proof_read": false,
+    "new_source": "https://eccc.weizmann.ac.il/report/2005/021/download/",
+    "source_boundary": "Section2Theorem1 concerns scalar-optimal circuits, not preservation of a four-dimensional auxiliary space using one extra gate. No imported K-basis lemma."
+  },
+  "evidence_sha256": {
+    "runs/aes-norm-rankone-kernel-theory-20261019/base-commit.command.json": "91834f6c2f794c5b25198edc51055d13720442a447b1b232deddecbd1734a03b",
+    "runs/aes-norm-rankone-kernel-theory-20261019/base-commit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-theory-20261019/base-commit.stdout.log": "0928bf49351e39873b584526e3c3090c186b9a67692e363b9ca75e4c1d02f4dd",
+    "runs/aes-norm-rankone-kernel-theory-20261019/capture.py": "539acc97f47f386672f21ad1b6166bbc2c3f4345ef11bfea259815f15ac8b3b4",
+    "runs/aes-norm-rankone-kernel-theory-20261019/counterexample-report.json": "2f1acb6164e940a49fc6c1a28044a53fd35bcddc1be963f2b6312d1f87e2bc9b",
+    "runs/aes-norm-rankone-kernel-theory-20261019/counterexample_replay.command.json": "f3e5e6335356ffaf0c0f0d1251c2eb938bd472c1fe0e7e3c5cfe1fb947bed6cc",
+    "runs/aes-norm-rankone-kernel-theory-20261019/counterexample_replay.py": "e551ec683aaf2c2961aa4086ca206bbfefff72473f457eb2ee7ca6823d6fe2d5",
+    "runs/aes-norm-rankone-kernel-theory-20261019/counterexample_replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-theory-20261019/counterexample_replay.stdout.log": "c0b45394e56f256494ff21055c13399a70340547be84b9be20546d119c9fbf46",
+    "runs/aes-norm-rankone-kernel-theory-20261019/retain.py": "72a40afd7e1e46973bf73dd2b0c82649108e71d535788abde5fa48751ab71900",
+    "runs/aes-norm-rankone-kernel-theory-20261019/small-case-report.json": "acb168464e70f2a2be793d3d12a51e302e5432c97cd3a980099ab438d424a662",
+    "runs/aes-norm-rankone-kernel-theory-20261019/small_case.command.json": "4ee79f6594e0839e56f1515d5c8d4862f0308441618ce163613570021cc0cdae",
+    "runs/aes-norm-rankone-kernel-theory-20261019/small_case.py": "463a92853f5cb4bd39a66c2c0faad0dddb68945a949daa50a4625f0889906d08",
+    "runs/aes-norm-rankone-kernel-theory-20261019/small_case.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-theory-20261019/small_case.stdout.log": "d9266b956ad6eb5e0297212998047359acc2521dc52a38583b4ad5a5d7d9da9a",
+    "runs/aes-norm-rankone-kernel-theory-20261019/run.json": "66142e9f15331541ffa32afe6a5aa7b6c87fdb260dd7b02d1888d8d80b6c5529",
+    "runs/aes-norm-rankone-kernel-search-20261019/RESULT.md": "364883be2685328a73ae8dc5831bba0073a2a222fa8c5155934e26a09abb2726",
+    "runs/aes-norm-rankone-kernel-search-20261019/base-commit.command.json": "5690a861fe8ebb1ca1abd754a4800a6d99ccc7dccdc6496b676a7c1087b47c3b",
+    "runs/aes-norm-rankone-kernel-search-20261019/base-commit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/base-commit.stdout.log": "0928bf49351e39873b584526e3c3090c186b9a67692e363b9ca75e4c1d02f4dd",
+    "runs/aes-norm-rankone-kernel-search-20261019/bounded-rankone-kernel-search.command.json": "679213031c5de6dc6d71c04ea05fc63736492fe8549b05295b8eb35fedc83e37",
+    "runs/aes-norm-rankone-kernel-search-20261019/bounded-rankone-kernel-search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/bounded-rankone-kernel-search.stdout.log": "31f540e793842619190beadbf44ec9e1c25a77cdec6facd7ac6e83b31569402c",
+    "runs/aes-norm-rankone-kernel-search-20261019/capture.py": "72282eac4ed859cb36c851e4609bf6027352bf7c7a00729a7eeb4f2480657498",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank0-rejected.cnf": "722d03d04b0257bc59e4846b262d1d0cc0b732a0de200a6ba79816dd9c36a6a6",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank0-rejected.json": "96170cf00a7c9a7b6041f1b46b60ffefab0fd695ada05853fb5d0ee78e9b03e9",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank0-rejected.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank0-rejected.stdout.log": "bd12bbca5bd68da58bc76c9233dbb35f454bbcd8fd51f0c1483b67c8519bf7af",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank1-known-prefix.cnf": "a3fe5a246f6548179c7308885ccd7ee1099ec1ca69d80fa9d8ba272e94f37846",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank1-known-prefix.json": "55db4132e32e70e1f63fc334d5a1bef9bfded3e93ac034be0db242490800094a",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank1-known-prefix.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank1-known-prefix.stdout.log": "ce32eb09d57fe96c1f470c44927e7a12409aa66683c71551d0c852d5628b3650",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank2-rejected.cnf": "25a4b794015c8175451439d5dd07d7db41d798591b120f3d6acddbc71bcf2c55",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank2-rejected.json": "38c38252b42e198508810e0079bfe3ddf8d2f6520d5b3afcc1ea9a16b4f03867",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank2-rejected.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/control-rank2-rejected.stdout.log": "a9818ed7585403c914970ffc4902be5a7f3b5a954ee0fc861cf3661df644cb47",
+    "runs/aes-norm-rankone-kernel-search-20261019/independent-replay.json": "e7756cdca8558b82cec20e9480ef16acf4dd7ab25f63737e332d10da35dafda9",
+    "runs/aes-norm-rankone-kernel-search-20261019/independent-saved-model-replay.command.json": "41be5cbda16c5fb47e963885bd1ea3b04dbc0111e594d3dbe1592e0fb05020ea",
+    "runs/aes-norm-rankone-kernel-search-20261019/independent-saved-model-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/independent-saved-model-replay.stdout.log": "4df22d5aed6107c3c81eb6e6f1e2add366895cb6f5906049921a0b22dc961b79",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-0-sample-0.cnf": "2cb682e943a7d779eb882925ebf85ed3c4264804a0f8dcc57db068f10917afcb",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-0-sample-0.json": "50b0cf1c4c753ce08905a54ba73d536123d8cd689dff7c6ad514d7008c30cb77",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-0-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-0-sample-0.stdout.log": "2c445be538a945e6f425109ed1724bdc9272c319d08539431e8e3ab720822114",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-1-sample-0.cnf": "cb747de094750943ccafb24463d8dcca54f76a49483f0c3f64043c44f091f50c",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-1-sample-0.json": "1bd026a3b09d730eabd0fb249250e125c32c9d43531689dbb51c74d1859a4d1a",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-1-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-1-sample-0.stdout.log": "edf45d0efe67fd8a66e62b8b79ddb6feb7c057b61aa85c370573774a79697b8f",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-0.cnf": "55c85ce9740e9477c8456102e238cdb932653fda7448a4505fc3490d770269d6",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-0.json": "6452695a51b2a3178888a9fcfff3d062bf8f9761d9c8f97b60afee34363dad60",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-0.stdout.log": "987a692b3535abc401e3a7098f8b3d2ee23f6e203da458662ed4db571c9db9c8",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-1.cnf": "2accf7ab262e68f71ef818ba4e0bc1e6668e273a61bb66a3c238fa420f973d0c",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-1.json": "f2d6f6f856a7a7c46550492a5e5c32b613620969707d17356f0b1f1693189d64",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-1.stdout.log": "c54be0143a1742cdf5fc4c267857df71f0908b33527dee1110132abc58c438ec",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-2.cnf": "aa92e1b96bfc2c839bb9270de609d37e1e9954e4497a3f8b0e1135f5922ad7fe",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-2.json": "1fe4aa4f224afe1bcd5d1018468a5ee4457cb103155b2cfc14779ef3c2239da3",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-2-sample-2.stdout.log": "905b94e7577d619cba88de2a31993d47113663eeaa5d54745a74e44d4838e4c9",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-3-sample-0.cnf": "712a01ebd86a5cbeae600d22f506feba7e1630f91ad4475c88438aa883578017",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-3-sample-0.json": "f86ca7676a7672ea9732fc2e84ac32403e5e5558c53a8d0970e2aa8622e5d3b1",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-3-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-3-sample-0.stdout.log": "e2988d7d094c1d7db8bd1ce31f07e0b387c4943ff37d8646f1d1ef0d74124717",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-4-sample-0.cnf": "586a297ea7c9e4aa624f2c2212d24ce0370e09d6019b023fd76230042b0bf510",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-4-sample-0.json": "1af8ffa1c05bdaca0afa7890c0297e5074af406d7a23ab7e4830fb417c0c0403",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-4-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-4-sample-0.stdout.log": "941f19f6461c1918573646ac50f36562de9482f2625e66e65e47bf55e6e0789b",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-0.cnf": "fb6d22f0bb5d523f11daad45cf5bace1a52704c2b51f2197f09107354ca6751a",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-0.json": "5f6ba68e46038ce5348c61910283800dbc11f1fa096bc9132484c9ed64143606",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-0.stdout.log": "9f8f30e061578d2c4ab7531f15273dc09ee4eafb2ffd4ff3141dbd5247f6ea01",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-1.cnf": "f8aa367c0b722a0f688277bafa398f756ed262793c645f49c1620857aedc0e65",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-1.json": "69078e2803214eb57489134ae536d711fdbe84ffa1e86be829be5847cef6ba44",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-5-sample-1.stdout.log": "fac591b9530d8a1db3b5e6bf8be27cb064e9ee6341884db88e1ed5d7da6ccda9",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-6-sample-0.cnf": "e22728d605c06d456fa4420bfabe7627ae3b60102ff45ca9cd28cde7678b5aa4",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-6-sample-0.json": "d41027d5b8e39e3e8d7277b3d166020eefce1b1fca19510e97dfd62446f896b8",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-6-sample-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/orbit-6-sample-0.stdout.log": "0f7588a2d975b5e1cccc1c189d8ba5fdac7cf1553745456572234bf493817679",
+    "runs/aes-norm-rankone-kernel-search-20261019/python-version.command.json": "9b0d79f6a8082c623005e82494d5e35518c5f9039d1173f3fb354736240f62ff",
+    "runs/aes-norm-rankone-kernel-search-20261019/python-version.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-rankone-kernel-search-20261019/python-version.stdout.log": "0366d77cc1f1ac88ea458231ba4f639323d5caf34de0d50b7618277fd4395f1f",
+    "runs/aes-norm-rankone-kernel-search-20261019/report.json": "b8f301b60b1a249d91ea91ad15acb569609a9e9ec3c8ddd4db37cb04ba23427e",
+    "runs/aes-norm-rankone-kernel-search-20261019/retain.py": "688469f0bf163b5c40006984601daf306727c44add59f03d6183e6198c26729d",
+    "runs/aes-norm-rankone-kernel-search-20261019/search.py": "866b86a38c555bb33cffdb99e9310a491969785cd686a3871da20944550d6fb1",
+    "runs/aes-norm-rankone-kernel-search-20261019/summary.json": "9912e164726efbbe4fbb10e475cd1bf1efb6cec73a9ddfb2d33d012d0aa67c88",
+    "runs/aes-norm-rankone-kernel-search-20261019/verify.py": "f70c8bfb4dae841904d131c2091a6d4665de256f53c1503c90959b50d26d8532",
+    "runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical": "c927f6870f7d7f181850fed0c72b7778bfc8a828d113f9774fd4aa175017cc93",
+    "runs/aes-eight-and-norm-20261018/certificate.py": "f08eff12a0f205e0b8d4e4b4f97a9eccd9b537050a3a20803c46aaee3ecc0eab",
+    "runs/aes-eight-and-norm-20261018/search.py": "7987674689f26701fa72c1661f3008cbe3c1eeea790ff966c1ac9ffe6b78f326",
+    "runs/aes-norm-cegis-20261018/search.py": "b32a6b23715c9539e73dcf9fc2cda2ffac6c975997b542c0490f326ecb061849",
+    "runs/aes-norm-concrete-prefix-20261018/prefixes.json": "e065c541c0b758a694444d72dc97221ba61fa8b8f3be828f8256baaf6adc1942",
+    "runs/aes-norm-prefix-two-defects-20261018/report.json": "c1c8b34bf18491714a4ddc31c434fb50b0e41d8e27101f301c5c18786621caeb",
+    "runs/aes-norm-prefix-two-defects-20261018/search.py": "19f4e068bb5421d2ec3760de0dbe7aea276ceaf42ea71f89e4dc667cc0a15be6",
+    "runs/aes-norm-prefix-two-defects-audit-20261018/audit.py": "76d8bd9de70f3d4b059f2161ff78611510aaea2a5352884b16934c043c8ac6fd",
+    "runs/aes-norm-rankone-family-audit-20261019/review.py": "6e40492b381313555e410db23dfccf4df8d27f608ac5706acac8cefebfb4bb03",
+    "runs/aes-norm-rankone-kernel-search-20261019/manifest.json": "c5e07776cbd0471e1cdc84b00600e52c46aefc8699392e507455111960d6eff8",
+    "runs/aes-norm-rankone-kernel-search-20261019/run.json": "049a15d6be75ad1fe20ecf20d6edf0f07a936db09522d25e03d6f9f793ae73d9",
+    "runs/aes-norm-local-flattening-audit-20261019/audit.command.json": "2cb09f99b8720248bf7a12be6fc165bda930da942af5987e41a4345036336466",
+    "runs/aes-norm-local-flattening-audit-20261019/audit.py": "53f8e70a9e52b48be9b6c11d4493479ed72a6af8a96925470923d5eb2ded69a7",
+    "runs/aes-norm-local-flattening-audit-20261019/audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-audit-20261019/audit.stdout.log": "a1421851cf510fc09aaef5dcd29bcb2157a5f12cc2b571f5470a2dd52b1d066a",
+    "runs/aes-norm-local-flattening-audit-20261019/capture.py": "31e3d5de3b17f5fe07a3a8dde7f1d2b315169c9c75b1fa8c5004534ccf0c75b9",
+    "runs/aes-norm-local-flattening-audit-20261019/report.json": "d39d8cc916f5c5278fa886310e1db1c0e77b5a9fdea0a6986d8f649e5d537950",
+    "runs/aes-norm-local-flattening-audit-20261019/retain.py": "8fa05412aa19fa7bb7a581676b46d01439583f13b7f8f9b845661fdc93604fae",
+    "runs/aes-norm-local-flattening-audit-20261019/review.md": "adc50c3676a5f6207143b3415fab5f61358e5cf2471a5e03343c4b36a0921d3b",
+    "runs/aes-norm-local-flattening-search-20261019/challenge.command.json": "421dcbe108ddf6f09c09955c6e22fd307e781cb56711765cbff0e5e1ade0aa01",
+    "runs/aes-norm-local-flattening-search-20261019/challenge.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/challenge.stdout.log": "41efa327bd1219c421c50da22a896b6626a1182f558bd31bc341da9f35f3fcae",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-expression.cnf": "32bc37440324605677e23ab45f6e51dc2160924e97359f5184bef38f5a2f9a3e",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-expression.json": "cb0ef00fb5f31e0c06601f0527363dca55b67b248402fd8ac28111ef921342d8",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-expression.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-expression.stdout.log": "bd8eff5c03f45004e9df809d6c74289146be3f55d738efe7d7810f5b49519a14",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-not-a-separation.cnf": "2d33ca7033f746c5eb49f9b996b74184e1c6f96c850936f153e391f8f6464bd7",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-not-a-separation.json": "880d730648d140bb2b73467ec8562ebe57dc98b50235f25324eb6939e8309cd0",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-not-a-separation.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/control-contraction-not-a-separation.stdout.log": "1ff9ca30476eadc6f64b33c3677ab79f37bab9d584c04fc94c74cba07d15def9",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-0.cnf": "552efe11def097c1e9a9e89276a0d9d4f0efb8ee033652321e1d3a9072350687",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-0.json": "f8893d15a06797d36d86d5281afaba5ef648933522abbee161fa074abea7c075",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-0.stdout.log": "9db0c1f95b438ecf340d50ed977413efe38c040a7afb57c35ef9ccdf2d6933cb",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-1.cnf": "40a0fde4aa7e53fd2b6b99c6af60328c6bb97b484c7b86091254aa97bb6c854d",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-1.json": "01d7059cfdac0b64fbbde08bb058f5a0e22e7860fb4b21a0f51daefd6de3e8d9",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/mode-0-1.stdout.log": "eb99a0c6438c8a2d0d86d37b794d2ac591da6034215104a727e7c84d319901d1",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-0.cnf": "90005a8287f19b6fd5226098e9ceccf78cd893fdaa4f288982baca06e34127c5",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-0.json": "27b1dd6352eab04dd3a0350acb6229eb24e188307ec3a1adb11e097858753f1b",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-0.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-0.stdout.log": "2afab22c0b86cb90f566ad5c829843f2cf6274691453f9c65a833905c47b30aa",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-1.cnf": "568ee7a265f4e0f2b7443832f1f7f59154bea48bb6228fa86ef4dca1e438fe82",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-1.json": "02cc0a1bd310f704993d34c21a7c38fc40c0d870dab96ac5703d04838c71ba48",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-local-flattening-search-20261019/mode-1-1.stdout.log": "89b645ea1c45ca2dcca666f717dc36c5f6bde7d90b642d0ae24ce1440e89d772",
+    "runs/aes-norm-local-flattening-search-20261019/report.json": "408af97fb3f72bd17c5e9d011217c6cd30219b2a2e6aef4ef3e100410d3ba760",
+    "runs/aes-norm-local-flattening-search-20261019/search.py": "44d247d5b62ca1d5960f49dcee1d4d8e0ba39891076d095a2d4f4c1a055c6b5a",
+    "runs/aes-norm-nearoptimal-literature-20261019/review.md": "d3556cd99e27e3766b3f59b5b0e0fc7dc5264dd04d7c885920fb4a5fdbbd0c7a",
+    "runs/aes-norm-local-flattening-audit-20261019/manifest.json": "26bb7581948f7de08dbbb5777b668ed0109ee4b1b68e60f5b53776771fb38650",
+    "runs/aes-norm-local-flattening-audit-20261019/run.json": "a0c4ce38008a0137b2ca624b239c4406d7b07f09f8d09ff6ac16e0acb01e7c41",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/SAT-kernel-counterexample-inventory.json": "c4aaf6bab6f35200d8232de1b30e516fdbcb47daa721103ca8fddeacbe5ccbf6",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/audit.command.json": "7d1861a97aecf11ca1458185e9ae00f61b885f3b6ce6959b19fe01c93592f272",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/audit.py": "92582e0fca363ff16809f4b978fed431f3b1a59b53401f1da0a17192c1edb901",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/audit.stdout.log": "74b1001634273571b5b4d9b3561b663bea65fdc457d7924e31010c7217e96e62",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/base-commit.command.json": "91834f6c2f794c5b25198edc51055d13720442a447b1b232deddecbd1734a03b",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/base-commit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/base-commit.stdout.log": "0928bf49351e39873b584526e3c3090c186b9a67692e363b9ca75e4c1d02f4dd",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/capture.py": "c926d37fcfacb36ab37a094112c802f22c5edb6273f0c305401fcf6e49d4bd3d",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/explicit-kernel-counterexample-inventory.json": "a9e45cdbccd9c03cd81e697cfd0854ddeae1752034f105fc476f4e69751b703f",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/proof.json": "4414b759fd196cd85cf5f26af15a757eb9bf40e6c74e500baacede5162941d6d",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/report.json": "574b7fb08c38961e060f248531e1e78388ace956816bf8d4d2e5af16eebfdecc",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/retain.py": "87b063c450e376113a3ec9b4301444eab4f493ec257f87d010d00dcbc406fcfe",
+    "runs/aes-norm-kernel-counterexample-family-20261019/report.json": "15f5bb96dd5e5b3cad9adfe5456acc0c3661dc84745a5d55f604a6d26cb35569",
+    "runs/aes-norm-kernel-counterexample-family-20261019/probe.py": "e57106f7c4605dd0352ed028be14acc4b0b13fe31fc6484059f06d0159e768e5",
+    "runs/aes-norm-kernel-counterexample-family-audit-20261019/run.json": "eeca5ad72638c52c2824fec6d0c02a28f338d64e5d31d8ff8ab7586bb4884410"
+  },
+  "frozen_hashes_checked": 155,
+  "raw_archive_in_git": false,
+  "reproduction_limit": "Concrete witnesses replay with committed helpers only. Full solver formulas, raw logs and complete family coset inventories remain in ignored local runs/.",
+  "telemetry": {
+    "canonical_model_id": null,
+    "reasoning_effort": null,
+    "reasoning_mode": null,
+    "tokens": null,
+    "cost": null,
+    "agent_wall_seconds": null,
+    "source": "Unavailable; actual solver and algorithm command times retained separately."
+  }
+}
