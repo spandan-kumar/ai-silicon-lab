@@ -62,9 +62,10 @@ constructive searches, **not a new record-setting AES circuit**.
   maximum rank three and computes GF(16) output bit zero on all 256 inputs.
   It does not compute all four outputs.
 - **Latest family obstruction:** complete product inventories rule out every
-  invertible linear input version of those three new prefixes, provided
+  invertible linear input version of four specified prefixes, provided
   their scalar output maps to a field-output combination modulo affine
-  terms. This is broader than testing individual coordinate changes, but
+  terms. The newest is the earlier rank-one shared-cubic prefix, now
+  independently replayed. This is broader than individual coordinate changes, but
   does not classify all five-gate circuits. A new six-gate search seeks a
   second independent output direction with higher-degree rank at least two
   in its first five gates; all seven bounded cases remain UNKNOWN.
@@ -80,6 +81,10 @@ constructive searches, **not a new record-setting AES circuit**.
   reconstructs all five control/search formulas and replays the generic
   positive control, including its cubic final gate. No full GF(16) candidate
   or unrestricted exclusion results.
+- **Scalar-only strengthening:** an added constraint on higher-degree rank
+  growth from gate three to gate five has a self-contained proof and
+  independent finite/encoding controls. The three stronger 30-second
+  full-eight-gate probes also return UNKNOWN.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -108,7 +113,7 @@ terminal; no future result is assumed.
 | Exact two-product charts | Search actual rank-four alternating tensors for one chosen four-coordinate principal block. | Explicit XOR-polynomial certificates exclude 16 fixed-block cases. Twelve cases and the other coordinate quartets remain open; the attempted nonlinear case times out. |
 | New public seeds and changed prefixes | Compare refreshed circuits' exact truth spaces, then pilot a 10+12+12-AND organization with mutable first and second layers and fixed final tail functions. | Seven distinct forward-normalized public seed spaces are identified. The finite 26,488-evaluation constructive pilot finds no candidate, not an impossibility proof. |
 | Quadratic norm stage | Allow arbitrary affine raw-input factors, including mixed input halves. | Nine ANDs are necessary and sufficient in this restricted model; the eight-AND refutation has checked DRAT/LRAT evidence. The result has prior precedent. |
-| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. Exact closure excludes 160 tested fixed prefix spaces; newer product inventories also exclude all invertible linear images of three specified prefixes. |
+| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. Exact closure excludes 160 tested fixed prefix spaces; newer product inventories also exclude all invertible linear images of four specified prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
@@ -459,12 +464,58 @@ supersedes the earlier pair study's proposed next action of building this
 encoder. The remaining question is still whether any unrestricted eight-AND
 GF(16) multiplier exists; no improved complete AES circuit has been found.
 
-Two exploratory notes are not promoted to new global results: a rank-one
-shared-cubic family probe reports no surviving rank-eight output pair, but
-has not received an independent full-inventory replay at this checkpoint;
-a proposed general rank-one flattening argument remains unproved. Neither
-changes the independently checked total of 160 concrete prefix spaces or
-the three verified whole linear families above.
+At publication commit `93458fa`, the rank-one shared-cubic family probe was
+still provisional. The independently completed follow-up below supersedes
+that limitation, without changing the historical report or the total of
+160 distinct concrete prefix spaces. General rank-one flattening remains
+unproved.
+
+### Rank-one family and scalar-only rank budget — 2026-10-19
+
+The earlier shared-cubic prefix has five gates of the form
+`ab, (ab+c)d, abd, ef, gh`, whose sum is the rank-eight quadratic
+`ab+cd+ef+gh`. Its higher-degree image has rank one, and its available
+quadratic polar space has dimension four. Complete inventories in two
+different implementations cover 8,191 nonzero left forms, 53,776 eligible
+unordered operand pairs and 10,036 quadratic polar cosets. No coset, including
+the zero coset, has a representative `t` for which both `t` and `t+Q` have
+polar rank eight. The same rank-tight argument as above therefore excludes
+every invertible linear input version of this specified prefix mapping `Q`
+to a field component modulo affine terms. It does not classify all rank-one
+prefixes. There are now four verified specified linear families, not a new
+global eight-AND lower bound.
+
+A new standalone replay needs no solver or ignored archive:
+`python3 workspace/aes-256-gcm/tools/verify_norm_rankone_family.py`.
+It also checks all 15 nonzero field-output polar ranks.
+
+The additional search constraint is `r_5-r_3 <= 1`. It already follows from
+a rank-eight scalar quadratic decoded after five gates. Such a scalar needs
+at least four ANDs: restricting one nonconstant affine operand per gate
+makes a k-AND circuit affine on an input subspace of codimension at most k,
+while a rank-eight quadratic is affine only on direction spaces of dimension
+at most four. Its decoder is thus in the five-gate higher-degree kernel but
+outside the first-three selector space. Kernel dimension counting gives the
+claimed rank inequality, without invoking the published pair theorem.
+
+The encoding expresses this as one global nonzero pair `(alpha,beta)` and
+free global `(gamma,delta)` with
+`alpha H4 + beta H5 = gamma H2 + delta H3` across all 219 residual coordinates.
+Zero and dependent early directions are permitted. Independent checks cover
+69,904 finite vector quadruples and 4,096 triangular signal rewrites; a
+separate encoding audit includes the additional zero-dimensional case,
+reconstructs six CNFs, and replays both SAT models. A low-rank generic
+control is SAT without the cut and rejected with it, isolating the predicate;
+it is not a field exclusion. The inherited late-span constraints still use
+the earlier published-theorem dependencies.
+
+All three new field cases return UNKNOWN at 30 seconds. A separate general
+rank-one-flattening investigation proves only that a simple local signal
+substitution fails; its example still flattens globally. The 17,856 sampled
+local identities without a counterexample are not a general theorem.
+The [rank-one and scalar-budget study](../../workspace/aes-256-gcm/reports/sbox_norm_rankone_and_scalar_budget_study.json)
+retains the scopes, proof reviews, completed probes and provenance. No
+additional GitHub push or new hardware measurement is part of this follow-up.
 
 ## Sources and novelty checks
 
@@ -543,6 +594,9 @@ Committed evidence and entry points include:
 - [Full-eight-gate early-higher-degree study](../../workspace/aes-256-gcm/reports/sbox_norm_early_high_study.json)
   retains the latest three UNKNOWN probes, independent formula/model audit
   and explicitly provisional rank-one diagnostic.
+- [Rank-one family and scalar-budget follow-up](../../workspace/aes-256-gcm/reports/sbox_norm_rankone_and_scalar_budget_study.json)
+  and [standalone rank-one replay](../../workspace/aes-256-gcm/tools/verify_norm_rankone_family.py)
+  supersede that provisional diagnostic and record the three stronger UNKNOWN probes.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

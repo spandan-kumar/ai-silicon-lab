@@ -2033,6 +2033,30 @@ technology-aware Pareto sweep.
   behavior, and software ABI rather than treating “vector AES” as a single
   comparable datapoint.
 
+### Rank-one and early-rank follow-up — 2026-10-19
+
+The canonical shared-cubic prefix's entire linear-input family now has
+independently replayed product/polar-coset evidence, including the zero
+quadratic coset: 53,776 eligible pairs and 10,036 cosets, none admitting both
+`t` and `t+Q` of polar rank eight. This is a fourth specified family, not
+all rank-one circuits. A scalar-only selector argument gives
+`r_5-r_3 <= 1`; three full-eight-gate probes with this added cut remain
+UNKNOWN. See the
+[follow-up study](../../workspace/aes-256-gcm/reports/sbox_norm_rankone_and_scalar_budget_study.json)
+and [progress handoff](PROGRESS.md) for controls and exact limitations.
+
+Primary-source web checks on 2026-10-19 reviewed
+[Boyar–Find](https://arxiv.org/html/1407.6169v3) for the distinction between
+one/two-output quadratic optimality and the general multi-output question,
+and [Morse's four-term polynomial-multiplication preprint](https://arxiv.org/html/2608.30238)
+with its [author's artifact repository](https://github.com/GregoryMorse/unrestricted-boolean-mul).
+The latter's target has seven unreduced product coefficients, unlike the
+four reduced GF(16) outputs here. Its claimed target-specific result is not
+transferred to this experiment or treated as a general rank-one-flattening
+theorem. No external Lean development or downloaded code was executed in
+this check. The self-contained scalar bound and local rank argument are not
+claimed as new mathematics; general flattening remains unresolved.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or
