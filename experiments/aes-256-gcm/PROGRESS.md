@@ -4,6 +4,33 @@ Last updated: **2026-10-20**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
+## Latest publication checkpoint
+
+This update includes research through commit
+[`540e48c`](https://github.com/spandan-kumar/ai-silicon-lab/commit/540e48c4de77ea9b3edcea1aedcc577d0d73eafa).
+The most recent completed steps are:
+
+- The Q-by-four branch now has a complete second-method replay of all
+  **192** nonquadratic fifth-gate classes and a reviewed reduction under
+  the explicitly cited strong scalar-optimal theorem. The earlier
+  producer-only checkpoint is superseded, not erased.
+- A verified **quartic** five-gate scalar prefix refutes a cubic-only
+  shortcut. Its specified affine-input family is excluded by two product
+  scans, bringing the named seed-family total to **seven**.
+- A wire-preserving normal form covers **621 ordered raw-input classes**,
+  not 621 complete circuits. A theorem-dependent argument excludes **134**
+  classes only for the quintic branch; **487** remain open. The global
+  solver probe is **UNKNOWN**, not a proof of impossibility.
+- **Next:** investigate the remaining first-four raw-rank-seven/eight
+  quintic branches, then the broader quartic-prefix question. Neither
+  specialized branch investigation has run at this checkpoint.
+
+There is still **no verified world-first, improved complete AES S-box or
+unrestricted eight-AND GF(16) exclusion**. Source, reports, proof notes and
+portable checks are committed; the large ignored raw run archive is not
+uploaded. See [evidence and reproduction](#evidence-and-reproduction) for
+that publication boundary and replay entry points.
+
 ## Where we are now
 
 We have a working, synthesizable AES-256-GCM accelerator and a measured
@@ -61,7 +88,7 @@ constructive searches, **not a new record-setting AES circuit**.
   solver witnesses have rank two; a simple explicit construction reaches the
   maximum rank three and computes GF(16) output bit zero on all 256 inputs.
   It does not compute all four outputs.
-- **Latest family obstruction:** complete product inventories rule out every
+- **Earlier family obstructions:** complete product inventories rule out every
   invertible linear input version of six specified prefixes, provided
   their scalar output maps to a field-output combination modulo affine
   terms. The two newest have rank-one higher-degree images but lack a
@@ -142,7 +169,7 @@ terminal; no future result is assumed.
 | Exact two-product charts | Search actual rank-four alternating tensors for one chosen four-coordinate principal block. | Explicit XOR-polynomial certificates exclude 16 fixed-block cases. Twelve cases and the other coordinate quartets remain open; the attempted nonlinear case times out. |
 | New public seeds and changed prefixes | Compare refreshed circuits' exact truth spaces, then pilot a 10+12+12-AND organization with mutable first and second layers and fixed final tail functions. | Seven distinct forward-normalized public seed spaces are identified. The finite 26,488-evaluation constructive pilot finds no candidate, not an impossibility proof. |
 | Quadratic norm stage | Allow arbitrary affine raw-input factors, including mixed input halves. | Nine ANDs are necessary and sufficient in this restricted model; the eight-AND refutation has checked DRAT/LRAT evidence. The result has prior precedent. |
-| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. The earlier concrete inventory records 160 fixed spaces; newer product inventories exclude all invertible linear images of six specified prefixes. |
+| Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. The earlier concrete inventory records 160 fixed spaces; newer product inventories exclude seven specified seed families under their stated scalar/field-target correspondence. This is not a classification of arbitrary prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 | Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix by two methods. | All 192 classes are obstructed. The reviewed Q-by-four exclusion invokes the published strong scalar-optimal structure theorem and the earlier quadratic bound. Scalar-first-at-five remains open; all three stronger probes are UNKNOWN. |
 | Higher-degree five-gate scalar prefixes | Construct an actual quartic prefix; test its complete product closure; search for a fourth gate with a degree-five coefficient. | The quartic witness passes all 256 inputs and its specified affine-input family is obstructed by two methods. The degree-five probes are UNKNOWN; neither a cubic-only nor a degree-at-most-four rule is a sound established search cut. |
@@ -857,6 +884,14 @@ The NIST table is a selected inventory, not an exhaustive literature survey
 or an optimality proof. Failing to find a competing result on the web does not
 establish novelty. The elementary linear-algebra reductions used here are
 not claimed as a new general synthesis method.
+
+The later structural work records additional checks on **2026-10-20** of
+[Jukna's strong scalar-optimal theorem statement, Section 2, Theorem 1](https://eccc.weizmann.ac.il/report/2005/021/download/)
+and [Calik–Sonmez Turan–Peralta's topology and input-dimension framework](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=928931).
+Their role and the unreplicated original-proof dependency are detailed in
+the [early-scalar proof](GF16_EARLY_SCALAR_BOUND.md) and
+[five-gate input normal form](GF16_FIVE_GATE_INPUT_NORMAL_FORM.md).
+These are prior-art dependencies, not new discoveries claimed by this lab.
 
 ## Evidence and reproduction
 
