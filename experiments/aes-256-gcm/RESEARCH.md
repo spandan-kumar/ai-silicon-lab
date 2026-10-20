@@ -2083,6 +2083,25 @@ was checked for the one/two-output versus general multi-output boundary.
 None of these sources is cited as a new result of this laboratory, a
 complete near-optimal-prefix classification, or proof of novelty.
 
+### Q-by-four publication checkpoint — 2026-10-20
+
+The canonical four-disjoint-product precursor admits 216 operand-plane
+classes, of which 192 give a nonquadratic fifth gate. A different
+block-type enumeration verifies every class and its size. All 192 producer
+product scans finish without a necessary rank-eight-pair escape, but their
+complete independent replay and the general normal-form/reduction review
+remain pending. The earlier bounded solver searches give one UNKNOWN at
+45 seconds and one solver-reported UNSAT in 2.96 seconds without a checked
+certificate or complete independent encoding audit.
+An additional diagonal collision refutes a one-product correction shortcut;
+the broader transfer-control script remains unexecuted. No branch-level
+exclusion, unrestricted eight-AND bound, improved AES circuit or world-first
+claim is made. See the [dated progress handoff](PROGRESS.md),
+[frozen inventory](../../workspace/aes-256-gcm/reports/sbox_norm_q4_snapshot.json)
+and [source snapshot](../../workspace/aes-256-gcm/tools/norm_q4_snapshot/README.md).
+This is a publication checkpoint of completed local work, not a new
+literature search or hardware benchmark.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or

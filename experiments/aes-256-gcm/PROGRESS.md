@@ -1,6 +1,6 @@
 # Experiment 002: AES-256-GCM — progress and research handoff
 
-Last updated: **2026-10-19**. Work is on
+Last updated: **2026-10-20**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
@@ -90,6 +90,13 @@ constructive searches, **not a new record-setting AES circuit**.
   proposed four-product-basis shortcut. A separate six-input example refutes
   a stronger local flattening lemma. Neither refutes general rank-one
   flattening or improves a complete field multiplier.
+- **Newest provisional checkpoint:** a complete symmetry classification gives
+  192 nonquadratic fifth-gate classes after four disjoint products. The
+  producer's full product scans finish for all 192 without a rank-eight-pair
+  escape. A separate algorithm verifies the classification, but the full
+  product campaign has not been independently replayed. The proposed
+  Q-by-four reduction still requires review; this is not yet a branch
+  exclusion or an unrestricted eight-AND lower bound.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -120,6 +127,7 @@ terminal; no future result is assumed.
 | Quadratic norm stage | Allow arbitrary affine raw-input factors, including mixed input halves. | Nine ANDs are necessary and sufficient in this restricted model; the eight-AND refutation has checked DRAT/LRAT evidence. The result has prior precedent. |
 | Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. The earlier concrete inventory records 160 fixed spaces; newer product inventories exclude all invertible linear images of six specified prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
+| Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix. | All 192 nonquadratic classes finish without a necessary rank-eight-pair escape. Classification independently checked; full scan replay and normal-form/reduction review pending. Earlier solver probes give one UNKNOWN and one uncertified UNSAT. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -571,6 +579,61 @@ replay is
 `python3 workspace/aes-256-gcm/tools/verify_norm_kernel_counterexamples.py`.
 Both proposed shortcuts must remain out of sound unrestricted searches.
 
+### Q-by-four investigation: provisional publication — 2026-10-20
+
+The latest route studies a possible eight-AND GF(16) multiplier in which a
+nonzero field-output combination `Q` is already available by gate four.
+The proposed reduction starts with four disjoint products
+`p_i = a_i*b_i`, with `Q = p_0+p_1+p_2+p_3` modulo affine terms. Its
+published scalar-optimal normal-form dependency and the complete reduction
+from arbitrary circuits still need a consolidated review. In particular,
+normalizing `Q` must transport the other field outputs jointly; it is not
+sound to fix their original coordinate tables at the same time.
+
+The concrete finite computation is complete in that canonical precursor:
+
+- The twelve-dimensional operand space modulo constants has **2,794,155**
+  independent two-dimensional operand planes. Blockwise affine changes and
+  permutations of the four pairs divide them into **216** classes.
+- **192** classes, representing **2,781,824** planes, produce a nonquadratic
+  fifth gate. The other 24 classes produce a quadratic gate or an old wire.
+- An independent block-type/multiset calculation identifies all 216 classes
+  and their exact sizes. A negative control confirms that preserving the
+  precursor and `Q` does not necessarily preserve the other field outputs.
+- All 192 producer scans exit successfully. Each exhausts **8,191** nonzero
+  left forms and the full corresponding right kernels. None finds a
+  quadratic residue `R` for which both `R` and `R+Q` have polar rank eight,
+  after allowing all sixteen precursor-product corrections. That is a
+  necessary-condition test, not a complete field-multiplier construction.
+- **The full 192-class product scan has not been independently replayed.**
+  Matching the orbit inventory does not independently verify those product
+  inventories. The frozen report therefore keeps both `Q_by_four_branch_excluded`
+  and `unrestricted_eight_AND_excluded` false.
+
+Earlier direct two-product solver probes for this route give one UNKNOWN
+at its 45-second limit and one solver-reported UNSAT in 2.96 seconds.
+Small positive/negative controls finish, but no formal UNSAT certificate or
+complete independent encoding audit is claimed. These outcomes were checked
+against the terminal JSON and solver logs, not an earlier progress summary.
+A related diagonal-prefix collision also refutes a one-product correction
+shortcut; a two-raw-product identity preserves its quadratic output instead,
+not the intermediate nonlinear wire needed by an arbitrary later suffix.
+The broader transfer/annihilator verification script is an **unexecuted
+draft**, preserved as such rather than reported as passing.
+
+The [checkpoint inventory](../../workspace/aes-256-gcm/reports/sbox_norm_q4_snapshot.json)
+contains the class representatives, terminal scan results, command outcomes
+and artifact hashes. The [source snapshot and reproduction instructions](../../workspace/aes-256-gcm/tools/norm_q4_snapshot/README.md)
+preserve the new scan programs. The original failed orbit-control script
+and its syntax-error log remain in the local raw archive; the corrected
+independent audit is a separate file.
+
+Next steps are to independently replay all product inventories, finish the
+normal-form and rank-budget proof review, and only then assess a scoped
+Q-by-four exclusion. The unrestricted case, including scalar outputs first
+appearing at gate five, remains open. No improved AES circuit, world-first
+claim, physical implementation or new hardware measurement follows here.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -654,6 +717,10 @@ Committed evidence and entry points include:
 - [Kernel-shortcut counterexamples and two further families](../../workspace/aes-256-gcm/reports/sbox_norm_kernel_shortcut_study.json)
   and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_kernel_counterexamples.py)
   preserve both invalidated assumptions without claiming a general lower bound.
+- [Provisional Q-by-four snapshot](../../workspace/aes-256-gcm/reports/sbox_norm_q4_snapshot.json)
+  and [source/reproduction guide](../../workspace/aes-256-gcm/tools/norm_q4_snapshot/README.md)
+  preserve all 192 producer results while explicitly separating the passing
+  orbit audit from the still-pending independent product replay.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 
