@@ -101,6 +101,12 @@ constructive searches, **not a new record-setting AES circuit**.
   rejected controls, 173,584 small span cases and five serialized formula
   blocks. All three strengthened full-eight-gate probes finish UNKNOWN
   at 30-second limits. No solver speedup or complete circuit is established.
+- **Newest five-gate finding:** a concrete scalar prefix has gate degrees
+  `2,3,4,4,4`, refuting a cubic-only shortcut even when every gate reaches
+  the scalar decoder. Two complete methods exclude a three-gate field
+  continuation for this specified prefix's affine-input family. This
+  increases the named seed-family count to seven, not a classification of
+  all prefixes. Two separate degree-five scalar probes remain UNKNOWN.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -132,6 +138,7 @@ terminal; no future result is assumed.
 | Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. The earlier concrete inventory records 160 fixed spaces; newer product inventories exclude all invertible linear images of six specified prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 | Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix by two methods. | All 192 classes are obstructed. The reviewed Q-by-four exclusion invokes the published strong scalar-optimal structure theorem and the earlier quadratic bound. Scalar-first-at-five remains open; all three stronger probes are UNKNOWN. |
+| Higher-degree five-gate scalar prefixes | Construct an actual quartic prefix; test its complete product closure; search for a fourth gate with a degree-five coefficient. | The quartic witness passes all 256 inputs and its specified affine-input family is obstructed by two methods. The degree-five probes are UNKNOWN; neither a cubic-only nor a degree-at-most-four rule is a sound established search cut. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -690,6 +697,59 @@ Use a new output directory; existing artifacts are not overwritten. The
 next research question is the structure or construction of prefixes whose
 first scalar output appears at gate five. No world-first is established.
 
+### A proper quartic scalar prefix — 2026-10-20
+
+A proposed cubic-only simplification is false. With XOR written `+`, the
+following actual five ANDs compute `Q=ab+cd+ef+gh`:
+
+```text
+g1 = ab
+g2 = (g1+c)d
+P  = g1+g2                 # free XOR, not an additional AND
+g3 = (P+e)f
+g4 = (P+g)h
+g5 = P(d+f+h)
+Q  = g1+g3+g4+g5
+```
+
+The identity `Pd=cd` proves the decoder algebraically. Scalar and bit-sliced
+replay agree on all **256** inputs. Gate degrees are **2,3,4,4,4**; the
+higher-degree image has rank three. All five gates reach the chosen scalar
+decoder in the coefficient graph, and `Q` is not in the first-four span.
+This is a prefix-structure counterexample, not a better scalar circuit:
+`Q` itself already has a four-parallel-AND implementation.
+
+The complete symbolic scan exhausts **8,191** left forms, **48,976** eligible
+unordered product pairs and **11,359** quadratic polar cosets. A different
+truth-table/Mobius, high-pivot column-kernel implementation reproduces both
+counts and the absence of a rank-eight pair. The quadratic kernel is
+`K=span(ab,Q)` modulo affine functions, so its intersection with a field
+target containing `Q` is exactly `span(Q)`. Three target directions remain
+and only three gates remain. A first useful product must therefore yield
+an eligible quadratic residue with an offset `t` for which both `t` and
+`t+Q` have rank eight. None exists. This excludes all invertible affine
+input images of this specified prefix when the target is transported
+jointly. It does not classify arbitrary quartic five-gate prefixes.
+
+The scalar-only symplectic action has two first-plane classes, of sizes
+**5,440** and **5,355**, verified by exhaustive transvection orbits and
+65,280 literal `Q`-preservation-mod-affine checks. These two cases apply to
+the scalar problem, **not** to fixed tables of the other three field
+outputs. Both 30-second degree-five probes in those cases return UNKNOWN.
+Their formulas reconstruct byte-for-byte; 32,130 ANF basis checks and
+32,768 five-node dependency-graph/decoder cases pass. A generic degree-five
+positive control is admitted and the quartic negative control is rejected.
+No degree-five exclusion follows.
+
+The [quartic-prefix study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quartic_study.json)
+retains the witness, scope, independent-method comparison and unresolved
+probes. Replay with
+`python3 workspace/aes-256-gcm/tools/verify_norm_q5_quartic.py`.
+The [second-method C++ scanner](../../workspace/aes-256-gcm/tools/verify_norm_q5_quartic.cpp)
+is also committed. Both methods have the same primary author; this is not
+external peer review. The old 160-space concrete inventory is not bumped
+without deduplicating the new state against it.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -780,6 +840,10 @@ Committed evidence and entry points include:
   [reviewed proof and dependencies](GF16_EARLY_SCALAR_BOUND.md) and
   [standalone second-method replay](../../workspace/aes-256-gcm/tools/verify_norm_q4.py)
   close that scoped branch while leaving scalar-first-at-five open.
+- [Quartic scalar-prefix follow-up](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quartic_study.json)
+  and [standalone family replay](../../workspace/aes-256-gcm/tools/verify_norm_q5_quartic.py)
+  refute cubic-only reasoning without claiming that all quartic or
+  degree-five prefixes are settled.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

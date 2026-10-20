@@ -2124,6 +2124,37 @@ and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_q4.py)
 retain reproducibility and exact limits. No world-first or physical result
 is claimed, and no additional GitHub push is performed in this follow-up.
 
+### Scalar-first-at-five: quartic counterexample and family — 2026-10-20
+
+An explicit five-gate prefix with degrees `2,3,4,4,4` computes a rank-eight
+scalar for all 256 inputs; all five gates reach the decoder and the scalar
+is absent after four. Thus a cubic-only prefix cut is false. Two complete
+methods scan 48,976 eligible products and 11,359 polar cosets without a
+rank-eight pair. The named seed-family obstruction total becomes seven,
+separate from the Q-by-four classification; no new concrete-space count
+is asserted without deduplication. See the
+[quartic study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quartic_study.json)
+and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_q5_quartic.py).
+
+Two scalar symplectic first-plane classes cover 10,795 planes while
+preserving only `Q` modulo affine terms. Both degree-five probes remain
+UNKNOWN at 30 seconds. Five formulas reconstruct exactly and the degree
+and dependency-cone controls pass. Under the earlier Q-by-four exclusion,
+every first-five gate must reach the chosen scalar decoder: otherwise its
+at-most-four-gate ancestor cone could be scheduled first. This necessity
+does not turn graph reachability into semantic minimality or settle the
+degree-five branch.
+
+A primary-source check reads Calik–Sonmez Turan–Peralta,
+[Boolean Functions with Multiplicative Complexity 3 and 4](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=928931),
+especially Sections 3–5, with
+[NIST publication metadata](https://www.nist.gov/publications/boolean-functions-multiplicative-complexity-3-and-4).
+Their dimension bound and scalar affine-classification are prior art.
+Our inference is that a scalar-function representative is not automatically
+a valid replacement for a complete prefix wire space; future enumeration
+must retain that extension contract. No downloaded classification code is
+executed, and no novelty claim follows from this literature check.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or

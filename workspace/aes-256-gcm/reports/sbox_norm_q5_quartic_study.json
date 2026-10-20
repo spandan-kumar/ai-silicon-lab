@@ -1,0 +1,659 @@
+{
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-20",
+  "base_commit": "f73e2a9088fa8bbae3e64330cdfe7c2d48a33a28",
+  "result": {
+    "status": "cubic-only-shortcut-refuted-and-specified-quartic-family-excluded",
+    "cubic_only_nearoptimal_prefix_rule_refuted": true,
+    "new_specified_quartic_linear_family_excluded": true,
+    "named_seed_family_count": 7,
+    "named_family_count_note": "Six previously specified seed families plus this rank3/quartic family; separate from the Q-by-four orbit classification.",
+    "old_concrete_space_inventory": 160,
+    "new_space_dedup_against_old_inventory_performed": false,
+    "degree5_prefixes_globally_excluded": false,
+    "all_degree4_prefixes_classified": false,
+    "unrestricted_eight_AND_excluded": false,
+    "complete_GF16_candidate": false,
+    "world_first_established": false,
+    "improved_AES_candidate": false,
+    "physical_metrics": null,
+    "new_push_performed": false,
+    "previous_goal_turn_classification": "progress: f73e2a9 complete second-method Q4 replay and explicit structural reduction.",
+    "next_action": "Explore scalar-first-at-five prefixes without a cubic-only restriction. Degree5 remains open. Preserve auxiliary wire spaces when applying scalar function classifications."
+  },
+  "explicit_witness": {
+    "status": "pass",
+    "factor_masks": [
+      [
+        1,
+        2
+      ],
+      [
+        8,
+        260
+      ],
+      [
+        32,
+        784
+      ],
+      [
+        128,
+        832
+      ],
+      [
+        168,
+        768
+      ]
+    ],
+    "output_mask": 7424,
+    "all256_scalar_and_bitslice_rows_verified": 256,
+    "gate_degrees": [
+      2,
+      3,
+      4,
+      4,
+      4
+    ],
+    "scalar_polar_rank": 8,
+    "first_scalar_gate": 5,
+    "prefix_gate_independence_mod_raw": 5,
+    "high_degree_rank": 3,
+    "quadratic_gate_selectors": [
+      0,
+      1,
+      28,
+      29
+    ],
+    "all_five_gates_in_scalar_dependency_cone": true,
+    "gate_ANF_hex": [
+      "0x8",
+      "0x1800",
+      "0x1180800000000",
+      "0x1000000000000180800000000000000000000000000000000",
+      "0x180800000000000000000000180800001000"
+    ],
+    "gate_truth_hex": [
+      "0x8888888888888888888888888888888888888888888888888888888888888888",
+      "0x7800780078007800780078007800780078007800780078007800780078007800",
+      "0xf77f088000000000f77f088000000000f77f088000000000f77f08800000000",
+      "0xf770f770f770f77f088f088f088f08800000000000000000000000000000000",
+      "0xf000f00000880088f000f0000088008800880088f000f00000880088f000f000"
+    ],
+    "proposed_cubic_only_nearoptimal_prefix_rule": "refuted",
+    "complete_GF16_multiplier": false,
+    "world_first_established": false,
+    "algorithm_seconds": 0.008503540884703398
+  },
+  "symbolic_family_scan": {
+    "status": "complete",
+    "nonzero_left_forms": 8191,
+    "eligible_unordered_pairs": 48976,
+    "quadratic_polar_cosets": 11359,
+    "cosets_admitting_rank8_pair": 0,
+    "zero_coset_checked": true,
+    "factor_masks": [
+      [
+        1,
+        2
+      ],
+      [
+        8,
+        260
+      ],
+      [
+        32,
+        784
+      ],
+      [
+        128,
+        832
+      ],
+      [
+        168,
+        768
+      ]
+    ],
+    "scalar_decoder": 7424,
+    "higher_degree_rank": 3,
+    "K_dimension": 2,
+    "K_gate_selectors": [
+      0,
+      1,
+      28,
+      29
+    ],
+    "K_packed_polars": [
+      0,
+      1,
+      138420224,
+      138420225
+    ],
+    "right_kernel_dimension_histogram": {
+      "9": 9,
+      "8": 242,
+      "10": 4,
+      "4": 490,
+      "5": 22,
+      "3": 80,
+      "2": 1712,
+      "1": 5632
+    },
+    "minimum_corrected_rank_histogram": {
+      "0": 1,
+      "2": 10605,
+      "4": 753,
+      "6": 0,
+      "8": 0
+    },
+    "coset_inventory_sha256": "365adb6dba72148793bc22574c08923f7f02dd35d0dff8437a07fbaf09636937",
+    "algorithm_seconds": 1.0051997089758515,
+    "scope": "Specified five-gate quartic prefix and all invertible affine input images jointly transporting Q and the field target. Not all degree4 or scalar-first-at-five prefixes.",
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false
+  },
+  "truth_table_family_scan": {
+    "complete": true,
+    "bent_pair_escape": false,
+    "left_forms": 8191,
+    "eligible_unordered_pairs": 48976,
+    "quadratic_polar_cosets": 11359,
+    "left_mask": 0,
+    "right_mask": 0,
+    "cancel_h": 0,
+    "K_offset_selector": 0,
+    "algorithm_seconds": 0.0427348
+  },
+  "two_scalar_first_plane_classes": {
+    "status": "pass",
+    "classes": [
+      {
+        "representative": [
+          1,
+          2
+        ],
+        "plane_count": 5440,
+        "polar_inverse_pairing": 1
+      },
+      {
+        "representative": [
+          1,
+          4
+        ],
+        "plane_count": 5355,
+        "polar_inverse_pairing": 0
+      }
+    ],
+    "all_planes": 10795,
+    "literal_Q_affine_difference_checks": 65280,
+    "algorithm_seconds": 2.0127604578156024,
+    "scope": "Scalar Q only. Transformations preserve Q modulo affine terms; do not fix the other field outputs."
+  },
+  "degree5_probes": {
+    "status": "bounded-proper-five-gate-degree-five-probes-terminal",
+    "controls": [
+      {
+        "label": "control-quartic-admitted",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "$REPO/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "$REPO/runs/aes-norm-q5-degree5-20261020/control-quartic-admitted.cnf"
+        ],
+        "solver_wall_seconds": 0.05156887508928776,
+        "required_fourth_gate_ANF_degree": 4,
+        "first_factors": null,
+        "fixed_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            784
+          ],
+          [
+            128,
+            832
+          ],
+          [
+            168,
+            768
+          ]
+        ],
+        "target_truth_hex": "0x7888877787778777877778887888788887777888788878888777788878887888",
+        "first_target_prefix": 5,
+        "all_five_gates_must_reach_output": true,
+        "source_variables": 15076,
+        "variables": 46466,
+        "clauses": 156299,
+        "native_XORs": 7568,
+        "CNF_sha256": "7aeb4926c41bf0a9b8c8669225c1ffd98df082bd10a0d561459c9a1819ddb450",
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              260
+            ],
+            [
+              32,
+              784
+            ],
+            [
+              128,
+              832
+            ],
+            [
+              168,
+              768
+            ]
+          ],
+          "output_mask": 7424,
+          "gate_degrees": [
+            2,
+            3,
+            4,
+            4,
+            4
+          ],
+          "all256_rows_verified": true,
+          "all_plain_and_native_model_constraints_replayed": true
+        }
+      },
+      {
+        "label": "control-quartic-not-quintic",
+        "status": "UNSATISFIABLE",
+        "exit_code": 20,
+        "argv": [
+          "$REPO/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "$REPO/runs/aes-norm-q5-degree5-20261020/control-quartic-not-quintic.cnf"
+        ],
+        "solver_wall_seconds": 0.03853770811110735,
+        "required_fourth_gate_ANF_degree": 5,
+        "first_factors": null,
+        "fixed_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            260
+          ],
+          [
+            32,
+            784
+          ],
+          [
+            128,
+            832
+          ],
+          [
+            168,
+            768
+          ]
+        ],
+        "target_truth_hex": "0x7888877787778777877778887888788887777888788878888777788878887888",
+        "first_target_prefix": 5,
+        "all_five_gates_must_reach_output": true,
+        "source_variables": 15062,
+        "variables": 47138,
+        "clauses": 159029,
+        "native_XORs": 7554,
+        "CNF_sha256": "aa4221c3634d62cf5989145a8decb7987c0e689feb7f02de69e77970e9ae293a",
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "control-generic-degree-five",
+        "status": "SATISFIABLE",
+        "exit_code": 10,
+        "argv": [
+          "$REPO/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "5",
+          "$REPO/runs/aes-norm-q5-degree5-20261020/control-generic-degree-five.cnf"
+        ],
+        "solver_wall_seconds": 0.044089209055528045,
+        "required_fourth_gate_ANF_degree": 5,
+        "first_factors": null,
+        "fixed_factors": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            256
+          ],
+          [
+            8,
+            512
+          ],
+          [
+            16,
+            1024
+          ],
+          [
+            32,
+            2048
+          ]
+        ],
+        "target_truth_hex": "0x8000000000000000800000000000000080000000000000008000000000000000",
+        "first_target_prefix": 5,
+        "all_five_gates_must_reach_output": true,
+        "source_variables": 15062,
+        "variables": 47138,
+        "clauses": 159029,
+        "native_XORs": 7554,
+        "CNF_sha256": "84263250791cf593b896abe8b6e9b3f13c6b69ade86aacc10b37f0d868e14a18",
+        "UNSAT_certificate_checked": false,
+        "witness": {
+          "factor_masks": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              256
+            ],
+            [
+              8,
+              512
+            ],
+            [
+              16,
+              1024
+            ],
+            [
+              32,
+              2048
+            ]
+          ],
+          "output_mask": 4096,
+          "gate_degrees": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "all256_rows_verified": true,
+          "all_plain_and_native_model_constraints_replayed": true
+        }
+      }
+    ],
+    "searches": [
+      {
+        "label": "first-2",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "$REPO/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "$REPO/runs/aes-norm-q5-degree5-20261020/first-2.cnf"
+        ],
+        "solver_wall_seconds": 30.01263195904903,
+        "required_fourth_gate_ANF_degree": 5,
+        "first_factors": [
+          1,
+          2
+        ],
+        "fixed_factors": null,
+        "target_truth_hex": "0x7888877787778777877778887888788887777888788878888777788878887888",
+        "first_target_prefix": 5,
+        "all_five_gates_must_reach_output": true,
+        "source_variables": 15062,
+        "variables": 47138,
+        "clauses": 158945,
+        "native_XORs": 7554,
+        "CNF_sha256": "8522078c4c990cab93451cc1b46a17df690244756b6977b00ef7b5eab12d8e72",
+        "UNSAT_certificate_checked": false
+      },
+      {
+        "label": "first-4",
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "argv": [
+          "$REPO/runs/aes-eight-and-norm-20261018/cadical-upstream/build/cadical",
+          "-t",
+          "30",
+          "$REPO/runs/aes-norm-q5-degree5-20261020/first-4.cnf"
+        ],
+        "solver_wall_seconds": 30.022263125050813,
+        "required_fourth_gate_ANF_degree": 5,
+        "first_factors": [
+          1,
+          4
+        ],
+        "fixed_factors": null,
+        "target_truth_hex": "0x7888877787778777877778887888788887777888788878888777788878887888",
+        "first_target_prefix": 5,
+        "all_five_gates_must_reach_output": true,
+        "source_variables": 15062,
+        "variables": 47138,
+        "clauses": 158945,
+        "native_XORs": 7554,
+        "CNF_sha256": "00b9e4131ee2975a45578a3fb3e322f2aa5bc04f32381c538ac54a6354b505b9",
+        "UNSAT_certificate_checked": false
+      }
+    ],
+    "higher_degree_scalar_prefix_found": false,
+    "scope": "Canonical rank8scalarQ; first target by5 but not4; all five syntactic gates in decoder dependency cone. Fourth gate has a nonzero degree5 ANF coefficient. First planes use the two scalar symplectic classes, separately checked.",
+    "degree_five_prefix_globally_excluded": false,
+    "unrestricted_eight_AND_excluded": false,
+    "world_first_established": false,
+    "complete_GF16_candidate": false
+  },
+  "degree5_formula_audit": {
+    "status": "pass",
+    "ANF_degree_basis_checks": 32130,
+    "all_five_node_DAG_and_decoder_masks_checked": 32768,
+    "formula_checks": [
+      {
+        "label": "control-quartic-admitted",
+        "CNF_byte_exact": true,
+        "sha256": "7aeb4926c41bf0a9b8c8669225c1ffd98df082bd10a0d561459c9a1819ddb450"
+      },
+      {
+        "label": "control-quartic-not-quintic",
+        "CNF_byte_exact": true,
+        "sha256": "aa4221c3634d62cf5989145a8decb7987c0e689feb7f02de69e77970e9ae293a"
+      },
+      {
+        "label": "control-generic-degree-five",
+        "CNF_byte_exact": true,
+        "sha256": "84263250791cf593b896abe8b6e9b3f13c6b69ade86aacc10b37f0d868e14a18"
+      },
+      {
+        "label": "first-2",
+        "CNF_byte_exact": true,
+        "sha256": "8522078c4c990cab93451cc1b46a17df690244756b6977b00ef7b5eab12d8e72"
+      },
+      {
+        "label": "first-4",
+        "CNF_byte_exact": true,
+        "sha256": "00b9e4131ee2975a45578a3fb3e322f2aa5bc04f32381c538ac54a6354b505b9"
+      }
+    ],
+    "frozen_base_unchanged_except_truth_exposure": true,
+    "external_independent_author": false,
+    "UNSAT_certificate_checked": false,
+    "algorithm_seconds": 0.8097259579226375,
+    "scope": "Independent new-block construction plus exhaustive degree/DAG controls; inherited base reused, no field or degree5 exclusion from UNKNOWN."
+  },
+  "family_proof": "The quadratic kernel K is span(p=ab,Q), with polar ranks0,2,6,8. Thus its intersection with a full-rank quadratic field target containingQ is exactlyspanQ. Three remaining gates are rank-tight. A first new field direction would have a quadratic product residue t moduloK with t,t+Q both rank8. Every residue coset has a K-corrected member of rank<=4; the other pair members differ only by rank2 p, so this is impossible. Both complete scans explicitly check all four K offsets, including zero. Invertible affine input maps preserve degree filtration and polar rank and must transport the whole target jointly. Operand constants add old wires only.",
+  "cone_requirement_dependency": "Under the Q-by-four exclusion, every one of the first5 gates must reach the selected scalar decoder. Otherwise its at-most4-gate ancestor cone can be scheduled first, contradicting that branch exclusion. Syntactic reachability is necessary but not a proof of semantic minimality.",
+  "sources": [
+    {
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=928931",
+      "checked": "2026-10-20",
+      "sections": "3,4,5",
+      "fact": "Prior dimension bound and classifications of scalar functions of MC3/4. These do not by themselves classify all available prefix wire spaces.",
+      "status": "primary paper read; no downloaded code or external classification proof rerun"
+    },
+    {
+      "url": "https://www.nist.gov/publications/boolean-functions-multiplicative-complexity-3-and-4",
+      "checked": "2026-10-20",
+      "fact": "Primary publication metadata and abstract; classification is prior art."
+    }
+  ],
+  "standalone_replay": "python3 workspace/aes-256-gcm/tools/verify_norm_q5_quartic.py",
+  "standalone_source_sha256": "c2c8718a06c280741b0c0ae2271b33b1b47dba10b5765ccd0a92e77dc651562b",
+  "standalone_truth_scanner": "workspace/aes-256-gcm/tools/verify_norm_q5_quartic.cpp",
+  "standalone_truth_source_sha256": "6e4654ddb63f1b4dd987a59a7cd6b867ad36655ba0204e76744623143a4e1709",
+  "provenance": {
+    "agent": {
+      "model": {
+        "provider": "OpenAI",
+        "display_name": "Codex",
+        "canonical_id": null,
+        "identity_status": "alias-only"
+      },
+      "harness": {
+        "name": "Codex desktop",
+        "version": null,
+        "environment": "local"
+      },
+      "reasoning": {
+        "effort": null,
+        "mode": null,
+        "context": null
+      },
+      "goal_sha256": "64d12ae540ee7a0f4242e40be2a2927b9c607e0c1b680d0045ff8c238a454b8d",
+      "instruction_hashes": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "55a0c86976b675178801e1169510eec0df6e9a2c8efcaaeebe05825833e33a20"
+        },
+        {
+          "path": "experiments/registry.json",
+          "sha256": "b7b599951046b3ee169f90c75b382112683f29a0847bce3a5d86ea0b1c282ea7"
+        },
+        {
+          "path": "experiments/aes-256-gcm/experiment.json",
+          "sha256": "7ec307097bd3fe948bd7eb63ed892b7803b9410c703e8a8c3f2ec0e29f43b4b2"
+        },
+        {
+          "path": "experiments/aes-256-gcm/PLAN.md",
+          "sha256": "906241edb526e89df552062c80beb666a1b294b4befc0df33e1eac45006d02f7"
+        },
+        {
+          "path": "experiments/schema/README.md",
+          "sha256": "3aace74f96d8a12a17d789ceb61fb99686d7263ebedb2b714c34ef0f63544710"
+        }
+      ],
+      "subagents": [],
+      "relationships": {
+        "author": "/root",
+        "parent": null
+      },
+      "notes": "Root constructed and tested a degree4 prefix, then used symbolic/row-kernel and truth/Mobius/column-kernel scans. Same primary author; algorithmic independence is not external peer review. Karpathy guidelines motivated explicit counterexamples, positive/negative controls and scope limits. Canonical model identity, harness version, reasoning settings, per-attempt tokens/time/cost unavailable/null."
+    },
+    "usage": {
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "output_tokens": null,
+      "reasoning_tokens": null,
+      "total_tokens": null,
+      "source": "unavailable",
+      "notes": "Goal cumulative usage is not per-attempt telemetry."
+    },
+    "time": {
+      "started_at": null,
+      "finished_at": null,
+      "agent_wall_seconds": null,
+      "human_seconds": null,
+      "build_seconds": null,
+      "simulation_seconds": null,
+      "hardware_seconds": null,
+      "source": "unavailable",
+      "notes": "Separate observed Python/solver command times retained. No new RTL simulation, hardware or physical measurements."
+    },
+    "cost": {
+      "amount": null,
+      "currency": "USD",
+      "source": "unavailable",
+      "rate_date": null
+    }
+  },
+  "raw_artifact_sha256": {
+    "runs/aes-norm-q5-degree5-20261020/audit.json": "cea097e7ac451a8f2f05da84e0efc2f87fa1eea10dd0075ecbbdb6f212cd0f02",
+    "runs/aes-norm-q5-degree5-20261020/audit.py": "b81fd535ec1d10764cadaf6e2e487885042d0a057ba197a8e17c25362f2d4e47",
+    "runs/aes-norm-q5-degree5-20261020/bounded-degree5-search.command.json": "24d60b8c741d0870c92d303b8b1485537b306c222447806b4f5cd918de3b1775",
+    "runs/aes-norm-q5-degree5-20261020/bounded-degree5-search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/bounded-degree5-search.stdout.log": "e9de6b293271bd7848380643576b34d5def4e17f5b6983a160e03596461093a3",
+    "runs/aes-norm-q5-degree5-20261020/capture.py": "426b5b8174739791ca357a956443927d3db03b03f78884259d67c2c76a8490aa",
+    "runs/aes-norm-q5-degree5-20261020/control-generic-degree-five.cnf": "84263250791cf593b896abe8b6e9b3f13c6b69ade86aacc10b37f0d868e14a18",
+    "runs/aes-norm-q5-degree5-20261020/control-generic-degree-five.json": "f4fa62f5b96f8649d6819b35e9b1d314323c646cdddd157c0f752612340bbf55",
+    "runs/aes-norm-q5-degree5-20261020/control-generic-degree-five.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/control-generic-degree-five.stdout.log": "c9db66a6ba91db148a3ef07099a1c85cad899e18856976e78d307125dc28e8e3",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-admitted.cnf": "7aeb4926c41bf0a9b8c8669225c1ffd98df082bd10a0d561459c9a1819ddb450",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-admitted.json": "7c9c91d2bb9bafde1ada868ffe3652ae56b1d17f9e8cc0264197bfa1b77b34fc",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-admitted.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-admitted.stdout.log": "2bd766092dd1ec6f2b9b0dd44082eba2b8cb31e42afccf42d0af5f82843f63ac",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-not-quintic.cnf": "aa4221c3634d62cf5989145a8decb7987c0e689feb7f02de69e77970e9ae293a",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-not-quintic.json": "f21fbb2c0c222494ce43470e53b5482a0c5ab58b883a24b5e383c0155bcc48a0",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-not-quintic.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/control-quartic-not-quintic.stdout.log": "3133b3e2e68701f1ff1e1a35fe8594357d028188097c7bf83999cf6aed5f5f7e",
+    "runs/aes-norm-q5-degree5-20261020/encoder.py": "549fac807a01d8e462db1058c3a57c996f69bca438770e5a4cef23202b0362cf",
+    "runs/aes-norm-q5-degree5-20261020/first-2.cnf": "8522078c4c990cab93451cc1b46a17df690244756b6977b00ef7b5eab12d8e72",
+    "runs/aes-norm-q5-degree5-20261020/first-2.json": "00fccf99e1854bfd846c116db05812aa6f357b7ef0519dd2227bdceec23120b9",
+    "runs/aes-norm-q5-degree5-20261020/first-2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/first-2.stdout.log": "fd8d69cece31070407ecbfd15d1f09ee3e5aba3c5e4960f9a2d21e8604e3fd61",
+    "runs/aes-norm-q5-degree5-20261020/first-4.cnf": "00b9e4131ee2975a45578a3fb3e322f2aa5bc04f32381c538ac54a6354b505b9",
+    "runs/aes-norm-q5-degree5-20261020/first-4.json": "a06cc214aa0ee4433ed9b10787696f2a403d6a2c6f276bb86afc14c70aa3931e",
+    "runs/aes-norm-q5-degree5-20261020/first-4.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/first-4.stdout.log": "311b4f91a827242a89bda85155b6bc75bc84504c58a28c66af68e52c21378213",
+    "runs/aes-norm-q5-degree5-20261020/independent-formula-audit.command.json": "9995e3749ef2b3ea0a3268e39b2258918d6d9bf173e56a8aa20bf81f65efeac3",
+    "runs/aes-norm-q5-degree5-20261020/independent-formula-audit.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/independent-formula-audit.stdout.log": "1606b862211582d882ddee1f16e579d637e1d535c45914dd2025e10ada5d0c13",
+    "runs/aes-norm-q5-degree5-20261020/orbits.json": "bad6595343184b9f45a2ef334af2c67d54f5faf19dcc26c34d6bf2862889e954",
+    "runs/aes-norm-q5-degree5-20261020/orbits.py": "3d546a9556fc0d66aa90dfb896ba2b1575c719d00a3207daf45ac95d5faafa51",
+    "runs/aes-norm-q5-degree5-20261020/report.json": "410c8d19b461f070cd38ced73dece6a48b804ccf4030eb3488b6fe8fb2847182",
+    "runs/aes-norm-q5-degree5-20261020/scalar-first-plane-orbits.command.json": "1127c63255e44f58dd5f8266dfa6d251fb0a5ef4f66bfa406390d0faa014f82c",
+    "runs/aes-norm-q5-degree5-20261020/scalar-first-plane-orbits.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-degree5-20261020/scalar-first-plane-orbits.stdout.log": "e3ee34d86a03834a30eeb15e9422ae354c93f16a6c3486a29b1e22fbd0ff59e7",
+    "runs/aes-norm-q5-degree5-20261020/search.py": "d6f19713c26a5e48215651ef3b2d3f609fb92785626e6ae5eccf1aeaab9192e2",
+    "runs/aes-norm-q5-quartic-20261020/capture.py": "426b5b8174739791ca357a956443927d3db03b03f78884259d67c2c76a8490aa",
+    "runs/aes-norm-q5-quartic-20261020/complete-symbolic-family.command.json": "8ddbaa2cbce853812a862d40ea716b097a8754e10cddc7be1bb6a56aab4143a3",
+    "runs/aes-norm-q5-quartic-20261020/complete-symbolic-family.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-quartic-20261020/complete-symbolic-family.stdout.log": "f2b9a2ad66e3687860576f54a7377aef922895856150d0f212c6ef98872721fe",
+    "runs/aes-norm-q5-quartic-20261020/explicit-quartic-replay.command.json": "bc4e49be04d85822a4f9b4754dacc6602f4e04ac30f7973499d99cf5f7879e59",
+    "runs/aes-norm-q5-quartic-20261020/explicit-quartic-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-quartic-20261020/explicit-quartic-replay.stdout.log": "7e6131dbfdcbeccadabd2a860dee4ddbdec252414fc087531f4519352fd4e4fb",
+    "runs/aes-norm-q5-quartic-20261020/family.json": "3047f7755a626502afbb1aabf7c810542233e87b023409c885ffc2c8a2856a36",
+    "runs/aes-norm-q5-quartic-20261020/family.py": "b67342a77f93e6be9948c7fe21ecf95bd15cff82587dafd42119a7733ff9afb9",
+    "runs/aes-norm-q5-quartic-20261020/independent-full-scan.command.json": "8cd6ef8909c4be42313af792e1663c3ec538ef77555316573c0b0cf0c1bd861e",
+    "runs/aes-norm-q5-quartic-20261020/independent-full-scan.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-quartic-20261020/independent-full-scan.stdout.log": "11a90867cd6a1efa78a0daa86301d36a772ff68ea0fb57f9a868ba50dddcb815",
+    "runs/aes-norm-q5-quartic-20261020/independent-scan.json": "905318d052c8a6b8573711faab6d827ad0e379a1610e5fa0e3282a9ee6192426",
+    "runs/aes-norm-q5-quartic-20261020/independent-scanner-build.command.json": "2b9875abd9eafa05ffaf80e988a3000581315f9a10e20ea93f920230df28f5f3",
+    "runs/aes-norm-q5-quartic-20261020/independent-scanner-build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-quartic-20261020/independent-scanner-build.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-quartic-20261020/replay.json": "85ca25aade8a0c7962eef70adc27c27750e64dc1b29fe3416badb96ee28898dd",
+    "runs/aes-norm-q5-quartic-20261020/replay.py": "d06aee9962b686c8611e1e6ea39c50b4f6d7da48766a6bdaf8f1e60cdd1cb107",
+    "runs/aes-norm-q5-quartic-20261020/retain.py": "ea3855d6327d68ddda7f1afbe9ffd29401f92c095c1698fac719c88bb36b928a",
+    "runs/aes-norm-q5-quartic-20261020/scan_audit": "f72d64a1b0d1aefe668b5e10bfa875a1b151b07b4373cb69c9152e332141743e",
+    "runs/aes-norm-q5-quartic-20261020/scan_audit.cpp": "6e4654ddb63f1b4dd987a59a7cd6b867ad36655ba0204e76744623143a4e1709",
+    "runs/aes-norm-q5-quartic-20261020/standalone-replay.command.json": "570c2c09b330be8c2885a9876b77a999d9bbe4f124fc6cc940f8a7c2a6bc7603",
+    "runs/aes-norm-q5-quartic-20261020/standalone-replay.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/aes-norm-q5-quartic-20261020/standalone-replay.stdout.log": "e5fad630c0afa61ffddc1addbb579033c7fe4a6d2fc34c4ca5fb84036d3f8251"
+  },
+  "raw_archive_in_git": false
+}

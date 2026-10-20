@@ -430,6 +430,18 @@ exclusion. The remaining scalar-first-at-five case is open; three probes
 with the new no-early-target constraint all finish UNKNOWN. See the
 [verified study](../../workspace/aes-256-gcm/reports/sbox_norm_q4_verified_study.json).
 
+### Quartic scalar-first-at-five prefix — 2026-10-20
+
+A concrete five-gate prefix shows that cubic-only simplification is not
+sound: its degrees are `2,3,4,4,4` and it computes a full-rank scalar on all
+256 inputs. Both symbolic and truth-table scans exclude its specified
+affine-input family from a three-AND field completion, with 48,976 eligible
+pairs and 11,359 polar cosets. This is a seventh named seed family, not all
+quartic prefixes. Scalar-only first-plane normalization has two classes;
+both degree-five probes remain UNKNOWN. The
+[quartic-prefix study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quartic_study.json)
+retains the exact counterexample and search boundaries.
+
 ## Prior art and availability
 
 The [Find–Boyar paper](https://arxiv.org/abs/1407.6169) is prior work on the
