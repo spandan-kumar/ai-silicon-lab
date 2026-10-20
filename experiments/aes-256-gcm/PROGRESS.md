@@ -90,13 +90,17 @@ constructive searches, **not a new record-setting AES circuit**.
   proposed four-product-basis shortcut. A separate six-input example refutes
   a stronger local flattening lemma. Neither refutes general rank-one
   flattening or improves a complete field multiplier.
-- **Newest provisional checkpoint:** a complete symmetry classification gives
-  192 nonquadratic fifth-gate classes after four disjoint products. The
-  producer's full product scans finish for all 192 without a rank-eight-pair
-  escape. A separate algorithm verifies the classification, but the full
-  product campaign has not been independently replayed. The proposed
-  Q-by-four reduction still requires review; this is not yet a branch
-  exclusion or an unrestricted eight-AND lower bound.
+- **Newest verified structural checkpoint:** a second-method symbolic/Pfaffian
+  replay completes for all 192 nonquadratic fifth-gate classes after four
+  disjoint products. Counts match and no rank-eight-pair escape exists.
+  The reviewed reduction, explicitly invoking the published strong
+  scalar-optimal structure theorem, excludes the Q-by-four branch. It does
+  not exclude all eight-AND multipliers. The two product implementations
+  share a primary author; this is not external peer review.
+- **Newest search:** a no-early-target constraint is checked on admitted and
+  rejected controls, 173,584 small span cases and five serialized formula
+  blocks. All three strengthened full-eight-gate probes finish UNKNOWN
+  at 30-second limits. No solver speedup or complete circuit is established.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -127,7 +131,7 @@ terminal; no future result is assumed.
 | Quadratic norm stage | Allow arbitrary affine raw-input factors, including mixed input halves. | Nine ANDs are necessary and sufficient in this restricted model; the eight-AND refutation has checked DRAT/LRAT evidence. The result has prior precedent. |
 | Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. The earlier concrete inventory records 160 fixed spaces; newer product inventories exclude all invertible linear images of six specified prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
-| Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix. | All 192 nonquadratic classes finish without a necessary rank-eight-pair escape. Classification independently checked; full scan replay and normal-form/reduction review pending. Earlier solver probes give one UNKNOWN and one uncertified UNSAT. |
+| Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix by two methods. | All 192 classes are obstructed. The reviewed Q-by-four exclusion invokes the published strong scalar-optimal structure theorem and the earlier quadratic bound. Scalar-first-at-five remains open; all three stronger probes are UNKNOWN. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -634,6 +638,58 @@ Q-by-four exclusion. The unrestricted case, including scalar outputs first
 appearing at gate five, remains open. No improved AES circuit, world-first
 claim, physical implementation or new hardware measurement follows here.
 
+### Q-by-four second-method replay and reduction — 2026-10-20
+
+This follow-up supersedes the pending checks in the preceding publication
+snapshot, whose original records remain unchanged. All **192** product
+inventories now have a complete second-method replay. Symbolic Boolean-ring
+multiplication, low-pivot row-equation kernels and Pfaffian truth tables
+replace the producer's truth-table/Mobius, column-kernel and Gaussian-rank
+methods. Every eligible-pair and polar-coset count matches. All sixteen
+precursor corrections, including the zero coset, are covered. The command
+exits zero in **45.747 seconds**. This is algorithmic independence under the
+same primary author, not an external independent review.
+
+The [reviewed early-scalar proof](GF16_EARLY_SCALAR_BOUND.md) now assembles
+the normalization, complete orbit coverage and rank-tight continuation
+argument. It invokes the published statement that every scalar-optimal
+quadratic circuit is single-level; merely replacing a scalar circuit by
+some parallel optimum would not preserve its other wires. That literature
+dependency is explicit, and its original 1992 full proof is not reproduced
+here. The Q-by-four branch is excluded under these dependencies. An
+eight-AND multiplier would therefore need its first target direction at
+gate five; this remaining case is **not** excluded.
+
+A stronger full-eight-gate model forbids every nonzero target combination
+in the affine span of its first four gates. Its new constraint block and
+XOR-to-CNF suffix are reconstructed exactly for all five control/search
+instances. All 255 zero-preserving truth-basis projections, 173,584 small
+span cases and the positive model's actual gate truths pass. The prior
+base encoder is unchanged except for exposing its truth-variable IDs;
+this does not claim a fresh full audit of all inherited constraints.
+All three 30-second field probes finish **UNKNOWN**. There is no checked
+UNSAT certificate, new complete field circuit, measured speedup or
+improved AES implementation.
+
+The transfer/annihilator draft is separately executed in a fresh directory:
+524,800 diagonal shadow comparisons, the embedded collision and stated
+annihilator controls pass. This does not establish a general
+cost-preserving rank-one flattening theorem.
+
+The [verified study](../../workspace/aes-256-gcm/reports/sbox_norm_q4_verified_study.json)
+retains commands, hashes, counts, proof dependencies and terminal outcomes.
+Its [standalone symbolic verifier](../../workspace/aes-256-gcm/tools/verify_norm_q4.py)
+requires only Python and the committed provisional inventory:
+
+```sh
+python3 workspace/aes-256-gcm/tools/verify_norm_q4.py controls --output runs/q4-independent-replay
+python3 workspace/aes-256-gcm/tools/verify_norm_q4.py campaign --output runs/q4-independent-replay
+```
+
+Use a new output directory; existing artifacts are not overwritten. The
+next research question is the structure or construction of prefixes whose
+first scalar output appears at gate five. No world-first is established.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -719,8 +775,11 @@ Committed evidence and entry points include:
   preserve both invalidated assumptions without claiming a general lower bound.
 - [Provisional Q-by-four snapshot](../../workspace/aes-256-gcm/reports/sbox_norm_q4_snapshot.json)
   and [source/reproduction guide](../../workspace/aes-256-gcm/tools/norm_q4_snapshot/README.md)
-  preserve all 192 producer results while explicitly separating the passing
-  orbit audit from the still-pending independent product replay.
+  preserve the original producer-only publication state.
+- [Verified Q-by-four follow-up](../../workspace/aes-256-gcm/reports/sbox_norm_q4_verified_study.json),
+  [reviewed proof and dependencies](GF16_EARLY_SCALAR_BOUND.md) and
+  [standalone second-method replay](../../workspace/aes-256-gcm/tools/verify_norm_q4.py)
+  close that scoped branch while leaving scalar-first-at-five open.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

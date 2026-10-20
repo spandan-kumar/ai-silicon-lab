@@ -2102,6 +2102,28 @@ and [source snapshot](../../workspace/aes-256-gcm/tools/norm_q4_snapshot/README.
 This is a publication checkpoint of completed local work, not a new
 literature search or hardware benchmark.
 
+### Q-by-four branch: full second-method audit — 2026-10-20
+
+All 192 product inventories now pass a symbolic/Pfaffian replay with matching
+pair and coset counts. The complete command exits zero in 45.747 seconds.
+The [reviewed reduction](GF16_EARLY_SCALAR_BOUND.md) invokes the strong
+published scalar-optimal circuit theorem, the prior quadratic bound and
+the complete plane-orbit classification. Under those explicit dependencies,
+the early-scalar/Q-by-four branch is excluded; the scalar-first-at-five
+case remains open. No unrestricted two-output theorem is required for
+this reduction, although the older full solver still invokes it.
+
+The new first-four-target-intersection cut passes five serialized-block
+checks, 255 truth-basis projections, 173,584 small span cases and a planted
+SAT model. All three strengthened 30-second field searches finish UNKNOWN.
+Separate fresh-directory transfer controls pass without implying general
+rank-one flattening. The two product methods share a primary author;
+algorithmic independence is not external peer review. The
+[verified study](../../workspace/aes-256-gcm/reports/sbox_norm_q4_verified_study.json)
+and [standalone replay](../../workspace/aes-256-gcm/tools/verify_norm_q4.py)
+retain reproducibility and exact limits. No world-first or physical result
+is claimed, and no additional GitHub push is performed in this follow-up.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or

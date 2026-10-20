@@ -418,6 +418,18 @@ eight-gate exclusion or measured speedup follows. See the
 [pair study](../../workspace/aes-256-gcm/reports/sbox_norm_pair_frontier_study.json)
 and [standalone pair verifier](../../workspace/aes-256-gcm/tools/verify_norm_pairs.py).
 
+### Early scalar branch — 2026-10-20
+
+The [reviewed Q-by-four reduction](GF16_EARLY_SCALAR_BOUND.md) now combines
+the earlier quadratic bound with a complete 192-class product obstruction
+and a different symbolic/Pfaffian replay. Invoking the published strong
+scalar-optimal structure theorem rules out an eight-AND field multiplier
+having any target direction already available by gate four. This is not
+an unconditional reproof of that theorem or an unrestricted eight-AND
+exclusion. The remaining scalar-first-at-five case is open; three probes
+with the new no-early-target constraint all finish UNKNOWN. See the
+[verified study](../../workspace/aes-256-gcm/reports/sbox_norm_q4_verified_study.json).
+
 ## Prior art and availability
 
 The [Find–Boyar paper](https://arxiv.org/abs/1407.6169) is prior work on the

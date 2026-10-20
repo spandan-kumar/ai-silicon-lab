@@ -53,6 +53,10 @@ does not claim to exhaust all 524,800 possible products.
 `transfer_verify_unexecuted.py` is an **unexecuted draft** of additional
 transfer and annihilator controls, retained for handoff. Neither its
 assertions nor its printed intended success fields are test evidence.
+That status describes the original publication. A later fresh-directory
+execution of the draft and the complete second-method product replay are
+recorded in the [verified follow-up](../../reports/sbox_norm_q4_verified_study.json).
+The original producer report is deliberately not rewritten.
 
 The separate bounded SAT search, its imports and CNFs remain in local ignored
 `runs/aes-norm-q4-pair-search-20261019/`. Its eight-input results are one
