@@ -107,6 +107,13 @@ constructive searches, **not a new record-setting AES circuit**.
   continuation for this specified prefix's affine-input family. This
   increases the named seed-family count to seven, not a classification of
   all prefixes. Two separate degree-five scalar probes remain UNKNOWN.
+- **Newest global formulation:** all rank-eight raw-factor lists of a
+  five-gate scalar prefix normalize to 621 ordered input classes, with
+  required free-XOR output corrections retained. A global quintic probe
+  returns UNKNOWN. A separate reviewed lemma, invoking the strong
+  scalar-optimal theorem, excludes 134 raw classes only for that quintic
+  branch; the remaining 487 are open. These are not 621 complete circuit
+  classes, a global eight-AND bound or an established solver speedup.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -139,6 +146,7 @@ terminal; no future result is assumed.
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 | Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix by two methods. | All 192 classes are obstructed. The reviewed Q-by-four exclusion invokes the published strong scalar-optimal structure theorem and the earlier quadratic bound. Scalar-first-at-five remains open; all three stronger probes are UNKNOWN. |
 | Higher-degree five-gate scalar prefixes | Construct an actual quartic prefix; test its complete product closure; search for a fourth gate with a degree-five coefficient. | The quartic witness passes all 256 inputs and its specified affine-input family is obstructed by two methods. The degree-five probes are UNKNOWN; neither a cubic-only nor a degree-at-most-four rule is a sound established search cut. |
+| Five-gate raw-input normalization | Classify two-dimensional dependencies among ten raw factor forms while preserving every shifted gate wire. | Two counts agree on 621 ordered classes; exact wire transport passes 1,026 circuits. The global probe remains UNKNOWN. Under an explicit scalar theorem, the raw-rank-six quintic branch is excluded, leaving 487 raw classes. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -750,6 +758,73 @@ is also committed. Both methods have the same primary author; this is not
 external peer review. The old 160-space concrete inventory is not bumped
 without deduplicating the new state against it.
 
+### Whole-input normalization and a raw-rank split — 2026-10-20
+
+Rather than selecting another fixed prefix, this route covers the raw
+input matrices of every five-gate circuit that computes a rank-eight
+quadratic scalar. Its ten raw operand forms span eight dimensions and
+therefore have a two-dimensional relation kernel. Directly enumerating
+all **174,251** relation planes and separately counting weighted block
+types give **621** ordered raw-input classes, with identical class sizes.
+Earlier nonlinear dependencies remain free; this is not a finite list of
+complete circuits. A diagnostic count of 35 permits gate permutations and
+is deliberately **not** used as ordered circuit coverage.
+
+Changing an operand basis can change `UV` to `UV+U` or `UV+V`. The model
+retains this free-XOR output correction at each gate. This preserves the
+actual old wire, rather than silently changing the space available to its
+successors. Exact input-coordinate maps preserve all five gate truths and
+affine output decoders for **1,026** test circuits on all **256** inputs.
+A missing-correction countercontrol changes an available prefix span;
+in a rank-eight scalar fixture it changes a quadratic into a cubic.
+The normalized input matrix must transport the scalar and field target
+jointly; it does not permit fixing the old output tables simultaneously.
+
+One formula includes all 621 raw classes, free earlier-gate coefficients
+and allowed corrections, and asks for a quadratic scalar of polar rank
+eight with a quintic fourth gate. Its 40,524-variable / 185,731-clause
+CNF finishes **UNKNOWN** at 60 seconds. Six positive/negative controls
+finish. A separate Boolean builder and serializer reconstruct all seven
+CNFs exactly, and all **768** rows of the three positive scalar witnesses
+are replayed, including compilation to ordinary five-AND circuits.
+The active audit also checks 55,845 residual/ANF comparisons and actual
+shift identities; its original weaker range-only check is retained and
+explicitly superseded. No checked UNSAT certificate or search speedup is
+claimed.
+
+The [reviewed normal form and rank-split proof](GF16_FIVE_GATE_INPUT_NORMAL_FORM.md)
+then separates the first-four raw-input ranks six/seven/eight, containing
+**134/337/150** ordered classes. In the rank-six case, the last two raw
+directions are fresh. Quadraticity forces both old cofactors of the last
+product to be affine; the remaining rank-six scalar is computed by the
+first three gates. Invoking the published strong scalar-optimal theorem
+then makes a quintic fourth gate impossible. This is a conditional
+mathematical branch exclusion, not a conclusion from the timed-out solver.
+Quartic prefixes in that same raw-rank case remain admitted.
+
+For rank seven, only one last-gate operand is forced affine. A retained
+countercontrol keeps the other old factor nonlinear; forcing both would
+be unsound. The one-fresh and two-fresh derivative identities each pass
+**196,608** finite cases. **487** ordered raw classes remain for the
+quintic question, and the broader quartic/complete field searches remain
+open. The next intended split fixes the first eight raw forms to coordinate
+units in the rank-eight case; that specialized solver has not run yet.
+
+The [input-normalization study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_input_normalization_study.json)
+retains all class representatives, witnesses, proof dependencies and raw
+hashes. The [portable normalizer](../../workspace/aes-256-gcm/tools/normalize_norm_q5_inputs.py)
+uses only Python's standard library:
+
+```sh
+python3 workspace/aes-256-gcm/tools/normalize_norm_q5_inputs.py classify --output runs/q5-input-replay
+python3 workspace/aes-256-gcm/tools/normalize_norm_q5_inputs.py controls --output runs/q5-input-replay
+```
+
+Use a new output directory. The global solver source/CNF/log archive stays
+in ignored `runs/`; the committed normalizer reproduces the classification
+and wire checks, not a finished global proof. This work has no new physical
+metrics or established world-first claim.
+
 ## Sources and novelty checks
 
 Primary web sources were checked again on 2026-10-18:
@@ -844,6 +919,11 @@ Committed evidence and entry points include:
   and [standalone family replay](../../workspace/aes-256-gcm/tools/verify_norm_q5_quartic.py)
   refute cubic-only reasoning without claiming that all quartic or
   degree-five prefixes are settled.
+- [Whole-input normalization study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_input_normalization_study.json),
+  [reviewed proof and limits](GF16_FIVE_GATE_INPUT_NORMAL_FORM.md), and
+  [portable normalization checker](../../workspace/aes-256-gcm/tools/normalize_norm_q5_inputs.py)
+  retain complete raw-input coverage without claiming complete circuit
+  enumeration or promoting the global UNKNOWN probe to a lower bound.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

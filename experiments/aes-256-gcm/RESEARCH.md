@@ -2155,6 +2155,40 @@ a valid replacement for a complete prefix wire space; future enumeration
 must retain that extension contract. No downloaded classification code is
 executed, and no novelty claim follows from this literature check.
 
+### Wire-preserving five-gate input normalization — 2026-10-20
+
+Two counting routes agree on 621 ordered raw-input classes covering all
+174,251 two-dimensional relation kernels of rank-eight ten-form lists.
+Keeping `UV+U` / `UV+V` corrections preserves each actual prefix wire;
+1,026 circuits and 262,656 scalar rows check exactly. Dropping those
+corrections concretely changes prefix spaces. The smaller unordered
+35-class diagnostic is not used as circuit coverage.
+
+A global quintic scalar probe over all 621 raw classes returns UNKNOWN
+at 60 seconds. All seven formulas reconstruct under a separate Boolean
+builder and serializer, and the three positive models replay. A
+self-review replaces a range-only control with true shifted-product
+identities; its original source/log is retained.
+
+The first-four raw-input ranks six/seven/eight split the classes into
+134/337/150. The [reviewed proof](GF16_FIVE_GATE_INPUT_NORMAL_FORM.md)
+invokes the strong scalar-optimal theorem to exclude the rank-six
+quintic branch, not quartic behavior. One fresh variable in rank seven
+forces only one affine last factor; a countercontrol admits a nonlinear
+other factor. Each fresh-variable identity family passes 196,608 finite
+cases. The remaining 487 quintic raw classes are open.
+
+Primary-source checks revisit the raw-input topology/dimension arguments
+in [Calik–Sonmez Turan–Peralta, Sections 2–3](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=928931)
+and the strong scalar statement in
+[Jukna, Section 2, Theorem 1](https://eccc.weizmann.ac.il/report/2005/021/download/).
+Their results are prior art; the original 1992 structure proof is not
+reproduced. No novelty or speedup is established here. The
+[retained study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_input_normalization_study.json)
+and [portable checker](../../workspace/aes-256-gcm/tools/normalize_norm_q5_inputs.py)
+preserve counts, sources and exact limits. The next specialized
+rank-eight-first-four solver is not yet executed.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or
