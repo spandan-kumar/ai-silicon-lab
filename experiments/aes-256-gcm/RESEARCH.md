@@ -2246,6 +2246,49 @@ The NIST dimension/degree source checked on October 20 times out on
 retry here, and its PMC copy presents CAPTCHA; no new source content
 is inferred from that failure.
 
+### Nonquintic raw-rank-eight frontier — 2026-10-22
+
+An exact fresh-coordinate pair-swap action transports every actual
+prefix wire. All 4,096 topologies form 1,080 orbits; the 1,575 proper
+nonquintic prefixes form 493. The classifier checks 16,384 complete
+gate-polynomial transports and 4,194,304 truth rows. Only code zero
+contains any rank-eight scalar by four. Omitting it from a field search
+requires a separate all-first-four-quadratic argument using the existing
+Q-by-four exclusion, decoder-weight bounds and quadratic nine-AND
+certificate; an arbitrary rank-eight scalar need not be in the field
+target. That distinction is explicit in the
+[frontier note](GF16_QUARTIC_PREFIX_FRONTIER.md).
+
+Complete producer and independent symbolic scans agree on all 493
+representatives, 21,031,179 eligible unordered products and 5,486,888
+quadratic polar cosets. Exactly 130 representatives admit a fifth-gate
+rank-eight scalar, giving 203,728 prefix-space entries and 207,184 marked
+scalar choices. Every candidate product and every marked scalar is
+independently replayed, and **all** rank-eight old-quadratic offsets are
+retained. An unmarked prefix span does not permit discarding its
+distinguished target choices.
+
+A full exact fixed-coordinate RREF check finds no duplicate W5 states
+across those entries; this is not equivalence under arbitrary input
+changes. No field continuation has yet been tested. The next step is a
+necessary bent-pair extension search retaining every marked scalar,
+followed by exact full-target checks for any surviving candidate.
+Raw-rank-six/seven nonquintic branches remain open too.
+
+A targeted additional primary-source search finds no direct theorem
+subsuming the five-gate intermediate-degree exclusion, but does not
+establish novelty. The scalar-optimal property in
+[Jukna, Section 2](https://eccc.weizmann.ac.il/report/2005/021/download/)
+is prior art and is not the new contribution. The
+[NIST scalar-function classification](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=928931)
+does not automatically classify nonoptimal prefix wires. The
+[Boyar–Find paper](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=919080)
+distinguishes quadratic circuits from unrestricted Boolean circuits
+and records the one-/two-output optimality boundary. The original
+Mirwald–Schnorr full text remains inaccessible here; the publisher
+endpoint returns 403 on root retry. This is a real priority-check
+limitation, not evidence of originality.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or

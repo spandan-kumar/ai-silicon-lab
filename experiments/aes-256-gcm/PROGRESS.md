@@ -24,13 +24,20 @@ research result, **not** a complete multiplier or improved AES S-box.
   question; quartic prefixes remain open. In particular, a five-AND
   circuit on eight input bits computing a rank-eight quadratic has actual gate degrees at
   most four under the reviewed argument.
-- **Next:** classify the remaining quartic prefixes and test their
-  complete field-multiplier continuations. There is still no unrestricted
+- **Next frontier:** exact pair-swap transport reduces the remaining
+  proper first-four raw-rank-eight prefixes from 1,575 to **493**.
+  Complete producer/symbolic scans find **203,728** distinct fixed-coordinate
+  fifth-prefix spaces with **207,184** marked rank-eight scalar choices.
+  These are candidate states for continuation tests, not complete
+  multiplier circuits. Raw ranks six/seven remain separate open branches.
+- **Next:** test the first useful field-target continuation while retaining
+  every marked scalar. There is still no unrestricted
   eight-AND exclusion, improved complete AES circuit or verified world-first.
 
 See the [proof and scope](GF16_QUINTIC_PREFIX_BOUND.md),
 [machine-readable study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quintic_study.json)
-and portable replay commands there. These follow-up changes are local
+and the [nonquintic frontier](GF16_QUARTIC_PREFIX_FRONTIER.md) for portable
+replay commands and exact remaining limits. These follow-up changes are local
 until explicitly published; the prior publication snapshot follows.
 
 ## Latest publication checkpoint
