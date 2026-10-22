@@ -4,7 +4,14 @@ Last updated: **2026-10-22**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
-## Latest local research checkpoint — 2026-10-22
+## Latest published research checkpoint — 2026-10-22
+
+This publication includes the completed quintic study at
+[`1224d2c`](https://github.com/spandan-kumar/ai-silicon-lab/commit/1224d2c80b45710bb07d03c0028ec03c18dc30fe)
+and the independently replayed nonquintic frontier at
+[`907a93f`](https://github.com/spandan-kumar/ai-silicon-lab/commit/907a93fb23dc29c4929727b5138081496a9104d0),
+plus the explicitly unfinished tools described below. The October 20
+publication summary is retained as history, not the current status.
 
 The quintic scalar-prefix branch is now excluded under reviewed
 reductions and two complete numerical methods. This is a structural
@@ -37,10 +44,46 @@ research result, **not** a complete multiplier or improved AES S-box.
 See the [proof and scope](GF16_QUINTIC_PREFIX_BOUND.md),
 [machine-readable study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quintic_study.json)
 and the [nonquintic frontier](GF16_QUARTIC_PREFIX_FRONTIER.md) for portable
-replay commands and exact remaining limits. These follow-up changes are local
-until explicitly published; the prior publication snapshot follows.
+replay commands and exact remaining limits.
 
-## Latest publication checkpoint
+### Work in progress at this checkpoint
+
+Three **experimental**, not fully validated continuation tools are saved:
+
+- [Frontier serializer](../../workspace/aes-256-gcm/tools/prepare_frontier_pairs.py):
+  serialized all 203,728 states and 207,184 scalar marks without a new
+  equivalence reduction.
+- [C++ one-product scanner](../../workspace/aes-256-gcm/tools/scan_norm_frontier_pairs.cpp):
+  searches for one new quadratic direction outside the actual old-wire
+  space, with both it and its sum with the marked scalar having polar rank
+  eight. Passing is necessary, **not sufficient**, for a field continuation.
+- [Symbolic checker](../../workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py):
+  uses monomial-union products and joint row equations, without importing
+  the production scanner. This is another method by the same research
+  author, not external peer review.
+
+Compilation and built-in controls pass. A producer positive fixture has an
+actual one-AND witness replayed over all 256 inputs; the selected quartic
+negative fixture exhausts 8,191 left forms without a bent pair. The symbolic
+checker has run **built-in controls only**, not an inventory-state audit.
+The original failed C++ self-test (an overlong test literal) is preserved;
+its corrected replacement passes. These limited checks do not establish
+correctness of a complete campaign.
+
+**No 100-state pilot or full continuation campaign has run.** The current
+producer writes JSONL while the checker's `--compare` expects a wrapped
+`cases` schema, so that interface still needs reconciliation before a
+producer/independent comparison. The next research step is to review that
+interface, run and independently replay a bounded pilot, then decide on a
+complete campaign. Raw-rank-six/seven branches and any successful state's
+remaining field-target continuation also remain open.
+
+The [draft-tool checkpoint report](../../workspace/aes-256-gcm/reports/sbox_norm_frontier_pair_checkpoint.json)
+retains source identities, control outcomes, known gaps and the publication
+boundary. No new RTL, synthesis, physical result or novelty claim follows
+from these draft tools.
+
+## Previous publication checkpoint — 2026-10-20 (superseded)
 
 This update includes research through commit
 [`540e48c`](https://github.com/spandan-kumar/ai-silicon-lab/commit/540e48c4de77ea9b3edcea1aedcc577d0d73eafa).
@@ -177,7 +220,7 @@ constructive searches, **not a new record-setting AES circuit**.
   scalar-optimal theorem, excludes 134 raw classes only for that quintic
   branch; the remaining 487 are open. These are not 621 complete circuit
   classes, a global eight-AND bound or an established solver speedup.
-  This was the October 20 status; the local October 22 checkpoint above
+  This was the October 20 status; the published October 22 checkpoint above
   closes the quintic branch without classifying quartic circuits.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
@@ -210,9 +253,11 @@ terminal; no future result is assumed.
 | Dependent norm stage | Allow earlier AND signals as operands, with exact prefix, symmetry and higher-degree constraints. | General eight-AND probes remain inconclusive. The earlier concrete inventory records 160 fixed spaces; newer product inventories exclude seven specified seed families under their stated scalar/field-target correspondence. This is not a classification of arbitrary prefixes. |
 | Scalar prefix assumptions | Test whether five ANDs computing a rank-eight quadratic can contain two independent higher-degree components. | The proposed rank-at-most-one rule is refuted. Verified examples attain ranks two and three; no complete smaller multiplier follows. |
 | Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix by two methods. | All 192 classes are obstructed. The reviewed Q-by-four exclusion invokes the published strong scalar-optimal structure theorem and the earlier quadratic bound. Scalar-first-at-five remains open; all three stronger probes are UNKNOWN. |
-| Higher-degree five-gate scalar prefixes | Construct an actual quartic prefix; test its complete product closure; search for a fourth gate with a degree-five coefficient. | The quartic witness passes all 256 inputs and its specified affine-input family is obstructed by two methods. The degree-five probes are UNKNOWN; neither a cubic-only nor a degree-at-most-four rule is a sound established search cut. |
-| Five-gate raw-input normalization | Classify two-dimensional dependencies among ten raw factor forms while preserving every shifted gate wire. | Two counts agree on 621 ordered classes; exact wire transport passes 1,026 circuits. The global probe remains UNKNOWN. Under an explicit scalar theorem, the raw-rank-six quintic branch is excluded, leaving 487 raw classes. |
+| Higher-degree five-gate scalar prefixes | Construct an actual quartic prefix; test its complete product closure; search for a fourth gate with a degree-five coefficient. | The quartic witness passes all 256 inputs and its specified affine-input family is obstructed by two methods. Earlier degree-five solver probes remain UNKNOWN, but the later complete quintic study below establishes the degree-at-most-four reduction under its reviewed assumptions. A cubic-only shortcut remains false. |
+| Five-gate raw-input normalization | Classify two-dimensional dependencies among ten raw factor forms while preserving every shifted gate wire. | Two counts agree on 621 ordered classes; exact wire transport passes 1,026 circuits. The global probe remains UNKNOWN. The October 20 count of 487 remaining quintic classes is superseded by the complete October 22 study, not by that solver result. |
 | Complete quintic branch | Split first-four raw rank six/seven/eight, with a self-contained saturation lemma and complete product-extension scans. | Rank-seven and rank-eight producer/independent counts agree throughout. The quintic branch is excluded under reviewed reductions; all quartic prefixes and unrestricted eight-AND multiplication are not settled. The earlier UNKNOWN remains UNKNOWN. |
+| Nonquintic raw-rank-eight frontier | Apply exact pair-swap transport, enumerate every scalar extension and independently replay all admitted witnesses. | 493 representatives yield 203,728 distinct fixed-coordinate spaces with 207,184 retained scalar marks. These are five-gate candidate states, not complete multipliers or arbitrary-GL equivalence classes. |
+| First field-target continuation (draft) | Prepare one-product bent-pair scanners and finite controls while retaining every scalar mark. | Controls pass, but no pilot, full frontier campaign or independent inventory comparison has run. The producer/checker output interface is unfinished. No frontier-wide exclusion or complete circuit is claimed. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -1003,6 +1048,11 @@ Committed evidence and entry points include:
   branch with full producer/symbolic comparisons, while leaving quartic
   prefixes and unrestricted multiplication open. The saturated-scalar
   induction is checked separately from the numerical searches.
+- [Nonquintic frontier study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quartic_first8_study.json)
+  and [proof/replay guide](GF16_QUARTIC_PREFIX_FRONTIER.md) retain the completed
+  scalar-extension inventory and independent replay. The separate
+  [draft pair-tool report](../../workspace/aes-256-gcm/reports/sbox_norm_frontier_pair_checkpoint.json)
+  records controls only; a continuation campaign is not complete.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 

@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "checkpoint_date": "2026-10-22",
+  "status": "experimental-controls-only",
+  "scope": "Publication snapshot of unfinished first-suffix necessary-test tools, not a completed frontier campaign.",
+  "verified_inventory_commit": "907a93fb23dc29c4929727b5138081496a9104d0",
+  "portable_sources": [
+    {
+      "path": "workspace/aes-256-gcm/tools/prepare_frontier_pairs.py",
+      "bytes": 4053,
+      "sha256": "4838aca8658ce9d42ce6d0e8a69e91d718468820e57fa661bcf1f33bd5b2b92b"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/scan_norm_frontier_pairs.cpp",
+      "bytes": 15000,
+      "sha256": "de641059e25ce48b35f4638ed8237ab8276fb489fe0b61f72d896a663ab7a3d0"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py",
+      "bytes": 15135,
+      "sha256": "0368fe5e88415eb86df9ec090d0666e66c424a96d2312e1dbd2b344708db0fb0"
+    }
+  ],
+  "serialized_inventory": {
+    "status": "pass",
+    "source_path": "runs/aes-norm-q5-quartic-extensions-20261022/symbolic/fixed-coordinate-spaces.json",
+    "source_sha256": "43995e3fec917d12fb7c1447cd83960bf538392dc184827af103e80fd76d0600",
+    "frontier_tsv_sha256": "f961a05061f4534e259adcb57ef98e298ccdd54cd279a6e74b0ee8fa7560a916",
+    "states": 203728,
+    "Q_marks": 207184,
+    "negative_control_state_id": 82064,
+    "positive_control_source": "verify_norm_q4.py actual six-parallel-AND pair",
+    "pilot_sizes": [
+      100,
+      100
+    ],
+    "scope": "Exact fixed-coordinate serialization. No input equivalence, exclusion, or novelty claim."
+  },
+  "current_source_checks": {
+    "python-syntax": {
+      "argv": [
+        "python3",
+        "-B",
+        "-c",
+        "from pathlib import Path; import sys; [compile(Path(p).read_text(), p, 'exec') for p in sys.argv[1:]]",
+        "workspace/aes-256-gcm/tools/prepare_frontier_pairs.py",
+        "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.024321958888322115
+    },
+    "compile": {
+      "argv": [
+        "clang++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "workspace/aes-256-gcm/tools/scan_norm_frontier_pairs.cpp",
+        "-o",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/scan_pairs"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.2426895420067012
+    },
+    "producer-self-test": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/scan_pairs",
+        "--self-test",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/producer-self-test.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.6747533329762518
+    },
+    "symbolic-controls": {
+      "argv": [
+        "python3",
+        "-B",
+        "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py",
+        "--controls",
+        "--out",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/symbolic-controls.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.42660762509331107
+    },
+    "positive-control": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/scan_pairs",
+        "runs/aes-norm-frontier-pairs-20261022/input/positive-control.tsv",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/positive-control.jsonl"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.004178874893113971
+    },
+    "negative-control": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/scan_pairs",
+        "runs/aes-norm-frontier-pairs-20261022/input/negative-control.tsv",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-publication-checkpoint-20261022/negative-control.jsonl"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.008714290801435709
+    },
+    "unit-two-and": {
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "workspace/aes-256-gcm/tools",
+        "-p",
+        "test_two_and*.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.7246999170165509
+    },
+    "unit-stage": {
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "workspace/aes-256-gcm/tools",
+        "-p",
+        "test_sbox_stage_splice.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.7246067498344928
+    },
+    "registry": {
+      "argv": [
+        "./tools/experiment",
+        "check"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.044900041073560715
+    },
+    "protected-lab": {
+      "argv": [
+        "./lab/status"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 3.1761641670018435
+    },
+    "previous-quintic-record": {
+      "argv": [
+        "./tools/experiment",
+        "validate-run",
+        "runs/aes-norm-q5-quintic-20261022/run.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.041010584216564894
+    },
+    "previous-frontier-record": {
+      "argv": [
+        "./tools/experiment",
+        "validate-run",
+        "runs/aes-norm-q5-quartic-frontier-20261022/run.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04003216605633497
+    }
+  },
+  "producer_self_test": {
+    "status": "pass",
+    "truth_Mobius_controls": 128,
+    "Pfaffian_elimination_controls": 4096,
+    "actual_six_parallel_AND_pair": true,
+    "zero_rank_control": true
+  },
+  "symbolic_controls": {
+    "status": "pass",
+    "external_peer_review": false,
+    "algorithm": "monomial-union, joint row equations, projected right kernels, all K offsets, low-pivot rank",
+    "scope": "One-product bent-pair necessary test only; no field embedding or unrestricted eight-AND conclusion.",
+    "source_sha256": "0368fe5e88415eb86df9ec090d0666e66c424a96d2312e1dbd2b344708db0fb0",
+    "controls": {
+      "status": "pass",
+      "joint_equation_bruteforce_controls": 320,
+      "symbolic_product_full_truth_controls": 128,
+      "Pfaffian_vs_rank_controls": 2048,
+      "positive_one_AND_pair": {
+        "state_id": "six_parallel_positive",
+        "marked_Q_polars": [
+          138420225
+        ],
+        "pair_found": [
+          true
+        ],
+        "witnesses": [
+          {
+            "left": 10,
+            "right": 80,
+            "old_cancel": 21,
+            "candidate_anf_hex": "0x1200000000000001040001001201040008",
+            "candidate_polar": 5671505,
+            "marked_Q_polar": 138420225,
+            "rank_t": 8,
+            "rank_t_plus_Q": 8,
+            "additional_ANDs": 1,
+            "full_input_rows_checked": 256,
+            "affine_output_correction_free": true,
+            "nonzero_polar_coset": 1313280,
+            "marked_Q_old_decoder": 15
+          }
+        ],
+        "all_Qs_positive": true,
+        "complete_left_scan": false,
+        "left_forms_checked": 10,
+        "eligible_unordered_pairs": 3866,
+        "quadratic_nonzero_cosets_seen": 758,
+        "sorted_nonzero_cosets_sha256": "47d88c2899087a7e67aab2afc8eb5681c0c7934f483d314f399fc89a35a5f5b1",
+        "right_kernel_dimension_histogram": {
+          "8": 4,
+          "9": 6
+        },
+        "K_dimension": 5,
+        "higher_degree_rank": 0,
+        "basis_product_truth_rows_checked": 43264,
+        "witness_truth_rows_checked": 256,
+        "algorithm_seconds": 0.06484487489797175
+      },
+      "zero_quotient_rejected_predicate_control": true,
+      "algorithm_seconds": 0.3652850410435349
+    },
+    "algorithm_seconds": 0.36535141710191965
+  },
+  "producer_positive_fixture": {
+    "state_id": 203728,
+    "source_code": 0,
+    "source_polar_coset": 0,
+    "complete": false,
+    "high_rank": 0,
+    "K_dimension": 5,
+    "left_forms": 10,
+    "eligible_unordered_pairs": 3866,
+    "quadratic_polar_cosets": 759,
+    "offset_checks": 24246,
+    "rank_checks": 27434,
+    "witness_truth_rows": 256,
+    "algorithm_seconds": 0.000953125,
+    "K_polars": [
+      1,
+      8192,
+      4194304,
+      134217728,
+      163920
+    ],
+    "K_gate_selectors": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "right_kernel_dimension_histogram": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      6,
+      0,
+      0,
+      0,
+      0
+    ],
+    "marks": [
+      {
+        "Q_polar": 138420225,
+        "Q_old_gate_selector": 15,
+        "status": "positive",
+        "left_mask": 10,
+        "right_mask": 120,
+        "old_gate_selector": 21,
+        "t_polar": 6197073,
+        "t_plus_Q_polar": 136228688,
+        "t_anf_hex": "0x1200000000000001040001011601040508"
+      }
+    ]
+  },
+  "producer_negative_fixture": {
+    "state_id": 82064,
+    "source_code": 1586,
+    "source_polar_coset": 138420224,
+    "complete": true,
+    "high_rank": 3,
+    "K_dimension": 2,
+    "left_forms": 8191,
+    "eligible_unordered_pairs": 48976,
+    "quadratic_polar_cosets": 11359,
+    "offset_checks": 45432,
+    "rank_checks": 54879,
+    "witness_truth_rows": 0,
+    "algorithm_seconds": 0.006246958,
+    "K_polars": [
+      138420224,
+      1
+    ],
+    "K_gate_selectors": [
+      13,
+      16
+    ],
+    "right_kernel_dimension_histogram": [
+      0,
+      5632,
+      1712,
+      80,
+      490,
+      22,
+      0,
+      0,
+      242,
+      9,
+      4,
+      0,
+      0,
+      0
+    ],
+    "marks": [
+      {
+        "Q_polar": 138420225,
+        "Q_old_gate_selector": 29,
+        "status": "negative"
+      }
+    ]
+  },
+  "failed_attempt": {
+    "command": {
+      "argv": [
+        "runs/aes-norm-frontier-pairs-20261022/scan_pairs",
+        "--self-test",
+        "runs/aes-norm-frontier-pairs-20261022/self-test.json"
+      ],
+      "exit_code": -6,
+      "wall_seconds": 0.6557607501745224
+    },
+    "reason": "Overlong hexadecimal round-trip test literal; replaced by explicit four-word initialization.",
+    "empty_self_test_json_is_not_evidence_of_success": true,
+    "corrected_current_source_self_test_passed": true
+  },
+  "not_completed": {
+    "first100_pilot": true,
+    "distributed100_pilot": true,
+    "full_pair_frontier_campaign": true,
+    "symbolic_inventory_state_audit": true,
+    "producer_independent_inventory_comparison": true,
+    "field_embedding_or_full_multiplier": true
+  },
+  "known_interface_gap": "C++ emits JSONL plus summary; Python --compare expects a wrapped cases schema with different per-case keys. Reconcile and test before comparing.",
+  "remaining_research": [
+    "Review scanner and comparison interface",
+    "Independently replay a bounded pilot before a full campaign",
+    "Retain every marked scalar and all quadratic old-space offsets",
+    "Continue actual field-target search, not only pair-rank tests",
+    "Raw-rank-six/seven nonquintic branches remain open"
+  ],
+  "raw_artifacts_published": false,
+  "raw_archive_note": "Ignored runs/ logs, binaries and large inventories stay local; source and compact summaries are committed.",
+  "raw_artifact_identities": [
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/capture.py",
+      "bytes": 858,
+      "sha256": "426b5b8174739791ca357a956443927d3db03b03f78884259d67c2c76a8490aa"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/compile-v2.command.json",
+      "bytes": 292,
+      "sha256": "1b5a1669751b50abb65d7b138bb93149e268d628efc55d46ef9b2868e15b7bc4"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/compile-v2.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/compile-v2.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/compile.command.json",
+      "bytes": 289,
+      "sha256": "4385881698c8d076e65cfa2fd6c13f45920102501866a54c631da13364127134"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/compile.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/capture.py",
+      "bytes": 855,
+      "sha256": "88662be509eade3c3ccc7790f6ddc99ad0d5bf47ceb873f25b396bc551f4ec4d"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/controls.command.json",
+      "bytes": 256,
+      "sha256": "2c0adc6ad72c89e0dde3003942086605a78cc90fe79ee476580bbc01ecf4c3b2"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/controls.json",
+      "bytes": 1955,
+      "sha256": "85aa44886dbf18d59b8d2b5a9c3af40ca90299d356dedbc945a93e68e0438044"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/controls.stdout.log",
+      "bytes": 396,
+      "sha256": "1eba9602ad0a7db8cda0ac56ff170686432bb25c40b9ba8de7390db02c94b8f9"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/distributed100-ids.json",
+      "bytes": 946,
+      "sha256": "27ca701afa114defdfe639b93b5ad73a027c069896324c87545507a3a77c1bbe"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/distributed100.tsv",
+      "bytes": 15311,
+      "sha256": "408553b2f394d48b6d567c3b3113c5b00f623c8a1231ee55d4e7219348776703"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/first100-ids.json",
+      "bytes": 593,
+      "sha256": "0199177f848235c37c6de82f07af1250d62f0bb1374da8b680114c06d3c635b3"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/first100.tsv",
+      "bytes": 12562,
+      "sha256": "15274ad58cc11f652d56dabc486c735862bf545f9cb151574d5e75b6e66a2b5f"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/frontier-map.json",
+      "bytes": 32357813,
+      "sha256": "7dbfb76c478bc22cad2c6534881be7834e6444c59e157cfd30ac8d5f2de77d84"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/frontier.tsv",
+      "bytes": 31223140,
+      "sha256": "f961a05061f4534e259adcb57ef98e298ccdd54cd279a6e74b0ee8fa7560a916"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/negative-control.tsv",
+      "bytes": 135,
+      "sha256": "a7f31bfc04cbb5fa348fec2f05db4cd47dc3c4ef3fec8b0372846539d673ee2d"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/positive-control.tsv",
+      "bytes": 139,
+      "sha256": "d55ee742875e0a1b8dc2b7d23e3ab9dbc397513fdbe9b1a572d61b2e14059da8"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/input/preparation.json",
+      "bytes": 608,
+      "sha256": "17e3b6bc20637b4615f5f2571f3773a07d92060a5f2b50c2b5ca66779b527617"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/negative-control.command.json",
+      "bytes": 272,
+      "sha256": "50f293fa1f89999637c09620dea11b9fb4b80ef64117b535ee900936a7de0773"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/negative-control.jsonl",
+      "bytes": 499,
+      "sha256": "2113991b52ea2344ff4ddece04e3ba61679e1214244dc03b37762d07e3e0b78d"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/negative-control.jsonl.summary.json",
+      "bytes": 329,
+      "sha256": "5a69fe6104316722323380465141c66e5ff50d01ebd805fead71a3e91eb243c6"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/negative-control.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/negative-control.stdout.log",
+      "bytes": 50,
+      "sha256": "93e4403b933076f7def0244034d9094b9ea15bf092996c8c7058450cbb657975"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/positive-control.command.json",
+      "bytes": 270,
+      "sha256": "d0812d87c749042db72bd5f76d46662ff738d398d05d15dd8cd6e73e231dd047"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/positive-control.jsonl",
+      "bytes": 652,
+      "sha256": "912d8ec129370cf43db2cab21b30c83d99fa1e6f6d28e93e1eac21e103c24670"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/positive-control.jsonl.summary.json",
+      "bytes": 324,
+      "sha256": "f25fda0559b7924c228298ec5f591cad99d16fc39c834ebfc8d85ad8a274cdbc"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/positive-control.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/positive-control.stdout.log",
+      "bytes": 50,
+      "sha256": "096d304c994c4efc677e103ba5259d4a49e487435b9a464c68c56af54ac64200"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/prepare.command.json",
+      "bytes": 319,
+      "sha256": "65145752f6e0f2f11b800f675165f5cbefbd7504ab74d4f621bf5b76120ffc0a"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/prepare.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/prepare.stdout.log",
+      "bytes": 608,
+      "sha256": "17e3b6bc20637b4615f5f2571f3773a07d92060a5f2b50c2b5ca66779b527617"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/scan_pairs",
+      "bytes": 96440,
+      "sha256": "fabb36443ba4f9860045bbb04410e58205ae7f41e7d39f344de7f90091cc90a9"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/scan_pairs_v2",
+      "bytes": 96448,
+      "sha256": "70efbdd4cc48ce178dbd7980a3f7968fb54cc6e590b5b30d5952c8dca1b74d86"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test-v2.command.json",
+      "bytes": 215,
+      "sha256": "7c2c4210a8f47fb3b4675191ff71a28a09a110013d18b884b904454624c79556"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test-v2.json",
+      "bytes": 144,
+      "sha256": "b019370b393011ee1462937dc1c5049f53599933f13c7060a8c32d6c1c69898d"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test-v2.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test-v2.stdout.log",
+      "bytes": 15,
+      "sha256": "b098fac5cedd528b0b703b04735f3c983f0e7dffc21b99624a152bee60b126b3"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test.command.json",
+      "bytes": 210,
+      "sha256": "f52706c5d066226b9ab1fd2ac38de8fb3fff8b6cd051c8d2e6e426a3c70dc737"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test.stderr.log",
+      "bytes": 117,
+      "sha256": "64d99cd2ab502eb18ca712d082929e211c732ec1a40c8c0c93c70069b9631615"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/self-test.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "new_hardware_metrics": null,
+  "world_first_established": false,
+  "external_peer_review": false
+}
