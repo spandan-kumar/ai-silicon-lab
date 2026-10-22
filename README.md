@@ -18,15 +18,15 @@ The accelerator implementation and ongoing chip-design research live on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 Read the [progress and research handoff](https://github.com/spandan-kumar/ai-silicon-lab/blob/codex/experiment-2-crypto-algo/experiments/aes-256-gcm/PROGRESS.md)
 for what we tried, verified results, limitations and the current open questions.
-The latest published checkpoint is **2026-10-20**: the Q-by-four branch now
-has a completed 192-class second-method replay and reviewed theorem-dependent
-reduction. A verified quartic scalar prefix raises the specified seed-family
-obstruction count to seven. A wire-preserving normal form covers 621 ordered
-raw-input classes; a theorem-dependent argument excludes 134 only for the
-quintic branch, leaving 487 open. These are not complete circuit classes.
-The global solver probe is UNKNOWN, and unrestricted eight-AND multiplication
-remains unresolved. The progress document records the attempted approaches,
-current results, remaining branches, primary sources and portable checks.
+The latest published checkpoint is **2026-10-22**: the quintic scalar-prefix
+branch is excluded under reviewed reductions and complete independently
+replayed scans. The nonquintic raw-rank-eight frontier contains **203,728**
+distinct fixed-coordinate five-gate spaces and **207,184** retained scalar
+choices. These are candidate states, not complete multipliers. Draft
+continuation tools and their limited controls are saved, but no full
+continuation campaign has run. Raw-rank-six/seven branches and unrestricted
+eight-AND multiplication remain unresolved. The progress document records
+what we tried, verified results, unfinished work, sources and replay commands.
 Large ignored raw run archives are retained locally, not uploaded to GitHub.
 The verified accelerator baseline is separate from the still-unmet
 world-first research goal; no improved record-setting AES circuit is claimed.
