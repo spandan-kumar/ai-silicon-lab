@@ -1,8 +1,9 @@
 """Independent symbolic one-product bent-pair necessary test for W5 states.
 
-EXPERIMENTAL CHECKPOINT (2026-10-22): only built-in controls have run. No
-inventory-state audit or full producer comparison is complete. --compare
-expects a wrapped cases schema, not the C++ scanner's current raw JSONL.
+The original controls-only publication checkpoint is superseded by the local
+pilot/lift studies recorded in PROGRESS.md. --compare reads actual producer
+JSONL, checks complete-negative counters, and replays positive witnesses.
+Executing this tool on a subset does not establish full-frontier coverage.
 No production-scanner imports: Boolean-ring monomial union, 18-variable row
 equations, projected right kernels, and low-pivot matrix rank. This is an
 algorithmic replay by the same research author, not external peer review.
@@ -339,12 +340,124 @@ def controls():
     }
 
 
+def read_producer_jsonl(paths):
+    """Read actual producer records line by line; accept no JSON wrappers."""
+    records = {}
+    sources = []
+    for path in paths:
+        digest = hashlib.sha256()
+        count = 0
+        with path.open('rb') as handle:
+            for line_number, raw in enumerate(handle, 1):
+                digest.update(raw)
+                assert raw.strip(), (str(path), line_number, 'blank JSONL record')
+                record = json.loads(raw)
+                assert isinstance(record, dict)
+                state_id = record['state_id']
+                assert type(state_id) is int and state_id >= 0
+                assert state_id not in records, (state_id, 'duplicate producer record')
+                records[state_id] = record
+                count += 1
+        assert count, (str(path), 'empty producer inventory')
+        sources.append({'path': str(path), 'sha256': digest.hexdigest(),
+                        'JSONL_records': count})
+    return records, sources
+
+
+def compare_producer(state, independent, producer):
+    """Compare scoped verdicts; replay every compared positive witness."""
+    assert producer['state_id'] == independent['state_id']
+    assert type(producer['complete']) is bool
+    assert type(producer['left_forms']) is int and 1 <= producer['left_forms'] <= 8191
+    producer_kernel_histogram = producer['right_kernel_dimension_histogram']
+    assert len(producer_kernel_histogram) == 14
+    assert all(type(count) is int and count >= 0 for count in producer_kernel_histogram)
+    assert sum(producer_kernel_histogram) == producer['left_forms']
+    if producer['complete']:
+        assert producer['left_forms'] == 8191
+    if 'first_source' in state:
+        assert producer['source_code'] == state['first_source']['code']
+        assert producer['source_polar_coset'] == state['first_source']['polar_coset']
+    marks = producer['marks']
+    qs = state['marked_Q_polars']
+    assert [mark['Q_polar'] for mark in marks] == qs
+    assert independent['marked_Q_polars'] == qs
+    statuses = [mark['status'] for mark in marks]
+    assert all(status in ('positive', 'negative') for status in statuses)
+    assert [status == 'positive' for status in statuses] == independent['pair_found']
+    if 'negative' in statuses:
+        assert producer['complete'] and independent['complete_left_scan']
+    if not producer['complete']:
+        assert all(status == 'positive' for status in statuses)
+    assert producer['K_dimension'] == independent['K_dimension']
+    assert producer['high_rank'] == independent['higher_degree_rank']
+    old = [int(value, 0) for value in state['nonlinear_rref_hex']]
+    forms = list(RAW) + old
+    old_forms = [combine(old, s) for s in range(32)]
+    Kselectors = [s for s, form in enumerate(old_forms) if not form & HIGH]
+    actual_K = {polar(old_forms[s]) for s in Kselectors}
+    assert set(span(producer['K_polars'])) == actual_K
+    assert len(producer['K_polars']) == independent['K_dimension']
+    assert len(producer['K_polars']) == len(producer['K_gate_selectors'])
+    for selector, value in zip(producer['K_gate_selectors'], producer['K_polars']):
+        assert type(selector) is int and 0 <= selector < 32
+        assert not old_forms[selector] & HIGH
+        assert polar(old_forms[selector]) == value
+    Krows = low_rows(actual_K)
+    replays = []
+    for mark in marks:
+        q = mark['Q_polar']
+        q_selector = mark['Q_old_gate_selector']
+        assert type(q_selector) is int and 0 <= q_selector < 32
+        assert not old_forms[q_selector] & HIGH
+        assert polar(old_forms[q_selector]) == q
+        if mark['status'] != 'positive':
+            continue
+        left, right, cancel = (mark[field] for field in
+                               ('left_mask', 'right_mask', 'old_gate_selector'))
+        assert all(type(value) is int for value in (left, right, cancel))
+        assert 0 < left <= right < 8192 and 0 <= cancel < 32
+        replay = witness_replay(forms, old_forms, left, right, cancel, q)
+        assert replay['candidate_anf_hex'] == hex(int(mark['t_anf_hex'], 0))
+        assert replay['candidate_polar'] == mark['t_polar']
+        assert replay['candidate_polar'] ^ q == mark['t_plus_Q_polar']
+        assert reduce(replay['candidate_polar'], Krows) != 0
+        # The marked Q is exactly an old-wire combination in this normalized
+        # basis; any old affine discrepancy is free and cannot affect rank.
+        assert truth(old_forms[q_selector]) == truth(unpolar(q))
+        replay['marked_Q_old_decoder'] = q_selector
+        replays.append(replay)
+    expected_truth_rows = 256 * statuses.count('positive')
+    assert producer['witness_truth_rows'] == expected_truth_rows
+    full_totals_compared = False
+    if 'negative' in statuses:
+        assert producer['left_forms'] == independent['left_forms_checked'] == 8191
+        assert producer['eligible_unordered_pairs'] == independent['eligible_unordered_pairs']
+        producer_histogram = {i: count for i, count in enumerate(
+            producer['right_kernel_dimension_histogram']) if count}
+        independent_histogram = {int(i): count for i, count in
+            independent['right_kernel_dimension_histogram'].items() if count}
+        assert producer_histogram == independent_histogram
+        # Every diagonal square u*u=u supplies the old (zero quotient) coset.
+        # C++ counts it once, while this symbolic checker deliberately omits it.
+        assert producer['quadratic_polar_cosets'] == independent['quadratic_nonzero_cosets_seen'] + 1
+        full_totals_compared = True
+    return {'status': 'pass', 'producer_complete': producer['complete'],
+            'verdicts_agree': True, 'K_H_and_mark_memberships_agree': True,
+            'complete_negative_totals_compared': full_totals_compared,
+            'producer_positive_witnesses_replayed': replays,
+            'producer_witness_truth_rows_checked': expected_truth_rows}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path)
     parser.add_argument('--ids', type=int, nargs='+')
+    parser.add_argument('--ids-file', type=Path,
+                        help='JSON list of explicit source inventory IDs.')
     parser.add_argument('--out', type=Path, required=True)
-    parser.add_argument('--compare', type=Path)
+    parser.add_argument('--compare', type=Path, nargs='+',
+                        help='Actual C++ JSONL record files, not summary JSON.')
     parser.add_argument('--controls', action='store_true')
     parser.add_argument('--force-complete', action='store_true')
     args = parser.parse_args()
@@ -359,24 +472,30 @@ def main():
     if args.input is not None:
         raw = args.input.read_bytes()
         source = json.loads(raw)
-        ids = list(range(len(source['groups']))) if args.ids is None else args.ids
+        assert args.ids is None or args.ids_file is None
+        if args.ids_file is not None:
+            id_bytes = args.ids_file.read_bytes()
+            ids = json.loads(id_bytes)
+            result['ids_file_sha256'] = hashlib.sha256(id_bytes).hexdigest()
+        else:
+            ids = list(range(len(source['groups']))) if args.ids is None else args.ids
+        assert all(type(i) is int and 0 <= i < len(source['groups']) for i in ids)
         assert ids and len(ids) == len(set(ids))
         result['input_sha256'] = hashlib.sha256(raw).hexdigest()
         result['cases'] = []
+        producer_records = None
+        if args.compare is not None:
+            producer_records, result['producer_JSONL_sources'] = read_producer_jsonl(args.compare)
         for i in ids:
             case = audit(source['groups'][i], i, args.force_complete)
+            if producer_records is not None:
+                case['producer_comparison'] = compare_producer(
+                    source['groups'][i], case, producer_records[i])
             result['cases'].append(case)
             print(json.dumps(case), flush=True)
         result['full_input_checked'] = len(ids) == len(source['groups'])
         result['state_ids'] = ids
-        if args.compare is not None:
-            producer = json.loads(args.compare.read_bytes())
-            producer_cases = producer['cases']
-            by_id = {case['state_id']: case for case in producer_cases}
-            for case in result['cases']:
-                other = by_id[case['state_id']]
-                assert case['marked_Q_polars'] == other['marked_Q_polars']
-                assert case['pair_found'] == other['pair_found']
+        if producer_records is not None:
             result['producer_verdicts_agree'] = True
     assert args.controls or args.input is not None
     result['algorithm_seconds'] = time.monotonic() - start

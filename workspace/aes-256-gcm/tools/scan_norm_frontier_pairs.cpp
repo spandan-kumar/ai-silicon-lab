@@ -1,6 +1,6 @@
 // Exact one-product bent-pair necessary condition on supplied W5 spaces.
-// EXPERIMENTAL CHECKPOINT (2026-10-22): controls only, no frontier campaign.
-// Independent inventory replay/comparison is pending; see PROGRESS.md.
+// Publication 03d040e was controls-only. See dated studies in PROGRESS.md
+// for subsequent coverage; running a subset never proves a full frontier.
 // Truth-table products, Mobius ANF, high-column kernels, all K5 offsets.
 // A positive is not a GF(16) multiplier. A negative requires complete=true.
 #include <algorithm>

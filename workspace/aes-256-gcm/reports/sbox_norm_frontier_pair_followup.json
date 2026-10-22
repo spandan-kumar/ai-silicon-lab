@@ -1,0 +1,2534 @@
+{
+  "schema_version": 1,
+  "experiment_id": "aes-256-gcm",
+  "experiment_revision": 1,
+  "date": "2026-10-22",
+  "status": "scoped-rank6-subbranch-verified-larger-replay-pending",
+  "base_commit": "03d040e77e4e4d16268804c3aec7d0897e342e1b",
+  "portable_sources": [
+    {
+      "path": "workspace/aes-256-gcm/tools/scan_norm_frontier_pairs.cpp",
+      "bytes": 15000,
+      "sha256": "2abdc7998494c466e02b32d5143e03c702bf1139ec9a2640199563ada6df6071"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py",
+      "bytes": 21676,
+      "sha256": "3f9b39121cc80b86b86310251da6c2bfc6a9630d73e6b6981ee70503c3dd3b91"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.cpp",
+      "bytes": 20273,
+      "sha256": "a39d67af3cb0bb7edd1ec8bb93af53ab163fbc2e09fdad7e8a3e5ec4cb6851ad"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/compare_norm_frontier_pair_scans.py",
+      "bytes": 6534,
+      "sha256": "284b809cdb94971b59884afd159b077e487dc1d9ff08e17807079019c7cc8526"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/test_frontier_pair_comparison.py",
+      "bytes": 3206,
+      "sha256": "75db78dfbc4d0b8d1ddb61b3d12d23f879ab01dbb3406dd97971af8ea29f9b7a"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/verify_field_pair_operator.py",
+      "bytes": 11784,
+      "sha256": "4bc1f5d679f9a1cc2fbfa0470e05ce05568f9cf04467f3baeeb5ad9955dbc730"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/enumerate_rank6_scalar_prefixes.py",
+      "bytes": 11067,
+      "sha256": "60edf920ebea109126e25ecffdee4966af2023f60334edd983378e64a66fd43c"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/verify_rank6_scalar_frontier.py",
+      "bytes": 15691,
+      "sha256": "2afc8a28fd9220a13f58c8324c533acb149adf8f46a170e48ad93b8acef1acfd"
+    }
+  ],
+  "rank6_scope": {
+    "first_four_raw_rank": 6,
+    "first_three_raw_rank": 6,
+    "eight_AND_field_branch_excluded": true,
+    "dependencies": [
+      "Reviewed Q-by-four exclusion",
+      "Reviewed all-quadratic-first-four field exclusion",
+      "Shared affine shear preserving all actual old wires",
+      "Complete scalar inventory/all-mark lift and two complete necessary-pair scans"
+    ],
+    "raw_ranks_are_normal_form_operand_covector_ranks": true,
+    "other_raw_rank_branches_not_excluded": true,
+    "target_transported_jointly": true,
+    "suffix_gate_itself_need_not_be_quadratic": true,
+    "scalar_function_equivalence_not_used_to_replace_old_wires": true
+  },
+  "rank6_scalar_inventory": {
+    "status": "pass",
+    "prefix_codes": 64,
+    "left_forms": 32704,
+    "eligible_pairs": 237400,
+    "quadratic_cosets": 44560,
+    "rank6_admitted_cosets": 6634,
+    "rank6_scalar_marks_replayed": 7498,
+    "scalar_witness_truth_rows": 479872,
+    "only_rank6_by_three_code": [
+      0
+    ],
+    "distinct_lifted_spaces": 6120,
+    "lifted_Q_marks": 6552,
+    "all_per_code_counts_histograms_agree": true,
+    "all_scalar_offset_sets_agree": true,
+    "actual_product_decoder_and_full_wire_space_checks": true,
+    "all_lifted_groups_and_TSV_rows_agree": true,
+    "code_zero_field_exclusion_is_separate_dependency": true
+  },
+  "rank6_scalar_per_code_counts": [
+    {
+      "code": 0,
+      "prefix_degrees": [
+        2,
+        2,
+        2
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3328,
+      "K_dimension": 3,
+      "cosets": 514,
+      "maximum_rank_histogram": {
+        "6": 514
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 54,
+        "3": 192,
+        "1": 256
+      }
+    },
+    {
+      "code": 1,
+      "prefix_degrees": [
+        2,
+        3,
+        2
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "4": 62,
+        "5": 2,
+        "3": 80,
+        "2": 112,
+        "1": 192
+      }
+    },
+    {
+      "code": 2,
+      "prefix_degrees": [
+        2,
+        3,
+        2
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "8": 1,
+        "6": 53,
+        "4": 62,
+        "5": 2,
+        "3": 80,
+        "2": 112,
+        "1": 192
+      }
+    },
+    {
+      "code": 3,
+      "prefix_degrees": [
+        2,
+        3,
+        2
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "4": 62,
+        "5": 2,
+        "3": 80,
+        "2": 112,
+        "1": 192
+      }
+    },
+    {
+      "code": 4,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "4": 62,
+        "5": 2,
+        "3": 80,
+        "1": 192,
+        "2": 112
+      }
+    },
+    {
+      "code": 5,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "6": 52,
+        "8": 2,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 6,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "8": 2,
+        "6": 52,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 7,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "6": 52,
+        "8": 2,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 8,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "3": 80,
+        "4": 62,
+        "5": 2,
+        "1": 192,
+        "2": 112
+      }
+    },
+    {
+      "code": 9,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 10,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "8": 2,
+        "6": 54,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 11,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 12,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3340,
+      "K_dimension": 2,
+      "cosets": 560,
+      "maximum_rank_histogram": {
+        "4": 304,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 56,
+        "8": 1,
+        "3": 134,
+        "2": 186,
+        "1": 128
+      }
+    },
+    {
+      "code": 13,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 14,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "8": 2,
+        "6": 54,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 15,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 16,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "4": 62,
+        "5": 2,
+        "3": 80,
+        "1": 192,
+        "2": 112
+      }
+    },
+    {
+      "code": 17,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "6": 52,
+        "8": 2,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 18,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "8": 2,
+        "6": 52,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 19,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "6": 52,
+        "8": 2,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 20,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "4": 62,
+        "5": 2,
+        "3": 80,
+        "1": 192,
+        "2": 112
+      }
+    },
+    {
+      "code": 21,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "6": 52,
+        "8": 2,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 22,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "8": 2,
+        "6": 52,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 23,
+      "prefix_degrees": [
+        2,
+        3,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 4480,
+      "K_dimension": 1,
+      "cosets": 862,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 740,
+        "6": 76
+      },
+      "kernel_histogram": {
+        "7": 13,
+        "6": 52,
+        "8": 2,
+        "5": 60,
+        "3": 64,
+        "2": 192,
+        "1": 128
+      }
+    },
+    {
+      "code": 24,
+      "prefix_degrees": [
+        2,
+        2,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3142,
+      "K_dimension": 2,
+      "cosets": 569,
+      "maximum_rank_histogram": {
+        "4": 313,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "3": 125,
+        "5": 2,
+        "4": 6,
+        "1": 276,
+        "2": 39
+      }
+    },
+    {
+      "code": 25,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 26,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "8": 1,
+        "6": 57,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 27,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 28,
+      "prefix_degrees": [
+        2,
+        2,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3142,
+      "K_dimension": 2,
+      "cosets": 569,
+      "maximum_rank_histogram": {
+        "4": 313,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "3": 125,
+        "5": 2,
+        "4": 6,
+        "1": 276,
+        "2": 39
+      }
+    },
+    {
+      "code": 29,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 30,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "8": 1,
+        "6": 57,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 31,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 32,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "3": 80,
+        "4": 62,
+        "5": 2,
+        "1": 192,
+        "2": 112
+      }
+    },
+    {
+      "code": 33,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 34,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "8": 2,
+        "6": 54,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 35,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 36,
+      "prefix_degrees": [
+        2,
+        2,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3142,
+      "K_dimension": 2,
+      "cosets": 569,
+      "maximum_rank_histogram": {
+        "4": 313,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "3": 125,
+        "5": 2,
+        "4": 6,
+        "1": 276,
+        "2": 39
+      }
+    },
+    {
+      "code": 37,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 38,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "8": 1,
+        "6": 57,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 39,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 40,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3664,
+      "K_dimension": 2,
+      "cosets": 638,
+      "maximum_rank_histogram": {
+        "4": 322,
+        "6": 316
+      },
+      "kernel_histogram": {
+        "7": 9,
+        "6": 53,
+        "8": 1,
+        "3": 80,
+        "4": 62,
+        "5": 2,
+        "1": 192,
+        "2": 112
+      }
+    },
+    {
+      "code": 41,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 42,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "8": 2,
+        "6": 54,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 43,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 44,
+      "prefix_degrees": [
+        2,
+        2,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3142,
+      "K_dimension": 2,
+      "cosets": 569,
+      "maximum_rank_histogram": {
+        "4": 313,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "3": 125,
+        "5": 2,
+        "4": 6,
+        "1": 276,
+        "2": 39
+      }
+    },
+    {
+      "code": 45,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 46,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "8": 1,
+        "6": 57,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 47,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 48,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3340,
+      "K_dimension": 2,
+      "cosets": 560,
+      "maximum_rank_histogram": {
+        "4": 304,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 56,
+        "8": 1,
+        "3": 134,
+        "2": 186,
+        "1": 128
+      }
+    },
+    {
+      "code": 49,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 50,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "8": 2,
+        "6": 54,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 51,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 52,
+      "prefix_degrees": [
+        2,
+        2,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3142,
+      "K_dimension": 2,
+      "cosets": 569,
+      "maximum_rank_histogram": {
+        "4": 313,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "3": 125,
+        "5": 2,
+        "4": 6,
+        "1": 276,
+        "2": 39
+      }
+    },
+    {
+      "code": 53,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 54,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "8": 1,
+        "6": 57,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 55,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 56,
+      "prefix_degrees": [
+        2,
+        2,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3142,
+      "K_dimension": 2,
+      "cosets": 569,
+      "maximum_rank_histogram": {
+        "4": 313,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "3": 125,
+        "5": 2,
+        "4": 6,
+        "1": 276,
+        "2": 39
+      }
+    },
+    {
+      "code": 57,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 58,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "8": 1,
+        "6": 57,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 59,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3496,
+      "K_dimension": 1,
+      "cosets": 690,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 644
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 57,
+        "8": 1,
+        "4": 62,
+        "5": 3,
+        "3": 38,
+        "2": 120,
+        "1": 224
+      }
+    },
+    {
+      "code": 60,
+      "prefix_degrees": [
+        2,
+        2,
+        3
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3340,
+      "K_dimension": 2,
+      "cosets": 560,
+      "maximum_rank_histogram": {
+        "4": 304,
+        "6": 256
+      },
+      "kernel_histogram": {
+        "7": 6,
+        "6": 56,
+        "8": 1,
+        "3": 134,
+        "2": 186,
+        "1": 128
+      }
+    },
+    {
+      "code": 61,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 62,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "8": 2,
+        "6": 54,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    },
+    {
+      "code": 63,
+      "prefix_degrees": [
+        2,
+        3,
+        4
+      ],
+      "complete": true,
+      "lefts": 511,
+      "eligible_pairs": 3832,
+      "K_dimension": 1,
+      "cosets": 724,
+      "maximum_rank_histogram": {
+        "2": 46,
+        "4": 662,
+        "6": 16
+      },
+      "kernel_histogram": {
+        "7": 7,
+        "6": 54,
+        "8": 2,
+        "4": 70,
+        "5": 4,
+        "3": 78,
+        "2": 168,
+        "1": 128
+      }
+    }
+  ],
+  "rank6_lifted_pair_every_case_comparison": {
+    "status": "pass",
+    "scope": "Exact coverage and every-case comparison of supplied marked frontier only; no other branches or novelty claim.",
+    "totals": {
+      "states": 6120,
+      "Q_marks": 6552,
+      "left_forms": 50128920,
+      "eligible_pairs": 289072800,
+      "nonzero_cosets": 63629712,
+      "positive_witness_replays": 0
+    },
+    "Q_statuses": {
+      "negative": 6552
+    },
+    "fully_negative_counter_comparisons": 6120,
+    "all_input_states_and_marks_checked": true,
+    "input_sha256": "d4082053c5f9306c0056da014d0215c62fa54ae68cf7a015eab7273ad18a303f",
+    "source_sha256": "284b809cdb94971b59884afd159b077e487dc1d9ff08e17807079019c7cc8526",
+    "symbolic_helper_sha256": "3f9b39121cc80b86b86310251da6c2bfc6a9630d73e6b6981ee70503c3dd3b91",
+    "producer_sources": [
+      {
+        "path": "runs/aes-norm-frontier-pairs-20261022/rank6-pair-producer-v1.jsonl",
+        "sha256": "3966680593b97da4164c1b874368074a219639efffad7bfc17530ac28e8056ae",
+        "JSONL_records": 6120
+      }
+    ],
+    "independent_sources": [
+      {
+        "path": "runs/aes-norm-frontier-pairs-20261022/rank6-pair-independent-v1.jsonl",
+        "sha256": "a036e55e12c35711acfab138fa4aa7dd3da475554152019298fff4c24dea8952",
+        "JSONL_records": 6120
+      }
+    ],
+    "external_peer_review": false,
+    "algorithm_seconds": 1.2207564588170499
+  },
+  "rank6_observed_commands": {
+    "rank6-frontier-v2": {
+      "argv": [
+        "python3",
+        "-B",
+        "workspace/aes-256-gcm/tools/enumerate_rank6_scalar_prefixes.py",
+        "--out",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-scalar-inventory-v2.json",
+        "--frontier-out",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 4.096849374938756
+    },
+    "root-rank6-inventory-replay": {
+      "argv": [
+        "python3",
+        "-B",
+        "workspace/aes-256-gcm/tools/verify_rank6_scalar_frontier.py",
+        "--inventory",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-scalar-inventory-v2.json",
+        "--frontier",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.json",
+        "--tsv",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.tsv",
+        "--out",
+        "runs/aes-norm-frontier-pairs-20261022/root-rank6-inventory-replay.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 7.240634167101234
+    },
+    "rank6-lifted-producer": {
+      "argv": [
+        "runs/aes-norm-frontier-pairs-20261022/scan_pairs_pilot",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.tsv",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-pair-producer-v1.jsonl"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 139.25906808301806
+    },
+    "rank6-lifted-independent": {
+      "argv": [
+        "runs/aes-norm-frontier-pairs-20261022/independent/verify_pairs_v1",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.tsv",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-pair-independent-v1.jsonl"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 183.29705991595984
+    }
+  },
+  "rank8_full_producer_only": {
+    "status": "pass",
+    "scope": "Exact four-shard fixed-binary input/output identity, all-mark and complete-negative coverage audit. This is not an independent replay of the mathematical enumeration.",
+    "states": 203728,
+    "Q_marks": 207184,
+    "Q_statuses": {
+      "negative": 207184
+    },
+    "complete_states": 203728,
+    "early_positive_states": 0,
+    "exact_state_interval": [
+      0,
+      203728
+    ],
+    "no_missing_or_duplicate_state_ids": true,
+    "all_input_Q_marks_retained": true,
+    "high_rank_histogram": {
+      "1": 191728,
+      "2": 8256,
+      "3": 3744
+    },
+    "K_dimension_histogram": {
+      "4": 191728,
+      "3": 8256,
+      "2": 3744
+    },
+    "mark_multiplicity_histogram": {
+      "1": 200272,
+      "2": 3456
+    },
+    "left_forms": 1668736048,
+    "eligible_unordered_pairs": 9452606080,
+    "quadratic_polar_cosets": 2084569264,
+    "offset_checks": 32405616384,
+    "rank_checks": 36754015920,
+    "witness_truth_rows": 0,
+    "right_kernel_dimension_histogram": [
+      0,
+      1330642944,
+      81300032,
+      187716352,
+      14751936,
+      1644608,
+      707584,
+      21952,
+      49185696,
+      2625080,
+      138456,
+      1408,
+      0,
+      0
+    ],
+    "sum_state_algorithm_seconds": 3635.5301112930783,
+    "state_algorithm_seconds_min": 0.007568875,
+    "state_algorithm_seconds_max": 0.156681542,
+    "campaign_wall_seconds": 940.9118722921703,
+    "source_sha256": "de641059e25ce48b35f4638ed8237ab8276fb489fe0b61f72d896a663ab7a3d0",
+    "binary_sha256": "b63fb5c08281e5ab21a3d4c8a47e8eaefba7094279e8161f5b273875ecf0ae11",
+    "input_sha256": "f961a05061f4534e259adcb57ef98e298ccdd54cd279a6e74b0ee8fa7560a916",
+    "assertions_enabled": true,
+    "shards": [
+      {
+        "shard": 0,
+        "begin": 0,
+        "end_exclusive": 50932,
+        "states": 50932,
+        "Q_marks": 51988,
+        "Q_statuses": {
+          "negative": 51988
+        },
+        "left_forms": 417184012,
+        "eligible_unordered_pairs": 2388177952,
+        "quadratic_polar_cosets": 524038228,
+        "sum_state_algorithm_seconds": 895.5425745379981,
+        "native_program_wall_seconds": 907.239026708,
+        "output_sha256": "7138caa5733487c147aa49224510f54ab7571874c1616ce2600639ec21335688",
+        "summary_sha256": "d5fe06f6a77d0b09303df2ae1535c5689acb3b8080af2215f54cb27e76cd6d96",
+        "stdout_sha256": "ce9217649b6a6318ad49d7911beb296034aed1a182ff2f2fc2fe3190270b44f4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "shard": 1,
+        "begin": 50932,
+        "end_exclusive": 101864,
+        "states": 50932,
+        "Q_marks": 53236,
+        "Q_statuses": {
+          "negative": 53236
+        },
+        "left_forms": 417184012,
+        "eligible_unordered_pairs": 2415655816,
+        "quadratic_polar_cosets": 535711804,
+        "sum_state_algorithm_seconds": 888.021919028992,
+        "native_program_wall_seconds": 900.082942,
+        "output_sha256": "e4d1d37a14ac667566d99ca197252ea39941bb34cc0a092b0907f8f909bfc2d1",
+        "summary_sha256": "cc734d4eb157fff9b1c2c2c919e8cd5862b9f5082ee4c5bf4570b4e2af5fee50",
+        "stdout_sha256": "c026f4c57bc86f09e49348b18fb2a5faf98aa1fa0b43f1298db3319f694f4d3a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "shard": 2,
+        "begin": 101864,
+        "end_exclusive": 152796,
+        "states": 50932,
+        "Q_marks": 51028,
+        "Q_statuses": {
+          "negative": 51028
+        },
+        "left_forms": 417184012,
+        "eligible_unordered_pairs": 2330381728,
+        "quadratic_polar_cosets": 513426376,
+        "sum_state_algorithm_seconds": 922.9470525539967,
+        "native_program_wall_seconds": 934.881278334,
+        "output_sha256": "3f1ae050cee5da7bcba39b6c1c43a42c1a8c85700a9998accce745d0a64cdcfa",
+        "summary_sha256": "90540168a7171a71ce48589cb6f6a793736284900ebe4571f862773e93634106",
+        "stdout_sha256": "ee9b627a5fc4a22598a90d9a7ab5d173f662f4afbcbd5f49bb519a250b1ed052",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "shard": 3,
+        "begin": 152796,
+        "end_exclusive": 203728,
+        "states": 50932,
+        "Q_marks": 50932,
+        "Q_statuses": {
+          "negative": 50932
+        },
+        "left_forms": 417184012,
+        "eligible_unordered_pairs": 2318390584,
+        "quadratic_polar_cosets": 511392856,
+        "sum_state_algorithm_seconds": 929.018565171995,
+        "native_program_wall_seconds": 940.88957075,
+        "output_sha256": "df64eef453ea9489487b84562127fd36e49fe4c692a5502c3ef045b9afee2027",
+        "summary_sha256": "0e3bee8cd717dca0f084adc0a7b96b724ca9feb1b78cb2f9a1a006e948e7f496",
+        "stdout_sha256": "96060a4cd2c8227c4ab7fb5c7f3d64dc4d4b7058c8d3be79284ddaf911800a3a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "independent_math_replay": "pending separate evidence"
+  },
+  "rank8_full_independent_replay": {
+    "status_at_checkpoint": "running",
+    "coordinator_session_id": 90145,
+    "worker_PIDs": [
+      37934,
+      37935,
+      37936,
+      37937
+    ],
+    "actual_PID_observation_command": {
+      "argv": [
+        "ps",
+        "-p",
+        "37934,37935,37936,37937",
+        "-o",
+        "pid=,etime=,stat=,%cpu=,comm="
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.006554875057190657
+    },
+    "actual_PID_observation": "37934 18:37 R     99.1 /Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/full-v1/verify_pairs\n37935 18:37 R     99.6 /Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/full-v1/verify_pairs\n37936 18:37 R     98.2 /Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/full-v1/verify_pairs\n37937 18:37 R     99.3 /Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/full-v1/verify_pairs\n",
+    "full_independent_result_used_in_any_verified_conclusion": false,
+    "every_case_comparison_required_after_actual_terminal_exits": true
+  },
+  "pilot_independent_comparison": {
+    "status": "pass",
+    "external_peer_review": false,
+    "scope": "Every enumerative counter of both full Python 100-state pilots matches the exact C++ port; positive CPP control independently replayed over all 256 inputs. This is not the full frontier.",
+    "input_sha256": "43995e3fec917d12fb7c1447cd83960bf538392dc184827af103e80fd76d0600",
+    "python_source_sha256": "703755f46620c112e6540397b7e7e4603e711551c616b0cb65810226708cf67e",
+    "cpp_source_sha256": "a39d67af3cb0bb7edd1ec8bb93af53ab163fbc2e09fdad7e8a3e5ec4cb6851ad",
+    "comparison_source_sha256": "7ed85bcec065f2b1410dd50373a495e0c0f2f85190ae5f9c3bed1604f10d02b3",
+    "totals": {
+      "pilot_records": 200,
+      "pilot_Q_marks": 203,
+      "left_forms": 1638200,
+      "eligible_unordered_pairs": 9529520,
+      "nonzero_cosets": 2062372,
+      "positive_witness_rows": 0
+    },
+    "inventories": [
+      {
+        "label": "first100",
+        "status": "pass",
+        "CPP_JSONL_sources": [
+          {
+            "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/first100-cpp-v1.jsonl",
+            "sha256": "2809de2ed792c6830124f8f6b6787aa66024a0f63b5209009a21d13544270ff3",
+            "JSONL_records": 100
+          }
+        ]
+      },
+      {
+        "label": "distributed100",
+        "status": "pass",
+        "CPP_JSONL_sources": [
+          {
+            "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/distributed100-cpp-v1.jsonl",
+            "sha256": "ca7321d28ba1d3908e9bebec95d110a1a13d08fcc9dcd296205344ce43ec7a45",
+            "JSONL_records": 100
+          }
+        ]
+      }
+    ],
+    "source_files": [
+      {
+        "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/first100-v3.json",
+        "sha256": "6f4697b50d301181081009b2ee11e81c4f5e4d748cea4de54d7050bbcb595ce8"
+      },
+      {
+        "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/distributed100-v3.json",
+        "sha256": "53601ae20d8b39812ccc3046cc224dcf87756605b43fed4c3f1a83de416038be"
+      },
+      {
+        "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/comparison-controls-v3.json",
+        "sha256": "ea2916b67ee4a62ad00469c6f26174aa07c21f073c286a9d47f2cc382ab6d0a7"
+      },
+      {
+        "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/controls-and-pilot-v2.json",
+        "sha256": "16a4cfc579d927570eaabb3c69580348469b4c489abdc0f6b40c305c87ff33f7"
+      }
+    ],
+    "positive_CPP_sources": [
+      {
+        "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/positive-cpp-v1.jsonl",
+        "sha256": "0202bd21becbacfe894e4548a1fd70df7b975f2b2fc06bd32f2c6f45eab10f25",
+        "JSONL_records": 1
+      }
+    ],
+    "negative_CPP_sources": [
+      {
+        "path": "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-norm-frontier-pairs-20261022/independent/negative-cpp-v1.jsonl",
+        "sha256": "db02c32afce05bbecd073a23ea44fb64cf0aaa97fcbac9478f58b1c3bec11c46",
+        "JSONL_records": 1
+      }
+    ],
+    "positive_control_full_input_rows_replayed": 256,
+    "basis_product_truth_check_note": "Python performs 169 basis product full-table checks per state; CPP exercises its monomial-union primitive in separate full-truth controls instead. Those diagnostic row counts are not equated.",
+    "algorithm_seconds": 0.37101233401335776
+  },
+  "pilot_distinct_counts": {
+    "states": 199,
+    "Q_marks": 202,
+    "note": "Two 100-state pilots share state0; aggregate200records/203marks count that state twice."
+  },
+  "comparison_integrity": {
+    "existing_comparator_rejected_mutations": [
+      "wrong_marked_Q",
+      "changed_positive_verdict",
+      "unknown_verdict",
+      "wrong_K_dimension",
+      "wrong_high_rank",
+      "wrong_K_membership",
+      "wrong_Q_decoder",
+      "zero_product_operand",
+      "changed_product_operand",
+      "wrong_old_correction",
+      "wrong_quoted_ANF",
+      "wrong_quoted_polar",
+      "wrong_translated_polar",
+      "wrong_truth_replay_total",
+      "false_completeness",
+      "wrong_left_total",
+      "wrong_kernel_histogram",
+      "duplicate_JSONL_state_id"
+    ],
+    "generic_comparator_unit_tests": 2,
+    "generic_corrupt_record_mutations": 12
+  },
+  "operator_controls": {
+    "status": "pass",
+    "ordered_field_coefficient_pairs": 210,
+    "polynomial_counts": {
+      "0x7": 30,
+      "0x13": 60,
+      "0x19": 60,
+      "0x1f": 60
+    },
+    "degree_four_target_regenerations": 180,
+    "bent_pair_not_field_counterexample": {
+      "Q_rows": [
+        16,
+        32,
+        64,
+        128,
+        1,
+        2,
+        4,
+        8
+      ],
+      "t_rows": [
+        32,
+        64,
+        128,
+        80,
+        8,
+        1,
+        10,
+        4
+      ],
+      "J_rows": [
+        8,
+        1,
+        10,
+        4,
+        32,
+        64,
+        128,
+        80
+      ],
+      "Q_polar": 2163720,
+      "t_polar": 1443856,
+      "ranks_Q_t_t_plus_Q": [
+        8,
+        8,
+        8
+      ],
+      "minimal_polynomial": "0x15=(X^2+X+1)^2",
+      "accepted_polynomials": [],
+      "rejected_by_filter": true
+    },
+    "random_GL8_affine_pair_controls": 128,
+    "full_truth_rows_replayed": 65536,
+    "matrix_composition_vector_checks": 32768,
+    "random_seed": 20261022,
+    "scope": "Necessary pair-operator filter and finite controls only. No frontier scan, circuit construction, sufficiency or novelty claim.",
+    "matrix_convention": "Packed rows, column vectors, J=B_Q^-1 B_t; input x=S*y+a gives J_new=S^-1 J S.",
+    "source_sha256": "4bc1f5d679f9a1cc2fbfa0470e05ce05568f9cf04467f3baeeb5ad9955dbc730",
+    "algorithm_seconds": 0.8815214999485761,
+    "external_peer_review": false,
+    "frontier_tested": false,
+    "world_first_established": false
+  },
+  "cancelled_diagnostics": {
+    "status": "cancelled_not_passed",
+    "scope": "Optional ASan/UBSan diagnostics only; unrelated to the running exact four-shard campaign.",
+    "reason": "Both diagnostics exceeded the expected bounded control runtime under host load. They were explicitly cancelled to restore the agreed four-worker budget; no sanitizer-clean result is claimed.",
+    "termination_command": [
+      "kill",
+      "-TERM",
+      "38463",
+      "38469"
+    ],
+    "terminated_child_PIDs": [
+      38463,
+      38469
+    ],
+    "captured_command_records": [
+      "sanitized-controls-v1.command.json",
+      "sanitized-negative-v1.command.json"
+    ],
+    "all_partial_outputs_and_streams_preserved": true,
+    "full_campaign_workers_terminated": false
+  },
+  "sanitizer_clean_claim": false,
+  "current_source_check_commands": {
+    "compile-producer": {
+      "argv": [
+        "clang++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "workspace/aes-256-gcm/tools/scan_norm_frontier_pairs.cpp",
+        "-o",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/producer"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.5752521671820432
+    },
+    "controls-producer": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/producer",
+        "--self-test",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/producer-controls.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.6973917500581592
+    },
+    "compile-symbolic": {
+      "argv": [
+        "clang++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.cpp",
+        "-o",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/symbolic"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.2505445410497487
+    },
+    "controls-symbolic": {
+      "argv": [
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/symbolic",
+        "--controls",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/symbolic-controls.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.4341653329320252
+    },
+    "python-controls": {
+      "argv": [
+        "python3",
+        "-B",
+        "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py",
+        "--controls",
+        "--out",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/python-controls.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.6202236250974238
+    },
+    "unit-two-and": {
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "workspace/aes-256-gcm/tools",
+        "-p",
+        "test_two_and*.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.0732982920017093
+    },
+    "unit-stage": {
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "workspace/aes-256-gcm/tools",
+        "-p",
+        "test_sbox_stage_splice.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.0987892500124872
+    },
+    "unit-pair-integrity": {
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "workspace/aes-256-gcm/tools",
+        "-p",
+        "test_frontier_pair_comparison.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.18719479185529053
+    },
+    "rank6-comparison-current-helper": {
+      "argv": [
+        "python3",
+        "-B",
+        "workspace/aes-256-gcm/tools/compare_norm_frontier_pair_scans.py",
+        "--input",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.json",
+        "--producer",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-pair-producer-v1.jsonl",
+        "--independent",
+        "runs/aes-norm-frontier-pairs-20261022/rank6-pair-independent-v1.jsonl",
+        "--out",
+        "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/aes-frontier-followup-20261022/rank6-pair-comparison.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.2840085830539465
+    },
+    "registry": {
+      "argv": [
+        "./tools/experiment",
+        "check"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.06302208290435374
+    },
+    "protected-lab": {
+      "argv": [
+        "./lab/status"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 4.425495082978159
+    },
+    "rank6-run-schema": {
+      "argv": [
+        "./tools/experiment",
+        "validate-run",
+        "runs/aes-rank6-scalar-frontier-20261022/run.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.06112562492489815
+    },
+    "operator-run-schema": {
+      "argv": [
+        "./tools/experiment",
+        "validate-run",
+        "runs/aes-field-pair-operator-20261022/run.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.06117649981752038
+    },
+    "independent-live-pids": {
+      "argv": [
+        "ps",
+        "-p",
+        "37934,37935,37936,37937",
+        "-o",
+        "pid=,etime=,stat=,%cpu=,comm="
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.006554875057190657
+    }
+  },
+  "raw_artifact_identities": [
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/rank6-scalar-inventory-v2.json",
+      "bytes": 2034617,
+      "sha256": "c69eb10171c7776b9b96f825e33b094f4e238fe173a512924714c9ea017e3cb3"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.json",
+      "bytes": 2218178,
+      "sha256": "d4082053c5f9306c0056da014d0215c62fa54ae68cf7a015eab7273ad18a303f"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/rank6-lifted-frontier-v2.tsv",
+      "bytes": 737688,
+      "sha256": "b8be93f25b8bec851d762b9d5206a38e0e27aefdbceffc7ba0661b02b2f0a06b"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/rank6-pair-producer-v1.jsonl",
+      "bytes": 3152430,
+      "sha256": "3966680593b97da4164c1b874368074a219639efffad7bfc17530ac28e8056ae"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/rank6-pair-independent-v1.jsonl",
+      "bytes": 3380121,
+      "sha256": "a036e55e12c35711acfab138fa4aa7dd3da475554152019298fff4c24dea8952"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/root-rank6-inventory-replay.json",
+      "bytes": 40487,
+      "sha256": "d9ef9bbbdecfd774b5c7c8c8fd2c8cb027bc1ed4b2e56e3557d9e1f5b420227e"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/full-producer/coverage-audit.json",
+      "bytes": 4789,
+      "sha256": "eb6c44be3ccc41b5acb664058b90841073cf41ef26eef384b2bea6316d758109"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/full-producer/terminal-status.json",
+      "bytes": 5110,
+      "sha256": "c2ba1eee66994d0efd82d4bcdd158c5e205458da2ebb0985ed744bb321070a07"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/full-producer/launch-manifest.json",
+      "bytes": 6062,
+      "sha256": "3821e4cb8f6b15a0ad0213a0df7f73039b841683b232ec3a3086b79dbf2c43dd"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/cpp-pilot-comparison-v1.json",
+      "bytes": 3496,
+      "sha256": "3dcdd70cd582bd2121174effc8266cc0ac4a75a2c61de414a1e8e07ff9874a1b"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/comparison-controls-v4.json",
+      "bytes": 4498,
+      "sha256": "80dbba1520d15eadf26c962cfdde43ac7f781aabd4d1beeea5dd24a58bc43cbf"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/sanitizer-cancellation-note.json",
+      "bytes": 672,
+      "sha256": "ded2a28389c4d4b78ba8cc2b3e132ad3956078db684d1982c11257541b3b89d3"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/independent/full-v1/manifest.json",
+      "bytes": 2796,
+      "sha256": "1d72c4fefbdf1e936be13d98481f42ebe8dc55701e2bd897daa83ca99cd00349"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/root-field-operator.json",
+      "bytes": 85788,
+      "sha256": "72357b08d68c75895a360d105fe4d2962b924a29861761f8dd1f17cd9143657e"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/scan_norm_frontier_pairs-pilot.cpp",
+      "bytes": 15000,
+      "sha256": "de641059e25ce48b35f4638ed8237ab8276fb489fe0b61f72d896a663ab7a3d0"
+    },
+    {
+      "path": "runs/aes-norm-frontier-pairs-20261022/verify_norm_frontier_pairs-before-status-update.py",
+      "bytes": 21594,
+      "sha256": "3db9c0ddfba604fa7101d406314f47072848412411a66ce6f7ba94f7016edacd"
+    }
+  ],
+  "source_identity_note": "Full scans use frozen executed sources identified in the raw manifests. Subsequent producer/Python header edits change status comments only; hashes distinguish them from current checked sources.",
+  "new_physical_metrics": null,
+  "full_GF16_eight_AND_exclusion": false,
+  "improved_complete_AES_circuit": false,
+  "world_first_established": false,
+  "raw_archives_pushed": false,
+  "external_peer_review": false,
+  "remaining": [
+    "Complete and compare larger raw-rank-eight independent replay",
+    "Raw-rank-six first-three-rank-four/five branches",
+    "Raw-rank-seven nonquintic branch",
+    "Complete multiplier and AES improvement",
+    "Priority/novelty assessment and physical validation when justified"
+  ],
+  "primary_sources_rechecked": [
+    {
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=919080",
+      "fact": "Optimal quadratic existence for scalar/two-output cases does not justify assuming every optimal actual pair circuit is quadratic."
+    },
+    {
+      "url": "https://slopdealer.com/research/papers/mf-167/",
+      "fact": "Author claims quadratic GF16 cost9 and lists unrestricted[8,9]; neither their result nor this source is a new result of our lab."
+    },
+    {
+      "url": "https://arxiv.org/html/2608.30238v1",
+      "fact": "Morse studies seven-output unreduced four-term polynomial multiplication, not the reduced four-output GF16 target; no automatic transfer. Formalization not executed by us."
+    }
+  ]
+}

@@ -4,6 +4,37 @@ Last updated: **2026-10-22**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
+## Latest local follow-up after publication — 2026-10-22
+
+- **A further scoped branch is excluded:** the raw-rank-six,
+  first-three-raw-rank-six branch of the hypothetical eight-AND field
+  circuit. Two complete scalar methods agree on 6,120 lifted spaces and
+  6,552 retained scalar marks; two complete first-suffix scans are negative
+  throughout, with every case and counter independently compared. The
+  [proof and replay commands](GF16_QUARTIC_PREFIX_FRONTIER.md#the-raw-rank-six--first-three-rank-six-sub-branch)
+  name the earlier field-reduction dependencies. Other raw-rank-six and
+  raw-rank-seven branches remain open.
+- **The larger producer finished:** all 203,728 raw-rank-eight frontier
+  states and 207,184 scalar marks are negative. The exact coverage audit
+  retains 1,668,736,048 left examinations and 9,452,606,080 eligible pairs.
+  The full independent replay is still running; this producer result alone
+  is **not** promoted to a completed larger-branch exclusion.
+- **Comparison gap fixed:** the symbolic checker reads actual producer
+  JSONL and replays positive witnesses. Both 100-state pilots match every
+  count across the independent Python/C++ methods. They contain 199 unique
+  states and 202 unique marked choices after their overlap is removed.
+- **Additional controlled mathematics:** a self-contained field-pair
+  operator test is stronger than the three polar-rank tests. All 210 true
+  coefficient pairs, 180 degree-four target regenerations and 128 common
+  affine-coordinate controls pass. It is not a new multiplier or a
+  frontier-wide result.
+
+The [follow-up study](../../workspace/aes-256-gcm/reports/sbox_norm_frontier_pair_followup.json)
+distinguishes completed evidence from the still-live larger independent
+campaign. These changes are local after the GitHub checkpoint below;
+there is still no global eight-AND exclusion, improved full AES S-box,
+physical result or verified world-first.
+
 ## Latest published research checkpoint — 2026-10-22
 
 This publication includes the completed quintic study at
@@ -1062,7 +1093,7 @@ records remain under ignored `runs/` directories on the research machine;
 committed summaries identify them and retain hashes, but are not substitutes
 for the complete raw archive when independently replaying the latest scans.
 
-The latest search-tool checkpoint passes 13 regression tests and the registry
+The latest local search-tool checkpoint passes 15 regression tests and the registry
 and protected-lab status checks. These documentation changes do not rerun the
 entire accelerator corpus or create new hardware measurements. Per-attempt
 model identity, token usage, reasoning mode and cost are unavailable where

@@ -2289,6 +2289,56 @@ Mirwald–Schnorr full text remains inaccessible here; the publisher
 endpoint returns 403 on root retry. This is a real priority-check
 limitation, not evidence of originality.
 
+## First-suffix scans and a further raw-rank-six exclusion — 2026-10-22
+
+The producer/checker JSON interface is repaired and mutation-controlled.
+Both 100-state pilots match every enumerative counter under the independent
+Python and C++ row-equation methods: 199 distinct states and 202 scalar marks
+after overlap removal. The full 203,728-state producer subsequently finishes
+with all 207,184 marks negative (1,668,736,048 left forms and 9,452,606,080
+eligible pairs). Its full independent replay is **still running** at this
+local checkpoint, so that larger exclusion is not yet claimed.
+
+A shared fresh-coordinate shear peels the first-four-raw-rank-six scalar
+case to `Q=R6+x*y`, preserving all four actual old wires. For first-three
+raw rank six, two complete scalar inventories agree on all 64 topologies,
+6,634 rank-six cosets and 7,498 scalar choices. Field-specific code-zero
+pruning leaves 6,120 exact fixed-coordinate lifted spaces and all 6,552
+rank-eight marks. Both complete continuation scans are negative, with
+every-case comparisons agreeing on 50,128,920 left forms, 289,072,800 pairs
+and 63,629,712 nonzero cosets. Under the reviewed Q-by-four and
+all-quadratic-first-four reductions, this excludes only `r4=6,r3=6`.
+First-three raw ranks four/five, raw rank seven and the larger independent
+replay remain open. No scalar-function substitution or theorem that every
+optimal pair circuit is quadratic is assumed.
+
+A separate operator control shows why three rank-eight tests are weaker
+than field compatibility: `J=B_Q^-1*B_t` must satisfy one irreducible
+degree-two/four identity. A nonsemisimple counterexample passes all rank
+tests but fails those identities. All 210 genuine coefficient pairs, 180
+degree-four target regenerations and 128 common affine/GL8 controls pass.
+This is controlled standard field algebra, not an established novel method
+or a new circuit. Optional sanitizer diagnostics were cancelled under host
+load; their nonzero terminal statuses are retained and no sanitizer-clean
+claim is made.
+
+Primary sources were rechecked on this date:
+[Boyar–Find, Section 2.1 and open problems](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=919080)
+does not license strengthening optimal quadratic existence to every actual
+optimal circuit. The [MF-167 author entry](https://slopdealer.com/research/papers/mf-167/)
+still lists unrestricted GF(16) complexity in `[8,9]`; its restricted result
+is prior art, not ours. [Morse's paper](https://arxiv.org/html/2608.30238v1)
+concerns the seven-output unreduced polynomial product, not this reduced
+four-output field map. Its formalization has not been executed here. These
+checks are not an exhaustive priority or correctness audit.
+
+The [reviewed reductions/replay guide](GF16_QUARTIC_PREFIX_FRONTIER.md) and
+[local follow-up study](../../workspace/aes-256-gcm/reports/sbox_norm_frontier_pair_followup.json)
+retain exact coverage, source identities, failed/cancelled attempts, actual
+command exits, separate build/software timings and the pending larger run.
+No global bound, improved complete AES circuit, physical metric or world-first
+claim follows from this checkpoint.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or
