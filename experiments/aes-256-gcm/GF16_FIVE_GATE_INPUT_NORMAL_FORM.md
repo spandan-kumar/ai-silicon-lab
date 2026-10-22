@@ -4,6 +4,15 @@ Date: 2026-10-20. This is a search formulation and reviewed reduction,
 not a new field multiplier, circuit lower bound, solver speedup or
 world-first claim. The full circuit search remains unresolved.
 
+**2026-10-22 follow-up:** complete rank-seven/eight enumerations and
+independent full replays now close the quintic branch described below.
+The formerly open 487 classes are therefore no longer open **for that
+branch only**. The [quintic-prefix note](GF16_QUINTIC_PREFIX_BOUND.md)
+also replaces the rank-six step's imported strong-theorem dependency
+with a self-contained saturated-scalar induction. Quartic prefixes and
+the unrestricted eight-AND field multiplier remain unresolved. The
+original UNKNOWN solver result and historical counts below are retained.
+
 ## Premise: eight-dimensional raw-input span
 
 After zero-preserving normalization, write an ordered five-AND prefix as
@@ -183,7 +192,7 @@ admitted in this raw-rank case: a retained five-gate witness has degrees
 `2,3,4,5,2` witness has a nonquadratic scalar, confirming that the raw-rank
 premise alone does not prohibit a quintic gate.
 
-## Next questions
+## Next questions at the 2026-10-20 checkpoint
 
 No global degree-five exclusion follows from UNKNOWN or the rank-six
 lemma; **487** ordered raw-input classes remain in the rank-seven/eight
@@ -202,7 +211,8 @@ two-fresh case and deliberately admit a nonlinear `B`.
 
 If the first eight raw factor forms are independent, an input change
 alone fixes them to coordinate units, without any operand shifts.
-Neither specialized rank-seven/eight search has yet been executed here.
+Neither specialized rank-seven/eight search had been executed at that
+checkpoint; the 2026-10-22 follow-up above supersedes that status.
 
 The normal form is intended to make global prefix analysis practical;
 its existence and small controls do not establish that it makes the

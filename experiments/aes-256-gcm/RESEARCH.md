@@ -2189,6 +2189,63 @@ and [portable checker](../../workspace/aes-256-gcm/tools/normalize_norm_q5_input
 preserve counts, sources and exact limits. The next specialized
 rank-eight-first-four solver is not yet executed.
 
+### Complete quintic scalar-prefix branch — 2026-10-22
+
+The first-four raw rank split is now exhausted for eight-input five-AND
+circuits with a rank-eight quadratic decoder and a quintic fourth gate.
+For rank eight, 4,096 ordered topologies contain 2,520 quintic prefixes;
+the producer scans 103,795,344 eligible unordered products and 27,736,020
+quadratic polar cosets, with no rank-eight scalar extension. A separate
+symbolic-ANF/joint-row-equation Python method completes all cases and
+matches every case's counts and histograms. Its fast C++ port agrees too.
+
+For rank seven, all 255 raw relation vectors and 4,096 dependency choices
+cover 1,044,480 prefixes, of which 564,480 are quintic. Production and
+independent symbolic methods both complete 192,748,032 polar-rank tests
+with no rank-eight completion and identical per-relation inventories.
+The nonlinear-B quartic positive control is admitted. An initial control
+comparison fails only because one implementation increments a fixture
+high-rank histogram in its scanner and the other in its main enumeration.
+That failed comparison is retained; the explicit normalized comparison
+checks the difference without modifying either exhaustive result.
+
+A self-contained induction shows that `k` actual ANDs computing a
+quadratic of polar rank `2k` have quadratic actual gate functions. This
+supplies the rank-six exclusion without importing the strong scalar
+statement from Jukna. The lemma also supplies the actual-prefix property
+used in the earlier Q-by-four reduction, with its existing span-preserving
+quadratic flattening argument. Finite saturation controls include 32,768
+three-gate scalar decodes with every operand constant and 65,536 four-gate
+zero-constant decodes, plus smaller and affine-output checks.
+
+Thus the previously open 487 raw classes are closed **for the quintic
+question only**, under the reviewed reductions and two-method finite
+evidence. Every five-AND circuit on eight input bits computing a rank-eight
+quadratic has gate degrees at most four. Proper quartic prefixes remain
+open; no unrestricted eight-AND GF(16) lower bound or AES improvement
+follows. The original UNKNOWN solver result remains UNKNOWN.
+
+See the [proof, scope and portable commands](GF16_QUINTIC_PREFIX_BOUND.md)
+and [complete study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quintic_study.json).
+Raw sources, outputs and terminal command records remain local in the
+ignored run archives, with hashes in the committed study. Per-attempt
+model/token/cost telemetry is unavailable and not estimated.
+
+A new primary-source check reads
+[Morse, arXiv:2608.30238v1](https://arxiv.org/html/2608.30238v1).
+It proves a nine-AND unrestricted theorem for **unreduced seven-output
+polynomial convolution**, not the reduced four-output GF(16) product.
+Our inference is that projecting outputs does not transfer its lower
+bound to this target; its rational-place/single-defect normalization
+is not automatically valid here. Its claimed Lean formalization was
+not executed or independently audited. The author's
+[GF(16) bracket entry](https://slopdealer.com/research/papers/ml-076/)
+still describes the `[8,9]` unrestricted question as open. These are
+related prior-work statements, not an exhaustive novelty determination.
+The NIST dimension/degree source checked on October 20 times out on
+retry here, and its PMC copy presents CAPTCHA; no new source content
+is inferred from that failure.
+
 ## Research rules for this experiment
 
 - Pin the URL, retrieval date, relevant section/table, and any local copy or

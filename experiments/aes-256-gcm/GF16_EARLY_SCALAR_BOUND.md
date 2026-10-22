@@ -3,6 +3,17 @@
 Date: 2026-10-20. Reviewed reduction plus two-method finite evidence; not a
 proof-assistant formalization, global eight-AND exclusion, or novelty claim.
 
+**2026-10-22 proof strengthening:** the self-contained
+[saturated-scalar lemma](GF16_QUINTIC_PREFIX_BOUND.md#a-self-contained-saturated-scalar-lemma)
+now supplies the actual-prefix property used in dependency 1 below:
+four actual ANDs computing a rank-eight quadratic have quadratic gate
+truths. The existing quadratic-gate flattening reduction preserves the
+prefix span at the same cost; all four slots are needed by rank. Thus
+the reduction no longer needs the imported strong scalar theorem.
+Its historical literature dependency remains documented below, and the
+finite 192-class evidence is unchanged. This is a reviewed proof, not
+a proof-assistant formalization or a claim of novelty for the lemma.
+
 ## Statement and dependencies
 
 For `GF(16)=GF(2)[t]/(t^4+t+1)`, consider an eight-AND Boolean XOR/AND

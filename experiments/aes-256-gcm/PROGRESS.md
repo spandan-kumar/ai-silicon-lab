@@ -1,8 +1,37 @@
 # Experiment 002: AES-256-GCM — progress and research handoff
 
-Last updated: **2026-10-20**. Work is on
+Last updated: **2026-10-22**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
+
+## Latest local research checkpoint — 2026-10-22
+
+The quintic scalar-prefix branch is now excluded under reviewed
+reductions and two complete numerical methods. This is a structural
+research result, **not** a complete multiplier or improved AES S-box.
+
+- For first-four raw rank eight, all **4,096** ordered prefixes are
+  classified; the **2,520** quintic prefixes have no rank-eight scalar
+  extension. The full symbolic replay matches every case's counts and
+  histograms, with a fast C++ port matching as well.
+- For raw rank seven, all **255** relation vectors and **1,044,480**
+  prefixes are covered. Both complete methods agree on **564,480**
+  quintic prefixes and **192,748,032** polar-rank tests, with zero
+  rank-eight completions. The nonlinear-factor quartic control is admitted.
+- A self-contained saturated-scalar induction supplies the rank-six
+  exclusion, replacing that step's imported strong-theorem dependency.
+  The formerly open **487** raw classes are closed only for this quintic
+  question; quartic prefixes remain open. In particular, a five-AND
+  circuit on eight input bits computing a rank-eight quadratic has actual gate degrees at
+  most four under the reviewed argument.
+- **Next:** classify the remaining quartic prefixes and test their
+  complete field-multiplier continuations. There is still no unrestricted
+  eight-AND exclusion, improved complete AES circuit or verified world-first.
+
+See the [proof and scope](GF16_QUINTIC_PREFIX_BOUND.md),
+[machine-readable study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quintic_study.json)
+and portable replay commands there. These follow-up changes are local
+until explicitly published; the prior publication snapshot follows.
 
 ## Latest publication checkpoint
 
@@ -141,6 +170,8 @@ constructive searches, **not a new record-setting AES circuit**.
   scalar-optimal theorem, excludes 134 raw classes only for that quintic
   branch; the remaining 487 are open. These are not 621 complete circuit
   classes, a global eight-AND bound or an established solver speedup.
+  This was the October 20 status; the local October 22 checkpoint above
+  closes the quintic branch without classifying quartic circuits.
 - **No verified breakthrough yet:** no correct 27-AND AES S-box, no correct
   34-AND AND-depth-three S-box, and no global AES lower bound have been found.
 - **Physical status:** no placed/routed implementation, board measurement,
@@ -174,6 +205,7 @@ terminal; no future result is assumed.
 | Scalar available by gate four | Classify the next nonquadratic product after a canonical four-disjoint-product precursor, then scan each resulting prefix by two methods. | All 192 classes are obstructed. The reviewed Q-by-four exclusion invokes the published strong scalar-optimal structure theorem and the earlier quadratic bound. Scalar-first-at-five remains open; all three stronger probes are UNKNOWN. |
 | Higher-degree five-gate scalar prefixes | Construct an actual quartic prefix; test its complete product closure; search for a fourth gate with a degree-five coefficient. | The quartic witness passes all 256 inputs and its specified affine-input family is obstructed by two methods. The degree-five probes are UNKNOWN; neither a cubic-only nor a degree-at-most-four rule is a sound established search cut. |
 | Five-gate raw-input normalization | Classify two-dimensional dependencies among ten raw factor forms while preserving every shifted gate wire. | Two counts agree on 621 ordered classes; exact wire transport passes 1,026 circuits. The global probe remains UNKNOWN. Under an explicit scalar theorem, the raw-rank-six quintic branch is excluded, leaving 487 raw classes. |
+| Complete quintic branch | Split first-four raw rank six/seven/eight, with a self-contained saturation lemma and complete product-extension scans. | Rank-seven and rank-eight producer/independent counts agree throughout. The quintic branch is excluded under reviewed reductions; all quartic prefixes and unrestricted eight-AND multiplication are not settled. The earlier UNKNOWN remains UNKNOWN. |
 
 The detailed historical record is [RESEARCH.md](RESEARCH.md). The working RTL
 has not been replaced by any unsuccessful S-box candidate.
@@ -959,6 +991,11 @@ Committed evidence and entry points include:
   [portable normalization checker](../../workspace/aes-256-gcm/tools/normalize_norm_q5_inputs.py)
   retain complete raw-input coverage without claiming complete circuit
   enumeration or promoting the global UNKNOWN probe to a lower bound.
+- [Complete quintic-prefix study](../../workspace/aes-256-gcm/reports/sbox_norm_q5_quintic_study.json)
+  and [proof/replay guide](GF16_QUINTIC_PREFIX_BOUND.md) close that scoped
+  branch with full producer/symbolic comparisons, while leaving quartic
+  prefixes and unrestricted multiplication open. The saturated-scalar
+  induction is checked separately from the numerical searches.
 - [Retained enumeration tool](../../workspace/aes-256-gcm/tools/enumerate_two_and_envelopes.py)
   and the [workspace guide](../../workspace/aes-256-gcm/README.md) for commands.
 
