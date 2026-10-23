@@ -128,9 +128,9 @@
     "source": "unavailable"
   },
   "execution": {
-    "candidate_commit": null,
+    "candidate_commit": "c3370e09e54742de4604c0023b3a0bf0dd8d8a0a",
     "base_commit": "61a6947cd464b88488e06306db414ff8bab81192",
-    "source_note": "Precommit implementation; exact pinned source hashes in recipe and runner hash in run state. Historical native scan revisions are preserved by the legacy evidence manifest.",
+    "source_note": "Candidate identity backfilled after local commit c3370e0. The tracked worktree was clean at the postcommit check and tools/campaign.py status passed again against every pinned input, the runner source hash and preserved seal. The original precommit attempt record remains unchanged. Historical native scan revisions remain those in the legacy evidence manifest; they are not relabeled as this commit.",
     "python_version": "Python 3.14.7",
     "commands": {
       "resume-and-status": {
