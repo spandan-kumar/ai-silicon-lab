@@ -16,6 +16,12 @@ Experiment 002's implementation, attempted optimizations, current research
 results and open questions are summarized in the
 [AES-256-GCM progress document](experiments/aes-256-gcm/PROGRESS.md).
 
+The open [GF(16) complexity research](experiments/gf16-multiplicative-complexity/PLAN.md)
+is separate from that completed baseline. Its [generated current evidence
+checkpoint](experiments/gf16-multiplicative-complexity/STATUS.md) is the short
+resume entry point; [campaigns and prior-art checkpoints](tools/CAMPAIGNS.md)
+describe how new claims acquire validation evidence.
+
 Start with:
 
 ```sh

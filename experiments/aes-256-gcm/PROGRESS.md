@@ -4,6 +4,24 @@ Last updated: **2026-10-22**. Work is on
 [`codex/experiment-2-crypto-algo`](https://github.com/spandan-kumar/ai-silicon-lab/tree/codex/experiment-2-crypto-algo).
 This is a progress snapshot, not a claim of a world-first chip or algorithm.
 
+## Current research state — 2026-10-23
+
+The open mathematical research now has its own
+[GF(16) experiment contract](../gf16-multiplicative-complexity/experiment.json)
+and short [generated evidence checkpoint](../gf16-multiplicative-complexity/STATUS.md).
+The AES simulation baseline remains complete separately. Older sections below
+are dated history, including “running” observations that are no longer live.
+
+The missing larger-frontier final comparison is complete: all **203,728**
+states and **207,184** scalar marks agree case by case between the two native
+methods, all negative. Repeated actual final-audit executions agree on exact
+counts, including the durable runner and a freshly restored evidence tree. This is a
+conditional raw-rank-eight branch result under the reviewed reductions, not a
+global eight-AND exclusion or improved AES circuit. Raw-rank-six `r3=4/5` and
+raw-rank-seven cases remain open. See the
+[retained final result](../gf16-multiplicative-complexity/records/frontier-finalization-all-inputs-result-20261023.json)
+and [workflow and replay guide](../../tools/CAMPAIGNS.md).
+
 ## Latest local follow-up after publication — 2026-10-22
 
 - **A further scoped branch is excluded:** the raw-rank-six,

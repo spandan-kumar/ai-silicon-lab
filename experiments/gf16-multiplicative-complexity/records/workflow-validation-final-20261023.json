@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "lab-workflow-upgrade-20261023-final",
+  "experiment_id": "gf16-multiplicative-complexity",
+  "experiment_revision": 1,
+  "status": "pass",
+  "measurement_status": "mixed",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "Codex",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex desktop",
+      "version": null
+    },
+    "reasoning": {
+      "effort": null,
+      "mode": null
+    },
+    "goal_sha256": "2e511cd965d891b6a78bdbfa0c59a360daa35fe3f73dd943881c15431bc8033f",
+    "instruction_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "c4b62df7ec10112228a0891adc6d6f8167c8601f772ba262a9ea962bd7281478"
+      },
+      {
+        "path": "experiments/registry.json",
+        "sha256": "989fb1d589d766f37b91860464d01eec30ef24d52c8473be66feb2801261de14"
+      },
+      {
+        "path": "experiments/gf16-multiplicative-complexity/PLAN.md",
+        "sha256": "c0f2f5189c8ecf2dbc3bac14dec4689d44bfb037cd25daf7d0d4989a7bdfbe8d"
+      }
+    ],
+    "subagents": [
+      {
+        "name": "/root/research_contract",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/frontier_finalizer",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/artifact_bundle",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/review_runner",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/review_finalizer",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      }
+    ],
+    "notes": "Canonical model ID, harness version, reasoning and per-attempt telemetry are not exposed. Agent identities describe delegation, not external peer review."
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null,
+    "source": "unavailable",
+    "notes": "No per-attempt token telemetry; no inference from elapsed time."
+  },
+  "time": {
+    "agent_wall_seconds": null,
+    "human_seconds": null,
+    "build_seconds": null,
+    "simulation_seconds": null,
+    "hardware_seconds": null,
+    "source": "mixed",
+    "software_audit_seconds": 40.507304958067834,
+    "notes": "Directly measured per-command wall times retained; agent/build/RTL/physical fields unavailable, not zero.",
+    "final_all_inputs_software_audit_seconds": 33.865778708830476
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "rate_date": null,
+    "source": "unavailable"
+  },
+  "execution": {
+    "candidate_commit": null,
+    "base_commit": "61a6947cd464b88488e06306db414ff8bab81192",
+    "source_note": "Precommit implementation; exact pinned source hashes in recipe and runner hash in run state. Historical native scan revisions are preserved by the legacy evidence manifest.",
+    "python_version": "Python 3.14.7",
+    "commands": {
+      "resume-and-status": {
+        "argv": [
+          "python3",
+          "tools/campaign_status.py",
+          "--run",
+          "--recipe",
+          "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier.json",
+          "--record",
+          "experiments/gf16-multiplicative-complexity/records/frontier-finalization-attempt-20261023.json",
+          "--run-dir",
+          "runs/gf16-frontier-finalization-20261023",
+          "--as-of",
+          "2026-10-23",
+          "--out",
+          "experiments/gf16-multiplicative-complexity/STATUS.md"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.1663942919112742
+      },
+      "stage-regressions": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_sbox_stage_splice.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 1.4033115832135081
+      },
+      "final-all-inputs-status": {
+        "argv": [
+          "python3",
+          "tools/campaign.py",
+          "status",
+          "--recipe",
+          "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier-all-inputs.json",
+          "--record",
+          "experiments/gf16-multiplicative-complexity/records/frontier-finalization-all-inputs-attempt-20261023.json",
+          "--run-dir",
+          "runs/gf16-frontier-finalization-all-inputs-20261023",
+          "--as-of",
+          "2026-10-23"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.3723356663249433
+      },
+      "pair-regressions": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_frontier_pair_comparison.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.24231741577386856
+      },
+      "full-audit": {
+        "argv": [
+          "python3",
+          "tools/campaign.py",
+          "run",
+          "--recipe",
+          "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier.json",
+          "--record",
+          "experiments/gf16-multiplicative-complexity/records/frontier-finalization-attempt-20261023.json",
+          "--run-dir",
+          "runs/gf16-frontier-finalization-20261023",
+          "--as-of",
+          "2026-10-23"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 40.60593608394265
+      },
+      "provenance": {
+        "argv": [
+          "./tools/experiment",
+          "validate-run",
+          "experiments/gf16-multiplicative-complexity/records/workflow-upgrade-20261023.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.08793504210188985
+      },
+      "final-links": {
+        "argv": [
+          "python3",
+          "runs/lab-workflow-upgrade-20261023/retain.py",
+          "links"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.14887558296322823
+      },
+      "bundle-restore": {
+        "argv": [
+          "python3",
+          "tools/artifact_bundle.py",
+          "restore",
+          ".aisl/archives/gf16-frontier-finalization-20261023.tar.gz",
+          "--dest",
+          ".aisl/restores/gf16-frontier-finalization-20261023"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 1.632819666992873
+      },
+      "registry": {
+        "argv": [
+          "./tools/experiment",
+          "check"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.1729108327999711
+      },
+      "tools-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 6.661658999975771
+      },
+      "bundle-create": {
+        "argv": [
+          "python3",
+          "tools/artifact_bundle.py",
+          "create",
+          "--root",
+          ".",
+          "--manifest",
+          "runs/lab-workflow-upgrade-20261023/bundle-source.json",
+          "--out",
+          ".aisl/archives/gf16-frontier-finalization-20261023.tar.gz"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 21.182993667200208
+      },
+      "two-and-regressions": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_two_and*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 1.4800548339262605
+      },
+      "status-generation": {
+        "argv": [
+          "python3",
+          "tools/campaign_status.py",
+          "--recipe",
+          "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier.json",
+          "--record",
+          "experiments/gf16-multiplicative-complexity/records/frontier-finalization-attempt-20261023.json",
+          "--run-dir",
+          "runs/gf16-frontier-finalization-20261023",
+          "--as-of",
+          "2026-10-23",
+          "--out",
+          "experiments/gf16-multiplicative-complexity/STATUS.md"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.15068341698497534
+      },
+      "protected-lab": {
+        "argv": [
+          "./lab/status"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 11.794108415953815
+      },
+      "links": {
+        "argv": [
+          "python3",
+          "runs/lab-workflow-upgrade-20261023/retain.py",
+          "links"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.06568116694688797
+      },
+      "diff-check": {
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.039790417067706585
+      },
+      "final-registry": {
+        "argv": [
+          "./tools/experiment",
+          "check"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.11992245819419622
+      },
+      "finalizer-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_frontier_finalization.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 2.9694998748600483
+      },
+      "bundle-verify": {
+        "argv": [
+          "python3",
+          "tools/artifact_bundle.py",
+          "verify",
+          ".aisl/archives/gf16-frontier-finalization-20261023.tar.gz"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.620858124922961
+      },
+      "tools-tests-final": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 4.069262458011508
+      },
+      "all-inputs-audit": {
+        "argv": [
+          "python3",
+          "tools/campaign_status.py",
+          "--run",
+          "--recipe",
+          "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier-all-inputs.json",
+          "--record",
+          "experiments/gf16-multiplicative-complexity/records/frontier-finalization-all-inputs-attempt-20261023.json",
+          "--run-dir",
+          "runs/gf16-frontier-finalization-all-inputs-20261023",
+          "--as-of",
+          "2026-10-23",
+          "--out",
+          "experiments/gf16-multiplicative-complexity/STATUS.md"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 35.206314666196704
+      },
+      "restored-audit": {
+        "argv": [
+          "python3",
+          ".aisl/restores/gf16-frontier-finalization-20261023/workspace/aes-256-gcm/tools/finalize_frontier_campaign.py",
+          "--root",
+          ".aisl/restores/gf16-frontier-finalization-20261023",
+          "--campaign",
+          ".aisl/restores/gf16-frontier-finalization-20261023/experiments/gf16-multiplicative-complexity/campaigns/frontier-pairs.json",
+          "--out",
+          "runs/lab-workflow-upgrade-20261023/restored-comparison.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 43.888490417040884
+      }
+    },
+    "runner_source_sha256": "98a3f36d88c9d6c40cde8019f57d94eba8761e702b00e1fbd70ea9314a2d07ec"
+  },
+  "result": {
+    "status": "workflow-controls-and-scoped-audit-pass",
+    "scientific_scope": "Exact fixed-coordinate r4=8 proper-quartic W5 frontier, not other raw-input-rank branches, not a completed GF16 multiplier, not external review or a world-first claim.",
+    "repeat_audit_exact_counts_match": true,
+    "restored_archive_audit_exact_counts_match": true,
+    "full_GF16_solution": false,
+    "world_first_established": false,
+    "physical_metrics": null,
+    "external_peer_review": false,
+    "initial_defects": "Observed initial suite 18/19 pass with directory exception; adversarial runner review found mutable earlier output and stale seal defects. Fixed and regression-tested, not hidden.",
+    "productivity_speedup": null,
+    "notes": "Reliability behavior tested; no general throughput or cost improvement inferred.",
+    "all_raw_inputs_pinned_directly": true,
+    "final_audit_sha256": "340eb0c7972f7a706556971549721a9c85333bcddb89a8c504caf0c4a208e4f2"
+  },
+  "evidence": [
+    {
+      "kind": "recipe",
+      "path": "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier.json",
+      "description": "Final per-case audit of already-computed evidence; no native rescans."
+    },
+    {
+      "kind": "result",
+      "path": "runs/gf16-frontier-finalization-20261023/attempts/every-case-audit/0001/comparison.json",
+      "description": "Real repeat per-case audit, sealed through generic runner."
+    },
+    {
+      "kind": "status",
+      "path": "experiments/gf16-multiplicative-complexity/STATUS.md",
+      "description": "Generated compact current evidence checkpoint."
+    },
+    {
+      "kind": "final-integration",
+      "path": "runs/gf16-frontier-finalization-all-inputs-20261023/attempts/every-case-audit/0001/comparison.json",
+      "description": "Fresh all-inputs-pinned run; exact counters match earlier audited and restored results."
+    }
+  ]
+}

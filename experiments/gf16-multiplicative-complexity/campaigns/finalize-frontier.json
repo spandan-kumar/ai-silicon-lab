@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "campaign_id": "gf16-frontier-finalization-20261023",
+  "experiment_id": "gf16-multiplicative-complexity",
+  "experiment_revision": 1,
+  "claim": "Determine unrestricted XOR-AND multiplicative complexity of reduced GF(16) multiplication on 8 input bits and 4 outputs.",
+  "prior_art": "experiments/gf16-multiplicative-complexity/PRIOR_ART.json",
+  "prior_art_max_age_days": 14,
+  "inputs": [
+    {
+      "path": "workspace/aes-256-gcm/tools/finalize_frontier_campaign.py",
+      "sha256": "d26ecbfacc05437c2861e343a4529eafd7cba100752cfe7703c64b11b60f85b4"
+    },
+    {
+      "path": "workspace/aes-256-gcm/tools/verify_norm_frontier_pairs.py",
+      "sha256": "3f9b39121cc80b86b86310251da6c2bfc6a9630d73e6b6981ee70503c3dd3b91"
+    },
+    {
+      "path": "experiments/gf16-multiplicative-complexity/campaigns/frontier-pairs.json",
+      "sha256": "ebcb2cee3c2d514cb81d425d398cad1703dd25a499625a58db81746129ac20ae"
+    },
+    {
+      "path": "experiments/gf16-multiplicative-complexity/experiment.json",
+      "sha256": "b9af2420ffd761aedf368c74dde4e25ee22f1fbe4324ac02cd0c558caaed4607"
+    },
+    {
+      "path": "experiments/gf16-multiplicative-complexity/PLAN.md",
+      "sha256": "c0f2f5189c8ecf2dbc3bac14dec4689d44bfb037cd25daf7d0d4989a7bdfbe8d"
+    }
+  ],
+  "scope_note": "This audits preserved completed native scans only; the claim names the research question, not a claim to have solved it.",
+  "stages": [
+    {
+      "id": "every-case-audit",
+      "role": "audit",
+      "time_kind": "software",
+      "argv": [
+        "python3",
+        "{root}/workspace/aes-256-gcm/tools/finalize_frontier_campaign.py",
+        "--campaign",
+        "{root}/experiments/gf16-multiplicative-complexity/campaigns/frontier-pairs.json",
+        "--out",
+        "{stage}/comparison.json"
+      ],
+      "outputs": [
+        {
+          "path": "comparison.json",
+          "equals": {
+            "status": "pass",
+            "states": 203728,
+            "marked_Q_choices": 207184,
+            "Q_statuses.negative": 207184,
+            "no_missing_or_duplicate_states": true
+          }
+        }
+      ]
+    }
+  ]
+}

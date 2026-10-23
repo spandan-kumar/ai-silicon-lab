@@ -16,6 +16,13 @@
       "path": "aes-256-gcm/experiment.json",
       "status": "complete",
       "kind": "cryptographic-accelerator"
+    },
+    {
+      "experiment_id": "gf16-multiplicative-complexity",
+      "title": "Unrestricted GF(16) multiplication complexity",
+      "path": "gf16-multiplicative-complexity/experiment.json",
+      "status": "in-progress",
+      "kind": "boolean-circuit-research"
     }
   ]
 }

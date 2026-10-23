@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "experiment_id": "gf16-multiplicative-complexity",
+  "experiment_revision": 1,
+  "title": "Unrestricted GF(16) multiplication complexity",
+  "status": "in-progress",
+  "domain": "boolean-circuit-complexity",
+  "parent_experiment_id": "aes-256-gcm",
+  "objective": "Determine unrestricted XOR-AND multiplicative complexity of reduced GF(16) multiplication on 8 input bits and 4 outputs.",
+  "scope": {
+    "primary_claim": "Either construct and independently verify a reduced GF(16) multiplier with at most eight AND gates, or establish a complete nine-AND lower bound in the unrestricted Boolean model with explicit proof dependencies and reproducible finite certificates where used.",
+    "included": [
+      "free XOR, NOT, constants, affine outputs, and arbitrary reuse of earlier nonlinear wires",
+      "exact circuit witnesses and all-256-input independent field-product comparisons",
+      "reviewed mathematical reductions with explicit coverage and proof dependencies",
+      "complete independent-method replay and every-case comparison of finite branch exclusions",
+      "primary-source prior-art comparisons before major campaigns and novelty claims"
+    ],
+    "excluded": [
+      "treating quadratic or bilinear lower bounds as unrestricted Boolean lower bounds",
+      "treating a scalar or output-pair witness as a full four-output field multiplier",
+      "transferring a lower bound for seven-output unreduced polynomial multiplication to the reduced field map without a proof",
+      "claiming world-first status from a bounded web search or a branch exclusion",
+      "claiming improved AES, silicon area, timing, power, energy, or leakage resistance from an AND count"
+    ],
+    "completion_boundary": "The unrestricted question remains open locally until a full witness or a complete coverage proof passes the corresponding acceptance gate. Individual branch closures are retained as conditional results, not experiment completion. The completed AES simulation baseline remains a separate experiment."
+  },
+  "design_space": {
+    "open": true,
+    "allowed_strategies": [
+      "algebraic proofs and wire-preserving normal forms",
+      "exhaustive enumeration with independently implemented mathematical checkers",
+      "SAT or SMT with independently checked certificates for negative claims",
+      "formalization or external review when useful",
+      "direct circuit construction, synthesis, and oracle replay",
+      "pivot to a better-supported research question with an explicit retained decision record"
+    ],
+    "invariants": [
+      "Boolean multiplication uses x_i^2=x_i; formal-polynomial and bilinear models are distinct",
+      "input-coordinate changes transport every old wire and the entire target jointly",
+      "scalar-equivalent replacement does not imply arbitrary-suffix wire-space preservation",
+      "all admitted scalar marks and old-space offsets remain covered unless a proved symmetry removes them",
+      "execution completion, independent replay, final audit, and publication are different states",
+      "unknown telemetry and physical metrics remain null"
+    ]
+  },
+  "reference": {
+    "algorithm": "(a,b) -> a*b in GF(2)[t]/(t^4+t+1)",
+    "encoding": "a=sum(a_i*t^i), b=sum(b_i*t^i), outputs c_0..c_3 in the same polynomial basis; reduction polynomial 0x13",
+    "oracle": "independent carryless polynomial product followed by explicit reduction modulo 0x13, compared on all 16*16 operand pairs",
+    "equivalence": "A change of basis or common invertible affine input substitution must carry the full target and output decoder with it; mixing inputs does not impose a bilinear restriction."
+  },
+  "workloads": [
+    {
+      "id": "complete-field-oracle",
+      "role": "positive-witness-correctness",
+      "source": "all 256 ordered input pairs under the frozen polynomial-basis encoding",
+      "comparison": "all four outputs agree exactly; inspect and count the actual AND DAG"
+    },
+    {
+      "id": "branch-exclusion-replay",
+      "role": "negative-result-correctness",
+      "source": "frozen normal form, complete input inventory, shard manifests, and independent enumerators",
+      "comparison": "exact input coverage, every-case counts and memberships, complete termination, and all retained positive controls"
+    },
+    {
+      "id": "adversarial-controls",
+      "role": "checker-and-orchestration-correctness",
+      "source": "known valid witnesses plus deliberately truncated, mutated, interrupted, duplicated, and mismatched artifacts",
+      "comparison": "valid fixtures pass; invalid or incomplete fixtures fail without acquiring verified status"
+    }
+  ],
+  "correctness": {
+    "requirements": [
+      "state the exact model, field map, and any equivalence used",
+      "positive circuits use only declared inputs, constants, XORs, and earlier AND outputs",
+      "negative coverage includes every case in the claimed scope under reviewed reductions",
+      "enumeration and checker outputs agree case by case, not only in aggregate",
+      "record actual command exits, stdout/stderr, input/source/binary hashes, and failed attempts",
+      "review mathematical reduction assumptions separately from numerical checker success"
+    ],
+    "forbidden_shortcuts": [
+      "promoting a zero exit or candidate-reported pass to a checked theorem",
+      "silently dropping failed shards, scalar marks, offsets, constants, or output corrections",
+      "calling same-team algorithmic independence external peer review or formal verification",
+      "inventing usage, time, cost, correctness, or physical measurements"
+    ],
+    "unknown_policy": "A missing audit, unavailable artifact, unresolved reduction, or unknown solver result remains explicitly pending or unknown; it is not a negative circuit result."
+  },
+  "metrics": [
+    {"id": "and_count", "unit": "two-input-AND-gates", "required": true, "meaning": "Count in the exact unrestricted Boolean DAG; XOR and affine operations are free in this model only."},
+    {"id": "coverage", "unit": "cases-and-marked-target-directions", "required": true, "meaning": "Expected, produced, independently replayed, and final-audited counts are separate."},
+    {"id": "proof_status", "unit": "claim-specific", "required": true, "meaning": "Reviewed reductions, finite independent replay, certificate checking, formalization, and external review are distinguished."},
+    {"id": "compute_cost", "unit": "seconds-and-source-labeled-cost", "required": true, "meaning": "Agent, build, software enumeration, RTL simulation, and physical time remain separate; unavailable fields are null."},
+    {"id": "novelty_status", "unit": "known-or-reproduction-or-possibly-new-or-unverified", "required": true, "meaning": "Bounded prior-art comparison is not proof that no prior result exists."},
+    {"id": "physical_metrics", "unit": "target-specific-or-null", "required": false, "meaning": "No PPA or security claim without a separate named target, implementation, and appropriate measurements."}
+  ],
+  "gates": [
+    {"id": "campaign-ready", "criteria": ["exact claim and remaining-case scope frozen", "primary-source search ledger and closest-prior-art comparison reviewed", "campaign can change the next research decision", "positive, negative, failure, and resume controls defined"]},
+    {"id": "branch-verified", "criteria": ["all source/input identities and actual process exits verified", "complete independent replay and every-case audit pass", "coverage proof and mathematical dependencies reviewed", "short current status regenerated without rewriting historical evidence"]},
+    {"id": "positive-solution", "criteria": ["at-most-eight-AND unrestricted circuit retained", "all 256 field products independently verified with all four outputs", "claimed equivalences and actual gate count independently checked"]},
+    {"id": "negative-solution", "criteria": ["all unrestricted eight-AND cases covered by a complete proof dependency tree", "all required finite or solver certificates independently checked", "nine-AND upper bound independently replayed", "no remaining branch or unproved reduction hidden in a global claim"]},
+    {"id": "novelty-reviewed", "criteria": ["claim-specific primary sources and dated queries refreshed before publication", "closest results compared in the same map and circuit model", "inaccessible sources and priority uncertainty disclosed", "no world-first claim from search absence alone"]}
+  ],
+  "phases": [
+    {"id": "scope-and-prior-art", "order": 1, "exit_criteria": ["frozen unrestricted reduced-field question and dated primary-source ledger"]},
+    {"id": "close-existing-evidence", "order": 2, "exit_criteria": ["completed scans receive final per-case audits or explicit failure status"]},
+    {"id": "remaining-cases", "order": 3, "exit_criteria": ["remaining raw-rank-six/seven cases resolved or a retained evidence-backed pivot is chosen"]},
+    {"id": "complete-claim-review", "order": 4, "exit_criteria": ["positive-solution or negative-solution gate passes with all dependencies explicit"]}
+  ],
+  "artifact_layout": {
+    "specification": "experiments/gf16-multiplicative-complexity/",
+    "current_status": "experiments/gf16-multiplicative-complexity/STATUS.md",
+    "prior_art": "experiments/gf16-multiplicative-complexity/PRIOR_ART.json",
+    "inherited_tools_and_proofs": "workspace/aes-256-gcm/tools/ and experiments/aes-256-gcm/GF16_*.md; retained in place for provenance",
+    "evaluation_runs": "runs/<run-id>/; raw archives must retain hashes and a replay/restore recipe"
+  },
+  "provenance_requirements": [
+    "experiment ID and revision; candidate commit; exact claim and frozen coverage scope",
+    "model canonical ID and alias, harness version, reasoning effort/mode, public instruction/goal hashes, and subagent relationships; unavailable fields null with source note",
+    "input, cached, output, reasoning, and total tokens and cost/rate sources where exposed; no inference from elapsed time",
+    "separate agent, human, build, software enumeration, RTL simulation, and physical-hardware times",
+    "argv, tool/compiler versions, flags, process terminal exits, stdout/stderr, and source/input/binary/output SHA-256 identities",
+    "proof dependencies, exact coverage counts, positive controls, every-case audit identity, and unsuccessful attempts",
+    "dated primary-source searches, source/version/section, fact checked, model mismatch, inaccessible material, and continue/pivot decision"
+  ],
+  "research": [
+    {"title": "Boyar-Find, Multiplicative Complexity of Vector Valued Boolean Functions", "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=919080", "fact": "Sections 2.1 and 5 distinguish restricted quadratic circuits from unrestricted XOR-AND circuits; optimal quadratic existence for one/two outputs does not imply preservation of every actual circuit's wires."},
+    {"title": "MF-167 author research entry", "url": "https://slopdealer.com/research/papers/mf-167/", "fact": "The author lists quadratic GF(16) complexity nine and unrestricted GF(16) complexity in [8,9]; publication priority and the complete evidence pack have not been independently audited here."},
+    {"title": "Morse, arXiv:2608.30238v1", "url": "https://arxiv.org/html/2608.30238v1", "fact": "The author states unrestricted complexity nine for the seven-output unreduced four-term polynomial product, a different map from reduced four-output GF(16) multiplication; its Lean development has not been executed here."}
+  ]
+}

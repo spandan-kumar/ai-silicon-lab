@@ -1,5 +1,11 @@
 # Reproducibility
 
+For research campaigns outside the Doom evaluator, use the selected
+experiment's own oracle and [durable campaign workflow](tools/CAMPAIGNS.md).
+Do not apply Doom frame metrics or evaluator semantics to GF(16) proofs.
+Large ignored artifacts require an explicit [archive and restore
+manifest](tools/ARTIFACT_BUNDLES.md); a Git branch alone does not contain them.
+
 Every evaluation records the candidate command, benchmark identity, input
 hash, trusted-file verification, Git revision, working-tree status, logs,
 metrics, comparison details, and generated frames.

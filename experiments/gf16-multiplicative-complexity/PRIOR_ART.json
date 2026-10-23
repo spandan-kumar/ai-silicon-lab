@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "claim": "Determine unrestricted XOR-AND multiplicative complexity of reduced GF(16) multiplication on 8 input bits and 4 outputs.",
+  "novelty_status": "unverified",
+  "reviewed_on": "2026-10-23",
+  "searches": [
+    {"query": "GF(16) multiplicative complexity unrestricted quadratic MF 167 9 AND gates", "date": "2026-10-23"},
+    {"query": "site.tsapps.nist.gov Boyar Find multiplicative complexity quadratic two output 919080", "date": "2026-10-23"},
+    {"query": "Morse 2608.30238 polynomial multiplication multiplicative complexity", "date": "2026-10-23"},
+    {"query": "\"GF(16)\" \"unrestricted\" \"multiplicative complexity\"", "date": "2026-10-23"},
+    {"query": "\"GF(2^4)\" \"multiplicative complexity\" 8 9", "date": "2026-10-23"},
+    {"query": "\"field multiplication\" \"quadratic\" \"Mirwald\" \"Schnorr\"", "date": "2026-10-23"}
+  ],
+  "sources": [
+    {
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=919080",
+      "title": "Boyar-Find, Multiplicative Complexity of Vector Valued Boolean Functions",
+      "version_or_section": "PDF dated July 24, 2015; Sections 2.1 and 5",
+      "verified_fact": "Distinguishes circuit models and reports optimal quadratic existence for one/two-output maps, with the general finite-field case posed as open in that paper.",
+      "limitation": "Does not prove that every actual optimal circuit is quadratic or preserve arbitrary old wires; the historical open statement is not a current novelty audit."
+    },
+    {
+      "url": "https://slopdealer.com/research/papers/mf-167/",
+      "title": "MF-167 author entry: Exact quadratic multiplicative complexity of GF(2^4) multiplication and polymul_4",
+      "version_or_section": "Published and last reviewed September 4, 2026; Result and Attribution",
+      "verified_fact": "Author lists quadratic GF(16) complexity nine, unrestricted GF(16) in [8,9], and unverified priority for the stronger quadratic claim.",
+      "limitation": "Author statement and scope checked; the complete evidence pack and mathematical proof were not independently replayed in this refresh."
+    },
+    {
+      "url": "https://slopdealer.com/research/papers/ml-076/",
+      "title": "ML-076 author entry: Multiplicative complexity bracket for GF(2^4) multiplication",
+      "version_or_section": "Published September 4, 2026; Result and Discussion",
+      "verified_fact": "Author marks the reduced-field unrestricted [8,9] question open and describes algebraic and direct-refutation approaches.",
+      "limitation": "Register status is not worldwide priority proof; its polynomial-product bracket is not adopted without reconciling the nearby Morse theorem."
+    },
+    {
+      "url": "https://arxiv.org/html/2608.30238v1",
+      "title": "Morse, Unrestricted Boolean Multiplicative Complexity of Four-Term Binary Polynomial Multiplication",
+      "version_or_section": "arXiv:2608.30238v1, August 31, 2026; Abstract, theorem 9.1, formalization section",
+      "verified_fact": "Author states unrestricted complexity nine for the eight-input, seven-output unreduced polynomial product.",
+      "limitation": "Different map from reduced four-output GF(16); lower bound does not automatically transfer after output reduction. Linked Lean source/build and axiom audit were not executed here."
+    }
+  ],
+  "inaccessible_sources": [
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/0304397592902358",
+      "title": "Mirwald-Schnorr, The multiplicative complexity of quadratic boolean forms (1992)",
+      "observed_access": "Full publisher open returned HTTP 403; bibliographic and abstract search record available.",
+      "limitation": "Original full proof not inspected in this refresh."
+    }
+  ],
+  "decision": {
+    "action": "continue",
+    "rationale": "Finish final per-case auditing of existing completed scans before new expensive work, then review remaining raw-rank-six/seven cases. Sources distinguish the exact reduced-field question from known restricted or unreduced results; they do not establish novelty or solve our remaining cases."
+  }
+}

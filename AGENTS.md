@@ -10,6 +10,9 @@ Before starting work, inspect `experiments/registry.json` and the selected
 experiment's `experiment.json` and `PLAN.md`. The experiment specification is
 the current question and acceptance contract; the rest of this file is the
 standing freedom, evidence, security, and repository-integrity contract.
+Read a selected experiment's `STATUS.md` first when available, then validate
+its linked run state before reusing a conclusion; chronological progress notes
+are historical checkpoints, not live process observations.
 
 This file is a freedom-and-evidence contract, not a prescribed playbook. Any
 examples in this file, the user brief, or the repository are illustrative
@@ -94,6 +97,34 @@ harness, separate agent/build/simulation/hardware times, and cost/source
 metadata. Use `null` with an explicit source note when telemetry is unavailable;
 never turn an approximate report into a measured fact. Follow
 `experiments/schema/README.md` and validate records with `./tools/experiment`.
+
+## Research and workflow checkpoints
+
+Before a major research campaign or a novelty claim, refresh a claim-specific
+primary-source web search. Record dated queries, source URLs/versions/sections,
+facts actually checked, closest known results, model or workload differences,
+inaccessible evidence, and a continue/pivot reason. Classify novelty as known,
+reproduction, possibly new, or unverified. An empty search is not a priority
+proof; reproducing a useful dependency is legitimate when labeled as such.
+
+Keep the open mathematical GF(16) question in its own experiment contract;
+do not infer AES hardware improvement or physical PPA from a gate-count proof.
+Keep completed baseline acceptance separate from open follow-up research.
+
+For multi-stage campaigns, chain execution, independent replay, final coverage
+and per-case audit, and a generated short status. Use `tools/campaign.py` or an
+equivalently tested runner; see `tools/CAMPAIGNS.md`. Preserve failed and
+interrupted attempts, actual command exits, logs, and pinned identities. Reuse
+only revalidated completed stages; missing or changed evidence invalidates a
+verified verdict. Retain distinct producer/checker algorithms when sharing
+orchestration. Archive explicit raw evidence with a checked restore recipe
+instead of assuming ignored run directories will travel with Git.
+
+When changing this workflow, define and execute failure, corruption, restart,
+and successful-finalization controls. Record measured outcomes and limitations;
+do not claim general productivity improvements from a plausible process or a
+single successful campaign. These checkpoints do not impose a fixed research
+method, an artificial overall iteration cap, or permission to weaken a judge.
 
 ## Optional starting references
 

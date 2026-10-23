@@ -274,6 +274,33 @@ raw-rank-eight producer campaign is complete but its full independent
 replay is still pending at this checkpoint. No global bound, smaller AES
 circuit, physical result or established novelty follows.
 
+## Completed raw-rank-eight final audit — 2026-10-23
+
+The historical pending independent replay above has now terminated and received
+its final audit. The portable
+[streaming finalizer](../../workspace/aes-256-gcm/tools/finalize_frontier_campaign.py)
+checks the preserved actual zero exits for all eight native shard commands,
+frozen source/binary/input/output identities, full TSV-to-inventory mapping,
+every old quadratic space and scalar membership, and every case's kernel and
+counter agreement. All **203,728** states and **207,184** retained scalar marks
+are negative. Exact totals agree on **1,668,736,048** left examinations,
+**9,452,606,080** eligible unordered pairs and **2,084,365,536** nonzero polar
+cosets. The producer includes one extra zero coset per state, as intended.
+
+Repeated final-audit executions agree on these counts, including a restored
+evidence tree. The durable runner retains actual logs/exit and a checked result seal. The
+[compact result](../gf16-multiplicative-complexity/records/frontier-finalization-all-inputs-result-20261023.json),
+[pinned legacy recipe](../gf16-multiplicative-complexity/campaigns/frontier-pairs.json)
+and [generated status](../gf16-multiplicative-complexity/STATUS.md) identify the
+evidence and replay boundary. No native scan was rerun for this finalization.
+
+Combined with the preceding reviewed rank-tight necessary-condition argument
+and its stated Q-by-four/all-quadratic/normal-form dependencies, this excludes
+the **proper-quartic `r4=8` branch** of the hypothetical full eight-AND field
+multiplier. Numerical agreement does not independently formalize those
+mathematical reductions, establish novelty, or settle the other raw ranks.
+The two algorithms are same-team independent methods, not external review.
+
 ## What remains
 
 No three-gate field continuation is tested by the original inventory. A next
@@ -289,9 +316,11 @@ using full reduced row-echelon bases: it finds **no duplicates** among
 the 203,728 `W5` states, preserving all 207,184 marks. Each state has
 at most two admitted marked scalars in this inventory. This is not a
 quotient by arbitrary `GL(8,2)` or by field-target equivalence.
-The `r4=6,r3=6` sub-branch is excluded as above. Other raw-rank-six/seven
-prefixes, the larger independent replay, complete continuations and the
-full eight-AND multiplier question remain open.
+The `r4=6,r3=6` and proper-quartic `r4=8` sub-branches are excluded as above.
+Other raw-rank-six/seven prefixes, complete continuations and the full
+eight-AND multiplier question remain open. Consult the separate
+[research plan](../gf16-multiplicative-complexity/PLAN.md) for the remaining
+case tree rather than interpreting old pending checkpoints as current state.
 
 ## Reproduction
 

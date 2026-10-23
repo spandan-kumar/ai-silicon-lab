@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "gf16-frontier-finalization-20261023",
+  "experiment_id": "gf16-multiplicative-complexity",
+  "experiment_revision": 1,
+  "status": "draft",
+  "measurement_status": "unavailable",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "Codex",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex desktop",
+      "version": null
+    },
+    "reasoning": {
+      "effort": null,
+      "mode": null
+    },
+    "goal_sha256": "2e511cd965d891b6a78bdbfa0c59a360daa35fe3f73dd943881c15431bc8033f",
+    "instruction_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "c4b62df7ec10112228a0891adc6d6f8167c8601f772ba262a9ea962bd7281478"
+      },
+      {
+        "path": "experiments/registry.json",
+        "sha256": "989fb1d589d766f37b91860464d01eec30ef24d52c8473be66feb2801261de14"
+      },
+      {
+        "path": "experiments/gf16-multiplicative-complexity/PLAN.md",
+        "sha256": "c0f2f5189c8ecf2dbc3bac14dec4689d44bfb037cd25daf7d0d4989a7bdfbe8d"
+      }
+    ],
+    "subagents": [
+      {
+        "name": "/root/research_contract",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/frontier_finalizer",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/artifact_bundle",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/review_runner",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      },
+      {
+        "name": "/root/review_finalizer",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      }
+    ],
+    "notes": "Canonical model ID, harness version, reasoning and per-attempt telemetry are not exposed. Agent identities describe delegation, not external peer review."
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null,
+    "source": "unavailable",
+    "notes": "No per-attempt token telemetry; no inference from elapsed time."
+  },
+  "time": {
+    "agent_wall_seconds": null,
+    "human_seconds": null,
+    "build_seconds": null,
+    "simulation_seconds": null,
+    "hardware_seconds": null,
+    "source": "unavailable"
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "rate_date": null,
+    "source": "unavailable"
+  },
+  "execution": {
+    "candidate_commit": null,
+    "base_commit": "61a6947cd464b88488e06306db414ff8bab81192",
+    "source_note": "Precommit implementation; exact pinned source hashes in recipe and runner hash in run state. Historical native scan revisions are preserved by the legacy evidence manifest.",
+    "python_version": "Python 3.14.7"
+  },
+  "result": {
+    "status": "not-yet-executed",
+    "full_GF16_solution": false,
+    "world_first_established": false
+  },
+  "evidence": [
+    {
+      "kind": "recipe",
+      "path": "experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier.json",
+      "description": "Final per-case audit of already-computed evidence; no native rescans."
+    }
+  ]
+}
