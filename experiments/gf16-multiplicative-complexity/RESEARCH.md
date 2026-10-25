@@ -1,5 +1,24 @@
 # GF(16) research and prior-art ledger
 
+## 2026-10-25 — pre-publication refresh
+
+Before pushing the existing checkpoint, searched `"GF(16)" "unrestricted"
+"multiplicative complexity"` and `"GF(2^4)" multiplicative complexity 8 9`,
+and reopened the primary [MF-167 author entry](https://slopdealer.com/research/papers/mf-167/)
+and [Morse v1](https://arxiv.org/html/2608.30238v1). The author entry still
+lists unrestricted reduced-field complexity in `[8,9]`; Morse's abstract
+states a nine-AND result for the different, seven-output unreduced polynomial
+product. Neither complete evidence pack nor Lean development was executed in
+this publication refresh. This bounded search does not establish priority.
+
+Decision: publish the already-validated conditional branch and workflow
+evidence without enlarging the claim. Novelty remains **unverified**. The
+October 23 machine ledger and campaign identities stay unchanged as historical
+inputs. Fresh tests, full per-case comparison, archive integrity, and protected
+file checks are recorded in
+[the October 25 validation record](records/prepush-validation-20261025.json);
+the raw command logs remain under `runs/prepush-validation-20261025/`.
+
 ## 2026-10-23 — revision 1 and primary-source refresh
 
 Exact question: determine unrestricted XOR-AND multiplicative complexity of

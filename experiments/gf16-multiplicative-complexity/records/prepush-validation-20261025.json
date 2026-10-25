@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "record_type": "experiment-run",
+  "run_id": "prepush-validation-20261025",
+  "experiment_id": "gf16-multiplicative-complexity",
+  "experiment_revision": 1,
+  "status": "pass",
+  "measurement_status": "mixed",
+  "agent": {
+    "model": {
+      "provider": "OpenAI",
+      "display_name": "Codex",
+      "canonical_id": null,
+      "identity_status": "alias-only"
+    },
+    "harness": {
+      "name": "Codex desktop",
+      "version": null
+    },
+    "reasoning": {
+      "effort": null,
+      "mode": null
+    },
+    "goal_sha256": "99f96f9130aa67ae66b0edd65558eadd85bd9de509b76cfb13713de5c1dae6e3",
+    "instruction_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "c4b62df7ec10112228a0891adc6d6f8167c8601f772ba262a9ea962bd7281478"
+      },
+      {
+        "path": "experiments/registry.json",
+        "sha256": "989fb1d589d766f37b91860464d01eec30ef24d52c8473be66feb2801261de14"
+      },
+      {
+        "path": "experiments/gf16-multiplicative-complexity/PLAN.md",
+        "sha256": "c0f2f5189c8ecf2dbc3bac14dec4689d44bfb037cd25daf7d0d4989a7bdfbe8d"
+      }
+    ],
+    "subagents": [
+      {
+        "name": "/root/prepush_audit",
+        "parent": "/root",
+        "model": {
+          "provider": "OpenAI",
+          "display_name": "Codex",
+          "canonical_id": null,
+          "identity_status": "alias-only"
+        },
+        "usage": null,
+        "cost": null
+      }
+    ],
+    "notes": "No canonical model/harness/reasoning/token/cost telemetry exposed; null is not zero. Same-team review, not external peer review."
+  },
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null,
+    "source": "unavailable"
+  },
+  "time": {
+    "agent_wall_seconds": null,
+    "human_seconds": null,
+    "build_seconds": null,
+    "simulation_seconds": null,
+    "hardware_seconds": null,
+    "software_audit_seconds": 34.482066959142685,
+    "source": "mixed",
+    "notes": "Measured per-command wall times retained separately; software audit is not RTL/hardware time."
+  },
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "rate_date": null,
+    "source": "unavailable"
+  },
+  "execution": {
+    "candidate_commit": "427def146d7e98a560ce02873c51f8dc3ee761b2",
+    "commands": {
+      "full-audit": {
+        "argv": [
+          "python3",
+          "workspace/aes-256-gcm/tools/finalize_frontier_campaign.py",
+          "--campaign",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/campaigns/frontier-pairs.json",
+          "--out",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/runs/prepush-validation-20261025/comparison.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 34.482066959142685,
+        "stdout_sha256": "61c39b101554b780cef360c1884b374b78ca1b5aff1cdec2811d31338f92e055",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "frontier-finalization-all-inputs-attempt-20261023-schema": {
+        "argv": [
+          "./tools/experiment",
+          "validate-run",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/records/frontier-finalization-all-inputs-attempt-20261023.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.09143045917153358,
+        "stdout_sha256": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "two-and-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_two_and*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 2.0287959170527756,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "88a551e46e891ca91a36fda8b4fa3bb8686aaf1492a8964de00998d644e59e86"
+      },
+      "workflow-validation-final-20261023-schema": {
+        "argv": [
+          "./tools/experiment",
+          "validate-run",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/records/workflow-validation-final-20261023.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.08999945782124996,
+        "stdout_sha256": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "registry": {
+        "argv": [
+          "./tools/experiment",
+          "check"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.18459220882505178,
+        "stdout_sha256": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tools-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 4.576254999730736,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "6589a4848c3805720a854125d87a1a036a3a83dd39c80246941325927c2394f5"
+      },
+      "protected-lab": {
+        "argv": [
+          "./lab/status"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 7.6295632920227945,
+        "stdout_sha256": "0f63bded82e1fde28a2ef01ae6a2089623284cbb4b987fd68dec0059211391c1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "pair-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_frontier_pair_comparison.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.24815366603434086,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "033b4e6e16f2d043145e3a4de6a340b66551d505a7c39eeadfc4e411dcf80853"
+      },
+      "stage-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_sbox_stage_splice.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 2.1043822919018567,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "0c62c64a3a06df392eb37ed305e3cb6b07a36df83872c5e8967e44fa460f8dd0"
+      },
+      "diff-check": {
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.0253800000064075,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "frontier-finalization-attempt-20261023-schema": {
+        "argv": [
+          "./tools/experiment",
+          "validate-run",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/records/frontier-finalization-attempt-20261023.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.10862079169601202,
+        "stdout_sha256": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "finalizer-tests": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "workspace/aes-256-gcm/tools",
+          "-p",
+          "test_frontier_finalization.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 2.482900958042592,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "0af360487740b8c26c92adfd491a4b1a8e3acc147dd15aed1b7e77c49e48cf69"
+      },
+      "bundle-verify": {
+        "argv": [
+          "python3",
+          "tools/artifact_bundle.py",
+          "verify",
+          ".aisl/archives/gf16-frontier-finalization-20261023.tar.gz"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.711660583037883,
+        "stdout_sha256": "979cd5a76630f7f3bd7a1ba461735d8251d0c3721ccb225866aeaafbe15b9c41",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "workflow-upgrade-20261023-schema": {
+        "argv": [
+          "./tools/experiment",
+          "validate-run",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/records/workflow-upgrade-20261023.json"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.08758766669780016,
+        "stdout_sha256": "b910f9af288643a6f0f579293a1d951c2f6e20938be309db186be7959f5ebfb7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "campaign-state": {
+        "argv": [
+          "python3",
+          "tools/campaign.py",
+          "status",
+          "--recipe",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/campaigns/finalize-frontier-all-inputs.json",
+          "--record",
+          "/Users/Spandan/Documents/ChatGPT/AI Silicon Lab/experiments/gf16-multiplicative-complexity/records/frontier-finalization-all-inputs-attempt-20261023.json",
+          "--run-dir",
+          "runs/gf16-frontier-finalization-all-inputs-20261023",
+          "--as-of",
+          "2026-10-25"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.3774484172463417,
+        "stdout_sha256": "b5147d302ed7779a0f917a9480f014c8a31db9eed35aa568e37fe368323710df",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "python_version": "Python 3.14.7"
+  },
+  "result": {
+    "status": "prepush-validation-pass",
+    "tests": 43,
+    "scope": "Exact fixed-coordinate r4=8 proper-quartic W5 frontier, not other raw-input-rank branches, not a completed GF16 multiplier, not external review or a world-first claim.",
+    "exact_repeat_counters_match": true,
+    "bundle_sha256_matches_record": true,
+    "full_GF16_solution": false,
+    "world_first_established": false,
+    "physical_metrics": null,
+    "protected_files_verified": 236,
+    "remote_push": "pending-separate-git-operation"
+  },
+  "evidence": [
+    {
+      "kind": "audit",
+      "path": "runs/prepush-validation-20261025/comparison.json",
+      "description": "Fresh full every-case replay on publication candidate."
+    },
+    {
+      "kind": "prior-art",
+      "path": "runs/prepush-validation-20261025/publication-research.json",
+      "description": "Dated primary-source publication refresh; no novelty claim."
+    }
+  ]
+}
